@@ -1,0 +1,1 @@
+chrome-extension://amfojhdiedpdnlijjbhjnhokbnohfdfb/injected/nr-ext-dom/nr-ext-select-icon/nr-ext-select-icon.html

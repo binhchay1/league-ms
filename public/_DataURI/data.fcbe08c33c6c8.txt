@@ -1,0 +1,1 @@
+chrome-extension://amfojhdiedpdnlijjbhjnhokbnohfdfb/js/injectReaderView.bundle.js
