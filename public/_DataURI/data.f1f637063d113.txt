@@ -1,0 +1,1 @@
+chrome-extension://amfojhdiedpdnlijjbhjnhokbnohfdfb/captureToText/assets/js/material.min.js
