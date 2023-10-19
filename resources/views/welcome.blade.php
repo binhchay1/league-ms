@@ -76,7 +76,6 @@
 
 <div id="fb-root"></div>
 <div id="fb-customer-chat" class="fb-customerchat" page_id="201674387218178" attribution="biz_inbox"></div>
-<script src="https://myleague.vn/content/js/vendors/facebook/index.js" async defer crossorigin="anonymous"></script>
 
 <div class="bodyContent  ">
     <div id="adsHomePage">
@@ -131,7 +130,7 @@
                             src="/content/images/shop.png"> </a> <a class="navbar-brand nav-logo-myleague hvr-buzz-out"
                                                                     href="https://myleague.vn"> <img
                             src="/content/images/green_logo.jpg" class="pull-left hidden"> <img
-                            src="/images/white_logo.jpg" class="pull-left"> </a></div>
+                            src="/content/images/white_logo.jpg" class="pull-left"> </a></div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right ">
                         <form method="GET" action="https://myleague.vn/league" accept-charset="UTF-8"
@@ -787,7 +786,7 @@ Thể thao l&agrave; kết nối m&agrave; phải kh&ocirc;ng anh em?</span></sp
                     <div class="ps-wrapper">
                         <div class="site-logo">
                             <a href="/" title="Hệ thống quản lý giải đấu">
-                                <img alt="Hệ thống quản lý giải đấu" width="220" src="/images/white_logo.jpg"/>
+                                <img alt="Hệ thống quản lý giải đấu" width="220" src="/content/images/white_logo.jpg"/>
                             </a>
                         </div>
                         <div class="ps-middle">
@@ -1422,17 +1421,6 @@ Thể thao l&agrave; kết nối m&agrave; phải kh&ocirc;ng anh em?</span></sp
                 <h4 class="modal-title"> Hãy tải ứng dụng về máy bạn ngay thôi nào! </h4> <small>Để có được những trải
                     nghiệm tốt nhất cho công việc tạo và quản lý giải đấu cũng như đội thi đấu, bạn hãy nhanh tay tải
                     ứng dụng về điện thoại của bạn.</small></div>
-            <div class="modal-body text-center">
-                <div class="wrap flex">
-                    <div class="flex-item url"><a href="https://apps.apple.com/vn/app/myleague/id1601852742"
-                                                  target="_blank"> <img
-                                src="https://myleague.vn/content/images/apple-app-store.png"> </a> <a
-                            href="https://play.google.com/store/apps/details?id=vn.myleague" target="_blank"> <img
-                                src="https://myleague.vn/content/images/google-play-store.png"> </a></div>
-                    <div class="flex-item qr"><img width="220" src="https://myleague.vn/content/images/app-qr.png">
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
