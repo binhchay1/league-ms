@@ -171,6 +171,7 @@
                         </li>
                         <li><a href="https://myleague.vn/pricing"> Bảng giá </a></li>
                         <li><a href="https://blog.myleague.vn/vi"> Blog </a></li>
+                        <li><a href="{{route('login')}}"> Đăng nhập </a></li>
                         <li class="dropdown" id="info-account"><a title=" Tâm An" href="javascript:void(0)"
                                                                   class="dropdown-toggle" data-toggle="dropdown"
                                                                   role="button" aria-haspopup="true"
