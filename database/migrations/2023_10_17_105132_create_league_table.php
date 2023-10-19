@@ -15,6 +15,13 @@ class CreateLeagueTable extends Migration
     {
         Schema::create('league', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('phone_number');
+            $table->string('mode');
+            $table->string('address');
+            $table->string('avatar');
+            $table->integer('total_members');
+            $table->string('format');
             $table->timestamps();
         });
     }
