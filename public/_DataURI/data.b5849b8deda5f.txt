@@ -1,0 +1,1 @@
+chrome-extension://amfojhdiedpdnlijjbhjnhokbnohfdfb/assetsReader/js/core/jquery.min.js
