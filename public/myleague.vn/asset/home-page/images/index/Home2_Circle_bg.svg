@@ -1,0 +1,22 @@
+<svg width="1002" height="957" viewBox="0 0 1002 957" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.1" fill-rule="evenodd" clip-rule="evenodd" d="M501 656C611.457 656 701 566.457 701 456C701 345.543 611.457 256 501 256C390.543 256 301 345.543 301 456C301 566.457 390.543 656 501 656Z" stroke="white"/>
+<path opacity="0.08" fill-rule="evenodd" clip-rule="evenodd" d="M501 756C666.685 756 801 621.685 801 456C801 290.315 666.685 156 501 156C335.315 156 201 290.315 201 456C201 621.685 335.315 756 501 756Z" stroke="white"/>
+<path opacity="0.06" fill-rule="evenodd" clip-rule="evenodd" d="M501 856C721.914 856 901 676.914 901 456C901 235.086 721.914 56 501 56C280.086 56 101 235.086 101 456C101 676.914 280.086 856 501 856Z" stroke="white"/>
+<path opacity="0.04" fill-rule="evenodd" clip-rule="evenodd" d="M501 956C777.142 956 1001 732.142 1001 456C1001 179.858 777.142 -44 501 -44C224.858 -44 1 179.858 1 456C1 732.142 224.858 956 501 956Z" stroke="white"/>
+<g opacity="0.15">
+<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="456" y="405" width="98" height="98">
+<rect x="456" y="405" width="98" height="98" rx="49" fill="white"/>
+</mask>
+<g mask="url(#mask0)">
+<rect x="456" y="405" width="98" height="98" fill="#2B63E3"/>
+</g>
+</g>
+<g opacity="0.5">
+<mask id="mask1" mask-type="alpha" maskUnits="userSpaceOnUse" x="466" y="415" width="78" height="78">
+<rect x="466" y="415" width="78" height="78" rx="39" fill="white"/>
+</mask>
+<g mask="url(#mask1)">
+<rect x="466" y="415" width="78" height="78" fill="#2B63E3"/>
+</g>
+</g>
+</svg>
