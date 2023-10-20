@@ -71,7 +71,7 @@
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Content -->
-                @include('layout.home')
+                @yield('content')
                 <!-- / Content -->
 
                 <!-- Footer -->

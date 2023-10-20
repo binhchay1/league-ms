@@ -19,10 +19,11 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => 'required|max:255|email',
-            'password' => 'required|confirmed',
+            'password' => 'required',
         ]);
 
         $credentials = $request->only('email', 'password');
+
         if (Auth::attempt($credentials)) {
             return redirect()->intended('dashboard')
                 ->withSuccess('Signed in');
