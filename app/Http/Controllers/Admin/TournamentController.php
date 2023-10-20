@@ -23,7 +23,10 @@ class TournamentController extends Controller
     }
     public function index()
     {
-        //
+        $listTournament = $this->tournamentRepository->index();
+        return view ('admin.tournament.index', [
+            'listTournament' => $listTournament,
+        ]);
     }
 
     /**
