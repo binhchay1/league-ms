@@ -1,32 +1,30 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Http\Requests\TournamentReuqest;
-use App\Repositories\TournamentRepository;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Repositories\TeamRepository;
 
-class TournamentController extends Controller
+class TeamController extends Controller
 {
-    protected $tournamentRepository;
+    protected $teamRepository;
+
+    public function __construct(
+        TeamRepository $teamRepository
+
+    ) {
+        $this->teamRepository = $teamRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct(
-        TournamentRepository $tournamentRepository
-
-    ) {
-        $this->tournamentRepository = $tournamentRepository;
-    }
     public function index()
     {
-        $listTournament = $this->tournamentRepository->index();
-        return view ('admin.tournament.index', [
-            'listTournament' => $listTournament,
-        ]);
+        //
     }
 
     /**
@@ -36,10 +34,7 @@ class TournamentController extends Controller
      */
     public function create()
     {
-        $format_tour = config('tournament.format');
-        return view ('admin.tournament.create',[
-            'formatTour' => $format_tour,
-        ]);
+        return view('admin.team.create');
     }
 
     /**
@@ -60,8 +55,9 @@ class TournamentController extends Controller
             }
         }
 
-        $this->tournamentRepository->store($input);
-        return redirect()->to('list-tournament');
+        $this->teamRepository->store($input);
+
+        return redirect()->to('list-team');
 
     }
 
