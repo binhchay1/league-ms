@@ -49,7 +49,7 @@ class TeamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TeamRequest $request)
     {
         $input = $request->except(['_token']);
         if (isset($input['image'])) {
@@ -74,7 +74,8 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        //
+        $dataTeam = $this->teamRepository->showTeamInfo($id);
+        return view('admin.team.show',['dataTeam'=> $dataTeam]);
     }
 
     /**

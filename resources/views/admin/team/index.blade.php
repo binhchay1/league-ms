@@ -9,7 +9,7 @@
                         <div class="" style="background-color: #eff2f4; padding: 5px">
                                 <h5 class="card-title mt-4" style="text-align: center">{{$team->name}}</h5>
                                <img class="image" src="{{$team->image}}" alt="avatar" style="display: block;margin-left: auto;margin-right: auto;width: 50%; border-radius: 80px">
-                                <a href="" style="margin-bottom: 10px;width: 70%;margin-left: 54px;" class="btn btn-primary col-sm-12 mt-4 ">Profile</a>
+                                <a href="{{route('team.show', $team['id'])}}" style="margin-bottom: 10px;width: 70%;margin-left: 54px;" class="btn btn-primary col-sm-12 mt-4 ">Profile</a>
                         </div>
                     </div>
                 @endforeach

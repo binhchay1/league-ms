@@ -15,6 +15,6 @@ class Player extends Model
 
     public function teams()
     {
-        return $this->belongsTo('App\Models\Team', 'team_id');
+        return $this->belongsTo('App\Models\Team', 'team_id', 'id');
     }
 }
