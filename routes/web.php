@@ -54,4 +54,13 @@ Route::middleware(['admin'])->group(
             Route::get('/team/{id}', 'App\Http\Controllers\Admin\TeamController@show')->name('team.show');
             Route::get('/edit-team/{id}', 'App\Http\Controllers\Admin\TeamController@edit')->name('team.edit');
             Route::post('/update-team/{id}', 'App\Http\Controllers\Admin\TeamController@update')->name('team.update');
+
+
+            //Player
+            Route::get('/list-player', 'App\Http\Controllers\Admin\PlayerController@index')->name('player.index');
+            Route::get('/create-player', 'App\Http\Controllers\Admin\PlayerController@create')->name('player.create');
+            Route::post('/store-player', 'App\Http\Controllers\Admin\PlayerController@store')->name('player.store');
+            Route::get('/player/{id}', 'App\Http\Controllers\Admin\PlayerController@show')->name('player.show');
+            Route::get('/edit-player/{id}', 'App\Http\Controllers\Admin\PlayerController@edit')->name('player.edit');
+            Route::post('/update-player/{id}', 'App\Http\Controllers\Admin\PlayerController@update')->name('player.update');
         });
