@@ -53,6 +53,15 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
+        'public-logo' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/logo/',
+            'url' => env('APP_URL') . '/images/logo/',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+
     ],
 
     /*

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TournamentReuqest extends FormRequest
+class TeamRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,23 +24,19 @@ class TournamentReuqest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
-            'start_date'=> 'required',
-            'end_date' =>'required',
-            'format' =>'required',
-            'number_of_team' =>'required',
-            'people_of_team' =>'required',
+            '' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'name'=> 'required',
+            'coach' =>'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'start_date.required' => __('validation.required'),
-            'end_date.required' => __('validation.required'),
-            'format.required' => __('validation.required'),
-            'number_of_team.required' => __('validation.required'),
-            'people_of_team.required' => __('validation.required'),
+
+            'name.required' => __('validation.required'),
+            'coach.required' => __('validation.required'),
+            'image.required' => __('validation.required'),
             'image.image' => __('validation.image'),
             'image.mimes' => __('validation.mimes'),
             'image.max' => __('validation.max'),

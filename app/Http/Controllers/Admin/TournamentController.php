@@ -5,10 +5,12 @@ use App\Http\Requests\TournamentReuqest;
 use App\Repositories\TournamentRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Enums\Utility;
 
 class TournamentController extends Controller
 {
     protected $tournamentRepository;
+    protected $utility;
     /**
      * Display a listing of the resource.
      *
@@ -16,10 +18,11 @@ class TournamentController extends Controller
      */
 
     public function __construct(
-        TournamentRepository $tournamentRepository
-
+        TournamentRepository $tournamentRepository,
+        Utility $ultity
     ) {
         $this->tournamentRepository = $tournamentRepository;
+        $this->utility = $ultity;
     }
     public function index()
     {
@@ -48,18 +51,17 @@ class TournamentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TournamentReuqest $request)
     {
         $input = $request->except(['_token']);
 
-        if(isset($input['image'])) {
-            $img = $this->postFile($input);
+        if (isset($input['image'])) {
+            $img = $this->utility->saveImageLogo($input);
             if ($img) {
-                $fileName = 'img/' . $img;
-                $input['image'] = $fileName;
+                $path = '/images/logo/' . $input['image']->getClientOriginalName();
+                $input['image'] = $path;
             }
         }
-
         $this->tournamentRepository->store($input);
         return redirect()->to('list-tournament');
 

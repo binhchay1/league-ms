@@ -11,6 +11,11 @@ class TeamRepository extends BaseRepository
         return Team::class;
     }
 
+    public function index()
+    {
+        return $this->model->orderBy('created_at', 'desc')->get();
+    }
+
     public function store($input)
     {
         return $this->model->create($input);
