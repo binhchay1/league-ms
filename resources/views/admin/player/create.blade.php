@@ -30,13 +30,9 @@
                                                         <i id="btn_chooseImg" class="fas fa-camera">  Choose Image</i>
                                                     </div>
                                                 </div>
-                                                @if ($errors->has('image'))
-                                                    <span class="text-danger">{{ $errors->first('image') }}</span>
-                                                @endif
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="">
                                             <label for="lastName" class="form-label">Tên vận động viên</label>

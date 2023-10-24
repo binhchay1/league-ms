@@ -10,11 +10,11 @@ class Team extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'player_id','coach', 'image'
+        'name','coach', 'image'
     ];
 
-    public function player()
+    public function players()
     {
-        return $this->hasMany('App\Models\Player', 'player_id');
+        return $this->hasMany('App\Models\Player');
     }
 }
