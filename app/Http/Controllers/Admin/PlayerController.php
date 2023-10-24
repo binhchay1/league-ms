@@ -1,35 +1,32 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Http\Requests\TournamentReuqest;
-use App\Repositories\TournamentRepository;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Enums\Utility;
 
-class TournamentController extends Controller
+use App\Enums\Utility;
+use App\Http\Controllers\Controller;
+use App\Repositories\PlayerRepository;
+use App\Repositories\TeamRepository;
+use Illuminate\Http\Request;
+
+class PlayerController extends Controller
 {
-    protected $tournamentRepository;
+    protected $playerRepository;
+    protected $teamRepository;
     protected $utility;
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function __construct(
-        TournamentRepository $tournamentRepository,
-        Utility $ultity
+        PlayerRepository $playerRepository,
+        TeamRepository $teamRepository,
+        Utility $utility
+
     ) {
-        $this->tournamentRepository = $tournamentRepository;
-        $this->utility = $ultity;
+        $this->playerRepository = $playerRepository;
+        $this->teamRepository = $teamRepository;
+        $this->utility = $utility;
     }
     public function index()
     {
-        $listTournament = $this->tournamentRepository->index();
-        return view ('admin.tournament.index', [
-            'listTournament' => $listTournament,
-        ]);
+        //
     }
 
     /**
@@ -39,9 +36,11 @@ class TournamentController extends Controller
      */
     public function create()
     {
-        $format_tour = config('tournament.format');
-        return view ('admin.tournament.create',[
-            'formatTour' => $format_tour,
+        $listTeam = $this->teamRepository->index();
+        $gender = config('player.gender');
+        return view('admin.player.create',[
+            'gender'=> $gender,
+            'listTeam'=> $listTeam
         ]);
     }
 
@@ -51,7 +50,7 @@ class TournamentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TournamentReuqest $request)
+    public function store(Request $request)
     {
         $input = $request->except(['_token']);
 
@@ -62,8 +61,9 @@ class TournamentController extends Controller
                 $input['image'] = $path;
             }
         }
-        $this->tournamentRepository->store($input);
-        return redirect()->to('list-tournament');
+        $this->playerRepository->store($input);
+
+        return redirect()->back()->with('success', 'Create player successfully!');
     }
 
     /**
@@ -109,29 +109,5 @@ class TournamentController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function postFile($input)
-    {
-        if ($input['image']) {
-            $file = $input['image'];
-
-            $typeFile = $file->getClientOriginalExtension();
-            if ($typeFile == 'png' || $typeFile == 'jpg' || $typeFile == 'jpeg' ) {
-                $fileSize = $file->getSize();
-                if ($fileSize <= 1024000) {
-                    $fileName = $file->getClientOriginalName();
-                    $file->move('img', $fileName);
-                    return $fileName;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-
-        } else {
-            return false;
-        }
     }
 }
