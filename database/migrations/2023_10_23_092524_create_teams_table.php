@@ -15,10 +15,11 @@ class CreateTeamsTable extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('player_id')->nullable();
             $table->string('name');
             $table->string('coach');
-            $table->string('logo');
+            $table->string('image');
+            $table->BigInteger('player_id')->nullable();
+
             $table->timestamps();
         });
     }
