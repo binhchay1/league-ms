@@ -21,14 +21,14 @@
                     <tbody class="table-border-bottom-0">
                     @foreach($listTournament as $data)
                         <tr>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $data->id }}</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $data->name }}</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $data->start_date }}</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $data->end_date }}</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $data->image }}</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $data->format }}</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $data->number_of_team }}</strong></td>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $data->people_of_team }}</strong></td>
+                            <td><i class=""></i> <strong>{{ $data->id }}</strong></td>
+                            <td><i class=""></i> <strong>{{ $data->name }}</strong></td>
+                            <td><i class=""></i> <strong>{{ $data->start_date }}</strong></td>
+                            <td><i class=""></i> <strong>{{ $data->end_date }}</strong></td>
+                            <td><i class=""></i> <strong>{{ $data->image }}</strong></td>
+                            <td><i class=""></i> <strong>{{ $data->format }}</strong></td>
+                            <td><i class=""></i> <strong>{{ $data->number_of_team }}</strong></td>
+                            <td><i class=""></i> <strong>{{ $data->people_of_team }}</strong></td>
                             <td>
                                 <a href="">
                                     <button type="button" class="btn btn-secondary">Edit</button>

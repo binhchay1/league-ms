@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Utility;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TeamRequest;
 use Illuminate\Http\Request;
 use App\Repositories\TeamRepository;
 
 class TeamController extends Controller
 {
     protected $teamRepository;
+    protected $utility;
 
     public function __construct(
-        TeamRepository $teamRepository
+        TeamRepository $teamRepository,
+         Utility $utility
 
     ) {
         $this->teamRepository = $teamRepository;
+        $this->utility = $utility;
     }
 
     /**
@@ -24,7 +29,8 @@ class TeamController extends Controller
      */
     public function index()
     {
-        //
+        $listTeam = $this->teamRepository->index();
+        return view('admin.team.index',['listTeam' => $listTeam]);
     }
 
     /**
@@ -46,12 +52,11 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         $input = $request->except(['_token']);
-
-        if(isset($input['image'])) {
-            $img = $this->postFile($input);
+        if (isset($input['image'])) {
+            $img = $this->utility->saveImageLogo($input);
             if ($img) {
-                $fileName = 'img/' . $img;
-                $input['image'] = $fileName;
+                $path = '/images/logo/' . $input['image']->getClientOriginalName();
+                $input['image'] = $path;
             }
         }
 
