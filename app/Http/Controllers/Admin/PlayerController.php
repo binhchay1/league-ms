@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\Utility;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PlayerRequest;
 use App\Repositories\PlayerRepository;
 use App\Repositories\TeamRepository;
 use Illuminate\Http\Request;
@@ -50,7 +51,7 @@ class PlayerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PlayerRequest $request)
     {
         $input = $request->except(['_token']);
 

@@ -21,4 +21,9 @@ class TeamRepository extends BaseRepository
         return $this->model->create($input);
     }
 
+    public function showTeamInfo($id)
+    {
+        return $this->model->with('players')->where('id', $id)->first();
+    }
+
 }
