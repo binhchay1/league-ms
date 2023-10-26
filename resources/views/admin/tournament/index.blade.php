@@ -25,10 +25,10 @@
                             <td><i class=""></i> <strong>{{ $data->name }}</strong></td>
                             <td><i class=""></i> <strong>{{ $data->start_date }}</strong></td>
                             <td><i class=""></i> <strong>{{ $data->end_date }}</strong></td>
-                            <td><i class=""></i> <strong>{{ $data->image }}</strong></td>
+                            <td><img class ="image" src="{{$data->image}}" alt="avatar" style="width: 150px"></td>
                             <td><i class=""></i> <strong>{{ $data->format }}</strong></td>
+                            <td><i class=""></i> <strong>{{ $data->type }}</strong></td>
                             <td><i class=""></i> <strong>{{ $data->number_of_team }}</strong></td>
-                            <td><i class=""></i> <strong>{{ $data->people_of_team }}</strong></td>
                             <td>
                                 <a href="">
                                     <button type="button" class="btn btn-secondary">Edit</button>

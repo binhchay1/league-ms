@@ -24,7 +24,7 @@ class PlayerRequest extends FormRequest
     public function rules()
     {
         return [
-            'team_id' => 'required|unique:players',
+            'team_id' => 'required',
             'name'=> 'required',
             'birthday' =>'required|date',
         ];
@@ -34,7 +34,6 @@ class PlayerRequest extends FormRequest
     {
         return [
             'team_id.required' => __('validation.required'),
-            'team_id.unique' => __('validation.unique'),
             'name.required' => __('validation.required'),
             'birthday.required' => __('validation.required'),
             'birthday.image' => __('validation.date'),

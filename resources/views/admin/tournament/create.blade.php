@@ -55,12 +55,19 @@
                                             @endif
                                         </div>
                                     </div>
-
                                     <div class="" style="margin-top: 10px">
-                                        <label class="form-label" for="country">Hình thức thi đấu</label>
+                                        <label class="form-label" for="country">Thể thức thi đấu</label>
                                         <select id="format" name="format" class="select2 form-select">
                                             @foreach($formatTour as $formatTour => $value)
                                                 <option id="format" value="{{$value}}">{{$value}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="" style="margin-top: 10px">
+                                        <label class="form-label" for="country">Hình thức thi đấu</label>
+                                        <select id="type" name="type" class="select2 form-select">
+                                            @foreach($type_tour as $type_tour => $value)
+                                                <option id="type" value="{{$value}}">{{$value}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -73,13 +80,6 @@
                                         @endif
                                     </div>
 
-                                    <div class="mt-4">
-                                        <label for="lastName" class="form-label">Người tham gia mỗi đội</label>
-                                        <input class="form-control" type="text" name="people_of_team" id="people_of_team"  />
-                                        @if ($errors->has('people_of_team'))
-                                            <span class="text-danger">{{ $errors->first('people_of_team') }}</span>
-                                        @endif
-                                    </div>
                                 </div>
                                 <div class="mt-4">
                                     <button type="submit" class="btn btn-primary me-2">Save changes</button>

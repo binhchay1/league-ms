@@ -29,7 +29,7 @@ class TournamentReuqest extends FormRequest
             'end_date' =>'required',
             'format' =>'required',
             'number_of_team' =>'required',
-            'people_of_team' =>'required',
+            'type' =>'required',
         ];
     }
 
@@ -40,7 +40,7 @@ class TournamentReuqest extends FormRequest
             'end_date.required' => __('validation.required'),
             'format.required' => __('validation.required'),
             'number_of_team.required' => __('validation.required'),
-            'people_of_team.required' => __('validation.required'),
+            'type.required' => __('validation.required'),
             'image.image' => __('validation.image'),
             'image.mimes' => __('validation.mimes'),
             'image.max' => __('validation.max'),

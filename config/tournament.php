@@ -6,13 +6,12 @@ return [
         2 =>  'Vòng tròn'
     ],
 
-    'num_of_team' => [
-        '1' => 1,
-        'Vòng tròn' => 2,
+    'type' => [
+        1 => 'Đơn nam',
+        2 =>  'Đơn nữ',
+        3 =>  'Đôi nam',
+        4 =>  'Đôi nữ',
+        5 =>  'Đôi nam nữ',
     ],
 
-    'num_of' => [
-        'Loại trực tiếp' => 1,
-        'Vòng tròn' => 2,
-    ],
 ];
