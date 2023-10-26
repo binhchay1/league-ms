@@ -39,9 +39,11 @@ class TournamentController extends Controller
      */
     public function create()
     {
+        $type_tour = config('tournament.type');
         $format_tour = config('tournament.format');
         return view ('admin.tournament.create',[
             'formatTour' => $format_tour,
+            'type_tour' => $type_tour,
         ]);
     }
 
@@ -62,6 +64,7 @@ class TournamentController extends Controller
                 $input['image'] = $path;
             }
         }
+
         $this->tournamentRepository->store($input);
         return redirect()->to('list-tournament');
     }
