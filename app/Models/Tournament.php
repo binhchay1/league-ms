@@ -12,4 +12,10 @@ class Tournament extends Model
     protected $fillable = [
         'name', 'image','start_date', 'end_date', 'format', 'number_of_team', 'type'
     ];
+
+
+    public function schedule()
+    {
+        return $this->hasMany('App\Models\Schedule');
+    }
 }
