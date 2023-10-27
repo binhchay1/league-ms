@@ -17,4 +17,11 @@ class Team extends Model
     {
         return $this->hasMany('App\Models\Player');
     }
+
+    public function schedule()
+    {
+        return $this->hasMany('App\Models\Schedule');
+    }
+
+
 }

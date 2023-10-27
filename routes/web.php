@@ -63,4 +63,12 @@ Route::middleware(['admin'])->group(
             Route::get('/player/{id}', 'App\Http\Controllers\Admin\PlayerController@show')->name('player.show');
             Route::get('/edit-player/{id}', 'App\Http\Controllers\Admin\PlayerController@edit')->name('player.edit');
             Route::post('/update-player/{id}', 'App\Http\Controllers\Admin\PlayerController@update')->name('player.update');
+
+            //Schedule
+            Route::get('/list-schedule', 'App\Http\Controllers\Admin\ScheduleController@index')->name('schedule.index');
+            Route::get('/create-schedule', 'App\Http\Controllers\Admin\ScheduleController@create')->name('schedule.create');
+            Route::post('/store-schedule', 'App\Http\Controllers\Admin\ScheduleController@store')->name('schedule.store');
+            Route::get('/schedule/{id}', 'App\Http\Controllers\Admin\ScheduleController@show')->name('schedule.show');
+            Route::get('/edit-schedule/{id}', 'App\Http\Controllers\Admin\ScheduleController@edit')->name('schedule.edit');
+            Route::post('/update-schedule/{id}', 'App\Http\Controllers\Admin\ScheduleController@update')->name('schedule.update');
         });
