@@ -1,0 +1,135 @@
+*{
+    margin:0;
+    padding: 0;
+}
+​
+html
+{ 
+    position: relative !important;
+    height: 100% !important;
+    display: block !important;
+}
+​
+body 
+{
+    height: 100% !important;
+}
+​
+section
+{
+    height: 100%;
+}
+​
+.row
+{
+    height: 100%;
+}
+​
+.login-left img
+{
+    height: 100%;
+    width: 100%;
+    padding:1%;
+}
+​
+.login-right
+{
+    margin-top: 5%;
+    padding-top: 5%;
+    position: relative;
+}
+​
+.login-right .check-out input 
+{
+    width: 6%;
+    height: 48%;
+}
+​
+.login-right .check-out p
+{
+    margin-left: 20px;
+}
+​
+.login-right ul
+{
+    list-style-type: none; 
+}
+​
+.login-right a 
+{
+    text-decoration: none;
+}
+​
+.login-right button
+{
+    margin-bottom: 3%;
+}
+​
+.card
+{
+    height: 100%;
+    box-shadow: none;
+}
+.card-footer{
+    background-color: white;
+}
+​
+.language img
+{
+    width: 10%;
+    margin-left: 20px;
+}
+​
+.iconVN
+{
+    height: 30px;
+}
+
+@media (max-width: 1030px) and (min-width: 500px)
+{
+    .login-right
+    {
+        display: flex;
+        justify-content: center;
+    }
+​
+    .language
+    {
+        display: block;
+    }
+​
+    .card{
+        width: 70%;
+    }
+}
+
+@media (min-width: 1030px)
+{
+    .form-control
+    {
+        width: 350px;
+    }
+​
+    .login-right{
+        padding-left: 3%;
+    }
+}
+
+@media (max-height: 800px)
+{
+    .user
+    {
+        margin-bottom: -15px;
+    }
+​
+    .btn_check
+    {
+        margin-bottom: 10%;
+    }
+
+    .btn_check
+    {
+        margin-top: 10%;
+        margin-bottom: 20%;
+    }
+}
