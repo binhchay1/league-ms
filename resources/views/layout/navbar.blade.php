@@ -1,101 +1,220 @@
-<nav
-    class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-    id="layout-navbar"
->
-    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-            <i class="bx bx-menu bx-sm"></i>
-        </a>
-    </div>
+{{--<nav--}}
+{{--    class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"--}}
+{{--    id="layout-navbar"--}}
+{{-->--}}
+{{--    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">--}}
+{{--        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">--}}
+{{--            <i class="bx bx-menu bx-sm"></i>--}}
+{{--        </a>--}}
+{{--    </div>--}}
 
-    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-        <!-- Search -->
-        <div class="navbar-nav align-items-center">
-            <div class="nav-item d-flex align-items-center">
-                <i class="bx bx-search fs-4 lh-0"></i>
-                <input
-                    type="text"
-                    class="form-control border-0 shadow-none"
-                    placeholder="Search..."
-                    aria-label="Search..."
-                />
-            </div>
-        </div>
-        <!-- /Search -->
+{{--    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">--}}
+{{--        <!-- Search -->--}}
+{{--        <div class="navbar-nav align-items-center">--}}
+{{--            <div class="nav-item d-flex align-items-center">--}}
+{{--                <i class="bx bx-search fs-4 lh-0"></i>--}}
+{{--                <input--}}
+{{--                    type="text"--}}
+{{--                    class="form-control border-0 shadow-none"--}}
+{{--                    placeholder="Search..."--}}
+{{--                    aria-label="Search..."--}}
+{{--                />--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <!-- /Search -->--}}
 
-        <ul class="navbar-nav flex-row align-items-center ms-auto">
-            <!-- Place this tag where you want the button to render. -->
-            <li class="nav-item lh-1 me-3">
-                <a
-                    class="github-button"
-                    href="https://github.com/themeselection/sneat-html-admin-template-free"
-                    data-icon="octicon-star"
-                    data-size="large"
-                    data-show-count="true"
-                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
-                >Star</a
-                >
-            </li>
+{{--        <ul class="navbar-nav flex-row align-items-center ms-auto">--}}
+{{--            <!-- Place this tag where you want the button to render. -->--}}
+{{--            <li class="nav-item lh-1 me-3">--}}
+{{--                <a--}}
+{{--                    class="github-button"--}}
+{{--                    href="https://github.com/themeselection/sneat-html-admin-template-free"--}}
+{{--                    data-icon="octicon-star"--}}
+{{--                    data-size="large"--}}
+{{--                    data-show-count="true"--}}
+{{--                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"--}}
+{{--                >Star</a--}}
+{{--                >--}}
+{{--            </li>--}}
 
-            <!-- User -->
-            <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                    <div class="avatar avatar-online">
-                        <img src="backend/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+{{--            <!-- User -->--}}
+{{--            <li class="nav-item navbar-dropdown dropdown-user dropdown">--}}
+{{--                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">--}}
+{{--                    <div class="avatar avatar-online">--}}
+{{--                        <img src="backend/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--                <ul class="dropdown-menu dropdown-menu-end">--}}
+{{--                    <li>--}}
+{{--                        <a class="dropdown-item" href="#">--}}
+{{--                            <div class="d-flex">--}}
+{{--                                <div class="flex-shrink-0 me-3">--}}
+{{--                                    <div class="avatar avatar-online">--}}
+{{--                                        <img src="backend/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="flex-grow-1">--}}
+{{--                                    <span class="fw-semibold d-block">John Doe</span>--}}
+{{--                                    <small class="text-muted">Admin</small>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <div class="dropdown-divider"></div>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a class="dropdown-item" href="#">--}}
+{{--                            <i class="bx bx-user me-2"></i>--}}
+{{--                            <span class="align-middle">My Profile</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a class="dropdown-item" href="#">--}}
+{{--                            <i class="bx bx-cog me-2"></i>--}}
+{{--                            <span class="align-middle">Settings</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a class="dropdown-item" href="#">--}}
+{{--                        <span class="d-flex align-items-center align-middle">--}}
+{{--                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>--}}
+{{--                          <span class="flex-grow-1 align-middle">Billing</span>--}}
+{{--                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>--}}
+{{--                        </span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <div class="dropdown-divider"></div>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a class="dropdown-item" href="{{route('signout')}}">--}}
+{{--                            <i  class="bx bx-power-off me-2"></i>--}}
+{{--                            <span class="align-middle">Log Out</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
+{{--            <!--/ User -->--}}
+{{--        </ul>--}}
+{{--    </div>--}}
+{{--</nav>--}}
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="index3.html" class="nav-link">Home</a>
+        </li>
+    </ul>
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+        <!-- Messages Dropdown Menu -->
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="far fa-comments"></i>
+                <span class="badge badge-danger navbar-badge">3</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <a href="#" class="dropdown-item">
+                    <!-- Message Start -->
+                    <div class="media">
+                        <img src="#" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                        <div class="media-body">
+                            <h3 class="dropdown-item-title">
+                                Brad Diesel
+                                <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                            </h3>
+                            <p class="text-sm">Call me whenever you can...</p>
+                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                        </div>
                     </div>
+                    <!-- Message End -->
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <div class="d-flex">
-                                <div class="flex-shrink-0 me-3">
-                                    <div class="avatar avatar-online">
-                                        <img src="backend/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <span class="fw-semibold d-block">John Doe</span>
-                                    <small class="text-muted">Admin</small>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="bx bx-user me-2"></i>
-                            <span class="align-middle">My Profile</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="bx bx-cog me-2"></i>
-                            <span class="align-middle">Settings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{{route('signout')}}">
-                            <i  class="bx bx-power-off me-2"></i>
-                            <span class="align-middle">Log Out</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <!--/ User -->
-        </ul>
-    </div>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">
+                    <!-- Message Start -->
+                    <div class="media">
+                        <img src="#" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                        <div class="media-body">
+                            <h3 class="dropdown-item-title">
+                                John Pierce
+                                <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                            </h3>
+                            <p class="text-sm">I got your message bro</p>
+                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                        </div>
+                    </div>
+                    <!-- Message End -->
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">
+                    <!-- Message Start -->
+                    <div class="media">
+                        <img src="#" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                        <div class="media-body">
+                            <h3 class="dropdown-item-title">
+                                Nora Silvester
+                                <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                            </h3>
+                            <p class="text-sm">The subject goes here</p>
+                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                        </div>
+                    </div>
+                    <!-- Message End -->
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+            </div>
+        </li>
+        <!-- Notifications Dropdown Menu -->
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="far fa-bell"></i>
+                <span class="badge badge-warning navbar-badge">15</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <span class="dropdown-item dropdown-header">15 Notifications</span>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">
+                    <i class="fas fa-envelope mr-2"></i> 4 new messages
+                    <span class="float-right text-muted text-sm">3 mins</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">
+                    <i class="fas fa-users mr-2"></i> 8 friend requests
+                    <span class="float-right text-muted text-sm">12 hours</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">
+                    <i class="fas fa-file mr-2"></i> 3 new reports
+                    <span class="float-right text-muted text-sm">2 days</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+            </div>
+        </li>
+        <!-- Information -->
+        <li class="nav-item dropdown user user-menu">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                <img src="{{asset('/img/admin2.jpeg')}}" class="user-image" alt="User Image">
+                <span class="hidden-xs"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <div class="dropdown-divider"></div>
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 bd-highlight">
+                        <a href="" class="btn btn-default">changePass</a>
+                    </div>
+                    <div class="ml-auto p-2 bd-highlight">
+                        <a href="{{ route('logout') }}" class="btn btn-default">logout</a>
+                    </div>
+                    <form id="logout" action="#" method="POST" style="display: none;">
+                    </form>
+                </div>
+            </div>
+        </li>
+    </ul>
 </nav>
