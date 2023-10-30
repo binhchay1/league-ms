@@ -1,119 +1,115 @@
-<!DOCTYPE html>
 
-<html
-    lang="en"
-    class="light-style layout-menu-fixed"
-    dir="ltr"
-    data-theme="theme-default"
-    data-assets-path="backend/assets/"
-    data-template="vertical-menu-template-free"
->
+@yield('css')
+    <!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8" />
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{asset('backend/plugins/fontawesome-free/css/all.min.css')}}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="{{asset('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{{asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{asset('backend/dist/css/adminlte.min.css')}}">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{{asset('backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="{{asset('backend/plugins/daterangepicker/daterangepicker.css')}}">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{asset('backend/plugins/summernote/summernote-bs4.css')}}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-    <meta name="description" content="" />
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{asset('backend/assets/img/favicon/favicon.ico')}}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+@yield('js_sort_users')
+@yield('css')
+<!-- css select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css" rel="stylesheet" />
+    {{--    datatable--}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet"
-    />
-
-    <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="{{asset('backend/assets/vendor/fonts/boxicons.css')}}" />
-
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="{{asset('backend/assets/vendor/css/core.css' )}}" />
-    <link rel="stylesheet" href="{{asset('backend/assets/vendor/css/theme-default.css')}}" />
-    <link rel="stylesheet" href="{{asset('backend/assets/css/demo.css')}}" />
-
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{asset('backend/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
-
-    <link rel="stylesheet" href="{{asset('backend/assets/vendor/libs/apex-charts/apex-charts.css')}}" />
-
-    @yield('css')
-
-    <!-- Page CSS -->
-
-    <!-- Helpers -->
-    <script src="{{asset('backend/assets/vendor/js/helpers.js')}}"></script>
-
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="{{asset('backend/assets/js/config.js')}}"></script>
 </head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+    <!-- Navbar -->
+@include('layout.navbar')
+<!-- /.navbar -->
 
-<body>
-<!-- Layout wrapper -->
-<div class="layout-wrapper layout-content-navbar">
-    <div class="layout-container">
-        <!-- Menu -->
-        @include('layout.sidebar')
-        <!-- / Menu -->
+    <!-- Main Sidebar Container -->
+@include('layout.sidebar')
 
-        <!-- Layout container -->
-        <div class="layout-page">
-            <!-- Navbar -->
-            @include('layout.navbar')
-
-            <!-- / Navbar -->
-
-            <!-- Content wrapper -->
-            <div class="content-wrapper">
-                <!-- Content -->
+<!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+    <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
                 @yield('content')
-                <!-- / Content -->
-
-                <!-- Footer -->
-                @include('layout.footer')
-                <!-- / Footer -->
-
-                <div class="content-backdrop fade"></div>
             </div>
-            <!-- Content wrapper -->
-        </div>
-        <!-- / Layout page -->
+        </section>
     </div>
+    <!-- footer -->
+@include('layout.footer')
 
-    <!-- Overlay -->
-    <div class="layout-overlay layout-menu-toggle"></div>
+<!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
 </div>
-<!-- / Layout wrapper -->
+<!-- ./wrapper -->
+<!-- jQuery -->
+<script src="{{asset('backend/plugins/jquery/jquery.min.js')}}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{{asset('backend/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="{{asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- ChartJS -->
+<script src="{{asset('backend/plugins/chart.js/Chart.min.js')}}"></script>
+<!-- Sparkline -->
+<script src="{{asset('backend/plugins/sparklines/sparkline.js')}}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{{asset('backend/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
+<!-- daterangepicker -->
+<script src="{{asset('backend/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('backend/plugins/daterangepicker/daterangepicker.js')}}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+<!-- Summernote -->
+<script src="{{asset('backend/plugins/summernote/summernote-bs4.min.js')}}"></script>
+<!-- overlayScrollbars -->
+<script src="{{asset('backend/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{asset('backend/dist/js/adminlte.js')}}"></script>
+{{--     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="{{asset('backend/dist/js/pages/dashboard.js')}}"></script> --}}
 
 
-<!-- Core JS -->
-<!-- build:js assets/vendor/js/core.js -->
-<script src="{{asset('backend/assets/vendor/libs/jquery/jquery.js')}}"></script>
-<script src="{{asset('backend/assets/vendor/libs/popper/popper.js')}}"></script>
-<script src="{{asset('backend/assets/vendor/js/bootstrap.js')}}"></script>
-<script src="{{asset('backend/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+<!-- js select2 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js"></script>
 
-<script src="{{asset('backend/assets/vendor/js/menu.js')}}"></script>
-<!-- endbuild -->
+<!-- set up ajax header -->
 
-<!-- Vendors JS -->
-<script src="{{asset('backend/assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
-
-<!-- Main JS -->
-<script src="{{asset('backend/assets/js/main.js')}}"></script>
-
-<!-- Page JS -->
-<script src="{{asset('backend/assets/js/dashboards-analytics.js')}}"></script>
-
-<!-- Place this tag in your head or just before your close body tag. -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
+{{--datatable--}}
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+<!-- DataTables -->
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<!-- Bootstrap JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 @yield('js')
 </body>
