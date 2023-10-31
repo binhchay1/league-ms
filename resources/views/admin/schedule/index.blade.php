@@ -12,14 +12,17 @@
                 <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">
                     <thead>
                     <tr class="design-text">
+                        <th scope="col">Vòng đấu</th>
                         <th scope="col">Lịch thi đấu</th>
                         <th scope="col">Đội thi đấu</th>
                         <th scope="col">Sân thi đấu</th>
+                        <th scope="col">Chi tiết</th>
                     </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                     @foreach($listSchedule as $data)
                         <tr>
+                            <td>{{ $data->tournament->name }}</td>
                             <td>{{ $data->time }}</td>
                             <td>
                                 <div class="row">
@@ -31,10 +34,14 @@
                                         <img class ="image" src="{{$data->team2->image}}" alt="avatar" style=" width: 15px; border-radius: 10px; margin-right: 15px;">
                                         {{$data->team2->name}}
                                     </div>
-
                                 </div>
                             </td>
                             <td>{{$data->stadium}}</td>
+                            <td class="text-center">
+                                <a href="{{route('schedule.show', $data['id'])}}" class="btn btn-primary">
+                                    <span style="color:white"></span> Detail
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
