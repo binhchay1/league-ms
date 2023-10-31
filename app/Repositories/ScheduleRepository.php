@@ -20,4 +20,9 @@ class ScheduleRepository extends BaseRepository
         return $this->model->with('tournament', 'team1', 'team2')->orderBy('created_at', 'desc')->get();
     }
 
+    public function showInfo($id)
+    {
+        return $this->model->with('tournament', 'team1', 'team2')->where('id', $id)->first();
+    }
+
 }

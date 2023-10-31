@@ -77,7 +77,8 @@ class ScheduleController extends Controller
      */
     public function show($id)
     {
-
+        $dataSchedule = $this->scheduleRepository->showInfo($id);
+        return view('admin.schedule.show',['dataSchedule' => $dataSchedule]);
     }
 
     /**
@@ -100,7 +101,9 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd(1);
+        $input = $request->except(['_token']);
+        dd($input);
     }
 
     /**
