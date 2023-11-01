@@ -26,4 +26,9 @@ class TeamRepository extends BaseRepository
         return $this->model->with('players')->where('id', $id)->first();
     }
 
+    public function updateTeam($input, $id)
+    {
+        return $this->model->with('players')->where('id', $id)->update($input);
+    }
+
 }

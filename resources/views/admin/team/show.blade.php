@@ -11,38 +11,52 @@
                 <h5 >Thông tin đội</h5>
             </div>
             <div class="card-body">
-                <form id="formAccountSettings" method="POST" action="" enctype="multipart/form-data">
+                <form id="formAccountSettings" method="POST" action="{{route('team.update', $dataTeam['id'])}}" enctype="multipart/form-data">
                     @csrf()
                     <div class="row">
                         <div class="col-md-4">
-                            <label for="lastName" class="form-label">Logo đội</label>
-                            <div class="form-group" >
-                                <div class="" style="display: inline-grid;">
-                                    <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
-                                    <div class=" choose-avatar" >
-                                        <div id="btnimage">
-                                            <img id="showImage" class="show-avatar" style="width: 200px; margin-left: 40px" src="{{$dataTeam->image}}" alt="avatar">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label style="font-weight: 700">Logo đội</label>
+                                    <div class="">
+                                        <div class="" style="display: inline-grid;">
+                                            <input value="{{$dataTeam->image}}" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
+                                            <div class=" choose-avatar" >
+                                                <div id="btnimage">
+                                                    <img id="showImage" class="show-avatar" src="{{$dataTeam->image}}" alt="avatar" style="width: 200px; margin-left: 40px">
+                                                </div>
+                                                <div id="button" >
+                                                    <i id="btn_chooseImg" class="fas fa-camera">  Choose Image</i>
+                                                </div>
+                                            </div>
+                                            @if ($errors->has('image'))
+                                                <span class="text-danger">{{ $errors->first('image') }}</span>
+                                            @endif
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <label for="lastName" class="form-label">Tên đội</label>
+                                <label style="font-weight: 700" for="lastName" class="form-group">Tên đội</label>
                                 <input class="form-control" value="{{$dataTeam->name}}" type="text" name="name" id="name"/>
+                                @if ($errors->has('name'))
+                                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                                @endif
                             </div>
                             <div class="mt-4">
-                                <label for="address" class="form-label">Huấn luyện viên</label>
+                                <label style="font-weight: 700" for="address" class="form-group">Huấn luyện viên</label>
                                 <input type="text" value="{{$dataTeam->coach}}" class="form-control" id="coach" name="coach"/>
-                            </div>
-
-                            <div class="mt-4">
-                                <label for="address" class="form-label">Vận động viên tham gia</label>
-                                <input type="text" value="{{$dataTeam->coach}}" class="form-control" id="coach" name="coach"/>
+                                @if ($errors->has('coach'))
+                                    <span class="text-danger">{{ $errors->first('coach') }}</span>
+                                @endif
                             </div>
                         </div>
+                    </div>
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                        <button type="reset" class="btn btn-outline-secondary">Cancel</button>
                     </div>
                 </form>
             </div>

@@ -55,7 +55,7 @@
                             </div>
                             <div class="mt-4">
                                 <label for="lastName" class="form-label">Đội tham gia</label>
-                                <input class="form-control" type="text" value="{{$dataTournament->name}}" name="number_of_team" id="number_of_team"  />
+                                <input class="form-control" type="text" value="{{$dataTournament->number_of_team}}" name="number_of_team" id="number_of_team"/>
                                 @if ($errors->has('number_of_team'))
                                     <span class="text-danger">{{ $errors->first('number_of_team') }}</span>
                                 @endif
