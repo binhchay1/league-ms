@@ -101,9 +101,10 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd(1);
         $input = $request->except(['_token']);
-        dd($input);
+        $data = $this->scheduleRepository->update($input, $id);
+        return redirect()->to('result');
+
     }
 
     /**
@@ -115,5 +116,12 @@ class ScheduleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function result()
+    {
+        $dataResult = $this->scheduleRepository->index();
+        dd($dataResult);
+        return view('admin.schedule.result', ['dataResult'=> $dataResult]);
     }
 }

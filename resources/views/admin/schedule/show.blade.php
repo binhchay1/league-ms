@@ -28,7 +28,7 @@
                             <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                             <div class=" choose-avatar" >
                                 <div id="btnimage">
-                                    <img  class="show-avatar" style="width: 200px; " src="{{$dataSchedule->team1->image}}" alt="avatar">
+                                    <img  class="show-avatar" style="width: 200px; " src="{{$dataSchedule->team2->image}}" alt="avatar">
                                 </div>
                             </div>
                         </div>
@@ -52,50 +52,71 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" value="{{$dataSchedule->tournament_id}}" name="tournament_id" id="name" hidden/>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" value="{{$dataSchedule->match}}" name="match" id="name" hidden/>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" value="{{$dataSchedule->time}}" name="time" id="name" hidden/>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" value="{{$dataSchedule->date}}" name="date" id="name" hidden/>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" value="{{$dataSchedule->stadium}}" name="stadium" id="name" hidden/>
+                            </div>
                             <div class="row container">
                                 <div class="col-md-6">
                                     <div class="text-center">
-                                        {{$dataSchedule->team1->name}}
+{{--                                        <strong>{{$dataSchedule->team1->name}}</strong>--}}
                                     </div>
                                     <div class="container">
                                         <div class="form-group">
-                                            <strong>Tỉ số chung cuộc</strong>
-                                            <input class="form-control" type="text" name="result_team_1" id="name"/>
+                                            <input class="form-control" value="{{$dataSchedule->team_id_1}}" type="text" name="team_id_1" id="name" hidden/>
                                         </div>
                                         <div class="form-group">
-                                            <strong>Tỉ số set 1</strong>
+                                            <p>Tỉ số chung cuộc</p>
+                                            <input class="form-control" type="text" name="result_team_1" id="result_team_1"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <p>Tỉ số set 1</p>
                                             <input class="form-control" type="text" name="set_1_team_1" id="name"/>
                                         </div>
                                         <div class="form-group">
-                                            <strong>Tỉ số set 2</strong>
+                                            <p>Tỉ số set 2</p>
                                             <input class="form-control" type="text" name="set_2_team_1" id="name"/>
                                         </div>
                                         <div class="form-group">
-                                            <strong>Tỉ số set 3</strong>
+                                            <p>Tỉ số set 3</p>
                                             <input class="form-control" type="text" name="set_3_team_1" id="name"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="text-center">
-                                        {{$dataSchedule->team2->name}}
+{{--                                        <strong>{{$dataSchedule->team2->name}}</strong>--}}
                                     </div>
                                     <div class="container">
                                         <div class="form-group">
-                                            <strong>Tỉ số chung cuộc</strong>
-                                            <input class="form-control" type="text" name="result_team_2" id="name"/>
+                                            <input class="form-control" type="text" value="{{$dataSchedule->team_id_2}}" name="team_id_2" id="name" hidden/>
                                         </div>
                                         <div class="form-group">
-                                            <strong>Tỉ số set 1</strong>
+                                            <p>Tỉ số chung cuộc</p>
+                                            <input class="form-control" type="text" name="result_team_2" id="result_team_2"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <p>Tỉ số set 1</p>
                                             <input class="form-control" type="text" name="set_1_team_2" id="name"/>
                                         </div>
                                         <div class="form-group">
-                                            <strong>Tỉ số set 2</strong>
+                                            <p>Tỉ số set 2</p>
                                             <input class="form-control" type="text" name="set_2_team_2" id="name"/>
                                         </div>
                                         <div class="form-group">
-                                            <strong>Tỉ số set 3</strong>
-                                            <input class="form-control" type="text" name="set_2_team_2" id="name"/>
+                                            <p>Tỉ số set 3</p>
+                                            <input class="form-control" type="text" name="set_3_team_2" id="name"/>
                                         </div>
                                     </div>
                                 </div>
