@@ -17,7 +17,8 @@
                         <th scope="col">Ngày Bắt Đầu</th>
                         <th scope="col">Ngày Kết Thúc</th>
                         <th scope="col">Image</th>
-                        <th scope="col">Thể Thức</th>
+                        <th scope="col">Hình thức thi đấu</th>
+                        <th scope="col">Thể thức thi đấu</th>
                         <th scope="col">Số Đội Tham Gia</th>
                         <th scope="col">Số người tham gia mỗi đội</th>
                         <th scope="col">Action</th>
@@ -34,8 +35,9 @@
                             <td>{{ $data->format }}</td>
                             <td>{{ $data->type }}</td>
                             <td>{{ $data->number_of_team }}</td>
+                            <td>{{ $data->people_of_team }}</td>
                             <td>
-                                <a href="">
+                                <a href="{{route('tournament.edit',$data['id'])}}">
                                     <button type="button" class="btn btn-secondary">Edit</button>
                                 </a>
                                 <a href="">

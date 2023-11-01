@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TournamentReuqest extends FormRequest
 {
@@ -24,9 +25,10 @@ class TournamentReuqest extends FormRequest
     public function rules()
     {
         return [
+            'name' => ['required', Rule::unique('tournaments')->ignore($this->id)],
             'image' => 'image|mimes:jpeg,png,jpg|max:2048',
-            'start_date'=> 'required',
-            'end_date' =>'required',
+            'start_date'=> 'required|date',
+            'end_date' =>'required|date|after_or_equal:start_date',
             'format' =>'required',
             'number_of_team' =>'required',
             'type' =>'required',
@@ -36,8 +38,12 @@ class TournamentReuqest extends FormRequest
     public function messages()
     {
         return [
+            'name.unique' => __('validation.unique'),
             'start_date.required' => __('validation.required'),
+            'start_date.date' => __('validation.date'),
             'end_date.required' => __('validation.required'),
+            'end_date.date' => __('validation.date'),
+            'end_date.after_or_equal' => __('validation.after_or_equal'),
             'format.required' => __('validation.required'),
             'number_of_team.required' => __('validation.required'),
             'type.required' => __('validation.required'),

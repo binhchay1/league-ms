@@ -77,7 +77,7 @@ class TournamentController extends Controller
      */
     public function show($id)
     {
-        //
+        $dataTournament = $this->tournamentRepository->show($id);
     }
 
     /**
@@ -88,7 +88,14 @@ class TournamentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $type_tour = config('tournament.type');
+        $format_tour = config('tournament.format');
+        $dataTournament = $this->tournamentRepository->show($id);
+        return view('admin.tournament.edit',
+            ['dataTournament' => $dataTournament,
+            'formatTour' => $format_tour,
+            'type_tour' => $type_tour,
+            ]);
     }
 
     /**
@@ -98,9 +105,19 @@ class TournamentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TournamentReuqest $request, $id)
     {
-        //
+        $input = $request->except(['_token']);
+        if (isset($input['image'])) {
+            $img = $this->utility->saveImageLogo($input);
+            if ($img) {
+                $path = '/images/logo/' . $input['image']->getClientOriginalName();
+                $input['image'] = $path;
+            }
+        }
+
+        $dataTour = $this->tournamentRepository->updateTour($input, $id);
+        return redirect('list-tournament');
     }
 
     /**
