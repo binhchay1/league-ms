@@ -25,4 +25,9 @@ class ScheduleRepository extends BaseRepository
         return $this->model->with('tournament', 'team1', 'team2')->where('id', $id)->first();
     }
 
+    public function update($input, $id)
+    {
+        return $this->model->with('tournament', 'team1', 'team2')->where('id', $id)->update($input);
+    }
+
 }
