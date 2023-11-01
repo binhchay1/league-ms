@@ -71,4 +71,6 @@ Route::middleware(['admin'])->group(
             Route::get('/schedule/{id}', 'App\Http\Controllers\Admin\ScheduleController@show')->name('schedule.show');
             Route::get('/edit-schedule/{id}', 'App\Http\Controllers\Admin\ScheduleController@edit')->name('schedule.edit');
             Route::post('/update-schedule/{id}', 'App\Http\Controllers\Admin\ScheduleController@update')->name('schedule.update');
+            Route::get('/result', 'App\Http\Controllers\Admin\ScheduleController@result')->name('schedule.result');
+
         });
