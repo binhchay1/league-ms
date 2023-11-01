@@ -86,7 +86,8 @@ class TeamController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dataTeam = $this->teamRepository->showTeamInfo($id);
+        return view('admin.team.show',['dataTeam'=> $dataTeam]);
     }
 
     /**
@@ -96,9 +97,19 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TeamRequest $request, $id)
     {
-        //
+        $input = $request->except(['_token']);
+        if (isset($input['image'])) {
+            $img = $this->utility->saveImageLogo($input);
+            if ($img) {
+                $path = '/images/logo/' . $input['image']->getClientOriginalName();
+                $input['image'] = $path;
+            }
+        }
+
+        $dataTeam = $this->teamRepository->updateTeam($input, $id);
+        return redirect('list-team');
     }
 
     /**
