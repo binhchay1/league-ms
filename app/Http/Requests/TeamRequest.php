@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TeamRequest extends FormRequest
 {
@@ -24,8 +25,8 @@ class TeamRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'name'=> 'required',
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'name' => ['required', Rule::unique('teams')->ignore($this->id)],
             'coach' =>'required',
         ];
     }
@@ -35,9 +36,9 @@ class TeamRequest extends FormRequest
         return [
 
             'name.required' => __('validation.required'),
+            'name.unique' => __('validation.unique'),
             'coach.required' => __('validation.required'),
             'image.required' => __('validation.required'),
-            'image.image' => __('validation.image'),
             'image.mimes' => __('validation.mimes'),
             'image.max' => __('validation.max'),
         ];

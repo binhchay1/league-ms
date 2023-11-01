@@ -36,7 +36,7 @@ class PlayerRequest extends FormRequest
             'team_id.required' => __('validation.required'),
             'name.required' => __('validation.required'),
             'birthday.required' => __('validation.required'),
-            'birthday.image' => __('validation.date'),
+            'birthday.date' => __('validation.date'),
         ];
     }
 }
