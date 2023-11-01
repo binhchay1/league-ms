@@ -21,4 +21,14 @@ class TournamentRepository extends BaseRepository
         return $this->model->create($input);
     }
 
+    public function show($id)
+    {
+        return $this->model->where('id', $id)->first();
+    }
+
+    public function updateTour($input, $id)
+    {
+        return $this->model->where('id', $id)->update($input);
+    }
+
 }
