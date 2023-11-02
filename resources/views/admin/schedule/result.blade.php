@@ -12,24 +12,76 @@
                 <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">
                     <thead>
                     <tr class="design-text">
+                        <th scope="col" style="width: 15px">Giải đấu</th>
+                        <th scope="col" style="width: 15px">Vòng đấu</th>
                         <th scope="col">Đội 1</th>
                         <th scope="col">Đội 2</th>
-                        <th scope="col">Tổng tỉ số</th>
-                        <th scope="col">Tỉ số trận 1</th>
-                        <th scope="col">Tỉ số trận 2</th>
-                        <th scope="col">Tỉ số trận 3</th>
+                        <th scope="col" style="width: 15px">Tổng tỉ số</th>
+                        <th scope="col" style="width: 15px">Tỉ số trận 1</th>
+                        <th scope="col" style="width: 15px">Tỉ số trận 2</th>
+                        <th scope="col" style="width: 15px">Tỉ số trận 3</th>
                         <th scope="col">Sân thi đấu</th>
                     </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                     @foreach($dataResult as $data)
                         <tr>
+                            <td>{{ $data->tournament->name }}</td>
+                            <td>{{ $data->match }}</td>
                             <td>{{ $data->team1->name }}</td>
                             <td>{{ $data->team2->name }}</td>
                             <td>
-
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        {{$data->result_team_1}}
+                                    </div>
+                                    <div class="col-lg-4">
+                                        -
+                                    </div>
+                                    <div  class="col-lg-2">
+                                        {{$data->result_team_2}}
+                                    </div>
+                                </div>
                             </td>
-                            <td>{{$data->stadium}}</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        {{$data->set_1_team_1}}
+                                    </div>
+                                    <div class="col-lg-4">
+                                       -
+                                    </div>
+                                    <div  class="col-lg-2">
+                                        {{$data->set_1_team_2}}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        {{$data->set_2_team_1}}
+                                    </div>
+                                    <div class="col-lg-4">
+                                        -
+                                    </div>
+                                    <div  class="col-lg-2">
+                                        {{$data->set_2_team_2}}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        {{$data->set_3_team_1}}
+                                    </div>
+                                    <div class="col-lg-4">
+                                        -
+                                    </div>
+                                    <div  class="col-lg-2">
+                                        {{$data->set_3_team_2}}
+                                    </div>
+                                </div>
+                            </td>
                             <td>{{$data->stadium}}</td>
                         </tr>
                     @endforeach

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ResultScheduleRequest;
+use App\Http\Requests\ScheduleRequest;
 use App\Repositories\ScheduleRepository;
 use App\Repositories\TeamRepository;
 use App\Repositories\TournamentRepository;
@@ -60,12 +62,12 @@ class ScheduleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ScheduleRequest $request)
     {
         $input = $request->except(['_token']);
         $data = $this->scheduleRepository->store($input);
 
-        return redirect()->back()->with('success', 'Create schedule successfully!');
+        return redirect('list-schedule')->with('success', 'Create schedule successfully!');
 
     }
 
@@ -99,7 +101,7 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ResultScheduleRequest $request, $id)
     {
         $input = $request->except(['_token']);
         $data = $this->scheduleRepository->update($input, $id);
@@ -121,7 +123,6 @@ class ScheduleController extends Controller
     public function result()
     {
         $dataResult = $this->scheduleRepository->index();
-        dd($dataResult);
         return view('admin.schedule.result', ['dataResult'=> $dataResult]);
     }
 }

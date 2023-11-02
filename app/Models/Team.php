@@ -15,7 +15,7 @@ class Team extends Model
 
     public function players()
     {
-        return $this->hasMany('App\Models\Player');
+        return $this->hasMany('App\Models\Player','team_id', 'id');
     }
 
     public function schedule()

@@ -130,28 +130,4 @@ class TournamentController extends Controller
     {
         //
     }
-
-    public function postFile($input)
-    {
-        if ($input['image']) {
-            $file = $input['image'];
-
-            $typeFile = $file->getClientOriginalExtension();
-            if ($typeFile == 'png' || $typeFile == 'jpg' || $typeFile == 'jpeg' ) {
-                $fileSize = $file->getSize();
-                if ($fileSize <= 1024000) {
-                    $fileName = $file->getClientOriginalName();
-                    $file->move('img', $fileName);
-                    return $fileName;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-
-        } else {
-            return false;
-        }
-    }
 }

@@ -20,7 +20,7 @@
                                                     <img id="showImage" class="show-avatar" src="/images/champion.png" alt="avatar" style="width: 200px; margin-left: 40px">
                                                 </div>
                                                 <div id="button" >
-                                                    <i id="btn_chooseImg" class="fas fa-camera">  Choose Image</i>
+                                                    <i id="btn_chooseImg" class="fas fa-camera">  Chọn ảnh</i>
                                                 </div>
                                             </div>
                                             @if ($errors->has('image'))
@@ -85,8 +85,8 @@
                             </div>
                         </div>
                         <div class="mt-4">
-                            <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                            <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-primary me-2">Lưu</button>
+                            <button type="reset" class="btn btn-outline-secondary">Hủy</button>
                         </div>
                     </form>
                 </div>

@@ -8,11 +8,19 @@
             <div class="card-body">
                 <form id="formAccountSettings" method="POST" action="{{route('schedule.store')}}" enctype="multipart/form-data">
                     @csrf()
+                    @if(session()->has('success'))
+                        <div class="alert alert-success text-center">
+                            {{ session()->get('success') }}
+                        </div>
+                    @endif
                     <div class="container">
                         <div>
                             <div>
                                 <label for="lastName" class="form-label">Vòng đấu</label>
                                 <input class="form-control" value="" type="number" name="match" id="match" min="1"/>
+                                @if ($errors->has('match'))
+                                    <span class="text-danger">{{ $errors->first('match') }}</span>
+                                @endif
                             </div>
                             <div class="" style="margin-top: 10px">
                                 <label class="form-label" for="country">Giải đấu</label>
@@ -23,6 +31,9 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                @if ($errors->has('tournament_id'))
+                                    <span class="text-danger">{{ $errors->first('tournament_id') }}</span>
+                                @endif
                             </div>
                             <div class="" style="margin-top: 10px">
                                 <label class="form-label" for="country">Đội 1</label>
@@ -33,6 +44,9 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                @if ($errors->has('team_id_1'))
+                                    <span class="text-danger">{{ $errors->first('team_id_1') }}</span>
+                                @endif
                             </div>
                             <div class="" style="margin-top: 10px">
                                 <label class="form-label" for="country">Đội 2</label>
@@ -43,22 +57,35 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                @if ($errors->has('team_id_2'))
+                                    <span class="text-danger">{{ $errors->first('team_id_2') }}</span>
+                                @endif
+                            </div>
+                            <div class="mt-2">
+                                <label for="lastName" class="form-label">Sân thi đấu</label>
+                                <input class="form-control" value="" type="text" name="stadium" id="stadium" />
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md-6">
                                     <label for="address" class="form-label">Thời gian</label>
                                     <input type="text" value="" class="form-control" id="time" name="time"/>
+                                    @if ($errors->has('time'))
+                                        <span class="text-danger">{{ $errors->first('time') }}</span>
+                                    @endif
                                 </div>
                                 <div class="col-md-6">
                                     <label for="address" class="form-label">Ngày thi đấu</label>
                                     <input type="date" value="" class="form-control" id="date" name="date"/>
+                                    @if ($errors->has('date'))
+                                        <span class="text-danger">{{ $errors->first('date') }}</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                        <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                        <button type="submit" class="btn btn-primary me-2">Lưu</button>
+                        <button type="reset" class="btn btn-outline-secondary">Hủy</button>
                     </div>
                 </form>
             </div>
