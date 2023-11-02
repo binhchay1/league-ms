@@ -14,7 +14,7 @@
                     <tr class="design-text">
                         <th scope="col">Tên Đội</th>
                         <th scope="col">Huấn luyện viên</th>
-                        <th scope="col">Logo đội</th>
+                        <th scope="col">Ảnh đội đội</th>
                         <th scope="col">Action</th>
                     </tr>
                     </thead>
@@ -26,10 +26,10 @@
                             <td><img class ="image" src="{{$data->image}}" alt="avatar" style="width: 150px"></td>
                             <td>
                                 <a href="{{route('team.edit',$data['id'])}}">
-                                    <button type="button" class="btn btn-secondary">Edit</button>
+                                    <button type="button" class="btn btn-info">Sửa</button>
                                 </a>
                                 <a href="">
-                                    <button type="button" class="btn btn-danger">Delete</button>
+                                    <button type="button" class="btn btn-danger">Xóa</button>
                                 </a>
                             </td>
                         </tr>
