@@ -12,6 +12,7 @@
                 <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">
                     <thead>
                     <tr class="design-text">
+                        <th scope="col">Giải đấu</th>
                         <th scope="col">Vòng đấu</th>
                         <th scope="col">Lịch thi đấu</th>
                         <th scope="col">Đội thi đấu</th>
@@ -23,6 +24,7 @@
                     @foreach($listSchedule as $data)
                         <tr>
                             <td>{{ $data->tournament->name }}</td>
+                            <td>{{ $data->match }}</td>
                             <td>{{ $data->time }}</td>
                             <td>
                                 <div class="row">
@@ -38,8 +40,8 @@
                             </td>
                             <td>{{$data->stadium}}</td>
                             <td class="text-center">
-                                <a href="{{route('schedule.show', $data['id'])}}" class="btn btn-primary">
-                                    <span style="color:white"></span> Detail
+                                <a href="{{route('schedule.show', $data['id'])}}" class="btn btn-info">
+                                    <span style="color:white"></span> Chi tiết
                                 </a>
                             </td>
                         </tr>

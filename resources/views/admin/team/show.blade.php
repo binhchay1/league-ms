@@ -26,7 +26,7 @@
                                                     <img id="showImage" class="show-avatar" src="{{$dataTeam->image}}" alt="avatar" style="width: 200px; margin-left: 40px">
                                                 </div>
                                                 <div id="button" >
-                                                    <i id="btn_chooseImg" class="fas fa-camera">  Choose Image</i>
+                                                    <i id="btn_chooseImg" class="fas fa-camera">  Chọn ảnh</i>
                                                 </div>
                                             </div>
                                             @if ($errors->has('image'))
@@ -55,8 +55,8 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                        <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                        <button type="submit" class="btn btn-primary me-2">Lưu</button>
+                        <button type="reset" class="btn btn-outline-secondary">Hủy</button>
                     </div>
                 </form>
             </div>
@@ -72,7 +72,7 @@
                         <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">
                             <thead>
                             <tr class="design-text">
-                                <th scope="col">Name</th>
+                                <th scope="col">Tên</th>
                                 <th scope="col">Ngày sinh</th>
                                 <th scope="col">Giới tính</th>
                                 <th scope="col">Hình ảnh</th>
@@ -88,10 +88,10 @@
                                     <td><img class ="image" src="{{$playOfTeam->image}}" alt="avatar" style="width: 150px"></td>
                                     <td>
                                         <a href="">
-                                            <button type="button" class="btn btn-secondary">Edit</button>
+                                            <button type="button" class="btn btn-secondary">Thay đổi</button>
                                         </a>
                                         <a href="">
-                                            <button type="button" class="btn btn-danger">Delete</button>
+                                            <button type="button" class="btn btn-danger">Xóa</button>
                                         </a>
                                     </td>
                                 </tr>

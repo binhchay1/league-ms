@@ -19,7 +19,7 @@
                                             <img id="showImage" class="show-avatar" style="width: 200px; margin-left: 40px" src="/images/champion.png" alt="avatar">
                                         </div>
                                         <div id="button" >
-                                            <i id="btn_chooseImg" class="fas fa-camera" >  Choose image</i>
+                                            <i id="btn_chooseImg" class="fas fa-camera" >  Chọn ảnh</i>
                                         </div>
                                         @if ($errors->has('image'))
                                             <span class="text-danger">{{ $errors->first('image') }}</span>
@@ -47,8 +47,8 @@
 
                     </div>
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                        <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                        <button type="submit" class="btn btn-primary me-2">Lưu</button>
+                        <button type="reset" class="btn btn-outline-secondary">Hủy</button>
                     </div>
                 </form>
             </div>

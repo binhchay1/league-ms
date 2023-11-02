@@ -13,10 +13,10 @@
                     <thead>
                     <tr class="design-text">
                         <th scope="col">ID</th>
-                        <th scope="col">Name</th>
+                        <th scope="col">Tên giải đấu</th>
                         <th scope="col">Ngày Bắt Đầu</th>
                         <th scope="col">Ngày Kết Thúc</th>
-                        <th scope="col">Image</th>
+                        <th scope="col">Hình ảnh</th>
                         <th scope="col">Hình thức thi đấu</th>
                         <th scope="col">Thể thức thi đấu</th>
                         <th scope="col">Số Đội Tham Gia</th>
@@ -38,10 +38,10 @@
                             <td>{{ $data->people_of_team }}</td>
                             <td>
                                 <a href="{{route('tournament.edit',$data['id'])}}">
-                                    <button type="button" class="btn btn-secondary">Edit</button>
+                                    <button type="button" class="btn btn-info">Sửa</button>
                                 </a>
                                 <a href="">
-                                    <button type="button" class="btn btn-danger">Delete</button>
+                                    <button type="button" class="btn btn-danger">Xóa</button>
                                 </a>
                             </td>
                         </tr>
