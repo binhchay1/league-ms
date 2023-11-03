@@ -14,7 +14,7 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('page.homepage');
 });
 
 Route::middleware([
