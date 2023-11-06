@@ -1,85 +1,109 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" itemscope itemtype="http://schema.org/Article">
 <head>
-    <meta charset="utf-8">
-    <title>Livescore cầu lông, HYLO mở rộng 2023, kết quả và lịch thi đấu</title>
-    <link rel="preload" href="https://cdn.cookielaw.org/vendorlist/iab2Data.json" as="fetch" crossorigin>
-
-    <link rel="preload" href="/x/js/core_40_2155000000.js" as="script" crossorigin>
+    <meta name="csrf-token" content="J81RdU0UPhzoa1dPhLspipHBXXDo9Vb8UEp5gXqI">
+    <meta name="google-site-verification" content="reL7h9rTlhSCQi0q7OlbW-E6Xb5EGi17eiz8U9MpL0Y"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="description"
-          content="Chuyên trang cầu lông của Flashscore cung cấp tỉ số và kết quả cầu lông trực tiếp nhanh và chính xác. Hãy theo dõi HYLO mở rộng 2023, livescore BWF World Tour Super Series, giải cầu lông Vô địch Thế giới và các giải đấu BWF trực tiếp khác!">
-    <meta name="copyright" content="Copyright (c) 2017-2023 Livesport s.r.o.">
-    <meta name="robots" content="index,follow"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title" content="Livescore cầu lông, HYLO mở rộng 2023, kết quả và lịch thi đấu">
-    <meta property="og:description"
-          content="Chuyên trang cầu lông của Flashscore cung cấp tỉ số và kết quả cầu lông trực tiếp nhanh và chính xác. Hãy theo dõi HYLO mở rộng 2023, livescore BWF World Tour Super Series, giải cầu lông Vô địch Thế giới và các giải đấu BWF trực tiếp khác!">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.flashscore.vn/cau-long/">
-    <meta property="og:image" content="https://www.flashscore.vn/res/_fs/image/og/flashscore.png">
-    <meta name="fb:app_id" content="496212540711051">
-    <link rel="shortcut icon" href="https://static.flashscore.com/res/_fs/image/4_favicons/_fs/favicon.ico?v=8">
-    <link rel="apple-touch-icon" sizes="180x180"
-          href="https://static.flashscore.com/res/_fs/image/4_favicons/_fs/touch-icon-180x180.png?v=8">
-    <link rel="icon" type="image/png" sizes="32x32"
-          href="https://static.flashscore.com/res/_fs/image/4_favicons/_fs/favicon-32x32.png?v=8">
-    <link rel="icon" type="image/png" sizes="16x16"
-          href="https://static.flashscore.com/res/_fs/image/4_favicons/_fs/favicon-16x16.png?v=8">
-    <link rel="manifest" href="/manifest/21/?v=7">
-    <meta name="theme-color" content="#001e28">
-    <meta name="apple-itunes-app" content="app-id=766443283">
-    <meta name="google-site-verification" content="EzyAYkXt-OwDwkL_uJtwc5yghRGgGyu5mnGA9zCLw2U"/>
-    <meta name="facebook-domain-verification" content="50dku5owfhbg0zasp02ffnbw8y7hug"/>
+          content="Phần mềm tổ chức, ứng dụng quản lý giải đấu thể thao giúp tiết kiệm thời gian, chi phí và làm cho giải đấu của bạn chuyên nghiệp, thành công hơn. Tournament Bracket Generator"/>
+    <meta name="robots" content="all"/>
+    <meta name="keywords"
+          content="Esports tournament management software, Bracket software tournament, Tournament Bracket Generator, Tournament Generator, quản lý giải đấu, tổ chức giải đấu, hệ thống quản lý giải đấu, app quản lý giải đấu, phần mềm quản lý giải đấu, quản lý giải đấu phủi, quản lý giải đấu thể thao, phần mềm tổ chức giải đấu, bóng đá phủi, bóng đá sinh viên, bóng đá học sinh, quản lý giải đấu bóng đá, bóng đá phong trào, bóng đá phủi, bóng đá sân 7, bóng đá sân bảy, bóng đá sân nhân tạo, người quản lý bóng đá, tạo giải đấu game, lịch thi đấu, xếp lịch thi đấu, tổ chức giải đấu, kết quả trận đấu, điểm số, bảng xếp hạng, giải đấu loại trực tiếp, giải đấu vòng tròn, sự kiện giải đấu thể thao, chia bảng đấu online.">
+    <meta name="geo.region" content="VN-HN"/>
+    <meta name="geo.position" content="21.028285;105.780177"/>
+    <meta name="ICBM" content="21.028285;105.780177"/>
+    <meta name="facebook-domain-verification" content="ow3xnjwkn3sbtvmglj1vztixzoclqj"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+    <meta property="og:url" content="https://myleague.vn"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:site_name" content="MyLeague.VN"/>
+    <meta property="fb:app_id" content="226991164598945"/>
+    <meta property="og:description" content="Trang chủ"/>
+    <meta property="og:image:url" content="/content/images/green_logo_fb.png"/>
+    <link href="https://vi.myleague.vn/" hreflang="vi" id="locale-vi" rel="alternate">
+    <link href="https://en.myleague.vn/" hreflang="en" id="locale-en" rel="alternate">
+    <link href="https://ru.myleague.vn/" hreflang="ru" id="locale-ru" rel="alternate">
+    <link href="https://jp.myleague.vn/" hreflang="jp" id="locale-jp" rel="alternate">
+    <link href="https://cn.myleague.vn/" hreflang="cn" id="locale-cn" rel="alternate">
+    <link href="https://es.myleague.vn/" hreflang="es" id="locale-es" rel="alternate">
+    <link href="https://fr.myleague.vn/" hreflang="fr" id="locale-fr" rel="alternate">
+    <link href="https://ar.myleague.vn/" hreflang="ar" id="locale-ar" rel="alternate">
+    <title>Trang chủ - Quản lý giải đấu</title>
+    <link rel="shortcut icon" href="homepage/content/images/football.ico" type="image/x-icon"/>
+    <link href="https://myleague.vn/asset/aos/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="homepage/css/app.css?id=32e2ac2446b8ba72912694cef055876f"/>
 
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/LivesportFinderLatin.06df268.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/core.20e1c4a.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/variables.0ce33ed.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/themes.88493e9.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/common.2da8e48.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/components_shared.28090ff.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/cookie.02bcbbd.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/multiLang.01f626d.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/core_common.7c5dcf1.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/lsid.0ffe621.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/dropdown.687117f.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/componentLibraryTheme2021.2af28e6.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/live_header.5a6580a.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/live_sidemenu.b887379.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/live_sections.8d06c51.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/wizard.561951a.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/league_onboarding.b59db54.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/live_footer.26a4abe.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/tabs_filters.0656451.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/live_tabs.be1971d.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/headline.42263e2.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/heading.4ecb1ad.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/player_tables.add6119.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/rest_player_tables.b6d027d.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/ranking.07e6883.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/common_category.24ec60d.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/rssnews.5782320.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/rssnews_scores.958b40c.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/standings_draw.aefd1ca.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/recombox.8653960.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/fsnews_scores.81b960c.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/banner.af48e1f.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/commercial.3523c41.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/badminton_template.e437c63.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/sport_templates_layouts.1432964.css">
-    <link rel="stylesheet" href="https://static.flashscore.com/res/_fs/build/single_page_app_temp.08b52b0.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126705394-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', "UA-126705394-1");
+    </script>
+    <script>
+        if (window.location.search.indexOf('fbclid') > -1) {
+            let url = new URL(window.location.href);
+            url.searchParams.delete('fbclid');
+            window.history.replaceState({}, document.title, url.toString());
+        }
+    </script>
+    <script src="{{'homepage/js/jquery.min.js?id=f0fc1175ecd0c009825b26e07be77331'}}" type="text/javascript"></script>
+    <script src="{{'homepage/content/js/vendors/jquery/jquery.ui.timepicker.js'}}" type="text/javascript"></script>
+    <script src="{{'homepage/js/datetimepicker.min.js?id=852654d230254f8c73e51c6f213a0532'}}" type="text/javascript"></script>
+    <script src="{{'homepage/content/js/vendors/bootstrap/bootstrap.js'}}" type="text/javascript"></script>
+    <script src="{{'homepage/js/dataTables.min.js?id=360ea5bfa9788d6a6baf2d484b974e4d'}}" type="text/javascript"></script>
+    <script src="{{'homepage/content/js/vendors/toastr/toastr.min.js'}}" type="text/javascript"></script>
+    <script src="{{'homepage/js/sweetalert2.min.js?id=92477d03ce91a203f9fa59c647d0c0a8'}}" type="text/javascript"></script>
+    <script src="{{'homepage/js/lazyIntroCroppiePaceTippy.min.js?id=68dac4c76c4c0ed6c575b27ca918828e'}}"
+            type="text/javascript"></script>
+    <script src="{{'homepage/js/photoswipe.min.js?id=141e7bdad6eab11b033a90b6bda2f480'}}" type="text/javascript"></script>
+    <script src="{{'homepage/content/system/theme/assets/global/plugins/moment.min.js'}}"
+            type="text/javascript"></script>
+    <script
+        src="https://myleague.vn/content/system/theme/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js"
+        type="text/javascript"></script>
+    <script src="{{'homepage/content/js/vendors/exif/exif.min.js'}}" type="text/javascript"></script>
+    <script src="{{'homepage/js/myleague.js?id=48a8eeadc716a10968de4a1e4d7a0569'}}" type="text/javascript"></script>
+    <script src="{{'homepage/content/js/vendors/countUp/countUp.js'}}"></script>
+    <script src="{{'homepage/asset/aos/aos.js'}}"></script>
+
+    <style>
+        #wrapHomePage #fullpage #home--2:before {
+            background-image: none;
+            background-color: transparent;
+        }
+
+        .container-fluid {
+            background-color: #001e28 !important;
+        }
+
+        .btn-outline{
+            background-color:#0f2d37;
+        }
+
+        a{
+            color: #596377;
+        }
+    </style>
 </head>
-<body>
-<!-- Header -->
-@include('page.header')
-<!-- Navbar -->
 
-@include('page.navbar')
-<!-- Content -->
-<div class="container">
+<body data-user-id class>
+<script src="{{'homepage/js/lang.js?id=2ead7c87acbed7374b5e7df55a375732'}}"></script>
+
+<div id="fb-customer-chat" class="fb-customerchat" page_id="201674387218178" attribution="biz_inbox"></div>
+<script src="{{'homepage/content/js/vendors/facebook/index.js'}}" async defer crossorigin="anonymous"></script>
+
+<div class="bodyContent">
+    @include('page.navbar')
     @yield('content')
+    @include('page.footer')
 </div>
 
-<!-- Footer -->
-@include('page.footer')
+
 </body>
+
 </html>
