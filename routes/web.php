@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\GameController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 /*
@@ -13,8 +16,10 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('page.homepage');
+Route::middleware(['verified'])->group(function () {
+    Route::get('/', [HomeController::class, 'viewHome'])->name('home');
+
+
 });
 
 Route::middleware([
@@ -27,17 +32,24 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('dashboard', [AuthController::class, 'dashboard']);
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('custom-login', [AuthController::class, 'customLogin'])->name('login.custom');
 Route::get('registration', [AuthController::class, 'registration'])->name('register-user');
 Route::post('custom-registration', [AuthController::class, 'customRegistration'])->name('register.custom');
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
 
+Route::middleware(['auth:sanctum'])->group(function () {
 
-Route::middleware(['admin'])->group(
+    Route::get('/profile/{nick_name}', [ProfileController::class, 'show'])->name('profile.info');
+    Route::get('/user-profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/user-profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
+    Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('update-password');
+
+Route::middleware(['admin','auth'])->group(
     function ()
         {
+            Route::get('dashboard', [AuthController::class, 'dashboard']);
             //Tournament
             Route::get('/list-tournament', 'App\Http\Controllers\Admin\TournamentController@index')->name('tournament.index');
             Route::get('/create-tournament', 'App\Http\Controllers\Admin\TournamentController@create')->name('tournament.create');
@@ -73,4 +85,8 @@ Route::middleware(['admin'])->group(
             Route::post('/update-schedule/{id}', 'App\Http\Controllers\Admin\ScheduleController@update')->name('schedule.update');
             Route::get('/result', 'App\Http\Controllers\Admin\ScheduleController@result')->name('schedule.result');
 
-        });
+        }
+    );
+});
+
+
