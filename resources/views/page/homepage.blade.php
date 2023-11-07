@@ -43,10 +43,6 @@
                                 <a href="https://myleague.vn/lineup" class="btn btn-warning">
                                     Tạo đội hình
                                 </a>
-                                <a id="btnRegisterAgency" class="btn btn__2" href="#!" data-toggle="modal"
-                                   data-target="#modalBecomeAgency">
-                                    Trở thành Đại Lý
-                                </a>
                             </div>
                             <ul class="ps-counts">
                                 <li data-aos="zoom-out-right">

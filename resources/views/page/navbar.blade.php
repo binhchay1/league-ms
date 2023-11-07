@@ -8,19 +8,18 @@
     }
 </style>
 
-<div id="AppBar">
     <nav class="navbar navbar-default navbar-fixed-top" >
         <div class="container-fluid">
             <div class="navbar-header">
-                <a target="_blank" class="iconShop hidden" href="https://shop.myleague.vn">
+                <a target="_blank" class="iconShop hidden" >
                     <img
-                        src="homepage/content/images/shop.png"> </a>
+                        src="{{'/homepage/content/images/shop.png'}}"> </a>
                 <a class="navbar-brand nav-logo-myleague hvr-buzz-out"
-                   href="">
+                   href="{{route('home')}}">
                     <img
-                        src="homepage/content/images/green_logo.jpg" class="pull-left hidden">
+                        src="{{'/homepage/content/images/green_logo.jpg'}}" class="pull-left hidden">
                     <img
-                        src="homepage/content/images/white_logo.jpg" class="pull-left">
+                        src="{{'/homepage/content/images/white_logo.jpg'}}"  class="pull-left">
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -56,15 +55,50 @@
                     </li>
                     <li><a href="https://myleague.vn/pricing"> Bảng giá </a></li>
                     <li><a href="https://blog.myleague.vn/vi"> Blog </a></li>
+                    @if (!auth()->user())
                     <li><a href="https://myleague.vn/account/login">Đăng nhập</a></li>
                     <li>
                         <button class="btn btn-outline" style="color: white"
                                 onclick="window.location = 'https://myleague.vn/account/register'"> Đăng ký
                         </button>
                     </li>
+                    @else(auth::check())
+                    <li class="dropdown" id="info-account">
+                        <a title=" Tâm An" href="javascript:void(0)"
+                            class="dropdown-toggle" data-toggle="dropdown"
+                            role="button" aria-haspopup="true"
+                            aria-expanded="true">
+                            <img src="{{ asset(Auth::user()->image) ?? asset('/images/default-avatar.png') }}">
+                            <span class="truncated name-profile">
+                                {{Auth::user()->name}}
+                            </span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" >
+                            <li>
+                                <a href="{{route('profile.edit')}}">
+                                    Thông tin tài khoản
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://myleague.vn/account/myleague">
+                                    Quản lý giải đấu
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://myleague.vn/account/mycompetitor">
+                                    Quản lý đội
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('signout') }}">
+                                    Đăng xuất
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-
-
+                    @endif
                     <li class="dropdown" id="language">
                         <a href="javascript:void(0)" id="locale" class="dropdown-toggle" data-toggle="dropdown"
                            role="button" aria-haspopup="true" aria-expanded="false">
@@ -118,4 +152,4 @@
             </div>
         </div>
     </nav>
-</div>
+

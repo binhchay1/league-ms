@@ -29,10 +29,11 @@
     <link href="https://fr.myleague.vn/" hreflang="fr" id="locale-fr" rel="alternate">
     <link href="https://ar.myleague.vn/" hreflang="ar" id="locale-ar" rel="alternate">
     <title>Trang chủ - Quản lý giải đấu</title>
-    <link rel="shortcut icon" href="homepage/content/images/football.ico" type="image/x-icon"/>
-    <link href="https://myleague.vn/asset/aos/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="homepage/css/app.css?id=32e2ac2446b8ba72912694cef055876f"/>
-
+    <link rel="shortcut icon" href="{{'/homepage/content/images/football.ico'}}" type="image/x-icon"/>
+    <link href="{{'/homepage/asset/aos/aos.css'}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{'/homepage/css/app.css?id=32e2ac2446b8ba72912694cef055876f'}}"/>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126705394-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -51,25 +52,25 @@
             window.history.replaceState({}, document.title, url.toString());
         }
     </script>
-    <script src="{{'homepage/js/jquery.min.js?id=f0fc1175ecd0c009825b26e07be77331'}}" type="text/javascript"></script>
-    <script src="{{'homepage/content/js/vendors/jquery/jquery.ui.timepicker.js'}}" type="text/javascript"></script>
-    <script src="{{'homepage/js/datetimepicker.min.js?id=852654d230254f8c73e51c6f213a0532'}}" type="text/javascript"></script>
-    <script src="{{'homepage/content/js/vendors/bootstrap/bootstrap.js'}}" type="text/javascript"></script>
-    <script src="{{'homepage/js/dataTables.min.js?id=360ea5bfa9788d6a6baf2d484b974e4d'}}" type="text/javascript"></script>
-    <script src="{{'homepage/content/js/vendors/toastr/toastr.min.js'}}" type="text/javascript"></script>
-    <script src="{{'homepage/js/sweetalert2.min.js?id=92477d03ce91a203f9fa59c647d0c0a8'}}" type="text/javascript"></script>
-    <script src="{{'homepage/js/lazyIntroCroppiePaceTippy.min.js?id=68dac4c76c4c0ed6c575b27ca918828e'}}"
+    <script src="{{'/homepage/js/jquery.min.js?id=f0fc1175ecd0c009825b26e07be77331'}}" type="text/javascript"></script>
+    <script src="{{'/homepage/content/js/vendors/jquery/jquery.ui.timepicker.js'}}" type="text/javascript"></script>
+    <script src="{{'/homepage/js/datetimepicker.min.js?id=852654d230254f8c73e51c6f213a0532'}}" type="text/javascript"></script>
+    <script src="{{'/homepage/content/js/vendors/bootstrap/bootstrap.js'}}" type="text/javascript"></script>
+    <script src="{{'/homepage/js/dataTables.min.js?id=360ea5bfa9788d6a6baf2d484b974e4d'}}" type="text/javascript"></script>
+    <script src="{{'/homepage/content/js/vendors/toastr/toastr.min.js'}}" type="text/javascript"></script>
+    <script src="{{'/homepage/js/sweetalert2.min.js?id=92477d03ce91a203f9fa59c647d0c0a8'}}" type="text/javascript"></script>
+    <script src="{{'/homepage/js/lazyIntroCroppiePaceTippy.min.js?id=68dac4c76c4c0ed6c575b27ca918828e'}}"
             type="text/javascript"></script>
-    <script src="{{'homepage/js/photoswipe.min.js?id=141e7bdad6eab11b033a90b6bda2f480'}}" type="text/javascript"></script>
-    <script src="{{'homepage/content/system/theme/assets/global/plugins/moment.min.js'}}"
+    <script src="{{'/homepage/js/photoswipe.min.js?id=141e7bdad6eab11b033a90b6bda2f480'}}" type="text/javascript"></script>
+    <script src="{{'/homepage/content/system/theme/assets/global/plugins/moment.min.js'}}"
             type="text/javascript"></script>
     <script
-        src="https://myleague.vn/content/system/theme/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js"
+        src="{{'/homepage/content/system/theme/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js'}}"
         type="text/javascript"></script>
-    <script src="{{'homepage/content/js/vendors/exif/exif.min.js'}}" type="text/javascript"></script>
-    <script src="{{'homepage/js/myleague.js?id=48a8eeadc716a10968de4a1e4d7a0569'}}" type="text/javascript"></script>
-    <script src="{{'homepage/content/js/vendors/countUp/countUp.js'}}"></script>
-    <script src="{{'homepage/asset/aos/aos.js'}}"></script>
+    <script src="{{'/homepage/content/js/vendors/exif/exif.min.js'}}" type="text/javascript"></script>
+    <script src="{{'/homepage/js/myleague.js?id=48a8eeadc716a10968de4a1e4d7a0569'}}" type="text/javascript"></script>
+    <script src="{{'/homepage/content/js/vendors/countUp/countUp.js'}}"></script>
+    <script src="{{'/homepage/asset/aos/aos.js'}}"></script>
 
     <style>
         #wrapHomePage #fullpage #home--2:before {
@@ -92,16 +93,22 @@
 </head>
 
 <body data-user-id class>
-<script src="{{'homepage/js/lang.js?id=2ead7c87acbed7374b5e7df55a375732'}}"></script>
+<script src="{{'/homepage/js/lang.js?id=2ead7c87acbed7374b5e7df55a375732'}}"></script>
 
 <div id="fb-customer-chat" class="fb-customerchat" page_id="201674387218178" attribution="biz_inbox"></div>
-<script src="{{'homepage/content/js/vendors/facebook/index.js'}}" async defer crossorigin="anonymous"></script>
+<script src="{{'/homepage/content/js/vendors/facebook/index.js'}}" async defer crossorigin="anonymous"></script>
 
 <div class="bodyContent">
+    <div id="AppBar">
     @include('page.navbar')
+    </div>
     @yield('content')
+    <div id="AppFooter">
     @include('page.footer')
+    </div>
 </div>
+
+@yield('js')
 
 
 </body>
