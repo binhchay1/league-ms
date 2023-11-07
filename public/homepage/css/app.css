@@ -22825,7 +22825,7 @@ select.selectpicker {
 
 .bootstrap-select.is-valid .dropdown-toggle,
 .was-validated .bootstrap-select .selectpicker:valid+.dropdown-toggle {
-    border-color: #28a745
+    border-color: #001e28
 }
 
 .bootstrap-select.fit-width {
@@ -23603,7 +23603,7 @@ select.selectpicker {
 
 .daterangepicker td.active,
 .daterangepicker td.active:hover {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     border-color: transparent;
     color: #fff
 }
@@ -23673,7 +23673,7 @@ select.selectpicker {
 }
 
 .daterangepicker .drp-selected {
-    color: #3bbf1a;
+    color: #001e28;
     display: inline-block;
     font-size: 12px;
     font-weight: 700;
@@ -23688,7 +23688,7 @@ select.selectpicker {
 }
 
 .daterangepicker .drp-buttons .btn.applyBtn {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     color: #fff
 }
 
@@ -23748,7 +23748,7 @@ select.selectpicker {
 }
 
 .daterangepicker .ranges li.active {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     color: #fff
 }
 
@@ -26093,7 +26093,7 @@ a.pswp__share--download:hover {
 }
 
 #wrapMetronic .bg-green-jungle {
-    background: #26c281 !important
+    background: #001e28 !important
 }
 
 #wrapMetronic .bg-green-jungle-opacity {
@@ -26101,11 +26101,11 @@ a.pswp__share--download:hover {
 }
 
 #wrapMetronic .bg-hover-green-jungle:hover {
-    background: #26c281 !important
+    background: #001e28 !important
 }
 
 #wrapMetronic .font-green-jungle {
-    color: #26c281 !important
+    color: #001e28 !important
 }
 
 #wrapMetronic .bg-font-green-jungle {
@@ -26113,53 +26113,53 @@ a.pswp__share--download:hover {
 }
 
 #wrapMetronic .border-green-jungle {
-    border-color: #26c281 !important
+    border-color: #001e28 !important
 }
 
 #wrapMetronic .border-top-green-jungle {
-    border-top-color: #26c281 !important
+    border-top-color: #001e28 !important
 }
 
 #wrapMetronic .border-bottom-green-jungle {
-    border-bottom-color: #26c281 !important
+    border-bottom-color: #001e28 !important
 }
 
 #wrapMetronic .border-left-green-jungle {
-    border-left-color: #26c281 !important
+    border-left-color: #001e28 !important
 }
 
 #wrapMetronic .border-right-green-jungle {
-    border-right-color: #26c281 !important
+    border-right-color: #001e28 !important
 }
 
 #wrapMetronic .bg-after-green-jungle:after,
 #wrapMetronic .bg-before-green-jungle:before {
-    background: #26c281 !important
+    background: #001e28 !important
 }
 
 #wrapMetronic .border-after-green-jungle:after,
 #wrapMetronic .border-before-green-jungle:before {
-    border-color: #26c281 !important
+    border-color: #001e28 !important
 }
 
 #wrapMetronic .border-top-after-green-jungle:after,
 #wrapMetronic .border-top-before-green-jungle:before {
-    border-top-color: #26c281 !important
+    border-top-color: #001e28 !important
 }
 
 #wrapMetronic .border-bottom-after-green-jungle:after,
 #wrapMetronic .border-bottom-before-green-jungle:before {
-    border-bottom-color: #26c281 !important
+    border-bottom-color: #001e28 !important
 }
 
 #wrapMetronic .border-left-after-green-jungle:after,
 #wrapMetronic .border-left-before-green-jungle:before {
-    border-left-color: #26c281 !important
+    border-left-color: #001e28 !important
 }
 
 #wrapMetronic .border-right-after-green-jungle:after,
 #wrapMetronic .border-right-before-green-jungle:before {
-    border-right-color: #26c281 !important
+    border-right-color: #001e28 !important
 }
 
 #wrapMetronic .bg-green-soft {
@@ -30301,8 +30301,8 @@ fieldset[disabled] #wrapMetronic .btn.green-haze:not(.btn-outline):hover {
 }
 
 #wrapMetronic .btn.green-jungle:not(.btn-outline) {
-    background-color: #26c281;
-    border-color: #26c281;
+    background-color: #001e28;
+    border-color: #001e28;
     color: #fff
 }
 
@@ -30351,19 +30351,19 @@ fieldset[disabled] #wrapMetronic .btn.green-haze:not(.btn-outline):hover {
 fieldset[disabled] #wrapMetronic .btn.green-jungle:not(.btn-outline).focus,
 fieldset[disabled] #wrapMetronic .btn.green-jungle:not(.btn-outline):focus,
 fieldset[disabled] #wrapMetronic .btn.green-jungle:not(.btn-outline):hover {
-    background-color: #26c281;
-    border-color: #26c281
+    background-color: #001e28;
+    border-color: #001e28
 }
 
 #wrapMetronic .btn.green-jungle:not(.btn-outline) .badge {
     background-color: #fff;
-    color: #26c281
+    color: #001e28
 }
 
 #wrapMetronic .btn.btn-outline.green-jungle {
     background: 0 0;
-    border-color: #26c281;
-    color: #26c281
+    border-color: #001e28;
+    color: #001e28
 }
 
 #wrapMetronic .btn.btn-outline.green-jungle.active,
@@ -30372,13 +30372,13 @@ fieldset[disabled] #wrapMetronic .btn.green-jungle:not(.btn-outline):hover {
 #wrapMetronic .btn.btn-outline.green-jungle:active:hover,
 #wrapMetronic .btn.btn-outline.green-jungle:focus,
 #wrapMetronic .btn.btn-outline.green-jungle:hover {
-    background-color: #26c281;
-    border-color: #26c281;
+    background-color: #001e28;
+    border-color: #001e28;
     color: #fff
 }
 
 #wrapMetronic .btn.green-jungle-stripe {
-    border-left: 4px solid #26c281 !important
+    border-left: 4px solid #001e28 !important
 }
 
 #wrapMetronic .btn.green-soft:not(.btn-outline) {
@@ -35488,7 +35488,7 @@ fieldset[disabled] #wrapMetronic .btn.purple-soft:not(.btn-outline):hover {
 
 #wrapMetronic .portlet.green-jungle,
 #wrapMetronic .portlet>.portlet-body.green-jungle {
-    background-color: #26c281
+    background-color: #001e28
 }
 
 #wrapMetronic .portlet.solid.green-jungle>.portlet-body,
@@ -35535,7 +35535,7 @@ fieldset[disabled] #wrapMetronic .btn.purple-soft:not(.btn-outline):hover {
 }
 
 #wrapMetronic .portlet.box.green-jungle>.portlet-title {
-    background-color: #26c281
+    background-color: #001e28
 }
 
 #wrapMetronic .portlet.box.green-jungle>.portlet-title>.caption,
@@ -39111,7 +39111,7 @@ fieldset[disabled] #wrapMetronic .btn.purple-soft:not(.btn-outline):hover {
 }
 
 #wrapMetronic .dashboard-stat.green-jungle {
-    background-color: #26c281
+    background-color: #001e28
 }
 
 #wrapMetronic .dashboard-stat.green-jungle.dashboard-stat-light:hover {
@@ -41234,7 +41234,7 @@ template {
 
 a {
     background-color: transparent;
-    color: #3bbf1a;
+    color: #001e28;
     text-decoration: none
 }
 
@@ -41248,7 +41248,7 @@ a:hover {
 
 a:focus,
 a:hover {
-    color: #3bbf1a;
+    color: #001e28;
     text-decoration: none
 }
 
@@ -41309,7 +41309,7 @@ a.label:hover {
 a.thumbnail.active,
 a.thumbnail:focus,
 a.thumbnail:hover {
-    border-color: #3bbf1a
+    border-color: #001e28
 }
 
 a.list-group-item {
@@ -41798,7 +41798,7 @@ table a:not(.btn) {
 }
 
 table a:not(.btn):hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 table .dropdown-menu a {
@@ -42248,7 +42248,7 @@ p:last-child {
 
 .text-primary,
 .text-primary:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 .text-success {
@@ -42288,7 +42288,7 @@ p:last-child {
 }
 
 .bg-primary {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     color: #fff
 }
 
@@ -43214,7 +43214,7 @@ caption {
 }
 
 .table a:not(.btn):hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 .table .dropdown-menu a {
@@ -43306,7 +43306,7 @@ output {
 }
 
 .form-control:focus {
-    border-color: #3bbf1a;
+    border-color: #001e28;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(116, 87, 133, .6);
     box-shadow: none;
     outline: 0
@@ -43365,8 +43365,8 @@ fieldset[disabled] .btn-default:hover {
 fieldset[disabled] .btn-primary.focus,
 fieldset[disabled] .btn-primary:focus,
 fieldset[disabled] .btn-primary:hover {
-    background-color: #3bbf1a;
-    border-color: #3bbf1a
+    background-color: #001e28;
+    border-color: #001e28
 }
 
 fieldset[disabled] .btn-success.focus,
@@ -44277,8 +44277,8 @@ input[type=radio][disabled] {
 }
 
 .btn-primary {
-    background-color: #3bbf1a;
-    border-color: #3bbf1a;
+    background-color: #001e28;
+    border-color: #001e28;
     color: #fff
 }
 
@@ -44326,20 +44326,20 @@ input[type=radio][disabled] {
 .btn-primary.disabled.focus,
 .btn-primary.disabled:focus,
 .btn-primary.disabled:hover {
-    background-color: #3bbf1a;
-    border-color: #3bbf1a
+    background-color: #001e28;
+    border-color: #001e28
 }
 
 .btn-primary .badge {
     background-color: #fff;
-    color: #3bbf1a
+    color: #001e28
 }
 
 .btn-primary[disabled].focus,
 .btn-primary[disabled]:focus,
 .btn-primary[disabled]:hover {
-    background-color: #3bbf1a;
-    border-color: #3bbf1a
+    background-color: #001e28;
+    border-color: #001e28
 }
 
 .btn-success {
@@ -44608,7 +44608,7 @@ input[type=radio][disabled] {
 
 .btn-link {
     border-radius: 0;
-    color: #3bbf1a;
+    color: #001e28;
     color: inherit;
     font-weight: 400
 }
@@ -44629,7 +44629,7 @@ input[type=radio][disabled] {
 .btn-link:hover {
     background-color: transparent;
     border-color: transparent;
-    color: #3bbf1a;
+    color: #001e28;
     text-decoration: none
 }
 
@@ -44813,7 +44813,7 @@ input[type=radio][disabled] {
 
 .dropdown-menu>li>a:focus,
 .dropdown-menu>li>a:hover {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     color: #fff;
     text-decoration: none
 }
@@ -44825,7 +44825,7 @@ input[type=radio][disabled] {
 .dropdown-menu>.active>a,
 .dropdown-menu>.active>a:focus,
 .dropdown-menu>.active>a:hover {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     color: #fff;
     outline: 0;
     text-decoration: none
@@ -45412,7 +45412,7 @@ input[type=radio][disabled] {
     background-color: #f8f8f8;
     border: 1px solid #ecf0f1;
     border-bottom-color: transparent;
-    color: #3bbf1a;
+    color: #001e28;
     cursor: default
 }
 
@@ -45467,8 +45467,8 @@ input[type=radio][disabled] {
 .nav-tabs li.active>a:hover {
     background-color: #fff;
     border: none;
-    border-bottom: 2px solid #3bbf1a;
-    color: #3bbf1a;
+    border-bottom: 2px solid #001e28;
+    color: #001e28;
     cursor: pointer
 }
 
@@ -45491,13 +45491,13 @@ input[type=radio][disabled] {
 .nav-pills>li.active>a,
 .nav-pills>li.active>a:focus,
 .nav-pills>li.active>a:hover {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     color: #fff
 }
 
 .nav-pills>.active>a>.badge {
     background-color: #fff;
-    color: #3bbf1a
+    color: #001e28
 }
 
 .nav-justified {
@@ -45721,8 +45721,8 @@ input[type=radio][disabled] {
 }
 
 .navbar-default {
-    background-color: #3bbf1a;
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background-color: #001e28;
+    background-image: #001e28;
     border-color: transparent
 }
 
@@ -45789,8 +45789,8 @@ input[type=radio][disabled] {
 }
 
 .navbar-default .navbar-collapse {
-    background: #3bbf1a;
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background: #001e28;
+    background-image: #001e28;
     border-color: transparent
 }
 
@@ -45822,7 +45822,7 @@ input[type=radio][disabled] {
 
 .navbar-default .badge {
     background-color: #fff;
-    color: #3bbf1a
+    color: #001e28
 }
 
 .navbar-inverse {
@@ -45837,7 +45837,7 @@ input[type=radio][disabled] {
 .navbar-inverse .navbar-brand:focus,
 .navbar-inverse .navbar-brand:hover {
     background-color: transparent;
-    color: #3bbf1a
+    color: #001e28
 }
 
 .navbar-inverse .navbar-text {
@@ -45872,7 +45872,7 @@ input[type=radio][disabled] {
 .navbar-inverse .navbar-nav>li>a:focus,
 .navbar-inverse .navbar-nav>li>a:hover {
     background-color: transparent;
-    color: #3bbf1a
+    color: #001e28
 }
 
 .navbar-inverse .navbar-toggle {
@@ -45898,7 +45898,7 @@ input[type=radio][disabled] {
 }
 
 .navbar-inverse .navbar-link:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 .navbar-inverse .btn-link {
@@ -45907,7 +45907,7 @@ input[type=radio][disabled] {
 
 .navbar-inverse .btn-link:focus,
 .navbar-inverse .btn-link:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 .navbar-inverse .btn-link[disabled]:focus,
@@ -46137,7 +46137,7 @@ input[type=radio][disabled] {
 }
 
 .label-primary {
-    background-color: #3bbf1a
+    background-color: #001e28
 }
 
 .label-primary[href]:focus,
@@ -46182,7 +46182,7 @@ input[type=radio][disabled] {
 }
 
 .badge {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     border-radius: 10px;
     color: #fff;
     display: inline-block;
@@ -46211,8 +46211,8 @@ input[type=radio][disabled] {
 
 .list-group-item.active,
 .list-group-item.active:hover {
-    background-color: #3bbf1a;
-    border-color: #3bbf1a;
+    background-color: #001e28;
+    border-color: #001e28;
     color: #fff;
     z-index: 2
 }
@@ -46228,8 +46228,8 @@ input[type=radio][disabled] {
 }
 
 .list-group-item.active:focus {
-    background-color: #3bbf1a;
-    border-color: #3bbf1a;
+    background-color: #001e28;
+    border-color: #001e28;
     color: #fff;
     z-index: 2
 }
@@ -46256,7 +46256,7 @@ input[type=radio][disabled] {
 
 .list-group-item.active>.badge {
     background-color: #fff;
-    color: #3bbf1a
+    color: #001e28
 }
 
 .list-group-item:first-child {
@@ -46538,7 +46538,7 @@ input[type=radio][disabled] {
 }
 
 .progress-bar {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
     color: #fff;
     float: left;
@@ -47317,26 +47317,26 @@ input[type=radio][disabled] {
 }
 
 .panel-primary {
-    border-color: #3bbf1a
+    border-color: #001e28
 }
 
 .panel-primary>.panel-heading {
-    background-color: #3bbf1a;
-    border-color: #3bbf1a;
+    background-color: #001e28;
+    border-color: #001e28;
     color: #fff
 }
 
 .panel-primary>.panel-heading .badge {
     background-color: #fff;
-    color: #3bbf1a
+    color: #001e28
 }
 
 .panel-primary>.panel-heading+.panel-collapse>.panel-body {
-    border-top-color: #3bbf1a
+    border-top-color: #001e28
 }
 
 .panel-primary>.panel-footer+.panel-collapse>.panel-body {
-    border-bottom-color: #3bbf1a
+    border-bottom-color: #001e28
 }
 
 .panel-success {
@@ -48220,7 +48220,7 @@ input[type=radio][disabled] {
 }
 
 .btn-group-outline .btn.active {
-    background-color: #3bbf1a
+    background-color: #001e28
 }
 
 .btn-facebook {
@@ -48246,7 +48246,7 @@ input[type=radio][disabled] {
 }
 
 .btn-no-border:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 table-bordered>tbody>tr>td,
@@ -48303,7 +48303,7 @@ table-bordered>thead>tr>th {
 }
 
 .switch__input:checked+.switch__label:after {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     left: 16px
 }
 
@@ -48353,7 +48353,7 @@ table-bordered>thead>tr>th {
 }
 
 .switcher input:checked+.switcher__slider {
-    background-color: #3bbf1a
+    background-color: #001e28
 }
 
 .switcher input:checked+.switcher__slider:before {
@@ -48361,7 +48361,7 @@ table-bordered>thead>tr>th {
 }
 
 .switcher input:focus+.switcher__slider {
-    box-shadow: 0 0 1px #3bbf1a
+    box-shadow: 0 0 1px #001e28
 }
 
 .switcher__slider {
@@ -48585,14 +48585,14 @@ table-bordered>thead>tr>th {
 }
 
 .gradient {
-    background: #3bbf1a;
-    background: linear-gradient(135deg, #3bbf1a, #3916b7)
+    background: #001e28;
+    background: linear-gradient(135deg, #001e28, #3916b7)
 }
 
 .gradient-secondary,
 .partner__info {
-    background: #3bbf1a;
-    background: linear-gradient(180deg, #3bbf1a 15%, rgba(37, 22, 199, .96))
+    background: #001e28;
+    background: linear-gradient(180deg, #001e28 15%, rgba(37, 22, 199, .96))
 }
 
 .partner__info {
@@ -48603,7 +48603,7 @@ table-bordered>thead>tr>th {
 }
 
 .partner__info:after {
-    border-bottom: 50px solid #3bbf1a;
+    border-bottom: 50px solid #001e28;
     border-left: 300px solid transparent;
     content: "";
     height: 0;
@@ -48647,7 +48647,7 @@ table-bordered>thead>tr>th {
 }
 
 .picker .picker__item>label:before {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     border-radius: 50%;
     content: "";
     height: 20px;
@@ -48811,7 +48811,7 @@ table-bordered>thead>tr>th {
 }
 
 .ui-state-active {
-    background: #3bbf1a;
+    background: #001e28;
     background: #676ec1;
     border: none;
     color: #fff;
@@ -48821,7 +48821,7 @@ table-bordered>thead>tr>th {
 }
 
 .ui-state-active:hover {
-    color: #3bbf1a !important
+    color: #001e28 !important
 }
 
 .ui-datepicker-buttonpane,
@@ -48856,7 +48856,7 @@ table-bordered>thead>tr>th {
 }
 
 .ui-widget-content .ui-state-active {
-    background: #3bbf1a;
+    background: #001e28;
     background: #676ec1;
     border: none;
     color: #fff;
@@ -48866,8 +48866,8 @@ table-bordered>thead>tr>th {
 }
 
 .ui-widget-content .ui-state-default {
-    background-color: #3bbf1a;
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background-color: #001e28;
+    background-image: #001e28;
     border: none;
     color: #fff;
     font-weight: 400
@@ -48875,14 +48875,14 @@ table-bordered>thead>tr>th {
 
 .ui-widget-content .ui-state-focus,
 .ui-widget-content .ui-state-hover {
-    background: #3bbf1a;
+    background: #001e28;
     border: none;
     color: #676ec1 !important;
     font-weight: 400
 }
 
 .ui-widget-header {
-    background: #3bbf1a;
+    background: #001e28;
     border: none;
     color: #fff;
     padding: .2em 0;
@@ -48890,7 +48890,7 @@ table-bordered>thead>tr>th {
 }
 
 .ui-widget-header .ui-state-active {
-    background: #3bbf1a;
+    background: #001e28;
     background: #676ec1;
     border: none;
     color: #fff;
@@ -48900,7 +48900,7 @@ table-bordered>thead>tr>th {
 }
 
 .ui-widget-header .ui-state-default {
-    background: #3bbf1a;
+    background: #001e28;
     border: none;
     color: #fff;
     font-weight: 400
@@ -48908,7 +48908,7 @@ table-bordered>thead>tr>th {
 
 .ui-widget-header .ui-state-focus,
 .ui-widget-header .ui-state-hover {
-    background: #3bbf1a;
+    background: #001e28;
     border: none;
     color: #676ec1 !important;
     font-weight: 400
@@ -49048,7 +49048,7 @@ table-bordered>thead>tr>th {
 }
 
 .section--primary {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     color: #fff
 }
 
@@ -49081,7 +49081,7 @@ table-bordered>thead>tr>th {
 }
 
 .section--process__icon {
-    background: #3bbf1a;
+    background: #001e28;
     border-radius: 50%;
     color: #fff;
     display: inline-block;
@@ -49115,7 +49115,7 @@ table-bordered>thead>tr>th {
 }
 
 .section--process__title {
-    color: #3bbf1a;
+    color: #001e28;
     font-weight: 400;
     margin-top: 10px
 }
@@ -49499,7 +49499,7 @@ table-bordered>thead>tr>th {
 
 .match-result,
 .match-result--disabled {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     border: 1px solid #9ea9a3;
     border-radius: 10px;
     left: 0;
@@ -49958,7 +49958,7 @@ table-bordered>thead>tr>th {
 }
 
 .list-item.is-active {
-    background-color: #3bbf1a
+    background-color: #001e28
 }
 
 .list-item.is-active a {
@@ -50201,7 +50201,7 @@ table-bordered>thead>tr>th {
 }
 
 .league-result--card .match-box-content .league-info .league-info__name a {
-    color: #3bbf1a !important
+    color: #001e28 !important
 }
 
 .league-result--card .match-box-content .league-info .league-info__short-info,
@@ -50255,7 +50255,7 @@ table-bordered>thead>tr>th {
 }
 
 .tournament-type__icon img {
-    background: #3bbf1a;
+    background: #001e28;
     display: inline-block;
     height: 80px;
     padding: 13px;
@@ -50626,13 +50626,13 @@ table-bordered>thead>tr>th {
 }
 
 .ui-datepicker.ui-widget {
-    border: 1px solid #3bbf1a;
+    border: 1px solid #001e28;
     width: auto
 }
 
 .ui-datepicker .ui-datepicker-header {
-    background-color: #3bbf1a;
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background-color: #001e28;
+    background-image: #001e28;
     border: none;
     color: #fff;
     padding: .2em 0;
@@ -50650,17 +50650,17 @@ table-bordered>thead>tr>th {
 }
 
 #ui-timepicker-div {
-    border: 1px solid #3bbf1a;
+    border: 1px solid #001e28;
     width: auto
 }
 
 #ui-timepicker-div .periods {
-    color: #3bbf1a
+    color: #001e28
 }
 
 .ui-timepicker-title {
-    background: #3bbf1a;
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background: #001e28;
+    background-image: #001e28;
     border: none;
     color: #fff;
     margin: 0 0 2px;
@@ -50677,7 +50677,7 @@ table-bordered>thead>tr>th {
 }
 
 .ui-state-default {
-    background: #3bbf1a;
+    background: #001e28;
     border: none;
     color: #fff;
     font-weight: 400
@@ -50685,7 +50685,7 @@ table-bordered>thead>tr>th {
 
 .ui-state-focus,
 .ui-state-hover {
-    background: #3bbf1a;
+    background: #001e28;
     border: none;
     color: #676ec1 !important;
     font-weight: 400
@@ -50726,7 +50726,7 @@ table-bordered>thead>tr>th {
 
 .landing-banner {
     background-blend-mode: multiply;
-    background-color: #3bbf1a;
+    background-color: #001e28;
     background-image: url(/content/images/download.jpg);
     background-position: bottom;
     background-size: cover;
@@ -50769,7 +50769,7 @@ table-bordered>thead>tr>th {
 
 .tourament-type {
     background-color: #fff;
-    box-shadow: 0 -1px 2px #3bbf1a;
+    box-shadow: 0 -1px 2px #001e28;
     height: 140px;
     position: relative;
     text-align: center
@@ -50783,7 +50783,7 @@ table-bordered>thead>tr>th {
 }
 
 .tourament-type .list-item.is-active {
-    background: #3bbf1a
+    background: #001e28
 }
 
 .tourament-type img {
@@ -50859,7 +50859,7 @@ table-bordered>thead>tr>th {
 }
 
 .creating__team {
-    background-color: #3bbf1a
+    background-color: #001e28
 }
 
 .creating__org {
@@ -52684,7 +52684,7 @@ tbody.collapse.in {
 }
 
 :not(#foo) .styled-checkbox:checked+label {
-    border: 1px solid #3bbf1a
+    border: 1px solid #001e28
 }
 
 :not(#foo) .styled-checkbox:checked+label:before {
@@ -52750,7 +52750,7 @@ tbody.collapse.in {
 }
 
 .dark.fa {
-    color: #3bbf1a;
+    color: #001e28;
     margin-top: 20px
 }
 
@@ -52799,7 +52799,7 @@ tbody.collapse.in {
 }
 
 .ui-datepicker-calendar thead {
-    color: #3bbf1a
+    color: #001e28
 }
 
 .advs-hor img {
@@ -52876,7 +52876,7 @@ tbody.collapse.in {
 }
 
 .palete-color--givetour>.palete-color__lighten {
-    background-color: #3bbf1a
+    background-color: #001e28
 }
 
 .palete-color--givetour>.palete-color__darken {
@@ -58527,11 +58527,11 @@ div[aria-labelledby=swal2-title] button[type=button].swal2-cancel {
 }
 
 div[aria-labelledby=swal2-title] button[type=button].swal2-confirm {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 div[aria-labelledby=swal2-title] button[type=button].swal2-confirm:hover {
-    background-image: linear-gradient(to left top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a) !important
+    background-image: linear-gradient(to left top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28) !important
 }
 
 div[aria-labelledby=swal2-title] .swal2-icon {
@@ -58588,7 +58588,7 @@ div[aria-labelledby=swal2-title] .swal2-close:hover {
 #ruleModalCutomByGroup .panel-primary .panel-heading,
 .btn-primary,
 .btn-success {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 .btn-primary,
@@ -58598,7 +58598,7 @@ div[aria-labelledby=swal2-title] .swal2-close:hover {
 
 .btn-primary:hover,
 .btn-success:hover {
-    background-image: linear-gradient(to left top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to left top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 .btn-warning {
@@ -58612,12 +58612,12 @@ div[aria-labelledby=swal2-title] .swal2-close:hover {
 
 .btn-group-outline .js-view-card.active,
 .btn-group-outline .js-view-list.active {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 .btn-group-outline .js-view-card.active:hover,
 .btn-group-outline .js-view-list.active:hover {
-    background-image: linear-gradient(to left top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to left top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 .irs--flat .irs-from,
@@ -58625,7 +58625,7 @@ div[aria-labelledby=swal2-title] .swal2-close:hover {
 .irs--flat .irs-single,
 .irs--flat .irs-to,
 .irs-bar {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a) !important
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28) !important
 }
 
 .pac-container {
@@ -58921,12 +58921,12 @@ strong {
 }
 
 .pretty input:checked~.state.p-info-o label:before {
-    border-color: #3bbf1a
+    border-color: #001e28
 }
 
 .pretty input:checked~.state.p-info-o .icon {
-    stroke: #3bbf1a;
-    color: #3bbf1a
+    stroke: #001e28;
+    color: #001e28
 }
 
 .toast-info a {
@@ -59187,12 +59187,12 @@ select.form-control {
 }
 
 #typeGame .card.active {
-    border: 3px dashed #3bbf1a
+    border: 3px dashed #001e28
 }
 
 #typeGame .card.active img {
-    background-color: #3bbf1a;
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-color: #001e28;
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 #typeGame .card.active .card-body span {
@@ -59249,7 +59249,7 @@ select.form-control {
 .scrollable-box li:not(.is-active) a:hover,
 .scrollable-box-for-round li.is-active a,
 .scrollable-box-for-round li:not(.is-active) a:hover {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 .scrollable li:not(.is-active) a:hover,
@@ -59276,7 +59276,7 @@ select.form-control {
 .scrollable-box-for-round::-webkit-scrollbar-thumb:hover,
 .scrollable-box::-webkit-scrollbar-thumb:hover,
 .scrollable::-webkit-scrollbar-thumb:hover {
-    background-color: #3bbf1a
+    background-color: #001e28
 }
 
 .show-error-success .alert .close {
@@ -59918,7 +59918,7 @@ select.form-control {
 }
 
 .dateTimePickerOn .xdsoft_datetimepicker {
-    border: 1px solid #3bbf1a;
+    border: 1px solid #001e28;
     border-radius: 4px;
     display: flex !important;
     padding-right: 3px
@@ -59964,14 +59964,14 @@ select.form-control {
     background-color: transparent;
     background-image: unset;
     border: none;
-    color: #3bbf1a;
+    color: #001e28;
     font-size: 15px;
     padding: 10px 9px !important
 }
 
 .dateTimePickerOn .xdsoft_datetimepicker .xdsoft_datepicker .xdsoft_calendar td,
 .dateTimePickerOn .xdsoft_datetimepicker .xdsoft_datepicker .xdsoft_calendar th {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background-image: #001e28;
     color: #fff;
     font-size: 14px;
     text-align: center
@@ -61026,7 +61026,7 @@ select.form-control {
     .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:focus,
     .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover {
         background-color: transparent;
-        color: #3bbf1a
+        color: #001e28
     }
     #btnRegisterAgency {
         display: inline-block;
@@ -61709,7 +61709,7 @@ select.form-control {
 }
 
 #AppBar .navbar-right #dropdown-notify .dropdown-menu li.notiAccount.unread a {
-    color: #3bbf1a;
+    color: #001e28;
     cursor: pointer
 }
 
@@ -61877,7 +61877,7 @@ select.form-control {
         font-weight: 700
     }
     #AppBar .navbar-header .mb-notify .dropdown-menu li.notiAccount.unread a {
-        color: #3bbf1a;
+        color: #001e28;
         cursor: pointer
     }
     #AppBar .navbar-header .mb-notify .dropdown-menu span {
@@ -61960,7 +61960,7 @@ select.form-control {
 }
 
 #detailMatchModal #viewMatch .wrapVoteMatch #clockdiv div {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background-image: #001e28;
     padding: 5px
 }
 
@@ -62164,7 +62164,7 @@ select.form-control {
 
 #detailMatchModal .modal-title .btn-primary {
     background-image: unset;
-    border: 1px solid #3bbf1a
+    border: 1px solid #001e28
 }
 
 #detailMatchModal .introjs-fixParent.modal-dialog,
@@ -62255,7 +62255,7 @@ select.form-control {
 }
 
 #detailMatchModal .match-detail-competitor-name {
-    color: #3bbf1a;
+    color: #001e28;
     cursor: pointer;
     display: inline-block;
     word-break: break-word
@@ -62278,7 +62278,7 @@ select.form-control {
 
 #detailMatchModal #detailSwissLabel button#showUpdateResultMatch {
     background-color: #fff;
-    color: #3bbf1a;
+    color: #001e28;
     font-size: 13px
 }
 
@@ -62725,8 +62725,8 @@ select.form-control {
 }
 
 #AppFooter .bct {
-    background-color: #3bbf1a;
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background-color: #001e28;
+    background-image: #001e28;
     color: #fff;
     font-size: 16px;
     left: 0;
@@ -62816,7 +62816,7 @@ select.form-control {
 }
 
 #AppFooter .footer .container #infoSite .social-myleague li a:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #AppFooter .footer .container #infoSite .social-myleague li a .fa-envelope {
@@ -64124,11 +64124,11 @@ select.form-control {
 }
 
 #ranking .rankingsTemplate .table-responsive .table tbody tr td.teamName a:hover {
-    color: #3bbf1a !important
+    color: #001e28 !important
 }
 
 #ranking .rankingsTemplate .table-responsive .table tbody tr td.teamName .extenalLink:hover {
-    color: #3bbf1a !important;
+    color: #001e28 !important;
     text-decoration: underline !important
 }
 
@@ -64255,7 +64255,7 @@ select.form-control {
 }
 
 #CompetitorList .competitor .competitor-members .competitor-members__more:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #CompetitorList .competitor .competitor-members .competitor-members__more {
@@ -64263,7 +64263,7 @@ select.form-control {
 }
 
 #CompetitorList .competitor .competitor-members .help-block:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #CompetitorList .competitor .wrapLinked {
@@ -64317,7 +64317,7 @@ select.form-control {
 #competitorDetails .nav-tabs>li>a.active,
 #competitorDetails .nav-tabs>li>a:hover {
     background: 0 0;
-    color: #3bbf1a !important
+    color: #001e28 !important
 }
 
 #competitorDetails .nav-tabs>li>a.active:after,
@@ -64326,7 +64326,7 @@ select.form-control {
 }
 
 #competitorDetails .nav-tabs>li>a:after {
-    background: #3bbf1a;
+    background: #001e28;
     bottom: -1px;
     content: "";
     height: 2px;
@@ -64593,7 +64593,7 @@ select.form-control {
 #statistics .section-title .btn-group>.btn.active,
 #statistics .section-title .btn-group>.btn:hover {
     background: 0 0;
-    color: #3bbf1a !important
+    color: #001e28 !important
 }
 
 #statistics .section-title .btn-group>.btn.active:after,
@@ -64602,7 +64602,7 @@ select.form-control {
 }
 
 #statistics .section-title .btn-group>.btn:after {
-    background: #3bbf1a;
+    background: #001e28;
     bottom: -1px;
     content: "";
     height: 2px;
@@ -64762,7 +64762,7 @@ select.form-control {
 }
 
 #statistics .instructionsTemplate .section .stageViewModelInstructions .download-schedule button.statistic-round {
-    background-color: #3bbf1a
+    background-color: #001e28
 }
 
 #statistics .instructionsTemplate .section .stageViewModelInstructions .download-schedule button#dropdownMenuLink {
@@ -64836,14 +64836,14 @@ select.form-control {
 }
 
 #statistics .instructionsTemplate .section .stageViewModelInstructions .filter .wrapSelectBoostrap .bootstrap-select button {
-    background-color: #3bbf1a;
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background-color: #001e28;
+    background-image: #001e28;
     border: unset;
     height: 31px
 }
 
 #statistics .instructionsTemplate .section .stageViewModelInstructions .filter .wrapSelectBoostrap .bootstrap-select button:hover {
-    background-image: linear-gradient(to left top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to left top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 #statistics .instructionsTemplate .section .stageViewModelInstructions .filter .wrapSelectBoostrap .bootstrap-select button .filter-option {
@@ -65086,13 +65086,13 @@ select.form-control {
 
 #groupStage .optionGroupTimeTemplate .btn-group>.btn.active {
     background: 0 0;
-    color: #3bbf1a !important;
+    color: #001e28 !important;
     z-index: 1
 }
 
 #groupStage .optionGroupTimeTemplate .btn-group>.btn:hover {
     background: 0 0;
-    color: #3bbf1a !important
+    color: #001e28 !important
 }
 
 #groupStage .optionGroupTimeTemplate .btn-group>.btn.active:after,
@@ -65101,7 +65101,7 @@ select.form-control {
 }
 
 #groupStage .optionGroupTimeTemplate .btn-group>.btn:after {
-    background: #3bbf1a;
+    background: #001e28;
     bottom: -1px;
     content: "";
     height: 2px;
@@ -65479,7 +65479,7 @@ select.form-control {
 }
 
 #LeagueInfo .league-action--left li a:not(#dropdownMenu1):hover {
-    background: #3bbf1a;
+    background: #001e28;
     color: #fff !important
 }
 
@@ -65771,7 +65771,7 @@ select.form-control {
 #profile-wrap .editProfile .container .tab-content .personal-avatar .avatar-position label {
     background-position: 50%;
     background-size: cover;
-    border: 1px solid #3bbf1a;
+    border: 1px solid #001e28;
     border-radius: 50%;
     height: 150px;
     width: 150px
@@ -65790,7 +65790,7 @@ select.form-control {
 }
 
 #profile-wrap .editProfile .container .tab-content .personal-avatar h2 {
-    color: #3bbf1a;
+    color: #001e28;
     font-weight: 700;
     padding-top: 10px;
     word-break: break-word
@@ -65805,7 +65805,7 @@ select.form-control {
 }
 
 #profile-wrap .editProfile .container .tab-content .personal-avatar .padding-zero {
-    color: #3bbf1a;
+    color: #001e28;
     display: none;
     padding: 0 0 10px;
     text-align: center
@@ -65906,11 +65906,11 @@ select.form-control {
 }
 
 #CreateLeague #intro-number-round-robin .btn-group-outline .btn.active {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 #CreateLeague .name-step {
-    color: #3bbf1a;
+    color: #001e28;
     font-weight: 700
 }
 
@@ -65987,8 +65987,8 @@ select.form-control {
 }
 
 #CreateLeague .picker .picker__item img {
-    background-color: #3bbf1a;
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background-color: #001e28;
+    background-image: #001e28;
     border-radius: unset;
     padding: 6px
 }
@@ -65998,7 +65998,7 @@ select.form-control {
 }
 
 #CreateLeague .picker .picker__item>label:before {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 @media(max-width:425px) {
@@ -66016,8 +66016,8 @@ select.form-control {
 }
 
 #tourModal .list-group-item.clearfix img {
-    background-color: #3bbf1a;
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background-color: #001e28;
+    background-image: #001e28;
     border-radius: unset;
     padding: 6px
 }
@@ -66027,7 +66027,7 @@ select.form-control {
 }
 
 #editLeagueForm .panel-body #intro-number-round .btn-group-outline .btn.active {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 #editLeagueForm .panel-body .wrap-accordion {
@@ -66276,8 +66276,8 @@ select.form-control {
 }
 
 #editLeagueForm .panel-body #wrapDetailSetting .flex-item.picker__item img {
-    background-color: #3bbf1a;
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background-color: #001e28;
+    background-image: #001e28;
     border-radius: unset;
     padding: 6px
 }
@@ -66292,7 +66292,7 @@ select.form-control {
 }
 
 #editLeagueForm .panel-body #wrapDetailSetting .flex-item.picker__item>label:before {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 #editLeagueForm .panel-body #wrapTypeGame {
@@ -66743,11 +66743,11 @@ select.form-control {
 }
 
 #knockout #HeaderTemplate label.btn.active {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 #knockout #HeaderTemplate label.btn.active:hover {
-    background-image: linear-gradient(to left top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to left top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 @media screen and (max-width:548px) {
@@ -66810,7 +66810,7 @@ select.form-control {
 }
 
 #knockout #ChartTemplate .showHideRound button.statistic-round {
-    background-color: #3bbf1a
+    background-color: #001e28
 }
 
 #knockout #ChartTemplate .showHideRound button#dropdownMenuLink {
@@ -67006,7 +67006,7 @@ select.form-control {
 #knockout #MatchesTemplate #optionGroup .btn-group>.btn.active,
 #knockout #MatchesTemplate #optionGroup .btn-group>.btn:hover {
     background: 0 0;
-    color: #3bbf1a !important
+    color: #001e28 !important
 }
 
 #knockout #MatchesTemplate #optionGroup .btn-group>.btn.active:after,
@@ -67015,7 +67015,7 @@ select.form-control {
 }
 
 #knockout #MatchesTemplate #optionGroup .btn-group>.btn:after {
-    background: #3bbf1a;
+    background: #001e28;
     bottom: -1px;
     content: "";
     height: 2px;
@@ -67429,7 +67429,7 @@ select.form-control {
 }
 
 #team-profile .team-profile-name {
-    color: #3bbf1a;
+    color: #001e28;
     font-size: 24px;
     font-weight: 400;
     padding: 5px;
@@ -68432,7 +68432,7 @@ select.form-control {
 }
 
 #findTeams .help-block:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #findTeams .competitor-stats #myleague_new_template dl,
@@ -69041,7 +69041,7 @@ select.form-control {
 #userInfo .UserStatistics .league-avatar {
     background-position: 50%;
     background-size: cover;
-    border: 1px solid #3bbf1a;
+    border: 1px solid #001e28;
     border-radius: 50%;
     height: 90px;
     width: 90px
@@ -69099,7 +69099,7 @@ select.form-control {
 }
 
 #userInfo #admin-team .competitor .competitor-members .competitor-members__more:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #userInfo #admin-team .competitor .competitor-members .competitor-members__more {
@@ -69107,7 +69107,7 @@ select.form-control {
 }
 
 #userInfo #admin-team .competitor .competitor-members .help-block:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #userInfo #admin-team .competitor .help-block {
@@ -69465,8 +69465,8 @@ select.form-control {
 }
 
 #finishEnrollment .flex-item.picker__item img {
-    background-color: #3bbf1a;
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background-color: #001e28;
+    background-image: #001e28;
     border-radius: unset;
     padding: 6px
 }
@@ -69477,7 +69477,7 @@ select.form-control {
 
 #finishEnrollment #number-round-robin .btn-group-outline .btn.active,
 #finishEnrollment .flex-item.picker__item>label:before {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 @media(max-width:600px) {
@@ -70512,7 +70512,7 @@ select.form-control {
 #detail-match #box_main,
 #detail-match #widget-rachas,
 #detail-match #widget-stats {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 #detail-match .cabecera-seccion,
@@ -70597,7 +70597,7 @@ select.form-control {
 }
 
 #detail-match .sidebar .widget-sidebar-clasificacion #rankingForLeagueType3 .section-matchs-box .rank-list {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 #detail-match .sidebar .widget-sidebar-clasificacion #rankingForLeagueType3 .section-matchs-box .rank-list .rank-item {
@@ -70661,7 +70661,7 @@ select.form-control {
 }
 
 #detail-match .sidebar .widget-sidebar-clasificacion .datatable_clasificacion.laliga-santander {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 #detail-match .sidebar .widget-sidebar-clasificacion .datatable_clasificacion.laliga-santander thead tr {
@@ -70764,7 +70764,7 @@ select.form-control {
 }
 
 #detail-match #resultado_equipos .set::-webkit-scrollbar-thumb:hover {
-    background-color: #3bbf1a
+    background-color: #001e28
 }
 
 #detail-match .cabecera-seccion .titulo,
@@ -71779,7 +71779,7 @@ select.form-control {
 
 #competitor-statistic #graficos-ficha-equipo .cabecera-seccion {
     background: #135f00 !important;
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a) !important
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28) !important
 }
 
 #competitor-statistic #graficos-ficha-equipo .cabecera-seccion .titulo {
@@ -72329,7 +72329,7 @@ select.form-control {
 }
 
 #pricingTeam .bgTop {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background-image: #001e28;
     height: 370px;
     position: absolute;
     width: 100%;
@@ -73010,7 +73010,7 @@ select.form-control {
 }
 
 #typePaymentModal .bank>li.active {
-    border: 3px solid #3bbf1a;
+    border: 3px solid #001e28;
     position: relative
 }
 
@@ -74760,7 +74760,7 @@ select.form-control {
 }
 
 #exportImage.schedule .match-result {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     border: 1px solid #9ea9a3;
     border-radius: 10px;
     color: #1600ff;
@@ -75040,7 +75040,7 @@ select.form-control {
 }
 
 #exportImage.schedule #timePageOption .match-result span {
-    color: #3bbf1a;
+    color: #001e28;
     font-size: 35px;
     line-height: 45px
 }
@@ -75730,7 +75730,7 @@ select.form-control {
 .tabStyleMyleague .flex-item .btn-group>.btn.active,
 .tabStyleMyleague .flex-item .btn-group>.btn:hover {
     background: 0 0;
-    color: #3bbf1a !important
+    color: #001e28 !important
 }
 
 .tabStyleMyleague .flex-item .btn-group>.btn.active:after,
@@ -75739,7 +75739,7 @@ select.form-control {
 }
 
 .tabStyleMyleague .flex-item .btn-group>.btn:after {
-    background: #3bbf1a;
+    background: #001e28;
     bottom: -1px;
     content: "";
     height: 2px;
@@ -75779,7 +75779,7 @@ select.form-control {
 
 #wrapChangePassword .panel-heading {
     background-color: #3bbe1b;
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background-image: #001e28;
     color: #fff
 }
 
@@ -76083,7 +76083,7 @@ select.form-control {
         border-radius: 5px
     }
     #lineup:not(.isModal) .wmd-view::-webkit-scrollbar-thumb:hover {
-        background-color: #3bbf1a
+        background-color: #001e28
     }
 }
 
@@ -76302,7 +76302,7 @@ select.form-control {
         border-radius: 5px
     }
     #showLineup .wmd-view::-webkit-scrollbar-thumb:hover {
-        background-color: #3bbf1a
+        background-color: #001e28
     }
 }
 
@@ -76810,7 +76810,7 @@ select.form-control {
 
 #wrapEvents .portlet.calendar.light .fc-button.fc-state-active,
 #wrapEvents .portlet.calendar.light .fc-button.fc-state-hover {
-    border-bottom: 2px solid #3bbf1a
+    border-bottom: 2px solid #001e28
 }
 
 #wrapEvents #btnCreate {
@@ -76995,13 +76995,13 @@ select.form-control {
 }
 
 #wrapEvents .portlet-body #wrapCalendar #calendar .fc-view-container {
-    border: 2px solid #3bbf1a;
+    border: 2px solid #001e28;
     border-left-width: 1px;
     border-radius: 4px
 }
 
 #wrapEvents .portlet-body #wrapCalendar #calendar .fc-view-container .fc-head .fc-row tr {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 #wrapEvents .portlet-body #wrapCalendar #calendar .fc-view-container .fc-head .fc-row tr .fc-widget-header {
@@ -77892,7 +77892,7 @@ select.form-control {
 .optionLeagueOrTeam .flex-item .btn-group>.btn.active,
 .optionLeagueOrTeam .flex-item .btn-group>.btn:hover {
     background: 0 0;
-    color: #3bbf1a !important
+    color: #001e28 !important
 }
 
 .optionLeagueOrTeam .flex-item .btn-group>.btn.active:after,
@@ -77901,7 +77901,7 @@ select.form-control {
 }
 
 .optionLeagueOrTeam .flex-item .btn-group>.btn:after {
-    background: #3bbf1a;
+    background: #001e28;
     bottom: -1px;
     content: "";
     height: 2px;
@@ -78017,7 +78017,7 @@ select.form-control {
 .wrapImgMatch .backgroundParent .box-content .box-view-img .box-detail-td .lg-team {
     background: #fff;
     border: 3px solid var(--bg-color-name);
-    color: #3bbf1a;
+    color: #001e28;
     display: block;
     font-size: 65px;
     font-weight: 700;
@@ -78047,7 +78047,7 @@ select.form-control {
 
 .wrapImgMatch .backgroundParent .box-content .box-view-img .box-detail-td .bgName {
     align-items: center;
-    background: #3bbf1a;
+    background: #001e28;
     color: #000;
     display: flex;
     font-size: 30px;
@@ -78063,7 +78063,7 @@ select.form-control {
 .wrapImgMatch .backgroundParent .box-content .box-view-img .box-detail-td .bgName:after {
     border-left: 55px solid transparent;
     border-right: 55px solid transparent;
-    border-top: 96px solid #3bbf1a;
+    border-top: 96px solid #001e28;
     border-top-color: var(--bg-color-name);
     content: "";
     height: 0;
@@ -78388,7 +78388,7 @@ select.form-control {
 }
 
 #wrapVote .item .col-xs-3 .voted {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     border-radius: 50%;
     cursor: default;
     display: block;
@@ -79931,7 +79931,7 @@ select.form-control {
 #knockout #ChartTemplate .chart-container .match-info--date,
 #knockout #ChartTemplate .chart-container .match-info--score,
 #knockout #ChartTemplate .chart-container .match-info--time {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     color: #f3e5f5;
     min-width: 75px;
     width: auto
@@ -80072,12 +80072,12 @@ select.form-control {
 }
 
 #knockout #ChartTemplate .chart-container .bracket {
-    border-color: #3bbf1a;
+    border-color: #001e28;
     position: relative
 }
 
 #knockout #ChartTemplate .chart-container .bracket:after {
-    border-right: 2px solid #3bbf1a;
+    border-right: 2px solid #001e28;
     border-color: inherit;
     content: "";
     height: 50%;
@@ -80098,11 +80098,11 @@ select.form-control {
 }
 
 #knockout #ChartTemplate .chart-container .border-top {
-    border-top: 2px solid #3bbf1a
+    border-top: 2px solid #001e28
 }
 
 #knockout #ChartTemplate .chart-container .border-bottom {
-    border-bottom: 2px solid #3bbf1a
+    border-bottom: 2px solid #001e28
 }
 
 #knockout #ChartTemplate .chart-container .width2 {
@@ -80154,7 +80154,7 @@ select.form-control {
 }
 
 #knockout #ChartTemplate .chart-container .borderBracket .btnSearch:hover i {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #EditCompetitors .avatar-container {
@@ -80348,7 +80348,7 @@ select.form-control {
 }
 
 #SetupTimeContainer .nav-tabs>li>a:after {
-    background: #3bbf1a;
+    background: #001e28;
     bottom: -1px;
     content: "";
     height: 2px;
@@ -80365,7 +80365,7 @@ select.form-control {
 }
 
 #editLeagueForm .nav-tabs>li>a:after {
-    background: #3bbf1a;
+    background: #001e28;
     bottom: -1px;
     content: "";
     height: 2px;
@@ -89575,7 +89575,7 @@ select.form-control {
 
 #myleague_new_template a:focus,
 #myleague_new_template a:hover {
-    color: #3bbf1a;
+    color: #001e28;
     text-decoration: none
 }
 
@@ -96430,7 +96430,7 @@ select.form-control {
 }
 
 #myleague_new_template .page-top-hang .wrap-title h6 a:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #myleague_new_template .dataTables_wrapper {
@@ -97036,7 +97036,7 @@ select.form-control {
 }
 
 #myleague_new_template .page-match-detail .wrap-match-detail .item-overlay .nav-tab ul li a.active:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #myleague_new_template .row-match {
@@ -101483,7 +101483,7 @@ select.form-control {
 }
 
 #myleague_new_template .wrapParentPagePricingLeague .pl-wrap {
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a)
+    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
 }
 
 #myleague_new_template .wrapParentPagePricingLeague .pl-wrap.premium {
@@ -104067,7 +104067,7 @@ select.form-control {
 
 #wrapHomePage #fullpage #home--1 .ps-middle .ps-buttons .btn {
     background-color: #11ba55;
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background-image: #001e28;
     border: none;
     color: #fff;
     font-size: 15px;
@@ -104077,7 +104077,7 @@ select.form-control {
 
 #wrapHomePage #fullpage #home--1 .ps-middle .ps-buttons .btn:hover {
     background-color: #ffbb38;
-    background-image: linear-gradient(to left top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+   background-image: #001e28;
     color: #fff
 }
 
@@ -104166,8 +104166,8 @@ select.form-control {
 }
 
 #wrapHomePage #fullpage #home--1 .my-accounts .btn {
-    background-color: #11ba55;
-    border-color: #11ba55;
+    background-color: #001e28;
+    border-color:#001e28;
     color: #fff
 }
 
@@ -104188,7 +104188,7 @@ select.form-control {
 #wrapHomePage #fullpage #home--1 .my-accounts .btn__none:hover {
     background-color: transparent;
     border-color: transparent;
-    color: #11ba55
+    color: #001e28
 }
 
 #wrapHomePage #fullpage #home--1 .ps-main-menu {
@@ -104210,7 +104210,7 @@ select.form-control {
 }
 
 #wrapHomePage #fullpage #home--1 .ps-main-menu ul li.active a {
-    color: #11ba55
+    color: #001e28
 }
 
 @media(max-width:992px) {
@@ -104332,7 +104332,7 @@ select.form-control {
 
 #wrapHomePage #fullpage #home--2:before {
     background-color: #11ba55;
-    background-image: linear-gradient(to right top, #45af2a, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #45af2a);
+    background-image: #001e28;
     content: "";
     display: block;
     height: 86px;
@@ -104395,7 +104395,7 @@ select.form-control {
 }
 
 #wrapHomePage #fullpage #home--2 .ps-step__index {
-    color: #11ba55;
+    color: #001e28;
     font-size: 100px;
     font-weight: 700;
     line-height: 25px;
@@ -104444,7 +104444,7 @@ select.form-control {
 
 #wrapHomePage #fullpage #home--2 .ps-post:after {
     background: linear-gradient(180deg, rgba(17, 186, 85, .2) -36.33%, rgba(17, 186, 85, 0));
-    color: #11ba55;
+    color: #001e28;
     content: "__________";
     display: block;
     height: 65em;
@@ -104489,7 +104489,7 @@ select.form-control {
 }
 
 #wrapHomePage #fullpage #home--2 .ps-post:hover__content img {
-    color: #11ba55
+    color: #001e28
 }
 
 @media(max-width:1199px) {
@@ -104696,7 +104696,7 @@ select.form-control {
 
 #wrapHomePage #fullpage #home--3 .ps-post:after {
     background: linear-gradient(180deg, rgba(17, 186, 85, .9) -36.33%, rgba(17, 186, 85, 0));
-    color: #11ba55;
+    color: #001e28;
     content: "__________";
     display: block;
     height: 100%;
@@ -104741,7 +104741,7 @@ select.form-control {
 }
 
 #wrapHomePage #fullpage #home--3 .ps-post:hover__content img {
-    color: #11ba55
+    color: #001e28
 }
 
 #wrapHomePage #fullpage #home--3 .post-column:hover .ps-post {
@@ -105492,7 +105492,7 @@ select.form-control {
 
 #blog a:focus,
 #blog a:hover {
-    color: #3bbf1a;
+    color: #001e28;
     outline: none;
     text-decoration: none
 }
@@ -105574,12 +105574,12 @@ select.form-control {
 }
 
 #blog ::-moz-selection {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     color: #fff
 }
 
 #blog ::selection {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     color: #fff
 }
 
@@ -105673,15 +105673,15 @@ select.form-control {
 }
 
 #blog .primary-button {
-    background-color: #3bbf1a;
-    box-shadow: inset 0 0 0 2px #3bbf1a;
+    background-color: #001e28;
+    box-shadow: inset 0 0 0 2px #001e28;
     color: #fff
 }
 
 #blog .primary-button:focus,
 #blog .primary-button:hover {
     background-color: transparent;
-    color: #3bbf1a
+    color: #001e28
 }
 
 #blog .secondary-button {
@@ -105898,7 +105898,7 @@ select.form-control {
 }
 
 #blog .nav-menu li.has-dropdown.megamenu>.dropdown.tab-dropdown .tab-nav li.active {
-    background: #3bbf1a
+    background: #001e28
 }
 
 #blog .nav-menu li.has-dropdown.megamenu>.dropdown.tab-dropdown .tab-nav li.active a {
@@ -105924,7 +105924,7 @@ select.form-control {
 
 #blog .nav-menu li.has-dropdown>.dropdown .dropdown-body {
     background-color: #fff;
-    border-top: 2px solid #3bbf1a;
+    border-top: 2px solid #001e28;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1)
 }
 
@@ -106053,7 +106053,7 @@ select.form-control {
 
 #blog .page-header .post-meta li a:focus,
 #blog .page-header .post-meta li a:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #blog .page-header .author .author-social li a {
@@ -106062,7 +106062,7 @@ select.form-control {
 
 #blog .page-header .author .author-social li a:focus,
 #blog .page-header .author .author-social li a:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #blog #post-header {
@@ -106179,7 +106179,7 @@ select.form-control {
 
 #blog .post.post-thumb .post-title a:focus,
 #blog .post.post-thumb .post-title a:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #blog .post.post-thumb .post-meta li,
@@ -106189,7 +106189,7 @@ select.form-control {
 
 #blog .post.post-thumb .post-meta li a:focus,
 #blog .post.post-thumb .post-meta li a:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #blog .post.post-widget {
@@ -106425,7 +106425,7 @@ select.form-control {
 
 #blog #footer a:focus,
 #blog #footer a:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #blog .footer-logo {
@@ -106507,7 +106507,7 @@ select.form-control {
     background: #fff;
     border: 2px solid #e8eaed;
     border-radius: 50%;
-    color: #3bbf1a;
+    color: #001e28;
     content: "\f10d";
     float: left;
     font-size: 30px;
@@ -106536,7 +106536,7 @@ select.form-control {
 
 #blog .nav-aside-menu li a:focus,
 #blog .nav-aside-menu li a:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #blog .nav-aside-menu li.has-dropdown>a {
@@ -106563,7 +106563,7 @@ select.form-control {
 }
 
 #blog .post-category a {
-    color: #3bbf1a;
+    color: #001e28;
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase
@@ -106592,7 +106592,7 @@ select.form-control {
 
 #blog .post-meta li a:focus,
 #blog .post-meta li a:hover {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #blog .post-meta li:after {
@@ -106727,11 +106727,11 @@ select.form-control {
 }
 
 #blog .post-comments .media.media-author .media-heading h4 {
-    color: #3bbf1a
+    color: #001e28
 }
 
 #blog .post-comments .media.media-author .media-left:after {
-    background-color: #3bbf1a
+    background-color: #001e28
 }
 
 #blog .social-widget ul {
@@ -106804,7 +106804,7 @@ select.form-control {
 
 #blog .tags-widget ul li a:focus,
 #blog .tags-widget ul li a:hover {
-    background-color: #3bbf1a;
+    background-color: #001e28;
     color: #fff !important
 }
 
@@ -106845,7 +106845,7 @@ select.form-control {
     background: #fff;
     border: 1px solid #e8eaed;
     border-radius: 50%;
-    color: #3bbf1a;
+    color: #001e28;
     height: 40px;
     left: 0;
     line-height: 40px;
