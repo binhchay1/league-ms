@@ -49,6 +49,8 @@
                                     <div class="d-flex flex-row">
                                         <p class="lead fw-normal mb-0 me-3">
                                             {{ __('Đăng nhập với') }}
+                                        <p class="mb-5 pb-lg-2" style="color: #393f81;">{{ __('Bạn chưa có tài khoản ?') }}
+                                            <a href="{{route('register_user')}}" style="color: #393f81;">{{ __('Đăng ký') }}</a>
                                         </p>
                                         <a href="{{ route('auth.facebook') }}" class="btn btn-primary btn-floating mx-1" style="width: 40px;">
                                             <i class="fab fa-facebook-f"></i>

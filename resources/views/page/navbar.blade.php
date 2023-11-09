@@ -37,7 +37,7 @@
                 </li>
                 @if(!auth()->user())
                 <li><a href="{{ route('login') }}">{{ __('Đăng nhập') }}</a></li>
-                <li><a href="{{ route('register') }}">{{ __('Đăng ký') }}</a></li>
+                <li><a href="{{ route('register_user') }}">{{ __('Đăng ký') }}</a></li>
                 @else(auth::check())
                 <li class="dropdown" id="info-account">
                     <a title=" Tâm An" href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
