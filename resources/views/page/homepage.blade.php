@@ -21,60 +21,27 @@
                 <div class="ps-wrapper">
                     <div class="site-logo">
                         <a href="/" title="Hệ thống quản lý giải đấu">
-                            <img alt="Hệ thống quản lý giải đấu" width="220" src="homepage/content/images/white_logo.jpg" />
+                            <img alt="Hệ thống quản lý giải đấu" width="220" src="{{ asset('homepage/content/images/white_logo.jpg') }}" />
                         </a>
                     </div>
                     <div class="ps-middle">
                         <div class="heading-title mb30">
                             <h2>
-                                Tổ chức giải đấu dễ dàng<br>Quản lý đội thể thao đơn giản!
+                                {{ __('Tổ chức giải đấu dễ dàng') }}<br>{{ __('Quản lý đội thể thao đơn giản!') }}
                             </h2>
                         </div>
                         <div class="ps-buttons mb50">
-                            <a href="https://myleague.vn/league/create-tournament" class="btn">
+                            <a href="{{ route('tournament.create') }}" class="btn">
                                 Tạo giải đấu
                             </a>
-                            <a href="https://myleague.vn/league" class="btn btn__2">
+                            <a href="{{ route('list.tour') }}" class="btn btn__2">
                                 Tìm giải đấu
                             </a>
                         </div>
-                        <div class="ps-middle">
-                            <div class="heading-title mb30">
-                                <h2>
-                                    Tổ chức giải đấu dễ dàng<br>Quản lý đội thể thao đơn giản!
-                                </h2>
-                            </div>
-                            <div class="ps-buttons mb50">
-                                <a href="{{route('tournament.create')}}" class="btn">
-                                    Tạo giải đấu
-                                </a>
-                                <a href="{{route('list.tour')}}" class="btn btn__2">
-                                    Tìm giải đấu
-                                </a>
-                            </div>
-                            <div class="ps-buttons mb-20 lineup">
-                                <a href="{{route('team.create')}}" class="btn btn-warning">
-                                   Tạo đội thi đấu
-                                </a>
-                            </div>
-                            <ul class="ps-counts">
-                                <li data-aos="zoom-out-right">
-                                    <span>Giải đấu</span>
-                                    <b id="total_league">43768</b>
-                                </li>
-                                <li data-aos="zoom-out-right">
-                                    <span>Đội thi đấu</span>
-                                    <b id="total_team">198349</b>
-                                </li>
-                                <li data-aos="zoom-out-left">
-                                    <span>Vận động viên</span>
-                                    <b id="total_player">851573</b>
-                                </li>
-                                <li data-aos="zoom-out-left">
-                                    <span>Lượt xem</span>
-                                    <b id="total_view">16713252</b>
-                                </li>
-                            </ul>
+                        <div class="ps-buttons mb-20 lineup">
+                            <a href="{{ route('team.create') }}" class="btn btn-warning">
+                                Tạo đội thi đấu
+                            </a>
                         </div>
                         <ul class="ps-counts">
                             <li data-aos="zoom-out-right">
@@ -86,7 +53,7 @@
                                 <b id="total_team">198349</b>
                             </li>
                             <li data-aos="zoom-out-left">
-                                <span>{{ __('Vận động viê') }}n</span>
+                                <span>{{ __('Vận động viên') }}n</span>
                                 <b id="total_player">851573</b>
                             </li>
                             <li data-aos="zoom-out-left">
@@ -100,11 +67,11 @@
             <div class="section" id="home--2">
                 <div class="wrapper">
                     <div class="heading-title text-center">
-                        <h2>Điều hành giải</h2>
-                        <p>Có 3 giai đoạn để điều hành một giải đấu</p>
+                        <h2>{{ __('Điều hành giải') }}</h2>
+                        <p>{{ __('Có 3 giai đoạn để điều hành một giải đấu') }}</p>
                     </div>
                     <div class="st-image">
-                        <img alt="Tạo giải và điều hành giải đấu" src="{{ asset('homepage/asset/home-page/images/index/home-2-image.png') }}" />
+                        <img alt="{{ __('Tạo giải và điều hành giải đấu') }}" src="{{ asset('homepage/asset/home-page/images/index/home-2-image.png') }}" />
                     </div>
                     <div class="st-steps">
                         <div class="col-xs-12 col-lg-4 post-column" data-aos="zoom-out-right" data-aos-delay="80">
@@ -113,7 +80,7 @@
                                     <div class="ps-step">
                                         <div class="step-header">
                                             <span class="ps-step__index">1</span>
-                                            <h3>Tạo Giải</h3>
+                                            <h3>{{ __('Tạo Giải') }}</h3>
                                         </div>
                                         <div class="ps-step__content">
                                             <p>
@@ -134,7 +101,7 @@
                                     <div class="ps-step">
                                         <div class="step-header">
                                             <span class="ps-step__index">2</span>
-                                            <h3>Tùy chỉnh giải đấu</h3>
+                                            <h3>{{ __('Tùy chỉnh giải đấu') }}</h3>
                                         </div>
                                         <div class="ps-step__content">
                                             <p>
@@ -175,75 +142,71 @@
             <div class="section" id="home--3">
                 <div class="heading-title text-center mb50">
                     <h2>Hỗ trợ nhiều thể thức thi đấu</h2>
-                    <p>Myleague giúp người dùng tạo ra các giải đấu có thể thức giống như<br> với các giải đấu nổi
-                        tiếng thế giới như Champions League, World Cup, NBA, Laliga, ATP Cup ...</p>
+                    <p>Myleague {{ __('giúp người dùng tạo ra các giải đấu có thể thức giống như') }}<br> {{ __('với các giải đấu nổi tiếng thế giới như Champions League, World Cup, NBA, Laliga, ATP Cup ...') }}</p>
                 </div>
                 <div class="ps-posts">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12 col-lg-3 post-column" data-aos="zoom-out-right" data-aos-delay="80">
-                                <p>Loại trực tiếp hoặc knockout <br>là loại giải đấu có đội thua<br> ở mỗi trận đấu
-                                    <br>sẽ bị loại ngay khỏi giải đấu.
+                                <p>{{ __('Loại trực tiếp hoặc knockout') }} <br>{{ __('là loại giải đấu có đội thua') }}<br> {{ __('ở mỗi trận đấu') }}
+                                    <br>{{ __('sẽ bị loại ngay khỏi giải đấu.') }}
                                 </p>
                                 <div class="ps-post">
                                     <div class="ps-post__thumb">
-                                        <img alt="Loại trực tiếp" src="homepage/asset/home-page/images/index/home-3-image1.png?id=123" />
+                                        <img alt="{{ __('Loại trực tiếp') }}" src="{{ asset('homepage/asset/home-page/images/index/home-3-image1.png') }}" />
                                     </div>
                                     <div class="ps-post__content">
-                                        <img width="100" alt="Loại trực tiếp" src="homepage/content/images/icon_elimination.svg?id=123" data-file="icon_elimination" />
-                                        <h3>Loại trực tiếp</h3>
+                                        <img width="100" alt="{{ __('Loại trực tiếp') }}" src="{{ asset('homepage/content/images/icon_elimination.svg') }}" data-file="icon_elimination" />
+                                        <h3>{{ __('Loại trực tiếp') }}</h3>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 post-column" data-aos="fade-up" data-aos-delay="80">
-                                <p>Mỗi đội sẽ thi đấu<br>với tất cả các đội còn lại.<br>Cho phép tuỳ chỉnh <br>điều
-                                    lệ xếp hạng dễ dàng.</p>
+                                <p>{{ __('Mỗi đội sẽ thi đấu') }}<br>{{ __('với tất cả các đội còn lại.') }}<br>{{ __('Cho phép tuỳ chỉnh') }} <br>{{ __('điều lệ xếp hạng dễ dàng.') }}</p>
                                 <div class="ps-post">
                                     <div class="ps-post__thumb">
-                                        <img alt="Đấu vòng tròn" src="homepage/asset/home-page/images/index/home-3-image2.png?id=123" />
+                                        <img alt="{{ __('Đấu vòng tròn') }}" src="{{ asset('homepage/asset/home-page/images/index/home-3-image2.png') }}" />
                                     </div>
                                     <div class="ps-post__content">
-                                        <img style="padding:10px" alt="Đấu vòng tròn" src="https://myleague.vn/content/images/icon_round_robin.svg?id=123" width="100" data-file="icon_round_robin"><br>
-                                        <h3>Đấu vòng tròn</h3>
+                                        <img style="padding:10px" alt="{{ __('Đấu vòng tròn') }}" src="{{ asset('https://myleague.vn/content/images/icon_round_robin.svg') }}" width="100" data-file="icon_round_robin"><br>
+                                        <h3>{{ __('Đấu vòng tròn') }}</h3>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 post-column" data-aos="zoom-out-left" data-aos-delay="80" style="float:right">
-                                <p>Có hai giai đoạn đó là <br>giai đoạn một <br>chia thành nhiều bảng đấu <br>và
-                                    giai đoạn hai là loại trực tiếp hoặc nhánh thắng - nhánh thua.</p>
+                                <p>{{ __('Có hai giai đoạn đó là') }} <br>{{ __('giai đoạn một') }} <br>{{ __('chia thành nhiều bảng đấu') }} <br>{{ __('và giai đoạn hai là loại trực tiếp hoặc nhánh thắng - nhánh thua.') }}</p>
                                 <div class="ps-post">
                                     <div class="ps-post__thumb">
-                                        <img alt="Chia bảng đấu" src="homepage/asset/home-page/images/index/home3-image5.png?id=123" />
+                                        <img alt="Chia bảng đấu" src="{{ __('homepage/asset/home-page/images/index/home3-image5.png') }}" />
                                     </div>
                                     <div class="ps-post__content">
-                                        <img alt="Chia bảng đấu" src="homepage/content/images/icon_two_stages.svg?id=123" width="100" data-file="icon_two_stages"><br>
+                                        <img alt="Chia bảng đấu" src="{{ __('homepage/content/images/icon_two_stages.svg') }}" width="100" data-file="icon_two_stages"><br>
                                         <h3>Chia bảng đấu</h3>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 post-column" data-aos="fade-up" data-aos-delay="80">
-                                <p>Là biến thể khác của thể thức đấu loại trực tiếp. Với thể thức này thì các đội bị
-                                    thua sẽ tiếp tục được đấu với nhau ở một nhánh đấu được gọi là Nhánh Thua</p>
+                                <p>{{ __('Là biến thể khác của thể thức đấu loại trực tiếp. Với thể thức này thì các đội bị thua sẽ tiếp tục được đấu với nhau ở một nhánh đấu được gọi là Nhánh Thua') }}</p>
                                 <div class="ps-post">
                                     <div class="ps-post__thumb">
-                                        <img alt="Nhánh thắng - nhánh thua" src="homepage/asset/home-page/images/index/home-3-image3.png?id=123" />
+                                        <img alt="{{ __('Nhánh thắng - nhánh thua') }}" src="{{ __('homepage/asset/home-page/images/index/home-3-image3.png') }}" />
                                     </div>
                                     <div class="ps-post__content">
-                                        <img alt="Nhánh thắng - nhánh thua" style="padding:10px" src="homepage/content/images/icon_two_elimination.svg?id=123" width="100" data-file="icon_two_elimination"><br>
-                                        <h3>Nhánh thắng -<br />Nhánh thua</h3>
+                                        <img alt="{{ __('Nhánh thắng - nhánh thua') }}" style="padding:10px" src="{{ asset('homepage/content/images/icon_two_elimination.svg') }}" width="100" data-file="icon_two_elimination"><br>
+                                        <h3>{{ __('Nhánh thắng') }} -<br />{{ __('Nhánh thua') }}</h3>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xs-12 post-column hidden-md hidden-sm" data-aos="fade-up" data-aos-delay="1040">
-                                <p>Kết hợp hai giai đoạn <br>vào một giải đấu, bao gồm <br>giai đoạn một đấu vòng
-                                    tròn <br>và giai đoạn hai loại trực tiếp hoặc nhánh thắng - nhánh thua.</p>
+                                <p>{{ __('Kết hợp hai giai đoạn') }} <br>{{ __('vào một giải đấu, bao gồm') }} <br>giai đoạn một đấu vòng
+                                    tròn <br>{{ __('và giai đoạn hai loại trực tiếp hoặc nhánh thắng - nhánh thua.') }}</p>
                                 <div class="ps-post">
                                     <div class="ps-post__thumb">
-                                        <img alt="Vòng tròn - loại trực tiếp" src="homepage/asset/home-page/images/index/home-3-image4.png?id=123" />
+                                        <img alt="{{ __('Vòng tròn - loại trực tiếp') }}" src="{{ asset('homepage/asset/home-page/images/index/home-3-image4.png') }}" />
                                     </div>
                                     <div class="ps-post__content">
-                                        <img alt="Vòng tròn - loại trực tiếp" style="padding:10px" src="homepage/content/images/icon_league_knockout.svg?id=123" width="100" data-file="icon_league_knockout"><br>
-                                        <h3>Vòng tròn -<br />Loại trực tiếp</h3>
+                                        <img alt="{{ __('Vòng tròn - loại trực tiếp') }}" style="padding:10px" src="{{ asset('homepage/content/images/icon_league_knockout.svg') }}" width="100" data-file="icon_league_knockout"><br>
+                                        <h3>{{ __('Vòng tròn') }} -<br />{{ __('Loại trực tiếp') }}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -258,48 +221,43 @@
                 <div class="container">
                     <div class="ps-content">
                         <div class="heading-title text-center">
-                            <h2>Lợi ích Myleague.vn mang lại</h2>
-                            <p>Số hóa thể thao là xu hướng phát triển tất yếu!</p>
+                            <h2>{{ __('Lợi ích') }} {{ env('APP_NAME', 'pro-league.vn') }} {{ __('mang lại') }}</h2>
+                            <p>{{ __('Số hóa thể thao là xu hướng phát triển tất yếu!') }}</p>
                         </div>
                         <div class="row">
                             <div class="col-xs-12 col-lg-3 static-column" data-aos="zoom-out-right" data-aos-delay="80">
                                 <div class="static-item">
-                                    <img alt="Tiết kiệm tới 90% thời gian gọi điện, email, gặp gỡ, sắp xếp lịch, cập nhật kết quả, bảng xếp hạng... theo cách làm truyền thống." src="homepage/asset/home-page/images/index/home-4-icon1.svg" />
+                                    <img alt="{{ __('Tiết kiệm tới 90% thời gian gọi điện, email, gặp gỡ, sắp xếp lịch, cập nhật kết quả, bảng xếp hạng... theo cách làm truyền thống.') }}" src="homepage/asset/home-page/images/index/home-4-icon1.svg" />
                                     <h4>Thời gian</h4>
                                     <p>
-                                        Tiết kiệm tới 90% thời gian gọi điện, email, gặp gỡ, sắp xếp lịch, cập nhật
-                                        kết quả, bảng xếp hạng... theo cách làm truyền thống.
+                                        {{ __('Tiết kiệm tới 90% thời gian gọi điện, email, gặp gỡ, sắp xếp lịch, cập nhật kết quả, bảng xếp hạng... theo cách làm truyền thống.')}}
                                     </p>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-lg-3 static-column" data-aos="zoom-out-right" data-aos-delay="80">
                                 <div class="static-item">
-                                    <img alt="Thông tin luôn sẵn sàng để truy cập mọi lúc, mọi nơi qua máy tính, điện thoại thông minh, máy tính bảng. Báo cáo, thống kê hoàn toàn tự động." src="homepage/asset/home-page/images/index/home-4-icon2.svg" />
+                                    <img alt="{{ __('Thông tin luôn sẵn sàng để truy cập mọi lúc, mọi nơi qua máy tính, điện thoại thông minh, máy tính bảng. Báo cáo, thống kê hoàn toàn tự động.') }}" src="homepage/asset/home-page/images/index/home-4-icon2.svg" />
                                     <h4>Sự tiện lợi</h4>
                                     <p>
-                                        Thông tin luôn sẵn sàng để truy cập mọi lúc, mọi nơi qua máy tính, điện
-                                        thoại thông minh, máy tính bảng. Báo cáo, thống kê hoàn toàn tự động.
+                                        {{ __('Thông tin luôn sẵn sàng để truy cập mọi lúc, mọi nơi qua máy tính, điện thoại thông minh, máy tính bảng. Báo cáo, thống kê hoàn toàn tự động.') }}
                                     </p>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-lg-3 static-column" data-aos="zoom-out-left" data-aos-delay="80">
                                 <div class="static-item">
-                                    <img alt="Mọi thông tin của giải đấu sẽ được lưu lại làm kỷ niệm, phục vụ tra cứu, hoặc tái sử dụng cho giải tiếp theo. Dễ dàng tương tác, bình luận, chia sẻ các dữ liệu giải đấu." src="homepage/asset/home-page/images/index/home-4-icon3.svg" />
-                                    <h4>Khả năng lưu trữ</h4>
+                                    <img alt="{{ __('Mọi thông tin của giải đấu sẽ được lưu lại làm kỷ niệm, phục vụ tra cứu, hoặc tái sử dụng cho giải tiếp theo. Dễ dàng tương tác, bình luận, chia sẻ các dữ liệu giải đấu.') }}" src="homepage/asset/home-page/images/index/home-4-icon3.svg" />
+                                    <h4>{{ __('Khả năng lưu trữ') }}</h4>
                                     <p>
-                                        Mọi thông tin của giải đấu sẽ được lưu lại làm kỷ niệm, phục vụ tra cứu,
-                                        hoặc tái sử dụng cho giải tiếp theo. Dễ dàng tương tác, bình luận, chia sẻ
-                                        các dữ liệu giải đấu.
+                                        {{ __('Mọi thông tin của giải đấu sẽ được lưu lại làm kỷ niệm, phục vụ tra cứu,hoặc tái sử dụng cho giải tiếp theo. Dễ dàng tương tác, bình luận, chia sẻ các dữ liệu giải đấu.') }}
                                     </p>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-lg-3 static-column" data-aos="zoom-out-left" data-aos-delay="80">
                                 <div class="static-item">
-                                    <img alt="Tổ chức giải đấu hoàn toàn không in ấn, không lãng phí tài nguyên giấy, chung tay bảo vệ môi trường." src="homepage/asset/home-page/images/index/home-4-icon4.svg" />
-                                    <h4>Tài nguyên giấy</h4>
+                                    <img alt="{{ __('Tổ chức giải đấu hoàn toàn không in ấn, không lãng phí tài nguyên giấy, chung tay bảo vệ môi trường.') }}" src="homepage/asset/home-page/images/index/home-4-icon4.svg" />
+                                    <h4>{{ __('Tài nguyên giấy') }}</h4>
                                     <p>
-                                        Tổ chức giải đấu hoàn toàn không in ấn, không lãng phí tài nguyên giấy,
-                                        chung tay bảo vệ môi trường.
+                                        {{ __('Tổ chức giải đấu hoàn toàn không in ấn, không lãng phí tài nguyên giấy, chung tay bảo vệ môi trường.') }}
                                     </p>
                                 </div>
                             </div>
@@ -307,7 +265,7 @@
                     </div>
                 </div>
                 <div class="ps-banner right">
-                    <img alt="Nền tảng quản lý giải đấu, đội thi đấu" src="homepage/asset/home-page/images/index/home4-img-right.png" />
+                    <img alt="{{ __('Nền tảng quản lý giải đấu, đội thi đấu') }}" src="{{ __('homepage/asset/home-page/images/index/home4-img-right.png') }}" />
                 </div>
             </div>
 
@@ -317,7 +275,6 @@
         $(function() {
             AOS.init();
             countUp();
-
 
             if ($(window).width() < 1200) {
                 $('#home--5 .client-column').each(function(k, v) {
@@ -354,10 +311,6 @@
             });
         });
 
-        /**
-         *
-         * @returns  {undefined}
-         */
         function countUp() {
             var options = {
                 useEasing: true,
@@ -386,7 +339,7 @@
             var _this = $(this);
             var cover = _this.find('.ps-post__content img');
             var filename = cover.data('file');
-            cover.attr('src', "homepage/content/images/" + filename + ".svg?id=123");
+            cover.attr('src', "homepage/content/images/" + filename + ".svg");
             _this.find('p').hide();
         });
 

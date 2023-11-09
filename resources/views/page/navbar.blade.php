@@ -20,31 +20,24 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right ">
-                <li class="dropdown"><a title="Giải đấu" href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span>Giải đấu</span> <span class="caret"></span>
+                <li class="dropdown"><a title="{{ __('Giải đấu') }}" href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span>Giải đấu</span> <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('tournament.create') }}">
-                                Tạo giải đấu </a></li>
-                        <li><a href="{{ route('list.tour') }}"> Tìm giải đấu </a>
+                        <li><a href="{{ route('tournament.create') }}">{{ __('Tạo giải đấu') }}</a></li>
+                        <li><a href="{{ route('list.tour') }}"> {{ __('Tìm giải đấu') }} </a>
                         </li>
                     </ul>
                 </li>
-                <li class="dropdown"><a title="Đội thi đấu" href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span>Đội thi đấu</span> <span class="caret"></span> </a>
+                <li class="dropdown"><a title="{{ __('Đội thi đấu') }}" href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span>Đội thi đấu</span> <span class="caret"></span> </a>
                     <ul class="dropdown-menu">
-                        <li><a href="https://myleague.vn/competitor/create"> Tạo
-                                đội </a></li>
-                        <li><a href="https://myleague.vn/competitor"> Tìm đội </a>
-                        </li>
-                        <li><a href="https://myleague.vn/lineup"> Tạo đội hình </a>
-                        </li>
+                        <li><a href="https://myleague.vn/competitor/create"> {{ __('Tạo đội') }} </a></li>
+                        <li><a href="https://myleague.vn/competitor"> {{ __('Tìm đội') }} </a></li>
+                        <li><a href="https://myleague.vn/lineup"> {{ __('Tạo đội hình') }} </a></li>
                     </ul>
                 </li>
-                @if (!auth()->user())
+                @if(!auth()->user())
                 <li><a href="{{ route('login') }}">{{ __('Đăng nhập') }}</a></li>
-                <li>
-                    <a href="{{ route('register_user') }}">{{ __('Đăng ký') }}</a>
-                </li>
-                </li>
+                <li><a href="{{ route('register_user') }}">{{ __('Đăng ký') }}</a></li>
                 @else(auth::check())
                 <li class="dropdown" id="info-account">
                     <a title=" Tâm An" href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
@@ -57,22 +50,22 @@
                     <ul class="dropdown-menu">
                         <li>
                             <a href="{{ route('profile.edit') }}">
-                                Thông tin tài khoản
+                                {{ __('Thông tin tài khoản') }}
                             </a>
                         </li>
                         <li>
-                            <a href="https://myleague.vn/account/myleague">
-                                Quản lý giải đấu
+                            <a href="{{ route('league-manager') }}">
+                                {{ __('Quản lý giải đấu') }}
                             </a>
                         </li>
                         <li>
-                            <a href="https://myleague.vn/account/mycompetitor">
-                                Quản lý đội
+                            <a href="{{ route('team-manager') }}">
+                                {{ __('Quản lý đội') }}
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('signout') }}">
-                                Đăng xuất
+                                {{ __('Đăng xuất') }}
                             </a>
                         </li>
                     </ul>
@@ -87,12 +80,12 @@
                     <ul class="dropdown-menu">
                         <li>
                             <a href="https://myleague.vn/lang/vi?url=https://myleague.vn">
-                                <span class="flag-icon flag-icon-vn"></span>Tiếng Việt
+                                <span class="flag-icon flag-icon-vn"></span>{{ __('Tiếng Việt') }}
                             </a>
                         </li>
                         <li>
                             <a href="https://myleague.vn/lang/en?url=https://myleague.vn">
-                                <span class="flag-icon flag-icon-en"></span>Tiếng Anh
+                                <span class="flag-icon flag-icon-en"></span>{{ __('Tiếng Anh') }}
                             </a>
                         </li>
                     </ul>
