@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Enums\Role;
 use App\Http\Requests\TournamentReuqest;
 use App\Repositories\TournamentRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Enums\Utility;
+use Illuminate\Support\Facades\Auth;
 
 class TournamentController extends Controller
 {
@@ -41,7 +43,13 @@ class TournamentController extends Controller
     {
         $type_tour = config('tournament.type');
         $format_tour = config('tournament.format');
-        return view ('admin.tournament.create',[
+        if(Auth::user()->role == Role::ADMIN) {
+            return view ('admin.tournament.create',[
+                'formatTour' => $format_tour,
+                'type_tour' => $type_tour,
+            ]);
+        }
+        return view ('page.tournament.create',[
             'formatTour' => $format_tour,
             'type_tour' => $type_tour,
         ]);
@@ -66,7 +74,12 @@ class TournamentController extends Controller
         }
 
         $this->tournamentRepository->store($input);
-        return redirect()->to('list-tournament');
+        if(Auth::user()->role == Role::ADMIN) {
+            return redirect()->to('list-tournament');
+        }
+        return redirect()->to('list-tournaments');
+
+
     }
 
     /**

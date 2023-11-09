@@ -29,11 +29,9 @@
                                             aria-expanded="false"> <span>Giải đấu</span> <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="https://myleague.vn/league/create-tournament"
-                                   onclick="window.location.href='https://myleague.vn/league/create-tournament'">
+                            <li><a href="{{route('tournament.create')}}">
                                     Tạo giải đấu </a></li>
-                            <li><a href="https://myleague.vn/league"
-                                   onclick="window.location.href='https://myleague.vn/league'"> Tìm giải đấu </a>
+                            <li><a href="{{route('list.tour')}}"> Tìm giải đấu </a>
                             </li>
                         </ul>
                     </li>
@@ -56,7 +54,7 @@
                     <li><a href="https://myleague.vn/pricing"> Bảng giá </a></li>
                     <li><a href="https://blog.myleague.vn/vi"> Blog </a></li>
                     @if (!auth()->user())
-                    <li><a href="https://myleague.vn/account/login">Đăng nhập</a></li>
+                    <li><a href="{{route('login')}}">Đăng nhập</a></li>
                     <li>
                         <button class="btn btn-outline" style="color: white"
                                 onclick="window.location = 'https://myleague.vn/account/register'"> Đăng ký
