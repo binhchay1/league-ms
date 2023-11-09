@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Role;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Hash;
 use Session;
 use App\Models\User;
+
 class AuthController extends Controller
 {
 
@@ -29,26 +31,41 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->put('email', $credentials['email']);
 
-            if(Auth::user()->role == Role::ADMIN) {
+            if (Auth::user()->role == Role::ADMIN) {
                 return redirect()->intended('dashboard')
                     ->withSuccess('Signed in');
-            }
-            else {
+            } else {
                 return redirect('/')
                     ->withSuccess('Signed in');
             }
-
         }
 
         return redirect("login")->withSuccess('Login details are not valid');
     }
 
-    public function registration()
+    public function dashboard()
     {
-        return view('auth.register');
+        if (Auth::check()) {
+            return view('layout.admin_layout');
+        }
+
+        return redirect("login")->withSuccess('You are not allowed to access');
     }
 
-    public function customRegistration(Request $request)
+    public function signOut()
+    {
+        Session::flush();
+        Auth::logout();
+
+        return Redirect('login');
+    }
+
+    public function registerUser()
+    {
+        return view('auth.registerUser');
+    }
+
+    public function storeUser(Request $request)
     {
         $request->validate([
             'name' => 'required',
@@ -56,34 +73,14 @@ class AuthController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        $data = $request->all();
-        $check = $this->create($data);
+        $user = User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'role' => Role::USER,
+        ]);
+        auth()->login($user);
 
         return redirect("dashboard")->withSuccess('You have signed-in');
-    }
-
-    public function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password'])
-        ]);
-    }
-
-    public function dashboard()
-    {
-        if(Auth::check()){
-            return view('layout.admin_layout');
-        }
-
-        return redirect("login")->withSuccess('You are not allowed to access');
-    }
-
-    public function signOut() {
-        Session::flush();
-        Auth::logout();
-
-        return Redirect('login');
     }
 }
