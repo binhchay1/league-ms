@@ -15,45 +15,35 @@
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
 
-                                    <form method="POST" action="{{ route('register') }}">
+                                    <form method="POST" action="">
                                         @csrf
                                         <div class="d-flex align-items-center mb-3 pb-1">
                                             <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
                                             <span class="h1 fw-bold mb-0">{{ __('Đăng ký') }}</span>
                                         </div>
-
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example17">{{ __('Tên') }}</label>
-                                            <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus />
-                                            @error('name')
-                                            <span class="invalid-feedback" style="font-size: 100%;color: red" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
+                                            <input type="text" id="name" class="form-control" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus />
+                                            @if ($errors->has('name'))
+                                                <span class="text-danger">{{ $errors->first('name') }}</span>
+                                            @endif
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example17">{{ __('Hòm thư') }}</label>
-                                            <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
-                                            @error('email')
-                                            <span class="invalid-feedback" style="font-size: 100%;color: red" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
+                                            <input type="email" id="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
+                                            @if ($errors->has('email'))
+                                                <span class="text-danger">{{ $errors->first('email') }}</span>
+                                            @endif
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label">{{ __('Mật khẩu') }}</label>
-                                            <input type="password" id="password-field" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" />
-                                            @error('password')
-                                            <span class="invalid-feedback" style="font-size: 100%;color: red" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
+                                            <input type="password" id="password-field" class="form-control" name="password" required autocomplete="current-password" />
+                                            @if ($errors->has('password'))
+                                                <span class="text-danger">{{ $errors->first('password') }}</span>
+                                            @endif
                                         </div>
-
-
-
                                         <div class="pt-1 mb-4">
                                             <button class="btn btn-dark btn-lg btn-block" type="submit">{{ __('Đăng ký') }}</button>
                                         </div>
