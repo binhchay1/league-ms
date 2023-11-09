@@ -20,8 +20,8 @@
             <div class="section" id="home--1">
                 <div class="ps-wrapper">
                     <div class="site-logo">
-                        <a href="/" title="Hệ thống quản lý giải đấu">
-                            <img alt="Hệ thống quản lý giải đấu" width="220" src="{{ asset('homepage/content/images/white_logo.jpg') }}" />
+                        <a href="/" title="{{ __('Hệ thống quản lý giải đấu') }}">
+                            <img alt="{{ __('Hệ thống quản lý giải đấu') }}" width="220" src="{{ asset('homepage/content/images/white_logo.jpg') }}" />
                         </a>
                     </div>
                     <div class="ps-middle">
@@ -32,33 +32,33 @@
                         </div>
                         <div class="ps-buttons mb50">
                             <a href="{{ route('tournament.create') }}" class="btn">
-                                Tạo giải đấu
+                                {{ __('Tạo giải đấu') }}
                             </a>
                             <a href="{{ route('list.tour') }}" class="btn btn__2">
-                                Tìm giải đấu
+                                {{ __('Tìm giải đấu') }}
                             </a>
                         </div>
                         <div class="ps-buttons mb-20 lineup">
                             <a href="{{ route('team.create') }}" class="btn btn-warning">
-                                Tạo đội thi đấu
+                                {{ __('Tạo đội thi đấu') }}
                             </a>
                         </div>
                         <ul class="ps-counts">
                             <li data-aos="zoom-out-right">
                                 <span>{{ __('Giải đấu') }}</span>
-                                <b id="total_league">43768</b>
+                                <b id="total_league">{{ $totalTour }}</b>
                             </li>
                             <li data-aos="zoom-out-right">
                                 <span>{{ __('Đội thi đấu') }}</span>
-                                <b id="total_team">198349</b>
+                                <b id="total_team">{{ $totalTeam }}</b>
                             </li>
                             <li data-aos="zoom-out-left">
-                                <span>{{ __('Vận động viên') }}n</span>
-                                <b id="total_player">851573</b>
+                                <span>{{ __('Vận động viên') }}</span>
+                                <b id="total_player">{{ $totalUser }}</b>
                             </li>
                             <li data-aos="zoom-out-left">
                                 <span>{{ __('Lượt xem') }}</span>
-                                <b id="total_view">16713252</b>
+                                <b id="total_view">{{ $totalView }}</b>
                             </li>
                         </ul>
                     </div>
@@ -84,11 +84,11 @@
                                         </div>
                                         <div class="ps-step__content">
                                             <p>
-                                                <span>Loại trực tiếp</span><br>
-                                                <span>Đấu vòng tròn</span><br>
-                                                <span>Chia bảng đấu</span><br>
-                                                <span>Vòng tròn - loại trực tiếp</span><br>
-                                                <span>Nhánh thắng - nhánh thua</span><br>
+                                                <span>{{ __('Loại trực tiếp') }}</span><br>
+                                                <span>{{ __('Đấu vòng tròn') }}</span><br>
+                                                <span>{{ __('Chia bảng đấu') }}</span><br>
+                                                <span>{{ __('Vòng tròn - loại trực tiếp') }}</span><br>
+                                                <span>{{ __('Nhánh thắng - nhánh thua') }}</span><br>
                                             </p>
                                         </div>
                                     </div>
@@ -105,11 +105,11 @@
                                         </div>
                                         <div class="ps-step__content">
                                             <p>
-                                                <span>Nhập điều lệ, hình và địa điểm</span><br>
-                                                <span>Nhập thông tin của đội / vận động viên</span><br>
-                                                <span>Mời người tham gia</span><br>
-                                                <span>Lập lịch đấu</span><br>
-                                                <span>Tùy chỉnh giai đoạn</span><br>
+                                                <span>{{ __('Nhập điều lệ, hình và địa điểm') }}</span><br>
+                                                <span>{{ __('Nhập thông tin của đội / vận động viên') }}</span><br>
+                                                <span>{{ __('Mời người tham gia') }}</span><br>
+                                                <span>{{ __('Lập lịch đấu') }}</span><br>
+                                                <span>{{ __('Tùy chỉnh giai đoạn') }}</span><br>
                                             </p>
                                         </div>
                                     </div>
@@ -122,14 +122,14 @@
                                     <div class="ps-step">
                                         <div class="step-header">
                                             <span class="ps-step__index">3</span>
-                                            <h3>Điều hành giải</h3>
+                                            <h3>{{ __('Điều hành giải') }}</h3>
                                         </div>
                                         <div class="ps-step__content">
                                             <p>
-                                                <span>Kích hoạt</span><br>
-                                                <span>Nhập tỷ số</span><br>
-                                                <span>Xem thống kê</span><br>
-                                                <span>Chia sẻ với bạn bè</span><br>
+                                                <span>{{ __('Kích hoạt') }}</span><br>
+                                                <span>{{ __('Nhập tỷ số') }}</span><br>
+                                                <span>{{ __('Xem thống kê') }}</span><br>
+                                                <span>{{ __('Chia sẻ với bạn bè') }}</span><br>
                                             </p>
                                         </div>
                                     </div>
@@ -141,8 +141,8 @@
             </div>
             <div class="section" id="home--3">
                 <div class="heading-title text-center mb50">
-                    <h2>Hỗ trợ nhiều thể thức thi đấu</h2>
-                    <p>Myleague {{ __('giúp người dùng tạo ra các giải đấu có thể thức giống như') }}<br> {{ __('với các giải đấu nổi tiếng thế giới như Champions League, World Cup, NBA, Laliga, ATP Cup ...') }}</p>
+                    <h2>{{ __('Hỗ trợ nhiều thể thức thi đấu') }}</h2>
+                    <p>{{ env('APP_NAME', 'ProLeague') }} {{ __('giúp người dùng tạo ra các giải đấu có thể thức giống như') }}<br> {{ __('với các giải đấu nổi tiếng thế giới như Champions League, World Cup, NBA, Laliga, ATP Cup ...') }}</p>
                 </div>
                 <div class="ps-posts">
                     <div class="container">
@@ -177,11 +177,11 @@
                                 <p>{{ __('Có hai giai đoạn đó là') }} <br>{{ __('giai đoạn một') }} <br>{{ __('chia thành nhiều bảng đấu') }} <br>{{ __('và giai đoạn hai là loại trực tiếp hoặc nhánh thắng - nhánh thua.') }}</p>
                                 <div class="ps-post">
                                     <div class="ps-post__thumb">
-                                        <img alt="Chia bảng đấu" src="{{ __('homepage/asset/home-page/images/index/home3-image5.png') }}" />
+                                        <img alt="{{ __('Chia bảng đấu') }}" src="{{ __('homepage/asset/home-page/images/index/home3-image5.png') }}" />
                                     </div>
                                     <div class="ps-post__content">
-                                        <img alt="Chia bảng đấu" src="{{ __('homepage/content/images/icon_two_stages.svg') }}" width="100" data-file="icon_two_stages"><br>
-                                        <h3>Chia bảng đấu</h3>
+                                        <img alt="{{ __('Chia bảng đấu') }}" src="{{ __('homepage/content/images/icon_two_stages.svg') }}" width="100" data-file="icon_two_stages"><br>
+                                        <h3>{{ __('Chia bảng đấu') }}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -216,7 +216,7 @@
             </div>
             <div class="section" id="home--4">
                 <div class="ps-banner left">
-                    <img alt="Phần mềm tạo giải đấu" src="homepage/asset/home-page/images/index/home4-img-left.svg" />
+                    <img alt="{{ __('Phần mềm tạo giải đấu') }}" src="{{ asset('homepage/asset/home-page/images/index/home4-img-left.svg') }}" />
                 </div>
                 <div class="container">
                     <div class="ps-content">
@@ -319,10 +319,15 @@
                 decimal: ','
             };
 
-            var demo1 = new CountUp('total_league', 0, 43768, 0, 3, options);
-            var demo2 = new CountUp('total_team', 0, 198349, 0, 3, options);
-            var demo3 = new CountUp('total_player', 0, 851573, 0, 3, options);
-            var demo4 = new CountUp('total_view', 0, 16713252, 0, 3, options);
+            let total_player = '<?php echo $totalUser ?>';
+            let total_league = '<?php echo $totalTour ?>';
+            let total_team = '<?php echo $totalTeam ?>';
+            let total_view = '<?php echo $totalView ?>';
+
+            var demo1 = new CountUp('total_league', 0, total_league, 0, 3, options);
+            var demo2 = new CountUp('total_team', 0, total_team, 0, 3, options);
+            var demo3 = new CountUp('total_player', 0, total_player, 0, 3, options);
+            var demo4 = new CountUp('total_view', 0, total_view, 0, 3, options);
             !demo1.error ? demo1.start() : console.error(demo1.error);
             !demo2.error ? demo2.start() : console.error(demo2.error);
             !demo3.error ? demo3.start() : console.error(demo3.error);

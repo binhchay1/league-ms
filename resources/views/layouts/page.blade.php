@@ -3,9 +3,9 @@
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta name="description" content="Phần mềm tổ chức, ứng dụng quản lý giải đấu thể thao giúp tiết kiệm thời gian, chi phí và làm cho giải đấu của bạn chuyên nghiệp, thành công hơn. Tournament Bracket Generator" />
+    <meta name="description" content="{{ __('Phần mềm tổ chức, ứng dụng quản lý giải đấu thể thao giúp tiết kiệm thời gian, chi phí và làm cho giải đấu của bạn chuyên nghiệp, thành công hơn.') }}" />
     <meta name="robots" content="all" />
-    <meta name="keywords" content="Esports tournament management software, Bracket software tournament, Tournament Bracket Generator, Tournament Generator, quản lý giải đấu, tổ chức giải đấu, hệ thống quản lý giải đấu, app quản lý giải đấu, phần mềm quản lý giải đấu, quản lý giải đấu phủi, quản lý giải đấu thể thao, phần mềm tổ chức giải đấu, bóng đá phủi, bóng đá sinh viên, bóng đá học sinh, quản lý giải đấu bóng đá, bóng đá phong trào, bóng đá phủi, bóng đá sân 7, bóng đá sân bảy, bóng đá sân nhân tạo, người quản lý bóng đá, tạo giải đấu game, lịch thi đấu, xếp lịch thi đấu, tổ chức giải đấu, kết quả trận đấu, điểm số, bảng xếp hạng, giải đấu loại trực tiếp, giải đấu vòng tròn, sự kiện giải đấu thể thao, chia bảng đấu online.">
+    <meta name="keywords" content="{{ __('quản lý giải đấu, tổ chức giải đấu, hệ thống quản lý giải đấu, app quản lý giải đấu, phần mềm quản lý giải đấu, quản lý giải đấu phủi, quản lý giải đấu thể thao, phần mềm tổ chức giải đấu, bóng đá phủi, bóng đá sinh viên, bóng đá học sinh, quản lý giải đấu bóng đá, bóng đá phong trào, bóng đá phủi, bóng đá sân 7, bóng đá sân bảy, bóng đá sân nhân tạo, người quản lý bóng đá, tạo giải đấu game, lịch thi đấu, xếp lịch thi đấu, tổ chức giải đấu, kết quả trận đấu, điểm số, bảng xếp hạng, giải đấu loại trực tiếp, giải đấu vòng tròn, sự kiện giải đấu thể thao, chia bảng đấu online.') }}">
 
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
     <meta property="og:url" content="https://myleague.vn" />
@@ -15,7 +15,7 @@
     <meta property="og:description" content="Trang chủ" />
     <meta property="og:image:url" content="/content/images/green_logo_fb.png" />
 
-    <title>Trang chủ - Quản lý giải đấu</title>
+    <title>{{ env('APP_NAME', 'Pro League') }}</title>
     <link rel="shortcut icon" href="{{'/homepage/content/images/football.ico'}}" type="image/x-icon" />
     <link href="{{ asset('/homepage/asset/aos/aos.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{'/homepage/css/app.css?id=32e2ac2446b8ba72912694cef055876f'}}" />
@@ -24,7 +24,7 @@
 
     <script src="{{ asset('/homepage/js/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('/homepage/content/js/vendors/jquery/jquery.ui.timepicker.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/homepage/js/datetimepicker.min.js) '}}" type="text/javascript"></script>
+    <script src="{{ asset('/homepage/js/datetimepicker.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('/homepage/content/js/vendors/bootstrap/bootstrap.js') }}" type="text/javascript"></script>
     <script src="{{ asset('/homepage/js/dataTables.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('/homepage/content/js/vendors/toastr/toastr.min.js') }}" type="text/javascript"></script>

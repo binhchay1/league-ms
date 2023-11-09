@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <section class="vh-100">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -58,28 +58,28 @@
                                                 <i class="fab fa-facebook-f"></i>
                                             </a>
 
-                                            <a href="" class="btn btn-light btn-floating mx-1 text-danger border">
-                                                <i class="fab fa-google"></i>
-                                            </a>
-                                        </div>
+                                        <a href="{{ route('auth.google') }}" class="btn btn-light btn-floating mx-1 text-danger border">
+                                            <i class="fab fa-google"></i>
+                                        </a>
+                                    </div>
 
-                                        @if(Request::exists('return_url'))
-                                            <input type="hidden" name="return_url" value="{{ Request::get('return_url') }}">
-                                        @endif
+                                    @if(Request::exists('return_url'))
+                                    <input type="hidden" name="return_url" value="{{ Request::get('return_url') }}">
+                                    @endif
 
-                                        @if (Route::has('password.request'))
-                                            <a class="small text-muted" href="{{ route('password.request') }}">{{ __('Quên mật khẩu') }}</a>
-                                        @endif
-                                        <p class="mb-5 pb-lg-2" style="color: #393f81;">{{ __('Bạn chưa có tài khoản ?') }}
-                                            <a href="{{route('register_user')}}" style="color: #393f81;">{{ __('Đăng ký') }}</a>
-                                        </p>
-                                    </form>
-                                </div>
+                                    @if (Route::has('password.request'))
+                                    <a class="small text-muted" href="{{ route('password.request') }}">{{ __('Quên mật khẩu') }}</a>
+                                    @endif
+                                    <p class="mb-5 pb-lg-2" style="color: #393f81;">{{ __('Bạn chưa có tài khoản ?') }}
+                                        <a href="" style="color: #393f81;">{{ __('Đăng ký') }}</a>
+                                    </p>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 @endsection

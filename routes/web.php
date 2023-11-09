@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\GameController;
+use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -38,8 +38,13 @@ Route::middleware([
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('custom-login', [AuthController::class, 'customLogin'])->name('login.custom');
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
+Route::get('/auth/google', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogleCallback']);
+Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
+Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFacebookCallback']);
 Route::get('register', [AuthController::class, 'registerUser'])->name('register_user');
 Route::post('register', [AuthController::class, 'storeUser'])->name('storeUser');
+
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
