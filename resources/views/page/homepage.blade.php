@@ -32,16 +32,16 @@
                                 </h2>
                             </div>
                             <div class="ps-buttons mb50">
-                                <a href="https://myleague.vn/league/create-tournament" class="btn">
+                                <a href="{{route('tournament.create')}}" class="btn">
                                     Tạo giải đấu
                                 </a>
-                                <a href="https://myleague.vn/league" class="btn btn__2">
+                                <a href="{{route('list.tour')}}" class="btn btn__2">
                                     Tìm giải đấu
                                 </a>
                             </div>
                             <div class="ps-buttons mb-20 lineup">
-                                <a href="https://myleague.vn/lineup" class="btn btn-warning">
-                                    Tạo đội hình
+                                <a href="{{route('team.create')}}" class="btn btn-warning">
+                                   Tạo đội thi đấu
                                 </a>
                             </div>
                             <ul class="ps-counts">

@@ -40,19 +40,18 @@
                                             aria-expanded="false"> <span>Đội thi đấu</span> <span
                                 class="caret"></span> </a>
                         <ul class="dropdown-menu">
-                            <li><a href="https://myleague.vn/competitor/create"
-                                   onclick="window.location.href='https://myleague.vn/competitor/create'"> Tạo
+                            <li>
+                                <a href="{{route('team.create')}}"> Tạo
                                     đội </a></li>
-                            <li><a href="https://myleague.vn/competitor"
-                                   onclick="window.location.href='https://myleague.vn/competitor'"> Tìm đội </a>
+                            <li><a href="{{route('list.team')}}"> Tìm đội </a>
                             </li>
                             <li><a href="https://myleague.vn/lineup"
                                    onclick="window.location.href='https://myleague.vn/lineup'"> Tạo đội hình </a>
                             </li>
                         </ul>
                     </li>
-                    <li><a href="https://myleague.vn/pricing"> Bảng giá </a></li>
-                    <li><a href="https://blog.myleague.vn/vi"> Blog </a></li>
+                    <li><a href=""> Bảng giá </a></li>
+                    <li><a href=""> Blog </a></li>
                     @if (!auth()->user())
                     <li><a href="{{route('login')}}">Đăng nhập</a></li>
                     <li>

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Role;
 use App\Enums\Utility;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TeamRequest;
 use Illuminate\Http\Request;
 use App\Repositories\TeamRepository;
+use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
@@ -40,7 +42,12 @@ class TeamController extends Controller
      */
     public function create()
     {
-        return view('admin.team.create');
+        if(Auth::user()->role == Role::ADMIN)
+        {
+            return view('admin.team.create');
+        }
+        return view('page.team.create');
+
     }
 
     /**
@@ -62,7 +69,10 @@ class TeamController extends Controller
 
         $this->teamRepository->store($input);
 
-        return redirect()->to('list-team');
+        if(Auth::user()->role == Role::ADMIN) {
+            return redirect()->to('list-team');
+        }
+        return redirect()->to('list-teams');
 
     }
 

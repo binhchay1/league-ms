@@ -13,7 +13,7 @@ class TeamRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->orderBy('created_at', 'desc')->get();
+        return $this->model->with('players')->orderBy('created_at', 'desc') ->paginate(env('PAGINATION_PER_PAGE', 4));
     }
 
     public function store($input)

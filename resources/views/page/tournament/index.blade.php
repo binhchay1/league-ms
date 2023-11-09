@@ -138,7 +138,7 @@
                         <div class="section-content">
                             <div class="league-result league-result--card">
                                 @foreach($listTournament as $listTour)
-                                    <div class="match-box-content league-item hvr-bob" scr="{{$listTour->image}}" style="margin: 30px; height: 250px; margin-top: 10px" >
+                                    <div class="match-box-content league-item hvr-bob"style="margin: 30px; height: 250px; margin-top: 10px" >
                                         <div class="league-action league-action--right league-favourite">
                                             <div class="league-action__item league-favourite">
                                                 <div class="pretty p-icon p-round p-tada">
