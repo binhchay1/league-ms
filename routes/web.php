@@ -23,9 +23,6 @@ Route::get('list-tournaments', [HomeController::class, 'listTour'])->name('list.
 Route::get('list-teams', [HomeController::class, 'listTeam'])->name('list.team');
 
 Route::middleware([])->group(function () {
-
-
-
 });
 
 Route::middleware([
@@ -51,10 +48,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/user-profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('update-password');
+    Route::get('/team-manager', [ProfileController::class, 'teamManager'])->name('team-manager');
+    Route::get('/league-manager', [ProfileController::class, 'leagueManager'])->name('league-manager');
 
-Route::middleware(['admin','auth'])->group(
-    function ()
-        {
+    Route::middleware(['admin', 'auth'])->group(
+        function () {
             Route::get('dashboard', [AuthController::class, 'dashboard']);
             //Tournament
             Route::get('/list-tournament', 'App\Http\Controllers\Admin\TournamentController@index')->name('tournament.index');
@@ -90,9 +88,6 @@ Route::middleware(['admin','auth'])->group(
             Route::get('/edit-schedule/{id}', 'App\Http\Controllers\Admin\ScheduleController@edit')->name('schedule.edit');
             Route::post('/update-schedule/{id}', 'App\Http\Controllers\Admin\ScheduleController@update')->name('schedule.update');
             Route::get('/result', 'App\Http\Controllers\Admin\ScheduleController@result')->name('schedule.result');
-
         }
     );
 });
-
-
