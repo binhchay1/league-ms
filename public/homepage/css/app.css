@@ -50186,7 +50186,7 @@ table-bordered>thead>tr>th {
     align-items: stretch;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    league-result--card: center;
     max-width: 100%
 }
 
@@ -53234,9 +53234,7 @@ tbody.collapse.in {
     .match-item--time span {
         display: block
     }
-    .league-result--card {
-        justify-content: space-between
-    }
+
     .league-result--card .league-info .league-progress {
         position: relative;
         top: 0
@@ -53693,7 +53691,7 @@ tbody.collapse.in {
         display: table-cell !important
     }
     .league-result--card .league-item {
-        width: 360px
+        width: 320px
     }
 }
 
@@ -58527,11 +58525,11 @@ div[aria-labelledby=swal2-title] button[type=button].swal2-cancel {
 }
 
 div[aria-labelledby=swal2-title] button[type=button].swal2-confirm {
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28)
 }
 
 div[aria-labelledby=swal2-title] button[type=button].swal2-confirm:hover {
-    background-image: linear-gradient(to left top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28) !important
+    background-image: linear-gradient(to left top, #001e28, #6A696D, #001e28) !important
 }
 
 div[aria-labelledby=swal2-title] .swal2-icon {
@@ -58588,7 +58586,7 @@ div[aria-labelledby=swal2-title] .swal2-close:hover {
 #ruleModalCutomByGroup .panel-primary .panel-heading,
 .btn-primary,
 .btn-success {
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28)
 }
 
 .btn-primary,
@@ -58598,7 +58596,7 @@ div[aria-labelledby=swal2-title] .swal2-close:hover {
 
 .btn-primary:hover,
 .btn-success:hover {
-    background-image: linear-gradient(to left top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to left top, #001e28, #6A696D, #001e28)
 }
 
 .btn-warning {
@@ -58612,12 +58610,12 @@ div[aria-labelledby=swal2-title] .swal2-close:hover {
 
 .btn-group-outline .js-view-card.active,
 .btn-group-outline .js-view-list.active {
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28)
 }
 
 .btn-group-outline .js-view-card.active:hover,
 .btn-group-outline .js-view-list.active:hover {
-    background-image: linear-gradient(to left top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to left top, #001e28, #6A696D, #001e28)
 }
 
 .irs--flat .irs-from,
@@ -58625,7 +58623,7 @@ div[aria-labelledby=swal2-title] .swal2-close:hover {
 .irs--flat .irs-single,
 .irs--flat .irs-to,
 .irs-bar {
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28) !important
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28) !important
 }
 
 .pac-container {
@@ -58993,10 +58991,6 @@ select.input-sm {
     border: 1px solid red !important
 }
 
-select.form-control {
-    -webkit-appearance: none
-}
-
 .swalShowFeedback .swal2-icon {
     display: none !important
 }
@@ -59192,7 +59186,7 @@ select.form-control {
 
 #typeGame .card.active img {
     background-color: #001e28;
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28)
 }
 
 #typeGame .card.active .card-body span {
@@ -59249,7 +59243,7 @@ select.form-control {
 .scrollable-box li:not(.is-active) a:hover,
 .scrollable-box-for-round li.is-active a,
 .scrollable-box-for-round li:not(.is-active) a:hover {
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28)
 }
 
 .scrollable li:not(.is-active) a:hover,
@@ -64843,7 +64837,7 @@ select.form-control {
 }
 
 #statistics .instructionsTemplate .section .stageViewModelInstructions .filter .wrapSelectBoostrap .bootstrap-select button:hover {
-    background-image: linear-gradient(to left top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to left top, #001e28, #6A696D, #001e28)
 }
 
 #statistics .instructionsTemplate .section .stageViewModelInstructions .filter .wrapSelectBoostrap .bootstrap-select button .filter-option {
@@ -65906,7 +65900,7 @@ select.form-control {
 }
 
 #CreateLeague #intro-number-round-robin .btn-group-outline .btn.active {
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28)
 }
 
 #CreateLeague .name-step {
@@ -65998,7 +65992,7 @@ select.form-control {
 }
 
 #CreateLeague .picker .picker__item>label:before {
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28)
 }
 
 @media(max-width:425px) {
@@ -66027,7 +66021,7 @@ select.form-control {
 }
 
 #editLeagueForm .panel-body #intro-number-round .btn-group-outline .btn.active {
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28)
 }
 
 #editLeagueForm .panel-body .wrap-accordion {
@@ -66292,7 +66286,7 @@ select.form-control {
 }
 
 #editLeagueForm .panel-body #wrapDetailSetting .flex-item.picker__item>label:before {
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28)
 }
 
 #editLeagueForm .panel-body #wrapTypeGame {
@@ -66743,11 +66737,11 @@ select.form-control {
 }
 
 #knockout #HeaderTemplate label.btn.active {
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28)
 }
 
 #knockout #HeaderTemplate label.btn.active:hover {
-    background-image: linear-gradient(to left top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to left top, #001e28, #6A696D, #001e28)
 }
 
 @media screen and (max-width:548px) {
@@ -69477,7 +69471,7 @@ select.form-control {
 
 #finishEnrollment #number-round-robin .btn-group-outline .btn.active,
 #finishEnrollment .flex-item.picker__item>label:before {
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28)
 }
 
 @media(max-width:600px) {
@@ -70512,7 +70506,7 @@ select.form-control {
 #detail-match #box_main,
 #detail-match #widget-rachas,
 #detail-match #widget-stats {
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28)
 }
 
 #detail-match .cabecera-seccion,
@@ -70597,7 +70591,7 @@ select.form-control {
 }
 
 #detail-match .sidebar .widget-sidebar-clasificacion #rankingForLeagueType3 .section-matchs-box .rank-list {
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28)
 }
 
 #detail-match .sidebar .widget-sidebar-clasificacion #rankingForLeagueType3 .section-matchs-box .rank-list .rank-item {
@@ -70661,7 +70655,7 @@ select.form-control {
 }
 
 #detail-match .sidebar .widget-sidebar-clasificacion .datatable_clasificacion.laliga-santander {
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28)
 }
 
 #detail-match .sidebar .widget-sidebar-clasificacion .datatable_clasificacion.laliga-santander thead tr {
@@ -71779,7 +71773,7 @@ select.form-control {
 
 #competitor-statistic #graficos-ficha-equipo .cabecera-seccion {
     background: #135f00 !important;
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28) !important
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28) !important
 }
 
 #competitor-statistic #graficos-ficha-equipo .cabecera-seccion .titulo {
@@ -77001,7 +76995,7 @@ select.form-control {
 }
 
 #wrapEvents .portlet-body #wrapCalendar #calendar .fc-view-container .fc-head .fc-row tr {
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to right top, #001e28, #6A696D, #001e28)
 }
 
 #wrapEvents .portlet-body #wrapCalendar #calendar .fc-view-container .fc-head .fc-row tr .fc-widget-header {
@@ -101483,7 +101477,7 @@ select.form-control {
 }
 
 #myleague_new_template .wrapParentPagePricingLeague .pl-wrap {
-    background-image: linear-gradient(to right top, #001e28, #3ba023, #30901c, #268215, #1b730d, #1b730d, #1b730d, #1b730d, #268215, #30901c, #3ba023, #001e28)
+    background-image: linear-gradient(to right top, #001e28, #6A696D)
 }
 
 #myleague_new_template .wrapParentPagePricingLeague .pl-wrap.premium {

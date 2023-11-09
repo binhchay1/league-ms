@@ -16,8 +16,13 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::middleware(['verified'])->group(function () {
-    Route::get('/', [HomeController::class, 'viewHome'])->name('home');
+
+//homepage
+Route::get('/', [HomeController::class, 'viewHome'])->name('home');
+Route::get('list-tournaments', [HomeController::class, 'listTour'])->name('list.tour');
+
+Route::middleware([])->group(function () {
+
 
 
 });
