@@ -45,7 +45,6 @@
                                         <div class="col-sm-8">
                                             <div class="form-group wrap-group" id="intro-name-league"> <label for="name" class="control-label required">Tên giải đấu</label>
                                                 <div>
-{{--                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />--}}
                                                     <input class="form-control required " id="name"  name="name" type="text" value="">
                                                     @if ($errors->has('name'))
                                                         <span class="text-danger">{{ $errors->first('name') }}</span>
