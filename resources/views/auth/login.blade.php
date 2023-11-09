@@ -21,7 +21,11 @@
                                             <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
                                             <span class="h1 fw-bold mb-0">{{ __('Đăng nhập') }}</span>
                                         </div>
-
+                                        @if(isset($errors))
+                                            @foreach ($errors->all() as $error)
+                                                <div style="color: red; margin: 10px">{{ $error }}</div>
+                                            @endforeach
+                                        @endif
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="email">{{ __('Hòm thư') }}</label>
                                             <input type="email" id="email" class="form-control" name="email" value="{{ old('email') }}"  autofocus />
