@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\Role;
-use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Enums\Role;
 use Hash;
 use Session;
 use App\Models\User;
@@ -21,8 +21,8 @@ class AuthController extends Controller
     public function customLogin(Request $request)
     {
         $request->validate([
-            'email' => 'required|max:255|email|confirmed',
-            'password' => 'required|confirmed',
+            'email' => 'required|max:255|email',
+            'password' => 'required',
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -30,17 +30,16 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->put('email', $credentials['email']);
-
-            if (Auth::user()->role == Role::ADMIN) {
-                return redirect()->intended('dashboard')
-                    ->withSuccess('Signed in');
+            if(Auth::user()->role == Role::ADMIN) {
+                return view('dashboard');
             } else {
-                return redirect('/')
-                    ->withSuccess('Signed in');
+                return redirect('/');
             }
+        } else {
+            return back()->withErrors([
+                'custom' => 'Email or Password is wrong!'
+            ]);
         }
-
-        return redirect("login")->withSuccess('Login details are not valid');
     }
 
     public function dashboard()
