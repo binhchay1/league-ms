@@ -42,7 +42,7 @@
                 @if (!auth()->user())
                 <li><a href="{{ route('login') }}">{{ __('Đăng nhập') }}</a></li>
                 <li>
-                    <a href="{{ route('login') }}">{{ __('Đăng ký') }}</a>
+                    <a href="{{ route('register_user') }}">{{ __('Đăng ký') }}</a>
                 </li>
                 </li>
                 @else(auth::check())

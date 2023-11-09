@@ -67,7 +67,7 @@
                                             <a class="small text-muted" href="{{ route('password.request') }}">{{ __('Quên mật khẩu') }}</a>
                                         @endif
                                         <p class="mb-5 pb-lg-2" style="color: #393f81;">{{ __('Bạn chưa có tài khoản ?') }}
-                                            <a href="" style="color: #393f81;">{{ __('Đăng ký') }}</a>
+                                            <a href="{{route('register_user')}}" style="color: #393f81;">{{ __('Đăng ký') }}</a>
                                         </p>
                                     </form>
                                 </div>

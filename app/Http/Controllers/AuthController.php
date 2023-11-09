@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Role;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Hash;
@@ -42,34 +43,6 @@ class AuthController extends Controller
         return redirect("login")->withSuccess('Login details are not valid');
     }
 
-    public function registration()
-    {
-        return view('auth.register');
-    }
-
-    public function customRegistration(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-        ]);
-
-        $data = $request->all();
-        $check = $this->create($data);
-
-        return redirect("dashboard")->withSuccess('You have signed-in');
-    }
-
-    public function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password'])
-        ]);
-    }
-
     public function dashboard()
     {
         if (Auth::check()) {
@@ -85,5 +58,29 @@ class AuthController extends Controller
         Auth::logout();
 
         return Redirect('login');
+    }
+
+    public function registerUser()
+    {
+        return view('auth.registerUser');
+    }
+
+    public function storeUser(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+        ]);
+
+        $user = User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'role' => Role::USER,
+        ]);
+        auth()->login($user);
+
+        return redirect("dashboard")->withSuccess('You have signed-in');
     }
 }
