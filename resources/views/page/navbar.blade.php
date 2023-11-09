@@ -20,7 +20,7 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right ">
-                <li class="dropdown"><a title="Giải đấu" href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span>Giải đấu</span> <span class="caret"></span>
+                <li class="dropdown"><a title="{{ __('Giải đấu') }}" href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span>Giải đấu</span> <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('tournament.create') }}">{{ __('Tạo giải đấu') }}</a></li>
@@ -28,11 +28,11 @@
                         </li>
                     </ul>
                 </li>
-                <li class="dropdown"><a title="Đội thi đấu" href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span>Đội thi đấu</span> <span class="caret"></span> </a>
+                <li class="dropdown"><a title="{{ __('Đội thi đấu') }}" href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span>Đội thi đấu</span> <span class="caret"></span> </a>
                     <ul class="dropdown-menu">
-                        <li><a href="https://myleague.vn/competitor/create"> Tạo đội </a></li>
-                        <li><a href="https://myleague.vn/competitor"> Tìm đội </a></li>
-                        <li><a href="https://myleague.vn/lineup"> Tạo đội hình </a></li>
+                        <li><a href="https://myleague.vn/competitor/create"> {{ __('Tạo đội') }} </a></li>
+                        <li><a href="https://myleague.vn/competitor"> {{ __('Tìm đội') }} </a></li>
+                        <li><a href="https://myleague.vn/lineup"> {{ __('Tạo đội hình') }} </a></li>
                     </ul>
                 </li>
                 @if(!auth()->user())

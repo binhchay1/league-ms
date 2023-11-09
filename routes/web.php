@@ -48,8 +48,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/user-profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('update-password');
-    Route::get('/team-manager', [ProfileController::class, 'teamManager'])->name('team-manager');
-    Route::get('/league-manager', [ProfileController::class, 'leagueManager'])->name('league-manager');
+    Route::get('/team-manager', [HomeController::class, 'teamManager'])->name('team-manager');
+    Route::get('/league-manager', [HomeController::class, 'leagueManager'])->name('league-manager');
 
     Route::middleware(['admin', 'auth'])->group(
         function () {
@@ -62,7 +62,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/edit-tournament/{id}', 'App\Http\Controllers\Admin\TournamentController@edit')->name('tournament.edit');
             Route::post('/update-tournament/{id}', 'App\Http\Controllers\Admin\TournamentController@update')->name('tournament.update');
 
-
             //Team
             Route::get('/list-team', 'App\Http\Controllers\Admin\TeamController@index')->name('team.index');
             Route::get('/create-team', 'App\Http\Controllers\Admin\TeamController@create')->name('team.create');
@@ -70,7 +69,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/team/{id}', 'App\Http\Controllers\Admin\TeamController@show')->name('team.show');
             Route::get('/edit-team/{id}', 'App\Http\Controllers\Admin\TeamController@edit')->name('team.edit');
             Route::post('/update-team/{id}', 'App\Http\Controllers\Admin\TeamController@update')->name('team.update');
-
 
             //Player
             Route::get('/list-player', 'App\Http\Controllers\Admin\PlayerController@index')->name('player.index');
