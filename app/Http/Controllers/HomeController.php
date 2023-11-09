@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Utility;
+use App\Repositories\TeamRepository;
 use App\Repositories\TournamentRepository;
 
 
 class HomeController extends Controller
 {
     protected $tournamentRepository;
+    protected $teamRepository;
     protected $utility;
     /**
      * Display a listing of the resource.
@@ -18,9 +20,11 @@ class HomeController extends Controller
 
     public function __construct(
         TournamentRepository $tournamentRepository,
+        TeamRepository $teamRepository,
         Utility $ultity
     ) {
         $this->tournamentRepository = $tournamentRepository;
+        $this->teamRepository = $teamRepository;
         $this->utility = $ultity;
     }
 
@@ -34,6 +38,14 @@ class HomeController extends Controller
         $listTournament = $this->tournamentRepository->index();
         return view('page.tournament.index', [
             'listTournament' => $listTournament,
+        ]);
+    }
+
+    public function listTeam()
+    {
+        $listTeam = $this->teamRepository->index();
+        return view ('page.team.index', [
+            'listTeam' => $listTeam,
         ]);
     }
 }

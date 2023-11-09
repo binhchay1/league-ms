@@ -38,10 +38,43 @@
                                 Tìm giải đấu
                             </a>
                         </div>
-                        <div class="ps-buttons mb-20 lineup">
-                            <a href="https://myleague.vn/lineup" class="btn btn-warning">
-                                Tạo đội hình
-                            </a>
+                        <div class="ps-middle">
+                            <div class="heading-title mb30">
+                                <h2>
+                                    Tổ chức giải đấu dễ dàng<br>Quản lý đội thể thao đơn giản!
+                                </h2>
+                            </div>
+                            <div class="ps-buttons mb50">
+                                <a href="{{route('tournament.create')}}" class="btn">
+                                    Tạo giải đấu
+                                </a>
+                                <a href="{{route('list.tour')}}" class="btn btn__2">
+                                    Tìm giải đấu
+                                </a>
+                            </div>
+                            <div class="ps-buttons mb-20 lineup">
+                                <a href="{{route('team.create')}}" class="btn btn-warning">
+                                   Tạo đội thi đấu
+                                </a>
+                            </div>
+                            <ul class="ps-counts">
+                                <li data-aos="zoom-out-right">
+                                    <span>Giải đấu</span>
+                                    <b id="total_league">43768</b>
+                                </li>
+                                <li data-aos="zoom-out-right">
+                                    <span>Đội thi đấu</span>
+                                    <b id="total_team">198349</b>
+                                </li>
+                                <li data-aos="zoom-out-left">
+                                    <span>Vận động viên</span>
+                                    <b id="total_player">851573</b>
+                                </li>
+                                <li data-aos="zoom-out-left">
+                                    <span>Lượt xem</span>
+                                    <b id="total_view">16713252</b>
+                                </li>
+                            </ul>
                         </div>
                         <ul class="ps-counts">
                             <li data-aos="zoom-out-right">
