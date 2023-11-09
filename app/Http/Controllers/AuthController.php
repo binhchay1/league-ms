@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Hash;
 use Session;
 use App\Models\User;
+
 class AuthController extends Controller
 {
 
@@ -29,15 +30,13 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->put('email', $credentials['email']);
 
-            if(Auth::user()->role == Role::ADMIN) {
+            if (Auth::user()->role == Role::ADMIN) {
                 return redirect()->intended('dashboard')
                     ->withSuccess('Signed in');
-            }
-            else {
+            } else {
                 return redirect('/')
                     ->withSuccess('Signed in');
             }
-
         }
 
         return redirect("login")->withSuccess('Login details are not valid');
@@ -73,14 +72,15 @@ class AuthController extends Controller
 
     public function dashboard()
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             return view('layout.admin_layout');
         }
 
         return redirect("login")->withSuccess('You are not allowed to access');
     }
 
-    public function signOut() {
+    public function signOut()
+    {
         Session::flush();
         Auth::logout();
 

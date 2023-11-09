@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'email' => 'string|email',
-            'age' => 'before:'.$age,
+            'age' => 'before:' . $age,
             'phone' => 'bail|digits_between:10,11',
             'image' => 'image|mimes:jpeg,png,jpg|max:2048',
         ];

@@ -32,9 +32,8 @@ class HomeController extends Controller
     public function listTour()
     {
         $listTournament = $this->tournamentRepository->index();
-        return view ('page.tournament.index', [
+        return view('page.tournament.index', [
             'listTournament' => $listTournament,
         ]);
-
     }
 }
