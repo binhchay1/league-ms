@@ -120,5 +120,5 @@
 </div>
 @endsection
 @section('js')
-    <script src="{{ asset('js/tournament.js') }}"></script>
+    <script src="{{ asset('js/eventImage.js') }}"></script>
 @endsection

@@ -76,7 +76,7 @@
                                 <th scope="col">Ngày sinh</th>
                                 <th scope="col">Giới tính</th>
                                 <th scope="col">Hình ảnh</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Hành động</th>
                             </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
@@ -88,7 +88,7 @@
                                     <td><img class ="image" src="{{$playOfTeam->image}}" alt="avatar" style="width: 150px"></td>
                                     <td>
                                         <a href="">
-                                            <button type="button" class="btn btn-secondary">Thay đổi</button>
+                                            <button type="button" class="btn btn-secondary">Sửa</button>
                                         </a>
                                         <a href="">
                                             <button type="button" class="btn btn-danger">Xóa</button>
@@ -118,7 +118,7 @@
             $('.dataTables_length').addClass('bs-select');
         })
     </script>
-    <script src="{{ asset('js/tournament.js') }}"></script>
+    <script src="{{ asset('js/eventImage.js') }}"></script>
 @endsection
 
 

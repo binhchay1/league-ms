@@ -58,7 +58,7 @@
                                                 <i class="fab fa-facebook-f"></i>
                                             </a>
 
-                                        <a href="{{ route('auth.google') }}" class="btn btn-light btn-floating mx-1 text-danger border">
+                                        <a href="/" class="btn btn-light btn-floating mx-1 text-danger border">
                                             <i class="fab fa-google"></i>
                                         </a>
                                     </div>
