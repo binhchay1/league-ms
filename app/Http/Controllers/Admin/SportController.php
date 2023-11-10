@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\Utility;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SportRequest;
 use App\Repositories\SportRepository;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class SportController extends Controller
@@ -50,7 +50,7 @@ class SportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SportRequest $request)
     {
 
         $input = $request->except(['_token']);
@@ -98,7 +98,7 @@ class SportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SportRequest $request, $id)
     {
         $input = $request->except(['_token']);
         $input['link'] = Str::slug($request->link);

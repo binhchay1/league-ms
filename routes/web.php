@@ -59,7 +59,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::middleware(['admin', 'auth'])->group(
         function () {
             Route::get('dashboard', [AuthController::class, 'dashboard']);
-            //Schedule
+            //User
+            Route::get('/list-user', 'App\Http\Controllers\Admin\UserController@index')->name('user.index');
+            Route::get('/delete/{id}', 'App\Http\Controllers\Admin\UserController@destroy')->name('user.delete');
+
+            //Sport
             Route::get('/list-sport', 'App\Http\Controllers\Admin\SportController@index')->name('sport.index');
             Route::get('/create-sport', 'App\Http\Controllers\Admin\SportController@create')->name('sport.create');
             Route::post('/store-sport', 'App\Http\Controllers\Admin\SportController@store')->name('sport.store');
