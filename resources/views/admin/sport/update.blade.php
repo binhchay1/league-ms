@@ -6,17 +6,17 @@
                 <h2 class="card-title">Tạo Đội</h2>
             </div>
             <div class="card-body">
-                <form id="formAccountSettings" method="POST" action="{{ route('team.store')}}" enctype="multipart/form-data">
+                <form id="formAccountSettings" method="POST" action="{{ route('sport.update', $dataSport['id'])}}" enctype="multipart/form-data">
                     @csrf()
                     <div class="row">
                         <div class="col-md-4">
-                            <label for="lastName" class="form-label">Logo đội</label>
+                            <label for="lastName" class="form-label">Ảnh môn thể thao</label>
                             <div class="form-group" >
                                 <div class="" style="display: inline-grid;">
                                     <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                                     <div class=" choose-avatar" >
                                         <div id="btnimage">
-                                            <img id="showImage" class="show-avatar" style="width: 200px; margin-left: 40px" src="/images/champion.png" alt="avatar">
+                                            <img id="showImage" class="show-avatar" style="width: 100px; border-radius: 10px" src="{{$dataSport->image}} " alt="avatar">
                                         </div>
                                         <div id="button" >
                                             <i id="btn_chooseImg" class="fas fa-camera" >  Chọn ảnh</i>
@@ -30,17 +30,18 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <label for="lastName" class="form-label">Tên đội</label>
-                                <input class="form-control" type="text" name="name" id="name"/>
+                                <label for="lastName" class="form-label">Tên môn thể thao</label>
+                                <input class="form-control" type="text" value="{{$dataSport->name}}" name="name" id="name"/>
                                 @if ($errors->has('name'))
                                     <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif
                             </div>
-                            <div class="mt-4">
-                                <label for="address" class="form-label">Huấn luyện viên</label>
-                                <input type="text" class="form-control" id="coach" name="coach"/>
-                                @if ($errors->has('coach'))
-                                    <span class="text-danger">{{ $errors->first('coach') }}</span>
+
+                            <div class="" style="margin-top: 5%;">
+                                <label for="address" class="form-label">Đường dẫn</label>
+                                <input type="text" value="{{$dataSport->link}}" class="form-control" id="link" name="link"/>
+                                @if ($errors->has('link'))
+                                    <span class="text-danger">{{ $errors->first('link') }}</span>
                                 @endif
                             </div>
                         </div>
