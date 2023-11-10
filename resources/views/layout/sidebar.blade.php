@@ -11,6 +11,18 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                <!-- User -->
+                <li class="nav-item">
+                    <a href="{{route('user.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-football-ball"></i>
+                        <p>
+                            Người dùng
+                            <span class="badge badge-info right"></span>
+                        </p>
+                    </a>
+                </li>
+
                 <!-- Sport -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
