@@ -11,6 +11,11 @@ class UserRepository extends BaseRepository
         return User::class;
     }
 
+    public function index()
+    {
+        return $this->model->orderBy('created_at', 'desc')->get();
+    }
+
     public function showInfo($id)
     {
         return $this->model->where('id', $id)->first();
@@ -39,5 +44,10 @@ class UserRepository extends BaseRepository
     public function getUserByFacebook($facebookID)
     {
         return $this->model->where('facebook_id', $facebookID)->first();
+    }
+
+    public function destroy($id)
+    {
+        return $this->model->where('id', $id)->delete();
     }
 }
