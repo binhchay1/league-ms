@@ -14,7 +14,7 @@
                     <a href="/" class="button navy js-openMessenger">{{ __('Dùng thử') }}</a>
                     <a href="/pricing.html" class="button white">{{ __('Khám phá giá cả') }}</a>
                     <br>
-                    <small>No credit card required</small>
+                    <small>{{ __('Không yêu cầu thẻ thanh toán') }}</small>
                 </p>
             </div>
         </div>
@@ -178,7 +178,7 @@
                 </div>
             </li>
             <li data-tab="tab2">
-                <h3>{{ _('Ghi lại Kết quả & Thống kê') }}</h3>
+                <h3>{{ __('Ghi lại Kết quả & Thống kê') }}</h3>
                 <p>{{ __('Hệ thống thống kê và tính điểm của chúng tôi hoàn toàn có thể tùy chỉnh, cho phép bạn kiểm soát hoàn toàn việc nhập và định dạng dữ liệu. Điều này đảm bảo tính toàn vẹn của dữ liệu, cho phép bạn đưa ra quyết định chính xác và cập nhật dựa trên thông tin được cung cấp.') }}</p>
                 <div class="svg">
                     <svg width="524px" height="393px" viewBox="0 0 524 393" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -344,13 +344,13 @@
                 <img src="/assets/images/illustrations/image-teams@2x.png" alt="Manage Teams & Player Registrations" width="511" height="376">
             </li>
             <li data-tab="tab4">
-                <h3>League Website</h3>
-                <p>Regularly update audience through website, email, and social media. Monetize through sponsorship deals with relevant brands or businesses.</p>
+                <h3>{{ __('Trang web giải đấu')}}</h3>
+                <p>{{ __('Thường xuyên cập nhật khán giả thông qua trang web, email và phương tiện truyền thông xã hội. Kiếm tiền thông qua các thỏa thuận tài trợ với các thương hiệu hoặc doanh nghiệp có liên quan.') }}</p>
                 <img src="/assets/images/illustrations/image-website.svg" alt="League Website" width="511" height="361">
             </li>
             <li data-tab="tab5">
-                <h3>Website Integration</h3>
-                <p>Easily integrate {{ env('APP_NAME', 'ProLeague') }} sports league data into website or app, with options for both web developers and non-technical users.</p>
+                <h3>{{ __('Tích hợp Website') }}</h3>
+                <p>{{ __('Dễ dàng tích hợp dữ liệu giải đấu thể thao') }} {{ env('APP_NAME', 'ProLeague') }} {{ __('vào trang web hoặc ứng dụng, với các tùy chọn cho cả nhà phát triển web và người dùng phi kỹ thuật.') }}</p>
                 <img src="/assets/images/illustrations/features/league-website-integration/leaguerepublic-api.svg" alt="League data API" width="511" height="415">
             </li>
         </ul>
