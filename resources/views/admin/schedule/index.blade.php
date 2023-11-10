@@ -17,7 +17,7 @@
                         <th scope="col">Lịch thi đấu</th>
                         <th scope="col">Đội thi đấu</th>
                         <th scope="col">Sân thi đấu</th>
-                        <th scope="col">Chi tiết</th>
+                        <th scope="col">Hành động</th>
                     </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">

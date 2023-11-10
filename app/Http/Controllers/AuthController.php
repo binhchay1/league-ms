@@ -31,7 +31,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->put('email', $credentials['email']);
             if(Auth::user()->role == Role::ADMIN) {
-                return view('dashboard');
+                return redirect('dashboard');
             } else {
                 return redirect('/');
             }

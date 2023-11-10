@@ -11,9 +11,34 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
+                <!-- Sport -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-football-ball"></i>
+                        <p>
+                            Môn Thi Đấu
+                            <i class="fas fa-angle-left right"></i>
+                            <span class="badge badge-info right"></span>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('sport.create')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tạo  Môn Thi Đấu</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('sport.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh Sách  Môn Thi Đấu</p>
+                            </a>
+                        </li>
 
+                    </ul>
+                </li>
+
+                <!-- Giải đấu -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
@@ -39,6 +64,8 @@
 
                     </ul>
                 </li>
+
+                <!-- Đội tuyển -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
@@ -64,6 +91,8 @@
 
                     </ul>
                 </li>
+
+                <!-- Vận động viên -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
@@ -89,6 +118,8 @@
 
                     </ul>
                 </li>
+
+                <!-- Lịch thi đấu -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-calendar"></i>
