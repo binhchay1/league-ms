@@ -35,39 +35,15 @@
     <meta name="description" content="Easily manage your league: fixture generator, results, statistics, players and get a professional website." />
     <meta name="keywords" content="league management software,sports management software,sports organiser,youth sports website builder,best sports website design, league scheduler,fixture generator" />
     <meta name="robots" content="Index,Follow" />
-    <link rel="canonical" href="https://www.leaguerepublic.com/index.html" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/styles.min.1.8.8.css">
+    <link rel="canonical" href="{{ env('APP_URL', 'https://baminto.io') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ __('/css/page/style.css') }}">
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
 
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J144WP5M2Q"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'G-J144WP5M2Q');
-    </script>
-
     <!-- JS END -->
     <link rel="alternate" hreflang="en-US" href="https://us.leaguerepublic.com/index.html" />
-    <link rel="alternate" hreflang="ms" href="https://ms.leaguerepublic.com/index.html" />
-    <link rel="alternate" hreflang="de" href="https://de.leaguerepublic.com/index.html" />
-    <link rel="alternate" hreflang="es" href="https://es.leaguerepublic.com/index.html" />
-    <link rel="alternate" hreflang="fr" href="https://fr.leaguerepublic.com/index.html" />
-    <link rel="alternate" hreflang="it" href="https://it.leaguerepublic.com/index.html" />
-    <link rel="alternate" hreflang="nl" href="https://nl.leaguerepublic.com/index.html" />
-    <link rel="alternate" hreflang="pt" href="https://pt.leaguerepublic.com/index.html" />
-    <link rel="alternate" hreflang="ro" href="https://ro.leaguerepublic.com/index.html" />
     <link rel="alternate" hreflang="vi" href="https://vi.leaguerepublic.com/index.html" />
-    <link rel="alternate" hreflang="tr" href="https://tr.leaguerepublic.com/index.html" />
-    <link rel="alternate" hreflang="th" href="https://th.leaguerepublic.com/index.html" />
-    <link rel="alternate" hreflang="ko" href="https://ko.leaguerepublic.com/index.html" />
     <link rel="alternate" hreflang="x-default" href="https://www.leaguerepublic.com/index.html" />
-
 
 </head>
 
@@ -108,90 +84,6 @@
                             </a>
                         </li>
 
-                        <li>
-                            <a href="/baseball.html">
-                                Baseball
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/basketball.html">
-                                Basketball
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/bowling-sports.html">
-                                Bowling Sports
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/darts.html">
-                                Darts
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/gaming.html">
-                                Gaming
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/netball.html">
-                                Netball
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/pool.html">
-                                Pool
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/rugby.html">
-                                Rugby
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/snooker.html">
-                                Snooker
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/soccer.html">
-                                Soccer
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/softball.html">
-                                Softball
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/tennis.html">
-                                Tennis
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/volleyball.html">
-                                Volleyball
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/other-sports.html">
-                                Other Sports
-                            </a>
-                        </li>
-
                     </ul>
                 </li>
                 <li class="menu">Features
@@ -209,19 +101,17 @@
                         <div onclick="openSearch()">
                             <input type="search" name="searchValue" placeholder="Search leagues...">
                             <button type="button">
-                                <img src="/assets/images/icons/icon-search.svg" alt="Search" title="Search" width="15" height="15">
+                                <img src="{{ asset('/svg/icon-search.svg') }}" alt="Search" title="Search" width="15" height="15">
                             </button>
                         </div>
                     </form>
 
-
-
                 </li>
-                <li><a href="https://a.leaguerepublic.com/myaccount/login/index.html?lver=1" class="button white">Log In</a></li>
-                <li><a href="https://a.leaguerepublic.com/myaccount/createAccount/1.html?lver=1" class="button">Sign Up</a></li>
+                <li><a href="{{ route('login') }}" class="button white">{{ __('Đăng nhập') }}</a></li>
+                <li><a href="{{ route('register_user') }}" class="button">{{ __('Đăng ký') }}</a></li>
             </ul>
             <span class="message">
-                Find my league
+                {{ __('Tìm giải đấu của tôi') }}
             </span>
         </nav>
     </header>
@@ -233,7 +123,7 @@
     <script src="/assets/js/owl.carousel.min.js"></script>
     <script src="/assets/js/jquery.magnific-popup.min.js"></script>
     <script src="/assets/js/common.min.1.3.js"></script>
-    <script src="{{ asset('/homepage/content/js/vendors/countUp/countUp.js') }}"></script>
+    <script src="{{ asset('js/vendors/countUp/countUp.js') }}"></script>
     @yield('js')
 
 

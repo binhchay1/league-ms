@@ -2,7 +2,7 @@
 @section('content')
 <section id="intro">
     <div class="image">
-        <img src="/assets/images/illustrations/homepage.svg" alt="{{ __('Nơi dễ dàng nhất để điều hành giải đấu thể thao của bạn') }}" width="660" height="607">
+        <img src="{{ asset('svg/homepage.svg') }}" alt="{{ __('Nơi dễ dàng nhất để điều hành giải đấu thể thao của bạn') }}" width="660" height="607">
     </div>
     <div class="content">
         <div class="container">
@@ -10,7 +10,7 @@
                 <h1>{{ __('Nơi dễ dàng nhất để điều hành giải đấu thể thao của bạn') }}</h1>
                 <p>{{ __('Phần mềm Quản lý Giải đấu Thể thao - giải pháp tổ chức và quản lý các giải đấu với giao diện thân thiện với người dùng và các tính năng bao gồm tạo giải đấu, lập lịch thi đấu, theo dõi kết quả, đăng ký cầu thủ và trang web chuyên nghiệp.') }}</p>
                 <p>
-                    <a href="https://a.leaguerepublic.com/myaccount/createAccount/1.html?lver=1" class="button">{{ __('Đăng kí miễn phí') }}</a>
+                    <a href="{{ route('') }}" class="button">{{ __('Đăng kí miễn phí') }}</a>
                     <a href="/" class="button navy js-openMessenger">{{ __('Dùng thử') }}</a>
                     <a href="/pricing.html" class="button white">{{ __('Khám phá giá cả') }}</a>
                     <br>
@@ -21,22 +21,19 @@
     </div>
 </section>
 
-
 <section id="sports">
     <div class="container">
         <h2 class="h21px">{{ __('Môn thể thao của bạn là gì?') }}</h2>
         <ul>
             <li>
                 <a href="/badminton.html">
-                    <span><img src="/assets/images/sports-icons/icon-badminton.svg" title="Badminton" width="33" height="33"></span>
+                    <span><img src="{{ asset('/svg/icon-badminton.svg') }}" title="Badminton" width="33" height="33"></span>
                     Badminton
                 </a>
             </li>
-
         </ul>
     </div>
 </section>
-
 
 <section id="features" class="container">
     <h2 class="center">{{ __('Tất cả các tính năng bạn cần và hơn thế nữa') }}</h2>
@@ -441,22 +438,22 @@
                                 <g id="text-layer" transform="translate(29.8398, 17.8628)">
                                     <g id="text-layer-header" transform="translate(31.5, 0)">
                                         <text id="title" font-family="NotoSans-Regular, Noto Sans" font-size="17" font-weight="normal" fill="#DC1A27">
-                                            <tspan x="0" y="18">Which scheduler do you want to use?</tspan>
+                                            <tspan x="0" y="18">{{ __('Bạn muốn sử dụng kiểu lịch nào?') }}</tspan>
                                         </text>
                                         <text id="label" font-family="NotoSans-Bold, Noto Sans" font-size="15" font-weight="bold" fill="#434365">
-                                            <tspan x="0" y="69.6572266">Template Scheduler</tspan>
+                                            <tspan x="0" y="69.6572266">{{ __('Trình lập lịch mẫu') }}r</tspan>
                                         </text>
                                         <text id="time" font-family="NotoSans-Regular, Noto Sans" font-size="14" font-weight="normal" fill="#707070">
-                                            <tspan x="22.9414062" y="94.9858398">5 mins approx</tspan>
+                                            <tspan x="22.9414062" y="94.9858398">{{ __('Khoảng 5 phút') }}</tspan>
                                         </text>
                                         <text id="button" font-family="NotoSans-Bold, Noto Sans" font-size="15" font-weight="bold" fill="#FFFFFF">
                                             <tspan x="278.1" y="80">&#x2713;</tspan>
                                         </text>
                                         <text id="label" font-family="NotoSans-Bold, Noto Sans" font-size="15" font-weight="bold" fill="#434365">
-                                            <tspan x="148.896986" y="130.167969">Advanced Scheduler</tspan>
+                                            <tspan x="148.896986" y="130.167969">{{ __('Trình lập lịch nâng cao') }}r</tspan>
                                         </text>
                                         <text id="time" font-family="NotoSans-Regular, Noto Sans" font-size="14" font-weight="normal" fill="#707070">
-                                            <tspan x="171.838392" y="155.496582">30 mins approx</tspan>
+                                            <tspan x="171.838392" y="155.496582">{{ __('Khoảng 30 phút') }}</tspan>
                                         </text>
                                         <text id="button" font-family="NotoSans-Bold, Noto Sans" font-size="15" font-weight="bold" fill="#FFFFFF">
                                             <tspan x="366.74308" y="141.510742">&#x2713;</tspan>
@@ -464,22 +461,22 @@
                                     </g>
                                     <g id="text-layer-results" transform="translate(0, 228.3291)" font-family="NotoSans-Regular, Noto Sans" font-weight="normal">
                                         <text id="results-title" font-size="17" fill="#DC1A27">
-                                            <tspan x="0" y="18">How many times do the teams meet?</tspan>
+                                            <tspan x="0" y="18">{{ __('Các đội gặp nhau bao nhiêu lần?') }}</tspan>
                                         </text>
                                         <text id="results-heading1" font-size="14" fill="#707070">
-                                            <tspan x="53.7050781" y="113.132812">Division</tspan>
+                                            <tspan x="53.7050781" y="113.132812">{{ __('Nhóm') }}</tspan>
                                         </text>
                                         <text id="results-heading2" font-size="14" fill="#707070">
-                                            <tspan x="296.942422" y="113.132812">Teams</tspan>
+                                            <tspan x="296.942422" y="113.132812">{{ __('Đội') }}</tspan>
                                         </text>
                                         <text id="results-heading3" font-size="14" fill="#707070">
-                                            <tspan x="390.370156" y="113.132812">Matches</tspan>
+                                            <tspan x="390.370156" y="113.132812">{{ __('Trận đấu') }}</tspan>
                                         </text>
                                         <text id="results-team-a" font-size="14" line-spacing="29" fill="#707070">
-                                            <tspan x="53.1601562" y="138.498535">Division One</tspan>
+                                            <tspan x="53.1601562" y="138.498535">{{ __('Nhóm một') }}</tspan>
                                         </text>
                                         <text id="results-team-b" font-size="14" line-spacing="29" fill="#707070">
-                                            <tspan x="53.1601562" y="167.498535">Division Two</tspan>
+                                            <tspan x="53.1601562" y="167.498535">{{ __('Nhóm hai') }}</tspan>
                                         </text>
                                     </g>
                                 </g>
@@ -613,32 +610,32 @@
                                     </g>
                                     <g id="text-layer-scores" transform="translate(0, 98.854)">
                                         <text id="scores-team-a" font-family="NotoSans-Bold, Noto Sans" font-size="15" font-weight="bold" fill="#434365">
-                                            <tspan x="0" y="16">Hill Valley Score</tspan>
+                                            <tspan x="0" y="16">{{ __('Điểm của đội Viettel') }}</tspan>
                                         </text>
                                         <text id="scores-team-b" font-family="NotoSans-Bold, Noto Sans" font-size="15" font-weight="bold" fill="#434365">
-                                            <tspan x="251.125" y="16">Lyon Estates Score</tspan>
+                                            <tspan x="251.125" y="16">{{ __('Điểm của đội Hà Nội') }}</tspan>
                                         </text>
                                         <text id="scores-team-a-label" font-family="NotoSans-Regular, Noto Sans" font-size="14" font-weight="normal" fill="#707070">
-                                            <tspan x="0" y="58.1230469">Final Score</tspan>
+                                            <tspan x="0" y="58.1230469">{{ __('Điểm chung cuộc') }}</tspan>
                                         </text>
                                         <text id="scores-team-a-button" font-family="NotoSans-Bold, Noto Sans" font-size="14" font-weight="bold" fill="#707070">
-                                            <tspan x="142.342252" y="59">Statistics</tspan>
+                                            <tspan x="142.342252" y="59">{{ __('Thống kê') }}</tspan>
                                         </text>
                                         <text id="scores-team-b-label" font-family="NotoSans-Regular, Noto Sans" font-size="14" font-weight="normal" fill="#707070">
-                                            <tspan x="251.125" y="58.1230469">Final Score</tspan>
+                                            <tspan x="251.125" y="58.1230469">{{ __('Điểm chung cuộc') }}</tspan>
                                         </text>
                                         <text id="scores-team-b-button" font-family="NotoSans-Bold, Noto Sans" font-size="14" font-weight="bold" fill="#707070">
-                                            <tspan x="391.230866" y="59">Statistics</tspan>
+                                            <tspan x="391.230866" y="59">{{ __('Thống kê') }}</tspan>
                                         </text>
                                     </g>
                                     <g id="text-layer-results" transform="translate(106.3555, 263.0145)" font-size="14">
                                         <text id="results-heading" font-family="NotoSans-Bold, Noto Sans" font-weight="bold" fill="#DC1A27">
-                                            <tspan x="0" y="15">RESULT</tspan>
+                                            <tspan x="0" y="15">{{ __('Kết quả') }}</tspan>
                                         </text>
                                         <text id="results-text" font-family="NotoSans-Regular, Noto Sans" font-weight="normal" fill="#0C9F9B">
-                                            <tspan x="71" y="15">HILL VALLEY </tspan>
+                                            <tspan x="71" y="15">{{ __('Viettel') }}</tspan>
                                             <tspan x="155.798" y="15" font-family="NotoSans-Bold, Noto Sans" font-weight="bold">3</tspan>
-                                            <tspan x="163.806" y="15">&nbsp;&nbsp;&nbsp; V &nbsp; &nbsp;&nbsp;LYONS ESTATES </tspan>
+                                            <tspan x="163.806" y="15">{{ __('Hà Nội') }}</tspan>
                                             <tspan x="304.534" y="15" font-family="NotoSans-Bold, Noto Sans" font-weight="bold">1</tspan>
                                         </text>
                                     </g>
@@ -657,7 +654,7 @@
 
 <section id="leagues">
     <div class="container">
-        <h2 class="white center">Trusted by thousands worldwide</h2>
+        <h2 class="white center">{{ __('Được hàng ngàn người trên toàn thế giới tin cậy') }}</h2>
         <div id="slider" class="owl-carousel">
 
             <div class="card">
