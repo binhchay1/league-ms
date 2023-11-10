@@ -14,8 +14,8 @@
                     <tr class="design-text">
                         <th scope="col">Tên Đội</th>
                         <th scope="col">Huấn luyện viên</th>
-                        <th scope="col">Ảnh đội đội</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Ảnh đội</th>
+                        <th scope="col">Hành động</th>
                     </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">

@@ -4,30 +4,34 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\Utility;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PlayerRequest;
-use App\Repositories\PlayerRepository;
-use App\Repositories\TeamRepository;
-use Illuminate\Http\Request;
+use App\Http\Requests\SportRequest;
+use App\Repositories\SportRepository;
+use Illuminate\Support\Str;
 
-class PlayerController extends Controller
+class SportController extends Controller
 {
-    protected $playerRepository;
-    protected $teamRepository;
+
+    protected $sportRepository;
     protected $utility;
 
     public function __construct(
-        PlayerRepository $playerRepository,
-        TeamRepository $teamRepository,
+        SportRepository $sportRepository,
         Utility $utility
-
-    ) {
-        $this->playerRepository = $playerRepository;
-        $this->teamRepository = $teamRepository;
+    )
+    {
+        $this->sportRepository = $sportRepository;
         $this->utility = $utility;
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        //
+        $listSport = $this->sportRepository->index();
+        return view('admin.sport.index',['listSport'=>$listSport]);
     }
 
     /**
@@ -37,12 +41,7 @@ class PlayerController extends Controller
      */
     public function create()
     {
-        $listTeam = $this->teamRepository->index();
-        $gender = config('player.gender');
-        return view('admin.player.create',[
-            'gender'=> $gender,
-            'listTeam'=> $listTeam
-        ]);
+        return view('admin.sport.create');
     }
 
     /**
@@ -51,20 +50,22 @@ class PlayerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PlayerRequest $request)
+    public function store(SportRequest $request)
     {
+
         $input = $request->except(['_token']);
+        $input['link'] = Str::slug($request->link);
+
 
         if (isset($input['image'])) {
             $img = $this->utility->saveImageLogo($input);
             if ($img) {
-                $path = '/images/player/' . $input['image']->getClientOriginalName();
+                $path = '/images/sport/' . $input['image']->getClientOriginalName();
                 $input['image'] = $path;
             }
         }
-        $this->playerRepository->store($input);
-
-        return redirect()->back()->with('success', 'Create player successfully!');
+        $this->sportRepository->store($input);
+        return redirect('list-sport');
     }
 
     /**
@@ -75,7 +76,7 @@ class PlayerController extends Controller
      */
     public function show($id)
     {
-        //
+        $dataSport = $this->sportRepository->showData($id);
     }
 
     /**
@@ -86,7 +87,8 @@ class PlayerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dataSport = $this->sportRepository->showData($id);
+        return view('admin.sport.update', ['dataSport'=>$dataSport]);
     }
 
     /**
@@ -96,9 +98,20 @@ class PlayerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SportRequest $request, $id)
     {
-        //
+        $input = $request->except(['_token']);
+        $input['link'] = Str::slug($request->link);
+        if (isset($input['image'])) {
+            $img = $this->utility->saveImageLogo($input);
+            if ($img) {
+                $path = '/images/sport/' . $input['image']->getClientOriginalName();
+                $input['image'] = $path;
+            }
+        }
+
+        $dataTeam = $this->sportRepository->updateData($input, $id);
+        return redirect('list-sport');
     }
 
     /**

@@ -68,7 +68,7 @@ class TournamentController extends Controller
         if (isset($input['image'])) {
             $img = $this->utility->saveImageLogo($input);
             if ($img) {
-                $path = '/images/logo/' . $input['image']->getClientOriginalName();
+                $path = '/images/tournament/' . $input['image']->getClientOriginalName();
                 $input['image'] = $path;
             }
         }
@@ -124,7 +124,7 @@ class TournamentController extends Controller
         if (isset($input['image'])) {
             $img = $this->utility->saveImageLogo($input);
             if ($img) {
-                $path = '/images/logo/' . $input['image']->getClientOriginalName();
+                $path = '/images/tournament/' . $input['image']->getClientOriginalName();
                 $input['image'] = $path;
             }
         }

@@ -38,10 +38,10 @@ Route::middleware([
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('custom-login', [AuthController::class, 'customLogin'])->name('login.custom');
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
-Route::get('/auth/google', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogleCallback']);
-Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
-Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFacebookCallback']);
+//Route::get('/auth/google', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
+//Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogleCallback']);
+//Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
+//Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFacebookCallback']);
 Route::get('register', [AuthController::class, 'registerUser'])->name('register_user');
 Route::post('register', [AuthController::class, 'storeUser'])->name('storeUser');
 
@@ -59,6 +59,18 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::middleware(['admin', 'auth'])->group(
         function () {
             Route::get('dashboard', [AuthController::class, 'dashboard']);
+            //User
+            Route::get('/list-user', 'App\Http\Controllers\Admin\UserController@index')->name('user.index');
+            Route::get('/delete/{id}', 'App\Http\Controllers\Admin\UserController@destroy')->name('user.delete');
+
+            //Sport
+            Route::get('/list-sport', 'App\Http\Controllers\Admin\SportController@index')->name('sport.index');
+            Route::get('/create-sport', 'App\Http\Controllers\Admin\SportController@create')->name('sport.create');
+            Route::post('/store-sport', 'App\Http\Controllers\Admin\SportController@store')->name('sport.store');
+            Route::get('/sport/{id}', 'App\Http\Controllers\Admin\SportController@show')->name('sport.show');
+            Route::get('/edit-sport/{id}', 'App\Http\Controllers\Admin\SportController@edit')->name('sport.edit');
+            Route::post('/update-sport/{id}', 'App\Http\Controllers\Admin\SportController@update')->name('sport.update');
+
             //Tournament
             Route::get('/list-tournament', 'App\Http\Controllers\Admin\TournamentController@index')->name('tournament.index');
             Route::get('/create-tournament', 'App\Http\Controllers\Admin\TournamentController@create')->name('tournament.create');

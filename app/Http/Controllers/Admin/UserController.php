@@ -2,32 +2,30 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\Utility;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PlayerRequest;
-use App\Repositories\PlayerRepository;
-use App\Repositories\TeamRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
-class PlayerController extends Controller
+class UserController extends Controller
 {
-    protected $playerRepository;
-    protected $teamRepository;
-    protected $utility;
+    protected $userRepository;
 
     public function __construct(
-        PlayerRepository $playerRepository,
-        TeamRepository $teamRepository,
-        Utility $utility
-
-    ) {
-        $this->playerRepository = $playerRepository;
-        $this->teamRepository = $teamRepository;
-        $this->utility = $utility;
+        UserRepository $userRepository
+    )
+    {
+        $this->userRepository= $userRepository;
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        //
+        $dataUser = $this->userRepository->index();
+        return view('admin.user.index', ['dataUser'=> $dataUser]);
     }
 
     /**
@@ -37,12 +35,7 @@ class PlayerController extends Controller
      */
     public function create()
     {
-        $listTeam = $this->teamRepository->index();
-        $gender = config('player.gender');
-        return view('admin.player.create',[
-            'gender'=> $gender,
-            'listTeam'=> $listTeam
-        ]);
+        //
     }
 
     /**
@@ -51,20 +44,9 @@ class PlayerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PlayerRequest $request)
+    public function store(Request $request)
     {
-        $input = $request->except(['_token']);
-
-        if (isset($input['image'])) {
-            $img = $this->utility->saveImageLogo($input);
-            if ($img) {
-                $path = '/images/player/' . $input['image']->getClientOriginalName();
-                $input['image'] = $path;
-            }
-        }
-        $this->playerRepository->store($input);
-
-        return redirect()->back()->with('success', 'Create player successfully!');
+        //
     }
 
     /**
@@ -109,6 +91,7 @@ class PlayerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->userRepository->destroy($id);
+        return back()->with('success', 'Delete User successfully!');
     }
 }

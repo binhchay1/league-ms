@@ -1,7 +1,7 @@
 @extends('layout.admin_layout')
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span>Chi Tiết set Đấu</h5>
+    <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span>Chi Tiết Trận Đấu</h5>
     <div class="card container">
         <div class="row justify-content-start m-1 mb-2 mt-2">
             <button type="submit" class="btn btn-success">Vòng: {{$dataSchedule->match}}</button>
@@ -89,7 +89,7 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        <strong>Tỉ số trận 1 1</strong>
+                                        <strong>Tỉ số trận 1 </strong>
                                         <input class="form-control" type="text" name="set_1_team_1" id="name" />
                                         @if ($errors->has('set_1_team_1'))
                                         <span class="text-danger">{{ $errors->first('set_1_team_1') }}</span>
