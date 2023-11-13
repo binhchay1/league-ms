@@ -6,18 +6,18 @@
         }
     </style>
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span> Lịch Thi Đấu</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span>{{__('Lịch Thi Đấu')}} </h4>
         <div class="card" style="padding: 10px">
             <div class=" container-xl table-responsive text-nowrap">
                 <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">
                     <thead>
                     <tr class="design-text">
-                        <th scope="col">Giải đấu</th>
-                        <th scope="col">Vòng đấu</th>
-                        <th scope="col">Lịch thi đấu</th>
-                        <th scope="col">Đội thi đấu</th>
-                        <th scope="col">Sân thi đấu</th>
-                        <th scope="col">Hành động</th>
+                        <th scope="col">{{__('Giải đấu')}}</th>
+                        <th scope="col">{{__('Vòng đấu')}}</th>
+                        <th scope="col">{{__('ịch thi đấu')}}L</th>
+                        <th scope="col">{{__('Đội thi đấu')}}</th>
+                        <th scope="col">{{__('Sân thi đấu')}}</th>
+                        <th scope="col">{{__('Hành động')}}</th>
                     </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -41,7 +41,7 @@
                             <td>{{$data->stadium}}</td>
                             <td class="text-center">
                                 <a href="{{route('schedule.show', $data['id'])}}" class="btn btn-info">
-                                    <span style="color:white"></span> Chi tiết
+                                    <span style="color:white"></span>{{__('Chi tiết')}}
                                 </a>
                             </td>
                         </tr>

@@ -6,28 +6,26 @@
         }
     </style>
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span> Danh Sách Giải Đấu</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span> {{__('Danh Sách Giải Đấu')}}</h4>
         <div class="card" style="padding: 10px">
             <div class=" container-xl table-responsive text-nowrap">
                 <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">
                     <thead>
                     <tr class="design-text">
-                        <th scope="col">ID</th>
-                        <th scope="col">Tên giải đấu</th>
-                        <th scope="col">Ngày Bắt Đầu</th>
-                        <th scope="col">Ngày kết thúc</th>
-                        <th scope="col">Hình ảnh</th>
-                        <th scope="col">Hình thức thi đấu</th>
-                        <th scope="col">Thể thức thi đấu</th>
-                        <th scope="col">Số đội tham gia</th>
-                        <th scope="col">Số người tham gia mỗi đội</th>
-                        <th scope="col">Hành động</th>
+                        <th scope="col">{{__('Tên giải đấu')}}</th>
+                        <th scope="col">{{__('Ngày Bắt Đầu')}}</th>
+                        <th scope="col">{{__('Ngày kết thúc')}}</th>
+                        <th scope="col">{{__('Hình ảnh')}}</th>
+                        <th scope="col">{{__('Hình thức thi đấu')}}u</th>
+                        <th scope="col">{{__('Thể thức thi đấu')}}</th>
+                        <th scope="col">{{__('Số đội tham gia')}}</th>
+                        <th scope="col">{{__('Số người tham gia mỗi đội')}}</th>
+                        <th scope="col">{{__('Hành động')}}</th>
                     </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                     @foreach($listTournament as $data)
                         <tr>
-                            <td>{{ $data->id }}</td>
                             <td>{{$data->name}}</td>
                             <td>{{ $data->start_date }}</td>
                             <td>{{ $data->end_date }}</td>
@@ -38,10 +36,10 @@
                             <td>{{ $data->people_of_team }}</td>
                             <td>
                                 <a href="{{route('tournament.edit',$data['id'])}}">
-                                    <button type="button" class="btn btn-info">Sửa</button>
+                                    <button type="button" class="btn btn-info">{{__('Sửa')}}</button>
                                 </a>
                                 <a href="">
-                                    <button type="button" class="btn btn-danger">Xóa</button>
+                                    <button type="button" class="btn btn-danger">{{__('Xóa')}}</button>
                                 </a>
                             </td>
                         </tr>

@@ -2,67 +2,128 @@
 <html lang="vi" itemscope itemtype="http://schema.org/Article">
 
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta name="description" content="{{ __('Phần mềm tổ chức, ứng dụng quản lý giải đấu thể thao giúp tiết kiệm thời gian, chi phí và làm cho giải đấu của bạn chuyên nghiệp, thành công hơn.') }}" />
-    <meta name="robots" content="all" />
-    <meta name="keywords" content="{{ __('quản lý giải đấu, tổ chức giải đấu, hệ thống quản lý giải đấu, app quản lý giải đấu, phần mềm quản lý giải đấu, quản lý giải đấu phủi, quản lý giải đấu thể thao, phần mềm tổ chức giải đấu, bóng đá phủi, bóng đá sinh viên, bóng đá học sinh, quản lý giải đấu bóng đá, bóng đá phong trào, bóng đá phủi, bóng đá sân 7, bóng đá sân bảy, bóng đá sân nhân tạo, người quản lý bóng đá, tạo giải đấu game, lịch thi đấu, xếp lịch thi đấu, tổ chức giải đấu, kết quả trận đấu, điểm số, bảng xếp hạng, giải đấu loại trực tiếp, giải đấu vòng tròn, sự kiện giải đấu thể thao, chia bảng đấu online.') }}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff">
 
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" href="/assets/images/favicons/favicon-152.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/favicons/favicon-57.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/favicons/favicon-76.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="/assets/images/favicons/favicon-96.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/favicons/favicon-120.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/favicons/favicon-152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/favicon-180.png" />
 
-    <title>{{ env('APP_NAME', 'Pro League') }}</title>
-    <link rel="shortcut icon" href="{{ asset('/homepage/content/images/football.ico') }}" type="image/x-icon" />
-    <link href="{{ asset('/homepage/asset/aos/aos.css') }}" rel="stylesheet" />
-    <link href="{{ asset('/homepage/css/app.css') }}" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16.png" />
+    <link rel="shortcut icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32.png" />
+    <link rel="shortcut icon" type="image/png" sizes="48x48" href="/assets/images/favicons/favicon-48.png" />
+    <link rel="shortcut icon" type="image/png" sizes="64x64" href="/assets/images/favicons/favicon-64.png" />
+    <link rel="shortcut icon" type="image/png" sizes="96x96" href="/assets/images/favicons/favicon-96.png" />
+    <link rel="shortcut icon" type="image/png" sizes="196x196" href="/assets/images/favicons/favicon-196.png" />
 
-    <style>
-        #wrapHomePage #fullpage #home--2:before {
-            background-image: none;
-            background-color: transparent;
-        }
+    <meta name="msapplication-TileColor" content="#E45357">
+    <meta name="msapplication-TileImage" content="/assets/images/favicons/favicon-144.png" />
 
-        .container-fluid {
-            background-color: #001e28 !important;
-        }
+    <meta name="application-name" content="LeagueRepublic">
+    <meta name="msapplication-tooltip" content="LeagueRepublic">
+    <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+    <!--  Favicons END -->
 
-        .btn-outline {
-            background-color: #0f2d37;
-        }
+    <title>Homepage</title>
+    <meta name="description" content="Easily manage your league: fixture generator, results, statistics, players and get a professional website." />
+    <meta name="keywords" content="league management software,sports management software,sports organiser,youth sports website builder,best sports website design, league scheduler,fixture generator" />
+    <meta name="robots" content="Index,Follow" />
+    <link rel="canonical" href="{{ env('APP_URL', 'https://baminto.io') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ __('/css/page/style.css') }}">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
 
-        a {
-            color: #596377;
-        }
-    </style>
+    <!-- JS END -->
+    <link rel="alternate" hreflang="en-US" href="https://us.leaguerepublic.com/index.html" />
+    <link rel="alternate" hreflang="vi" href="https://vi.leaguerepublic.com/index.html" />
+    <link rel="alternate" hreflang="x-default" href="https://www.leaguerepublic.com/index.html" />
+
 </head>
 
-<body data-user-id class>
+<body>
+    <header>
+        <div class="top-nav">
+            <ul class="container">
+                <li><a href="/top-sites.html">Top Sites</a></li>
+                <li><a href="https://help.leaguerepublic.com">Help Centre</a></li>
+                <li class="menu">
+                    <span>en</span>
+                    <ul>
+                        <li>
+                            <a class="" href="https://us.leaguerepublic.com/">
+                                English (US)
+                            </a>
+                        </li>
 
-    <div class="bodyContent">
-        <div id="AppBar">
-            @include('page.navbar')
+                        <li>
+                            <a class="" href="https://vi.leaguerepublic.com/">
+                                Tiếng Việt
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
         </div>
+        <nav class="container">
+            <a href="/index.html"><img src="/assets/images/lr-logo/logo.svg" alt="LeagueRepublic" width="225" height="52"></a>
+            <button id="toggle-menu" onclick="toggleMobileMenu()"></button>
+            <ul id="menu">
+                <li class="menu">Sports
+                    <ul>
+                        <li>
+                            <a href="/badminton.html">
+                                Badminton
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="menu">Features
+                    <ul>
+                        <li><a href="/features/scheduling.html">League Scheduler</a></li>
+                        <li><a href="/features/results-and-statistics.html">Results & Statistics</a></li>
+                        <li><a href="/features/team-and-player-registration.html">Team & Player Registration</a></li>
+                        <li><a href="/features/site-builder.html">Site Builder</a></li>
+                        <li><a href="/features/league-website-integration.html">Website Integration</a></li>
+                    </ul>
+                </li>
+                <li><a href="/pricing.html">Pricing</a></li>
+                <li id="search">
+                    <form id="searchMenuForm" name="searchMenuForm" action="/search.html" method="post">
+                        <div onclick="openSearch()">
+                            <input type="search" name="searchValue" placeholder="Search leagues...">
+                            <button type="button">
+                                <img src="{{ asset('/svg/icon-search.svg') }}" alt="Search" title="Search" width="15" height="15">
+                            </button>
+                        </div>
+                    </form>
+
+                </li>
+                <li><a href="{{ route('login') }}" class="button white">{{ __('Đăng nhập') }}</a></li>
+                <li><a href="{{ route('register_user') }}" class="button">{{ __('Đăng ký') }}</a></li>
+            </ul>
+            <span class="message">
+                {{ __('Tìm giải đấu của tôi') }}
+            </span>
+        </nav>
+    </header>
+    <div>
         @yield('content')
-        <div id="AppFooter">
-            @include('page.footer')
-        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <script src="{{ asset('/js/jquery.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/homepage/content/js/vendors/jquery/jquery.ui.timepicker.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/js/datetimepicker.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/homepage/content/js/vendors/bootstrap/bootstrap.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/js/dataTables.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/homepage/content/js/vendors/toastr/toastr.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/js/sweetalert2.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/js/lazyIntroCroppiePaceTippy.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/js/photoswipe.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/homepage/content/system/theme/assets/global/plugins/moment.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/homepage/content/system/theme/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/homepage/content/js/vendors/exif/exif.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/js/myleague.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/homepage/content/js/vendors/countUp/countUp.js') }}"></script>
-    <script src="{{ asset('/homepage/asset/aos/aos.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="/assets/js/owl.carousel.min.js"></script>
+    <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="/assets/js/common.min.1.3.js"></script>
+    <script src="{{ asset('js/vendors/countUp/countUp.js') }}"></script>
     @yield('js')
 
 

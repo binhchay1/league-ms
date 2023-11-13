@@ -6,7 +6,7 @@
         }
     </style>
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span> Danh Sách Người Dùng</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span> {{__('Danh Sách Người Dùng')}}</h4>
         @if(session()->has('success'))
             <div class="alert alert-success text-center">
                 {{ session()->get('success') }}
@@ -17,15 +17,15 @@
                 <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">
                     <thead>
                     <tr class="design-text">
-                        <th scope="col">Tên</th>
-                        <th scope="col">Hòm thư</th>
-                        <th scope="col">Hình ảnh</th>
-                        <th scope="col">Số điện thoại</th>
-                        <th scope="col">Địa chỉ</th>
-                        <th scope="col">Ngày sinh</th>
-                        <th scope="col">Giới tính</th>
+                        <th scope="col">{{__('Tên')}}</th>
+                        <th scope="col">{{__('Hòm thư')}}</th>
+                        <th scope="col">{{__('Hình ảnh')}}</th>
+                        <th scope="col">{{__('Số điện thoại')}}</th>
+                        <th scope="col">{{__('Địa chỉ')}}</th>
+                        <th scope="col">{{__('Ngày sinh')}}</th>
+                        <th scope="col">{{__('Giới tính')}}</th>
 
-                        <th style="width: 10%" scope="col">Hành động</th>
+                        <th style="width: 10%" scope="col">{{__('Hành động')}}</th>
                     </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -40,7 +40,7 @@
                             <td>{{ $data->sex }}</td>
                             <td class="text_flow text-center">
                                 <a href="{{route('user.delete', $data['id'])}}">
-                                    <button type="button" class="btn btn-danger">Xóa</button>
+                                    <button type="button" class="btn btn-danger">{{__('Xóa')}}</button>
                                 </a>
                             </td>
                         </tr>

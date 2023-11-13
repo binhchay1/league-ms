@@ -4,12 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class RegisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
+     *
+     * @return bool
      */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
@@ -17,15 +19,11 @@ class UserRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array
      */
-    public function rules(): array
+    public function rules()
     {
-        $age = date("Y-m-d", time() + 86400);
         return [
-            'age' => 'before:' . $age,
-            'phone' => 'bail|digits_between:10,11',
-            'image' => 'image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|string|min:8|max:64',
@@ -45,10 +43,7 @@ class UserRequest extends FormRequest
             'password.string' => __('Mật khẩu không đúng định dạng'),
             'password.min' => __('Mật khẩu tối thiểu trên 8 kí tự'),
             'password.max' => __('Mật khẩu không vượt quá 64 kí tự'),
-            'image.image' => __('Hình ảnh phải là dạng ảnh'),
-            'image.mimes' => __('Hình ảnh không đúng định dạng'),
-            'image.max' => __('Kích thước ảnh vượt quá 2048px'),
-            'age.before' => __('Ngày sinh không được sau ngày hiện tại'),
         ];
+
     }
 }
