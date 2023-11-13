@@ -10,7 +10,7 @@
                 <h1>{{ __('Nơi dễ dàng nhất để điều hành giải đấu thể thao của bạn') }}</h1>
                 <p>{{ __('Phần mềm Quản lý Giải đấu Thể thao - giải pháp tổ chức và quản lý các giải đấu với giao diện thân thiện với người dùng và các tính năng bao gồm tạo giải đấu, lập lịch thi đấu, theo dõi kết quả, đăng ký cầu thủ và trang web chuyên nghiệp.') }}</p>
                 <p>
-                    <a href="{{ route('') }}" class="button">{{ __('Đăng kí miễn phí') }}</a>
+                    <a href="" class="button">{{ __('Đăng kí miễn phí') }}</a>
                     <a href="/" class="button navy js-openMessenger">{{ __('Dùng thử') }}</a>
                     <a href="/pricing.html" class="button white">{{ __('Khám phá giá cả') }}</a>
                     <br>

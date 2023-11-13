@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +12,7 @@ use Hash;
 use Session;
 use App\Models\User;
 
-class AuthController extends Controller
+class  AuthController extends Controller
 {
 
     public function login()
@@ -18,15 +20,9 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function customLogin(Request $request)
+    public function customLogin(LoginRequest $request)
     {
-        $request->validate([
-            'email' => 'required|max:255|email',
-            'password' => 'required',
-        ]);
-
         $credentials = $request->only('email', 'password');
-
 
         if (Auth::attempt($credentials)) {
             $request->session()->put('email', $credentials['email']);
@@ -64,14 +60,8 @@ class AuthController extends Controller
         return view('auth.registerUser');
     }
 
-    public function storeUser(Request $request)
+    public function storeUser(RegisterRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-        ]);
-
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],

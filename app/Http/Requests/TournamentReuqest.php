@@ -38,18 +38,21 @@ class TournamentReuqest extends FormRequest
     public function messages()
     {
         return [
-            'name.unique' => __('validation.unique'),
-            'start_date.required' => __('validation.required'),
-            'start_date.date' => __('validation.date'),
-            'end_date.required' => __('validation.required'),
-            'end_date.date' => __('validation.date'),
-            'end_date.after_or_equal' => __('validation.after_or_equal'),
-            'format.required' => __('validation.required'),
-            'number_of_team.required' => __('validation.required'),
-            'type.required' => __('validation.required'),
-            'image.image' => __('validation.image'),
-            'image.mimes' => __('validation.mimes'),
-            'image.max' => __('validation.max'),
+            'name.required' => __('Tên không được để trống'),
+            'name.unique' => __('Tên không được trùng nhau'),
+            'coach.required' => __('Huấn luyện viên không được bỏ trống'),
+            'image.required' => __('Hình ảnh không được bỏ trống'),
+            'image.image' => __('Hình ảnh phải là dạng ảnh'),
+            'image.mimes' => __('Hình ảnh không đúng định dạng'),
+            'image.max' => __('Kích thước ảnh vượt quá 2048px'),
+            'start_date.required' => __('Ngày bắt đầu không được để trống'),
+            'start_date.date' => __('Ngày bắt đầu không đúng định dạng'),
+            'end_date.required' => __('Ngày kết thúc không được để trống'),
+            'end_date.date' => __('Ngày kết thúc không đúng định dạng'),
+            'end_date.after_or_equal' => __('Ngày kết thúc phải sau ngày bắt đầu'),
+            'format.required' => __('Hình thức thi đấu không được để trống'),
+            'number_of_team.required' => __('Số đội tham gia không được để trống'),
+            'type.required' => __('Thể thức thi đấu không được để trống'),
         ];
     }
 }

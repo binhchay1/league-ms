@@ -6,21 +6,21 @@
     }
 </style>
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span> Lịch Thi Đấu</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span>{{__('Lịch Thi Đấu')}} </h4>
     <div class="card" style="padding: 10px">
         <div class=" container-xl table-responsive text-nowrap">
             <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">
                 <thead>
                     <tr class="design-text">
-                        <th scope="col" style="width: 15px">Giải đấu</th>
-                        <th scope="col" style="width: 15px">Vòng đấu</th>
-                        <th scope="col">Đội 1</th>
-                        <th scope="col">Đội 2</th>
-                        <th scope="col" style="width: 15px">Tổng tỉ số</th>
-                        <th scope="col" style="width: 15px">Tỉ số trận 1</th>
-                        <th scope="col" style="width: 15px">Tỉ số trận 2</th>
-                        <th scope="col" style="width: 15px">Tỉ số trận 3</th>
-                        <th scope="col">Sân thi đấu</th>
+                        <th scope="col" style="width: 15px">{{__('Giải đấu')}}</th>
+                        <th scope="col" style="width: 15px">{{__('Vòng đấu')}}</th>
+                        <th scope="col">{{__('')}}Đội 1</th>
+                        <th scope="col">{{__('')}}Đội 2</th>
+                        <th scope="col" style="width: 15px">{{__('Tổng tỉ số')}}</th>
+                        <th scope="col" style="width: 15px">{{__('Tỉ số trận 1')}}</th>
+                        <th scope="col" style="width: 15px">{{__('Tỉ số trận 2')}}</th>
+                        <th scope="col" style="width: 15px">{{__('Tỉ số trận 3')}}</th>
+                        <th scope="col">{{__('Sân thi đấu')}}</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">

@@ -3,7 +3,7 @@
     <div class="container-fluid mt-4">
         <div class="card card-default">
             <div class="card-header">
-                <h2 class="card-title">Tạo Vận Động Viên</h2>
+                <h2 class="card-title">{{__('Tạo Vận Động Viên')}}</h2>
             </div>
             <div class="card-body">
                 <form id="formAccountSettings" method="POST" action="{{ route('player.store') }}" enctype="multipart/form-data">
@@ -15,7 +15,7 @@
                     @csrf()
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="lastName" class="form-label">Ảnh đại diện</label>
+                            <label for="lastName" class="form-label">{{__('Ảnh đại diện')}}</label>
                             <div class="form-group" >
                                 <div class="" style="display: inline-grid;">
                                     <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
@@ -24,7 +24,7 @@
                                             <img id="showImage" class="show-avatar" src="/images/champion.png" alt="avatar" style="width: 300px; margin-left: 40px">
                                         </div>
                                         <div id="button" >
-                                            <i id="btn_chooseImg" class="fas fa-camera">  Chọn ảnh</i>
+                                            <i id="btn_chooseImg" class="fas fa-camera">        {{__(' Chọn ảnh')}} </i>
                                         </div>
                                     </div>
                                 </div>
@@ -32,21 +32,21 @@
                         </div>
                         <div class="col-md-6">
                             <div class="">
-                                <label for="lastName" class="form-label">Tên vận động viên</label>
+                                <label for="lastName" class="form-label">{{__('Tên vận động viên')}}</label>
                                 <input class="form-control" type="text" name="name" id="name"  />
                                 @if ($errors->has('name'))
                                     <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif
                             </div>
                             <div class="mt-4">
-                                <label for="address" class="form-label">Ngày sinh</label>
+                                <label for="address" class="form-label">{{__('Ngày sinh')}}</label>
                                 <input type="date" class="form-control" id="birthday" name="birthday" />
                                 @if ($errors->has('birthday'))
                                     <span class="text-danger">{{ $errors->first('birthday') }}</span>
                                 @endif
                             </div>
                             <div class="mt-4">
-                                <label class="form-label" for="country">Giới tính</label>
+                                <label class="form-label" for="country">{{__('Giới tính')}}</label>
                                 <select id="sex" name="sex" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
                                     @foreach($gender as $sex => $value)
                                         <option id="sex" value="{{$value}}">{{$value}}</option>
@@ -54,7 +54,7 @@
                                 </select>
                             </div>
                             <div class="mt-4">
-                                <label class="form-label" for="country">Đội</label>
+                                <label class="form-label" for="country">{{__('Đội')}}</label>
                                 <select id="team_id" name="team_id" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
                                     @foreach ($listTeam as $team)
                                         <option id="team_id" value="{{ $team->id }}" >
@@ -66,8 +66,8 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-primary me-2">Lưu</button>
-                        <button type="reset" class="btn btn-outline-secondary">Hủy</button>
+                        <button type="submit" class="btn btn-primary me-2">{{__('Lưu')}}</button>
+                        <button type="reset" class="btn btn-outline-secondary">{{__('Hủy')}}</button>
                     </div>
                 </form>
             </div>
