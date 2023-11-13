@@ -3,14 +3,14 @@
     <div class="container-fluid mt-4">
         <div class="card card-default">
             <div class="card-header">
-                <h2 class="card-title">Tạo Đội</h2>
+                <h2 class="card-title">{{__('Tạo Đội')}}</h2>
             </div>
             <div class="card-body">
                 <form id="formAccountSettings" method="POST" action="{{ route('sport.update', $dataSport['id'])}}" enctype="multipart/form-data">
                     @csrf()
                     <div class="row">
                         <div class="col-md-4">
-                            <label for="lastName" class="form-label">Ảnh môn thể thao</label>
+                            <label for="lastName" class="form-label">{{__('Ảnh môn thể thao')}}</label>
                             <div class="form-group" >
                                 <div class="" style="display: inline-grid;">
                                     <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
@@ -19,7 +19,7 @@
                                             <img id="showImage" class="show-avatar" style="width: 100px; border-radius: 10px" src="{{$dataSport->image}} " alt="avatar">
                                         </div>
                                         <div id="button" >
-                                            <i id="btn_chooseImg" class="fas fa-camera" >  Chọn ảnh</i>
+                                            <i id="btn_chooseImg" class="fas fa-camera" >  {{__('Chọn ảnh')}}</i>
                                         </div>
                                         @if ($errors->has('image'))
                                             <span class="text-danger">{{ $errors->first('image') }}</span>
@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <label for="lastName" class="form-label">Tên môn thể thao</label>
+                                <label for="lastName" class="form-label">{{__('Tên môn thể thao')}}</label>
                                 <input class="form-control" type="text" value="{{$dataSport->name}}" name="name" id="name"/>
                                 @if ($errors->has('name'))
                                     <span class="text-danger">{{ $errors->first('name') }}</span>
@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="" style="margin-top: 5%;">
-                                <label for="address" class="form-label">Đường dẫn</label>
+                                <label for="address" class="form-label">{{__('Đường dẫn')}}</label>
                                 <input type="text" value="{{$dataSport->link}}" class="form-control" id="link" name="link"/>
                                 @if ($errors->has('link'))
                                     <span class="text-danger">{{ $errors->first('link') }}</span>
@@ -48,8 +48,8 @@
 
                     </div>
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-primary me-2">Lưu</button>
-                        <button type="reset" class="btn btn-outline-secondary">Hủy</button>
+                        <button type="submit" class="btn btn-primary me-2">{{__('Lưu')}}</button>
+                        <button type="reset" class="btn btn-outline-secondary">{{__('Hủy')}}</button>
                     </div>
                 </form>
             </div>

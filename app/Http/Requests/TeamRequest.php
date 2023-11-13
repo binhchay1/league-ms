@@ -35,12 +35,14 @@ class TeamRequest extends FormRequest
     {
         return [
 
-            'name.required' => __('validation.required'),
-            'name.unique' => __('validation.unique'),
-            'coach.required' => __('validation.required'),
-            'image.required' => __('validation.required'),
-            'image.mimes' => __('validation.mimes'),
-            'image.max' => __('validation.max'),
+
+            'name.required' => __('Tên không được để trống'),
+            'name.unique' => __('Tên không được trùng nhau'),
+            'coach.required' => __('Huấn luyện viên không được bỏ trống'),
+            'image.required' => __('Hình ảnh không được bỏ trống'),
+            'image.image' => __('Hình ảnh phải là dạng ảnh'),
+            'image.mimes' => __('Hình ảnh không đúng định dạng'),
+            'image.max' => __('Kích thước ảnh vượt quá 2048px'),
         ];
     }
 }

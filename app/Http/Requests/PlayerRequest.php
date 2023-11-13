@@ -33,10 +33,10 @@ class PlayerRequest extends FormRequest
     public function messages()
     {
         return [
-            'team_id.required' => __('validation.required'),
-            'name.required' => __('validation.required'),
-            'birthday.required' => __('validation.required'),
-            'birthday.date' => __('validation.date'),
+            'team_id.required' => __('Đội không được để trống'),
+            'name.required' => __('Tên không được để trống'),
+            'birthday.required' => __('Ngày sinh không được để trống'),
+            'birthday.date' => __('Ngày sinh không hợp lệ'),
         ];
     }
 }

@@ -3,7 +3,7 @@
         <div class="container-fluid mt-4">
             <div class="card card-default">
                 <div class="card-header">
-                    <h5>Tạo Giải Đấu</h5>
+                    <h5>{{__('Tạo Giải Đấu')}}</h5>
                 </div>
                 <div class="card-body">
                     <form id="formAccountSettings" method="POST" action="{{ route('tournament.store') }}" enctype="multipart/form-data">
@@ -11,7 +11,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Logo giải đấu</label>
+                                    <label>{{__('Logo giải đấu')}}</label>
                                     <div class="">
                                         <div class="" style="display: inline-grid;">
                                             <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
@@ -20,7 +20,7 @@
                                                     <img id="showImage" class="show-avatar" src="/images/champion.png" alt="avatar" style="width: 200px; margin-left: 40px">
                                                 </div>
                                                 <div id="button" >
-                                                    <i id="btn_chooseImg" class="fas fa-camera">  Chọn ảnh</i>
+                                                    <i id="btn_chooseImg" class="fas fa-camera">  {{__('Chọn ảnh')}}</i>
                                                 </div>
                                             </div>
                                             @if ($errors->has('image'))
@@ -33,28 +33,28 @@
                             <!-- /.col -->
                             <div class="col-md-6">
                                 <div class="">
-                                    <label for="lastName" class="form-label">Tên giải đấu</label>
+                                    <label for="lastName" class="form-label">{{__('Tên giải đấu')}}</label>
                                     <input class="form-control" type="text" name="name" id="name"  />
                                     @if ($errors->has('name'))
                                         <span class="text-danger">{{ $errors->first('name') }}</span>
                                     @endif
                                 </div>
                                 <div class="mt-4">
-                                    <label for="address" class="form-label">Ngày bắt đầu</label>
+                                    <label for="address" class="form-label">{{__('Ngày bắt đầu')}}</label>
                                     <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Address" />
                                     @if ($errors->has('start_date'))
                                         <span class="text-danger">{{ $errors->first('start_date') }}</span>
                                     @endif
                                 </div>
                                 <div class="mt-4">
-                                    <label for="address" class="form-label">Ngày kết thúc</label>
+                                    <label for="address" class="form-label">{{__('Ngày kết thúc')}}</label>
                                     <input type="date" class="form-control" id="end_date" name="end_date" placeholder="Address" />
                                     @if ($errors->has('end_date'))
                                         <span class="text-danger">{{ $errors->first('end_date') }}</span>
                                     @endif
                                 </div>
                                 <div class="mt-4">
-                                    <label for="lastName" class="form-label">Đội tham gia</label>
+                                    <label for="lastName" class="form-label">{{__('Đội tham gia')}}</label>
                                     <input class="form-control" type="text" name="number_of_team" id="number_of_team"  />
                                     @if ($errors->has('number_of_team'))
                                         <span class="text-danger">{{ $errors->first('number_of_team') }}</span>
@@ -65,7 +65,7 @@
                         <div class="row mt-4">
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
-                                    <label>Thể thức thi đấu</label>
+                                    <label>{{__('Thể thức thi đấu')}}</label>
                                     <select id="format" name="format" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
                                         @foreach($formatTour as $formatTour => $value)
                                             <option id="format" value="{{$value}}">{{$value}}</option>
@@ -75,7 +75,7 @@
                             </div>
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
-                                    <label>Hình thức thi đấu</label>
+                                    <label>{{__('Hình thức thi đấu')}}</label>
                                     <select  id="type" name="type" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
                                         @foreach($type_tour as $type_tour => $value)
                                             <option id="type" value="{{$value}}">{{$value}}</option>
@@ -85,8 +85,8 @@
                             </div>
                         </div>
                         <div class="mt-4">
-                            <button type="submit" class="btn btn-primary me-2">Lưu</button>
-                            <button type="reset" class="btn btn-outline-secondary">Hủy</button>
+                            <button type="submit" class="btn btn-primary me-2">{{__('Lưu')}}</button>
+                            <button type="reset" class="btn btn-outline-secondary">{{__('Hủy')}}</button>
                         </div>
                     </form>
                 </div>
