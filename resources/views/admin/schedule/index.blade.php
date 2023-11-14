@@ -14,7 +14,7 @@
                     <tr class="design-text">
                         <th scope="col">{{__('Giải đấu')}}</th>
                         <th scope="col">{{__('Vòng đấu')}}</th>
-                        <th scope="col">{{__('ịch thi đấu')}}L</th>
+                        <th scope="col">{{__('Lịch thi đấu')}}L</th>
                         <th scope="col">{{__('Đội thi đấu')}}</th>
                         <th scope="col">{{__('Sân thi đấu')}}</th>
                         <th scope="col">{{__('Hành động')}}</th>

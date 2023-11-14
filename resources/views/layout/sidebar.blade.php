@@ -15,7 +15,7 @@
                 <!-- User -->
                 <li class="nav-item">
                     <a href="{{route('user.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-football-ball"></i>
+                        <i class="nav-icon fas fa-user"></i>
                         <p>
                             Người dùng
                             <span class="badge badge-info right"></span>
