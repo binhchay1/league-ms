@@ -103,7 +103,7 @@
             </ul>
         </nav>
     </header>
-    <div class="league " style="background: #eee; border-radius: 10px; ">
+    <div class="league" style="background: #eee; border-radius: 10px;">
         <div class="container">
             <main style="background: white; border-radius: 10px">
                 @yield('content')
@@ -112,7 +112,6 @@
         <div style="background: white">
             @include('page.footer')
         </div>
-
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
