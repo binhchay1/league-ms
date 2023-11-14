@@ -44,6 +44,9 @@
     <link rel="alternate" hreflang="en-US" href="https://us.leaguerepublic.com/index.html" />
     <link rel="alternate" hreflang="vi" href="https://vi.leaguerepublic.com/index.html" />
     <link rel="alternate" hreflang="x-default" href="https://www.leaguerepublic.com/index.html" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 
 </head>
 
@@ -100,9 +103,16 @@
             </ul>
         </nav>
     </header>
-    <div class="league" style="background: #eee; border-radius: 10px; margin-top: -25px;">
-        @yield('content')
-        @include('page.footer')
+    <div class="league " style="background: #eee; border-radius: 10px; ">
+        <div class="container">
+            <main style="background: white; border-radius: 10px">
+                @yield('content')
+            </main>
+        </div>
+        <div style="background: white">
+            @include('page.footer')
+        </div>
+
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>

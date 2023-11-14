@@ -56,4 +56,12 @@ class HomeController extends Controller
             'listTeam' => $listTeam,
         ]);
     }
+
+    public function showInfo($name){
+        $tourInfo = $this->tournamentRepository->showInfo($name);
+        return view('page.tournament.show', [
+            'tourInfo' => $tourInfo,
+        ]);
+
+    }
 }
