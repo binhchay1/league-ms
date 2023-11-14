@@ -48,39 +48,21 @@
 </head>
 
 <body>
-    <header>
+    <header style="background: #001e28">
         <div class="top-nav">
             <ul class="container">
-                <li><a href="/top-sites.html">Top Sites</a></li>
-                <li><a href="https://help.leaguerepublic.com">Help Centre</a></li>
-                <li class="menu">
-                    <span>en</span>
-                    <ul>
-                        <li>
-                            <a class="" href="https://us.leaguerepublic.com/">
-                                English (US)
-                            </a>
-                        </li>
 
-                        <li>
-                            <a class="" href="https://vi.leaguerepublic.com/">
-                                Tiếng Việt
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
             </ul>
         </div>
         <nav class="container">
             <a href="/index.html"><img src="/assets/images/lr-logo/logo.svg" alt="LeagueRepublic" width="225" height="52"></a>
             <button id="toggle-menu" onclick="toggleMobileMenu()"></button>
             <ul id="menu">
-                <li class="menu">Sports
+                <li class="menu">{{__('Giải đấu')}}
                     <ul>
                         <li>
-                            <a href="/badminton.html">
-                                Badminton
+                            <a href="{{route('list.tour')}}">
+                                {{__('Danh sách giải đấu')}}
                             </a>
                         </li>
 
@@ -95,28 +77,32 @@
                         <li><a href="/features/league-website-integration.html">Website Integration</a></li>
                     </ul>
                 </li>
-                <li><a href="/pricing.html">Pricing</a></li>
-                <li id="search">
-                    <form id="searchMenuForm" name="searchMenuForm" action="/search.html" method="post">
-                        <div onclick="openSearch()">
-                            <input type="search" name="searchValue" placeholder="Search leagues...">
-                            <button type="button">
-                                <img src="{{ asset('/svg/icon-search.svg') }}" alt="Search" title="Search" width="15" height="15">
-                            </button>
-                        </div>
-                    </form>
+                <li class="menu">
+                    <span>EN</span>
+                    <ul >
+                        <li>
+                            <a class="" href="https://us.leaguerepublic.com/">
+                                English (US)
+                            </a>
+                        </li>
 
+                        <li>
+                            <a class="" href="https://vi.leaguerepublic.com/">
+                                Tiếng Việt
+                            </a>
+                        </li>
+
+                    </ul>
                 </li>
+
                 <li><a href="{{ route('login') }}" class="button white">{{ __('Đăng nhập') }}</a></li>
-                <li><a href="{{ route('register_user') }}" class="button">{{ __('Đăng ký') }}</a></li>
+                <li><a style="color:white;" href="{{ route('register_user') }}" class="button ">{{ __('Đăng kí') }}</a></li>
             </ul>
-            <span class="message">
-                {{ __('Tìm giải đấu của tôi') }}
-            </span>
         </nav>
     </header>
-    <div>
+    <div class="league" style="background: #eee; border-radius: 10px; margin-top: -25px;">
         @yield('content')
+        @include('page.footer')
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
