@@ -36,7 +36,7 @@
     <meta name="keywords" content="league management software,sports management software,sports organiser,youth sports website builder,best sports website design, league scheduler,fixture generator" />
     <meta name="robots" content="Index,Follow" />
     <link rel="canonical" href="{{ env('APP_URL', 'https://baminto.io') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ __('/css/page/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/page/style.css') }}">
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
 
@@ -58,11 +58,11 @@
             <a href="/index.html"><img src="/assets/images/lr-logo/logo.svg" alt="LeagueRepublic" width="225" height="52"></a>
             <button id="toggle-menu" onclick="toggleMobileMenu()"></button>
             <ul id="menu">
-                <li class="menu">{{__('Giải đấu')}}
+                <li class="menu">{{ __('Giải đấu') }}
                     <ul>
                         <li>
                             <a href="{{route('list.tour')}}">
-                                {{__('Danh sách giải đấu')}}
+                                {{ __('Danh sách giải đấu') }}
                             </a>
                         </li>
 
@@ -79,7 +79,7 @@
                 </li>
                 <li class="menu">
                     <span>EN</span>
-                    <ul >
+                    <ul>
                         <li>
                             <a class="" href="https://us.leaguerepublic.com/">
                                 English (US)
