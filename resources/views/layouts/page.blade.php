@@ -104,8 +104,8 @@
         </nav>
     </header>
     <div class="league" style="background: #eee; border-radius: 10px;">
-        <div class="container">
-            <main style="background: white; border-radius: 10px">
+        <div class="container"style="padding: 10px;">
+            <main >
                 @yield('content')
             </main>
         </div>
