@@ -29,11 +29,11 @@
                             <td>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <img class ="image" src="{{$data->team1->image}}" alt="avatar" style=" width: 15px; border-radius: 10px; margin-right: 15px;">
+                                        <img class ="image" src="{{$data->team1->image ?? asset('/images/default_team_logo.png')}}" alt="avatar" style=" width: 15px; border-radius: 10px; margin-right: 15px;">
                                         {{$data->team1->name}}
                                     </div>
                                     <div  class="col-lg-12 mt-4">
-                                        <img class ="image" src="{{$data->team2->image}}" alt="avatar" style=" width: 15px; border-radius: 10px; margin-right: 15px;">
+                                        <img class ="image" src="{{$data->team2->image ?? asset('/images/default_team_logo.png')}}" alt="avatar" style=" width: 15px; border-radius: 10px; margin-right: 15px;">
                                         {{$data->team2->name}}
                                     </div>
                                 </div>

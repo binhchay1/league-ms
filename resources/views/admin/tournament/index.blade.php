@@ -29,7 +29,7 @@
                             <td>{{$data->name}}</td>
                             <td>{{ $data->start_date }}</td>
                             <td>{{ $data->end_date }}</td>
-                            <td><img class ="image" src="{{$data->image}}" alt="avatar" style="width: 150px"></td>
+                            <td><img class ="image" src="{{$data->image ?? asset('/images/champion.png')}}" alt="avatar" style="width: 150px"></td>
                             <td>{{ $data->format }}</td>
                             <td>{{ $data->type }}</td>
                             <td>{{ $data->number_of_team }}</td>
