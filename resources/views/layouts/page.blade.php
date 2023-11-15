@@ -84,13 +84,13 @@
                     <span>EN</span>
                     <ul>
                         <li>
-                            <a class="" href="https://us.leaguerepublic.com/">
+                            <a class="" href="{{ route('app.setLocale', ['locale' => 'en']) }}">
                                 English (US)
                             </a>
                         </li>
 
                         <li>
-                            <a class="" href="https://vi.leaguerepublic.com/">
+                            <a class="" href="{{ route('app.setLocale', ['locale' => 'vi']) }}">
                                 Tiếng Việt
                             </a>
                         </li>
