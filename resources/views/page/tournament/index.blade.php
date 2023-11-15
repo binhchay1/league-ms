@@ -6,32 +6,9 @@
         }
     </style>
 
-    <div id="FilterTemplate">
-        <form method="GET" action="https://myleague.vn/league" accept-charset="UTF-8" class="form-horizontal league-search-box" id="form-search-league" name="search-league">
-            <input type="hidden" name="tab" value="card">
-            <div class="container">
-                <div class="row">
-                    <div class="" style="margin-top: 30px">
-                        <li id="search">
-                            <form id="searchMenuForm" name="searchMenuForm" action="/search.html" method="post">
-                                <div >
-                                    <input type="search" name="searchValue" placeholder="Search leagues...">
-                                    <button type="button">
-                                        <img src="/images/icon-search.svg" alt="Search" title="Search" width="15" height="15">
-                                    </button>
-                                </div>
-                            </form>
-                        </li>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-
-
-    <div class="row" >
+    <div class="row" style="background: white; border-radius: 10px; padding: 10px">
         @foreach($listTournament as $listTour)
-        <div class="col-lg-4" style="padding: 40px; margin-top: 10px">
+        <div class="col-lg-3" style=" margin-top: 10px">
             <section id="signup" style="background: #eee; border-radius: 10px; " >
                 <div class="">
                     <a href="{{route('tour.info', $listTour['name'])}}">
