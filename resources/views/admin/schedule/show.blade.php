@@ -13,7 +13,7 @@
                         <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                         <div class=" choose-avatar">
                             <div id="btnimage">
-                                <img class="show-avatar" style="width:150px; height: 150px; border-radius: 50%" src="{{$dataSchedule->team1->image}}" alt="avatar">
+                                <img class="show-avatar" style="width:150px; height: 150px; border-radius: 50%" src="{{$dataSchedule->team1->image ?? asset('/images/default_team_logo.png')}}" alt="avatar">
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                         <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                         <div class=" choose-avatar">
                             <div id="btnimage">
-                                <img class="show-avatar" style="width: 150px; height: 150px; border-radius: 50% " src="{{$dataSchedule->team2->image}}" alt="avatar">
+                                <img class="show-avatar" style="width: 150px; height: 150px; border-radius: 50% " src="{{$dataSchedule->team2->image ?? asset('/images/default_team_logo.png')}}" alt="avatar">
                             </div>
                         </div>
                     </div>

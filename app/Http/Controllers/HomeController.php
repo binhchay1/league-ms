@@ -53,13 +53,14 @@ class HomeController extends Controller
     public function showInfo($name)
     {
         $tourInfo = $this->tournamentRepository->showInfo($name);
-
+        $listTournament = $this->tournamentRepository->index();
         $groupSchedule = [];
+      
         foreach ($tourInfo->schedule as $schedule) {
             $groupSchedule[$schedule['match']][] = $schedule;
         }
 
-        return view('page.tournament.show', compact('groupSchedule', 'tourInfo'));
+        return view('page.tournament.show', compact('groupSchedule', 'tourInfo', 'listTournament'));
     }
 
     public function changeLocate($locale)

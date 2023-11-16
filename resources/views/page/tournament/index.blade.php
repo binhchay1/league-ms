@@ -7,6 +7,7 @@
     </style>
 
     <div class="row" style="background: white; border-radius: 10px; padding: 10px">
+        <h2>Danh sách giải đấu</h2>
         @foreach($listTournament as $listTour)
         <div class="col-lg-3" style=" margin-top: 10px">
             <section id="signup" style="background: #eee; border-radius: 10px; " >
@@ -24,22 +25,6 @@
         </div>
         @endforeach
     </div>
-
-
-{{--                        <div class="row">--}}
-{{--                            <div class="col-xs-12" style="padding:0">--}}
-{{--                                <nav class="text-center" aria-label="Page navigation">--}}
-{{--                                    <ul class="pagination">--}}
-{{--                                        <div class="pull-right pagination">--}}
-{{--                                            {{$listTournament->appends($_GET)->links() }}--}}
-{{--                                        </div>--}}
-{{--                                    </ul>--}}
-{{--                                </nav>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-
 
 </main>
 @endsection

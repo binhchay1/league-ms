@@ -23,7 +23,7 @@
                                             <input value="{{$dataTeam->image}}" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                                             <div class=" choose-avatar" >
                                                 <div id="btnimage">
-                                                    <img id="showImage" class="show-avatar" src="{{$dataTeam->image}}" alt="avatar" style="width: 200px; margin-left: 40px">
+                                                    <img id="showImage" class="show-avatar" src="{{$dataTeam->image ?? asset('/images/default_team_logo.png')}}" alt="avatar" style="width: 200px; margin-left: 40px">
                                                 </div>
                                                 <div id="button" >
                                                     <i id="btn_chooseImg" class="fas fa-camera">  {{__('Chọn ảnh')}}</i>

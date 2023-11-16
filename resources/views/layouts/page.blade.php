@@ -46,19 +46,19 @@
     <link rel="alternate" hreflang="x-default" href="https://www.leaguerepublic.com/index.html" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
 </head>
 
 <body>
-    <header style="background: #001e28">
+    <header style="background: #001e28; height: 150px">
         <div class="top-nav">
             <ul class="container">
 
             </ul>
         </div>
         <nav class="container">
-            <a href="/index.html"><img src="/assets/images/lr-logo/logo.svg" alt="LeagueRepublic" width="225" height="52"></a>
+            <a href="{{route('home')}}"><img src="/images/photo_2023-11-15_08-07-44.jpg" alt="LeagueRepublic" style="width: 90px; border-radius: 9px"></a>
             <button id="toggle-menu" onclick="toggleMobileMenu()"></button>
             <ul id="menu">
                 <li class="menu">{{ __('Giải đấu') }}

@@ -23,7 +23,7 @@
                         <tr>
                             <td>{{$data->name}}</td>
                             <td>{{ $data->coach }}</td>
-                            <td><img class ="image" src="{{$data->image}}" alt="avatar" style="width: 150px"></td>
+                            <td><img class ="image" src="{{$data->image ?? asset('/images/default_team_logo.png')}}" alt="avatar" style="width: 150px"></td>
                             <td>
                                 <a href="{{route('team.edit',$data['id'])}}">
                                     <button type="button" class="btn btn-info">{{__('Sửa')}}</button>

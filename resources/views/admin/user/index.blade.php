@@ -33,7 +33,7 @@
                         <tr class="design-text">
                             <td>{{ $data->name}}</th>
                             <td>{{ $data->email }}</td>
-                            <td><img class="image" src="{{ $data->image }}" alt="avatar" width="100" height="50"></td>
+                            <td><img class="image" src="{{ $data->image ?? asset('/images/default-avatar.png') }}" alt="avatar" width="100" height="50"></td>
                             <td>{{ $data->phone }}</td>
                             <td>{{ $data->address }}</td>
                             <td>{{ $data->age }}</td>
