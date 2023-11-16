@@ -25,7 +25,7 @@ class UserController extends Controller
     public function index()
     {
         $dataUser = $this->userRepository->index();
-        return view('admin.user.index', ['dataUser'=> $dataUser]);
+        return view('admin.user.index', compact('dataUser'));
     }
 
     /**

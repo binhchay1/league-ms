@@ -24,22 +24,14 @@ class TeamController extends Controller
         $this->utility = $utility;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $listTeam = $this->teamRepository->index();
-        return view('admin.team.index',['listTeam' => $listTeam]);
+        return view('admin.team.index', compact('listTeam'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         if(Auth::user()->role == Role::ADMIN)
@@ -50,12 +42,7 @@ class TeamController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(TeamRequest $request)
     {
         $input = $request->except(['_token']);
@@ -76,37 +63,21 @@ class TeamController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $dataTeam = $this->teamRepository->showTeamInfo($id);
-        return view('admin.team.show',['dataTeam'=> $dataTeam]);
+        return view('admin.team.show', compact('dataTeam'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $dataTeam = $this->teamRepository->showTeamInfo($id);
-        return view('admin.team.show',['dataTeam'=> $dataTeam]);
+        return view('admin.team.show', compact('dataTeam'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(TeamRequest $request, $id)
     {
         $input = $request->except(['_token']);
@@ -121,16 +92,4 @@ class TeamController extends Controller
         $dataTeam = $this->teamRepository->updateTeam($input, $id);
         return redirect('list-team');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
 }

@@ -6,6 +6,8 @@ use App\Enums\Utility;
 use App\Repositories\TeamRepository;
 use App\Repositories\TournamentRepository;
 use App\Repositories\UserRepository;
+use Config;
+use Session;
 
 class HomeController extends Controller
 {
@@ -13,11 +15,6 @@ class HomeController extends Controller
     protected $teamRepository;
     protected $userRepository;
     protected $utility;
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function __construct(
         TournamentRepository $tournamentRepository,
@@ -44,26 +41,34 @@ class HomeController extends Controller
     public function listTour()
     {
         $listTournament = $this->tournamentRepository->index();
-        return view('page.tournament.index', [
-            'listTournament' => $listTournament,
-        ]);
+        return view('page.tournament.index', compact('listTournament'));
     }
 
     public function listTeam()
     {
         $listTeam = $this->teamRepository->index();
-        return view('page.team.index', [
-            'listTeam' => $listTeam,
-        ]);
+        return view('page.team.index', compact('listTeam'));
     }
 
-    public function showInfo($name){
+    public function showInfo($name)
+    {
         $tourInfo = $this->tournamentRepository->showInfo($name);
         $listTournament = $this->tournamentRepository->index();
-        return view('page.tournament.show', [
-            'tourInfo' => $tourInfo,
-            'listTournament' => $listTournament,
-        ]);
+        $groupSchedule = [];
+      
+        foreach ($tourInfo->schedule as $schedule) {
+            $groupSchedule[$schedule['match']][] = $schedule;
+        }
 
+        return view('page.tournament.show', compact('groupSchedule', 'tourInfo', 'listTournament'));
+    }
+
+    public function changeLocate($locale)
+    {
+        if (in_array($locale, Config::get('app.locales'))) {
+            Session::put('locale', $locale);
+        }
+
+        return redirect()->back();
     }
 }

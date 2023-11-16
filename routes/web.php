@@ -45,6 +45,7 @@ Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'
 Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFacebookCallback']);
 Route::get('register', [AuthController::class, 'registerUser'])->name('register_user');
 Route::post('register', [AuthController::class, 'storeUser'])->name('storeUser');
+Route::get('/setLocale/{locale}', [HomeController::class, 'changeLocate'])->name('app.setLocale');
 
 
 Route::middleware(['auth:sanctum'])->group(function () {

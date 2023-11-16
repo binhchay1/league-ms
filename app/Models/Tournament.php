@@ -10,12 +10,12 @@ class Tournament extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'image','start_date', 'end_date', 'format', 'number_of_team', 'type','sport_id'
+        'name', 'image','start_date', 'end_date', 'format', 'number_of_team', 'type'
     ];
 
 
     public function schedule()
     {
-        return $this->hasMany('App\Models\Schedule');
+        return $this->hasMany('App\Models\Schedule', 'tournament_id', 'id');
     }
 }
