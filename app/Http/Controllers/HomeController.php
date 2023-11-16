@@ -59,8 +59,10 @@ class HomeController extends Controller
 
     public function showInfo($name){
         $tourInfo = $this->tournamentRepository->showInfo($name);
+        $listTournament = $this->tournamentRepository->index();
         return view('page.tournament.show', [
             'tourInfo' => $tourInfo,
+            'listTournament' => $listTournament,
         ]);
 
     }
