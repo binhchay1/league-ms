@@ -47,7 +47,7 @@ class TeamController extends Controller
     {
         $input = $request->except(['_token']);
         if (isset($input['image'])) {
-            $img = $this->utility->saveImageLogo($input);
+            $img = $this->utility->saveImageTeam($input);
             if ($img) {
                 $path = '/images/team/' . $input['image']->getClientOriginalName();
                 $input['image'] = $path;
@@ -82,7 +82,7 @@ class TeamController extends Controller
     {
         $input = $request->except(['_token']);
         if (isset($input['image'])) {
-            $img = $this->utility->saveImageLogo($input);
+            $img = $this->utility->saveImageTeam($input);
             if ($img) {
                 $path = '/images/team/' . $input['image']->getClientOriginalName();
                 $input['image'] = $path;

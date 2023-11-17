@@ -53,10 +53,26 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
-        'public-logo' => [
+        'public-image-tour' => [
             'driver' => 'local',
-            'root' => public_path() . '/images/logo/',
-            'url' => env('APP_URL') . '/images/logo/',
+            'root' => public_path() . '/images/tournament/',
+            'url' => env('APP_URL') . '/images/tournament/',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'public-image-team' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/team/',
+            'url' => env('APP_URL') . '/images/team/',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'public-image-player' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/player/',
+            'url' => env('APP_URL') . '/images/player/',
             'visibility' => 'public',
             'throw' => false,
         ],
