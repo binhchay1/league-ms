@@ -10,7 +10,7 @@ class Tournament extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'image','start_date', 'end_date', 'format', 'number_of_team', 'type'
+        'name', 'image','start_date', 'end_date', 'format', 'number_of_team', 'type','slug'
     ];
 
 

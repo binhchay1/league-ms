@@ -9,7 +9,7 @@
                     <form id="formAccountSettings" method="POST" action="{{ route('tournament.store') }}" enctype="multipart/form-data">
                         @csrf()
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>{{__('Logo giải đấu')}}</label>
                                     <div class="">
@@ -40,19 +40,34 @@
                                     @endif
                                 </div>
                                 <div class="mt-4">
-                                    <label for="address" class="form-label">{{__('Ngày bắt đầu')}}</label>
-                                    <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Address" />
-                                    @if ($errors->has('start_date'))
-                                        <span class="text-danger">{{ $errors->first('start_date') }}</span>
+                                    <label for="lastName" class="form-label">{{__('Slug')}}</label>
+                                    <input class="form-control" type="text" name="slug" id="slug"  />
+                                    @if ($errors->has('slug'))
+                                        <span class="text-danger">{{ $errors->first('slug') }}</span>
                                     @endif
                                 </div>
-                                <div class="mt-4">
-                                    <label for="address" class="form-label">{{__('Ngày kết thúc')}}</label>
-                                    <input type="date" class="form-control" id="end_date" name="end_date" placeholder="Address" />
-                                    @if ($errors->has('end_date'))
-                                        <span class="text-danger">{{ $errors->first('end_date') }}</span>
-                                    @endif
+
+                                <div class="row mt-4">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="address" class="form-label">{{__('Ngày bắt đầu')}}</label>
+                                            <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Address" />
+                                            @if ($errors->has('start_date'))
+                                                <span class="text-danger">{{ $errors->first('start_date') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="address" class="form-label">{{__('Ngày kết thúc')}}</label>
+                                            <input type="date" class="form-control"  id="end_date" name="end_date" placeholder="Address" />
+                                            @if ($errors->has('end_date'))
+                                                <span class="text-danger">{{ $errors->first('end_date') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="mt-4">
                                     <label for="lastName" class="form-label">{{__('Đội tham gia')}}</label>
                                     <input class="form-control" type="text" name="number_of_team" id="number_of_team"  />
@@ -60,30 +75,32 @@
                                         <span class="text-danger">{{ $errors->first('number_of_team') }}</span>
                                     @endif
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row mt-4">
-                            <div class="col-12 col-sm-6">
-                                <div class="form-group">
-                                    <label>{{__('Thể thức thi đấu')}}</label>
-                                    <select id="format" name="format" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                        @foreach($format_tours as $format_tour => $value)
-                                            <option id="format" value="{{$value}}">{{$value}}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="row mt-4">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>{{__('Thể thức thi đấu')}}</label>
+                                            <select id="format" name="format" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                                @foreach($format_tours as $format_tour => $value)
+                                                    <option id="format" value="{{$value}}">{{$value}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>{{__('Hình thức thi đấu')}}</label>
+                                            <select  id="type" name="type" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                                @foreach($type_tours as $type_tour => $value)
+                                                    <option id="type" value="{{$value}}">{{$value}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6">
-                                <div class="form-group">
-                                    <label>{{__('Hình thức thi đấu')}}</label>
-                                    <select  id="type" name="type" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                        @foreach($type_tours as $type_tour => $value)
-                                            <option id="type" value="{{$value}}">{{$value}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+
                         </div>
+
                         <div class="mt-4">
                             <button type="submit" class="btn btn-primary me-2">{{__('Lưu')}}</button>
                             <button type="reset" class="btn btn-outline-secondary">{{__('Hủy')}}</button>

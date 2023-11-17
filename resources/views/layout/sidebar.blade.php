@@ -2,8 +2,8 @@
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="" class="brand-link">
-        <img src="{{asset('/backend/images/logo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
-        <span class="brand-text font-weight-light">Modobom</span>
+        <img src="{{asset('images/logo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
+        <span class="brand-text font-weight-light">badomintion.io</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">

@@ -56,7 +56,7 @@ class PlayerController extends Controller
         $input = $request->except(['_token']);
 
         if (isset($input['image'])) {
-            $img = $this->utility->saveImageLogo($input);
+            $img = $this->utility->saveImagePlayer($input);
             if ($img) {
                 $path = '/images/player/' . $input['image']->getClientOriginalName();
                 $input['image'] = $path;
