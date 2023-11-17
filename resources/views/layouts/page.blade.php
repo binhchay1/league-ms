@@ -60,7 +60,7 @@
             </ul>
         </div>
         <nav class="container">
-            <a href="{{route('home')}}"><img src="/images/Badominton-02.png" alt="LeagueRepublic" style="width: 120px; border-radius: 9px"></a>
+            <a href="{{route('home')}}"><img src="/images/logo.png" alt="LeagueRepublic" style="width: 120px; border-radius: 9px"></a>
             <button id="toggle-menu" onclick="toggleMobileMenu()"></button>
             <ul id="menu">
                 <li class="menu">{{ __('Giải đấu') }}
