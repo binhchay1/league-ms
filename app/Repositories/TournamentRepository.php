@@ -31,8 +31,8 @@ class TournamentRepository extends BaseRepository
         return $this->model->where('id', $id)->update($input);
     }
 
-    public function showInfo($name)
+    public function showInfo($slug)
     {
-        return $this->model->with('schedule')->where('name', $name)->first();
+        return $this->model->with('schedule')->where('slug', $slug)->first();
     }
 }

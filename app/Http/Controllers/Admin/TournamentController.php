@@ -8,6 +8,7 @@ use App\Repositories\TournamentRepository;
 use App\Http\Controllers\Controller;
 use App\Enums\Utility;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class TournamentController extends Controller
 {
@@ -41,6 +42,7 @@ class TournamentController extends Controller
     public function store(TournamentRequest $request)
     {
         $input = $request->except(['_token']);
+        $input['name'] = Str::slug($request->name);
 
         if (isset($input['image'])) {
             $img = $this->utility->saveImageLogo($input);
@@ -74,6 +76,7 @@ class TournamentController extends Controller
     public function update(TournamentRequest $request, $id)
     {
         $input = $request->except(['_token']);
+        $input['name'] = Str::slug($request->name);
         if (isset($input['image'])) {
             $img = $this->utility->saveImageLogo($input);
             if ($img) {
