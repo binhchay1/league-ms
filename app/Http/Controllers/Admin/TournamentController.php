@@ -42,10 +42,10 @@ class TournamentController extends Controller
     public function store(TournamentRequest $request)
     {
         $input = $request->except(['_token']);
-        $input['name'] = Str::slug($request->name);
+        $input['slug'] = Str::slug($request->slug);
 
         if (isset($input['image'])) {
-            $img = $this->utility->saveImageLogo($input);
+            $img = $this->utility->saveImageTournament($input);
             if ($img) {
                 $path = '/images/tournament/' . $input['image']->getClientOriginalName();
                 $input['image'] = $path;
@@ -76,9 +76,9 @@ class TournamentController extends Controller
     public function update(TournamentRequest $request, $id)
     {
         $input = $request->except(['_token']);
-        $input['name'] = Str::slug($request->name);
+        $input['slug'] = Str::slug($request->slug);
         if (isset($input['image'])) {
-            $img = $this->utility->saveImageLogo($input);
+            $img = $this->utility->saveImageTournament($input);
             if ($img) {
                 $path = '/images/tournament/' . $input['image']->getClientOriginalName();
                 $input['image'] = $path;
