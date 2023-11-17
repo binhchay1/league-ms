@@ -33,7 +33,9 @@
     <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
     <!--  Favicons END -->
 
-    <title>Homepage</title>
+    <title>
+        @yield('title') - badominton.io
+    </title>
     <meta name="description" content="Easily manage your league: fixture generator, results, statistics, players and get a professional website." />
     <meta name="keywords" content="league management software,sports management software,sports organiser,youth sports website builder,best sports website design, league scheduler,fixture generator" />
     <meta name="robots" content="Index,Follow" />
