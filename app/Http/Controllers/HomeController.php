@@ -55,7 +55,7 @@ class HomeController extends Controller
         $tourInfo = $this->tournamentRepository->showInfo($name);
         $listTournament = $this->tournamentRepository->index();
         $groupSchedule = [];
-      
+
         foreach ($tourInfo->schedule as $schedule) {
             $groupSchedule[$schedule['match']][] = $schedule;
         }
