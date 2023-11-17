@@ -24,31 +24,31 @@
                 </li>
 
                 <!-- Sport -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-football-ball"></i>
-                        <p>
-                            Môn Thi Đấu
-                            <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right"></span>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('sport.create')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tạo  Môn Thi Đấu</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('sport.index')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh Sách  Môn Thi Đấu</p>
-                            </a>
-                        </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a href="#" class="nav-link">--}}
+{{--                        <i class="nav-icon fas fa-football-ball"></i>--}}
+{{--                        <p>--}}
+{{--                            Môn Thi Đấu--}}
+{{--                            <i class="fas fa-angle-left right"></i>--}}
+{{--                            <span class="badge badge-info right"></span>--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
+{{--                    <ul class="nav nav-treeview">--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{route('sport.create')}}" class="nav-link">--}}
+{{--                                <i class="far fa-circle nav-icon"></i>--}}
+{{--                                <p>Tạo  Môn Thi Đấu</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{route('sport.index')}}" class="nav-link">--}}
+{{--                                <i class="far fa-circle nav-icon"></i>--}}
+{{--                                <p>Danh Sách  Môn Thi Đấu</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
-                    </ul>
-                </li>
+{{--                    </ul>--}}
+{{--                </li>--}}
 
                 <!-- Giải đấu -->
                 <li class="nav-item">
@@ -121,12 +121,12 @@
                                 <p>Tạo Vận Động Viên</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh Sách Vận Động Viên</p>
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="" class="nav-link">--}}
+{{--                                <i class="far fa-circle nav-icon"></i>--}}
+{{--                                <p>Danh Sách Vận Động Viên</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
                     </ul>
                 </li>
