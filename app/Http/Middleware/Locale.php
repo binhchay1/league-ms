@@ -31,7 +31,7 @@ class Locale
             $currentLocale = 'vi';
         }
 
-        if (in_array($currentLocale, Config::get('app.locales'))) {
+        if (in_array($currentLocale, Config::get('app.locales')?? [])) {
             $locale = $currentLocale;
         } else {
             $locale = Config::get('app.locale');
