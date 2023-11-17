@@ -56,7 +56,7 @@
             <div class="mt-4" style="text-align: left">
                 @foreach($listTournament as $dataTour)
                     <div style="font-size: 14px; font-weight: 500; padding: 7px;"><i class='fas fa-baseball-ball'></i>
-                        <a href="{{route('tour.info', $dataTour['name'])}}" style="color: black">
+                        <a href="{{route('tour.info', $dataTour['slug'])}}" style="color: black">
                             {{ $dataTour->name }}
                         </a>
                     </div>
