@@ -1,4 +1,7 @@
 @extends('layouts.page')
+@section('title')
+    Chi tiết giải đấu
+@endsection
 @section('content')
 
     <style>

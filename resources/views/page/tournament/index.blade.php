@@ -1,4 +1,7 @@
 @extends('layouts.page')
+@section('title')
+    Giải đấu
+@endsection
 @section('content')
     <style>
         #signup:before {
