@@ -20,7 +20,7 @@ use App\Http\Controllers\AuthController;
 //homepage
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('list-tournaments', [HomeController::class, 'listTour'])->name('list.tour');
-Route::get('info/{name}', [HomeController::class, 'showInfo'])->name('tour.info');
+Route::get('info/{slug}', [HomeController::class, 'showInfo'])->name('tour.info');
 Route::get('list-teams', [HomeController::class, 'listTeam'])->name('list.team');
 
 Route::middleware([])->group(function () {

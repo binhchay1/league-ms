@@ -12,7 +12,7 @@
         <div class="col-lg-3" style=" margin-top: 10px">
             <section id="signup" style="background: #eee; border-radius: 10px; " >
                 <div class="">
-                    <a href="{{route('tour.info', $listTour['name'])}}">
+                    <a href="{{route('tour.info', $listTour['slug'])}}">
                         <div style="color: #434365">
                             <h5 class="center" >{{$listTour->name}}</h5>
                             <img width="80" class="lazy truncated initial loaded white center" src="{{$listTour->image}}" style="margin-left: 35%;width: 100px;">
