@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="vi" itemscope itemtype="http://schema.org/Article">
-
+<style>
+    a:link { text-decoration: none; }
+</style>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-compatible" content="IE=edge" />
@@ -51,14 +53,14 @@
 </head>
 
 <body>
-    <header style="background: #001e28; height: 150px">
+    <header style="background: #001e28; height: 190px">
         <div class="top-nav">
             <ul class="container">
 
             </ul>
         </div>
         <nav class="container">
-            <a href="{{route('home')}}"><img src="/images/photo_2023-11-15_08-07-44.jpg" alt="LeagueRepublic" style="width: 90px; border-radius: 9px"></a>
+            <a href="{{route('home')}}"><img src="/images/Badominton-02.png" alt="LeagueRepublic" style="width: 120px; border-radius: 9px"></a>
             <button id="toggle-menu" onclick="toggleMobileMenu()"></button>
             <ul id="menu">
                 <li class="menu">{{ __('Giải đấu') }}

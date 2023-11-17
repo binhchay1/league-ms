@@ -50,9 +50,9 @@ class HomeController extends Controller
         return view('page.team.index', compact('listTeam'));
     }
 
-    public function showInfo($name)
+    public function showInfo($slug)
     {
-        $tourInfo = $this->tournamentRepository->showInfo($name);
+        $tourInfo = $this->tournamentRepository->showInfo($slug);
         $listTournament = $this->tournamentRepository->index();
         $groupSchedule = [];
 
