@@ -23,16 +23,16 @@ class TournamentController extends Controller
     }
     public function index()
     {
-        $listTournament = $this->tournamentRepository->index();
-        return view('admin.tournament.index', compact('listTournament'));
+        $listTournaments = $this->tournamentRepository->index();
+        return view('admin.tournament.index', compact('listTournaments'));
     }
 
     public function create()
     {
-        $type_tour = config('tournament.type');
-        $format_tour = config('tournament.format');
+        $type_tours = config('tournament.type');
+        $format_tours = config('tournament.format');
         if (Auth::user()->role == Role::ADMIN) {
-            return view('admin.tournament.create', compact('type_tour', 'format_tour'));
+            return view('admin.tournament.create', compact('type_tours', 'format_tours'));
         }
 
         return view('page.tournament.create', compact('type_tour', 'format_tour'));
@@ -64,10 +64,10 @@ class TournamentController extends Controller
 
     public function edit($id)
     {
-        $type_tour = config('tournament.type');
-        $format_tour = config('tournament.format');
+        $type_tours = config('tournament.type');
+        $format_tours = config('tournament.format');
         $dataTournament = $this->tournamentRepository->show($id);
-        return view('admin.tournament.edit', compact('dataTournament', 'formatTour', 'type_tour',));
+        return view('admin.tournament.edit', compact('dataTournament', 'format_tours', 'type_tours'));
     }
 
 

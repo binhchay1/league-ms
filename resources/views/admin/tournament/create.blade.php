@@ -67,7 +67,7 @@
                                 <div class="form-group">
                                     <label>{{__('Thể thức thi đấu')}}</label>
                                     <select id="format" name="format" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                        @foreach($formatTour as $formatTour => $value)
+                                        @foreach($format_tours as $format_tour => $value)
                                             <option id="format" value="{{$value}}">{{$value}}</option>
                                         @endforeach
                                     </select>
@@ -77,7 +77,7 @@
                                 <div class="form-group">
                                     <label>{{__('Hình thức thi đấu')}}</label>
                                     <select  id="type" name="type" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                        @foreach($type_tour as $type_tour => $value)
+                                        @foreach($type_tours as $type_tour => $value)
                                             <option id="type" value="{{$value}}">{{$value}}</option>
                                         @endforeach
                                     </select>

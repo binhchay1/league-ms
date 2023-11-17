@@ -14,10 +14,10 @@
                                 <label>{{__('Logo giải đấu')}}</label>
                                 <div class="">
                                     <div class="" style="display: inline-grid;">
-                                        <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
+                                        <input value="{{$dataTournament->image}}" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                                         <div class=" choose-avatar" >
                                             <div id="btnimage">
-                                                <img id="showImage" class="show-avatar" src="{{$dataTournament->image ?? asset('/images/champion.png') }}}}" alt="avatar" style="width: 200px; margin-left: 40px">
+                                                <img id="showImage" class="show-avatar" src="{{$dataTournament->image ?? asset('/images/champion.png') }}" alt="avatar" style="width: 200px; margin-left: 40px">
                                             </div>
                                             <div id="button" >
                                                 <i id="btn_chooseImg" class="fas fa-camera">  {{__('Chọn ảnh')}}</i>
@@ -67,7 +67,7 @@
                             <div class="form-group">
                                 <label>{{__('Thể thức thi đấu')}}</label>
                                 <select id="format" name="format" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                    @foreach($formatTour as $formatTour => $value)
+                                    @foreach($type_tours as $type_tour => $value)
                                         <option value="{{$value}}"
                                                 @if ($value == $dataTournament->format) selected="selected" @endif>
                                             {{$value}}
@@ -80,7 +80,7 @@
                             <div class="form-group">
                                 <label>{{__('Hình thức thi đấu')}}</label>
                                 <select  id="type" name="type" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                    @foreach($type_tour as $type_tour => $value)
+                                    @foreach($format_tours as $format_tours=> $value)
                                         <option value="{{$value}}"
                                                 @if ($value == $dataTournament->type) selected="selected" @endif>
                                             {{$value}}

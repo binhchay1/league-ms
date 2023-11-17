@@ -24,7 +24,7 @@
                     </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                    @foreach($listTournament as $data)
+                    @foreach($listTournaments as $data)
                         <tr>
                             <td>{{$data->name}}</td>
                             <td>{{ $data->start_date }}</td>
