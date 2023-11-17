@@ -1,4 +1,7 @@
 @extends('layouts.page')
+@section('title')
+    Trang chủ
+@endsection
 @section('content')
     <section class="feature feature-image-right container">
         <div class="image">
