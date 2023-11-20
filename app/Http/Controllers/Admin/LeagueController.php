@@ -85,7 +85,7 @@ class LeagueController extends Controller
             }
         }
 
-        $this->leagueRepository->updateTour($input, $id);
+        $this->leagueRepository->updateLeague($input, $id);
         return redirect('list-league');
     }
 }

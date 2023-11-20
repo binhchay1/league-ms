@@ -57,7 +57,7 @@
                             </button>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" type="text" value="{{$dataSchedule->tournament_id}}" name="tournament_id" id="name" hidden />
+                            <input class="form-control" type="text" value="{{$dataSchedule->league_id}}" name="league_id" id="name" hidden />
                         </div>
                         <div class="form-group">
                             <input class="form-control" type="text" value="{{$dataSchedule->match}}" name="match" id="name" hidden />

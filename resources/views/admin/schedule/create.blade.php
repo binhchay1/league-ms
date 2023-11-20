@@ -24,15 +24,15 @@
                             </div>
                             <div class="" style="margin-top: 10px">
                                 <label class="form-label" for="country">{{__('Giải đấu')}}</label>
-                                <select id="tournament_id" name="tournament_id" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                    @foreach ($listTournament as $tournament)
-                                        <option value="{{ $tournament->id }}" >
-                                            {{$tournament->name}}
+                                <select id="league_id" name="league_id" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                    @foreach ($listLeague as $league)
+                                        <option value="{{ $league->id }}" >
+                                            {{$league->name}}
                                         </option>
                                     @endforeach
                                 </select>
-                                @if ($errors->has('tournament_id'))
-                                    <span class="text-danger">{{ $errors->first('tournament_id') }}</span>
+                                @if ($errors->has('league_id'))
+                                    <span class="text-danger">{{ $errors->first('league_id') }}</span>
                                 @endif
                             </div>
                             <div class="" style="margin-top: 10px">

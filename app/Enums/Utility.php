@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 final class Utility
 {
 
-    public function saveImageTournament($input)
+    public function saveImageLeague($input)
     {
         if ($input) {
             $status = Storage::disk('public-image-tour')->put($input['image']->getClientOriginalName(), $input['image']->get());

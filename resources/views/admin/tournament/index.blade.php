@@ -24,7 +24,7 @@
                     </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                    @foreach($listTournaments as $data)
+                    @foreach($listLeagues as $data)
                         <tr>
                             <td>{{$data->name}}</td>
                             <td>{{ $data->start_date }}</td>
@@ -35,7 +35,7 @@
                             <td>{{ $data->number_of_team }}</td>
                             <td>{{ $data->people_of_team }}</td>
                             <td>
-                                <a href="{{route('tournament.edit',$data['id'])}}">
+                                <a href="{{route('league.edit',$data['id'])}}">
                                     <button type="button" class="btn btn-info">{{__('Sửa')}}</button>
                                 </a>
                                 <a href="">

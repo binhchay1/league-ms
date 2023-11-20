@@ -55,8 +55,8 @@ return [
 
         'public-image-tour' => [
             'driver' => 'local',
-            'root' => public_path() . '/images/tournament/',
-            'url' => env('APP_URL') . '/images/tournament/',
+            'root' => public_path() . '/images/league/',
+            'url' => env('APP_URL') . '/images/league/',
             'visibility' => 'public',
             'throw' => false,
         ],

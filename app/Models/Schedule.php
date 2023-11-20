@@ -10,12 +10,12 @@ class Schedule extends Model
     use HasFactory;
 
     protected $fillable = [
-        'match','tournament_id', 'team_id_1','team_id_2','time','date','stadium'
+        'match','league_id', 'team_id_1','team_id_2','time','date','stadium'
     ];
 
-    public function tournament()
+    public function league()
     {
-        return $this->belongsTo('App\Models\Tournament', 'tournament_id', 'id');
+        return $this->belongsTo('App\Models\League', 'league_id', 'id');
     }
 
     public function team1()

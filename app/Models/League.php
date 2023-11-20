@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tournament extends Model
+class League extends Model
 {
     use HasFactory;
 
@@ -16,6 +16,6 @@ class Tournament extends Model
 
     public function schedule()
     {
-        return $this->hasMany('App\Models\Schedule', 'tournament_id', 'id');
+        return $this->hasMany('App\Models\Schedule');
     }
 }

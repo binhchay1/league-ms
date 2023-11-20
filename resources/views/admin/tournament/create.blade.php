@@ -6,7 +6,7 @@
                     <h5>{{__('Tạo Giải Đấu')}}</h5>
                 </div>
                 <div class="card-body">
-                    <form id="formAccountSettings" method="POST" action="{{ route('tournament.store') }}" enctype="multipart/form-data">
+                    <form id="formAccountSettings" method="POST" action="{{ route('league.store') }}" enctype="multipart/form-data">
                         @csrf()
                         <div class="row">
                             <div class="col-md-4">

@@ -62,13 +62,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('tournament.create')}}" class="nav-link">
+                            <a href="{{route('league.create')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tạo Giải Đấu</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('tournament.index')}}" class="nav-link">
+                            <a href="{{route('league.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh Sách Giải Đấu</p>
                             </a>

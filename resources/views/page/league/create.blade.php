@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row" style="padding: 30px">
         <div class="col-md-10 col-md-offset-1 parent">
-            <form id="formAccountSettings" method="POST" action="{{ route('tournament.store') }}" enctype="multipart/form-data">
+            <form id="formAccountSettings" method="POST" action="{{ route('league.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div id="step1">
                     <div class="panel">
@@ -84,7 +84,7 @@
                                                 <label for="location" class="control-label required">Hình thức thi đấu</label>
                                                 <div>
                                                     <select id="format" name="format" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                                        @foreach($formatTour as $formatTour => $value)
+                                                        @foreach($formatLeague as $formatLeague => $value)
                                                             <option id="format" value="{{$value}}">{{$value}}</option>
                                                         @endforeach
                                                     </select>

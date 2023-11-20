@@ -26,7 +26,7 @@ class LeagueRepository extends BaseRepository
         return $this->model->where('id', $id)->first();
     }
 
-    public function updateTour($input, $id)
+    public function updateLeague($input, $id)
     {
         return $this->model->where('id', $id)->update($input);
     }

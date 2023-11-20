@@ -26,7 +26,7 @@
                 <tbody class="table-border-bottom-0">
                     @foreach($dataResult as $data)
                     <tr>
-                        <td>{{ $data->tournament->name }}</td>
+                        <td>{{ $data->league->name }}</td>
                         <td>{{ $data->match }}</td>
                         <td>{{ $data->team1->name }}</td>
                         <td>{{ $data->team2->name }}</td>

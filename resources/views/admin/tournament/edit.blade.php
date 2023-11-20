@@ -6,7 +6,7 @@
                 <h5>{{__('Tạo Giải Đấu')}}</h5>
             </div>
             <div class="card-body">
-                <form id="formAccountSettings" method="POST" action="{{ route('tournament.update',$dataTournament['id']) }}" enctype="multipart/form-data">
+                <form id="formAccountSettings" method="POST" action="{{ route('league.update',$dataLeague['id']) }}" enctype="multipart/form-data">
                     @csrf()
                     <div class="row">
                         <div class="col-md-6">
@@ -14,10 +14,10 @@
                                 <label>{{__('Logo giải đấu')}}</label>
                                 <div class="">
                                     <div class="" style="display: inline-grid;">
-                                        <input value="{{$dataTournament->image}}" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
+                                        <input value="{{$dataLeague->image}}" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                                         <div class=" choose-avatar" >
                                             <div id="btnimage">
-                                                <img id="showImage" class="show-avatar" src="{{$dataTournament->image ?? asset('/images/champion.png') }}" alt="avatar" style="width: 200px; margin-left: 40px">
+                                                <img id="showImage" class="show-avatar" src="{{$dataLeague->image ?? asset('/images/champion.png') }}" alt="avatar" style="width: 200px; margin-left: 40px">
                                             </div>
                                             <div id="button" >
                                                 <i id="btn_chooseImg" class="fas fa-camera">  {{__('Chọn ảnh')}}</i>
@@ -34,28 +34,28 @@
                         <div class="col-md-6">
                             <div class="">
                                 <label for="lastName" class="form-label">{{__('Tên giải đấu')}}</label>
-                                <input class="form-control" value="{{$dataTournament->name}}" type="text" name="name" id="name"  />
+                                <input class="form-control" value="{{$dataLeague->name}}" type="text" name="name" id="name"  />
                                 @if ($errors->has('name'))
                                     <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif
                             </div>
                             <div class="mt-4">
                                 <label for="address" class="form-label">{{__('Ngày bắt đầu')}}</label>
-                                <input type="date" class="form-control" value="{{$dataTournament->start_date}}" id="start_date" name="start_date" placeholder="Address" />
+                                <input type="date" class="form-control" value="{{$dataLeague->start_date}}" id="start_date" name="start_date" placeholder="Address" />
                                 @if ($errors->has('start_date'))
                                     <span class="text-danger">{{ $errors->first('start_date') }}</span>
                                 @endif
                             </div>
                             <div class="mt-4">
                                 <label for="address" class="form-label">{{__('Ngày kết thúc')}}</label>
-                                <input type="date" class="form-control" value="{{$dataTournament->end_date}}" id="end_date" name="end_date" placeholder="Address" />
+                                <input type="date" class="form-control" value="{{$dataLeague->end_date}}" id="end_date" name="end_date" placeholder="Address" />
                                 @if ($errors->has('end_date'))
                                     <span class="text-danger">{{ $errors->first('end_date') }}</span>
                                 @endif
                             </div>
                             <div class="mt-4">
                                 <label for="lastName" class="form-label">{{__('Đội tham gi')}}a</label>
-                                <input class="form-control" type="text" value="{{$dataTournament->number_of_team}}" name="number_of_team" id="number_of_team"/>
+                                <input class="form-control" type="text" value="{{$dataLeague->number_of_team}}" name="number_of_team" id="number_of_team"/>
                                 @if ($errors->has('number_of_team'))
                                     <span class="text-danger">{{ $errors->first('number_of_team') }}</span>
                                 @endif
@@ -69,7 +69,7 @@
                                 <select id="format" name="format" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
                                     @foreach($type_tours as $type_tour => $value)
                                         <option value="{{$value}}"
-                                                @if ($value == $dataTournament->format) selected="selected" @endif>
+                                                @if ($value == $dataLeague->format) selected="selected" @endif>
                                             {{$value}}
                                         </option>
                                     @endforeach
@@ -82,7 +82,7 @@
                                 <select  id="type" name="type" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
                                     @foreach($format_tours as $format_tours=> $value)
                                         <option value="{{$value}}"
-                                                @if ($value == $dataTournament->type) selected="selected" @endif>
+                                                @if ($value == $dataLeague->type) selected="selected" @endif>
                                             {{$value}}
                                         </option>
                                     @endforeach

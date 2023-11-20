@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-Trang chủ
+{{ env('APP_NAME', 'Badminton.io') }} - {{ __('Homepage') }}
 @endsection
 
 @section('content')
@@ -163,9 +163,8 @@ Trang chủ
             <li>{{ __('Availability based or template based scheduling') }}</li>
             <li>{{ __('Supports all competition formats') }}</li>
             <li>{{ __('Identifies match conflicts') }}</li>
-            <li>{{ __('Customisable scheduling') }}</li>
+            <li>{{ __('Customizable scheduling') }}</li>
         </ul>
-        <p><a href="/features/scheduling.html" class="button">{{ __('Learn more') }}</a></p>
     </div>
 </section>
 
@@ -331,7 +330,7 @@ Trang chủ
         <h2 class="h24px">{{ __('Record Results & Statistics') }}</h2>
         <p>{{ __('Our scoring and statistics system is fully customizable, giving you complete control over data entry and formatting. This ensures the integrity of the data, allowing you to make accurate and up-to-date decisions based on the information provided.') }}</p>
         <ul>
-            <li>{{ __('Customisable scoring system') }}</li>
+            <li>{{ __('Customizable scoring system') }}</li>
             <li>{{ __('Enter game and point scores') }}</li>
             <li>{{ __('Add match statistics') }} <i class="badge bronze">{{ __('Bronze') }}</i></li>
             <li>{{ __('Display live scores') }} <i class="badge silver">{{ __('Silver') }}</i></li>
@@ -348,7 +347,7 @@ Trang chủ
             <li>{{ __('Easy for players and teams to register online') }} <i class="badge bronze">{{ __('Bronze') }}</i></li>
             <li>{{ __('Collect registration fees online') }} <i class="badge bronze">{{ __('Bronze') }}</i></li>
             <li>{{ __('Customize team administrator security access') }}</li>
-            <li>Create players and record their progress</li>
+            <li>{{ __('Create players and record their progress') }}</li>
         </ul>
     </div>
 </section>
@@ -396,30 +395,13 @@ Trang chủ
         <div>
             <h2 class="center">{{ env('APP_NAME', 'Badminton.io') }} {{ __('powers badminton leagues all over the world') }}</h2>
             <ul>
-                <li><strong>20+</strong> {{ __('Leagues') }}</li>
-                <li><strong>1,000+</strong> {{ __('Teams') }}</li>
-                <li><strong>1,000+</strong> {{ __('Active Players') }}</li>
-                <li><strong>31,000+</strong> {{ __('Matches Played') }}</li>
+                <li><strong>{{ $totalLeague }}</strong> {{ __('Leagues') }}</li>
+                <li><strong>{{ $totalTeam }}</strong> {{ __('Teams') }}</li>
+                <li><strong>{{ $totalTeam }}</strong> {{ __('Active Players') }}</li>
+                <li><strong>{{ $totalView }}</strong> {{ __('Matches Played') }}</li>
             </ul>
         </div>
     </div>
 </section>
-
-<section id="signup">
-    <div class="container">
-        <div>
-            <h2 class="white center">{{ __('Power your league with') }} {{ env('APP_NAME', 'Badminton.io') }}</h2>
-            <p class="white center">{{ env('APP_NAME', 'Badminton.io') }} is free to use. We also offer <a href="/pricing.html">paid plans</a> with additional features.</p>
-            <p class="center">
-                <a href="https://a.leaguerepublic.com/myaccount/createAccount/1.html?lver=1" class="button white">Get started for free</a>
-                <a href="/" class="button navy js-openMessenger">Get a demo</a>
-            </p>
-        </div>
-    </div>
-</section>
-
-@endsection
-
-@section('js')
 
 @endsection

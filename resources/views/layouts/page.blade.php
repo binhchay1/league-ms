@@ -18,9 +18,9 @@
 
     <link rel="canonical" href="https://www.leaguerepublic.com/badminton.html">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/page/style.css') }}">
-    <link rel="alternate" hreflang="en-US" href="https://us.leaguerepublic.com/badminton.html">
-    <link rel="alternate" hreflang="af" href="https://af.leaguerepublic.com/badminton.html">
-    <link rel="alternate" hreflang="x-default" href="https://www.leaguerepublic.com/badminton.html">
+    <link rel="alternate" hreflang="en-US" href="https://badminton.io">
+    <link rel="alternate" hreflang="af" href="https://badminton.io">
+    <link rel="alternate" hreflang="x-default" href="https://badminton.io">
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
@@ -33,7 +33,6 @@
         <div class="top-nav">
             <ul class="container">
                 <li><a href="/top-sites.html">{{ __('Top league') }}</a></li>
-                <li><a href="https://help.leaguerepublic.com">{{ __('Help Centre') }}</a></li>
                 <li class="menu">
                     <span>en</span>
                     <ul>
@@ -53,7 +52,7 @@
             </ul>
         </div>
         <nav class="container">
-            <a href="{{ route('home') }}"><img src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}"></a>
+            <a href="{{ route('home') }}"><img src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="80" height="80"></a>
             <button id="toggle-menu" onclick="toggleMobileMenu()"></button>
             <ul id="menu">
                 <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
@@ -69,8 +68,8 @@
                         </div>
                     </form>
                 </li>
-                <li><a href="{{ route('login') }}" class="button white">Log In</a></li>
-                <li><a href="{{ route('register_user') }}" class="button">Sign Up</a></li>
+                <li><a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a></li>
+                <li><a href="{{ route('register_user') }}" class="button">{{ __('Sign Up') }}</a></li>
             </ul>
         </nav>
     </header>
@@ -81,7 +80,7 @@
         <div class="container">
             <div>
                 <h4 class="h3">{{ env('APP_NAME', 'Badminton.io') }}</h4>
-                <p>Efficiency and ease-of-use are our mission, simplifying the process of running a sports league.</p>
+                <p>{{ __('Efficiency and ease-of-use are our mission, simplifying the process of running a sports league.') }}</p>
                 <p>{{ env('APP_NAME', 'Badminton.io') }} is available to all at no cost. Additionally, we offer premium plans that include additional functionality.</p>
                 <ul class="social">
                     <li><a href="https://www.linkedin.com/company/badminton.io"><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="LinkedIn" width="30" height="31"></a></li>
@@ -93,24 +92,22 @@
             <div>
                 <ul>
                     <li>
-                        <h4 class="h3">Company</h4>
+                        <h4 class="h3">{{ __('Company') }}</h4>
                     </li>
-                    <li><a href="{{ route('about') }}">About</a></li>
-                    <li><a href="https://help.leaguerepublic.com">Help Centre</a></li>
-                    <li><a href="{{ route('pricing') }}">Pricing</a></li>
-                    <li><a href="{{ route('top.league') }}">Top League</a></li>
-                    <li><a href="{{ route('search') }}">Search</a></li>
-                    <li><a href="https://a.leaguerepublic.com/myaccount/login/index.html?lver=1">Log In</a></li>
-                    <li><a href="https://a.leaguerepublic.com/myaccount/createAccount/1.html?lver=1">Sign Up</a></li>
+                    <li><a href="{{ route('about') }}">{{ __('About') }}</a></li>
+                    <li><a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
+                    <li><a href="{{ route('top.league') }}">{{ __('Top League') }}</a></li>
+                    <li><a href="{{ route('search') }}">{{ __('Search') }}</a></li>
+                    <li><a href="https://a.leaguerepublic.com/myaccount/login/index.html?lver=1">{{ __('Log In') }}</a></li>
+                    <li><a href="https://a.leaguerepublic.com/myaccount/createAccount/1.html?lver=1">{{ __('Sign Up') }}</a></li>
                 </ul>
             </div>
             <div>
                 <ul>
                     <li>
-                        <h4 class="h3">Features</h4>
+                        <h4 class="h3">{{ __('Features') }}</h4>
                     </li>
-                    <li><a href="{{ route('list.league') }}">League</a></li>
-                    <li><a href="/features/results-and-statistics.html">Results Statistics</a></li>
+                    <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
                     <li><a href="/features/team-and-player-registration.html">{{ __('Team Player Registration') }}</a></li>
                     <li><a href="{{ route('market') }}">{{ __('Market') }}</a></li>
                 </ul>
@@ -118,7 +115,7 @@
             <div>
                 <p>
                     <small>
-                        <a href="/terms.html">Terms &amp; Conditions</a>,
+                        <a href="/terms.html">Terms & Conditions</a>,
                         <a href="/privacy.html">Privacy</a>
                         <br>
                         Copyright© 2023 <a href="{{ route('home')}}">{{ env('APP_NAME', 'Badminton.io') }}</a>

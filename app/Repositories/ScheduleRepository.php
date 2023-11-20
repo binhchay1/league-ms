@@ -17,17 +17,17 @@ class ScheduleRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->with('tournament', 'team1', 'team2')->orderBy('created_at', 'desc')->get();
+        return $this->model->with('league', 'team1', 'team2')->orderBy('created_at', 'desc')->get();
     }
 
     public function showInfo($id)
     {
-        return $this->model->with('tournament', 'team1.players', 'team2.players')->where('id', $id)->first();
+        return $this->model->with('league', 'team1.players', 'team2.players')->where('id', $id)->first();
     }
 
     public function update($input, $id)
     {
-        return $this->model->with('tournament', 'team1', 'team2')->where('id', $id)->update($input);
+        return $this->model->with('league', 'team1', 'team2')->where('id', $id)->update($input);
     }
 
 }
