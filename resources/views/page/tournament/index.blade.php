@@ -22,7 +22,6 @@
                             <p class="center">{{$listTour->type}}</p>
                         </div>
                     </a>
-
                 </div>
             </section>
         </div>

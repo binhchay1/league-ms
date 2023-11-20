@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class TournamentRequest extends FormRequest
+class LeagueRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,13 +25,13 @@ class TournamentRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', Rule::unique('tournaments')->ignore($this->id)],
+            'name' => ['required', Rule::unique('league')->ignore($this->id)],
             'image' => 'image|mimes:jpeg,png,jpg|max:2048',
-            'start_date'=> 'required|date',
-            'end_date' =>'required|date|after_or_equal:start_date',
-            'format' =>'required',
-            'number_of_team' =>'required',
-            'type' =>'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'format' => 'required',
+            'number_of_team' => 'required',
+            'type' => 'required',
         ];
     }
 

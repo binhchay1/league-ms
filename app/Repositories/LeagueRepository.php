@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Models\Tournament;
+use App\Models\League;
 
-class TournamentRepository extends BaseRepository
+class LeagueRepository extends BaseRepository
 {
     public function model()
     {
-        return Tournament::class;
+        return League::class;
     }
 
     public function index()

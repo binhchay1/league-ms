@@ -1,10 +1,10 @@
 <footer>
     <div class="container">
         <div>
-            <h4 class="h3">LeagueRepublic</h4>
+            <h4 class="h3">{{ env('APP_NAME', 'Badminton.io') }}</h4>
             <p>Efficiency and ease-of-use are our mission, simplifying
                 the process of running a sports league.</p>
-            <p>LeagueRepublic is available to all at no cost.
+            <p>{{ env('APP_NAME', 'Badminton.io') }} is available to all at no cost.
                 Additionally, we offer premium plans that include
                 additional functionality.</p>
 
@@ -50,7 +50,7 @@
                     <a href="/terms.html">Terms &amp; Conditions</a>,
                     <a href="/privacy.html">Privacy</a>
                     <br />
-                    Copyright&copy; 2002-2023 <a href="/index.html">LeagueRepublic</a>
+                    Copyright&copy; 2002-2023 <a href="/index.html">{{ env('APP_NAME', 'Badminton.io') }}</a>
                 </small>
             </p>
         </div>

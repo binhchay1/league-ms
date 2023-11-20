@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\Utility;
 use App\Repositories\TeamRepository;
-use App\Repositories\TournamentRepository;
+use App\Repositories\LeagueRepository;
 use App\Repositories\UserRepository;
 use Config;
 use Session;
@@ -17,7 +17,7 @@ class HomeController extends Controller
     protected $utility;
 
     public function __construct(
-        TournamentRepository $tournamentRepository,
+        LeagueRepository $tournamentRepository,
         TeamRepository $teamRepository,
         UserRepository $userRepository,
         Utility $ultity
@@ -36,6 +36,26 @@ class HomeController extends Controller
         $totalView = strtotime(date('Y-m-d H:i:s')) / 1242222;
 
         return view('page.homepage', compact('totalUser', 'totalTeam', 'totalTour', 'totalView'));
+    }
+
+    public function viewSearch()
+    {
+        return view('page.search');
+    }
+
+    public function viewMarket()
+    {
+        return view('page.market');
+    }
+
+    public function viewAbout()
+    {
+        return view('page.about');
+    }
+
+    public function viewPricing()
+    {
+        return view('page.pricing');
     }
 
     public function listTour()

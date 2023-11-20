@@ -19,7 +19,12 @@ use App\Http\Controllers\AuthController;
 
 //homepage
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
-Route::get('list-tournaments', [HomeController::class, 'listTour'])->name('list.tour');
+Route::get('list-league', [HomeController::class, 'listTour'])->name('list.league');
+Route::get('top-league', [HomeController::class, 'listTour'])->name('top.league');
+Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
+Route::get('/market', [HomeController::class, 'viewMarket'])->name('market');
+Route::get('/about', [HomeController::class, 'viewAbout'])->name('about');
+Route::get('/pricing', [HomeController::class, 'viewPricing'])->name('pricing');
 Route::get('info/{slug}', [HomeController::class, 'showInfo'])->name('tour.info');
 Route::get('list-teams', [HomeController::class, 'listTeam'])->name('list.team');
 
