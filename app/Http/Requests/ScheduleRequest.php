@@ -44,7 +44,6 @@ class ScheduleRequest extends FormRequest
             'match.required' => __('Vòng đấu không được để trống'),
             'time.required' => __('Thời gian thi đấu không được để trống'),
             'date.required' => __('Ngày thi đấu không được bỏ trống'),
-
         ];
     }
 }

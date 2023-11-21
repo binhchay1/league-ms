@@ -16,8 +16,7 @@ class SportController extends Controller
     public function __construct(
         SportRepository $sportRepository,
         Utility $utility
-    )
-    {
+    ) {
         $this->sportRepository = $sportRepository;
         $this->utility = $utility;
     }
@@ -25,7 +24,7 @@ class SportController extends Controller
     public function index()
     {
         $listSport = $this->sportRepository->index();
-        return view('admin.sport.index',['listSport'=>$listSport]);
+        return view('admin.sport.index', compact('listSport'));
     }
 
     public function create()
@@ -59,7 +58,7 @@ class SportController extends Controller
     public function edit($id)
     {
         $dataSport = $this->sportRepository->showData($id);
-        return view('admin.sport.update', ['dataSport'=>$dataSport]);
+        return view('admin.sport.update', compact('dataSport'));
     }
 
     public function update(SportRequest $request, $id)

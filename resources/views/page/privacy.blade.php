@@ -134,51 +134,51 @@
             {{ __('For more information about data processing by Amplitude, see the') }} <a href="https://amplitude.com/privacy">Amplitude Privacy Policy</a>.
         </p>
 
-        <h2 class="h24px">Cookies</h2>
-        <p>This policy gives the following information about cookies:</p>
+        <h2 class="h24px">{{ __('Cookies') }}</h2>
+        <p>{{ __('This policy gives the following information about cookies:') }}</p>
         <ul>
-            <li>what they are;</li>
-            <li>which ones are used by www.{{ env('APP_NAME', 'Badminton.io') }}.com ("LR");</li>
-            <li>the purposes for which they are used; and</li>
-            <li>how you can manage and/or disable them.</li>
+            <li>{{ __('what they are;') }}</li>
+            <li>{{ __('which ones are used by') }} {{ env('APP_NAME', 'Badminton.io') }} ("LR");</li>
+            <li>{{ __('the purposes for which they are used; and') }}</li>
+            <li>{{ __('how you can manage and/or disable them.') }}</li>
         </ul>
-        <p>Cookies are small text files which are placed on your device when you visit a website. They contain information that is transferred to your device's hard drive and help us to improve our site and to deliver a better and more personalized service to you. Cookies enable us to:</p>
+        <p>{{ __('Cookies are small text files which are placed on your device when you visit a website. They contain information that is transferred to your device's hard drive and help us to improve our site and to deliver a better and more personalized service to you. Cookies enable us to:') }}</p>
         <ul>
-            <li>estimate our audience size and usage pattern;</li>
-            <li>store information about your preferences, and so allow us to customize our site according to your individual interests; and</li>
-            <li>recognize you when you return to our site.</li>
+            <li>{{ __('estimate our audience size and usage pattern;') }}</li>
+            <li>{{ __('store information about your preferences, and so allow us to customize our site according to your individual interests; and') }}</li>
+            <li>{{ __('recognize you when you return to our site.') }}</li>
         </ul>
-        <p>The cookies used on this website have been categorized based on the categories found in the ICC UK Cookie guide. A list of all the cookies used on this website by category is set out below.</p>
+        <p>{{ __('The cookies used on this website have been categorized based on the categories found in the ICC UK Cookie guide. A list of all the cookies used on this website by category is set out below.') }}</p>
 
-        <h3>Category 1 - Strictly Necessary Cookies</h3>
+        <h3>{{ __('Category 1 - Strictly Necessary Cookies') }}</h3>
 
-        <p class="bold">These cookies enable services you have specifically asked for.</p>
+        <p class="bold">{{ __('These cookies enable services you have specifically asked for.') }}</p>
 
-        <p>These cookies are essential in order to enable you to move around the website and use its features, such as accessing secure areas of the website. Without these cookies, services you require, like results, statistics, standings and news cannot be provided.</p>
+        <p>{{ __('These cookies are essential in order to enable you to move around the website and use its features, such as accessing secure areas of the website. Without these cookies, services you require, like results, statistics, standings and news cannot be provided.') }}</p>
 
         <!-- Cat 1 Cookie Table -->
         <table>
             <thead>
                 <tr>
-                    <td>Cookie Name</td>
-                    <td>Description</td>
-                    <td>Expiry</td>
+                    <td>{{ __('Cookie Name') }}</td>
+                    <td>{{ __('Description') }}</td>
+                    <td>{{ __('Expiry') }}</td>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>JSESSIONID</td>
-                    <td>This cookie contains a session ID which is a mechanism for distinguishing different users' visits when multiple users are visiting the website at the same time. It is essential for interactive use of the site.</td>
-                    <td>On closing the web browser</td>
+                    <td>{{ __('This cookie contains a session ID which is a mechanism for distinguishing different users' visits when multiple users are visiting the website at the same time. It is essential for interactive use of the site.') }}</td>
+                    <td>{{ __('On closing the web browser') }}</td>
                 </tr>
             </tbody>
         </table>
 
-        <h3>Category 2 - Performance Cookies</h3>
+        <h3>{{ __('Category 2 - Performance Cookies') }}</h3>
 
-        <p class="bold">These cookies collect anonymous information about the pages visited by you</p>
+        <p class="bold">{{ __('These cookies collect anonymous information about the pages visited by you') }}</p>
 
-        <p>These cookies collect information about how visitors use a website, for instance which pages visitors go to most often, and if they get error messages from web pages. These cookies don't collect information that identifies a visitor. All information these cookies collect is aggregated and therefore anonymous. It is only used to improve how a website works.</p>
+        <p>{{ __('These cookies collect information about how visitors use a website, for instance which pages visitors go to most often, and if they get error messages from web pages. These cookies don't collect information that identifies a visitor. All information these cookies collect is aggregated and therefore anonymous. It is only used to improve how a website works.') }}</p>
 
         <!-- Cat 2 Cookie Table -->
         <table>

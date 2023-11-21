@@ -34,7 +34,6 @@ class SportRequest extends FormRequest
     public function messages()
     {
         return [
-
             'name.required' => __('Tên không được để trống'),
             'link.required' => __('Địa chỉ liên kết không được để trống'),
             'name.unique' => __('Tên không được trùng nhau'),

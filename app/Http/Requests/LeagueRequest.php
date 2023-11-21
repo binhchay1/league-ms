@@ -38,13 +38,13 @@ class LeagueRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('Tên không được để trống'),
-            'name.unique' => __('Tên không được trùng nhau'),
-            'coach.required' => __('Huấn luyện viên không được bỏ trống'),
-            'image.required' => __('Hình ảnh không được bỏ trống'),
-            'image.image' => __('Hình ảnh phải là dạng ảnh'),
-            'image.mimes' => __('Hình ảnh không đúng định dạng'),
-            'image.max' => __('Kích thước ảnh vượt quá 2048px'),
+            'name.required' => __('Name is required'),
+            'name.unique' => __('Name invalid'),
+            'coach.required' => __('Coach is required'),
+            'image.required' => __('Image is required'),
+            'image.image' => __('Image format invalid'),
+            'image.mimes' => __('Image format invalid'),
+            'image.max' => __('Image size is maximum'),
             'start_date.required' => __('Ngày bắt đầu không được để trống'),
             'start_date.date' => __('Ngày bắt đầu không đúng định dạng'),
             'end_date.required' => __('Ngày kết thúc không được để trống'),

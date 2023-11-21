@@ -98,8 +98,8 @@
                     <li><a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
                     <li><a href="{{ route('top.league') }}">{{ __('Top League') }}</a></li>
                     <li><a href="{{ route('search') }}">{{ __('Search') }}</a></li>
-                    <li><a href="https://a.leaguerepublic.com/myaccount/login/index.html?lver=1">{{ __('Log In') }}</a></li>
-                    <li><a href="https://a.leaguerepublic.com/myaccount/createAccount/1.html?lver=1">{{ __('Sign Up') }}</a></li>
+                    <li><a href="{{ route('login') }}">{{ __('Log In') }}</a></li>
+                    <li><a href="{{ route('register_user') }}">{{ __('Sign Up') }}</a></li>
                 </ul>
             </div>
             <div>
@@ -108,15 +108,14 @@
                         <h4 class="h3">{{ __('Features') }}</h4>
                     </li>
                     <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
-                    <li><a href="/features/team-and-player-registration.html">{{ __('Team Player Registration') }}</a></li>
                     <li><a href="{{ route('market') }}">{{ __('Market') }}</a></li>
                 </ul>
             </div>
             <div>
                 <p>
                     <small>
-                        <a href="/terms.html">Terms & Conditions</a>,
-                        <a href="/privacy.html">Privacy</a>
+                        <a href="{{ route('term.and.conditions') }}">{{ __('Terms & Conditions') }}</a>,
+                        <a href="{{ route('privacy') }}">{{ __('Privacy') }}</a>
                         <br>
                         Copyright© 2023 <a href="{{ route('home')}}">{{ env('APP_NAME', 'Badminton.io') }}</a>
                     </small>
@@ -130,46 +129,6 @@
     <script src="{{ asset('/js/page/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('/js/page/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('/js/page/common.min.js') }}"></script>
-    <script>
-        window.intercomSettings = {
-            app_id: 'tlb06z2h',
-            custom_launcher_selector: '.js-openMessenger'
-        };
-    </script>
-    <script>
-        (function() {
-            var w = window;
-            var ic = w.Intercom;
-            if (typeof ic === "function") {
-                ic('reattach_activator');
-                ic('update', intercomSettings);
-            } else {
-                var d = document;
-                var i = function() {
-                    i.c(arguments)
-                };
-                i.q = [];
-                i.c = function(args) {
-                    i.q.push(args)
-                };
-                w.Intercom = i;
-
-                function l() {
-                    var s = d.createElement('script');
-                    s.type = 'text/javascript';
-                    s.async = true;
-                    s.src = 'https://widget.intercom.io/widget/tlb06z2h';
-                    var x = d.getElementsByTagName('script')[0];
-                    x.parentNode.insertBefore(s, x);
-                }
-                if (w.attachEvent) {
-                    w.attachEvent('onload', l);
-                } else {
-                    w.addEventListener('load', l, false);
-                }
-            }
-        })()
-    </script>
 
     @yield('js')
 </body>

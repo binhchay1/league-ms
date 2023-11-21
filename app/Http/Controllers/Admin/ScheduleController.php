@@ -8,7 +8,6 @@ use App\Http\Requests\ScheduleRequest;
 use App\Repositories\ScheduleRepository;
 use App\Repositories\TeamRepository;
 use App\Repositories\LeagueRepository;
-use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
@@ -30,9 +29,7 @@ class ScheduleController extends Controller
     public function index()
     {
         $listSchedule = $this->scheduleRepository->index();
-        return view('admin.schedule.index', [
-            'listSchedule' =>$listSchedule,
-        ]);
+        return view('admin.schedule.index', compact('listSchedule'));
     }
 
     public function create()
@@ -40,11 +37,7 @@ class ScheduleController extends Controller
         $listTeam1 = $this->teamRepository->index();
         $listTeam2 = $this->teamRepository->index();
         $listLeague = $this->leagueRepository->index();
-        return view('admin.schedule.create', [
-            'listTeam1' =>$listTeam1,
-            'listTeam2' =>$listTeam2,
-            'listLeague' =>$listLeague,
-        ]);
+        return view('admin.schedule.create', compact('listTeam1', 'listTeam2', 'listLeague'));
     }
 
     public function store(ScheduleRequest $request)
@@ -53,18 +46,12 @@ class ScheduleController extends Controller
         $data = $this->scheduleRepository->store($input);
 
         return redirect('list-schedule')->with('success', 'Create schedule successfully!');
-
     }
 
     public function show($id)
     {
         $dataSchedule = $this->scheduleRepository->showInfo($id);
-        return view('admin.schedule.show',['dataSchedule' => $dataSchedule]);
-    }
-
-    public function edit($id)
-    {
-        //
+        return view('admin.schedule.show', compact('dataSchedule'));
     }
 
     public function update(ResultScheduleRequest $request, $id)
@@ -72,17 +59,11 @@ class ScheduleController extends Controller
         $input = $request->except(['_token']);
         $data = $this->scheduleRepository->update($input, $id);
         return redirect()->to('result');
-
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 
     public function result()
     {
         $dataResult = $this->scheduleRepository->index();
-        return view('admin.schedule.result', ['dataResult'=> $dataResult]);
+        return view('admin.schedule.result', compact('dataResult'));
     }
 }
