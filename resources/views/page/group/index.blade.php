@@ -25,19 +25,20 @@
                     <div class="d-flex flex-row align-items-center">
                         <div class="icon"> <img src="{{ $group->images }}"></div>
                         <div class="ms-2 c-details">
-                            <h6 class="mb-0">{{ $group->name }}</h6> <span>{{ $group->description }}</span>
+                            <h6 class="mb-0">{{ $group->name }}</h6> <span>{{ $group->users->name }}</span>
                         </div>
                     </div>
                     <div class="badge"> <span class="{{ \App\Enums\Group::COLOR_OF_RATE[$group->rate] }}">{{ $group->rate }}</span> </div>
                 </div>
                 <div class="mt-3">
+                    <p>* {{ __('Description') }}: {{ $group->description }}</p>
                     <p>* {{ __('Location') }}: {{ $group->location }}</p>
                     <p>* {{ __('Activity time') }}: {{ $group->activity_time }}</p>
                     <div class="mt-3">
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 10%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar" role="progressbar" <?php echo 'style="width:' . ($group->group_users->count() / $group->number_of_members * 100) . '%"' ?> aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <div class="mt-3"> <span class="text1">12 {{ __('Applied') }} <span class="text2">of {{ $group->number_of_members }}</span></span> </div>
+                        <div class="mt-3"> <span class="text1">{{ $group->group_users->count() }} {{ __('Applied') }} <span class="text2">of {{ $group->number_of_members }}</span></span> </div>
                     </div>
                 </div>
             </div>
