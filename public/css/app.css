@@ -195,6 +195,7 @@ button,
 [type='button'],
 [type='reset'],
 [type='submit'] {
+  -webkit-appearance: button; /* 1 */
   background-color: transparent; /* 2 */
   background-image: none; /* 2 */
 }
@@ -238,6 +239,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 */
 
 [type='search'] {
+  -webkit-appearance: textfield; /* 1 */
   outline-offset: -2px; /* 2 */
 }
 
@@ -366,6 +368,7 @@ iframe,
 embed,
 object {
   display: block; /* 1 */
+  vertical-align: middle; /* 2 */
 }
 
 /*
@@ -1101,25 +1104,11 @@ select {
 .prose :where(.prose > :last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
   margin-bottom: 0;
 }
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
 .visible {
   visibility: visible;
 }
 .collapse {
   visibility: collapse;
-}
-.static {
-  position: static;
 }
 .fixed {
   position: fixed;
@@ -1238,17 +1227,11 @@ select {
 .ml-auto {
   margin-left: auto;
 }
-.mr-1 {
-  margin-right: 0.25rem;
-}
 .mr-2 {
   margin-right: 0.5rem;
 }
 .mr-3 {
   margin-right: 0.75rem;
-}
-.ms-2 {
-  margin-inline-start: 0.5rem;
 }
 .mt-1 {
   margin-top: 0.25rem;
@@ -1273,6 +1256,9 @@ select {
 }
 .mt-8 {
   margin-top: 2rem;
+}
+.ms-2 {
+  margin-inline-start: 0.5rem;
 }
 .block {
   display: block;
@@ -1643,14 +1629,14 @@ select {
 .p-2 {
   padding: 0.5rem;
 }
-.p-3 {
-  padding: 0.75rem;
-}
 .p-4 {
   padding: 1rem;
 }
 .p-6 {
   padding: 1.5rem;
+}
+.p-3 {
+  padding: 0.75rem;
 }
 .px-1 {
   padding-left: 0.25rem;
