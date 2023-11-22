@@ -34,8 +34,6 @@ class TeamRequest extends FormRequest
     public function messages()
     {
         return [
-
-
             'name.required' => __('Tên không được để trống'),
             'name.unique' => __('Tên không được trùng nhau'),
             'coach.required' => __('Huấn luyện viên không được bỏ trống'),

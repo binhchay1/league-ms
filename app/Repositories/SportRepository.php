@@ -29,5 +29,4 @@ class SportRepository extends BaseRepository
     {
         return $this->model->where('id', $id)->update($input);
     }
-
 }

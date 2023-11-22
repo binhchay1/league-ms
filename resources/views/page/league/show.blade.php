@@ -54,10 +54,10 @@
         <div class="col-lg-2 " style="margin-top: 35px;">
             <h5>Các giải đấu khác</h5>
             <div class="mt-4" style="text-align: left">
-                @foreach($listTournament as $dataTour)
+                @foreach($listLeague as $dataLeague)
                     <div style="font-size: 14px; font-weight: 500; padding: 7px;"><i class='fas fa-baseball-ball'></i>
-                        <a href="{{route('tour.info', $dataTour['slug'])}}" style="color: black">
-                            {{ $dataTour->name }}
+                        <a href="{{route('tour.info', $dataLeague['slug'])}}" style="color: black">
+                            {{ $dataLeague->name }}
                         </a>
                     </div>
                 @endforeach
@@ -139,7 +139,7 @@
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content" style="height: 400px;">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">{{$schedule->tournament->name}}</h4>
+                                            <h4 class="modal-title">{{$schedule->league->name}}</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             </button>
                                         </div>

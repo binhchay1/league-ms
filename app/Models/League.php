@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tournament extends Model
+class League extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name', 'image','start_date', 'end_date', 'format', 'number_of_team', 'type','slug'
+        'name', 'image','start_date', 'end_date', 'format_of_league', 'number_of_team', 'type_of_league','slug', 'location', 'money'
     ];
 
 
     public function schedule()
     {
-        return $this->hasMany('App\Models\Schedule', 'tournament_id', 'id');
+        return $this->hasMany('App\Models\Schedule');
     }
 }

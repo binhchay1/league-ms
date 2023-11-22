@@ -4,25 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Enums\Utility;
 use App\Repositories\TeamRepository;
-use App\Repositories\TournamentRepository;
+use App\Repositories\LeagueRepository;
 use App\Repositories\UserRepository;
 use Config;
 use Session;
 
 class HomeController extends Controller
 {
-    protected $tournamentRepository;
+    protected $leagueRepository;
     protected $teamRepository;
     protected $userRepository;
     protected $utility;
 
     public function __construct(
-        TournamentRepository $tournamentRepository,
+        LeagueRepository $leagueRepository,
         TeamRepository $teamRepository,
         UserRepository $userRepository,
         Utility $ultity
     ) {
-        $this->tournamentRepository = $tournamentRepository;
+        $this->leagueRepository = $leagueRepository;
         $this->teamRepository = $teamRepository;
         $this->userRepository = $userRepository;
         $this->utility = $ultity;
@@ -30,18 +30,48 @@ class HomeController extends Controller
 
     public function viewHome()
     {
-        $totalUser = $this->userRepository->count();
+        $totalMatch = '';
         $totalTeam = $this->teamRepository->count();
-        $totalTour = $this->tournamentRepository->count();
+        $totalLeague = $this->leagueRepository->count();
         $totalView = strtotime(date('Y-m-d H:i:s')) / 1242222;
 
-        return view('page.homepage', compact('totalUser', 'totalTeam', 'totalTour', 'totalView'));
+        return view('page.homepage', compact('totalMatch', 'totalTeam', 'totalLeague', 'totalView'));
     }
 
-    public function listTour()
+    public function viewSearch()
     {
-        $listTournament = $this->tournamentRepository->index();
-        return view('page.tournament.index', compact('listTournament'));
+        return view('page.search');
+    }
+
+    public function viewMarket()
+    {
+        return view('page.market');
+    }
+
+    public function viewAbout()
+    {
+        return view('page.about');
+    }
+
+    public function viewPricing()
+    {
+        return view('page.pricing');
+    }
+
+    public function viewPrivacy()
+    {
+        return view('page.privacy');
+    }
+
+    public function viewTermAndConditions()
+    {
+        return view('page.term');
+    }
+
+    public function listLeague()
+    {
+        $listLeague = $this->leagueRepository->index();
+        return view('page.league.index', compact('listLeague'));
     }
 
     public function listTeam()
@@ -52,15 +82,15 @@ class HomeController extends Controller
 
     public function showInfo($slug)
     {
-        $tourInfo = $this->tournamentRepository->showInfo($slug);
-        $listTournament = $this->tournamentRepository->index();
+        $tourInfo = $this->leagueRepository->showInfo($slug);
+        $listLeague = $this->leagueRepository->index();
         $groupSchedule = [];
 
         foreach ($tourInfo->schedule as $schedule) {
             $groupSchedule[$schedule['match']][] = $schedule;
         }
 
-        return view('page.tournament.show', compact('groupSchedule', 'tourInfo', 'listTournament'));
+        return view('page.league.show', compact('groupSchedule', 'tourInfo', 'listLeague'));
     }
 
     public function changeLocate($locale)

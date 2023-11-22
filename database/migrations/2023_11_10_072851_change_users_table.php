@@ -25,7 +25,7 @@ class ChangeUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('tournaments', function($table) {
+        Schema::table('leagues', function($table) {
             $table->dropColumn()->softDeletes();
         });
     }

@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Models\Tournament;
+use App\Models\League;
 
-class TournamentRepository extends BaseRepository
+class LeagueRepository extends BaseRepository
 {
     public function model()
     {
-        return Tournament::class;
+        return League::class;
     }
 
     public function index()
@@ -26,7 +26,7 @@ class TournamentRepository extends BaseRepository
         return $this->model->where('id', $id)->first();
     }
 
-    public function updateTour($input, $id)
+    public function updateLeague($input, $id)
     {
         return $this->model->where('id', $id)->update($input);
     }

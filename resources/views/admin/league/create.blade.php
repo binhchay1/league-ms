@@ -2,14 +2,14 @@
 @section('content')
         <div class="container-fluid mt-4">
             <div class="card card-default">
-                <div class="card-header">
+                <div class="card-header"  style="background-color: grey">
                     <h5>{{__('Tạo Giải Đấu')}}</h5>
                 </div>
                 <div class="card-body">
-                    <form id="formAccountSettings" method="POST" action="{{ route('tournament.store') }}" enctype="multipart/form-data">
+                    <form id="formAccountSettings" method="POST" action="{{ route('league.store') }}" enctype="multipart/form-data">
                         @csrf()
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 mt-4">
                                 <div class="form-group">
                                     <label>{{__('Logo giải đấu')}}</label>
                                     <div class="">
@@ -32,26 +32,27 @@
                             </div>
                             <!-- /.col -->
                             <div class="col-md-6">
-                                <div class="">
-                                    <label for="lastName" class="form-label">{{__('Tên giải đấu')}}</label>
-                                    <input class="form-control" type="text" name="name" id="name"  />
-                                    @if ($errors->has('name'))
-                                        <span class="text-danger">{{ $errors->first('name') }}</span>
-                                    @endif
+                                <div class="row mt-4">
+                                    <div class="col-6">
+                                        <label for="lastName" class="form-label">{{__('Tên giải đấu')}}</label>
+                                        <input class="form-control" value="{{old('name')}}" type="text" name="name" id="name"  />
+                                        @if ($errors->has('name'))
+                                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                                        @endif
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="lastName" class="form-label">{{__('Slug')}}</label>
+                                        <input class="form-control" value="{{old('slug')}}" type="text" name="slug" id="slug"  />
+                                        @if ($errors->has('slug'))
+                                            <span class="text-danger">{{ $errors->first('slug') }}</span>
+                                        @endif
+                                    </div>
                                 </div>
-                                <div class="mt-4">
-                                    <label for="lastName" class="form-label">{{__('Slug')}}</label>
-                                    <input class="form-control" type="text" name="slug" id="slug"  />
-                                    @if ($errors->has('slug'))
-                                        <span class="text-danger">{{ $errors->first('slug') }}</span>
-                                    @endif
-                                </div>
-
                                 <div class="row mt-4">
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="address" class="form-label">{{__('Ngày bắt đầu')}}</label>
-                                            <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Address" />
+                                            <input type="date" value="{{old('start_date')}}" class="form-control" id="start_date" name="start_date" placeholder="Address" />
                                             @if ($errors->has('start_date'))
                                                 <span class="text-danger">{{ $errors->first('start_date') }}</span>
                                             @endif
@@ -60,7 +61,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="address" class="form-label">{{__('Ngày kết thúc')}}</label>
-                                            <input type="date" class="form-control"  id="end_date" name="end_date" placeholder="Address" />
+                                            <input type="date" value="{{old('end_date')}}" class="form-control"  id="end_date" name="end_date" placeholder="Address" />
                                             @if ($errors->has('end_date'))
                                                 <span class="text-danger">{{ $errors->first('end_date') }}</span>
                                             @endif
@@ -70,7 +71,7 @@
 
                                 <div class="mt-4">
                                     <label for="lastName" class="form-label">{{__('Đội tham gia')}}</label>
-                                    <input class="form-control" type="text" name="number_of_team" id="number_of_team"  />
+                                    <input class="form-control" value="{{old('number_of_team')}}" type="text" name="number_of_team" id="number_of_team"  />
                                     @if ($errors->has('number_of_team'))
                                         <span class="text-danger">{{ $errors->first('number_of_team') }}</span>
                                     @endif
@@ -78,10 +79,30 @@
                                 <div class="row mt-4">
                                     <div class="col-6">
                                         <div class="form-group">
+                                            <label for="lastName" class="form-label">{{__('Địa điểm')}}</label>
+                                            <input class="form-control" value="{{old('location')}}" type="text" name="location" id="location"  />
+                                            @if ($errors->has('location'))
+                                                <span class="text-danger">{{ $errors->first('location') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="lastName" class="form-label">{{__('Tiền thưởng')}}</label>
+                                            <input class="form-control" value="{{old('money')}}" type="number" name="money" id="money"  />
+                                            @if ($errors->has('money'))
+                                                <span class="text-danger">{{ $errors->first('money') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-6">
+                                        <div class="form-group">
                                             <label>{{__('Thể thức thi đấu')}}</label>
-                                            <select id="format" name="format" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                            <select id="format_of_league" value="{{old('format_of_league')}}" name="format_of_league" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
                                                 @foreach($format_tours as $format_tour => $value)
-                                                    <option id="format" value="{{$value}}">{{$value}}</option>
+                                                    <option id="format_of_league" value="{{$value}}">{{$value}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -89,16 +110,15 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label>{{__('Hình thức thi đấu')}}</label>
-                                            <select  id="type" name="type" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                            <select  id="type_of_league" value="{{old('type_of_league')}}" name="type_of_league" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
                                                 @foreach($type_tours as $type_tour => $value)
-                                                    <option id="type" value="{{$value}}">{{$value}}</option>
+                                                    <option id="type_of_league" value="{{$value}}">{{$value}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="mt-4">

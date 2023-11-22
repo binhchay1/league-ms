@@ -23,7 +23,7 @@
                     <tbody class="table-border-bottom-0">
                     @foreach($listSchedule as $data)
                         <tr>
-                            <td>{{ $data->tournament->name }}</td>
+                            <td>{{ $data->league->name }}</td>
                             <td>{{ $data->match }}</td>
                             <td>{{ $data->time }}</td>
                             <td>

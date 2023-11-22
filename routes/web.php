@@ -19,12 +19,16 @@ use App\Http\Controllers\AuthController;
 
 //homepage
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
-Route::get('list-tournaments', [HomeController::class, 'listTour'])->name('list.tour');
-Route::get('info/{slug}', [HomeController::class, 'showInfo'])->name('tour.info');
-Route::get('list-teams', [HomeController::class, 'listTeam'])->name('list.team');
-
-Route::middleware([])->group(function () {
-});
+Route::get('/list-of-league', [HomeController::class, 'listLeague'])->name('list.league');
+Route::get('/top-league', [HomeController::class, 'listTopLeague'])->name('top.league');
+Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
+Route::get('/market', [HomeController::class, 'viewMarket'])->name('market');
+Route::get('/about', [HomeController::class, 'viewAbout'])->name('about');
+Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');
+Route::get('/term-and-conditions', [HomeController::class, 'viewTermAndConditions'])->name('term.and.conditions');
+Route::get('/pricing', [HomeController::class, 'viewPricing'])->name('pricing');
+Route::get('/info/{slug}', [HomeController::class, 'showInfo'])->name('tour.info');
+Route::get('/list-teams', [HomeController::class, 'listTeam'])->name('list.team');
 
 Route::middleware([
     'auth:sanctum',
@@ -73,13 +77,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/edit-sport/{id}', 'App\Http\Controllers\Admin\SportController@edit')->name('sport.edit');
             Route::post('/update-sport/{id}', 'App\Http\Controllers\Admin\SportController@update')->name('sport.update');
 
-            //Tournament
-            Route::get('/list-tournament', 'App\Http\Controllers\Admin\TournamentController@index')->name('tournament.index');
-            Route::get('/create-tournament', 'App\Http\Controllers\Admin\TournamentController@create')->name('tournament.create');
-            Route::post('/store-tournament', 'App\Http\Controllers\Admin\TournamentController@store')->name('tournament.store');
-            Route::get('/tournament/{id}', 'App\Http\Controllers\Admin\TournamentController@show')->name('tournament.show');
-            Route::get('/edit-tournament/{id}', 'App\Http\Controllers\Admin\TournamentController@edit')->name('tournament.edit');
-            Route::post('/update-tournament/{id}', 'App\Http\Controllers\Admin\TournamentController@update')->name('tournament.update');
+            //League
+            Route::get('/list-league', 'App\Http\Controllers\Admin\LeagueController@index')->name('league.index');
+            Route::get('/create-league', 'App\Http\Controllers\Admin\LeagueController@create')->name('league.create');
+            Route::post('/store-league', 'App\Http\Controllers\Admin\LeagueController@store')->name('league.store');
+            Route::get('/league/{id}', 'App\Http\Controllers\Admin\LeagueController@show')->name('league.show');
+            Route::get('/edit-league/{id}', 'App\Http\Controllers\Admin\LeagueController@edit')->name('league.edit');
+            Route::post('/update-league/{id}', 'App\Http\Controllers\Admin\LeagueController@update')->name('league.update');
 
             //Team
             Route::get('/list-team', 'App\Http\Controllers\Admin\TeamController@index')->name('team.index');

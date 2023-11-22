@@ -11,7 +11,7 @@ function countUp() {
     };
 
     let total_player = '<?php echo $totalUser ?>';
-    let total_league = '<?php echo $totalTour ?>';
+    let total_league = '<?php echo $totalLeague ?>';
     let total_team = '<?php echo $totalTeam ?>';
     let total_view = '<?php echo $totalView ?>';
 

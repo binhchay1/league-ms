@@ -11,18 +11,17 @@
 
     <div class="row" style="background: white; border-radius: 10px; padding: 10px">
         <h2>Danh sách giải đấu</h2>
-        @foreach($listTournament as $listTour)
+        @foreach($listLeague as $listLeague)
         <div class="col-lg-3" style=" margin-top: 10px">
             <section id="signup" style="background: #eee; border-radius: 10px; " >
                 <div class="">
-                    <a href="{{route('tour.info', $listTour['slug'])}}">
+                    <a href="{{route('tour.info', $listLeague['slug'])}}">
                         <div style="color: #434365">
-                            <h5 class="center" >{{$listTour->name}}</h5>
-                            <img width="80" class="lazy truncated initial loaded white center" src="{{$listTour->image}}" style="margin-left: 35%;width: 100px;">
-                            <p class="center">{{$listTour->type}}</p>
+                            <h5 class="center" >{{ $listLeague->name }}</h5>
+                            <img width="80" class="lazy truncated initial loaded white center" src="{{$listLeague->image}}" style="margin-left: 35%;width: 100px;">
+                            <p class="center">{{ $listLeague->type }}</p>
                         </div>
                     </a>
-
                 </div>
             </section>
         </div>

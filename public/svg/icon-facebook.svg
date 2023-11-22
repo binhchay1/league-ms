@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="31px" viewBox="0 0 30 31" version="1.1">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-facebook</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Footer" transform="translate(-146.000000, -490.000000)" fill="#434365">
+            <g id="Footer-Links" transform="translate(67.000000, 245.289062)">
+                <g id="Social-icons" transform="translate(1.000000, 245.000000)">
+                    <path d="M93,0 C101.2788,0 108,6.7212 108,15 C108,23.27872 101.2788,30 93,30 C84.72128,30 78,23.27872 78,15 C78,6.7212 84.72128,0 93,0 Z M94.36416,12.88084 L94.36416,11.06426 C94.36416,10.241 94.61182,9.6796 95.93702,9.6796 L97.6673,9.6804 L97.6673,7.0994 C97.37482,7.0646 96.35092,6.9942 95.18366,6.9942 C92.7468,6.9942 91.10042,8.331 91.10042,10.76428 L91.10042,12.88084 L88.3327,12.88084 L88.3327,15.6776 L91.09966,15.6776 L91.09966,22.99988 L94.36416,22.99988 L94.36416,15.6776 L97.12372,15.6776 L97.53522,12.88084 L94.36416,12.88084 Z" id="icon-facebook"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
