@@ -21,7 +21,6 @@ class CreateLeaguesTable extends Migration
             $table->date('end_date');
             $table->string('format');
             $table->string('number_of_team');
-            $table->string('people_of_team');
             $table->timestamps();
         });
     }
