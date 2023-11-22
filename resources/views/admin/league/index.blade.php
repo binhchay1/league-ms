@@ -12,16 +12,16 @@
                 <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">
                     <thead>
                     <tr class="design-text">
-                        <th scope="col">{{__('Tên giải đấu')}}</th>
-                        <th scope="col">{{__('Ngày Bắt Đầu')}}</th>
-                        <th scope="col">{{__('Ngày kết thúc')}}</th>
-                        <th scope="col">{{__('Hình ảnh')}}</th>
-                        <th scope="col">{{__('Địa điểm')}}</th>
-                        <th scope="col">{{__('Tiền thưởng')}}</th>
-                        <th scope="col">{{__('Hình thức thi đấu')}}</th>
-                        <th scope="col">{{__('Thể thức thi đấu')}}</th>
-                        <th scope="col">{{__('Số đội tham gia')}}</th>
-                        <th scope="col">{{__('Hành động')}}</th>
+                        <th scope="col">{{__('Name')}}</th>
+                        <th scope="col">{{__('Start Date')}}</th>
+                        <th scope="col">{{__('End Date')}}</th>
+                        <th scope="col">{{__('Image')}}</th>
+                        <th scope="col">{{__('Location')}}</th>
+                        <th scope="col">{{__('Prize Money')}}</th>
+                        <th scope="col">{{__('Number of athletes')}}</th>
+                        <th scope="col">{{__('Format of league')}}</th>
+                        <th scope="col">{{__('Type of league')}}</th>
+                        <th scope="col">{{__('Action')}}</th>
                     </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -33,15 +33,15 @@
                             <td><img class ="image" src="{{$data->image ?? asset('/images/champion.png')}}" alt="avatar" style="width: 150px"></td>
                             <td>{{ $data->location }}</td>
                             <td>{{ $data->money }}</td>
+                            <td>{{ $data->number_of_athletes }}</td>
                             <td>{{ $data->format_of_league }}</td>
                             <td>{{ $data->type_of_league }}</td>
-                            <td>{{ $data->number_of_team }}</td>
                             <td>
                                 <a href="{{route('league.edit',$data['id'])}}">
-                                    <button type="button" class="btn btn-info">{{__('Sửa')}}</button>
+                                    <button type="button" class="btn btn-info">{{__('Edit')}}</button>
                                 </a>
                                 <a href="">
-                                    <button type="button" class="btn btn-danger">{{__('Xóa')}}</button>
+                                    <button type="button" class="btn btn-danger">{{__('Delete')}}</button>
                                 </a>
                             </td>
                         </tr>
