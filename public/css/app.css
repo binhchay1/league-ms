@@ -1257,6 +1257,9 @@ select {
 .mt-8 {
   margin-top: 2rem;
 }
+.ms-2 {
+  margin-inline-start: 0.5rem;
+}
 .block {
   display: block;
 }
@@ -1631,6 +1634,9 @@ select {
 }
 .p-6 {
   padding: 1.5rem;
+}
+.p-3 {
+  padding: 0.75rem;
 }
 .px-1 {
   padding-left: 0.25rem;

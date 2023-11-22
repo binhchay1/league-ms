@@ -22,13 +22,15 @@ Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/list-of-league', [HomeController::class, 'listLeague'])->name('list.league');
 Route::get('/top-league', [HomeController::class, 'listTopLeague'])->name('top.league');
 Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
-Route::get('/market', [HomeController::class, 'viewMarket'])->name('market');
+Route::get('/shop', [HomeController::class, 'viewShop'])->name('shop');
 Route::get('/about', [HomeController::class, 'viewAbout'])->name('about');
+Route::get('/team-register', [HomeController::class, 'viewTeamRegister'])->name('team.register');
 Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');
 Route::get('/term-and-conditions', [HomeController::class, 'viewTermAndConditions'])->name('term.and.conditions');
 Route::get('/pricing', [HomeController::class, 'viewPricing'])->name('pricing');
 Route::get('/info/{slug}', [HomeController::class, 'showInfo'])->name('tour.info');
 Route::get('/list-teams', [HomeController::class, 'listTeam'])->name('list.team');
+Route::get('/list-group', [HomeController::class, 'listGroup'])->name('list.group');
 
 Route::middleware([
     'auth:sanctum',
@@ -50,7 +52,6 @@ Route::get('/auth/facebook/callback', [SocialLoginController::class, 'handleFace
 Route::get('register', [AuthController::class, 'registerUser'])->name('register_user');
 Route::post('register', [AuthController::class, 'storeUser'])->name('storeUser');
 Route::get('/setLocale/{locale}', [HomeController::class, 'changeLocate'])->name('app.setLocale');
-
 
 Route::middleware(['auth:sanctum'])->group(function () {
 

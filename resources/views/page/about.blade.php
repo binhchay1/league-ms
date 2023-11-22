@@ -1,6 +1,7 @@
 @extends('page')
 
 @section('title')
+{{ env('APP_NAME', 'Badminton.io') }} - {{ __('About') }}
 @endsection
 
 @section('content')

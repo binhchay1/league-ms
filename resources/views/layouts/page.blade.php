@@ -21,15 +21,21 @@
     <link rel="alternate" hreflang="en-US" href="https://badminton.io">
     <link rel="alternate" hreflang="af" href="https://badminton.io">
     <link rel="alternate" hreflang="x-default" href="https://badminton.io">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
     @yield('css')
 
 </head>
 
 <body>
-    <header>
+    <header style="background-color: #222">
         <div class="top-nav">
             <ul class="container">
                 <li><a href="/top-sites.html">{{ __('Top league') }}</a></li>
@@ -52,11 +58,12 @@
             </ul>
         </div>
         <nav class="container">
-            <a href="{{ route('home') }}"><img src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="80" height="80"></a>
+            <a href="{{ route('home') }}"><img style="margin-bottom: 30px" class="left" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
             <button id="toggle-menu" onclick="toggleMobileMenu()"></button>
             <ul id="menu">
                 <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
-                <li><a href="{{ route('market') }}">{{ __('Market') }}</a></li>
+                <li><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
+                <li><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li>
                 <li><a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
                 <li id="search">
                     <form id="searchMenuForm" name="searchMenuForm" action="{{ route('search') }}" method="post">
@@ -70,18 +77,19 @@
                 </li>
                 <li><a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a></li>
                 <li><a href="{{ route('register_user') }}" class="button">{{ __('Sign Up') }}</a></li>
+
             </ul>
         </nav>
     </header>
 
     @yield('content')
 
-    <footer>
-        <div class="container">
+    <footer style="background-color: #222">
+        <div class="container" style="color: white">
             <div>
-                <h4 class="h3">{{ env('APP_NAME', 'Badminton.io') }}</h4>
+                <h4 class="h3" style="color: white">{{ env('APP_NAME', 'Badminton.io') }}</h4>
                 <p>{{ __('Efficiency and ease-of-use are our mission, simplifying the process of running a sports league.') }}</p>
-                <p>{{ env('APP_NAME', 'Badminton.io') }} is available to all at no cost. Additionally, we offer premium plans that include additional functionality.</p>
+                <p>{{ env('APP_NAME', 'Badminton.io') }} {{ __('is available to all at no cost. Additionally, we offer premium plans that include additional functionality.') }}</p>
                 <ul class="social">
                     <li><a href="https://www.linkedin.com/company/badminton.io"><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="LinkedIn" width="30" height="31"></a></li>
                     <li><a href="https://twitter.com/badminton.io"><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="Twitter" width="30" height="31"></a></li>
@@ -92,7 +100,7 @@
             <div>
                 <ul>
                     <li>
-                        <h4 class="h3">{{ __('Company') }}</h4>
+                        <h4 style="color: white" class="h3">{{ __('Company') }}</h4>
                     </li>
                     <li><a href="{{ route('about') }}">{{ __('About') }}</a></li>
                     <li><a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
@@ -105,10 +113,10 @@
             <div>
                 <ul>
                     <li>
-                        <h4 class="h3">{{ __('Features') }}</h4>
+                        <h4 style="color: white" class="h3">{{ __('Features') }}</h4>
                     </li>
                     <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
-                    <li><a href="{{ route('market') }}">{{ __('Market') }}</a></li>
+                    <li><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li>
                 </ul>
             </div>
             <div>
@@ -117,14 +125,13 @@
                         <a href="{{ route('term.and.conditions') }}">{{ __('Terms & Conditions') }}</a>,
                         <a href="{{ route('privacy') }}">{{ __('Privacy') }}</a>
                         <br>
-                        Copyright© 2023 <a href="{{ route('home')}}">{{ env('APP_NAME', 'Badminton.io') }}</a>
+                        {{ __('Copyright© 2023') }} <a href="{{ route('home')}}">{{ env('APP_NAME', 'Badminton.io') }}</a>
                     </small>
                 </p>
             </div>
         </div>
     </footer>
 
-    <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script src="{{ asset('/js/page/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('/js/page/jquery.magnific-popup.min.js') }}"></script>

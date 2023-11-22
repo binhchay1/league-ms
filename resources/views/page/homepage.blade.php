@@ -339,7 +339,7 @@
 </section>
 
 <section class="feature feature-image-left container">
-    <div><img src="{{ __('/images/image-teams@2x.png') }}" alt="{{ __('Manage Teams & Player Registrations') }}" width="501" height="369"></div>
+    <div><img src="{{ asset('/images/image-teams@2x.png') }}" alt="{{ __('Manage Teams & Player Registrations') }}" width="501" height="369"></div>
     <div>
         <h2 class="h24px">{{ __('Manage Teams & Player Registrations') }}</h2>
         <p>{{ __('Simplify the registration process for players and teams joining your league or returning for a new season.') }}</p>
