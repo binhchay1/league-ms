@@ -14,6 +14,6 @@ class GroupRepository extends BaseRepository
 
     public function getGroupWithStatus()
     {
-        return $this->model->where('status', GroupEnum::STATUS_ACTIVE)->get();
+        return $this->model->with('group_users')->with('users')->where('status', GroupEnum::STATUS_ACTIVE)->get();
     }
 }

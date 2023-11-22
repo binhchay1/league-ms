@@ -1,4 +1,4 @@
-@extends('layout.admin_layout')
+@extends('layouts.admin')
 @section('content')
     <style>
         label:not(.form-check-label):not(.custom-file-label) {

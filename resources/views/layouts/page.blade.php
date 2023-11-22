@@ -21,7 +21,9 @@
     <link rel="alternate" hreflang="en-US" href="https://badminton.io">
     <link rel="alternate" hreflang="af" href="https://badminton.io">
     <link rel="alternate" hreflang="x-default" href="https://badminton.io">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
     <!-- Bootstrap JavaScript -->
@@ -60,7 +62,7 @@
         <nav class="container">
             <a href="{{ route('home') }}"><img style="margin-bottom: 30px" class="left" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
             <button id="toggle-menu" onclick="toggleMobileMenu()"></button>
-            <ul id="menu">
+            <ul id="menu" style="display: flex !important;">
                 <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
                 <li><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
                 <li><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li>
@@ -75,9 +77,25 @@
                         </div>
                     </form>
                 </li>
+                @if(Auth::check())
+                <li>
+                    <div class="dropdown">
+                        <a style="text-decoration: none;" class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img width="40" height="40" src="{{ Auth::user()->profile_photo_path }}">
+                        </a>
+
+                        <ul class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink">
+                            <li><i class="fas fa-user"></i><a class="dropdown-item" href="{{ route('profile') }}">{{ __('Profile') }}</a></li>
+                            <li><i class="fas fa-people-group"></i><a class="dropdown-item" href="{{ route('my.group') }}">{{ __('My group') }}</a></li>
+                            <hr>
+                            <li><a class="dropdown-item" href="{{ route('signout') }}">{{ __('Log out') }}</a></li>
+                        </ul>
+                    </div>
+                </li>
+                @else
                 <li><a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a></li>
                 <li><a href="{{ route('register_user') }}" class="button">{{ __('Sign Up') }}</a></li>
-
+                @endif
             </ul>
         </nav>
     </header>

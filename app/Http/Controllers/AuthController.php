@@ -26,7 +26,7 @@ class  AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->put('email', $credentials['email']);
-            if(Auth::user()->role == Role::ADMIN) {
+            if (Auth::user()->role == Role::ADMIN) {
                 return redirect('dashboard');
             } else {
                 return redirect('/');
@@ -41,7 +41,7 @@ class  AuthController extends Controller
     public function dashboard()
     {
         if (Auth::check()) {
-            return view('layout.admin_layout');
+            return view('layouts.admin');
         }
 
         return redirect("login")->withSuccess('You are not allowed to access');
@@ -71,5 +71,15 @@ class  AuthController extends Controller
         auth()->login($user);
 
         return redirect("dashboard")->withSuccess('You have signed-in');
+    }
+
+    public function profile()
+    {
+        return view('page.profile');
+    }
+
+    public function myGroup()
+    {
+        return view('page.my-group');
     }
 }

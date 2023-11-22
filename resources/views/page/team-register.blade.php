@@ -1,4 +1,4 @@
-@extends('page')
+@extends('layouts.page')
 
 @section('title')
 {{ env('APP_NAME', 'Badminton.io') }} - {{ __('Team Register') }}

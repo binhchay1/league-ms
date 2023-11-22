@@ -98,6 +98,7 @@ class HomeController extends Controller
     public function listGroup()
     {
         $listGroup = $this->groupRepository->getGroupWithStatus();
+        $listGroup = $this->utility->paginate($listGroup, 30);
 
         return view('page.group.index', compact('listGroup'));
     }

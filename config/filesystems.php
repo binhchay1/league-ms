@@ -38,7 +38,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],
 
@@ -53,30 +53,29 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
-        'public-image-tour' => [
+        'public-image-league' => [
             'driver' => 'local',
-            'root' => public_path() . '/images/league/',
-            'url' => env('APP_URL') . '/images/league/',
+            'root' => public_path() . '/images/upload/league/',
+            'url' => env('APP_URL') . '/images/upload/league/',
             'visibility' => 'public',
             'throw' => false,
         ],
 
         'public-image-team' => [
             'driver' => 'local',
-            'root' => public_path() . '/images/team/',
-            'url' => env('APP_URL') . '/images/team/',
+            'root' => public_path() . '/images/upload/team/',
+            'url' => env('APP_URL') . '/images/upload/team/',
             'visibility' => 'public',
             'throw' => false,
         ],
 
-        'public-image-player' => [
+        'public-image-group' => [
             'driver' => 'local',
-            'root' => public_path() . '/images/player/',
-            'url' => env('APP_URL') . '/images/player/',
+            'root' => public_path() . '/images/upload/group/',
+            'url' => env('APP_URL') . '/images/upload/group/',
             'visibility' => 'public',
             'throw' => false,
         ],
-
 
     ],
 
