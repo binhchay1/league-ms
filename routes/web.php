@@ -33,7 +33,7 @@ Route::get('/term-and-conditions', [HomeController::class, 'viewTermAndCondition
 Route::get('/pricing', [HomeController::class, 'viewPricing'])->name('pricing');
 Route::get('/info/{slug}', [HomeController::class, 'showInfo'])->name('tour.info');
 Route::get('/list-teams', [HomeController::class, 'listTeam'])->name('list.team');
-Route::get('/list-group', [HomeController::class, 'listGroup'])->name('list.group');
+Route::get('/group', [HomeController::class, 'listGroup'])->name('list.group');
 
 Route::middleware(['verified'])->group(function () {
     Route::get('/signout', [AuthController::class, 'signOut'])->name('signout');
@@ -89,8 +89,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('/update-schedule/{id}', [ScheduleController::class, 'update'])->name('schedule.update');
             Route::get('/result', [ScheduleController::class, 'result'])->name('schedule.result');
 
-            Route::get('/list-group-admin', [GroupController::class, 'index'])->name('group.index');
-            Route::get('/create-group-admin', [GroupController::class, 'create'])->name('group.create');
+            Route::get('/list-group', [GroupController::class, 'index'])->name('group.index');
+            Route::get('/store-group', [GroupController::class, 'store'])->name('group.store');
+            Route::get('/create-group', [GroupController::class, 'create'])->name('group.create');
         }
     );
 });

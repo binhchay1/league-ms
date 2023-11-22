@@ -6,7 +6,6 @@ use App\Enums\Role;
 use App\Enums\Utility;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TeamRequest;
-use Illuminate\Http\Request;
 use App\Repositories\TeamRepository;
 use Illuminate\Support\Facades\Auth;
 
@@ -78,11 +77,11 @@ class TeamController extends Controller
     public function update(TeamRequest $request, $id)
     {
         $input = $request->except(['_token']);
-        if (isset($input['image'])) {
+        if (isset($input['images'])) {
             $img = $this->utility->saveImageTeam($input);
             if ($img) {
-                $path = '/images/upload/team/' . $input['image']->getClientOriginalName();
-                $input['image'] = $path;
+                $path = '/images/upload/team/' . $input['images']->getClientOriginalName();
+                $input['images'] = $path;
             }
         }
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\LeagueRequest;
+use App\Http\Requests\GroupRequest;
 use App\Repositories\GroupRepository;
 use App\Http\Controllers\Controller;
 use App\Enums\Utility;
@@ -32,14 +32,14 @@ class GroupController extends Controller
         return view('admin.group.create');
     }
 
-    public function store(LeagueRequest $request)
+    public function store(GroupRequest $request)
     {
         $input = $request->except(['_token']);
 
         if (isset($input['images'])) {
             $img = $this->utility->saveImageGroup($input);
             if ($img) {
-                $path = '/images/group/' . $input['image']->getClientOriginalName();
+                $path = '/images/group/' . $input['images']->getClientOriginalName();
                 $input['images'] = $path;
             }
         }
@@ -56,12 +56,12 @@ class GroupController extends Controller
 
     public function edit($id)
     {
-        $dataLeague = $this->groupRepository->show($id);
-        return view('admin.group.edit', compact('dataLeague', 'format_tours', 'type_tours'));
+        $dataGroup = $this->groupRepository->show($id);
+        return view('admin.group.edit', compact('dataGroup', 'format_tours', 'type_tours'));
     }
 
 
-    public function update(LeagueRequest $request, $id)
+    public function update(GroupRequest $request, $id)
     {
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->slug);
@@ -73,7 +73,7 @@ class GroupController extends Controller
             }
         }
 
-        $this->groupRepository->updateLeague($input, $id);
+        $this->groupRepository->updateGroup($input, $id);
         return redirect()->route('group.index');
     }
 }
