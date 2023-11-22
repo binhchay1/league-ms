@@ -22,10 +22,10 @@
                 <div class="dropdown-divider"></div>
                 <div class="d-flex bd-highlight">
                     <div class="p-2 bd-highlight">
-                        <a href="" class="btn btn-default">changePass</a>
+                        <a href="" class="btn btn-default">{{__('Change Password')}}</a>
                     </div>
                     <div class="ml-auto p-2 bd-highlight">
-                        <a href="{{ route('logout') }}" class="btn btn-default">logout</a>
+                        <a href="{{ route('logout') }}" class="btn btn-default">{{__('Logout')}}</a>
                     </div>
                     <form id="logout" action="#" method="POST" style="display: none;">
                     </form>
