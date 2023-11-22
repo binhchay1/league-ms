@@ -6,4 +6,5 @@ final class Title
 {
     const PLAYER = 'player';
     const COACH = 'coach';
+    const ADMIN = 'admin';
 }

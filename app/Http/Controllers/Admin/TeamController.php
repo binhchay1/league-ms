@@ -17,7 +17,7 @@ class TeamController extends Controller
 
     public function __construct(
         TeamRepository $teamRepository,
-         Utility $utility
+        Utility $utility
 
     ) {
         $this->teamRepository = $teamRepository;
@@ -34,12 +34,10 @@ class TeamController extends Controller
 
     public function create()
     {
-        if(Auth::user()->role == Role::ADMIN)
-        {
+        if (Auth::user()->role == Role::ADMIN) {
             return view('admin.team.create');
         }
         return view('page.team.create');
-
     }
 
 
@@ -49,18 +47,17 @@ class TeamController extends Controller
         if (isset($input['image'])) {
             $img = $this->utility->saveImageTeam($input);
             if ($img) {
-                $path = '/images/team/' . $input['image']->getClientOriginalName();
+                $path = '/images/upload/team/' . $input['image']->getClientOriginalName();
                 $input['image'] = $path;
             }
         }
 
         $this->teamRepository->store($input);
 
-        if(Auth::user()->role == Role::ADMIN) {
+        if (Auth::user()->role == Role::ADMIN) {
             return redirect()->to('list-team');
         }
         return redirect()->to('list-teams');
-
     }
 
 
@@ -84,7 +81,7 @@ class TeamController extends Controller
         if (isset($input['image'])) {
             $img = $this->utility->saveImageTeam($input);
             if ($img) {
-                $path = '/images/team/' . $input['image']->getClientOriginalName();
+                $path = '/images/upload/team/' . $input['image']->getClientOriginalName();
                 $input['image'] = $path;
             }
         }

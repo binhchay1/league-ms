@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\LeagueController;
+use App\Http\Controllers\Admin\ScheduleController;
+use App\Http\Controllers\Admin\GroupController;
+use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -38,7 +43,6 @@ Route::middleware(['verified'])->group(function () {
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/custom-login', [AuthController::class, 'customLogin'])->name('login.custom');
-
 Route::get('/auth/google', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogleCallback']);
 Route::get('/auth/facebook', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
@@ -48,7 +52,6 @@ Route::post('/register', [AuthController::class, 'storeUser'])->name('storeUser'
 Route::get('/setLocale/{locale}', [HomeController::class, 'changeLocate'])->name('app.setLocale');
 
 Route::middleware(['auth:sanctum'])->group(function () {
-
     Route::get('/profile/{nick_name}', [ProfileController::class, 'show'])->name('profile.info');
     Route::get('/user-profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/user-profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
@@ -61,30 +64,33 @@ Route::middleware(['auth:sanctum'])->group(function () {
         function () {
             Route::get('/dashboard', [AuthController::class, 'dashboard']);
 
-            Route::get('/list-user', 'App\Http\Controllers\Admin\UserController@index')->name('user.index');
-            Route::get('/delete/{id}', 'App\Http\Controllers\Admin\UserController@destroy')->name('user.delete');
+            Route::get('/list-user', [UserController::class, 'index'])->name('user.index');
+            Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
 
-            Route::get('/list-league', 'App\Http\Controllers\Admin\LeagueController@index')->name('league.index');
-            Route::get('/create-league', 'App\Http\Controllers\Admin\LeagueController@create')->name('league.create');
-            Route::post('/store-league', 'App\Http\Controllers\Admin\LeagueController@store')->name('league.store');
-            Route::get('/league/{id}', 'App\Http\Controllers\Admin\LeagueController@show')->name('league.show');
-            Route::get('/edit-league/{id}', 'App\Http\Controllers\Admin\LeagueController@edit')->name('league.edit');
-            Route::post('/update-league/{id}', 'App\Http\Controllers\Admin\LeagueController@update')->name('league.update');
+            Route::get('/list-league', [LeagueController::class, 'index'])->name('league.index');
+            Route::get('/create-league', [LeagueController::class, 'create'])->name('league.create');
+            Route::post('/store-league', [LeagueController::class, 'store'])->name('league.store');
+            Route::get('/league/{id}', [LeagueController::class, 'show'])->name('league.show');
+            Route::get('/edit-league/{id}', [LeagueController::class, 'edit'])->name('league.edit');
+            Route::post('/update-league/{id}', [LeagueController::class, 'update'])->name('league.update');
 
-            Route::get('/list-team', 'App\Http\Controllers\Admin\TeamController@index')->name('team.index');
-            Route::get('/create-team', 'App\Http\Controllers\Admin\TeamController@create')->name('team.create');
-            Route::post('/store-team', 'App\Http\Controllers\Admin\TeamController@store')->name('team.store');
-            Route::get('/team/{id}', 'App\Http\Controllers\Admin\TeamController@show')->name('team.show');
-            Route::get('/edit-team/{id}', 'App\Http\Controllers\Admin\TeamController@edit')->name('team.edit');
-            Route::post('/update-team/{id}', 'App\Http\Controllers\Admin\TeamController@update')->name('team.update');
+            Route::get('/list-team', [TeamController::class, 'index'])->name('team.index');
+            Route::get('/create-team', [TeamController::class, 'create'])->name('team.create');
+            Route::post('/store-team', [TeamController::class, 'store'])->name('team.store');
+            Route::get('/team/{id}', [TeamController::class, 'show'])->name('team.show');
+            Route::get('/edit-team/{id}', [TeamController::class, 'edit'])->name('team.edit');
+            Route::post('/update-team/{id}', [TeamController::class, 'update'])->name('team.update');
 
-            Route::get('/list-schedule', 'App\Http\Controllers\Admin\ScheduleController@index')->name('schedule.index');
-            Route::get('/create-schedule', 'App\Http\Controllers\Admin\ScheduleController@create')->name('schedule.create');
-            Route::post('/store-schedule', 'App\Http\Controllers\Admin\ScheduleController@store')->name('schedule.store');
-            Route::get('/schedule/{id}', 'App\Http\Controllers\Admin\ScheduleController@show')->name('schedule.show');
-            Route::get('/edit-schedule/{id}', 'App\Http\Controllers\Admin\ScheduleController@edit')->name('schedule.edit');
-            Route::post('/update-schedule/{id}', 'App\Http\Controllers\Admin\ScheduleController@update')->name('schedule.update');
-            Route::get('/result', 'App\Http\Controllers\Admin\ScheduleController@result')->name('schedule.result');
+            Route::get('/list-schedule', [ScheduleController::class, 'index'])->name('schedule.index');
+            Route::get('/create-schedule', [ScheduleController::class, 'create'])->name('schedule.create');
+            Route::post('/store-schedule', [ScheduleController::class, 'store'])->name('schedule.store');
+            Route::get('/schedule/{id}', [ScheduleController::class, 'show'])->name('schedule.show');
+            Route::get('/edit-schedule/{id}', [ScheduleController::class, 'edit'])->name('schedule.edit');
+            Route::post('/update-schedule/{id}', [ScheduleController::class, 'update'])->name('schedule.update');
+            Route::get('/result', [ScheduleController::class, 'result'])->name('schedule.result');
+
+            Route::get('/list-group-admin', [GroupController::class, 'index'])->name('group.index');
+            Route::get('/create-group-admin', [GroupController::class, 'create'])->name('group.create');
         }
     );
 });

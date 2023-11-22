@@ -9,7 +9,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 final class Utility
 {
-
     public function saveImageLeague($input)
     {
         if ($input) {

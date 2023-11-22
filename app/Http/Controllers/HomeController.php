@@ -51,9 +51,9 @@ class HomeController extends Controller
         return view('page.search');
     }
 
-    public function viewMarket()
+    public function viewShop()
     {
-        return view('page.shop');
+        return view('page.shop.index');
     }
 
     public function viewAbout()
@@ -97,8 +97,8 @@ class HomeController extends Controller
 
     public function listGroup()
     {
-        $listGroup = $this->groupRepository->getGroupWithStatus();
-        $listGroup = $this->utility->paginate($listGroup, 30);
+        $getGroup = $this->groupRepository->getGroupWithStatus();
+        $listGroup = $this->utility->paginate($getGroup, 30);
 
         return view('page.group.index', compact('listGroup'));
     }
