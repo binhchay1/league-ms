@@ -33,17 +33,16 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('Tên không được để trống'),
-            'name.max' => __('Tên không được vượt quá 255 kí tự'),
-            'email.required' => __('Hòm thư không được để trống'),
-            'email.email' => __('Hòm thư không đúng định dạng'),
-            'email.max' => __('Hòm thư không được vượt quá 255 kí tự'),
-            'email.unique' => __('Hòm thư đã tồn tại'),
-            'password.required' => __('Mật khẩu không được để trống'),
-            'password.string' => __('Mật khẩu không đúng định dạng'),
-            'password.min' => __('Mật khẩu tối thiểu trên 8 kí tự'),
-            'password.max' => __('Mật khẩu không vượt quá 64 kí tự'),
+            'name.required' => __('Name is required'),
+            'name.max' => __('Name must not exceed 255 characters'),
+            'email.required' => __('Email is required'),
+            'email.email' => __('Incorrect email format'),
+            'email.max' => __('Email must not exceed 255 characters'),
+            'email.unique' => __('Email invalid'),
+            'password.required' => __('Password is required'),
+            'password.string' => __('Incorrect password format'),
+            'password.min' => __('Password must be at least 8 characters'),
+            'password.max' => __('Password must not exceed 64 characters'),
         ];
-
     }
 }

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" version="1.1">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>Tick</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Tick" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" x="0" y="0" width="20" height="20"/>
+        <path d="M3.92249968,9.90958476 L17.7139998,9.90958476 C18.6372525,9.90958476 19.3856967,10.658029 19.3856967,11.5812817 C19.3856967,12.5045345 18.6372525,13.2529787 17.7139998,13.2529787 L2.2508027,13.2529787 C1.32754996,13.2529787 0.579105724,12.5045345 0.579105724,11.5812817 L0.579105724,3.64072108 C0.579105724,2.71746834 1.32754996,1.96902411 2.2508027,1.96902411 C3.17405545,1.96902411 3.92249968,2.71746834 3.92249968,3.64072108 L3.92249968,9.90958476 Z" id="Combined-Shape" fill="#DC1A27" transform="translate(9.982401, 7.611001) rotate(-45.000000) translate(-9.982401, -7.611001) "/>
+    </g>
+</svg>

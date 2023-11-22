@@ -56,7 +56,8 @@
             <button id="toggle-menu" onclick="toggleMobileMenu()"></button>
             <ul id="menu">
                 <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
-                <li><a href="{{ route('market') }}">{{ __('Market') }}</a></li>
+                <li><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
+                <li><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li>
                 <li><a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
                 <li id="search">
                     <form id="searchMenuForm" name="searchMenuForm" action="{{ route('search') }}" method="post">
@@ -81,7 +82,7 @@
             <div>
                 <h4 class="h3">{{ env('APP_NAME', 'Badminton.io') }}</h4>
                 <p>{{ __('Efficiency and ease-of-use are our mission, simplifying the process of running a sports league.') }}</p>
-                <p>{{ env('APP_NAME', 'Badminton.io') }} is available to all at no cost. Additionally, we offer premium plans that include additional functionality.</p>
+                <p>{{ env('APP_NAME', 'Badminton.io') }} {{ __('is available to all at no cost. Additionally, we offer premium plans that include additional functionality.') }}</p>
                 <ul class="social">
                     <li><a href="https://www.linkedin.com/company/badminton.io"><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="LinkedIn" width="30" height="31"></a></li>
                     <li><a href="https://twitter.com/badminton.io"><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="Twitter" width="30" height="31"></a></li>
@@ -108,7 +109,7 @@
                         <h4 class="h3">{{ __('Features') }}</h4>
                     </li>
                     <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
-                    <li><a href="{{ route('market') }}">{{ __('Market') }}</a></li>
+                    <li><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li>
                 </ul>
             </div>
             <div>
@@ -117,14 +118,13 @@
                         <a href="{{ route('term.and.conditions') }}">{{ __('Terms & Conditions') }}</a>,
                         <a href="{{ route('privacy') }}">{{ __('Privacy') }}</a>
                         <br>
-                        Copyright© 2023 <a href="{{ route('home')}}">{{ env('APP_NAME', 'Badminton.io') }}</a>
+                        {{ __('Copyright© 2023') }} <a href="{{ route('home')}}">{{ env('APP_NAME', 'Badminton.io') }}</a>
                     </small>
                 </p>
             </div>
         </div>
     </footer>
 
-    <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script src="{{ asset('/js/page/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('/js/page/jquery.magnific-popup.min.js') }}"></script>

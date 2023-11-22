@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="46px" height="46px" viewBox="0 0 46 46" version="1.1">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>Arrow Red Down</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0.482421875" y="0.569335938" width="45" height="45"/>
+    </defs>
+    <g id="Arrow-Red-Down" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"/>
+        </mask>
+        <g id="Mask"/>
+        <path d="M11.5072422,2.09087103 L34.6757812,2.09087103 C36.3326355,2.09087103 37.6757812,3.43401678 37.6757812,5.09087103 C37.6757812,6.74772528 36.3326355,8.09087103 34.6757812,8.09087103 L14.2890625,8.09087103 L14.2890625,29.4102137 C14.2890625,30.8707162 12.9459167,32.0546875 11.2890625,32.0546875 C9.63220825,32.0546875 8.2890625,30.8707162 8.2890625,29.4102137 L8.2890625,4.72845818 C8.2890625,3.26795563 9.63220825,2.08398438 11.2890625,2.08398438 C11.3624341,2.08398438 11.4351905,2.08630619 11.5072422,2.09087103 Z" id="Combined-Shape" fill="#DC1A27" mask="url(#mask-2)" transform="translate(22.982422, 17.069336) rotate(-135.000000) translate(-22.982422, -17.069336) "/>
+    </g>
+</svg>
