@@ -29,9 +29,9 @@ class LeagueRequest extends FormRequest
             'image' => 'image|mimes:jpeg,png,jpg|max:2048',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
-            'format' => 'required',
+            'format_of_league' => 'required',
             'number_of_team' => 'required',
-            'type' => 'required',
+            'type_of_league' => 'required',
         ];
     }
 
@@ -50,9 +50,9 @@ class LeagueRequest extends FormRequest
             'end_date.required' => __('End date is required'),
             'end_date.date' => __('Incorrect end date format'),
             'end_date.after_or_equal' => __('The end date must be after the start date'),
-            'format.required' => __('Format is required'),
+            'format_of_league.required' => __('Format is required'),
             'number_of_team.required' => __('Number of teams is required'),
-            'type.required' => __('Type is required'),
+            'type_of_league.required' => __('Type is required'),
         ];
     }
 }

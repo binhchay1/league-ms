@@ -16,10 +16,11 @@
                         <th scope="col">{{__('Ngày Bắt Đầu')}}</th>
                         <th scope="col">{{__('Ngày kết thúc')}}</th>
                         <th scope="col">{{__('Hình ảnh')}}</th>
-                        <th scope="col">{{__('Hình thức thi đấu')}}u</th>
+                        <th scope="col">{{__('Địa điểm')}}</th>
+                        <th scope="col">{{__('Tiền thưởng')}}</th>
+                        <th scope="col">{{__('Hình thức thi đấu')}}</th>
                         <th scope="col">{{__('Thể thức thi đấu')}}</th>
                         <th scope="col">{{__('Số đội tham gia')}}</th>
-                        <th scope="col">{{__('Số người tham gia mỗi đội')}}</th>
                         <th scope="col">{{__('Hành động')}}</th>
                     </tr>
                     </thead>
@@ -30,10 +31,11 @@
                             <td>{{ $data->start_date }}</td>
                             <td>{{ $data->end_date }}</td>
                             <td><img class ="image" src="{{$data->image ?? asset('/images/champion.png')}}" alt="avatar" style="width: 150px"></td>
-                            <td>{{ $data->format }}</td>
-                            <td>{{ $data->type }}</td>
+                            <td>{{ $data->location }}</td>
+                            <td>{{ $data->money }}</td>
+                            <td>{{ $data->format_of_league }}</td>
+                            <td>{{ $data->type_of_league }}</td>
                             <td>{{ $data->number_of_team }}</td>
-                            <td>{{ $data->people_of_team }}</td>
                             <td>
                                 <a href="{{route('league.edit',$data['id'])}}">
                                     <button type="button" class="btn btn-info">{{__('Sửa')}}</button>
