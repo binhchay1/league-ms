@@ -1,4 +1,4 @@
-@extends('layout.admin_layout')
+@extends('layouts.admin')
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
     <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span>{{__('Chi Tiết Trận Đấu')}}</h5>

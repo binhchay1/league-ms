@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('content/images/background.jpg') }}" type="image/x-icon" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <title>{{ config('app.name', 'Gamekafe') }}</title>
+    <title>{{ config('app.name', 'Badminton.io') }}</title>
 
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
