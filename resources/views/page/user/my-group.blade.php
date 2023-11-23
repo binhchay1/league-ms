@@ -18,39 +18,37 @@
 <section id="about" class="container">
     <div class="row">
         @foreach($listGroup as $row)
-        <a href="{{ route('detail.group') }}?g_i={{ $row->groups->name }}">
-            <div class="col-md-4">
-                <div class="card p-3 mb-4">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex flex-row align-items-center">
-                            <div class="icon"> <img class="avatar-group" src="{{ $row->groups->images }}"></div>
-                            <div class="ms-2 c-details">
-                                <h6 class="mb-0">{{ $row->groups->name }}</h6> <span>{{ $row->groups->name }}</span>
-                            </div>
+        <div class="col-md-4" id="group-{{ $row->groups->name }}" onclick="detailGroup(this.id)">
+            <div class="card p-3 mb-4">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                        <div class="icon"> <img class="avatar-group" src="{{ $row->groups->images }}"></div>
+                        <div class="ms-2 c-details">
+                            <h6 class="mb-0">{{ $row->groups->name }}</h6> <span>{{ $row->groups->name }}</span>
                         </div>
-                        <div class="badge"> <span class="{{ \App\Enums\Group::COLOR_OF_RATE[$row->groups->rate] }}">{{ $row->groups->rate }}</span> </div>
                     </div>
+                    <div class="badge"> <span class="{{ \App\Enums\Group::COLOR_OF_RATE[$row->groups->rate] }}">{{ $row->groups->rate }}</span> </div>
+                </div>
+                <div class="mt-3">
+                    <p>* {{ __('Description') }}: {{ $row->groups->description }}</p>
+                    <p>* {{ __('Location') }}: {{ $row->groups->location }}</p>
+                    <p>* {{ __('Activity time') }}: {{ $row->groups->activity_time }}</p>
+                    <p class="fst-italic fw-light fw-bold">----- {{ __('Note') }}: {{ $row->groups->note }}</p>
                     <div class="mt-3">
-                        <p>* {{ __('Description') }}: {{ $row->groups->description }}</p>
-                        <p>* {{ __('Location') }}: {{ $row->groups->location }}</p>
-                        <p>* {{ __('Activity time') }}: {{ $row->groups->activity_time }}</p>
-                        <p class="fst-italic fw-light fw-bold">----- {{ __('Note') }}: {{ $row->groups->note }}</p>
-                        <div class="mt-3">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" <?php echo 'style="width:' . ($row->groups->group_users->count() / $row->groups->number_of_members * 100) . '%"' ?> aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="d-flex justify-content-between mt-3">
-                                <div> <span class="text1">{{ $row->groups->group_users->count() }} {{ __('Applied') }} <span class="text2">of {{ $row->groups->number_of_members }}</span></span> </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" <?php echo 'style="width:' . ($row->groups->group_users->count() / $row->groups->number_of_members * 100) . '%"' ?> aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-3">
+                            <div> <span class="text1">{{ $row->groups->group_users->count() }} {{ __('Applied') }} <span class="text2">of {{ $row->groups->number_of_members }}</span></span> </div>
 
-                                <div>
-                                    <button class="btn btn-secondary" disabled>{{ __('Joined') }}</button>
-                                </div>
+                            <div>
+                                <button class="btn btn-secondary" disabled>{{ __('Joined') }}</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </a>
+        </div>
         @endforeach
     </div>
 
@@ -90,4 +88,15 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('js')
+<script>
+    function detailGroup(id) {
+        let name = id.substring(6);
+        let url = '/detail-group?g_id=' + name;
+
+        window.location.href = url;
+    }
+</script>
 @endsection

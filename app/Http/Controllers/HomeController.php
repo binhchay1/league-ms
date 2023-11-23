@@ -144,13 +144,8 @@ class HomeController extends Controller
             abort(404);
         }
 
-        $query = $this->groupRepository->getGroupByName($nameGroup);
-        $notFound = false;
+        $getGroup = $this->groupRepository->getGroupByName($nameGroup);
 
-        if (empty($query)) {
-            $notFound = true;
-        }
-
-        return view('page.group.detail', compact('notFound'));
+        return view('page.group.detail', compact('getGroup'));
     }
 }

@@ -16,7 +16,7 @@
     </div>
 </section>
 
-<section id="about" class="container">
+<section id="group" class="container">
     <div class="row">
         @foreach($listGroup as $group)
         @php
@@ -26,7 +26,7 @@
         @if($group->group_users->count() == $group->number_of_members)
         $isFull = true;
         @endif
-        <div class="col-md-4">
+        <div class="col-md-4" id="group-{{ $row->groups->name }}" onclick="detailGroup(this.id)">
             <div class="card p-3 mb-4">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex flex-row align-items-center">
@@ -116,4 +116,15 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('js')
+<script>
+    function detailGroup(id) {
+        let name = id.substring(6);
+        let url = '/detail-group?g_id=' + name;
+
+        window.location.href = url;
+    }
+</script>
 @endsection

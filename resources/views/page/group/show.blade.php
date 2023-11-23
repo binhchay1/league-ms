@@ -16,7 +16,7 @@
     </div>
 </section>
 
-<section id="about" class="container">
+<section id="show-group" class="container">
 
 </section>
 @endsection

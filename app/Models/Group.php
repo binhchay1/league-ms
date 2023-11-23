@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\GroupUser;
+use App\Models\User;
 
 class Group extends Model
 {
@@ -24,11 +26,11 @@ class Group extends Model
 
     public function group_users()
     {
-        return $this->hasMany('App\Models\GroupUser');
+        return $this->hasMany(GroupUser::class);
     }
 
     public function users()
     {
-        return $this->hasOne('App\Models\User', 'id', 'group_owner');
+        return $this->hasOne(User::class, 'id', 'group_owner');
     }
 }

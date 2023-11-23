@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Group;
 
 class GroupUser extends Model
 {
@@ -17,6 +18,6 @@ class GroupUser extends Model
 
     public function groups()
     {
-        return $this->belongsTo('App\Models\Group', 'group_id', 'id');
+        return $this->belongsTo(Group::class, 'group_id', 'id');
     }
 }

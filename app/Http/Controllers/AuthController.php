@@ -9,6 +9,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\GroupUserRepository;
+use App\Events\MessageSent;
 use Hash;
 use Session;
 
@@ -98,12 +99,28 @@ class  AuthController extends Controller
         $getGroup = $this->groupUserRepository->getGroupByUserId(Auth::user()->id);
         $listGroup = $this->utility->paginate($getGroup, 30, '/my-group');
 
-        dd($getGroup);
-
         return view('page.user.my-group', compact('listGroup'));
     }
 
     public function joinGroup()
     {
+    }
+
+    public function fetchMessages()
+    {
+        return Message::with('user')->get();
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $user = Auth::user();
+
+        $message = $user->messages()->create([
+            'message' => $request->input('message')
+        ]);
+
+        broadcast(new MessageSent($user, $message))->toOthers();
+
+        return ['status' => 'Message Sent!'];
     }
 }
