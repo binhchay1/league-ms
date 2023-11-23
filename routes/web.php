@@ -35,12 +35,13 @@ Route::get('/pricing', [HomeController::class, 'viewPricing'])->name('pricing');
 Route::get('/info/{slug}', [HomeController::class, 'showInfo'])->name('tour.info');
 Route::get('/list-teams', [HomeController::class, 'listTeam'])->name('list.team');
 Route::get('/group', [HomeController::class, 'listGroup'])->name('list.group');
+Route::get('/detail-group', [HomeController::class, 'detailGroup'])->name('detail.group');
 
 Route::middleware(['verified'])->group(function () {
     Route::get('/signout', [AuthController::class, 'signOut'])->name('signout');
     Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
-    Route::get('/my-group', [AuthController::class, 'myGroup'])->name('my.group');
-    Route::get('/join-group', [AuthController::class, 'myGroup'])->name('join.group');
+    Route::get('/my-group', [AuthController::class, 'viewMyGroup'])->name('my.group');
+    Route::get('/join-group', [AuthController::class, 'joinGroup'])->name('join.group');
 });
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');

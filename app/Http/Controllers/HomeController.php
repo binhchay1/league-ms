@@ -136,4 +136,21 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+
+    public function detailGroup(Request $request)
+    {
+        $nameGroup = $request->get('g_i');
+        if ($nameGroup == null) {
+            abort(404);
+        }
+
+        $query = $this->groupRepository->getGroupByName($nameGroup);
+        $notFound = false;
+
+        if (empty($query)) {
+            $notFound = true;
+        }
+
+        return view('page.group.detail', compact('notFound'));
+    }
 }

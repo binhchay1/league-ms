@@ -37,6 +37,8 @@ class GroupController extends Controller
     public function store(GroupRequest $request)
     {
         $input = $request->except(['_token']);
+        $input['group_owner'] = Auth::user()->id;
+        $input['rate'] = Group::RATE_NEWLY_ESTABLISHED;
 
         $input['activity_time'] = $input['activity_time_start'];
         if ($input['activity_time_end'] != null) {
@@ -49,9 +51,6 @@ class GroupController extends Controller
                 $input['images'] = $path;
             }
         }
-
-        $input['group_owner'] = Auth::user()->id;
-        $input['rate'] = Group::RATE_NEWLY_ESTABLISHED;
 
         $this->groupRepository->create($input);
 

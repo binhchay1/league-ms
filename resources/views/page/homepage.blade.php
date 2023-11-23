@@ -15,10 +15,12 @@
                 <h1>{{ __('Run your badminton league with ease') }}</h1>
                 <p>{{ __('Easily schedule your badminton matches by utilizing venue sharing across divisions or by having all players or teams share the same venue.') }}</p>
                 <p>{{ __('Manage and share results and statistics for your badminton league with our user-friendly system. It allows for quick and seamless input of scores and player stats, automatically updating standings and leading player statistics tables in real-time.') }}</p>
+                @if(!Auth::check())
                 <p>
                     <a href="https://a.leaguerepublic.com/myaccount/createAccount/1.html?lver=1" class="button">Sign up for free</a>
                     <small>{{ __('No credit card required') }}</small>
                 </p>
+                @endif
             </div>
         </div>
     </div>

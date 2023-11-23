@@ -104,16 +104,16 @@
     @yield('content')
 
     <footer style="background-color: #222">
-        <div class="container" style="color: white">
+        <div class="container color-white">
             <div>
-                <h4 class="h3" style="color: white">{{ env('APP_NAME', 'Badminton.io') }}</h4>
+                <h4 class="h3 color-white">Criteria</h4>
                 <p>{{ __('Efficiency and ease-of-use are our mission, simplifying the process of running a sports league.') }}</p>
                 <p>{{ env('APP_NAME', 'Badminton.io') }} {{ __('is available to all at no cost. Additionally, we offer premium plans that include additional functionality.') }}</p>
             </div>
             <div>
                 <ul>
                     <li>
-                        <h4 style="color: white" class="h3">{{ __('Company') }}</h4>
+                        <h4 class="h3 color-white">{{ __('Company') }}</h4>
                     </li>
                     <li><a href="{{ route('about') }}">{{ __('About') }}</a></li>
                     <li><a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
@@ -124,19 +124,21 @@
             <div>
                 <ul>
                     <li>
-                        <h4 style="color: white" class="h3">{{ __('Features') }}</h4>
+                        <h4 class="h3 color-white">{{ __('Features') }}</h4>
                     </li>
                     <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
                     <li><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li>
+                    <li><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
                 </ul>
             </div>
             <div>
+                <h4 class="h3 color-white">{{ env('APP_NAME', 'Badminton.io') }}</h4>
                 <p>
                     <small>
                         <a href="{{ route('term.and.conditions') }}">{{ __('Terms & Conditions') }}</a>,
                         <a href="{{ route('privacy') }}">{{ __('Privacy') }}</a>
                         <br>
-                        {{ __('Copyright© 2023') }} <a href="{{ route('home')}}">{{ env('APP_NAME', 'Badminton.io') }}</a>
+                        <span class="color-white">{{ __('Copyright© 2023') }}</span> <a href="{{ route('home')}}">{{ env('APP_NAME', 'Badminton.io') }}</a>
                     </small>
                 </p>
                 <ul class="social">

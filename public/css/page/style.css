@@ -679,10 +679,6 @@ footer .container>div {
     }
 }
 
-footer .container>div:last-child {
-    margin-top: 38px
-}
-
 footer p {
     line-height: 1.6em
 }
@@ -3445,4 +3441,12 @@ ul li a .fas {
 
 .avatar-user {
     border-radius: 20px !important;
+}
+
+.color-white {
+    color: white !important;
+}
+
+a:hover{
+    text-decoration: underline !important;
 }

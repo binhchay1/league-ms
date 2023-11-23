@@ -58,16 +58,17 @@
 
                             @if(!Auth::check())
                             <div>
-                                <a class="btn btn-success" href="{{ route('login') }}">{{ __('Sign in for join') }}</a>
+                                <a class="btn btn-success" href="{{ route('login') }}?return_url={{ url()->full() }}">{{ __('Sign in for join') }}</a>
                             </div>
                             @else
+
                             @if(!$isJoin and !$isFull)
                             <div>
                                 <a class="btn btn-primary" href="{{ route('join.group') }}">{{ __('Join group') }}</a>
                             </div>
                             @else
                             <div>
-                                <a class="btn btn-secondary" disabled>{{ __('Joined') }}</a>
+                                <button class="btn btn-secondary" disabled>{{ __('Joined') }}</button>
                             </div>
                             @endif
                             @endif
@@ -80,38 +81,38 @@
     </div>
 
     <div class="navigator short">
-        <div class="head">
-            @if(empty($listGroup['prev_page_url']))
+        <div class="head d-flex justify-content-center">
+            @if(empty($listGroup->previousPageUrl()))
             <a aria-label="arrow previous" class="arrow previous disable-link"></a>
             @else
-            <a aria-label="arrow previous" class="arrow previous" href="{{ $listGroup['prev_page_url'] }}"></a>
+            <a aria-label="arrow previous" class="arrow previous" href="{{ $listGroup->previousPageUrl() }}"></a>
             @endif
             <ul>
-                @if($listGroup['current_page'] != 1)
+                @if($listGroup->currentPage() != 1)
                 <li>
-                    <a href="{{ $listGroup['prev_page_url'] }}">{{ $listGroup['current_page'] - 1 }}</a>
+                    <a href="{{ $listGroup->previousPageUrl() }}">{{ $listGroup->currentPage() - 1 }}</a>
                 </li>
                 @endif
                 <li class='current'>
-                    <span>{{ $listGroup['current_page'] }}</span>
+                    <span>{{ $listGroup->currentPage() }}</span>
                 </li>
-                @if($listGroup['current_page'] != $listGroup['last_page'])
+                @if($listGroup->currentPage() != $listGroup->lastPage())
                 <li>
-                    <a href="{{ $listGroup['next_page_url'] }}">{{ $listGroup['current_page'] + 1 }}</a>
+                    <a href="{{ $listGroup->nextPageUrl() }}">{{ $listGroup->currentPage() + 1 }}</a>
                 </li>
                 @endif
-                @if($listGroup['last_page'] > $listGroup['current_page'] + 2)
+                @if($listGroup->lastPage() > $listGroup->currentPage() + 2)
                 <li class="separator">
                     <span>...</span>
                 </li>
                 @endif
-                @if($listGroup['last_page'] > $listGroup['current_page'] + 1)
+                @if($listGroup->lastPage() > $listGroup->currentPage() + 1)
                 <li>
-                    <a href="?page={{ $listGroup['last_page'] }}">{{ $listGroup['last_page'] }}</a>
+                    <a href="?page={{ $listGroup->lastPage() }}">{{ $listGroup->lastPage() }}</a>
                 </li>
                 @endif
             </ul>
-            <a aria-label="arrow next" class="arrow next {{ $listGroup['current_page'] == $listGroup['last_page'] ? 'disable-link' : '' }}" href="{{ $listGroup['next_page_url'] }}"></a>
+            <a aria-label="arrow next" class="arrow next {{ $listGroup->currentPage() == $listGroup->lastPage() ? 'disable-link' : '' }}" href="{{ $listGroup->nextPageUrl() }}"></a>
         </div>
     </div>
 </section>
