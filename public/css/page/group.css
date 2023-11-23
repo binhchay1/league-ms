@@ -77,3 +77,8 @@ p {
 .newly {
     color: #4aff2e;
 }
+
+.avatar-group {
+    width: 55px;
+    border-radius: 20px;
+}

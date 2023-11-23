@@ -8,6 +8,7 @@ use App\Repositories\TeamRepository;
 use App\Repositories\LeagueRepository;
 use App\Repositories\MatchesRepository;
 use App\Repositories\UserRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Config;
 use Session;
 
@@ -46,9 +47,20 @@ class HomeController extends Controller
         return view('page.homepage', compact('totalMatch', 'totalTeam', 'totalLeague', 'totalView'));
     }
 
-    public function viewSearch()
+    public function viewSearch(Request $request)
     {
-        return view('page.search');
+        $search = $request->get('search');
+        $isList = false;
+        if ($search) {
+            $listLeagueBySearch = $this->leagueRepository->getLeagueBySearch($search);
+            if ($listLeagueBySearch->count() > 0) {
+                $isList = true;
+            }
+
+            return view('page.search', compact('listLeagueBySearch', 'search', 'isList'));
+        }
+
+        return view('page.search', compact('search', 'isList'));
     }
 
     public function viewShop()
@@ -123,6 +135,18 @@ class HomeController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function detailGroup(Request $request)
+    {
+        $nameGroup = $request->get('g_i');
+        if ($nameGroup == null) {
+            abort(404);
+        }
+
+        $getGroup = $this->groupRepository->getGroupByName($nameGroup);
+
+        return view('page.group.detail', compact('getGroup'));
     }
 
 }

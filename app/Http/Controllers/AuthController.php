@@ -2,18 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Role;
+use App\Enums\Utility;
+use App\Models\User;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Enums\Role;
+use App\Repositories\GroupUserRepository;
+use App\Events\MessageSent;
 use Hash;
 use Session;
-use App\Models\User;
 
 class  AuthController extends Controller
 {
+    protected $groupUserRepository;
+    protected $utility;
+
+    public function __construct(
+        GroupUserRepository $groupUserRepository,
+        Utility $ultity
+    ) {
+        $this->groupUserRepository = $groupUserRepository;
+        $this->utility = $ultity;
+    }
 
     public function login()
     {
@@ -29,6 +40,11 @@ class  AuthController extends Controller
             if (Auth::user()->role == Role::ADMIN) {
                 return redirect('dashboard');
             } else {
+                if ($request->get('return_url')) {
+                    $return_url = $request->get('return_url');
+                    return redirect($return_url);
+                }
+
                 return redirect('/');
             }
         } else {
@@ -75,11 +91,36 @@ class  AuthController extends Controller
 
     public function profile()
     {
-        return view('page.profile');
+        return view('page.user.profile');
     }
 
-    public function myGroup()
+    public function viewMyGroup()
     {
-        return view('page.my-group');
+        $getGroup = $this->groupUserRepository->getGroupByUserId(Auth::user()->id);
+        $listGroup = $this->utility->paginate($getGroup, 30, '/my-group');
+
+        return view('page.user.my-group', compact('listGroup'));
+    }
+
+    public function joinGroup()
+    {
+    }
+
+    public function fetchMessages()
+    {
+        return Message::with('user')->get();
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $user = Auth::user();
+
+        $message = $user->messages()->create([
+            'message' => $request->input('message')
+        ]);
+
+        broadcast(new MessageSent($user, $message))->toOthers();
+
+        return ['status' => 'Message Sent!'];
     }
 }

@@ -15,12 +15,12 @@ class CreateSchedulesTable extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->BigInteger('league_id');
-            $table->BigInteger('team_id_1');
-            $table->BigInteger('team_id_2');
+            $table->bigInteger('team_id_1');
+            $table->bigInteger('team_id_2');
             $table->string('match');
             $table->string('time');
             $table->dateTime('date');
+            $table->bigInteger('tournament_id');
             $table->string('stadium')->nullable();
             $table->timestamps();
         });

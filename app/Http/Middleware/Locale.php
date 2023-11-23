@@ -31,13 +31,14 @@ class Locale
             $currentLocale = 'vi';
         }
 
-        if (in_array($currentLocale, Config::get('app.locales')?? [])) {
+        if (in_array($currentLocale, Config::get('app.locales') ?? [])) {
             $locale = $currentLocale;
         } else {
             $locale = Config::get('app.locale');
         }
 
         App::setLocale($locale);
+        Session::put('locale', $locale);
 
         return $next($request);
     }

@@ -12,7 +12,7 @@ final class Utility
     public function saveImageLeague($input)
     {
         if ($input) {
-            $status = Storage::disk('public-image-league')->put($input['image']->getClientOriginalName(), $input['image']->get());
+            $status = Storage::disk('public-image-league')->put($input['images']->getClientOriginalName(), $input['images']->get());
             return $status;
         }
     }
@@ -20,7 +20,7 @@ final class Utility
     public function saveImageTeam($input)
     {
         if ($input) {
-            $status = Storage::disk('public-image-team')->put($input['image']->getClientOriginalName(), $input['image']->get());
+            $status = Storage::disk('public-image-team')->put($input['images']->getClientOriginalName(), $input['images']->get());
             return $status;
         }
     }
@@ -28,7 +28,7 @@ final class Utility
     public function saveImageGroup($input)
     {
         if ($input) {
-            $status = Storage::disk('public-image-team')->put($input['image']->getClientOriginalName(), $input['image']->get());
+            $status = Storage::disk('public-image-group')->put($input['images']->getClientOriginalName(), $input['images']->get());
             return $status;
         }
     }
@@ -47,7 +47,7 @@ final class Utility
         return 'rgb(' . rand(0, 255) . ',' . rand(0, 255) . ',' . rand(0, 255) . ')';
     }
 
-    function generateRandomString($length = 10)
+    public function generateRandomString($length = 10)
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -56,5 +56,11 @@ final class Utility
             $randomString .= $characters[random_int(0, $charactersLength - 1)];
         }
         return $randomString;
+    }
+
+    public function createSlug($str, $delimiter = '-')
+    {
+        $slug = strtolower(trim(preg_replace('/[\s-]+/', $delimiter, preg_replace('/[^A-Za-z0-9-]+/', $delimiter, preg_replace('/[&]/', 'and', preg_replace('/[\']/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $str))))), $delimiter));
+        return $slug;
     }
 }

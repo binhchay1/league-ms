@@ -7,6 +7,8 @@ use App\Repositories\GroupRepository;
 use App\Http\Controllers\Controller;
 use App\Enums\Utility;
 use Illuminate\Support\Str;
+use App\Enums\Group;
+use Illuminate\Support\Facades\Auth;
 
 class GroupController extends Controller
 {
@@ -23,7 +25,7 @@ class GroupController extends Controller
 
     public function index()
     {
-        $listGroup = $this->groupRepository->index();
+        $listGroup = $this->groupRepository->getGroup();
         return view('admin.group.index', compact('listGroup'));
     }
 
@@ -35,29 +37,31 @@ class GroupController extends Controller
     public function store(GroupRequest $request)
     {
         $input = $request->except(['_token']);
+        $input['group_owner'] = Auth::user()->id;
+        $input['rate'] = Group::RATE_NEWLY_ESTABLISHED;
 
+        $input['activity_time'] = $input['activity_time_start'];
+        if ($input['activity_time_end'] != null) {
+            $input['activity_time'] .= ' - ' . $input['activity_time_end'];
+        }
         if (isset($input['images'])) {
             $img = $this->utility->saveImageGroup($input);
             if ($img) {
-                $path = '/images/group/' . $input['images']->getClientOriginalName();
+                $path = '/images/upload/group/' . $input['images']->getClientOriginalName();
                 $input['images'] = $path;
             }
         }
 
-        $this->groupRepository->store($input);
+        $this->groupRepository->create($input);
 
         return redirect()->route('group.index');
     }
 
-    public function show($id)
-    {
-        $this->groupRepository->show($id);
-    }
-
     public function edit($id)
     {
-        $dataGroup = $this->groupRepository->show($id);
-        return view('admin.group.edit', compact('dataGroup', 'format_tours', 'type_tours'));
+        $dataGroup = $this->groupRepository->getById($id);
+
+        return view('admin.group.edit', compact('dataGroup'));
     }
 
 
@@ -68,12 +72,12 @@ class GroupController extends Controller
         if (isset($input['images'])) {
             $img = $this->utility->saveImageGroup($input);
             if ($img) {
-                $path = '/images/group/' . $input['image']->getClientOriginalName();
+                $path = '/images/upload/group/' . $input['image']->getClientOriginalName();
                 $input['images'] = $path;
             }
         }
 
-        $this->groupRepository->updateGroup($input, $id);
+        $this->groupRepository->updateById($id, $input);
         return redirect()->route('group.index');
     }
 }
