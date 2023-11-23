@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\UserLeague;
 
-class UserLeagueRepository extends BaseRepository
+class TeamRepository extends BaseRepository
 {
     public function model()
     {
