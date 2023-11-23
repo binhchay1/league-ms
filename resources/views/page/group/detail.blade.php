@@ -1,11 +1,11 @@
 @extends('layouts.page')
 
 @section('title')
-{{ env('APP_NAME', 'Badminton.io') }} - {{ __('Group') }}
+{{ env('APP_NAME', 'Badminton.io') }} - {{ __('Detail Group') }}
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('/css/page/group.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/page/group.css') }}" />
 <style>
     #chat1 .form-outline .form-control~.form-notch div {
         pointer-events: none;
@@ -82,6 +82,11 @@
     #chat1 .form-outline .form-control~.form-label {
         color: #bfbfbf;
     }
+
+    .card-header {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
 </style>
 @endsection
 
@@ -98,12 +103,12 @@
         <div class="row d-flex justify-content-center">
             <div class="col-md-8 col-lg-6 col-xl-4">
                 <div class="card" id="chat1" style="border-radius: 15px;">
-                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0">
                         <p class="mb-0 fw-bold">{{ ('Live chat') }}</p>
                     </div>
                     <div class="card-body">
                         <div class="d-flex flex-row justify-content-start mb-4">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="avatar 1" style="width: 45px; height: 100%;">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="Avatar" width="45">
                             <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
                                 <p class="small mb-0">...</p>
                             </div>
@@ -113,20 +118,29 @@
                             <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
                                 <p class="small mb-0">Thank you, I really like your product.</p>
                             </div>
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp" alt="avatar 1" style="width: 45px; height: 100%;">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp" alt="Avatar" width="45">
                         </div>
 
                         <div class="form-outline">
-                            <textarea class="form-control" id="text-area-write-message" rows="4"></textarea>
-                            <label class="form-label" for="textAreaExample">Type your message</label>
+                            <textarea class="form-control" id="text-area-write-message" rows="4" placeholder="{{ __('Type your message') }}"></textarea>
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 </section>
+@endsection
+
+@section('js')
+<script>
+    Echo.private('chat')
+        .listen('MessageSent', (e) => {
+            console.log(e);
+            this.messages.push({
+                message: e.message.message,
+                user: e.user
+            });
+        });
+</script>
 @endsection
