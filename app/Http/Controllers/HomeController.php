@@ -148,4 +148,5 @@ class HomeController extends Controller
 
         return view('page.group.detail', compact('getGroup'));
     }
+
 }
