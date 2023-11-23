@@ -116,7 +116,8 @@ class  AuthController extends Controller
         $user = Auth::user();
 
         $message = $user->messages()->create([
-            'message' => $request->input('message')
+            'message' => $request->input('message'),
+            'group_id' => $request->input('group_id')
         ]);
 
         broadcast(new MessageSent($user, $message))->toOthers();

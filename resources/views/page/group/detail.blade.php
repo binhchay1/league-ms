@@ -121,8 +121,11 @@
                             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp" alt="Avatar" width="45">
                         </div>
 
-                        <div class="form-outline">
+                        <div class="form-outline d-flex">
                             <textarea class="form-control" id="text-area-write-message" rows="4" placeholder="{{ __('Type your message') }}"></textarea>
+                            <button id="send-massage">
+                                <i class="fa fa-paper-plane"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -134,13 +137,20 @@
 
 @section('js')
 <script>
-    Echo.private('chat')
-        .listen('MessageSent', (e) => {
-            console.log(e);
-            this.messages.push({
-                message: e.message.message,
-                user: e.user
-            });
+    $('$send-massage').on('click', function() {
+        sendMessage();
+    });
+
+    Echo.private('chat').listen('message.broadcast', (e) => {
+        console.log(e);
+        this.messages.push({
+            message: e.message.message,
+            user: e.user
         });
+    });
+
+    function sendMessage() {
+        let message = $('#text-area-write-message').val();
+    }
 </script>
 @endsection
