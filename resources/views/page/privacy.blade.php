@@ -156,7 +156,6 @@
 
         <p>{{ __('These cookies are essential in order to enable you to move around the website and use its features, such as accessing secure areas of the website. Without these cookies, services you require, like results, statistics, standings and news cannot be provided.') }}</p>
 
-        <!-- Cat 1 Cookie Table -->
         <table>
             <thead>
                 <tr>
@@ -180,7 +179,6 @@
 
         <p>{{ __('These cookies collect information about how visitors use a website, for instance which pages visitors go to most often, and if they get error messages from web pages. These cookies don't collect information that identifies a visitor. All information these cookies collect is aggregated and therefore anonymous. It is only used to improve how a website works.') }}</p>
 
-        <!-- Cat 2 Cookie Table -->
         <table>
             <thead>
                 <tr>

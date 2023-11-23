@@ -10,7 +10,7 @@ class League extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'image','start_date', 'end_date', 'format_of_league', 'number_of_team', 'type_of_league','slug', 'location', 'money'
+        'name', 'images','start_date', 'end_date', 'format_of_league', 'number_of_team', 'type_of_league','slug', 'location', 'money'
     ];
 
 

@@ -3,6 +3,7 @@
 footer a {
     color: white;
 }
+
 html.no-flexboxlegacy header nav ul {
     width: 75%;
     text-align: right;
@@ -55,7 +56,8 @@ body {
     margin-right: auto
 }
 
-h1, .h1 {
+h1,
+.h1 {
     color: black;
     font-size: 30px;
     line-height: 1.3em;
@@ -64,12 +66,15 @@ h1, .h1 {
 }
 
 @media screen and (max-width: 1023px) {
-    h1, .h1 {
+
+    h1,
+    .h1 {
         font-size: 24px
     }
 }
 
-h2, .h2 {
+h2,
+.h2 {
     color: black;
     font-size: 28px;
     letter-spacing: -0.05em;
@@ -77,30 +82,37 @@ h2, .h2 {
 }
 
 @media screen and (max-width: 1023px) {
-    h2, .h2 {
+
+    h2,
+    .h2 {
         font-size: 24px
     }
 }
 
-h2.h28px, .h2.h28px {
+h2.h28px,
+.h2.h28px {
     font-size: 28px
 }
 
-h2.h24px, .h2.h24px {
+h2.h24px,
+.h2.h24px {
     font-size: 24px
 }
 
-h2.h21px, .h2.h21px {
+h2.h21px,
+.h2.h21px {
     font-size: 21px
 }
 
-h3, .h3 {
+h3,
+.h3 {
     color: black;
     font-size: 17px;
     padding-bottom: 16px
 }
 
-h4, .h4 {
+h4,
+.h4 {
     color: black;
     font-size: 16px;
     padding-bottom: 15px
@@ -196,7 +208,9 @@ ol li {
     background-color: #0c9f9b
 }
 
-input[type=text], input[type=search], input[type=number] {
+input[type=text],
+input[type=search],
+input[type=number] {
     font-family: -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
     color: black;
@@ -274,7 +288,7 @@ header #toggle-menu.open {
     background-image: url("/svg/icon-close.svg")
 }
 
-header > div.translation-warning {
+header>div.translation-warning {
     background-color: #f2f2f2;
     color: #707070;
     font-size: 12px;
@@ -282,26 +296,26 @@ header > div.translation-warning {
     text-align: center
 }
 
-header > div.translation-warning p {
+header>div.translation-warning p {
     padding-bottom: 0
 }
 
-header > div.translation-warning p a {
+header>div.translation-warning p a {
     color: #707070;
     text-decoration: underline
 }
 
-header > div.top-nav {
+header>div.top-nav {
 
     text-align: right
 }
 
-header > div.top-nav ul li {
+header>div.top-nav ul li {
     display: inline-block;
     margin-left: 20px
 }
 
-header > div.top-nav ul li.menu {
+header>div.top-nav ul li.menu {
     color: #dc1a27;
     position: relative;
     padding: 0 18px 0 0;
@@ -312,11 +326,11 @@ header > div.top-nav ul li.menu {
     cursor: pointer
 }
 
-header > div.top-nav ul li.menu span {
+header>div.top-nav ul li.menu span {
     text-transform: uppercase
 }
 
-header > div.top-nav ul li.menu ul {
+header>div.top-nav ul li.menu ul {
     display: none;
     text-align: left;
     position: absolute;
@@ -331,31 +345,32 @@ header > div.top-nav ul li.menu ul {
     z-index: 15
 }
 
-header > div.top-nav ul li.menu ul li {
+header>div.top-nav ul li.menu ul li {
     display: inline-block;
     margin: 0
 }
 
-header > div.top-nav ul li.menu ul li a {
+header>div.top-nav ul li.menu ul li a {
     white-space: nowrap;
     color: white;
     min-width: 78px;
     display: block
 }
 
-header > div.top-nav ul li.menu ul li a:hover, header > div.top-nav ul li.menu ul li a:focus {
+header>div.top-nav ul li.menu ul li a:hover,
+header>div.top-nav ul li.menu ul li a:focus {
     color: #dc1a27
 }
 
-header > div.top-nav ul li.menu ul li a.active {
+header>div.top-nav ul li.menu ul li a.active {
     color: #dc1a27
 }
 
-header > div.top-nav ul li.menu:hover ul {
+header>div.top-nav ul li.menu:hover ul {
     display: block
 }
 
-header > div.top-nav a {
+header>div.top-nav a {
     color: #dc1a27
 }
 
@@ -380,12 +395,13 @@ header nav {
         flex-direction: column
     }
 
-    header nav > ul, header nav > a {
+    header nav>ul,
+    header nav>a {
         width: 100%;
         margin-bottom: 20px
     }
 
-    header nav > ul {
+    header nav>ul {
         display: none
     }
 }
@@ -394,23 +410,23 @@ header nav .button {
     margin: 0
 }
 
-header nav > ul {
+header nav>ul {
     font-size: 17px
 }
 
 @media screen and (min-width: 860px) {
-    header nav > ul {
+    header nav>ul {
         display: block !important
     }
 }
 
 @media screen and (max-width: 859px) {
-    header nav > ul {
+    header nav>ul {
         font-size: 21px
     }
 }
 
-header nav > ul > li {
+header nav>ul>li {
     display: inline-block;
     position: relative;
     height: 40px;
@@ -419,7 +435,7 @@ header nav > ul > li {
 }
 
 @media screen and (max-width: 859px) {
-    header nav > ul > li {
+    header nav>ul>li {
         height: auto;
         padding: 10px 0;
         margin-left: 0 !important;
@@ -427,31 +443,31 @@ header nav > ul > li {
         text-align: center
     }
 
-    header nav > ul > li:nth-child(1n+3) {
+    header nav>ul>li:nth-child(1n+3) {
         margin-bottom: 20px
     }
 
-    header nav > ul > li:nth-child(1n+5) {
+    header nav>ul>li:nth-child(1n+5) {
         display: block;
         width: calc(50% - 10px);
         float: left
     }
 
-    header nav > ul > li:nth-child(n+5) {
+    header nav>ul>li:nth-child(n+5) {
         text-align: right
     }
 
-    header nav > ul > li:nth-child(n+6) {
+    header nav>ul>li:nth-child(n+6) {
         text-align: left;
         padding-left: 15px
     }
 }
 
-header nav > ul > li:nth-child(n+3) {
+header nav>ul>li:nth-child(n+3) {
     margin-left: 20px
 }
 
-header nav > ul > li.menu {
+header nav>ul>li.menu {
     background-image: url("/svg/icon-arrow-down.svg");
     background-repeat: no-repeat;
     background-position: center 22px;
@@ -459,21 +475,21 @@ header nav > ul > li.menu {
     cursor: pointer
 }
 
-header nav > ul > li.menu > a:hover {
+header nav>ul>li.menu>a:hover {
     text-decoration: none
 }
 
 @media screen and (max-width: 859px) {
-    header nav > ul > li.menu {
+    header nav>ul>li.menu {
         background-position: center bottom
     }
 }
 
-header nav > ul > li.menu:hover > ul {
+header nav>ul>li.menu:hover>ul {
     display: block
 }
 
-header nav > ul ul {
+header nav>ul ul {
     display: none;
     position: absolute;
     top: 35px;
@@ -488,7 +504,7 @@ header nav > ul ul {
 }
 
 @media screen and (max-width: 859px) {
-    header nav > ul ul {
+    header nav>ul ul {
         position: relative;
         top: 10px;
         left: 0;
@@ -497,12 +513,12 @@ header nav > ul ul {
         cursor: pointer
     }
 
-    header nav > ul ul a {
+    header nav>ul ul a {
         color: #dc1a27
     }
 }
 
-header nav > ul ul li {
+header nav>ul ul li {
     display: block
 }
 
@@ -652,18 +668,18 @@ footer .container {
     }
 }
 
-footer .container > div {
+footer .container>div {
     width: 21.126%;
     font-size: 14px
 }
 
 @media screen and (max-width: 767px) {
-    footer .container > div {
+    footer .container>div {
         width: 47%
     }
 }
 
-footer .container > div:last-child {
+footer .container>div:last-child {
     margin-top: 38px
 }
 
@@ -695,7 +711,7 @@ footer ul.social li {
 }
 
 @media screen and (max-width: 1023px)and (min-width: 768px) {
-    #intro.gaming-intro .content.sports .container div > p {
+    #intro.gaming-intro .content.sports .container div>p {
         font-size: 14px
     }
 }
@@ -783,12 +799,12 @@ footer ul.social li {
     height: calc(100% - 60px)
 }
 
-#intro .content .container > div {
+#intro .content .container>div {
     width: 45%
 }
 
 @media screen and (max-width: 767px) {
-    #intro .content .container > div {
+    #intro .content .container>div {
         width: 100%
     }
 }
@@ -798,7 +814,9 @@ footer ul.social li {
 }
 
 @media screen and (min-width: 768px) {
-    #intro .content.sports .container > div, #intro .content.features .container > div {
+
+    #intro .content.sports .container>div,
+    #intro .content.features .container>div {
         margin-top: 60px
     }
 }
@@ -1013,12 +1031,12 @@ div.tabs ul li.active strong {
     text-decoration: underline
 }
 
-#pricing-table > ul {
+#pricing-table>ul {
     width: 20%
 }
 
 @media screen and (max-width: 767px) {
-    #pricing-table > ul {
+    #pricing-table>ul {
         width: 100%;
         margin: 0 auto 30px auto;
         -webkit-box-shadow: 0 4px 15px 0 rgba(67, 67, 101, .21);
@@ -1027,12 +1045,12 @@ div.tabs ul li.active strong {
         padding: 10px 0 20px 0
     }
 
-    #pricing-table > ul:first-child {
+    #pricing-table>ul:first-child {
         display: none
     }
 }
 
-#pricing-table > ul > li {
+#pricing-table>ul>li {
     padding: 0 10px;
     font-size: 14px;
     border-bottom: 1px solid #f2f2f2;
@@ -1045,77 +1063,78 @@ div.tabs ul li.active strong {
     align-items: center
 }
 
-#pricing-table > ul > li ul {
+#pricing-table>ul>li ul {
     padding: 15px 0
 }
 
-#pricing-table > ul > li ul li {
+#pricing-table>ul>li ul li {
     padding: 8px 0
 }
 
-#pricing-table > ul > li span {
+#pricing-table>ul>li span {
     display: none
 }
 
-#pricing-table > ul > li.mobile {
+#pricing-table>ul>li.mobile {
     display: none
 }
 
 @media screen and (max-width: 767px) {
-    #pricing-table > ul > li {
+    #pricing-table>ul>li {
         border: none;
         padding: 8px 0;
         min-height: unset !important;
         font-size: 16px
     }
 
-    #pricing-table > ul > li.desktop, #pricing-table > ul > li:empty {
+    #pricing-table>ul>li.desktop,
+    #pricing-table>ul>li:empty {
         display: none
     }
 
-    #pricing-table > ul > li.mobile {
+    #pricing-table>ul>li.mobile {
         display: block
     }
 
-    #pricing-table > ul > li.mobile-summary {
+    #pricing-table>ul>li.mobile-summary {
         font-size: 14px;
         font-weight: 700;
         text-transform: uppercase;
         color: black
     }
 
-    #pricing-table > ul > li.mobile-summary .badge {
+    #pricing-table>ul>li.mobile-summary .badge {
         font-size: 14px
     }
 
-    #pricing-table > ul > li span {
+    #pricing-table>ul>li span {
         display: inline
     }
 
-    #pricing-table > ul > li img {
+    #pricing-table>ul>li img {
         display: none
     }
 
-    #pricing-table > ul > li small {
+    #pricing-table>ul>li small {
         color: #707070
     }
 }
 
-#pricing-table > ul > li:first-child {
+#pricing-table>ul>li:first-child {
     height: 220px;
     padding: 0
 }
 
-#pricing-table > ul > li:first-child img {
+#pricing-table>ul>li:first-child img {
     width: 100%;
     height: auto
 }
 
-#pricing-table > ul > li:not(.subheading) {
+#pricing-table>ul>li:not(.subheading) {
     min-height: 60px
 }
 
-#pricing-table > ul > li.subheading {
+#pricing-table>ul>li.subheading {
     height: 48px;
     background-color: #f2f2f2;
     color: black;
@@ -1126,12 +1145,12 @@ div.tabs ul li.active strong {
 }
 
 @media screen and (max-width: 767px) {
-    #pricing-table > ul > li.subheading {
+    #pricing-table>ul>li.subheading {
         display: none
     }
 }
 
-#pricing-table > ul > li.summary {
+#pricing-table>ul>li.summary {
     height: 140px;
     -webkit-box-align: start;
     -ms-flex-align: start;
@@ -1139,30 +1158,30 @@ div.tabs ul li.active strong {
 }
 
 @media screen and (max-width: 767px) {
-    #pricing-table > ul > li.summary {
+    #pricing-table>ul>li.summary {
         height: auto;
         display: none
     }
 }
 
-#pricing-table > ul > li.span2 {
+#pricing-table>ul>li.span2 {
     width: calc(200% - 20px)
 }
 
-#pricing-table > ul > li.span3 {
+#pricing-table>ul>li.span3 {
     width: calc(300% - 20px);
     position: relative;
     z-index: 1;
     background-color: #fff
 }
 
-#pricing-table > ul:not(:first-child) li {
+#pricing-table>ul:not(:first-child) li {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center
 }
 
-#pricing-table > ul .button {
+#pricing-table>ul .button {
     margin-right: 0
 }
 
@@ -1413,7 +1432,7 @@ div.tabs ul li.active strong {
     margin-bottom: 50px
 }
 
-#features > div {
+#features>div {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex
@@ -1527,7 +1546,8 @@ div.tabs ul li.active strong {
     }
 }
 
-#features #feature-images img, #features #feature-images .svg {
+#features #feature-images img,
+#features #feature-images .svg {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1536,7 +1556,8 @@ div.tabs ul li.active strong {
     height: auto
 }
 
-#features #feature-images img svg, #features #feature-images .svg svg {
+#features #feature-images img svg,
+#features #feature-images .svg svg {
     width: 100%;
     height: auto
 }
@@ -1573,7 +1594,8 @@ section.feature div {
     }
 }
 
-section.feature div img, section.feature div svg {
+section.feature div img,
+section.feature div svg {
     width: 100%;
     height: auto
 }
@@ -1583,7 +1605,8 @@ section.feature div a:not(.button) {
     text-decoration: underline
 }
 
-section.feature div a:not(.button):hover, section.feature div a:not(.button):focus {
+section.feature div a:not(.button):hover,
+section.feature div a:not(.button):focus {
     color: #707070
 }
 
@@ -1789,7 +1812,7 @@ section.feature ul li .badge {
     flex: 0 0 220px
 }
 
-#search-results .screenshot-info .screenshot > div {
+#search-results .screenshot-info .screenshot>div {
     display: block;
     padding-top: 20px;
     width: 220px;
@@ -1857,11 +1880,13 @@ section.feature ul li .badge {
     background: black
 }
 
-.pagination ul li a:hover, .pagination ul li a:focus {
+.pagination ul li a:hover,
+.pagination ul li a:focus {
     text-decoration: none
 }
 
-.pagination ul li.last a, .pagination ul li.prev a {
+.pagination ul li.last a,
+.pagination ul li.prev a {
     padding: 0 15px
 }
 
@@ -1883,26 +1908,28 @@ section.feature ul li .badge {
     }
 }
 
-#top-sites > div {
+#top-sites>div {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     margin-bottom: 30px
 }
 
-#top-sites > div .rank {
+#top-sites>div .rank {
     width: 10%;
     color: black;
     font-size: 40px
 }
 
 @media screen and (max-width: 767px) {
-    #top-sites > div .rank {
+    #top-sites>div .rank {
         width: 20%
     }
 }
 
-#top-sites > div .rank .up, #top-sites > div .rank .new, #top-sites > div .rank .down {
+#top-sites>div .rank .up,
+#top-sites>div .rank .new,
+#top-sites>div .rank .down {
     font-size: 16px;
     display: block;
     padding: 0 0 0 16px;
@@ -1910,7 +1937,9 @@ section.feature ul li .badge {
     color: #0c9f9b
 }
 
-#top-sites > div .rank .up:after, #top-sites > div .rank .new:after, #top-sites > div .rank .down:after {
+#top-sites>div .rank .up:after,
+#top-sites>div .rank .new:after,
+#top-sites>div .rank .down:after {
     content: "";
     position: absolute;
     top: 9px;
@@ -1923,11 +1952,11 @@ section.feature ul li .badge {
     transform: rotate(-135deg)
 }
 
-#top-sites > div .rank .down {
+#top-sites>div .rank .down {
     color: #ee2f61
 }
 
-#top-sites > div .rank .down:after {
+#top-sites>div .rank .down:after {
     top: 6px;
     border: solid #ee2f61;
     border-width: 0 3px 3px 0;
@@ -1935,7 +1964,7 @@ section.feature ul li .badge {
     transform: rotate(45deg)
 }
 
-#top-sites > div .screenshot-info {
+#top-sites>div .screenshot-info {
     width: 90%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1943,7 +1972,7 @@ section.feature ul li .badge {
 }
 
 @media screen and (max-width: 767px) {
-    #top-sites > div .screenshot-info {
+    #top-sites>div .screenshot-info {
         width: 80%;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
@@ -1952,12 +1981,12 @@ section.feature ul li .badge {
     }
 }
 
-#top-sites > div .screenshot-info .screenshot {
+#top-sites>div .screenshot-info .screenshot {
     -ms-flex: 0 0 220px;
     flex: 0 0 220px
 }
 
-#top-sites > div .screenshot-info .screenshot > div {
+#top-sites>div .screenshot-info .screenshot>div {
     display: block;
     padding-top: 20px;
     width: 220px;
@@ -1972,23 +2001,23 @@ section.feature ul li .badge {
     background-repeat: no-repeat
 }
 
-#top-sites > div .screenshot-info .info {
+#top-sites>div .screenshot-info .info {
     flex: 0 1 100%;
     margin-left: 30px
 }
 
 @media screen and (max-width: 767px) {
-    #top-sites > div .screenshot-info .info {
+    #top-sites>div .screenshot-info .info {
         margin-left: 0;
         padding: 30px 0 0 0
     }
 }
 
-#top-sites > div .screenshot-info .info h2 {
+#top-sites>div .screenshot-info .info h2 {
     padding-top: 0
 }
 
-#top-sites > div .screenshot-info .info p:last-child {
+#top-sites>div .screenshot-info .info p:last-child {
     padding-bottom: 0
 }
 
@@ -2001,7 +2030,8 @@ section.feature ul li .badge {
     text-decoration: underline
 }
 
-#privacy a:not(.button):hover, #privacy a:not(.button):focus {
+#privacy a:not(.button):hover,
+#privacy a:not(.button):focus {
     color: #707070
 }
 
@@ -2137,7 +2167,7 @@ section.feature ul li .badge {
     }
 }
 
-#stats .container > div {
+#stats .container>div {
     width: 100%
 }
 
@@ -2225,7 +2255,7 @@ section.feature ul li .badge {
     }
 }
 
-#fulltime .container > div {
+#fulltime .container>div {
     width: 47%;
     position: relative;
     z-index: 1;
@@ -2233,12 +2263,12 @@ section.feature ul li .badge {
 }
 
 @media screen and (max-width: 900px) {
-    #fulltime .container > div {
+    #fulltime .container>div {
         width: 100%
     }
 }
 
-#fulltime .container > div:before {
+#fulltime .container>div:before {
     content: "";
     display: block;
     position: absolute;
@@ -2255,12 +2285,12 @@ section.feature ul li .badge {
 }
 
 @media screen and (max-width: 900px) {
-    #fulltime .container > div:before {
+    #fulltime .container>div:before {
         display: none
     }
 }
 
-#fulltime .container > div:after {
+#fulltime .container>div:after {
     content: "";
     display: block;
     position: absolute;
@@ -2273,7 +2303,7 @@ section.feature ul li .badge {
 }
 
 @media screen and (max-width: 900px) {
-    #fulltime .container > div:after {
+    #fulltime .container>div:after {
         display: none
     }
 }
@@ -2413,13 +2443,13 @@ section.feature ul li .badge {
     overflow: hidden
 }
 
-#signup .container > div {
+#signup .container>div {
     margin: 0 auto;
     width: 54%
 }
 
 @media screen and (max-width: 768px) {
-    #signup .container > div {
+    #signup .container>div {
         width: calc(100% - 20px)
     }
 }
@@ -2468,7 +2498,8 @@ section.feature ul li .badge {
     padding-bottom: 3px
 }
 
-#signup a:not(.button):hover, #signup a:not(.button):focus {
+#signup a:not(.button):hover,
+#signup a:not(.button):focus {
     text-decoration: none
 }
 
@@ -2480,7 +2511,8 @@ section.feature ul li .badge {
     margin-right: 0
 }
 
-#error > div, #information > div {
+#error>div,
+#information>div {
     margin: 80px 0;
     padding: 20px;
     background: #fff;
@@ -2491,21 +2523,27 @@ section.feature ul li .badge {
     overflow: hidden
 }
 
-#error > div h2, #information > div h2 {
+#error>div h2,
+#information>div h2 {
     padding-top: 0
 }
 
-#error > div p:last-child, #information > div p:last-child {
+#error>div p:last-child,
+#information>div p:last-child {
     margin-bottom: 0;
     padding-bottom: 0
 }
 
-#error > div a:not(.button), #information > div a:not(.button) {
+#error>div a:not(.button),
+#information>div a:not(.button) {
     color: black;
     text-decoration: underline
 }
 
-#error > div a:not(.button):hover, #error > div a:not(.button):focus, #information > div a:not(.button):hover, #information > div a:not(.button):focus {
+#error>div a:not(.button):hover,
+#error>div a:not(.button):focus,
+#information>div a:not(.button):hover,
+#information>div a:not(.button):focus {
     color: #707070
 }
 
@@ -2589,7 +2627,8 @@ section.feature ul li .badge {
     -webkit-transform: translate3d(0px, 0px, 0px)
 }
 
-.owl-carousel .owl-wrapper, .owl-carousel .owl-item {
+.owl-carousel .owl-wrapper,
+.owl-carousel .owl-item {
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
@@ -2612,11 +2651,14 @@ section.feature ul li .badge {
     width: 100%
 }
 
-.owl-carousel .owl-nav.disabled, .owl-carousel .owl-dots.disabled {
+.owl-carousel .owl-nav.disabled,
+.owl-carousel .owl-dots.disabled {
     display: none
 }
 
-.owl-carousel .owl-nav .owl-prev, .owl-carousel .owl-nav .owl-next, .owl-carousel .owl-dot {
+.owl-carousel .owl-nav .owl-prev,
+.owl-carousel .owl-nav .owl-next,
+.owl-carousel .owl-dot {
     cursor: pointer;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -2625,7 +2667,9 @@ section.feature ul li .badge {
     user-select: none
 }
 
-.owl-carousel .owl-nav button.owl-prev, .owl-carousel .owl-nav button.owl-next, .owl-carousel button.owl-dot {
+.owl-carousel .owl-nav button.owl-prev,
+.owl-carousel .owl-nav button.owl-next,
+.owl-carousel button.owl-dot {
     background: none;
     color: inherit;
     border: none;
@@ -2697,6 +2741,7 @@ section.feature ul li .badge {
     0% {
         opacity: 1
     }
+
     100% {
         opacity: 0
     }
@@ -2711,7 +2756,8 @@ section.feature ul li .badge {
     transition: opacity 400ms ease
 }
 
-.owl-carousel .owl-item .owl-lazy[src^=""], .owl-carousel .owl-item .owl-lazy:not([src]) {
+.owl-carousel .owl-item .owl-lazy[src^=""],
+.owl-carousel .owl-item .owl-lazy:not([src]) {
     max-height: 0
 }
 
@@ -2745,7 +2791,8 @@ section.feature ul li .badge {
     transform: scale(1.3, 1.3)
 }
 
-.owl-carousel .owl-video-playing .owl-video-tn, .owl-carousel .owl-video-playing .owl-video-play-icon {
+.owl-carousel .owl-video-playing .owl-video-tn,
+.owl-carousel .owl-video-playing .owl-video-play-icon {
     display: none
 }
 
@@ -2893,7 +2940,8 @@ section.feature ul li .badge {
     z-index: 1045
 }
 
-.mfp-inline-holder .mfp-content, .mfp-ajax-holder .mfp-content {
+.mfp-inline-holder .mfp-content,
+.mfp-ajax-holder .mfp-content {
     width: 100%;
     cursor: auto
 }
@@ -2902,7 +2950,8 @@ section.feature ul li .badge {
     cursor: progress
 }
 
-.mfp-zoom-out-cur, .mfp-zoom-out-cur .mfp-image-holder .mfp-close {
+.mfp-zoom-out-cur,
+.mfp-zoom-out-cur .mfp-image-holder .mfp-close {
     cursor: -moz-zoom-out;
     cursor: -webkit-zoom-out;
     cursor: zoom-out
@@ -2919,7 +2968,10 @@ section.feature ul li .badge {
     cursor: auto
 }
 
-.mfp-close, .mfp-arrow, .mfp-preloader, .mfp-counter {
+.mfp-close,
+.mfp-arrow,
+.mfp-preloader,
+.mfp-counter {
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none
@@ -2961,7 +3013,8 @@ section.feature ul li .badge {
     display: none
 }
 
-button.mfp-close, button.mfp-arrow {
+button.mfp-close,
+button.mfp-arrow {
     overflow: visible;
     cursor: pointer;
     background: rgba(0, 0, 0, 0);
@@ -2998,7 +3051,8 @@ button::-moz-focus-inner {
     font-family: Arial, Baskerville, monospace
 }
 
-.mfp-close:hover, .mfp-close:focus {
+.mfp-close:hover,
+.mfp-close:focus {
     opacity: 1;
     filter: alpha(opacity=100)
 }
@@ -3011,7 +3065,8 @@ button::-moz-focus-inner {
     color: #333
 }
 
-.mfp-image-holder .mfp-close, .mfp-iframe-holder .mfp-close {
+.mfp-image-holder .mfp-close,
+.mfp-iframe-holder .mfp-close {
     color: #fff;
     right: -6px;
     text-align: right;
@@ -3045,12 +3100,16 @@ button::-moz-focus-inner {
     margin-top: -54px
 }
 
-.mfp-arrow:hover, .mfp-arrow:focus {
+.mfp-arrow:hover,
+.mfp-arrow:focus {
     opacity: 1;
     filter: alpha(opacity=100)
 }
 
-.mfp-arrow:before, .mfp-arrow:after, .mfp-arrow .mfp-b, .mfp-arrow .mfp-a {
+.mfp-arrow:before,
+.mfp-arrow:after,
+.mfp-arrow .mfp-b,
+.mfp-arrow .mfp-a {
     content: "";
     display: block;
     width: 0;
@@ -3063,13 +3122,15 @@ button::-moz-focus-inner {
     border: medium inset rgba(0, 0, 0, 0)
 }
 
-.mfp-arrow:after, .mfp-arrow .mfp-a {
+.mfp-arrow:after,
+.mfp-arrow .mfp-a {
     border-top-width: 13px;
     border-bottom-width: 13px;
     top: 8px
 }
 
-.mfp-arrow:before, .mfp-arrow .mfp-b {
+.mfp-arrow:before,
+.mfp-arrow .mfp-b {
     border-top-width: 21px;
     border-bottom-width: 21px;
     opacity: .7
@@ -3079,12 +3140,14 @@ button::-moz-focus-inner {
     left: 0
 }
 
-.mfp-arrow-left:after, .mfp-arrow-left .mfp-a {
+.mfp-arrow-left:after,
+.mfp-arrow-left .mfp-a {
     border-right: 17px solid #fff;
     margin-left: 31px
 }
 
-.mfp-arrow-left:before, .mfp-arrow-left .mfp-b {
+.mfp-arrow-left:before,
+.mfp-arrow-left .mfp-b {
     margin-left: 25px;
     border-right: 27px solid #3f3f3f
 }
@@ -3093,12 +3156,14 @@ button::-moz-focus-inner {
     right: 0
 }
 
-.mfp-arrow-right:after, .mfp-arrow-right .mfp-a {
+.mfp-arrow-right:after,
+.mfp-arrow-right .mfp-a {
     border-left: 17px solid #fff;
     margin-left: 39px
 }
 
-.mfp-arrow-right:before, .mfp-arrow-right .mfp-b {
+.mfp-arrow-right:before,
+.mfp-arrow-right .mfp-b {
     border-left: 27px solid #3f3f3f
 }
 
@@ -3203,7 +3268,8 @@ img.mfp-img {
     cursor: pointer
 }
 
-@media screen and (max-width: 800px)and (orientation: landscape), screen and (max-height: 300px) {
+@media screen and (max-width: 800px)and (orientation: landscape),
+screen and (max-height: 300px) {
     .mfp-img-mobile .mfp-image-holder {
         padding-left: 0;
         padding-right: 0
@@ -3354,4 +3420,29 @@ img.mfp-img {
     box-shadow: 0 7px 15px 0 rgba(0, 0, 0, .3)
 }
 
-/*# sourceMappingURL=styles.min.1.8.8.css.map */
+a {
+    text-decoration: none !important;
+}
+
+nav {
+    margin-top: 0 !important;
+}
+
+header>div.top-nav ul li.menu ul li a {
+    white-space: nowrap;
+    color: black;
+    min-width: 78px;
+    display: block;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+ul li a .fas {
+    margin-right: 10px !important;
+}
+
+.avatar-user {
+    border-radius: 20px !important;
+}

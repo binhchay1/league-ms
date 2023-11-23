@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{{ asset('/images/logo-no-background.png') }}">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('backend/plugins/fontawesome-free/css/all.min.css') }}">
@@ -21,7 +22,6 @@
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    @yield('js_sort_users')
     @yield('css')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
@@ -36,33 +36,29 @@
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="index3.html" class="nav-link">{{ __('Home') }}</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown user user-menu">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-                        <img src="{{auth()->user()->image ?? asset('image/default-avatar .png')}}" class="user-image" alt="User Image">
+                        <img src="{{ auth()->user()->image ?? asset('image/default-avatar .png') }}" class="user-image" alt="User Image">
                         <span class="hidden-xs"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <div class="dropdown-divider"></div>
                         <div class="d-flex bd-highlight">
                             <div class="p-2 bd-highlight">
-                                <a href="" class="btn btn-default">{{__('Change Password')}}</a>
+                                <a href="" class="btn btn-default">{{ __('Change Password') }}</a>
                             </div>
                             <div class="ml-auto p-2 bd-highlight">
-                                <a href="{{ route('logout') }}" class="btn btn-default">{{__('Logout')}}</a>
+                                <a href="{{ route('signout') }}" class="btn btn-default">{{ __('Logout') }}</a>
                             </div>
-                            <form id="logout" action="#" method="POST" style="display: none;">
-                            </form>
                         </div>
                     </div>
                 </li>
             </ul>
         </nav>
-
-        @php $route = Route::currentRouteName(); @endphp
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <a href="" class="brand-link">
@@ -177,7 +173,7 @@
         </div>
 
         <footer class="main-footer">
-            <strong>{{ __('Copyright &copy; 2014-2019') }} <a href="http://adminlte.io">{{ __('AdminLTE.io') }}</a>.</strong>
+            <strong>{{ __('Copyright© 2023') }} <a href="{{ route('home') }}">{{ env('APP_NAME', 'Badminton.io') }}</a>.</strong>
             <div class="float-right d-none d-sm-inline-block">
                 <b>{{ __('All rights reserved.') }}</b>
             </div>
@@ -203,8 +199,8 @@
     <script src="{{ asset('backend/dist/js/adminlte.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
-    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     @yield('js')
 </body>

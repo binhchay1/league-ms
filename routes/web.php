@@ -24,6 +24,7 @@ use App\Http\Controllers\AuthController;
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/list-of-league', [HomeController::class, 'listLeague'])->name('list.league');
 Route::get('/top-league', [HomeController::class, 'listTopLeague'])->name('top.league');
+Route::post('/search', [HomeController::class, 'viewSearch'])->name('search.result');
 Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
 Route::get('/shop', [HomeController::class, 'viewShop'])->name('shop');
 Route::get('/about', [HomeController::class, 'viewAbout'])->name('about');
@@ -39,6 +40,7 @@ Route::middleware(['verified'])->group(function () {
     Route::get('/signout', [AuthController::class, 'signOut'])->name('signout');
     Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
     Route::get('/my-group', [AuthController::class, 'myGroup'])->name('my.group');
+    Route::get('/join-group', [AuthController::class, 'myGroup'])->name('join.group');
 });
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -90,7 +92,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/result', [ScheduleController::class, 'result'])->name('schedule.result');
 
             Route::get('/list-group', [GroupController::class, 'index'])->name('group.index');
-            Route::get('/store-group', [GroupController::class, 'store'])->name('group.store');
+            Route::post('/store-group', [GroupController::class, 'store'])->name('group.store');
             Route::get('/create-group', [GroupController::class, 'create'])->name('group.create');
         }
     );

@@ -12,7 +12,7 @@ final class Utility
     public function saveImageLeague($input)
     {
         if ($input) {
-            $status = Storage::disk('public-image-league')->put($input['image']->getClientOriginalName(), $input['image']->get());
+            $status = Storage::disk('public-image-league')->put($input['images']->getClientOriginalName(), $input['images']->get());
             return $status;
         }
     }
@@ -20,7 +20,7 @@ final class Utility
     public function saveImageTeam($input)
     {
         if ($input) {
-            $status = Storage::disk('public-image-team')->put($input['image']->getClientOriginalName(), $input['image']->get());
+            $status = Storage::disk('public-image-team')->put($input['images']->getClientOriginalName(), $input['images']->get());
             return $status;
         }
     }
@@ -28,7 +28,7 @@ final class Utility
     public function saveImageGroup($input)
     {
         if ($input) {
-            $status = Storage::disk('public-image-team')->put($input['image']->getClientOriginalName(), $input['image']->get());
+            $status = Storage::disk('public-image-group')->put($input['images']->getClientOriginalName(), $input['images']->get());
             return $status;
         }
     }

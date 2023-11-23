@@ -21,12 +21,12 @@
     <link rel="alternate" hreflang="en-US" href="https://badminton.io">
     <link rel="alternate" hreflang="af" href="https://badminton.io">
     <link rel="alternate" hreflang="x-default" href="https://badminton.io">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css">
+
+    <link rel="stylesheet" href="{{ asset('backend/plugins/fontawesome-free/css/all.min.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
-    <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
@@ -45,13 +45,13 @@
                     <span>en</span>
                     <ul>
                         <li>
-                            <a class="active" href="{{ route('app.setLocale', ['locale' => 'en']) }}">
+                            <a class="{{ Session::get('locale') == 'en' ? 'active' : ''}}" href="{{ route('app.setLocale', ['locale' => 'en']) }}">
                                 English (US)
                             </a>
                         </li>
 
                         <li>
-                            <a class="" href="{{ route('app.setLocale', ['locale' => 'vi']) }}">
+                            <a class="{{ Session::get('locale') == 'vi' ? 'active' : ''}}" href="{{ route('app.setLocale', ['locale' => 'vi']) }}">
                                 Tiếng Việt
                             </a>
                         </li>
@@ -63,14 +63,15 @@
             <a href="{{ route('home') }}"><img style="margin-bottom: 30px" class="left" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
             <button id="toggle-menu" onclick="toggleMobileMenu()"></button>
             <ul id="menu" style="display: flex !important;">
-                <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
-                <li><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
-                <li><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li>
-                <li><a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
+                <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
+                <li class="pt-2"><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
+                <li class="pt-2"><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li>
+                <li class="pt-2"><a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
                 <li id="search">
-                    <form id="searchMenuForm" name="searchMenuForm" action="{{ route('search') }}" method="post">
+                    <form id="search-league" action="{{ route('search') }}" method="post">
+                        @csrf
                         <div onclick="openSearch()">
-                            <input type="search" name="searchValue" placeholder="{{ __('Search leagues') }}...">
+                            <input type="search" name="search" placeholder="{{ __('Search leagues') }}...">
                             <button type="button">
                                 <img src="{{ asset('/svg/icon-search.svg') }}" alt="{{ __('Search') }}" title="{{ __('Search') }}" width="15" height="15">
                             </button>
@@ -81,14 +82,14 @@
                 <li>
                     <div class="dropdown">
                         <a style="text-decoration: none;" class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img width="40" height="40" src="{{ Auth::user()->profile_photo_path }}">
+                            <img class="avatar-user" width="40" height="40" src="{{ Auth::user()->profile_photo_path }}">
                         </a>
 
-                        <ul class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink">
-                            <li><i class="fas fa-user"></i><a class="dropdown-item" href="{{ route('profile') }}">{{ __('Profile') }}</a></li>
-                            <li><i class="fas fa-people-group"></i><a class="dropdown-item" href="{{ route('my.group') }}">{{ __('My group') }}</a></li>
+                        <ul class="dropdown-menu mt-2 p-3" aria-labelledby="dropdownMenuLink">
+                            <li class="d-flex justify-content-center align-items-center"><a class="dropdown-item" href="{{ route('profile') }}"><i class="fas fa-user mr-2"></i> {{ __('Profile') }}</a></li>
+                            <li class="d-flex justify-content-center align-items-center"><a class="dropdown-item" href="{{ route('my.group') }}"><i class="fas fa-users mr-2"></i> {{ __('My group') }}</a></li>
                             <hr>
-                            <li><a class="dropdown-item" href="{{ route('signout') }}">{{ __('Log out') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2"></i>{{ __('Log out') }}</a></li>
                         </ul>
                     </div>
                 </li>
@@ -108,12 +109,6 @@
                 <h4 class="h3" style="color: white">{{ env('APP_NAME', 'Badminton.io') }}</h4>
                 <p>{{ __('Efficiency and ease-of-use are our mission, simplifying the process of running a sports league.') }}</p>
                 <p>{{ env('APP_NAME', 'Badminton.io') }} {{ __('is available to all at no cost. Additionally, we offer premium plans that include additional functionality.') }}</p>
-                <ul class="social">
-                    <li><a href="https://www.linkedin.com/company/badminton.io"><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="LinkedIn" width="30" height="31"></a></li>
-                    <li><a href="https://twitter.com/badminton.io"><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="Twitter" width="30" height="31"></a></li>
-                    <li><a href="https://www.facebook.com/badminton.io"><img src="{{ asset('/svg/icon-facebook.svg') }}" alt="Facebook" width="30" height="31"></a></li>
-                    <li><a href="https://www.youtube.com/user/badminton.io"><img src="{{ asset('/svg/icon-youtube.svg') }}" alt="YouTube" width="30" height="31"></a></li>
-                </ul>
             </div>
             <div>
                 <ul>
@@ -124,8 +119,6 @@
                     <li><a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
                     <li><a href="{{ route('top.league') }}">{{ __('Top League') }}</a></li>
                     <li><a href="{{ route('search') }}">{{ __('Search') }}</a></li>
-                    <li><a href="{{ route('login') }}">{{ __('Log In') }}</a></li>
-                    <li><a href="{{ route('register_user') }}">{{ __('Sign Up') }}</a></li>
                 </ul>
             </div>
             <div>
@@ -146,6 +139,12 @@
                         {{ __('Copyright© 2023') }} <a href="{{ route('home')}}">{{ env('APP_NAME', 'Badminton.io') }}</a>
                     </small>
                 </p>
+                <ul class="social">
+                    <li><a href="https://www.linkedin.com/company/badminton.io"><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="LinkedIn" width="30" height="31"></a></li>
+                    <li><a href="https://twitter.com/badminton.io"><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="Twitter" width="30" height="31"></a></li>
+                    <li><a href="https://www.facebook.com/badminton.io"><img src="{{ asset('/svg/icon-facebook.svg') }}" alt="Facebook" width="30" height="31"></a></li>
+                    <li><a href="https://www.youtube.com/user/badminton.io"><img src="{{ asset('/svg/icon-youtube.svg') }}" alt="YouTube" width="30" height="31"></a></li>
+                </ul>
             </div>
         </div>
     </footer>

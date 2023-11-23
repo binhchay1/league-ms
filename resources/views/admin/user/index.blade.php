@@ -1,4 +1,9 @@
 @extends('layouts.admin')
+
+@section('title')
+{{ env('APP_NAME', 'Badminton.io') }} - {{ __('List User') }}
+@endsection
+
 @section('content')
 <style>
     label:not(.form-check-label):not(.custom-file-label) {
@@ -6,7 +11,7 @@
     }
 </style>
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span> {{ __('Danh Sách Người Dùng') }}</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span> {{ __('List User') }}</h4>
     @if(session()->has('success'))
     <div class="alert alert-success text-center">
         {{ session()->get('success') }}
@@ -17,15 +22,15 @@
             <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">
                 <thead>
                     <tr class="design-text">
-                        <th scope="col">{{ __('Tên') }}</th>
-                        <th scope="col">{{ __('Hòm thư') }}</th>
-                        <th scope="col">{{ __('Hình ảnh') }}</th>
-                        <th scope="col">{{ __('Số điện thoại') }}</th>
-                        <th scope="col">{{ __('Địa chỉ') }}</th>
-                        <th scope="col">{{ __('Ngày sinh') }}</th>
-                        <th scope="col">{{ __('Giới tính') }}</th>
+                        <th scope="col">{{ __('Name') }}</th>
+                        <th scope="col">{{ __('Email') }}</th>
+                        <th scope="col">{{ __('Images') }}</th>
+                        <th scope="col">{{ __('Phone number') }}</th>
+                        <th scope="col">{{ __('Address') }}</th>
+                        <th scope="col">{{ __('Date of birth') }}</th>
+                        <th scope="col">{{ __('Gender') }}</th>
 
-                        <th style="width: 10%" scope="col">{{ __('Hành động') }}</th>
+                        <th style="width: 10%" scope="col">{{ __('Action') }}</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -33,14 +38,14 @@
                     <tr class="design-text">
                         <td>{{ $data->name }}</th>
                         <td>{{ $data->email }}</td>
-                        <td><img class="image" src="{{ $data->image ?? asset('/images/default-avatar.png') }}" alt="avatar" width="100" height="50"></td>
+                        <td><img class="image" src="{{ $data->image ?? asset('/images/default-avatar.png') }}" alt="avatar" width="70" height="70"></td>
                         <td>{{ $data->phone }}</td>
                         <td>{{ $data->address }}</td>
                         <td>{{ $data->age }}</td>
                         <td>{{ $data->sex }}</td>
                         <td class="text_flow text-center">
                             <a href="{{route('user.delete', $data['id'])}}">
-                                <button type="button" class="btn btn-danger">{{ __('Xóa') }}</button>
+                                <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
                             </a>
                         </td>
                     </tr>

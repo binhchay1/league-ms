@@ -30,7 +30,7 @@
             <div class="card p-3 mb-4">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex flex-row align-items-center">
-                        <div class="icon"> <img src="{{ $group->images }}"></div>
+                        <div class="icon"> <img class="avatar-group" src="{{ $group->images }}"></div>
                         <div class="ms-2 c-details">
                             <h6 class="mb-0">{{ $group->name }}</h6> <span>{{ $group->users->name }}</span>
                         </div>
@@ -41,6 +41,7 @@
                     <p>* {{ __('Description') }}: {{ $group->description }}</p>
                     <p>* {{ __('Location') }}: {{ $group->location }}</p>
                     <p>* {{ __('Activity time') }}: {{ $group->activity_time }}</p>
+                    <p class="fst-italic fw-light fw-bold">----- {{ __('Note') }}: {{ $group->note }}</p>
                     <div class="mt-3">
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" <?php echo 'style="width:' . ($group->group_users->count() / $group->number_of_members * 100) . '%"' ?> aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -55,14 +56,20 @@
                             @endif
                             @endforeach
 
+                            @if(!Auth::check())
+                            <div>
+                                <a class="btn btn-success" href="{{ route('login') }}">{{ __('Sign in for join') }}</a>
+                            </div>
+                            @else
                             @if(!$isJoin and !$isFull)
                             <div>
-                                <a class="btn btn-primary">{{ __('Join group') }}</a>
+                                <a class="btn btn-primary" href="{{ route('join.group') }}">{{ __('Join group') }}</a>
                             </div>
                             @else
                             <div>
                                 <a class="btn btn-secondary" disabled>{{ __('Joined') }}</a>
                             </div>
+                            @endif
                             @endif
                         </div>
                     </div>

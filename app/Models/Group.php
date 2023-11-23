@@ -9,6 +9,19 @@ class Group extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'images',
+        'description',
+        'activity_time',
+        'number_of_members',
+        'location',
+        'note',
+        'rate',
+        'status',
+        'group_owner'
+    ];
+
     public function group_users()
     {
         return $this->hasMany('App\Models\GroupUser');

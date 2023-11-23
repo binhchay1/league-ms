@@ -35,4 +35,9 @@ class LeagueRepository extends BaseRepository
     {
         return $this->model->with('schedule')->where('slug', $slug)->first();
     }
+
+    public function getLeagueBySearch($search)
+    {
+        return $this->model->where('name', 'like', '%' . $search . '%')->get();
+    }
 }
