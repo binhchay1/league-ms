@@ -15,12 +15,12 @@
             @foreach($listLeague as $listLeague)
                 <div class="" style=" margin-top: 10px">
                     <div id="signup" style="background: #eee; border-radius: 10px; " >
-                        <a href="{{route('tour.info', $listLeague['slug'])}}">
-                            <div class="row" style="color: #434365; height: 200px;">
+                        <a href="{{route('tour.info', $listLeague['slug'])}}" style="text-decoration: none;">
+                            <div class="row" style="color: black; height: 200px;">
                                 <div class="col-lg-3">
                                     <img class="lazy truncated initial loaded white center" src="{{$listLeague->image}}" style="width: 200px;height: 150px;margin: 30px">
                                 </div>
-                                <div class="col-7">
+                                <div class="col-7 mt-4">
                                     <h3 class="" >{{ $listLeague->name }}</h3>
 
                                     <h5 class="">{{__('Start Date')}}: {{ $listLeague->start_date }}</h5>
@@ -38,8 +38,4 @@
             @endforeach
         </div>
     </div>
-
-
-</main>
-
 @endsection
