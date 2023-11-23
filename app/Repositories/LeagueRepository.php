@@ -33,6 +33,6 @@ class LeagueRepository extends BaseRepository
 
     public function showInfo($slug)
     {
-        return $this->model->with('schedule')->where('slug', $slug)->first();
+        return $this->model->with('userLeagues', 'userLeagues.user')->where('slug', $slug)->first();
     }
 }
