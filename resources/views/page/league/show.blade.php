@@ -71,7 +71,7 @@
                         <a href="" style="text-decoration: none;">
                             <div class="entry-player-wrap">
                                 <div class="entry-player-image">
-                                    <img width="80" class="lazy truncated initial loaded white " src="{{$listTour->user->image ?? '/images/HUỲNH CÔNG NHẬT NAM.png'}}" style="width: 100px; height: 125px">
+                                    <img width="80" class="lazy truncated initial loaded white " src="{{$listTour->user->image ?? '/images/no-image.png'}}" style="width: 100px; height: 125px">
                                 </div>
                                 <div class="entry-player-info-wrap">
                                     <div class="entry-player-name">

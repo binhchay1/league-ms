@@ -99,6 +99,6 @@
         </div>
     </div>
 @section('js')
-    <script src="{{ asset('js/eventImage.js') }}"></script>
+    <script src="{{ asset('js/page/user.js') }}"></script>
 @endsection
 @endsection
