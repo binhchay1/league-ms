@@ -88,7 +88,7 @@
                         </a>
 
                         <ul class="dropdown-menu mt-2 p-3" aria-labelledby="dropdownMenuLink">
-                            <li class="d-flex justify-content-center align-items-center"><a class="dropdown-item" href="{{ route('profile') }}"><i class="fas fa-user mr-2"></i> {{ __('Profile') }}</a></li>
+                            <li class="d-flex justify-content-center align-items-center"><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="fas fa-user mr-2"></i> {{ __('Profile') }}</a></li>
                             <li class="d-flex justify-content-center align-items-center"><a class="dropdown-item" href="{{ route('my.group') }}"><i class="fas fa-users mr-2"></i> {{ __('My group') }}</a></li>
                             <hr>
                             <li><a class="dropdown-item" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2"></i>{{ __('Log out') }}</a></li>

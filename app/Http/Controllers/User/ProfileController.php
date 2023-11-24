@@ -51,19 +51,23 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(UserRequest $request, $userIdHash)
     {
-        $input = $request->except(['_token']);
-        if (isset($input['image'])) {
-            $img = $this->utility->saveImageLogo($input);
-            if ($img) {
-                $path = '/images/logo/' . $input['image']->getClientOriginalName();
-                $input['image'] = $path;
-            }
+        dd(1);
+        if (empty($userIdHash)) {
+            abort(404);
         }
 
-        $dataTeam = $this->userRepository->update($input, $id);
-        return redirect()->back()->with('success', 'Update information successfully!');
+        $input = $request->except(['_token']);
+        if (isset($input['profile_photo_path'])) {
+            $img = $this->utility->saveImageUser($input);
+            if ($img) {
+                $path = 'images/upload/user/' . $input['profile_photo_path']->getClientOriginalName();
+                $input['profile_photo_path'] = $path;
+            }
+        }
+        $this->userRepository->update($input, $userIdHash);
+        return back()->with('success', __('Thông tin đã được cập nhật thành công!'));
     }
 
     /**
