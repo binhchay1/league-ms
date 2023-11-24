@@ -13,8 +13,8 @@
         <h2>{{__('List League')}}</h2>
         <div  style="background: white; border-radius: 10px; padding: 10px">
             @foreach($listLeague as $listLeague)
-                <div class="" style=" margin-top: 10px">
-                    <div id="signup" style="background: #eee; border-radius: 10px; " >
+                <div class="te" style=" margin-top: 10px">
+                    <div id="" style="background: #eee;" >
                         <a href="{{route('tour.info', $listLeague['slug'])}}" style="text-decoration: none;">
                             <div class="row" style="color: black; height: 200px;">
                                 <div class="col-lg-3">

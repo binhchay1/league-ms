@@ -3,10 +3,10 @@ $(function () {
 });
 function loadImage() {
     $(document).on('click', '#btn_chooseImg', function () {
-        $('#image').click();
+        $('#profile_photo_path').click();
     });
 
-    $('#image').change(function() {
+    $('#profile_photo_path').change(function() {
         readURL(this);
     });
 }

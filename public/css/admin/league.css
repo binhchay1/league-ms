@@ -1,0 +1,13 @@
+.select2-danger {
+    width: 100%;
+}
+
+#showImage {
+    width: 180px;
+    margin-left: 40px;
+    height: 200px;
+}
+
+.card-header {
+    background-color: #2196f3;
+}

@@ -30,7 +30,7 @@ class LeagueRequest extends FormRequest
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'format_of_league' => 'required',
-            'number_of_team' => 'required',
+            'number_of_athletes' => 'required',
             'type_of_league' => 'required',
         ];
     }
@@ -41,17 +41,17 @@ class LeagueRequest extends FormRequest
             'name.required' => __('Name is required'),
             'name.unique' => __('Name invalid'),
             'coach.required' => __('Coach is required'),
-            'images.required' => __('Image is required'),
-            'images.image' => __('Incorrect image format'),
-            'images.mimes' => __('Incorrect image format'),
-            'images.max' => __('Image size is maximum'),
+            'image.required' => __('Image is required'),
+            'image.image' => __('Incorrect image format'),
+            'image.mimes' => __('Incorrect image format'),
+            'image.max' => __('Image size is maximum'),
             'start_date.required' => __('Start date is required'),
             'start_date.date' => __('Incorrect start date format'),
             'end_date.required' => __('End date is required'),
             'end_date.date' => __('Incorrect end date format'),
             'end_date.after_or_equal' => __('The end date must be after the start date'),
             'format_of_league.required' => __('Format is required'),
-            'number_of_team.required' => __('Number of teams is required'),
+            'number_of_athletes.required' => __('Number of teams is required'),
             'type_of_league.required' => __('Type is required'),
         ];
     }
