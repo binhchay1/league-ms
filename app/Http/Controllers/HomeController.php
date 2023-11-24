@@ -8,7 +8,7 @@ use App\Repositories\TeamRepository;
 use App\Repositories\LeagueRepository;
 use App\Repositories\MatchesRepository;
 use App\Repositories\UserRepository;
-use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Http\Request;
 use Config;
 use Session;
 
@@ -140,13 +140,11 @@ class HomeController extends Controller
     public function detailGroup(Request $request)
     {
         $nameGroup = $request->get('g_i');
-        if ($nameGroup == null) {
+        $getGroup = $this->groupRepository->getGroupByName($nameGroup);
+        if (empty($getGroup)) {
             abort(404);
         }
 
-        $getGroup = $this->groupRepository->getGroupByName($nameGroup);
-
         return view('page.group.detail', compact('getGroup'));
     }
-
 }

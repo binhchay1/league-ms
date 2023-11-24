@@ -19,11 +19,11 @@ class Message extends Model
 
     public function users()
     {
-        return $this->belongsTo(User::class, 'id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function groups()
     {
-        return $this->belongsTo(Group::class, 'id', 'group_id');
+        return $this->belongsTo(Group::class, 'group_id', 'id');
     }
 }

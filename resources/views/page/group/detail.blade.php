@@ -5,6 +5,7 @@
 @endsection
 
 @section('css')
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <link rel="stylesheet" href="{{ asset('/css/page/group.css') }}" />
 <style>
     #chat1 .form-outline .form-control~.form-notch div {
@@ -136,21 +137,37 @@
 @endsection
 
 @section('js')
+<script src="http://localhost:6001/socket.io/socket.io.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 <script>
-    $('$send-massage').on('click', function() {
+    $('#send-massage').on('click', function() {
         sendMessage();
     });
 
-    Echo.private('chat').listen('message.broadcast', (e) => {
+    const g_i = '<?php echo $getGroup->id ?>';
+    let group = 'chat-group-' + g_i;
+
+    let a = Echo.channel('chat-group-1').listen('.message-group', function(e) {
         console.log(e);
-        this.messages.push({
-            message: e.message.message,
-            user: e.user
-        });
     });
+
+    console.log(a);
 
     function sendMessage() {
         let message = $('#text-area-write-message').val();
+        let url = 'messages';
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                message: message,
+                g_i: g_i
+            }
+        });
     }
 </script>
 @endsection

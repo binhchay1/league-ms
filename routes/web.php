@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Redis;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +22,7 @@ use App\Http\Controllers\AuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/list-of-league', [HomeController::class, 'listLeague'])->name('list.league');
