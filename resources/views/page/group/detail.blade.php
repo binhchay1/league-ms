@@ -235,7 +235,6 @@ use Illuminate\Support\Facades\Hash;
                             </li>
                             @endforeach
                         </ul>
-
                     </div>
                 </div>
             </div>
