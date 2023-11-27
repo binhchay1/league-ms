@@ -17,6 +17,7 @@
         "laravel/socialite": "^5.10",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.5",
+        "predis/predis": "^2.2",
         "pusher/pusher-php-server": "^7.2",
         "stichoza/google-translate-php": "^4.1",
         "yajra/laravel-datatables": "^1.0"

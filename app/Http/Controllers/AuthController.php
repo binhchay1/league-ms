@@ -4,25 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Enums\Role;
 use App\Enums\Utility;
+use App\Mail\VerifyEmail;
 use App\Models\User;
+use App\Models\Message;
+use App\Enums\Title;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Models\VerifyUser;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\GroupUserRepository;
 use App\Events\MessageSent;
+use App\Repositories\GroupRepository;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Http\Request;
 use Hash;
+use Illuminate\Support\Str;
 use Session;
 
 class  AuthController extends Controller
 {
     protected $groupUserRepository;
+    protected $groupRepository;
     protected $utility;
 
     public function __construct(
         GroupUserRepository $groupUserRepository,
+        GroupRepository $groupRepository,
         Utility $ultity
     ) {
         $this->groupUserRepository = $groupUserRepository;
+        $this->groupRepository = $groupRepository;
         $this->utility = $ultity;
     }
 
@@ -83,10 +96,32 @@ class  AuthController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'role' => Role::USER,
+            'title' => Title::USER
         ]);
-        auth()->login($user);
+        VerifyUser::create([
+            'token' => Str::random(60),
+            'user_id' => $user->id,
+        ]);
 
-        return redirect("dashboard")->withSuccess('You have signed-in');
+        Mail::to($user->email)->send(new VerifyEmail($user));
+        return \redirect()->route('login')->with('success', 'Please click on the link sent to your email');
+    }
+
+    public function verifyEmail($token)
+    {
+        $verifiedUser = VerifyUser::where('token', $token)->first();
+        if (isset($verifiedUser)) {
+            $user = $verifiedUser->user;
+            if (!$user->email_verified_at) {
+                $user->email_verified_at = Carbon::now();
+                $user->save();
+                return \redirect(route('login'))->with('success', 'Your email has been verified');
+            } else {
+                return \redirect()->back()->with('info', 'Your email has already been verified');
+            }
+        } else {
+            return \redirect(route('login'))->with('error', 'Something went wrong!!');
+        }
     }
 
     public function profile()
@@ -106,22 +141,39 @@ class  AuthController extends Controller
     {
     }
 
-    public function fetchMessages()
+    public function fetchMessages(Request $request)
     {
-        return Message::with('user')->get();
+        $group_id = $request->get('g_i');
+        return Message::with('users')->where('user_id', Auth::user()->id)->where('group_id', $group_id)->get();
     }
 
     public function sendMessage(Request $request)
     {
-        $user = Auth::user();
+        try {
+            Redis::connect(env('REDIS_HOST', '127.0.0.1'), 3306);
+            $user = Auth::user();
+            $message = $request->get('message');
+            $group_id = $request->get('g_i');
 
-        $message = $user->messages()->create([
-            'message' => $request->input('message'),
-            'group_id' => $request->input('group_id')
-        ]);
+            if ($message == null or $group_id == null) {
+                abort(403);
+            }
 
-        broadcast(new MessageSent($user, $message))->toOthers();
+            $isJoined = $this->groupUserRepository->checkJoinedGroupByName($user->id, $group_id);
+            if (empty($isJoined)) {
+                abort(403);
+            }
 
-        return ['status' => 'Message Sent!'];
+            $message = $user->messages()->create([
+                'message' => $message,
+                'group_id' => $group_id
+            ]);
+
+            broadcast(new MessageSent($user, $message, $group_id))->toOthers();
+
+            return ['status' => 'Message Sent!'];
+        } catch (\Predis\Connection\ConnectionException $e) {
+            return response('error connection redis');
+        }
     }
 }
