@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-{{ env('APP_NAME', 'Badminton.io') }} - {{ __('About') }}
+{{ env('APP_NAME', 'Badminton.io') }} - {{ __('Pricing') }}
 @endsection
 
 @section('content')
@@ -217,27 +217,7 @@
                 <br><br>Team and Player Registration Fees
                 <br><small>LeagueRepublic fees are just <strong>2%</strong> per transaction with no setup fees, <a rel="noopener" target="_blank" href="https://stripe.com/pricing">Stripe fees</a> vary by country and currency but are always highly competitive.</small>
             </li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
             <li class="subheading"></li>
-
-            <li></li>
-
             <li class="span3 desktop">
                 <div class="center">
                     LeagueRepublic fees are just <strong>2%</strong> per transaction with no setup fees, <a rel="noopener" target="_blank" href="https://stripe.com/pricing">Stripe fees</a> vary by country and currency but are always highly competitive.
@@ -346,32 +326,19 @@
                         <div class="plan-price plan-unlimited" style="display:none;">£68<span>.30</span></div>
                     </div>
 
-
-
                     <div class="plan-currency currencyEUR" style="display:none;">
-
                         <div class="plan-price plan-small">€16<span>.50</span></div>
-
                         <div class="plan-price plan-medium" style="display:none;">€27<span>.80</span></div>
-
                         <div class="plan-price plan-large" style="display:none;">€55<span>.50</span></div>
-
                         <div class="plan-price plan-unlimited" style="display:none;">€81<span>.40</span></div>
                     </div>
 
-
-
                     <div class="plan-currency currencyUSD" style="display:none;">
-
                         <div class="plan-price plan-small">$17<span>.90</span></div>
-
                         <div class="plan-price plan-medium" style="display:none;">$30<span>.40</span></div>
-
                         <div class="plan-price plan-large" style="display:none;">$60<span>.90</span></div>
-
                         <div class="plan-price plan-unlimited" style="display:none;">$89<span>.60</span></div>
                     </div>
-
 
                     <div class="plan-billing">
                         per month
