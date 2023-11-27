@@ -33,6 +33,14 @@ final class Utility
         }
     }
 
+    public function saveImageUser($input)
+    {
+        if ($input) {
+            $status = Storage::disk('public-image-user')->put($input['profile_photo_path']->getClientOriginalName(), $input['profile_photo_path']->get());
+            return $status;
+        }
+    }
+
     public function paginate($items, $perPage = 15, $path = null, $pageName = 'page', $page = null, $options = [])
     {
         $page = $page ?: Paginator::resolveCurrentPage($pageName);
