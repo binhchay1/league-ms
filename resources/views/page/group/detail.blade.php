@@ -4,6 +4,10 @@
 {{ env('APP_NAME', 'Badminton.io') }} - {{ __('Detail Group') }}
 @endsection
 
+@php
+use Illuminate\Support\Facades\Hash;
+@endphp
+
 @section('css')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <link rel="stylesheet" href="{{ asset('/css/page/group.css') }}" />
@@ -88,6 +92,23 @@
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
     }
+
+    .append-css-this {
+        border-radius: 15px;
+        background-color: #fbfbfb;
+    }
+
+    .append-css-that {
+        border-radius: 15px;
+        background-color: rgba(57, 192, 237, .2);
+    }
+
+    @media screen and (min-width: 1080px) {
+        #chat-area {
+            height: 300px;
+            overflow-x: auto;
+        }
+    }
 </style>
 @endsection
 
@@ -108,20 +129,26 @@
                         <p class="mb-0 fw-bold">{{ ('Live chat') }}</p>
                     </div>
                     <div class="card-body">
-                        <div class="d-flex flex-row justify-content-start mb-4">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="Avatar" width="45">
-                            <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                                <p class="small mb-0">...</p>
+                        <div id="chat-area">
+                            @foreach($messages as $message)
+                            @if($message->user_id == Auth::user()->id)
+                            <div class="d-flex flex-row justify-content-end mb-4">
+                                <div class="p-3 me-3 border append-css-this">
+                                    <p class="small mb-0">{{ $message->message }}</p>
+                                </div><img src="{{ $message->users->profile_photo_path }}" alt="Avatar" width="45">
                             </div>
-                        </div>
-
-                        <div class="d-flex flex-row justify-content-end mb-4">
-                            <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                                <p class="small mb-0">Thank you, I really like your product.</p>
+                            @else
+                            <div class="d-flex flex-row justify-content-start mb-4"><img src="{{ $message->users->profile_photo_path }}" alt="Avatar" width="45">
+                                <div class="p-3 ms-3 append-css-that">
+                                    <p class="small mb-0">{{ $message->message }}</p>
+                                </div>
                             </div>
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp" alt="Avatar" width="45">
+                            @endif
+                            @endforeach
                         </div>
-
+                        <div>
+                            <p id="statusMessage">{{ __('Last message : ') . $messages->last()->created_at; }} </p>
+                        </div>
                         <div class="form-outline d-flex">
                             <textarea class="form-control" id="text-area-write-message" rows="4" placeholder="{{ __('Type your message') }}"></textarea>
                             <button id="send-massage">
@@ -140,6 +167,9 @@
 <script src="http://localhost:6001/socket.io/socket.io.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script>
+    var elem = document.getElementById('chat-area');
+    elem.scrollTop = elem.scrollHeight;
+
     $('#send-massage').on('click', function() {
         sendMessage();
     });
@@ -147,16 +177,35 @@
     const g_i = '<?php echo $getGroup->id ?>';
     let group = 'chat-group-' + g_i;
 
-    let a = Echo.channel('chat-group-1').listen('.message-group', function(e) {
-        console.log(e);
+    Echo.channel('chat-group-1').listen('.message-group', function(e) {
+        let cU = e.user_id;
+        let bU = '<?php echo Hash::make(Auth::user()->id); ?>';
+        let ap = '';
+        if (cU == bU) {
+            ap = '<div class="d-flex flex-row justify-content-end mb-4"><div class="p-3 me-3 border append-css-this"><p class="small mb-0">' + e.message + '</p></div><img src="' + e.user_image + '" alt="Avatar" width="45"></div>';
+        } else {
+            ap = '<div class="d-flex flex-row justify-content-start mb-4"><img src="' + e.user_image + '" alt="Avatar" width="45"><div class="p-3 ms-3 append-css-that"><p class="small mb-0">' + e.message + '</p></div></div>';
+        }
+
+        $('#chat-area').append(ap);
     });
 
-    console.log(a);
-
     function sendMessage() {
-        let message = $('#text-area-write-message').val();
+        let tA = $('#text-area-write-message');
+        let message = tA.val();
         let url = 'messages';
-
+        let cDate = new Date();
+        let datetime = cDate.getDate() + "/" +
+            (cDate.getMonth() + 1) + "/" +
+            cDate.getFullYear() + " @ " +
+            cDate.getHours() + ":" +
+            cDate.getMinutes() + ":" +
+            cDate.getSeconds();
+        let statusMessage = '<?php echo __('Sending')  ?>' + ' ' + datetime;
+        let sImage = '<?php echo Auth::user()->profile_photo_path ?>';
+        let ap = '<div class="d-flex flex-row justify-content-end mb-4"><div class="p-3 me-3 border append-css-this"><p class="small mb-0">' + message + '</p></div><img src="' + sImage + '" alt="Avatar" width="45"></div>';
+        $('#chat-area').append(ap);
+        tA.val('');
         $.ajax({
             url: url,
             type: 'POST',
@@ -166,6 +215,10 @@
             data: {
                 message: message,
                 g_i: g_i
+            }
+        }).done(function(result) {
+            if (result.status == 'sent') {
+
             }
         });
     }

@@ -9,6 +9,7 @@ use App\Repositories\LeagueRepository;
 use App\Repositories\MatchesRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use App\Models\Message;
 use Config;
 use Session;
 
@@ -145,6 +146,8 @@ class HomeController extends Controller
             abort(404);
         }
 
-        return view('page.group.detail', compact('getGroup'));
+        $messages = Message::with('users')->where('group_id', $getGroup->id)->get();
+
+        return view('page.group.detail', compact('getGroup', 'messages'));
     }
 }

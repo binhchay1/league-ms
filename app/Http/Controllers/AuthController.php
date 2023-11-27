@@ -115,12 +115,6 @@ class  AuthController extends Controller
     {
     }
 
-    public function fetchMessages(Request $request)
-    {
-        $group_id = $request->get('g_i');
-        return Message::with('users')->where('user_id', Auth::user()->id)->where('group_id', $group_id)->get();
-    }
-
     public function sendMessage(Request $request)
     {
         try {
@@ -145,7 +139,7 @@ class  AuthController extends Controller
 
             broadcast(new MessageSent($user, $message, $group_id))->toOthers();
 
-            return ['status' => 'Message Sent!'];
+            return ['status' => 'sent'];
         } catch (\Predis\Connection\ConnectionException $e) {
             return response('error connection redis');
         }

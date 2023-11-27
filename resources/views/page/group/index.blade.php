@@ -121,7 +121,7 @@
 <script>
     function detailGroup(id) {
         let name = id.substring(6);
-        let url = '/detail-group?g_i=' + name;
+        let url = 'detail-group?g_i=' + name;
 
         window.location.href = url;
     }

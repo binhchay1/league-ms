@@ -9,6 +9,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Models\User;
 use App\Models\Message;
 use Illuminate\Broadcasting\Channel;
+use Illuminate\Support\Facades\Hash;
 
 class MessageSent implements ShouldBroadcast
 {
@@ -38,10 +39,14 @@ class MessageSent implements ShouldBroadcast
 
     public function broadcastWith()
     {
+        $userHash = Hash::make($this->user->id);
+        $groupHash = Hash::make($this->group_id);
+
         return [
-            'user' => $this->user,
-            'message' => $this->message,
-            'group_id' => $this->group_id,
+            'user_id' => $userHash,
+            'message' => $this->message->message,
+            'group_id' => $groupHash,
+            'user_image' => $this->user->profile_photo_path,
         ];
     }
 }

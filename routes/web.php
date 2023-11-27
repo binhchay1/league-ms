@@ -45,7 +45,6 @@ Route::middleware(['verified'])->group(function () {
     Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
     Route::get('/my-group', [AuthController::class, 'viewMyGroup'])->name('my.group');
     Route::get('/join-group', [AuthController::class, 'joinGroup'])->name('join.group');
-    Route::get('/messages', [AuthController::class, 'fetchMessages'])->name('fetch.messages');
     Route::post('/messages', [AuthController::class, 'sendMessage'])->name('send.message');
 });
 
