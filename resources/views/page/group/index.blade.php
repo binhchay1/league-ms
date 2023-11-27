@@ -26,7 +26,7 @@
         @if($group->group_users->count() == $group->number_of_members)
         $isFull = true;
         @endif
-        <div class="col-md-4" id="group-{{ $row->groups->name }}" onclick="detailGroup(this.id)">
+        <div class="col-md-4" id="group-{{ $group->name }}" onclick="detailGroup(this.id)">
             <div class="card p-3 mb-4">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex flex-row align-items-center">
@@ -48,6 +48,12 @@
                         </div>
                         <div class="d-flex justify-content-between mt-3">
                             <div> <span class="text1">{{ $group->group_users->count() }} {{ __('Applied') }} <span class="text2">of {{ $group->number_of_members }}</span></span> </div>
+
+                            @if(!Auth::check())
+                            <div>
+                                <a class="btn btn-success" href="{{ route('login') }}?return_url={{ url()->full() }}">{{ __('Sign in for join') }}</a>
+                            </div>
+                            @else
                             @foreach($group->group_users as $user)
                             @if($user->user_id == Auth::user()->id)
                             @php
@@ -55,13 +61,6 @@
                             @endphp
                             @endif
                             @endforeach
-
-                            @if(!Auth::check())
-                            <div>
-                                <a class="btn btn-success" href="{{ route('login') }}?return_url={{ url()->full() }}">{{ __('Sign in for join') }}</a>
-                            </div>
-                            @else
-
                             @if(!$isJoin and !$isFull)
                             <div>
                                 <a class="btn btn-primary" href="{{ route('join.group') }}">{{ __('Join group') }}</a>
@@ -122,7 +121,7 @@
 <script>
     function detailGroup(id) {
         let name = id.substring(6);
-        let url = '/detail-group?g_id=' + name;
+        let url = '/detail-group?g_i=' + name;
 
         window.location.href = url;
     }
