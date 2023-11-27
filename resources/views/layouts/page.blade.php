@@ -12,7 +12,7 @@
     <meta name="msapplication-tooltip" content="{{ env('APP_NAME', 'Badminton.io') }}">
     <meta name="description" content="{{ __('Run your badminton league for free, badminton scheduling and online results and statistics displayed on your free website.') }}">
     <meta name="keywords" content="{{ __('badminton scheduling,badminton scheduler,badminton league,badminton league website,manage badminton league online,run badminton league online') }}">
-    <meta name="robots" content="Index,Follow">
+    <meta name="robots" content="Index, Follow">
 
     <title>@yield('title')</title>
 
@@ -144,8 +144,8 @@
                     </small>
                 </p>
                 <ul class="social">
-                    <li><a href="https://www.linkedin.com/company/badminton.io"><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="LinkedIn" width="30" height="31"></a></li>
-                    <li><a href="https://twitter.com/badminton.io"><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="Twitter" width="30" height="31"></a></li>
+                    <li><a href="https://www.linkedin.com/company/badminton.io"><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="{{ __('LinkedIn') }}" width="30" height="31"></a></li>
+                    <li><a href="https://twitter.com/badminton.io"><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="{{ __('Twitter') }}" width="30" height="31"></a></li>
                     <li><a href="https://www.facebook.com/badminton.io"><img src="{{ asset('/svg/icon-facebook.svg') }}" alt="Facebook" width="30" height="31"></a></li>
                     <li><a href="https://www.youtube.com/user/badminton.io"><img src="{{ asset('/svg/icon-youtube.svg') }}" alt="YouTube" width="30" height="31"></a></li>
                 </ul>
