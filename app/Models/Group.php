@@ -21,6 +21,7 @@ class Group extends Model
         'note',
         'rate',
         'status',
+        'active',
         'group_owner'
     ];
 

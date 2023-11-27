@@ -149,6 +149,10 @@ class HomeController extends Controller
     public function detailGroup(Request $request)
     {
         $nameGroup = $request->get('g_i');
+        if (empty($nameGroup)) {
+            abort(404);
+        }
+
         $user = Auth::user();
         $getGroup = $this->groupRepository->getGroupByName($nameGroup);
         if (empty($getGroup)) {

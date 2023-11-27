@@ -26,12 +26,12 @@
         @if($group->group_users->count() == $group->number_of_members)
         $isFull = true;
         @endif
-        <div class="col-md-4" id="group-{{ $group->name }}" onclick="detailGroup(this.id)">
+        <div class="col-md-4">
             <div class="card p-3 mb-4">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex flex-row align-items-center">
                         <div class="icon"> <img class="avatar-group" src="{{ $group->images }}"></div>
-                        <div class="ms-2 c-details">
+                        <div class="ms-2 c-details name-group" id="group-{{ $group->name }}" onclick="detailGroup(this.id)">
                             <h6 class="mb-0">{{ $group->name }}</h6> <span>{{ $group->users->name }}</span>
                         </div>
                     </div>
@@ -61,16 +61,24 @@
                             @endphp
                             @endif
                             @endforeach
-                            @if(!$isJoin and !$isFull)
-                            <div>
-                                <a class="btn btn-primary" href="{{ route('join.group') }}">{{ __('Join group') }}</a>
+                            <div id="btn-join">
+                                @if(!$isJoin and !$isFull)
+                                <div>
+                                    <button class="btn btn-primary" id="groups-{{ $group->name }}" onclick="requestJoin(this.id)">{{ __('Join group') }}</button>
+                                </div>
+                                @else
+                                @if($isFull)
+                                <div>
+                                    <button class="btn btn-secondary" disabled>{{ __('Full members') }}</button>
+                                </div>
+                                @else
+                                <div>
+                                    <button class="btn btn-secondary" disabled>{{ __('Joined') }}</button>
+                                </div>
+                                @endif
+                                @endif
+                                @endif
                             </div>
-                            @else
-                            <div>
-                                <button class="btn btn-secondary" disabled>{{ __('Joined') }}</button>
-                            </div>
-                            @endif
-                            @endif
                         </div>
                     </div>
                 </div>
@@ -115,6 +123,7 @@
         </div>
     </div>
 </section>
+
 @endsection
 
 @section('js')
@@ -124,6 +133,32 @@
         let url = 'detail-group?g_i=' + name;
 
         window.location.href = url;
+    }
+
+    function requestJoin(id) {
+        let g_i = id.substring(7);
+        let url = 'join-group';
+
+        $.ajax({
+            url: url,
+            type: 'get',
+            data: {
+                g_i: g_i
+            }
+        }).done(function(result) {
+            if (result == 'success') {
+                let btnSuccess = '<div><button class="btn btn-secondary" disabled>' + '<?php __('Joined') ?>' + '</button></div>'
+                $('#btn-join').empty();
+                $('#btn-join').append(btnSuccess);
+            } else if (result == 'wait') {
+                let btnWait = '<div><button class="btn btn-secondary" disabled>' + '<?php __('Wait group owner accept') ?>' + '</button></div>'
+                $('#btn-join').empty();
+                $('#btn-join').append(btnWait);
+            } else {
+                let btnFail = '<div><p class="text-red">' + '<?php __('Fail to join. Try again later!') ?>' + '</p></div>'
+                $('#btn-join').append(btnFail);
+            }
+        });
     }
 </script>
 @endsection

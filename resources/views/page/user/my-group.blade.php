@@ -18,12 +18,12 @@
 <section id="about" class="container">
     <div class="row">
         @foreach($listGroup as $row)
-        <div class="col-md-4" id="group-{{ $row->groups->name }}" onclick="detailGroup(this.id)">
+        <div class="col-md-4">
             <div class="card p-3 mb-4">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex flex-row align-items-center">
                         <div class="icon"> <img class="avatar-group" src="{{ $row->groups->images }}"></div>
-                        <div class="ms-2 c-details">
+                        <div class="ms-2 c-details" id="group-{{ $row->groups->name }}" onclick="detailGroup(this.id)">
                             <h6 class="mb-0">{{ $row->groups->name }}</h6> <span>{{ $row->groups->name }}</span>
                         </div>
                     </div>

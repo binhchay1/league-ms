@@ -13,7 +13,7 @@ class GroupUser extends Model
     protected $table = 'group_users';
 
     protected $fillable = [
-        'group_id', 'user_id'
+        'group_id', 'user_id', 'status_request'
     ];
 
     public function groups()

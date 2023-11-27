@@ -174,9 +174,11 @@ use Illuminate\Support\Facades\Hash;
                             @endif
                             @endforeach
                         </div>
+                        @if(!empty($message))
                         <div>
                             <p id="statusMessage">{{ __('Last message : ') . $messages->last()->created_at; }} </p>
                         </div>
+                        @endif
                         <div class="form-outline d-flex">
                             <textarea class="form-control" id="text-area-write-message" rows="4" placeholder="{{ __('Type your message') }}"></textarea>
                             <button id="send-massage">
@@ -257,14 +259,22 @@ use Illuminate\Support\Facades\Hash;
 
         Echo.channel('chat-group-1').listen('.message-group', function(e) {
             let cU = e.user_id;
-
             let bU = '<?php echo Hash::make(Auth::user()->id); ?>';
-
             let ap = '';
+            let datetime = cDate.getDate() + "/" +
+                (cDate.getMonth() + 1) + "/" +
+                cDate.getFullYear() + " @ " +
+                cDate.getHours() + ":" +
+                cDate.getMinutes() + ":" +
+                cDate.getSeconds();
             if (cU == bU) {
                 ap = '<div class="d-flex flex-row justify-content-end mb-4"><div class="p-3 me-3 border append-css-this"><p class="small mb-0">' + e.message + '</p></div><img src="' + e.user_image + '" alt="Avatar" width="45"></div>';
             } else {
                 ap = '<div class="d-flex flex-row justify-content-start mb-4"><img src="' + e.user_image + '" alt="Avatar" width="45"><div class="p-3 ms-3 append-css-that"><p class="small mb-0">' + e.message + '</p></div></div>';
+                let statusMessage = '<?php echo __('Last message :')  ?>' + ' ' + datetime;
+                scrollToEnd();
+                $('#statusMessage').empty();
+                $('#statusMessage').html(statusMessage);
             }
 
             $('#chat-area').append(ap);
