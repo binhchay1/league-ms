@@ -3447,9 +3447,7 @@ ul li a .fas {
     color: white !important;
 }
 
-a:hover{
-    text-decoration: underline !important;
-}
+
 
 section a:hover {
     text-decoration: none !important;

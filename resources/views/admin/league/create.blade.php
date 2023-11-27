@@ -7,7 +7,7 @@
 @section('content')
 <div class="container-fluid mt-4">
     <div class="card card-default">
-        <div class="card-header" style="background-color: grey">
+        <div class="card-header" >
             <h5>{{ __('Create League') }}</h5>
         </div>
         <div class="card-body">
@@ -19,10 +19,10 @@
                             <label>{{ __('Logo league') }}</label>
                             <div class="">
                                 <div class="" style="display: inline-grid;">
-                                    <input value="" type="file" class="border-0 bg-light pl-0" name="images" id="image" hidden>
+                                    <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                                     <div class=" choose-avatar">
                                         <div id="btnimage">
-                                            <img id="showImage" class="show-avatar" src="{{ asset('/images/champion.png') }}" alt="avatar" style="width: 200px; margin-left: 40px">
+                                            <img id="showImage" class="show-avatar" src="{{ asset('/images/champion.png') }}" alt="avatar">
                                         </div>
                                         <div id="button">
                                             <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image') }}</i>
@@ -105,7 +105,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>{{ __('Format of league') }}</label>
-                                    <select id="format_of_league" value="{{ old('format_of_league') }}" name="format_of_league" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                    <select  id="format_of_league" value="{{ old('format_of_league') }}" name="format_of_league" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                                         @foreach($format_tours as $format_tour => $value)
                                         <option id="format_of_league" value="{{ $value }}">{{ $value }}</option>
                                         @endforeach
@@ -115,7 +115,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>{{ __('Type of league') }}</label>
-                                    <select id="type_of_league" value="{{ old('type_of_league') }}" name="type_of_league" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                    <select id="type_of_league" value="{{ old('type_of_league') }}" name="type_of_league" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                                         @foreach($type_tours as $type_tour => $value)
                                         <option id="type_of_league" value="{{ $value }}">{{ $value }}</option>
                                         @endforeach
@@ -127,7 +127,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <button type="submit" class="btn btn-primary me-2">{{ __('Save') }}</button>
+                    <button type="submit" class="btn btn-success me-2">{{ __('Save') }}</button>
                     <button type="reset" class="btn btn-outline-secondary">{{ __('Reset') }}</button>
                 </div>
             </form>
@@ -137,6 +137,7 @@
 @endsection
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" integrity="sha512-rqQltXRuHxtPWhktpAZxLHUVJ3Eombn3hvk9PHjV/N5DMUYnzKPC1i3ub0mEXgFzsaZNeJcoE0YHq0j/GFsdGg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{{ asset('css/admin/league.css') }}">
 @endsection
 
 @section('js')

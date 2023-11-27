@@ -44,7 +44,7 @@ class LeagueController extends Controller
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->slug);
 
-        if (isset($input['images'])) {
+        if (isset($input['image'])) {
             $img = $this->utility->saveImageLeague($input);
             if ($img) {
                 $path = '/images/upload/league/' . $input['images']->getClientOriginalName();
@@ -77,11 +77,11 @@ class LeagueController extends Controller
     {
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->slug);
-        if (isset($input['images'])) {
+        if (isset($input['image'])) {
             $img = $this->utility->saveImageLeague($input);
             if ($img) {
-                $path = '/images/upload/league/' . $input['images']->getClientOriginalName();
-                $input['images'] = $path;
+                $path = '/images/upload/league/' . $input['image']->getClientOriginalName();
+                $input['image'] = $path;
             }
         }
 
