@@ -19,6 +19,7 @@
                                         <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
                                         <span class="h1 fw-bold mb-0">{{ __('Login') }}</span>
                                     </div>
+                                    @include('includes.flash_message')
                                     @if(isset($errors))
                                     @foreach ($errors->all() as $error)
                                     <div style="color: red; margin: 10px">{{ $error }}</div>

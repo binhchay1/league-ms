@@ -22,8 +22,12 @@ use Illuminate\Support\Facades\Redis;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
+Route::get('test-mail', function () {
+    return view('auth.verify-email');
+});Route::get('test', function () {
+    return view('auth.verify-email-success');
+});
+Route::get('/user/verify/{token}', [AuthController::class, 'verifyEmail'])->name('user.verify');
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/list-of-league', [HomeController::class, 'listLeague'])->name('list.league');
 Route::get('/top-league', [HomeController::class, 'listTopLeague'])->name('top.league');

@@ -74,4 +74,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class, 'user_id', 'id');
     }
+
+    public function verifyUser()
+    {
+        return $this->hasOne('App\Models\VerifyUser');
+    }
 }

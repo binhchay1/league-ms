@@ -4,18 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Enums\Role;
 use App\Enums\Utility;
+use App\Mail\VerifyEmail;
 use App\Models\User;
 use App\Models\Message;
 use App\Enums\Title;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Models\VerifyUser;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\GroupUserRepository;
 use App\Events\MessageSent;
 use App\Repositories\GroupRepository;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Http\Request;
 use Hash;
+use Illuminate\Support\Str;
 use Session;
 
 class  AuthController extends Controller
@@ -93,9 +98,30 @@ class  AuthController extends Controller
             'role' => Role::USER,
             'title' => Title::USER
         ]);
-        auth()->login($user);
+        VerifyUser::create([
+            'token' => Str::random(60),
+            'user_id' => $user->id,
+        ]);
 
-        return redirect("dashboard")->withSuccess('You have signed-in');
+        Mail::to($user->email)->send(new VerifyEmail($user));
+        return \redirect()->route('login')->with('success', 'Please click on the link sent to your email');
+    }
+
+    public function verifyEmail($token)
+    {
+        $verifiedUser = VerifyUser::where('token', $token)->first();
+        if (isset($verifiedUser)) {
+            $user = $verifiedUser->user;
+            if (!$user->email_verified_at) {
+                $user->email_verified_at = Carbon::now();
+                $user->save();
+                return \redirect(route('login'))->with('success', 'Your email has been verified');
+            } else {
+                return \redirect()->back()->with('info', 'Your email has already been verified');
+            }
+        } else {
+            return \redirect(route('login'))->with('error', 'Something went wrong!!');
+        }
     }
 
     public function profile()
