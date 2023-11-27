@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Enums\Role;
 use App\Enums\Utility;
 use App\Models\User;
-use App\Models\Message;
 use App\Enums\Title;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;

@@ -8,8 +8,10 @@ use App\Repositories\TeamRepository;
 use App\Repositories\LeagueRepository;
 use App\Repositories\MatchesRepository;
 use App\Repositories\UserRepository;
+use App\Repositories\GroupUserRepository;
+use App\Repositories\MessageRepository;
 use Illuminate\Http\Request;
-use App\Models\Message;
+use Illuminate\Support\Facades\Auth;
 use Config;
 use Session;
 
@@ -20,6 +22,8 @@ class HomeController extends Controller
     protected $userRepository;
     protected $matchesRepository;
     protected $groupRepository;
+    protected $groupUserRepository;
+    protected $messageRepository;
     protected $utility;
 
     public function __construct(
@@ -28,6 +32,8 @@ class HomeController extends Controller
         UserRepository $userRepository,
         MatchesRepository $matchesRepository,
         GroupRepository $groupRepository,
+        GroupUserRepository $groupUserRepository,
+        MessageRepository $messageRepository,
         Utility $ultity
     ) {
         $this->leagueRepository = $leagueRepository;
@@ -35,6 +41,8 @@ class HomeController extends Controller
         $this->userRepository = $userRepository;
         $this->matchesRepository = $matchesRepository;
         $this->groupRepository = $groupRepository;
+        $this->groupUserRepository = $groupUserRepository;
+        $this->messageRepository = $messageRepository;
         $this->utility = $ultity;
     }
 
@@ -141,13 +149,21 @@ class HomeController extends Controller
     public function detailGroup(Request $request)
     {
         $nameGroup = $request->get('g_i');
+        $user = Auth::user();
         $getGroup = $this->groupRepository->getGroupByName($nameGroup);
         if (empty($getGroup)) {
             abort(404);
         }
 
-        $messages = Message::with('users')->where('group_id', $getGroup->id)->get();
+        $checkJoined = $this->groupUserRepository->checkJoinedGroupByName($user->id, $getGroup->id);
+        if (empty($checkJoined)) {
+            $isJoined = false;
+        } else {
+            $isJoined = true;
+        }
+        $messages = $this->messageRepository->getMessagesByGroupId($getGroup->id);
+        $members = $this->groupUserRepository->getMembersByGroupId($getGroup->id);
 
-        return view('page.group.detail', compact('getGroup', 'messages'));
+        return view('page.group.detail', compact('getGroup', 'messages', 'members', 'isJoined'));
     }
 }

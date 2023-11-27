@@ -20,4 +20,9 @@ class GroupUserRepository extends BaseRepository
     {
         return $this->model->where('group_id', $group_id)->where('user_id', $user_id)->first();
     }
+
+    public function getMembersByGroupId($group_id)
+    {
+        return $this->model->with('users')->where('group_id', $group_id)->get();
+    }
 }
