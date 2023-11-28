@@ -153,21 +153,27 @@ class HomeController extends Controller
             abort(404);
         }
 
-        $user = Auth::user();
         $getGroup = $this->groupRepository->getGroupByName($nameGroup);
         if (empty($getGroup)) {
             abort(404);
         }
 
-        $checkJoined = $this->groupUserRepository->checkJoinedGroupByName($user->id, $getGroup->id);
-        if (empty($checkJoined)) {
-            $isJoined = false;
-        } else {
-            $isJoined = true;
-        }
-        $messages = $this->messageRepository->getMessagesByGroupId($getGroup->id);
+        $isJoined = false;
         $members = $this->groupUserRepository->getMembersByGroupId($getGroup->id);
 
-        return view('page.group.detail', compact('getGroup', 'messages', 'members', 'isJoined'));
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            $checkJoined = $this->groupUserRepository->checkJoinedGroupByName($user->id, $getGroup->id);
+            if (!empty($checkJoined)) {
+                $isJoined = true;
+            }
+            $messages = $this->messageRepository->getMessagesByGroupId($getGroup->id);
+
+
+            return view('page.group.detail', compact('getGroup', 'messages', 'members', 'isJoined'));
+        }
+
+        return view('page.group.detail', compact('getGroup', 'members', 'isJoined'));
     }
 }

@@ -22,7 +22,7 @@
                                     </div>
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="form2Example17">{{ __('Name') }}</label>
-                                        <input type="text" id="name" class="form-control" name="name" value="{{ old('name') }}" autocomplete="name" autofocus />
+                                        <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus />
                                         @if ($errors->has('name'))
                                         <span class="text-danger">{{ $errors->first('name') }}</span>
                                         @endif
@@ -30,7 +30,7 @@
 
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="form2Example17">{{ __('Email') }}</label>
-                                        <input type="email" id="email" class="form-control" name="email" value="{{ old('email') }}" autocomplete="email" autofocus />
+                                        <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus />
                                         @if ($errors->has('email'))
                                         <span class="text-danger">{{ $errors->first('email') }}</span>
                                         @endif
@@ -38,11 +38,17 @@
 
                                     <div class="form-outline mb-4">
                                         <label class="form-label">{{ __('Password') }}</label>
-                                        <input type="password" id="password-field" class="form-control" name="password" autocomplete="current-password" />
+                                        <input type="password" id="password-field" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" />
                                         @if ($errors->has('password'))
                                         <span class="text-danger">{{ $errors->first('password') }}</span>
                                         @endif
                                     </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="password_confirm">{{ __('Password Confirm') }}</label>
+                                        <input type="password" id="password-confirm" class="form-control @error('password-confirm') is-invalid @enderror" name="password_confirmation" required autocomplete="current-password" />
+                                    </div>
+
                                     <div class="pt-1 mb-4">
                                         <button class="btn btn-dark btn-lg btn-block" type="submit">{{ __('Register') }}</button>
                                     </div>
