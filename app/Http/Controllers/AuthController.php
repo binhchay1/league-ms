@@ -98,30 +98,41 @@ class  AuthController extends Controller
             'role' => Role::USER,
             'title' => Title::USER
         ]);
+
+        $token = Str::random(60);
         VerifyUser::create([
-            'token' => Str::random(60),
+            'token' => $token,
             'user_id' => $user->id,
         ]);
 
-        Mail::to($user->email)->send(new VerifyEmail($user));
+        Mail::send('emails.verifyEmail', ['token' => $token], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Email Verification Mail');
+        });
+
         return \redirect()->route('login')->with('success', 'Please click on the link sent to your email');
     }
 
     public function verifyEmail($token)
     {
-        $verifiedUser = VerifyUser::where('token', $token)->first();
-        if (isset($verifiedUser)) {
-            $user = $verifiedUser->user;
-            if (!$user->email_verified_at) {
-                $user->email_verified_at = Carbon::now();
-                $user->save();
-                return \redirect(route('login'))->with('success', 'Your email has been verified');
+        $verifyUser = VerifyUser::where('token', $token)->first();
+        $currentDateTime = date('Y-m-d H:i:s');
+        $message = 'Sorry your email cannot be identified.';
+
+        if(!is_null($verifyUser) ){
+            $dataUser = $verifyUser->user;
+
+            if(!$dataUser->email_verified_at) {
+
+                $dataUser->email_verified_at = $currentDateTime;
+                $dataUser->save();
+                $message = "Your e-mail is verified. You can now login.";
             } else {
-                return \redirect()->back()->with('info', 'Your email has already been verified');
+                $message = "Your e-mail is already verified. You can now login.";
             }
-        } else {
-            return \redirect(route('login'))->with('error', 'Something went wrong!!');
         }
+
+        return redirect()->route('login')->with('message', $message);
     }
 
     public function profile()
