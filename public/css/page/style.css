@@ -35,9 +35,7 @@ html.no-flexboxlegacy #stats .container {
     list-style: none
 }
 
-a:not(.button):hover {
-    text-decoration: underline !important;
-}
+
 
 body {
     background: #fff;

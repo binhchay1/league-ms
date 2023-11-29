@@ -4869,7 +4869,8 @@ li.chart table {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    color: black;
 }
 
 .results .wrapper-results .item-results .item .live-profile-row table td a {
