@@ -18,7 +18,6 @@
 
     <link rel="canonical" href="https://www.leaguerepublic.com/badminton.html">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/page/style.css') }}">
-    <link rel="stylesheet" id="bwf-style-css" href="{{asset('css/content/style.css?ver=0.56')}}" type="text/css" media="all" />
     <link rel="alternate" hreflang="en-US" href="https://badminton.io">
     <link rel="alternate" hreflang="af" href="https://badminton.io">
     <link rel="alternate" hreflang="x-default" href="https://badminton.io">

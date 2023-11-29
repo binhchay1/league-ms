@@ -1,6 +1,10 @@
 @extends('layouts.page')
-@section('content')
 
+@section('title')
+{{ env('APP_NAME', 'Badminton.io') }} - {{ __('Create League') }}
+@endsection
+
+@section('content')
 <div class="container">
     <div class="row" style="padding: 30px">
         <div class="col-md-10 col-md-offset-1 parent">
@@ -26,16 +30,16 @@
                                                     <div class="avatar border-radius clearfix">
                                                         <div class="" style="display: inline-grid;">
                                                             <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden style="display:none">
-                                                            <div class=" choose-avatar" >
+                                                            <div class=" choose-avatar">
                                                                 <div id="btnimage">
                                                                     <img id="showImage" class="show-avatar" src="/images/champion.png" alt="avatar" style="width: 180px; ">
                                                                 </div>
-                                                                <div id="button" >
-                                                                    <i id="btn_chooseImg" class="fa fa-camera pull-center">  Chọn ảnh</i>
+                                                                <div id="button">
+                                                                    <i id="btn_chooseImg" class="fa fa-camera pull-center"> Chọn ảnh</i>
                                                                 </div>
                                                             </div>
                                                             @if ($errors->has('image'))
-                                                                <span class="text-danger">{{ $errors->first('image') }}</span>
+                                                            <span class="text-danger">{{ $errors->first('image') }}</span>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -45,9 +49,9 @@
                                         <div class="col-sm-8">
                                             <div class="form-group wrap-group" id="intro-name-league"> <label for="name" class="control-label required">Tên giải đấu</label>
                                                 <div>
-                                                    <input class="form-control required " id="name"  name="name" type="text" value="">
+                                                    <input class="form-control required " id="name" name="name" type="text" value="">
                                                     @if ($errors->has('name'))
-                                                        <span class="text-danger">{{ $errors->first('name') }}</span>
+                                                    <span class="text-danger">{{ $errors->first('name') }}</span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -57,7 +61,7 @@
                                                         <label for="phone" class="control-label required">Ngày bắt đầu</label>
                                                         <input class="form-control " id="start_date" name="start_date" type="date" value="">
                                                         @if ($errors->has('start_date'))
-                                                            <span class="text-danger">{{ $errors->first('start_date') }}</span>
+                                                        <span class="text-danger">{{ $errors->first('start_date') }}</span>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -66,7 +70,7 @@
                                                         <label for="phone" class="control-label required">Ngày kết thúc</label>
                                                         <input class="form-control  " id="end_date" name="end_date" type="date" value="">
                                                         @if ($errors->has('end_date'))
-                                                            <span class="text-danger">{{ $errors->first('end_date') }}</span>
+                                                        <span class="text-danger">{{ $errors->first('end_date') }}</span>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -76,7 +80,7 @@
                                                 <div>
                                                     <input class="form-control required pac-target-input" id="number_of_team-input" name="number_of_team" type="text" value="" placeholder="Nhập vị trí" autocomplete="off">
                                                     @if ($errors->has('number_of_team'))
-                                                        <span class="text-danger">{{ $errors->first('number_of_team') }}</span>
+                                                    <span class="text-danger">{{ $errors->first('number_of_team') }}</span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -85,7 +89,7 @@
                                                 <div>
                                                     <select id="format" name="format" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
                                                         @foreach($formatLeague as $formatLeague => $value)
-                                                            <option id="format" value="{{$value}}">{{$value}}</option>
+                                                        <option id="format" value="{{$value}}">{{$value}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -93,9 +97,9 @@
                                             <div class="form-group pac-card wrap-group" id="intro-location-league">
                                                 <label for="location" class="control-label required">Thể thức thi đấu</label>
                                                 <div>
-                                                    <select  id="type" name="type" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
+                                                    <select id="type" name="type" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
                                                         @foreach($type_tour as $type_tour => $value)
-                                                            <option id="type" value="{{$value}}">{{$value}}</option>
+                                                        <option id="type" value="{{$value}}">{{$value}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -109,7 +113,8 @@
                         <div class="panel-footer">
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2 text-center">
-                                    <button type="submit" class="btn btn-primary">Tạo giải</button> </div>
+                                    <button type="submit" class="btn btn-primary">Tạo giải</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -120,5 +125,5 @@
 </div>
 @endsection
 @section('js')
-    <script src="{{ asset('js/eventImage.js') }}"></script>
+<script src="{{ asset('js/eventImage.js') }}"></script>
 @endsection

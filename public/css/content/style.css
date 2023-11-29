@@ -9,7 +9,6 @@ header.site-header {
 }
 
 .site-header .head-content {
-    *zoom: 1;
     width: auto;
     max-width: 1280px;
     padding-left: 0;
@@ -123,49 +122,62 @@ ul.site-main-menu li.current-menu-item a {
         -webkit-transition: none;
         transition: none
     }
+
     .main-navigation.active {
         display: block
     }
+
     .main-navigation .menu-all-pages-container {
         height: auto
     }
+
     .main-navigation .menu-all-pages-container ul.site-main-menu {
         display: block
     }
+
     .main-navigation .menu-all-pages-container ul.site-main-menu li {
         line-height: 100%;
         -webkit-transition: all 1s ease-in-out;
         transition: all 1s ease-in-out
     }
+
     .main-navigation .menu-all-pages-container ul.site-main-menu li:hover {
         cursor: pointer
     }
+
     .main-navigation .menu-all-pages-container ul.site-main-menu li #sub-main-menu {
         position: relative
     }
+
     .main-navigation .menu-all-pages-container ul.site-main-menu li #sub-main-menu a {
         padding-left: 10px
     }
+
     .main-navigation .menu-all-pages-container ul.site-main-menu li.is_active #sub-main-menu a {
         height: 30px;
         line-height: 30px
     }
+
     .main-navigation .menu-all-pages-container ul.site-main-menu li.is_active #sub-main-menu li {
         height: 30px;
         line-height: 30px
     }
+
     .main-navigation .menu-all-pages-container ul.site-main-menu li.is_active .nav-link_mobile_inner_expander {
         position: relative;
         z-index: 20;
         top: -15px
     }
+
     .main-navigation .menu-all-pages-container a {
         height: auto;
         padding: 5px 0
     }
+
     .main-navigation .menu-all-pages-container a:hover {
         border-bottom: none
     }
+
     .main-navigation .menu-all-pages-container a.active {
         border-bottom: none;
         color: #df2027
@@ -173,7 +185,6 @@ ul.site-main-menu li.current-menu-item a {
 }
 
 .right-nav {
-    *zoom: 1;
     width: auto;
     max-width: 1410px;
     float: none;
@@ -447,6 +458,7 @@ header.site-header>div.head-content .menu-button {
         -webkit-transition: none;
         transition: none
     }
+
     header.site-header>div.head-content .main-navigation.active {
         display: block
     }
@@ -533,6 +545,7 @@ header.site-header>div.head-content .main-navigation #mobile-social #search-mobi
         top: 0;
         width: 100%
     }
+
     header.site-header>div.head-content .main-navigation ul {
         position: relative;
         height: auto;
@@ -544,11 +557,13 @@ header.site-header>div.head-content .main-navigation #mobile-social #search-mobi
         transform: none !important;
         -webkit-transform: none !important
     }
+
     header.site-header>div.head-content .main-navigation ul li {
         display: block;
         clear: both;
         line-height: 100%
     }
+
     header.site-header>div.head-content .main-navigation ul li a {
         padding: 5px 0
     }
@@ -576,6 +591,7 @@ header.site-header>div.head-content .menu-button img {
     .widget-area .main-navigation {
         display: block
     }
+
     .widget-area .main-navigation.active {
         display: block
     }
@@ -654,6 +670,7 @@ header.site-header>div.head-content .menu-button img {
         top: 0;
         width: 100%
     }
+
     .widget-area .main-navigation ul {
         position: relative;
         height: auto;
@@ -665,10 +682,12 @@ header.site-header>div.head-content .menu-button img {
         transform: none !important;
         -webkit-transform: none !important
     }
+
     .widget-area .main-navigation ul li {
         display: block;
         clear: both
     }
+
     .widget-area .main-navigation ul li a {
         padding: 5px 0
     }
@@ -1103,6 +1122,7 @@ button#responsive-menu-button {
 }
 
 @media(max-width:767px) {
+
     .pp-o-ranking .ranking-number,
     .pp-w-ranking .ranking-number {
         font-size: 26px;
@@ -1226,6 +1246,7 @@ button#responsive-menu-button {
 }
 
 @media(max-width:767px) {
+
     .pp-dd-ranking,
     .pp-w-ranking,
     .pp-o-ranking {
@@ -1234,6 +1255,7 @@ button#responsive-menu-button {
 }
 
 @media(max-width:480px) {
+
     .pp-dd-ranking,
     .pp-w-ranking,
     .pp-o-ranking {
@@ -1254,9 +1276,11 @@ button#responsive-menu-button {
         max-width: 100%;
         min-width: 100%
     }
+
     .pp-o-ranking a {
         height: 100%
     }
+
     .pp-o-ranking a img {
         width: auto;
         height: 130px
@@ -1428,6 +1452,7 @@ section.player-profile-top .playertop-intro .player-profile-wrap .player-profile
 }
 
 @media(min-width:668px) and (max-width:1200px) {
+
     section.player-profile-top .playertop-intro .player-profile-wrap .player-profile-data .player-world-rank,
     section.player-profile-top .playertop-intro .player-profile-wrap .player-profile-data .player-wtr-rank {
         height: 140px
@@ -1435,6 +1460,7 @@ section.player-profile-top .playertop-intro .player-profile-wrap .player-profile
 }
 
 @media(max-width:467px) {
+
     section.player-profile-top .playertop-intro .player-profile-wrap .player-profile-data .player-world-rank span,
     section.player-profile-top .playertop-intro .player-profile-wrap .player-profile-data .player-wtr-rank span {
         font-size: 12px
@@ -1454,6 +1480,7 @@ section.player-profile-top .playertop-intro .player-profile-wrap .player-profile
 }
 
 @media(min-width:668px) and (max-width:1200px) {
+
     section.player-profile-top .playertop-intro .player-profile-wrap .player-profile-data .player-world-rank .ranking-number,
     section.player-profile-top .playertop-intro .player-profile-wrap .player-profile-data .player-wtr-rank .ranking-number {
         font-size: 44px;
@@ -1462,6 +1489,7 @@ section.player-profile-top .playertop-intro .player-profile-wrap .player-profile
 }
 
 @media(max-width:467px) {
+
     section.player-profile-top .playertop-intro .player-profile-wrap .player-profile-data .player-world-rank .ranking-title,
     section.player-profile-top .playertop-intro .player-profile-wrap .player-profile-data .player-wtr-rank .ranking-title {
         font-size: 12px
@@ -1543,6 +1571,7 @@ section.player-profile-top .playertop-intro .player-profile-wrap .player-profile
     .widget-find-player .find-player-title h3 {
         display: none
     }
+
     .widget-find-player .find-player-title img {
         margin-left: 0 !important
     }
@@ -1813,6 +1842,7 @@ section.player-gallery .player-gallery .player-gallery-image img {
         margin: 15px auto;
         text-align: center
     }
+
     .view-h2h-button {
         position: relative;
         margin: 15px auto;
@@ -1972,6 +2002,7 @@ section.player-gallery .player-gallery .player-gallery-image img {
 }
 
 @media(max-width:967px) {
+
     .tournament-matches .tournament-matches-row .player-result-player-wrap .player-result-name-1,
     .tournament-matches .tournament-matches-row .player-result-player-wrap .player-result-name-2 {
         width: 200px
@@ -1979,6 +2010,7 @@ section.player-gallery .player-gallery .player-gallery-image img {
 }
 
 @media(max-width:767px) {
+
     .tournament-matches .tournament-matches-row .player-result-player-wrap .player-result-name-1,
     .tournament-matches .tournament-matches-row .player-result-player-wrap .player-result-name-2 {
         font-size: 12px;
@@ -2767,6 +2799,7 @@ section.livescore-background {
     .odf-schedule-wrap .odf-schedule ul .timer1 {
         display: none
     }
+
     .odf-schedule-wrap .odf-schedule ul .court {
         display: none
     }
@@ -2799,6 +2832,7 @@ section.livescore-background {
 }
 
 @media(max-width:467px) {
+
     .odf-player-header .player1,
     .odf-player-header .player2 {
         font-size: 12px;
@@ -2901,6 +2935,7 @@ section.livescore-background {
     .live-profile-wrap.point-active-single::after {
         display: none
     }
+
     .live-profile-wrap.point-active-double::after {
         display: none
     }
@@ -2941,6 +2976,7 @@ section.livescore-background {
 }
 
 @media(max-width:467px) {
+
     .live-profile-wrap .player1-wrap,
     .live-profile-wrap .player2-wrap {
         width: auto
@@ -2976,6 +3012,7 @@ section.livescore-background {
 }
 
 @media(max-width:467px) {
+
     .live-profile-wrap .player1-wrap .player1-flag,
     .live-profile-wrap .player2-wrap .player2-flag {
         width: 60px
@@ -3007,6 +3044,7 @@ section.livescore-background {
     .live-profile-wrap .player1-wrap .player1-info {
         margin-right: 10px
     }
+
     .live-profile-wrap .player2-wrap .player2-info {
         margin-left: 10px
     }
@@ -3036,6 +3074,7 @@ section.livescore-background {
     .live-profile-wrap .player1-wrap .player1-name {
         font-size: 12px
     }
+
     .live-profile-wrap .player2-wrap .player2-name {
         font-size: 12px
     }
@@ -3055,6 +3094,7 @@ section.livescore-background {
 }
 
 @media(max-width:467px) {
+
     .live-profile-wrap .player1-wrap .player1-profile img,
     .live-profile-wrap .player2-wrap .player2-profile img {
         height: 80px
@@ -3089,6 +3129,7 @@ section.livescore-background {
     .watch-now .logo img {
         width: 100px
     }
+
     .watch-now .logo {
         display: none
     }
@@ -3122,6 +3163,7 @@ section.livescore-background {
     .watch-now .title h3 {
         font-size: 20px
     }
+
     .watch-now .title h5 {
         font-size: 14px;
         font-weight: 300;
@@ -3214,9 +3256,11 @@ section.livescore-background {
         padding: 0 15px 15px;
         font-size: 14px
     }
+
     .schedule-banner-2 .line-2 {
         font-size: 12px
     }
+
     .schedule-banner-2 sup {
         font-size: 10px
     }
@@ -3244,6 +3288,7 @@ section.livescore-background {
     .schedule-banner .schedule-prev {
         margin-right: 10px
     }
+
     .schedule-banner .schedule-next {
         margin-left: auto
     }
@@ -3258,9 +3303,11 @@ section.livescore-background {
     .schedule-banner .schedule-text {
         margin-right: 10px
     }
+
     .schedule-banner h3 {
         font-size: 18px
     }
+
     .schedule-banner .schedule-text strong {
         display: none
     }
@@ -3443,9 +3490,11 @@ li.chart table {
     .live-tab-content .rank-footer {
         margin-bottom: 10px
     }
+
     .live-tab-content .rank-footer .rank-footer-text {
         font-size: 14px
     }
+
     .cifr1,
     .cifr2 {
         font-size: 20px
@@ -3571,10 +3620,12 @@ li.chart table {
         padding: 5px;
         margin-right: 10px
     }
+
     .tabs label span {
         display: inline-block;
         padding-bottom: 0
     }
+
     .tabs {
         max-width: 750px;
         margin: 0 auto
@@ -3653,6 +3704,7 @@ li.chart table {
         font-size: 12px;
         width: 270px
     }
+
     .game-completed-wrap .game-completed img {
         width: 20px
     }
@@ -3673,6 +3725,7 @@ li.chart table {
 }
 
 @media(max-width:467px) {
+
     .game-completed .game-number,
     .game-live .game-number {
         width: 55px
@@ -3689,6 +3742,7 @@ li.chart table {
 }
 
 @media(max-width:467px) {
+
     .game-completed .game-score-1,
     .game-live .game-score-1,
     .game-completed .game-score-2,
@@ -3896,6 +3950,7 @@ li.chart table {
 }
 
 @media(max-width:467px) {
+
     .results .matchResult-select,
     .results .tournament-select {
         width: 100%
@@ -3923,6 +3978,7 @@ li.chart table {
 }
 
 @media(max-width:467px) {
+
     .results .matchResult-select select,
     .results .tournament-select select {
         width: 100%
@@ -4265,9 +4321,11 @@ li.chart table {
     .results .wrapper-results .box-results-team-profile {
         height: 130px
     }
+
     .results .wrapper-results .box-results-team-profile .box-left img {
         height: 130px
     }
+
     .results .wrapper-results .box-results-team-profile .box-right img {
         height: 130px
     }
@@ -5505,6 +5563,7 @@ li.chart table {
     .results-landing .wrapper-results .wrapper-content-results .tblResultLanding .tournament-detail .inner-tournament-detail .country-detail .logo {
         width: 150px
     }
+
     .results-landing .wrapper-results .wrapper-content-results .tblResultLanding .tournament-detail .inner-tournament-detail .country-detail .logo img {
         width: 100%
     }
@@ -6933,9 +6992,11 @@ select#ranking {
         font-size: 12px;
         padding: 6px
     }
+
     #ranking .rankings-table thead th:nth-child(2) {
         width: 100px
     }
+
     #ranking .rankings-table thead th:nth-child(4),
     #ranking .rankings-table thead th:nth-child(5),
     #ranking .rankings-table thead th:nth-child(6),
@@ -6949,6 +7010,7 @@ select#ranking {
     #ranking .rankings-table tbody tr td:nth-child(2) span {
         display: none
     }
+
     #ranking .rankings-table tbody tr td:nth-child(4),
     #ranking .rankings-table tbody tr td:nth-child(5),
     #ranking .rankings-table tbody tr td:nth-child(6),
@@ -7194,6 +7256,7 @@ select#ranking {
     #head-to-head-analysis .head-to-head .vs-player .info-player1 {
         float: right
     }
+
     #head-to-head-analysis .head-to-head .vs-player .info-player1 .name {
         text-align: left
     }
@@ -7233,6 +7296,7 @@ select#ranking {
     #head-to-head-analysis .head-to-head .vs-player .info-player2 {
         float: left
     }
+
     #head-to-head-analysis .head-to-head .vs-player .info-player2 .name {
         text-align: left
     }
@@ -7288,6 +7352,7 @@ select#ranking {
     #head-to-head-analysis .head-to-head .vs-player {
         max-width: 100%
     }
+
     #head-to-head-analysis .head-to-head .vs-player .info-player1,
     #head-to-head-analysis .head-to-head .vs-player .info-player2 {
         width: 110px
@@ -7398,6 +7463,7 @@ select#ranking {
 }
 
 @media(max-width:767px) {
+
     .box-player .head-to-head .vs-player .score.lost,
     .box-player .head-to-head .vs-player .score.win {
         text-align: center
@@ -7428,6 +7494,7 @@ select#ranking {
     .box-player .head-to-head {
         padding: 0
     }
+
     .box-player .col-left,
     .box-player .head-to-head .vs-player {
         max-width: 100%
@@ -7554,6 +7621,7 @@ select#ranking {
 }
 
 @media(max-width:667px) {
+
     .head-to-head .head-analysis .h2h-result-row .player-result-flag-1,
     .head-to-head .head-analysis .h2h-result-row .player-result-flag-2 {
         width: 60px
@@ -7667,6 +7735,7 @@ select#ranking {
 }
 
 @media(max-width:767px) {
+
     .box-player .head-to-head .vs-player .h2h-player-wrap .info-player1,
     .box-player .head-to-head .vs-player .h2h-player-wrap .info-player2 {
         flex-direction: column
@@ -8262,6 +8331,7 @@ select#ranking {
         width: 50%;
         float: left
     }
+
     .news-section_item:nth-child(1),
     .news-section_item:nth-child(2) {
         margin-top: 20px
@@ -8272,6 +8342,7 @@ select#ranking {
     .news-section_item {
         width: 100%
     }
+
     .news-section_item:first-child {
         margin-top: 20px
     }
@@ -8318,11 +8389,13 @@ select#ranking {
         height: auto;
         margin: 15px auto
     }
+
     .latest-news_header h3 {
         font-size: 18px;
         line-height: normal;
         margin: 15px auto
     }
+
     .latest-news_header span {
         float: none !important;
         display: block;
@@ -8451,9 +8524,11 @@ select#ranking {
     .related-news {
         padding: 15px
     }
+
     .related-news_body {
         text-align: center
     }
+
     .related-news_item {
         display: inline-block;
         width: 24%;
@@ -8468,9 +8543,11 @@ select#ranking {
     .related-news {
         padding: 15px
     }
+
     .related-news_body {
         text-align: center
     }
+
     .related-news_item {
         display: inline-block;
         width: 49%;
@@ -8484,13 +8561,16 @@ select#ranking {
     .related-news {
         padding: 15px
     }
+
     .related-news_header {
         margin: 0 0 15px
     }
+
     .related-news_item {
         width: 49%;
         margin: 0 auto 15px
     }
+
     .related-news_item:nth-child(2n+2) {
         margin-left: 2%
     }
@@ -8562,6 +8642,7 @@ ul.footer-nav_list li {
 }
 
 @media(min-width:992px) and (max-width:1023px) {
+
     .footer-nav_col1,
     .footer-nav_col2,
     .footer-nav_col3 {
@@ -8572,6 +8653,7 @@ ul.footer-nav_list li {
 }
 
 @media(min-width:768px) and (max-width:991px) {
+
     .footer-nav_col1,
     .footer-nav_col2,
     .footer-nav_col3 {
@@ -8582,6 +8664,7 @@ ul.footer-nav_list li {
 }
 
 @media(max-width:480px) {
+
     .footer-nav_col3,
     .footer-nav_col4 {
         display: none
@@ -8683,6 +8766,7 @@ ul.footer-nav_list li {
 }
 
 @media(max-width:767px) {
+
     .footer-info_legal span,
     .footer-info_legal p,
     .footer-info_legal a,
@@ -8863,6 +8947,7 @@ ul.footer-nav_list li {
     .partners-section_item {
         text-align: center
     }
+
     .partners-section_item a {
         display: inline-block
     }
@@ -8872,6 +8957,7 @@ ul.footer-nav_list li {
     .partners-section_item {
         text-align: center
     }
+
     .partners-section_item a {
         display: inline-block
     }
@@ -8881,6 +8967,7 @@ ul.footer-nav_list li {
     .partners-section_item {
         text-align: center
     }
+
     .partners-section_item a {
         display: inline-block
     }
@@ -8890,6 +8977,7 @@ ul.footer-nav_list li {
     .partners-section_item {
         text-align: center
     }
+
     .partners-section_item a {
         display: inline-block
     }
@@ -9808,15 +9896,19 @@ section.schedule-section .tmt-sched-time span {
         width: 100% !important;
         padding-bottom: 3px
     }
+
     .content-news {
         min-height: 1px
     }
+
     .content-news .media-heading.fw-400.fs-16px {
         font-size: 14px
     }
+
     .content-search-result>.title {
         height: auto
     }
+
     .title-empty {
         height: auto;
         min-height: 200px
@@ -10175,38 +10267,6 @@ td.bb {
     background: url(../images/bgLine.gif) repeat-x 0 center;
     width: 50%;
     height: 20px
-}
-
-@font-face {
-    font-family: Roboto;
-    font-weight: 300;
-    font-style: normal;
-    src: url(../fonts/Roboto-300/Roboto-300.eot);
-    src: url(../fonts/Roboto-300/Roboto-300.eot?#iefix) format("embedded-opentype"), local("Roboto Light"), local("Roboto-300"), url(../fonts/Roboto-300/Roboto-300.woff2) format("woff2"), url(../fonts/Roboto-300/Roboto-300.woff) format("woff"), url(../fonts/Roboto-300/Roboto-300.ttf) format("truetype"), url(../fonts/Roboto-300/Roboto-300.svg#Roboto) format("svg")
-}
-
-@font-face {
-    font-family: Roboto;
-    font-weight: 400;
-    font-style: normal;
-    src: url(../fonts/Roboto-regular/Roboto-regular.eot);
-    src: url(../fonts/Roboto-regular/Roboto-regular.eot?#iefix) format("embedded-opentype"), local("Roboto"), local("Roboto-regular"), url(../fonts/Roboto-regular/Roboto-regular.woff2) format("woff2"), url(../fonts/Roboto-regular/Roboto-regular.woff) format("woff"), url(../fonts/Roboto-regular/Roboto-regular.ttf) format("truetype"), url(../fonts/Roboto-regular/Roboto-regular.svg#Roboto) format("svg")
-}
-
-@font-face {
-    font-family: Roboto;
-    font-weight: 500;
-    font-style: normal;
-    src: url(../fonts/Roboto-500/Roboto-500.eot);
-    src: url(../fonts/Roboto-500/Roboto-500.eot?#iefix) format("embedded-opentype"), local("Roboto Medium"), local("Roboto-500"), url(../fonts/Roboto-500/Roboto-500.woff2) format("woff2"), url(../fonts/Roboto-500/Roboto-500.woff) format("woff"), url(../fonts/Roboto-500/Roboto-500.ttf) format("truetype"), url(../fonts/Roboto-500/Roboto-500.svg#Roboto) format("svg")
-}
-
-@font-face {
-    font-family: Roboto;
-    font-weight: 700;
-    font-style: normal;
-    src: url(../fonts/Roboto-700/Roboto-700.eot);
-    src: url(../fonts/Roboto-700/Roboto-700.eot?#iefix) format("embedded-opentype"), local("Roboto Bold"), local("Roboto-700"), url(../fonts/Roboto-700/Roboto-700.woff2) format("woff2"), url(../fonts/Roboto-700/Roboto-700.woff) format("woff"), url(../fonts/Roboto-700/Roboto-700.ttf) format("truetype"), url(../fonts/Roboto-700/Roboto-700.svg#Roboto) format("svg")
 }
 
 body {
@@ -10571,6 +10631,7 @@ object {
         max-width: 904px;
         z-index: 0
     }
+
     .olympic_copy {
         display: none
     }
@@ -10663,6 +10724,7 @@ object {
 }
 
 @media(max-width:480px) {
+
     .wcs-single_body .size-full,
     .wcs-single_body .alignleft,
     .wcs-single_body .alignright {
@@ -10756,6 +10818,7 @@ object {
 }
 
 @media(max-width:480px) {
+
     .wcs-page_body img.size-full,
     .wcs-page_body img.alignleft,
     .wcs-page_body img.alignright {
@@ -10888,38 +10951,47 @@ h5 {
 }
 
 @media(max-width:767px) {
+
     .wcs-tmpl_about_page .media-left,
     .wcs-tmpl_about_page .media-body {
         display: block;
         width: 100%
     }
+
     .wcs-tmpl_about_page .media-left {
         text-align: center
     }
+
     .wcs-tmpl_about_page .media-left a {
         display: block
     }
+
     .wcs-tmpl_about_page .media-left img {
         text-align: center;
         margin: auto;
         max-width: 100%
     }
+
     .wcs-tmpl_jakarta_page .media-left,
     .wcs-tmpl_jakarta_page .media-body {
         display: block;
         width: 100%
     }
+
     .wcs-tmpl_jakarta_page .media-left {
         text-align: center
     }
+
     .wcs-tmpl_jakarta_page .media-left a {
         display: block
     }
+
     .wcs-tmpl_jakarta_page .media-left img {
         text-align: center;
         margin: auto;
         width: 100%
     }
+
     .wcs-tmpl_jakarta_page .media-action {
         margin-top: 15px !important;
         margin-bottom: 15px
@@ -11155,10 +11227,12 @@ h5 {
 }
 
 @media(max-width:767px) {
+
     .widget-players_slider .double:nth-child(1) .player-item,
     .widget-players_slider .double:nth-child(3) .player-item {
         float: right !important
     }
+
     .widget-players_slider .flag {
         min-width: 60px
     }
@@ -11219,6 +11293,7 @@ h5 {
     .widget_useful-links a {
         overflow: hidden
     }
+
     .widget_useful-links a span {
         font-size: 12px
     }
@@ -11228,11 +11303,13 @@ h5 {
     .widget_useful-links a {
         overflow: hidden
     }
+
     .widget_useful-links a span {
         height: 130px;
         width: 160px;
         padding-top: 30px
     }
+
     .widget_useful-links a img {
         float: right
     }
@@ -11242,11 +11319,13 @@ h5 {
     .widget_useful-links a {
         overflow: hidden
     }
+
     .widget_useful-links a span {
         height: 130px;
         width: 150px;
         padding-top: 30px
     }
+
     .widget_useful-links a img {
         float: right
     }
@@ -11310,10 +11389,12 @@ h5 {
         overflow: hidden;
         margin-bottom: 0
     }
+
     .action-box_item {
         width: 100%;
         overflow: hidden
     }
+
     .action-box_item img {
         height: 92px
     }
@@ -11325,10 +11406,12 @@ h5 {
         overflow: hidden;
         margin-bottom: 0
     }
+
     .action-box_item {
         width: 100%;
         overflow: hidden
     }
+
     .action-box_item img {
         height: 92px
     }
@@ -11340,6 +11423,7 @@ h5 {
         overflow: hidden;
         margin-bottom: 0
     }
+
     .action-box_item img {
         height: 92px
     }
@@ -11405,9 +11489,11 @@ h5 {
     .countdown-date {
         background-color: #fff
     }
+
     .countdown-date_content {
         text-align: center
     }
+
     .countdown-date img {
         margin: auto
     }
@@ -11417,9 +11503,11 @@ h5 {
     .countdown-date {
         background-color: #fff
     }
+
     .countdown-date_content {
         text-align: center
     }
+
     .countdown-date img {
         margin: auto
     }
@@ -11429,9 +11517,11 @@ h5 {
     .countdown-date {
         background-color: #fff
     }
+
     .countdown-date_content {
         text-align: center
     }
+
     .countdown-date img {
         margin: auto
     }
@@ -11925,6 +12015,7 @@ h5 {
     .wrapper-box-player .box-player .title {
         padding: 20px 15px 10px
     }
+
     .wrapper-box-player .box-player .title h2 {
         font-size: 20px
     }
@@ -12186,12 +12277,14 @@ h5 {
 }
 
 @media(max-width:767px) {
+
     .tournament-results .box-profile-tournament .info h2,
     .tournament-results .box-profile-tournament .info h2 a {
         font-size: 14px;
         line-height: 14px;
         margin-bottom: 0
     }
+
     .tournament-results .box-profile-tournament .info h3,
     .tournament-results .box-profile-tournament h4,
     .tournament-results .box-profile-tournament .prize {
@@ -12333,10 +12426,12 @@ h5 {
 }
 
 @media(max-width:767px) {
+
     .tournament-results .tournament-matches .tbl-tournament-matches td .name a,
     .tournament-results .tournament-matches .tbl-tournament-matches td .order {
         font-size: 14px
     }
+
     .tournament-results .tournament-matches .tbl-tournament-matches .row td.timer-td {
         display: none
     }
@@ -12384,20 +12479,25 @@ h5 {
     .box-tournament-results {
         padding: 5px
     }
+
     .box-tournament-results_body {
         padding-right: 100px
     }
+
     .box-tournament-results_body_inner {
         padding-left: 0
     }
+
     .box-tournament-results_body h2 {
         font-size: 24px;
         margin-top: 10px
     }
+
     .box-tournament-results_body p {
         font-size: 16px;
         margin-bottom: 10px
     }
+
     .box-tournament-results_body p span {
         font-size: 18px;
         font-weight: 300;
@@ -12409,22 +12509,27 @@ h5 {
     .box-tournament-results {
         padding: 5px
     }
+
     .box-tournament-results_media img {
         width: 100px
     }
+
     .box-tournament-results_body_inner {
         padding-left: 0
     }
+
     .box-tournament-results_body h2 {
         font-size: 16px;
         margin-top: 5px;
         margin-bottom: 5px
     }
+
     .box-tournament-results_body p {
         font-size: 14px;
         line-height: 14px;
         margin-bottom: 10px
     }
+
     .box-tournament-results_body p span {
         font-size: 12px
     }
@@ -12434,22 +12539,27 @@ h5 {
     .box-tournament-results {
         padding: 5px
     }
+
     .box-tournament-results_media img {
         width: auto
     }
+
     .box-tournament-results_body_inner {
         padding-left: 0
     }
+
     .box-tournament-results_body h2 {
         font-size: 16px;
         margin-top: 5px;
         margin-bottom: 5px
     }
+
     .box-tournament-results_body p {
         font-size: 14px;
         line-height: 14px;
         margin-bottom: 10px
     }
+
     .box-tournament-results_body p span {
         font-size: 12px
     }
@@ -12459,19 +12569,23 @@ h5 {
     .box-tournament-results_media img {
         height: 60px
     }
+
     .box-tournament-results_body_inner {
         padding-left: 0
     }
+
     .box-tournament-results_body h2 {
         font-size: 15px;
         margin-top: 5px;
         margin-bottom: 5px
     }
+
     .box-tournament-results_body p {
         font-size: 13px;
         line-height: 14px;
         margin-bottom: 10px
     }
+
     .box-tournament-results_body p span {
         font-size: 12px
     }
@@ -12799,9 +12913,11 @@ h5 {
     .slider-section_desc {
         padding: 10px 20px
     }
+
     .slider-section_desc h3 {
         font-size: 16px
     }
+
     .slider-section_desc p {
         font-size: 16px
     }
