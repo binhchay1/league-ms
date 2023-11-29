@@ -1,13 +1,19 @@
 @extends('layouts.page')
+
 @section('title')
-    Giải đấu
+{{ env('APP_NAME', 'Badminton.io') }} - {{ __('League') }}
 @endsection
+
+@section('css')
+<link rel="stylesheet" id="bwf-style-css" href="{{asset('css/content/style.css')}}" type="text/css" media="all" />
+@endsection
+
 @section('content')
-    <style>
-        #signup:before {
-            width: 0;
-        }
-    </style>
+<style>
+    #signup:before {
+        width: 0;
+    }
+</style>
 
     <div class="container">
         <h2>{{__('List League')}}</h2>
@@ -33,7 +39,9 @@
                         </div>
                     </a>
                 </div>
-            @endforeach
+         
         </div>
+        @endforeach
     </div>
+</div>
 @endsection

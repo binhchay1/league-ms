@@ -7,10 +7,10 @@ use App\Http\Controllers\Admin\LeagueController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use Illuminate\Support\Facades\Redis;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,6 +111,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/list-group', [GroupController::class, 'index'])->name('group.index');
             Route::post('/store-group', [GroupController::class, 'store'])->name('group.store');
             Route::get('/create-group', [GroupController::class, 'create'])->name('group.create');
+
+            Route::get('/list-product', [ProductController::class, 'index'])->name('product.index');
+            Route::post('/store-product', [ProductController::class, 'store'])->name('product.store');
+            Route::get('/create-product', [ProductController::class, 'create'])->name('product.create');
         }
     );
 });

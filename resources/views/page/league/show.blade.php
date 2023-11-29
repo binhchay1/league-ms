@@ -1,9 +1,10 @@
 @extends('layouts.page')
 
 @section('title')
-{{__('Detail League')}}
+{{ env('APP_NAME', 'Badminton.io') }} - {{ __('Detail League') }}
 @endsection
 @section('content')
+
 
 <div id="page" class="hfeed site">
     <div class="">
@@ -25,7 +26,6 @@
                     <div class="box-title-right">
                         <h4 class="right">
                             OTHER WORLD TOUR FINALS RESULTS </h4>
-
                         <label class="tournament-select clear">
                             <select class="ddlTournament" >
                                 <option value="">HSBC BWF World Tour Finals 2022</option>
@@ -63,12 +63,10 @@
                         </li>
                     </ul>
                     <div class="content-results">
-
                         <div class="item-results">
                             @include('page.league.detail.player')
                             @include('page.league.detail.result')
                             @include('page.league.rank')
-                        </div>
                     </div>
                 </div>
             </div>
