@@ -12,13 +12,12 @@
     <meta name="msapplication-tooltip" content="{{ env('APP_NAME', 'Badminton.io') }}">
     <meta name="description" content="{{ __('Run your badminton league for free, badminton scheduling and online results and statistics displayed on your free website.') }}">
     <meta name="keywords" content="{{ __('badminton scheduling,badminton scheduler,badminton league,badminton league website,manage badminton league online,run badminton league online') }}">
-    <meta name="robots" content="Index,Follow">
+    <meta name="robots" content="Index, Follow">
 
     <title>@yield('title')</title>
 
     <link rel="canonical" href="https://www.leaguerepublic.com/badminton.html">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/page/style.css') }}">
-    <link rel="stylesheet" id="bwf-style-css" href="{{asset('css/content/style.css?ver=0.56')}}" type="text/css" media="all" />
     <link rel="alternate" hreflang="en-US" href="https://badminton.io">
     <link rel="alternate" hreflang="af" href="https://badminton.io">
     <link rel="alternate" hreflang="x-default" href="https://badminton.io">
@@ -34,11 +33,26 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" id="dashicons-css" href="{{asset('league/wp-includes/css/dashicons.min.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
+    <link rel="stylesheet" id="editor-buttons-css" href="{{asset('league/wp-includes/css/editor.min.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
+    <link rel="stylesheet" id="wp-block-library-css" href="{{asset('league/wp-includes/css/dist/block-library/style.min.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
+    <link rel="stylesheet" id="bwf-newsletter-signup-style-css" href="{{asset('league/wp-content/plugins/bwf-newsletter/css/newsletter-signup.css?ver=1.2')}}"  />
+    <link rel="stylesheet" id="bootstrap-style-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/css/bootstrap.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
+    <link rel="stylesheet" id="bwf_menu_style-css" href="{{asset('league/wp-content/plugins/bwf-menu-system/css/bwf-menu-system.css?ver=1.233')}}"  />
+    <link rel="stylesheet" id="bwf-style-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/css/style.css?ver=1.233')}}"  />
+    <link rel="stylesheet" id="hover-style-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/css/hover-min.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
+    <link rel="stylesheet" id="jquery-ui-autocomplete-css" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
+    <link rel="stylesheet" id="fancybox-style-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/js/fancybox-master/dist/jquery.fancybox.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
+    <link rel="stylesheet" id="select2-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/select2/dist/css/select2.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
+    <link rel="stylesheet" id="fontawesome-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/fontawesome/css/font-awesome.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
+    <link rel="stylesheet" id="animate.ss-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/animate.css/animate.min.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
+    <link rel="stylesheet" id="owl-style-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/owl-carousel2/dist/assets/owl.carousel.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
+    <link rel="stylesheet" id="owl-theme-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/owl-carousel2/dist/assets/owl.theme.default.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
     @yield('css')
 
 </head>
 
-<body>
+<body >
     <header style="background-color: #222">
         <div class="top-nav">
             <ul class="container">
@@ -144,8 +158,8 @@
                     </small>
                 </p>
                 <ul class="social">
-                    <li><a href="https://www.linkedin.com/company/badminton.io"><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="LinkedIn" width="30" height="31"></a></li>
-                    <li><a href="https://twitter.com/badminton.io"><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="Twitter" width="30" height="31"></a></li>
+                    <li><a href="https://www.linkedin.com/company/badminton.io"><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="{{ __('LinkedIn') }}" width="30" height="31"></a></li>
+                    <li><a href="https://twitter.com/badminton.io"><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="{{ __('Twitter') }}" width="30" height="31"></a></li>
                     <li><a href="https://www.facebook.com/badminton.io"><img src="{{ asset('/svg/icon-facebook.svg') }}" alt="Facebook" width="30" height="31"></a></li>
                     <li><a href="https://www.youtube.com/user/badminton.io"><img src="{{ asset('/svg/icon-youtube.svg') }}" alt="YouTube" width="30" height="31"></a></li>
                 </ul>

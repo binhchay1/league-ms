@@ -6,8 +6,8 @@ use App\Enums\Role;
 use App\Enums\Utility;
 use App\Mail\VerifyEmail;
 use App\Models\User;
-use App\Models\Message;
 use App\Enums\Title;
+use App\Enums\Group;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\VerifyUser;
@@ -148,14 +148,45 @@ class  AuthController extends Controller
         return view('page.user.my-group', compact('listGroup'));
     }
 
-    public function joinGroup()
+    public function joinGroup(Request $request)
     {
-    }
+        $nameGroup = $request->get('g_i');
+        if (empty($nameGroup)) {
+            return 'fail';
+        }
 
-    public function fetchMessages(Request $request)
-    {
-        $group_id = $request->get('g_i');
-        return Message::with('users')->where('user_id', Auth::user()->id)->where('group_id', $group_id)->get();
+        $getGroup = $this->groupRepository->getGroupByName($nameGroup);
+        if (empty($getGroup)) {
+            return 'fail';
+        }
+
+        $user = Auth::user();
+        if ($getGroup->status == Group::STATUS_PRIVATE) {
+            $group_users = $this->groupUserRepository->checkJoinedGroupByName($user->id, $getGroup->id);
+            if (empty($group_users)) {
+                $data = [
+                    'group_id' => $getGroup->id,
+                    'user_id' => $user->id,
+                    'status_request' => Group::STATUS_REQUESTED
+                ];
+                $this->groupUserRepository->create($data);
+
+                return 'wait';
+            } else {
+                if ($group_users->status_request == Group::STATUS_REJECTED) {
+                    return 'reject';
+                }
+            }
+        } else {
+            $data = [
+                'group_id' => $getGroup->id,
+                'user_id' => $user->id,
+                'status_request' => Group::STATUS_ACCEPTED
+            ];
+            $this->groupUserRepository->create($data);
+        }
+
+        return 'success';
     }
 
     public function sendMessage(Request $request)
@@ -182,7 +213,7 @@ class  AuthController extends Controller
 
             broadcast(new MessageSent($user, $message, $group_id))->toOthers();
 
-            return ['status' => 'Message Sent!'];
+            return ['status' => 'sent'];
         } catch (\Predis\Connection\ConnectionException $e) {
             return response('error connection redis');
         }

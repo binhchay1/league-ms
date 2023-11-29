@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45px" height="45px" viewBox="0 0 45 45" version="1.1">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>Arrow</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="45" height="45"/>
+    </defs>
+    <g id="Arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Combined-Shape">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"/>
+            </mask>
+            <g id="Mask"/>
+            <path d="M5.29825786,7.52153509 L28.4667969,7.52153509 C30.1236511,7.52153509 31.4667969,8.86468084 31.4667969,10.5215351 C31.4667969,12.1783893 30.1236511,13.5215351 28.4667969,13.5215351 L8.08007812,13.5215351 L8.08007812,34.8408778 C8.08007812,36.3013803 6.73693237,37.4853516 5.08007812,37.4853516 C3.42322388,37.4853516 2.08007812,36.3013803 2.08007812,34.8408778 L2.08007812,10.1591222 C2.08007812,8.69861969 3.42322388,7.51464844 5.08007812,7.51464844 C5.1534497,7.51464844 5.22620608,7.51697026 5.29825786,7.52153509 Z" fill="#FFFFFF" mask="url(#mask-2)" transform="translate(16.773438, 22.500000) rotate(-225.000000) translate(-16.773438, -22.500000) "/>
+        </g>
+    </g>
+</svg>

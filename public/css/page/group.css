@@ -82,3 +82,12 @@ p {
     width: 55px;
     border-radius: 20px;
 }
+
+.name-group {
+    cursor: pointer;
+}
+
+.name-group:hover {
+    font-size: large;
+    transition: auto;
+}

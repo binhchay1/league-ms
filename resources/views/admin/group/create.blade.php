@@ -91,7 +91,7 @@
 
                         <div>
                             <label for="note" class="form-label">{{ __('Note') }}</label>
-                            <input class="form-control" type="text" name="note" id="note" value="{{ old('note') }}" placeholder="{{ __('Enter group note') }}"/>
+                            <input class="form-control" type="text" name="note" id="note" value="{{ old('note') }}" placeholder="{{ __('Enter group note') }}" />
                             @if ($errors->has('note'))
                             <span class="text-danger">{{ $errors->first('note') }}</span>
                             @endif
@@ -100,6 +100,14 @@
                         <div>
                             <label for="status" class="form-label">{{ __('Status') }}</label>
                             <select class="form-control" name="status" id="status" value="{{ old('status') }}">
+                                <option value="public">{{ __('Public') }}</option>
+                                <option value="private">{{ __('Private') }}</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="status" class="form-label">{{ __('Active') }}</label>
+                            <select class="form-control" name="active" id="active" value="{{ old('active') }}">
                                 <option value="1">{{ __('Active') }}</option>
                                 <option value="2">{{ __('De-active') }}</option>
                             </select>

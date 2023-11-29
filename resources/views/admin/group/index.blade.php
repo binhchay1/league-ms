@@ -26,6 +26,7 @@
                         <th scope="col">{{ __('Images') }}</th>
                         <th scope="col">{{ __('Note') }}</th>
                         <th scope="col">{{ __('Status') }}</th>
+                        <th scope="col">{{ __('Active') }}</th>
                         <th scope="col">{{ __('Group owner') }}</th>
                     </tr>
                 </thead>
@@ -46,6 +47,7 @@
                             </div>
                         </td>
                         <td>{{ $group->note }}</td>
+                        <td class="text-center">{{ ucfirst($group->status) }}</td>
                         <td class="text-center">{{ $group->status == 1 ? 'Active' : 'De-active' }}</td>
                         <td class="text-center">{{ $group->users->name }}</td>
                     </tr>

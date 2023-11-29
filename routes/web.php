@@ -22,9 +22,11 @@ use Illuminate\Support\Facades\Redis;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('test-mail', function () {
     return view('auth.verify-email');
-});Route::get('test', function () {
+});
+Route::get('test', function () {
     return view('auth.verify-email-success');
 });
 
@@ -55,7 +57,6 @@ Route::middleware(['verified'])->group(function () {
     Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
     Route::get('/my-group', [AuthController::class, 'viewMyGroup'])->name('my.group');
     Route::get('/join-group', [AuthController::class, 'joinGroup'])->name('join.group');
-    Route::get('/messages', [AuthController::class, 'fetchMessages'])->name('fetch.messages');
     Route::post('/messages', [AuthController::class, 'sendMessage'])->name('send.message');
 });
 
