@@ -370,37 +370,15 @@
     </div>
 </section>
 
-<section id="leagues">
-    <div class="container">
-        <h2 class="white center">{{ __('Trusted by badminton leagues worldwide') }}</h2>
-        <div id="slider" class="owl-carousel owl-loaded owl-drag">
-            <div class="owl-stage-outer">
-                <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 4219px;">
-                    <div class="owl-item active" style="width: 221.25px; margin-right: 60px;">
-                        <div class="card">
-                            <div class="screenshot">
-                                <a href="http://rdba.leaguerepublic.com/"><img alt="Rugby And District Badminton Association" src="https://images.leaguerepublic.com/data/shrinktheweb/301806855.jpg" width="220" height="240"></a>
-                            </div>
-                            <a href="http://rdba.leaguerepublic.com/" class="center white">Rugby And District Badminton Association</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div>
-            <div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button></div>
-        </div>
-    </div>
-</section>
-
 <section id="stats">
     <div class="container">
         <div>
             <h2 class="center">{{ env('APP_NAME', 'Badminton.io') }} {{ __('powers badminton leagues all over the world') }}</h2>
             <ul>
-                <li><strong>{{ $totalLeague }}</strong> {{ __('Leagues') }}</li>
-                <li><strong>{{ $totalTeam }}</strong> {{ __('Teams') }}</li>
-                <li><strong>{{ $totalTeam }}</strong> {{ __('Active Players') }}</li>
-                <li><strong>{{ $totalView }}</strong> {{ __('Matches Played') }}</li>
+                <li><strong>{{ $totalLeague }}</strong> {{ __('Total League') }}</li>
+                <li><strong>{{ $totalGroup }}</strong> {{ __('Total Group') }}</li>
+                <li><strong>{{ $totalMatch }}</strong> {{ __('Total Match') }}</li>
+                <li><strong>{{ intval($totalView) }}</strong> {{ __('Visit website') }}</li>
             </ul>
         </div>
     </div>

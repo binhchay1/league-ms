@@ -46,7 +46,7 @@ Route::get('/info/{slug}', [HomeController::class, 'showInfo'])->name('tour.info
 Route::get('/list-teams', [HomeController::class, 'listTeam'])->name('list.team');
 Route::get('/group', [HomeController::class, 'listGroup'])->name('list.group');
 Route::get('/detail-group', [HomeController::class, 'detailGroup'])->name('detail.group');
-
+Route::get('/ranking', [HomeController::class, 'viewRanking'])->name('ranking');
 
 Route::middleware(['verified'])->group(function () {
     Route::get('/signout', [AuthController::class, 'signOut'])->name('signout');
