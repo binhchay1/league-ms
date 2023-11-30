@@ -9,6 +9,7 @@ use App\Repositories\MatchesRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\GroupUserRepository;
 use App\Repositories\MessageRepository;
+use App\Repositories\ProductRepository;
 use App\Repositories\RankingRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +25,7 @@ class HomeController extends Controller
     protected $groupUserRepository;
     protected $messageRepository;
     protected $rankingRepository;
+    protected $productRepository;
     protected $utility;
 
     public function __construct(
@@ -34,6 +36,7 @@ class HomeController extends Controller
         GroupUserRepository $groupUserRepository,
         MessageRepository $messageRepository,
         RankingRepository $rankingRepository,
+        ProductRepository $productRepository,
         Utility $ultity
     ) {
         $this->leagueRepository = $leagueRepository;
@@ -43,6 +46,7 @@ class HomeController extends Controller
         $this->groupUserRepository = $groupUserRepository;
         $this->messageRepository = $messageRepository;
         $this->rankingRepository = $rankingRepository;
+        $this->productRepository = $productRepository;
         $this->utility = $ultity;
     }
 
@@ -74,7 +78,8 @@ class HomeController extends Controller
 
     public function viewShop()
     {
-        return view('page.shop.index');
+        $products = $this->productRepository->get();
+        return view('page.shop.index', compact('products'));
     }
 
     public function viewAbout()

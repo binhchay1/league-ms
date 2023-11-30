@@ -35,27 +35,27 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($ranking as $index => $rank)
                 <tr>
                     <td class="col-rank">
-                        <div class="col-rank-wrapper"><span class="rank-value">1</span>
+                        <div class="col-rank-wrapper"><span class="rank-value">{{ $index + 1 }}</span>
                             <div class="ranking-change-outer"><span class="ranking-change" style="color: green;"><i class="fas fa-2x fa-caret-up"></i> 5</span></div>
                         </div>
                     </td>
                     <td class="col-player">
-                        <div class="player"><span><a href="https://bwfbadminton.com/player/62063/kodai-naraoka/"><span><span class="name-1">Kodai</span> <span class="name-2">NARAOKA</span></span></a></span> </div>
+                        <div class="player"><span><a href="https://bwfbadminton.com/player/62063/kodai-naraoka/"><span><span class="name-1">{{ $rank->users->name }}</span></span></a></span></div>
                     </td>
                     <td class="col-country">
-                        <div class="country"><img width="48" src="https://extranet.bwf.sport/docs/flags-svg/japan.svg" title="Japan"></div>
+                        <div class="country"><img width="48" src="https://extranet.bwf.sport/docs/flags-svg/japan.svg" title="{{ $rank->users->country }}"></div>
                     </td>
-                    <td class="col-points"><strong>{{ $ranking }}</strong></td>
+                    <td class="col-points"><strong>{{ $rank->points }}</strong></td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
         <div class="table-search-row">
             <div class="table-page-results">
                 Showing 1 to 10 of 357 entries
-                <div class="table-ranking-disclaimer"><a href="#"><i class="fas fa-fw fa-info-circle"></i> Info/Disclaimer
-                    </a></div>
                 <div role="dialog" class="v-dialog__container"></div>
             </div>
             <div class="table-pagination">
