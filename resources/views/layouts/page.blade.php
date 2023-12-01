@@ -31,23 +31,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" id="dashicons-css" href="{{asset('league/wp-includes/css/dashicons.min.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
-    <link rel="stylesheet" id="editor-buttons-css" href="{{asset('league/wp-includes/css/editor.min.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
-    <link rel="stylesheet" id="wp-block-library-css" href="{{asset('league/wp-includes/css/dist/block-library/style.min.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
-    <link rel="stylesheet" id="bwf-newsletter-signup-style-css" href="{{asset('league/wp-content/plugins/bwf-newsletter/css/newsletter-signup.css?ver=1.2')}}"  />
-    <link rel="stylesheet" id="bootstrap-style-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/css/bootstrap.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
-    <link rel="stylesheet" id="bwf_menu_style-css" href="{{asset('league/wp-content/plugins/bwf-menu-system/css/bwf-menu-system.css?ver=1.233')}}"  />
-    <link rel="stylesheet" id="bwf-style-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/css/style.css?ver=1.233')}}"  />
-    <link rel="stylesheet" id="hover-style-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/css/hover-min.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
-    <link rel="stylesheet" id="jquery-ui-autocomplete-css" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
-    <link rel="stylesheet" id="fancybox-style-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/js/fancybox-master/dist/jquery.fancybox.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
-    <link rel="stylesheet" id="select2-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/select2/dist/css/select2.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
-    <link rel="stylesheet" id="fontawesome-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/fontawesome/css/font-awesome.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
-    <link rel="stylesheet" id="animate.ss-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/animate.css/animate.min.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
-    <link rel="stylesheet" id="owl-style-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/owl-carousel2/dist/assets/owl.carousel.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
-    <link rel="stylesheet" id="owl-theme-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/owl-carousel2/dist/assets/owl.theme.default.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
+    <link rel="stylesheet" id="bwf-style-css" href="{{asset('css/content/league.css')}}" type="text/css" media="all" />
     @yield('css')
 
 </head>

@@ -7,6 +7,7 @@ use App\Repositories\GroupRepository;
 use App\Repositories\TeamRepository;
 use App\Repositories\LeagueRepository;
 use App\Repositories\MatchesRepository;
+use App\Repositories\UserLeagueRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\GroupUserRepository;
 use App\Repositories\MessageRepository;
@@ -17,6 +18,7 @@ use Session;
 
 class HomeController extends Controller
 {
+    protected $userLeagueRepository;
     protected $leagueRepository;
     protected $teamRepository;
     protected $userRepository;
@@ -27,6 +29,7 @@ class HomeController extends Controller
     protected $utility;
 
     public function __construct(
+        UserLeagueRepository $userLeagueRepository,
         LeagueRepository $leagueRepository,
         TeamRepository $teamRepository,
         UserRepository $userRepository,
@@ -36,6 +39,7 @@ class HomeController extends Controller
         MessageRepository $messageRepository,
         Utility $ultity
     ) {
+        $this->userLeagueRepository = $userLeagueRepository;
         $this->leagueRepository = $leagueRepository;
         $this->teamRepository = $teamRepository;
         $this->userRepository = $userRepository;
@@ -105,8 +109,8 @@ class HomeController extends Controller
     public function listLeague()
     {
         $listLeague = $this->leagueRepository->index();
-
-        return view('page.league.index', compact('listLeague'));
+        $paginateLeague = $this->utility->paginate($listLeague, 5);
+        return view('page.league.index', compact('listLeague','paginateLeague'));
     }
 
     public function listTeam()
@@ -127,14 +131,14 @@ class HomeController extends Controller
     public function showInfo($slug)
     {
         $tourInfo = $this->leagueRepository->showInfo($slug);
-        $listLeague = $this->leagueRepository->index();
-        $groupSchedule = [];
+        $listLeagues = $this->leagueRepository->index();
+//        $groupSchedule = [];
+//
+//        foreach ($tourInfo->schedule as $schedule) {
+//            $groupSchedule[$schedule['match']][] = $schedule;
+//        }
 
-        foreach ($tourInfo->schedule as $schedule) {
-            $groupSchedule[$schedule['match']][] = $schedule;
-        }
-
-        return view('page.league.show', compact('groupSchedule', 'tourInfo', 'listLeague'));
+        return view('page.league.show', compact( 'tourInfo', 'listLeagues'));
     }
 
     public function changeLocate($locale)
@@ -175,5 +179,29 @@ class HomeController extends Controller
         }
 
         return view('page.group.detail', compact('getGroup', 'members', 'isJoined'));
+    }
+
+    public function showPlayer($slug)
+    {
+        $tourInfo = $this->leagueRepository->showInfo($slug);
+        $listLeagues = $this->leagueRepository->index();
+
+        return view('page.league.show', compact( 'tourInfo', 'listLeagues'));
+    }
+
+    public function showResult($slug)
+    {
+        $tourInfo = $this->leagueRepository->showInfo($slug);
+        $listLeagues = $this->leagueRepository->index();
+
+        return view('page.league.show', compact( 'tourInfo', 'listLeagues'));
+    }
+
+    public function saveRegisterLeague(Request $request)
+    {
+        $input = $request->except(['_token']);
+        $this->userLeagueRepository->store($input);
+
+        return view('page.league.show');
     }
 }

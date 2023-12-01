@@ -1340,6 +1340,12 @@ select {
 .ms-3 {
   margin-inline-start: 0.75rem;
 }
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+.mt-0 {
+  margin-top: 0px;
+}
 .block {
   display: block;
 }
@@ -1477,6 +1483,9 @@ select {
 }
 .flex-grow {
   flex-grow: 1;
+}
+.border-collapse {
+  border-collapse: collapse;
 }
 .origin-top {
   transform-origin: top;
@@ -1875,6 +1884,12 @@ select {
 }
 .pt-0 {
   padding-top: 0px;
+}
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+.pt-3 {
+  padding-top: 0.75rem;
 }
 .text-left {
   text-align: left;
