@@ -135,15 +135,15 @@ class HomeController extends Controller
 
     public function showInfo($slug)
     {
-        $tourInfo = $this->leagueRepository->showInfo($slug);
+        $leagueInfor = $this->leagueRepository->showInfo($slug);
         $listLeagues = $this->leagueRepository->index();
         //        $groupSchedule = [];
         //
-        //        foreach ($tourInfo->schedule as $schedule) {
+        //        foreach ($leagueInfor->schedule as $schedule) {
         //            $groupSchedule[$schedule['match']][] = $schedule;
         //        }
 
-        return view('page.league.show', compact('tourInfo', 'listLeagues'));
+        return view('page.league.show', compact('leagueInfor', 'listLeagues'));
     }
 
     public function changeLocate($locale)
@@ -188,18 +188,18 @@ class HomeController extends Controller
 
     public function showPlayer($slug)
     {
-        $tourInfo = $this->leagueRepository->showInfo($slug);
+        $leagueInfor = $this->leagueRepository->showInfo($slug);
         $listLeagues = $this->leagueRepository->index();
 
-        return view('page.league.show', compact('tourInfo', 'listLeagues'));
+        return view('page.league.show', compact('leagueInfor', 'listLeagues'));
     }
 
     public function showResult($slug)
     {
-        $tourInfo = $this->leagueRepository->showInfo($slug);
+        $leagueInfor = $this->leagueRepository->showInfo($slug);
         $listLeagues = $this->leagueRepository->index();
 
-        return view('page.league.show', compact('tourInfo', 'listLeagues'));
+        return view('page.league.show', compact('leagueInfor', 'listLeagues'));
     }
 
     public function saveRegisterLeague(Request $request)

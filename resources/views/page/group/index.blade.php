@@ -84,44 +84,45 @@ $isFull = false;
                     </div>
                 </div>
             </div>
-            @endforeach
         </div>
+        @endforeach
+    </div>
 
-        <div class="navigator short">
-            <div class="head d-flex justify-content-center">
-                @if(empty($listGroup->previousPageUrl()))
-                <a aria-label="arrow previous" class="arrow previous disable-link"></a>
-                @else
-                <a aria-label="arrow previous" class="arrow previous" href="{{ $listGroup->previousPageUrl() }}"></a>
+    <div class="navigator short">
+        <div class="head d-flex justify-content-center">
+            @if(empty($listGroup->previousPageUrl()))
+            <a aria-label="arrow previous" class="arrow previous disable-link"></a>
+            @else
+            <a aria-label="arrow previous" class="arrow previous" href="{{ $listGroup->previousPageUrl() }}"></a>
+            @endif
+            <ul>
+                @if($listGroup->currentPage() != 1)
+                <li>
+                    <a href="{{ $listGroup->previousPageUrl() }}">{{ $listGroup->currentPage() - 1 }}</a>
+                </li>
                 @endif
-                <ul>
-                    @if($listGroup->currentPage() != 1)
-                    <li>
-                        <a href="{{ $listGroup->previousPageUrl() }}">{{ $listGroup->currentPage() - 1 }}</a>
-                    </li>
-                    @endif
-                    <li class='current'>
-                        <span>{{ $listGroup->currentPage() }}</span>
-                    </li>
-                    @if($listGroup->currentPage() != $listGroup->lastPage())
-                    <li>
-                        <a href="{{ $listGroup->nextPageUrl() }}">{{ $listGroup->currentPage() + 1 }}</a>
-                    </li>
-                    @endif
-                    @if($listGroup->lastPage() > $listGroup->currentPage() + 2)
-                    <li class="separator">
-                        <span>...</span>
-                    </li>
-                    @endif
-                    @if($listGroup->lastPage() > $listGroup->currentPage() + 1)
-                    <li>
-                        <a href="?page={{ $listGroup->lastPage() }}">{{ $listGroup->lastPage() }}</a>
-                    </li>
-                    @endif
-                </ul>
-                <a aria-label="arrow next" class="arrow next {{ $listGroup->currentPage() == $listGroup->lastPage() ? 'disable-link' : '' }}" href="{{ $listGroup->nextPageUrl() }}"></a>
-            </div>
+                <li class='current'>
+                    <span>{{ $listGroup->currentPage() }}</span>
+                </li>
+                @if($listGroup->currentPage() != $listGroup->lastPage())
+                <li>
+                    <a href="{{ $listGroup->nextPageUrl() }}">{{ $listGroup->currentPage() + 1 }}</a>
+                </li>
+                @endif
+                @if($listGroup->lastPage() > $listGroup->currentPage() + 2)
+                <li class="separator">
+                    <span>...</span>
+                </li>
+                @endif
+                @if($listGroup->lastPage() > $listGroup->currentPage() + 1)
+                <li>
+                    <a href="?page={{ $listGroup->lastPage() }}">{{ $listGroup->lastPage() }}</a>
+                </li>
+                @endif
+            </ul>
+            <a aria-label="arrow next" class="arrow next {{ $listGroup->currentPage() == $listGroup->lastPage() ? 'disable-link' : '' }}" href="{{ $listGroup->nextPageUrl() }}"></a>
         </div>
+    </div>
 </section>
 
 @endsection
