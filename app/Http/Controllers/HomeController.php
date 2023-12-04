@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Auth;
 use Config;
 use Session;
 
+
+
+
 class HomeController extends Controller
 {
     protected $userLeagueRepository;
