@@ -19,19 +19,18 @@
 <section id="ranking" class="container">
     <div class="wrapper-ranking">
         <ul class="ranking-event-tabs">
-            <li class="active"><a href="#"><span class="ranking-tab-desktop">MEN'S SINGLES</span> <span class="ranking-tab-mobile">MS</span></a></li>
-            <li class=""><a href="#"><span class="ranking-tab-desktop">WOMEN'S SINGLES</span> <span class="ranking-tab-mobile">WS</span></a></li>
-            <li class=""><a href="#"><span class="ranking-tab-desktop">MEN'S DOUBLES</span> <span class="ranking-tab-mobile">MD</span></a></li>
-            <li class=""><a href="#"><span class="ranking-tab-desktop">WOMEN'S DOUBLES</span> <span class="ranking-tab-mobile">WD</span></a></li>
-            <li class=""><a href="#"><span class="ranking-tab-desktop">MIXED DOUBLES</span> <span class="ranking-tab-mobile">XD</span></a></li>
+            <li class="active"><a href="#"><span class="ranking-tab-desktop">{{ __("Men's singles") }}</span> <span class="ranking-tab-mobile">MS</span></a></li>
+            <li class=""><a href="#"><span class="ranking-tab-desktop">{{ __("Women's singles") }}</span> <span class="ranking-tab-mobile">WS</span></a></li>
+            <li class=""><a href="#"><span class="ranking-tab-desktop">{{ __("Men's doubles") }}</span> <span class="ranking-tab-mobile">MD</span></a></li>
+            <li class=""><a href="#"><span class="ranking-tab-desktop">{{ __("Women's doubles") }}</span> <span class="ranking-tab-mobile">WD</span></a></li>
+            <li class=""><a href="#"><span class="ranking-tab-desktop">{{ __('Mixed doubles') }}</span> <span class="ranking-tab-mobile">XD</span></a></li>
         </ul>
         <table id="table_id" cellpadding="0" cellspacing="0" border="0" width="100%" class="tblRankingLanding">
             <thead>
                 <tr>
-                    <th scope="col">RANK</th>
-                    <th scope="col">NAME</th>
-                    <th scope="col">NATION</th>
-                    <th scope="col">POINTS</th>
+                    <th scope="col">{{ __('Rank') }}</th>
+                    <th scope="col">{{ __('Name') }}</th>
+                    <th scope="col">{{ __('Points') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,23 +44,11 @@
                     <td class="col-player">
                         <div class="player"><span><a href="https://bwfbadminton.com/player/62063/kodai-naraoka/"><span><span class="name-1">{{ $rank->users->name }}</span></span></a></span></div>
                     </td>
-                    <td class="col-country">
-                        <div class="country"><img width="48" src="https://extranet.bwf.sport/docs/flags-svg/japan.svg" title="{{ $rank->users->country }}"></div>
-                    </td>
                     <td class="col-points"><strong>{{ $rank->points }}</strong></td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        <div class="table-search-row">
-            <div class="table-page-results">
-                Showing 1 to 10 of 357 entries
-                <div role="dialog" class="v-dialog__container"></div>
-            </div>
-            <div class="table-pagination">
-                <nav class="pagination"><span class="page-stats">Page 1 of 36</span> <a disabled="disabled" class="button disabled"><i class="fas fa-lg fa-step-backward"></i></a> <a disabled="disabled" class="button disabled"><i class="fas fa-lg fa-chevron-left"></i></a> <a class="button"><i class="fas fa-lg fa-chevron-right"></i></a> <a class="button"><i class="fas fa-lg fa-step-forward"></i></a></nav>
-            </div>
-        </div>
     </div>
 </section>
 @endsection
