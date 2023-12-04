@@ -31,6 +31,13 @@ Route::get('test', function () {
 });
 
 Route::get('/user/verify/{token}', [AuthController::class, 'verifyEmail'])->name('user.verify');
+
+Route::middleware(['verify_email'])->group(function ()
+{
+
+});
+
+
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/list-of-league', [HomeController::class, 'listLeague'])->name('list.league');
 Route::get('/top-league', [HomeController::class, 'listTopLeague'])->name('top.league');
@@ -43,10 +50,14 @@ Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');
 Route::get('/term-and-conditions', [HomeController::class, 'viewTermAndConditions'])->name('term.and.conditions');
 Route::get('/pricing', [HomeController::class, 'viewPricing'])->name('pricing');
 Route::get('/info/{slug}', [HomeController::class, 'showInfo'])->name('tour.info');
+Route::get('/info/{slug}/player', [HomeController::class, 'showPlayer'])->name('player.info');
+Route::get('/info/{slug}/result', [HomeController::class, 'showResult'])->name('result.info');
 Route::get('/list-teams', [HomeController::class, 'listTeam'])->name('list.team');
 Route::get('/group', [HomeController::class, 'listGroup'])->name('list.group');
 Route::get('/detail-group', [HomeController::class, 'detailGroup'])->name('detail.group');
+Route::post('/register-league', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
 Route::get('/ranking', [HomeController::class, 'viewRanking'])->name('ranking');
+
 
 Route::middleware(['verified'])->group(function () {
     Route::get('/signout', [AuthController::class, 'signOut'])->name('signout');

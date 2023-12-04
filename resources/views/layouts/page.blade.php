@@ -32,25 +32,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" id="dashicons-css" href="{{ asset('league/wp-includes/css/dashicons.min.css') }}" />
-    <link rel="stylesheet" id="editor-buttons-css" href="{{ asset('league/wp-includes/css/editor.min.css') }}" />
-    <link rel="stylesheet" id="wp-block-library-css" href="{{ asset('league/wp-includes/css/dist/block-library/style.min.css') }}" />
-    <link rel="stylesheet" id="bwf-newsletter-signup-style-css" href="{{ asset('league/wp-content/plugins/bwf-newsletter/css/newsletter-signup.css') }}" />
-    <link rel="stylesheet" id="bootstrap-style-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/css/bootstrap.css') }}" />
-    <link rel="stylesheet" id="bwf_menu_style-css" href="{{ asset('league/wp-content/plugins/bwf-menu-system/css/bwf-menu-system.css?ver=1.233')}}" />
-    <link rel="stylesheet" id="bwf-style-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/css/style.css') }}" />
-    <link rel="stylesheet" id="hover-style-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/css/hover-min.css') }}" />
-    <link rel="stylesheet" id="jquery-ui-autocomplete-css" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-    <link rel="stylesheet" id="fancybox-style-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/js/fancybox-master/dist/jquery.fancybox.css') }}" />
-    <link rel="stylesheet" id="select2-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/select2/dist/css/select2.css') }}" />
-    <link rel="stylesheet" id="fontawesome-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/fontawesome/css/font-awesome.css') }}" />
-    <link rel="stylesheet" id="animate.ss-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/animate.css/animate.min.css')}}" />
-    <link rel="stylesheet" id="owl-style-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/owl-carousel2/dist/assets/owl.carousel.css') }}" />
-    <link rel="stylesheet" id="owl-theme-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/owl-carousel2/dist/assets/owl.theme.default.css') }}" />
+    <link rel="stylesheet" id="bwf-style-css" href="{{asset('css/content/league.css')}}" type="text/css" media="all" />
     @yield('css')
-
 </head>
 
 <body>
@@ -97,19 +80,24 @@
                     </form>
                 </li>
                 @if(Auth::check())
-                <li>
-                    <div class="dropdown">
-                        <a style="text-decoration: none;" class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="avatar-user" width="40" height="40" src="{{ Auth::user()->profile_photo_path }}">
-                        </a>
+                <li class="menu">
+                    <span>
+                        <img class="avatar-user" width="40" height="40" src="/{{ Auth::user()->profile_photo_path }}">
+                    </span>
+                    <ul>
+                        <li >
+                            <a class="account" href="{{ route('profile.edit') }}">
+                                {{__('Profile')}}
+                            </a>
+                        </li>
 
-                        <ul class="dropdown-menu mt-2 p-3" aria-labelledby="dropdownMenuLink">
-                            <li class="d-flex justify-content-center align-items-center"><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="fas fa-user mr-2"></i> {{ __('Profile') }}</a></li>
-                            <li class="d-flex justify-content-center align-items-center"><a class="dropdown-item" href="{{ route('my.group') }}"><i class="fas fa-users mr-2"></i> {{ __('My group') }}</a></li>
-                            <hr>
-                            <li><a class="dropdown-item" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2"></i>{{ __('Log out') }}</a></li>
-                        </ul>
-                    </div>
+                        <li>
+                            <a class="account" href="{{ route('my.group') }}">
+                                {{__('My group')}}
+                            </a>
+                        </li>
+                        <li><a class="dropdown-item account" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2 "></i>{{ __('Log out') }}</a></li>
+                    </ul>
                 </li>
                 @else
                 <li><a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a></li>

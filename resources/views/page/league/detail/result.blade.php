@@ -170,7 +170,7 @@
 <html lang="en-US" class="bwf-main">
 <body class="wp_router_page-template-default single single-wp_router_page postid-21">
 <div id="page" class="hfeed site">
-    <div class="wrapper">
+    <div class="">
         <div class="container-1280 results">
 
             <div class="std-title">
@@ -187,8 +187,6 @@
                 <div class="wrapper-content-results" style="padding: 0px; margin-top: 18px;">
                     <div class="content-results">
                         <div class="item-results">
-                            <div class="title">
-                                <h3>ORDER OF PLAY 01 December 2021</h3> </div>
                             <div class="content-item-results" >
                                 <div class="item active">
                                     <ul class="list-sort-time " style="color: black">

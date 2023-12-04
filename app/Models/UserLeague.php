@@ -12,7 +12,7 @@ class UserLeague extends Model
     use HasFactory;
 
     protected $fillable = [
-        'league_id','user_id'
+        'league_id','user_id','status'
     ];
 
     public function league()

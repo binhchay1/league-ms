@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-<link rel="stylesheet" id="bwf-style-css" href="{{asset('css/content/style.css')}}" type="text/css" media="all" />
+<link rel="stylesheet" id="bwf-style-css" href="{{asset('css/content/league.css')}}" type="text/css" media="all" />
 @endsection
 
 @section('content')
@@ -17,31 +17,87 @@
 
     <div class="container">
         <h2>{{__('List League')}}</h2>
-        <div>
+        <div class="item-results">
             @foreach($listLeague as $listLeague)
-                <div style="background: #aeaeae; margin-top: 10px"  onmouseover="this.style.background='gray';" onmouseout="this.style.background='#aeaeae';" >
-                    <a href="{{route('tour.info', $listLeague['slug'])}}" class="nounderline" >
-                        <div class="row" style="color: black; height: 200px;">
-                            <div class="col-lg-3">
-                                <img class="lazy truncated initial loaded white center " src="{{$listLeague->image}}" style="width: 200px;height: 150px;margin: 30px">
-                            </div>
-                            <div class="col-7 mt-4">
-                                <h3 class="" >{{ $listLeague->name }}</h3>
+            <div class="tblResultLanding" >
+                <a href="{{route('tour.info', $listLeague['slug'])}}">
+                    <div class="tr-tournament-detail" id="4734">
+                        <div class="tournament-detail ">
+                            <div class="inner-tournament-detail">
+                                <div class="description">
+                                    <div class="logo-wrap">
+                                        <div class="image">
+                                            <img src="{{$listLeague->image}}" class=" b-error b-error">
+                                        </div>
+                                    </div>
 
-                                <h5 class="">{{__('Start Date')}}: {{ $listLeague->start_date }}</h5>
-                                <h5 class="">{{__('End Date')}}: {{ $listLeague->end_date }}</h5>
-                                <p class="">{{__('PRIZE MONEY USD ')}}${{ $listLeague->money }}</p>
-                            </div>
-                            <div class="col-lg-2">
-                                <img class="" src="{{$listLeague->image_nation_flag}}" style="width: 100px;height: 50px; margin-top: 30px">
-                                <h6 class="mt-4" >{{$listLeague->national}}</h6>
+                                    <div class="info" style="color:black;">
+                                        <h2>{{ $listLeague->name }}</h2>
+                                        <h3>{{ $listLeague->start_date }} - {{ $listLeague->end_date }}</h3>
+                                        <div class="prize">
+                                            {{__('PRIZE MONEY USD ')}}${{ $listLeague->money }} </div>
+                                    </div>
+                                </div>
+                                <div class="country-detail">
+                                    <div class="venue-country"  style="color:black;">
+                                        <div>
+                                            <div class="country_code">
+                                                {{$listLeague->national}} </div>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <img width="75" src="{{$listLeague->image_nation_flag}}" title="China" class=" b-error b-error">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </a>
-                </div>
-         
+                    </div>
+                </a>
+            </div>
+            @endforeach
         </div>
-        @endforeach
+
+        <!-- Paginate -->
+        <div class="navigator short">
+            <div class="head d-flex justify-content-center ">
+                    <ul class="pagination">
+                        <li>
+                            <a href="{{ $paginateLeague->previousPageUrl() }}" aria-label="Previous" class="prevPlayersList">
+                                <span aria-hidden="true"><span class="fa fa-angle-left"></span> PREVIOUS</span>
+                            </a>
+                        </li>
+                        @if($paginateLeague->currentPage() != 1)
+                            <li>
+                                <a href="{{ $paginateLeague->previousPageUrl() }}">{{ $paginateLeague->currentPage() - 1 }}</a>
+                            </li>
+                        @endif
+                        <li class='current'>
+                            <span>{{ $paginateLeague->currentPage() }}</span>
+                        </li>
+                        @if($paginateLeague->currentPage() != $paginateLeague->lastPage())
+                            <li>
+                                <a href="{{ $paginateLeague->nextPageUrl() }}">{{ $paginateLeague->currentPage() + 1 }}</a>
+                            </li>
+                        @endif
+                        @if($paginateLeague->lastPage() > $paginateLeague->currentPage() + 2)
+                            <li class="separator">
+                                <span>...</span>
+                            </li>
+                        @endif
+                        @if($paginateLeague->lastPage() > $paginateLeague->currentPage() + 1)
+                            <li>
+                                <a href="?page={{ $paginateLeague->lastPage() }}">{{ $paginateLeague->lastPage() }}</a>
+                            </li>
+                        @endif
+                        <li>
+                            <a href="{{ $paginateLeague->nextPageUrl() }}" aria-label="Next" class="nextPlayersList">
+                                <span aria-hidden="true">NEXT <span class="fa fa-angle-right"></span></span>
+                            </a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
     </div>
-</div>
 @endsection
