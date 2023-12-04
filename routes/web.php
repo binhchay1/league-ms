@@ -30,12 +30,13 @@ Route::get('test', function () {
     return view('auth.verify-email-success');
 });
 
-
 Route::get('/user/verify/{token}', [AuthController::class, 'verifyEmail'])->name('user.verify');
+
 Route::middleware(['verify_email'])->group(function ()
 {
 
 });
+
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/list-of-league', [HomeController::class, 'listLeague'])->name('list.league');
@@ -55,8 +56,7 @@ Route::get('/list-teams', [HomeController::class, 'listTeam'])->name('list.team'
 Route::get('/group', [HomeController::class, 'listGroup'])->name('list.group');
 Route::get('/detail-group', [HomeController::class, 'detailGroup'])->name('detail.group');
 Route::post('/register-league', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
-
-
+Route::get('/ranking', [HomeController::class, 'viewRanking'])->name('ranking');
 
 
 Route::middleware(['verified'])->group(function () {

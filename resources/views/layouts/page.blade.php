@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#ffffff">
 
     <meta name="msapplication-TileColor" content="#E45357">
-    <meta name="msapplication-TileImage" content="/assets/images/favicons/favicon-144.png">
+    <meta name="msapplication-TileImage" content="{{ asset('/assets/images/favicons/favicon-144.png') }}">
     <meta name="application-name" content="{{ env('APP_NAME', 'Badminton.io') }}">
     <meta name="msapplication-tooltip" content="{{ env('APP_NAME', 'Badminton.io') }}">
     <meta name="description" content="{{ __('Run your badminton league for free, badminton scheduling and online results and statistics displayed on your free website.') }}">
@@ -16,7 +17,7 @@
 
     <title>@yield('title')</title>
 
-    <link rel="canonical" href="https://www.leaguerepublic.com/badminton.html">
+    <link rel="canonical" href="https://badminton.io">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/page/style.css') }}">
     <link rel="alternate" hreflang="en-US" href="https://badminton.io">
     <link rel="alternate" hreflang="af" href="https://badminton.io">
@@ -36,7 +37,7 @@
 
 </head>
 
-<body >
+<body>
     <header style="background-color: #222">
         <div class="top-nav">
             <ul class="container">
@@ -66,6 +67,7 @@
                 <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
                 <li class="pt-2"><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
                 <li class="pt-2"><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li>
+                <li class="pt-2"><a href="{{ route('ranking') }}">{{ __('Ranking') }}</a></li>
                 <li class="pt-2"><a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
                 <li id="search">
                     <form id="search-league" action="{{ route('search') }}" method="post">
@@ -144,8 +146,8 @@
                 <ul class="social">
                     <li><a href="https://www.linkedin.com/company/badminton.io"><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="{{ __('LinkedIn') }}" width="30" height="31"></a></li>
                     <li><a href="https://twitter.com/badminton.io"><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="{{ __('Twitter') }}" width="30" height="31"></a></li>
-                    <li><a href="https://www.facebook.com/badminton.io"><img src="{{ asset('/svg/icon-facebook.svg') }}" alt="Facebook" width="30" height="31"></a></li>
-                    <li><a href="https://www.youtube.com/user/badminton.io"><img src="{{ asset('/svg/icon-youtube.svg') }}" alt="YouTube" width="30" height="31"></a></li>
+                    <li><a href="https://www.facebook.com/badminton.io"><img src="{{ asset('/svg/icon-facebook.svg') }}" alt="{{ __('Facebook') }}" width="30" height="31"></a></li>
+                    <li><a href="https://www.youtube.com/user/badminton.io"><img src="{{ asset('/svg/icon-youtube.svg') }}" alt="{{ __('YouTube') }}" width="30" height="31"></a></li>
                 </ul>
             </div>
         </div>
