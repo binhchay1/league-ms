@@ -10,6 +10,8 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Message;
+use App\Models\VerifyUser;
+use App\Models\Ranking;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -78,6 +80,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function verifyUser()
     {
-        return $this->hasOne('App\Models\VerifyUser');
+        return $this->hasOne(VerifyUser::class);
+    }
+
+    public function ranking() {
+        return $this->hasOne(Ranking::class);
     }
 }

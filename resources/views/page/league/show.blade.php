@@ -7,7 +7,6 @@
     <link rel="stylesheet" id="bwf-style-css" href="{{asset('css/content/league.css')}}" type="text/css" media="all" />
 @endsection
 @section('content')
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" id="dashicons-css"
           href="{{asset('league/wp-includes/css/dashicons.min.css?ver=1717160f66b565489b11f0a0e460e849')}}"/>
     <link rel="stylesheet" id="editor-buttons-css"
@@ -16,8 +15,6 @@
           href="{{asset('league/wp-includes/css/dist/block-library/style.min.css?ver=1717160f66b565489b11f0a0e460e849')}}"/>
     <link rel="stylesheet" id="bwf-newsletter-signup-style-css"
           href="{{asset('league/wp-content/plugins/bwf-newsletter/css/newsletter-signup.css?ver=1.2')}}"/>
-    <link rel="stylesheet" id="bootstrap-style-css"
-          href="{{asset('league/wp-content/themes/world-tour-finals/assets/css/bootstrap.css?ver=1717160f66b565489b11f0a0e460e849')}}"/>
     <link rel="stylesheet" id="bwf_menu_style-css"
           href="{{asset('league/wp-content/plugins/bwf-menu-system/css/bwf-menu-system.css?ver=1.233')}}"/>
     <link rel="stylesheet" id="bwf-style-css"
@@ -37,11 +34,11 @@
     <link rel="stylesheet" id="owl-theme-css"
           href="{{asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/owl-carousel2/dist/assets/owl.theme.default.css?ver=1717160f66b565489b11f0a0e460e849')}}"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<div id="page" class="hfeed site">
-    <div class="">
-        <div class="container-1280 results">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+    <div id="page" class="hfeed site">
+        <div class="container-1280 results">
             <div class="std-title">
                 <div class="std-title-left">
                     <h2 class="left">{{__('LEAGUE INFORMATION')}}</h2>
@@ -93,9 +90,99 @@
                         </li>
                     </ul>
                     <div class="register mt-4" align="right">
-                        <a href="#" class="popupLink btn btn-danger btn-lg" data-toggle="modal"
-                           data-target="#MyDetailsModal">{{__('Register to the league')}}
-                        </a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+                           {{__('Register League')}}
+                        </button>
+                    </div>
+                    <!-- The Modal -->
+                    <div class="modal" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content" id="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">{{__('Register')}}</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <div class="leagueInfo">
+                                        <div class="tab-content" id="tab-content">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <img class="image-modal-data lazy truncated initial loaded white center" src="{{$tourInfo->images}}">
+                                                </div>
+                                                <div class="col-lg-8 league-data">
+                                                    <h4 class="">{{ $tourInfo->name }}</h4>
+                                                    {{ $tourInfo->type_of_league }}
+                                                    <h6 class="">{{__('Start Date')}}: {{ $tourInfo->start_date }}</h6>
+                                                    <h6 class="">{{__('End Date')}}: {{ $tourInfo->end_date }}</h6>
+                                                    <p class="">{{__('PRIZE MONEY USD ')}}${{ $tourInfo->money }}</p>
+                                                </div>
+                                                <div class="checkbox" align="center">
+                                                    <input id="check" name="checkbox" type="checkbox">
+                                                    <label for="checkbox">{{__('I have read and agree to the tournament rules')}}</label>
+                                                </div>
+                                                <div align="center">
+                                                    <button id="open-tab1" class="btn btn-success" disabled>{{__('Register')}}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="infor" style="display: none">
+                                        <h1 align="center">{{__('Confirm Information')}}</h1>
+                                        <form id="formAccountSettings" method="POST" action="{{route('registerLeague')}}" enctype="multipart/form-data">
+                                            @csrf()
+                                            <div class="tab-content rankings-content_tabpanel">
+                                                <div class="item-active">
+                                                    <table width="100%" cellpadding="0" cellspacing="0" border="0" class="rankings-table">
+                                                        <thead align="center">
+                                                        <tr>
+                                                            <th style="text-align: center" class="col-rank" align="center">{{__('Name')}}</th>
+                                                            <th style="text-align: center" class="col-country" align="center">{{__('Image')}}</th>
+                                                            <th style="text-align: center"  class="col-player">{{__('Age')}}</th>
+                                                            <th style="text-align: center" class="col-points" align="center">{{__('Address')}}</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tr class="row-top-eight">
+                                                            <input type="hidden" name="league_id" id="" value="{{$tourInfo->id}}">
+                                                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                                            <input type="hidden" name="status" value="0">
+                                                            <td align="center" >
+                                                                {{Auth::user()->name}}
+                                                            </td>
+                                                            <td align="center">
+                                                                <div class="country">
+                                                                    <img  width="48" src="/{{Auth::user()->profile_photo_path}}" title="Japan" class="flag image-user">
+                                                                </div>
+                                                            </td>
+
+                                                            <td align="center" class="data-player">
+                                                                <div class="player">
+                                                                    {{Auth::user()->age}}
+                                                                </div>
+                                                            </td>
+                                                            <td class="data-points" align="center">
+                                                                {{Auth::user()->address}}
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="mt-4">
+                                                <button type="submit" class="btn btn-success me-2">{{ __('Send Information') }}</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
 
                     <div class="content-results">
@@ -116,88 +203,9 @@
                         </div>
                     </div>
                 </div>
-        </div>
-    </div>
-</div>
-
-    <div class="modal" id="MyDetailsModal" tabindex="-1" role="dialog" arialabelledby="myDetailsModal"
-         aria-hidden="true">
-        <div class="modal-dialog modal-details" role="document">
-            <div class="modal-content modal-details"
-                 style="width: 750px;margin: auto;height: 500px; margin-left: -80px;">
-                <div class="leagueInfo">
-                    <h1 align="center">{{__('Register')}}</h1>
-                    <div class="tab-content" id="tab-content">
-                        <div class="row" style="color: black; height: 200px;">
-                            <div class="col-lg-4">
-                                <img class="lazy truncated initial loaded white center " src="{{$tourInfo->images}}"
-                                     style="width: 200px;height: 150px;margin: 30px">
-                            </div>
-                            <div class="col-8 mt-2" style="font-weight: 700" ;>
-                                <h3 class="">{{ $tourInfo->name }}</h3>
-                                {{ $tourInfo->type_of_league }}
-                                <h6 class="">{{__('Start Date')}}: {{ $tourInfo->start_date }}</h6>
-                                <h6 class="">{{__('End Date')}}: {{ $tourInfo->end_date }}</h6>
-                                <p class="">{{__('PRIZE MONEY USD ')}}${{ $tourInfo->money }}</p>
-                            </div>
-                            <div class="checkbox" align="center">
-                                <input id="check" name="checkbox" type="checkbox">
-                                <label for="checkbox">{{__('I have read and agree to the tournament rules')}}</label>
-                            </div>
-                            <div align="center">
-                                <button id="open-tab1" class="btn btn-success" disabled>Register</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="infor" style="display: none">
-                    <h1 align="center">{{__('Confirm Information')}}</h1>
-                    <form id="formAccountSettings" method="POST" action="{{route('registerLeague')}}" enctype="multipart/form-data">
-                        @csrf()
-                    <div class="tab-content rankings-content_tabpanel">
-                        <div class="item-active">
-                            <table width="100%" cellpadding="0" cellspacing="0" border="0" class="rankings-table">
-                                <thead align="center">
-                                <tr >
-                                    <th style="text-align: center" class="col-rank" align="center">{{__('Name')}}</th>
-                                    <th style="text-align: center" class="col-country" align="center">{{__('Image')}}</th>
-                                    <th style="text-align: center"  class="col-player">{{__('Age')}}</th>
-                                    <th style="text-align: center" class="col-points" align="center">{{__('Address')}}</th>
-                                </tr>
-                                </thead>
-                                <tr class="row-top-eight">
-                                    <input type="hidden" name="league_id" id="" value="1">
-                                    <input type="hidden" name="user_id" value="2">
-                                    <input type="hidden" name="status" value="0">
-                                    <td align="center" >
-                                    </td>
-                                    <td align="center">
-                                        <div class="country">
-                                            <img  width="48" src="https://extranet.bwf.sport/docs/flags/japan.png" title="Japan" class="flag">
-                                        </div>
-                                    </td>
-
-                                    <td align="center" class="data-player">
-                                        <div  class="player">
-
-                                        </div>
-                                    </td>
-                                    <td class="data-points" align="center">
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                        <div>
-                            <button type="submit" class="btn btn-success me-2">{{ __('Send Information') }}</button>
-                        </div>
-                    </form>
-                </div>
-
             </div>
         </div>
     </div>
-</div>
 @endsection
 @section('js')
     <script src="{{ asset('js/league.js') }}"></script>

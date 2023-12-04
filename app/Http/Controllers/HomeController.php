@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Enums\Utility;
 use App\Repositories\GroupRepository;
-use App\Repositories\TeamRepository;
 use App\Repositories\LeagueRepository;
 use App\Repositories\MatchesRepository;
 use App\Repositories\UserLeagueRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\GroupUserRepository;
 use App\Repositories\MessageRepository;
+use App\Repositories\ProductRepository;
+use App\Repositories\RankingRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Config;
@@ -20,44 +21,47 @@ class HomeController extends Controller
 {
     protected $userLeagueRepository;
     protected $leagueRepository;
-    protected $teamRepository;
     protected $userRepository;
     protected $matchesRepository;
     protected $groupRepository;
     protected $groupUserRepository;
     protected $messageRepository;
+    protected $rankingRepository;
+    protected $productRepository;
     protected $utility;
 
     public function __construct(
         UserLeagueRepository $userLeagueRepository,
         LeagueRepository $leagueRepository,
-        TeamRepository $teamRepository,
         UserRepository $userRepository,
         MatchesRepository $matchesRepository,
         GroupRepository $groupRepository,
         GroupUserRepository $groupUserRepository,
         MessageRepository $messageRepository,
+        RankingRepository $rankingRepository,
+        ProductRepository $productRepository,
         Utility $ultity
     ) {
         $this->userLeagueRepository = $userLeagueRepository;
         $this->leagueRepository = $leagueRepository;
-        $this->teamRepository = $teamRepository;
         $this->userRepository = $userRepository;
         $this->matchesRepository = $matchesRepository;
         $this->groupRepository = $groupRepository;
         $this->groupUserRepository = $groupUserRepository;
         $this->messageRepository = $messageRepository;
+        $this->rankingRepository = $rankingRepository;
+        $this->productRepository = $productRepository;
         $this->utility = $ultity;
     }
 
     public function viewHome()
     {
         $totalMatch = $this->matchesRepository->count();
-        $totalTeam = $this->teamRepository->count();
+        $totalGroup = $this->groupRepository->count();
         $totalLeague = $this->leagueRepository->count();
         $totalView = strtotime(date('Y-m-d H:i:s')) / 1242222;
 
-        return view('page.homepage', compact('totalMatch', 'totalTeam', 'totalLeague', 'totalView'));
+        return view('page.homepage', compact('totalMatch', 'totalGroup', 'totalLeague', 'totalView'));
     }
 
     public function viewSearch(Request $request)
@@ -78,7 +82,8 @@ class HomeController extends Controller
 
     public function viewShop()
     {
-        return view('page.shop.index');
+        $products = $this->productRepository->get();
+        return view('page.shop.index', compact('products'));
     }
 
     public function viewAbout()
@@ -101,9 +106,10 @@ class HomeController extends Controller
         return view('page.term');
     }
 
-    public function viewTeamRegister()
+    public function viewRanking()
     {
-        return view('page.team-register');
+        $ranking = $this->rankingRepository->get();
+        return view('page.ranking', compact('ranking'));
     }
 
     public function listLeague()
@@ -111,13 +117,6 @@ class HomeController extends Controller
         $listLeague = $this->leagueRepository->index();
         $paginateLeague = $this->utility->paginate($listLeague, 5);
         return view('page.league.index', compact('listLeague','paginateLeague'));
-    }
-
-    public function listTeam()
-    {
-        $listTeam = $this->teamRepository->index();
-
-        return view('page.team.index', compact('listTeam'));
     }
 
     public function listGroup()
@@ -199,9 +198,9 @@ class HomeController extends Controller
 
     public function saveRegisterLeague(Request $request)
     {
-        $input = $request->except(['_token']);
-        $this->userLeagueRepository->store($input);
+        $userRegisterLeague = $request->except(['_token']);
+        $this->userLeagueRepository->store($userRegisterLeague);
 
-        return view('page.league.show');
+        return back()->with('success', __('Thông tin đã được gửi đi thành công!'));
     }
 }

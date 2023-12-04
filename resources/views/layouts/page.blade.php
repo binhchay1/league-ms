@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#ffffff">
 
     <meta name="msapplication-TileColor" content="#E45357">
-    <meta name="msapplication-TileImage" content="/assets/images/favicons/favicon-144.png">
+    <meta name="msapplication-TileImage" content="{{ asset('/assets/images/favicons/favicon-144.png') }}">
     <meta name="application-name" content="{{ env('APP_NAME', 'Badminton.io') }}">
     <meta name="msapplication-tooltip" content="{{ env('APP_NAME', 'Badminton.io') }}">
     <meta name="description" content="{{ __('Run your badminton league for free, badminton scheduling and online results and statistics displayed on your free website.') }}">
@@ -16,7 +17,7 @@
 
     <title>@yield('title')</title>
 
-    <link rel="canonical" href="https://www.leaguerepublic.com/badminton.html">
+    <link rel="canonical" href="https://badminton.io">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/page/style.css') }}">
     <link rel="alternate" hreflang="en-US" href="https://badminton.io">
     <link rel="alternate" hreflang="af" href="https://badminton.io">
@@ -33,10 +34,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <link rel="stylesheet" id="bwf-style-css" href="{{asset('css/content/league.css')}}" type="text/css" media="all" />
     @yield('css')
-
 </head>
 
-<body >
+<body>
     <header style="background-color: #222">
         <div class="top-nav">
             <ul class="container">
@@ -66,6 +66,7 @@
                 <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
                 <li class="pt-2"><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
                 <li class="pt-2"><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li>
+                <li class="pt-2"><a href="{{ route('ranking') }}">{{ __('Ranking') }}</a></li>
                 <li class="pt-2"><a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
                 <li id="search">
                     <form id="search-league" action="{{ route('search') }}" method="post">
@@ -79,19 +80,24 @@
                     </form>
                 </li>
                 @if(Auth::check())
-                <li>
-                    <div class="dropdown">
-                        <a style="text-decoration: none;" class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="avatar-user" width="40" height="40" src="{{ Auth::user()->profile_photo_path }}">
-                        </a>
+                <li class="menu">
+                    <span>
+                        <img class="avatar-user" width="40" height="40" src="/{{ Auth::user()->profile_photo_path }}">
+                    </span>
+                    <ul>
+                        <li >
+                            <a class="account" href="{{ route('profile.edit') }}">
+                                {{__('Profile')}}
+                            </a>
+                        </li>
 
-                        <ul class="dropdown-menu mt-2 p-3" aria-labelledby="dropdownMenuLink">
-                            <li class="d-flex justify-content-center align-items-center"><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="fas fa-user mr-2"></i> {{ __('Profile') }}</a></li>
-                            <li class="d-flex justify-content-center align-items-center"><a class="dropdown-item" href="{{ route('my.group') }}"><i class="fas fa-users mr-2"></i> {{ __('My group') }}</a></li>
-                            <hr>
-                            <li><a class="dropdown-item" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2"></i>{{ __('Log out') }}</a></li>
-                        </ul>
-                    </div>
+                        <li>
+                            <a class="account" href="{{ route('my.group') }}">
+                                {{__('My group')}}
+                            </a>
+                        </li>
+                        <li><a class="dropdown-item account" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2 "></i>{{ __('Log out') }}</a></li>
+                    </ul>
                 </li>
                 @else
                 <li><a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a></li>
@@ -144,8 +150,8 @@
                 <ul class="social">
                     <li><a href="https://www.linkedin.com/company/badminton.io"><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="{{ __('LinkedIn') }}" width="30" height="31"></a></li>
                     <li><a href="https://twitter.com/badminton.io"><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="{{ __('Twitter') }}" width="30" height="31"></a></li>
-                    <li><a href="https://www.facebook.com/badminton.io"><img src="{{ asset('/svg/icon-facebook.svg') }}" alt="Facebook" width="30" height="31"></a></li>
-                    <li><a href="https://www.youtube.com/user/badminton.io"><img src="{{ asset('/svg/icon-youtube.svg') }}" alt="YouTube" width="30" height="31"></a></li>
+                    <li><a href="https://www.facebook.com/badminton.io"><img src="{{ asset('/svg/icon-facebook.svg') }}" alt="{{ __('Facebook') }}" width="30" height="31"></a></li>
+                    <li><a href="https://www.youtube.com/user/badminton.io"><img src="{{ asset('/svg/icon-youtube.svg') }}" alt="{{ __('YouTube') }}" width="30" height="31"></a></li>
                 </ul>
             </div>
         </div>

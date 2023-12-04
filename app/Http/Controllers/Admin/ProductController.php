@@ -40,10 +40,6 @@ class ProductController extends Controller
         $input['product_owner'] = Auth::user()->id;
         $input['rate'] = Group::RATE_NEWLY_ESTABLISHED;
 
-        $input['activity_time'] = $input['activity_time_start'];
-        if ($input['activity_time_end'] != null) {
-            $input['activity_time'] .= ' - ' . $input['activity_time_end'];
-        }
         if (isset($input['images'])) {
             $img = $this->utility->saveImageGroup($input);
             if ($img) {
