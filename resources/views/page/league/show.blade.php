@@ -86,7 +86,7 @@
                         </li>
                         <li><a href="">{{__('Fighting Branch')}}</a>
                         </li>
-                        <li><a id="player-data" href="{{route('player.info', $tourInfo['slug'])}}">{{__('Player ')}}</a>
+                        <li><a id="player-data" href="{{ route('league.player.info', $tourInfo['slug']) }}">{{__('Player ')}}</a>
                         </li>
                     </ul>
                     <div class="register mt-4" align="right">
@@ -187,7 +187,7 @@
 
                     <div class="content-results">
                         <div class="item-results">
-                            @if(Route::current()->getName() == 'player.info')
+                            @if(Route::current()->getName() == 'league.player.info')
                                 <div>
                                     @include('page.league.detail.player')
                                 </div>

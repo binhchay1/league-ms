@@ -112,11 +112,17 @@ class HomeController extends Controller
         return view('page.ranking', compact('ranking'));
     }
 
+    public function viewInforPlayer($id)
+    {
+        $user = $this->userRepository->getById($id);
+        return view('page.player', compact('user'));
+    }
+
     public function listLeague()
     {
         $listLeague = $this->leagueRepository->index();
         $paginateLeague = $this->utility->paginate($listLeague, 5);
-        return view('page.league.index', compact('listLeague','paginateLeague'));
+        return view('page.league.index', compact('listLeague', 'paginateLeague'));
     }
 
     public function listGroup()
@@ -131,13 +137,13 @@ class HomeController extends Controller
     {
         $tourInfo = $this->leagueRepository->showInfo($slug);
         $listLeagues = $this->leagueRepository->index();
-//        $groupSchedule = [];
-//
-//        foreach ($tourInfo->schedule as $schedule) {
-//            $groupSchedule[$schedule['match']][] = $schedule;
-//        }
+        //        $groupSchedule = [];
+        //
+        //        foreach ($tourInfo->schedule as $schedule) {
+        //            $groupSchedule[$schedule['match']][] = $schedule;
+        //        }
 
-        return view('page.league.show', compact( 'tourInfo', 'listLeagues'));
+        return view('page.league.show', compact('tourInfo', 'listLeagues'));
     }
 
     public function changeLocate($locale)
@@ -185,7 +191,7 @@ class HomeController extends Controller
         $tourInfo = $this->leagueRepository->showInfo($slug);
         $listLeagues = $this->leagueRepository->index();
 
-        return view('page.league.show', compact( 'tourInfo', 'listLeagues'));
+        return view('page.league.show', compact('tourInfo', 'listLeagues'));
     }
 
     public function showResult($slug)
@@ -193,7 +199,7 @@ class HomeController extends Controller
         $tourInfo = $this->leagueRepository->showInfo($slug);
         $listLeagues = $this->leagueRepository->index();
 
-        return view('page.league.show', compact( 'tourInfo', 'listLeagues'));
+        return view('page.league.show', compact('tourInfo', 'listLeagues'));
     }
 
     public function saveRegisterLeague(Request $request)

@@ -18,14 +18,16 @@
 
 <section id="ranking" class="container">
     <div class="wrapper-ranking">
-        <ul class="ranking-event-tabs">
-            <li class="active"><a href="#"><span class="ranking-tab-desktop">{{ __("Men's singles") }}</span> <span class="ranking-tab-mobile">MS</span></a></li>
-            <li class=""><a href="#"><span class="ranking-tab-desktop">{{ __("Women's singles") }}</span> <span class="ranking-tab-mobile">WS</span></a></li>
-            <li class=""><a href="#"><span class="ranking-tab-desktop">{{ __("Men's doubles") }}</span> <span class="ranking-tab-mobile">MD</span></a></li>
-            <li class=""><a href="#"><span class="ranking-tab-desktop">{{ __("Women's doubles") }}</span> <span class="ranking-tab-mobile">WD</span></a></li>
-            <li class=""><a href="#"><span class="ranking-tab-desktop">{{ __('Mixed doubles') }}</span> <span class="ranking-tab-mobile">XD</span></a></li>
-        </ul>
-        <table id="table_id" cellpadding="0" cellspacing="0" border="0" width="100%" class="tblRankingLanding">
+        <select class="form-control">
+            <option value="male-doubles">{{ __('Male doubles') }}</option>
+            <option value="female-doubles">{{ __('Female doubles') }}</option>
+            <option value="male-singles">{{ __('Male singles') }}</option>
+            <option value="female-singles">{{ __('Female singles') }}</option>
+            <option value="mixed-doubles">{{ __('Mixed doubles') }}</option>
+        </select>
+    </div>
+    <div class="wrapper-ranking">
+        <table width="100%" class="table">
             <thead>
                 <tr>
                     <th scope="col">{{ __('Rank') }}</th>
@@ -42,7 +44,7 @@
                         </div>
                     </td>
                     <td class="col-player">
-                        <div class="player"><span><a href="https://bwfbadminton.com/player/62063/kodai-naraoka/"><span><span class="name-1">{{ $rank->users->name }}</span></span></a></span></div>
+                        <div class="player"><span><a href="{{ asset() }}"><span><span class="name-1">{{ $rank->users->name }}</span></span></a></span></div>
                     </td>
                     <td class="col-points"><strong>{{ $rank->points }}</strong></td>
                 </tr>
