@@ -3450,3 +3450,13 @@ ul li a .fas {
 section a:hover {
     text-decoration: none !important;
 }
+
+.menu ul li a.account:hover {
+    color: red;
+}
+.menu ul li a.account {
+    color: black;
+}
+.menu ul {
+    margin-top: 5px;
+}

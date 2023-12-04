@@ -8,7 +8,6 @@
 <link rel="stylesheet" id="bwf-style-css" href="{{asset('css/content/league.css')}}" type="text/css" media="all" />
 @endsection
 
-<link rel="stylesheet" id="bootstrap-style-css" href="{{asset('league/wp-content/themes/world-tour-finals/assets/css/bootstrap.css?ver=1717160f66b565489b11f0a0e460e849')}}"  />
 @section('content')
 <style>
     #signup:before {
@@ -18,7 +17,6 @@
 
     <div class="container">
         <h2>{{__('List League')}}</h2>
-
         <div class="item-results">
             @foreach($listLeague as $listLeague)
             <div class="tblResultLanding" >
@@ -60,6 +58,8 @@
             </div>
             @endforeach
         </div>
+
+        <!-- Paginate -->
         <div class="navigator short">
             <div class="head d-flex justify-content-center ">
                     <ul class="pagination">
@@ -97,7 +97,7 @@
                             </a>
                         </li>
                     </ul>
-
             </div>
         </div>
+    </div>
 @endsection

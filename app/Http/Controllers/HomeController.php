@@ -198,9 +198,9 @@ class HomeController extends Controller
 
     public function saveRegisterLeague(Request $request)
     {
-        $input = $request->except(['_token']);
-        $this->userLeagueRepository->store($input);
+        $userRegisterLeague = $request->except(['_token']);
+        $this->userLeagueRepository->store($userRegisterLeague);
 
-        return view('page.league.show');
+        return back()->with('success', __('Thông tin đã được gửi đi thành công!'));
     }
 }
