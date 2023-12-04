@@ -63,11 +63,28 @@
     }
 }
 
-.tab-content {
-    padding: 10px;
-}
 
 .item-active {
     border: solid 1px;
 }
 
+#modal-content {
+    width: 750px;
+    margin: auto;
+    height: 500px;
+    margin-left: -80px;
+}
+
+.image-modal-data {
+    width: 200px;
+    height: 150px;
+}
+
+.league-data {
+    font-weight: 700
+}
+
+.image-user{
+    width: 100px;
+    height: 100px;
+}

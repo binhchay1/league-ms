@@ -34,7 +34,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <link rel="stylesheet" id="bwf-style-css" href="{{asset('css/content/league.css')}}" type="text/css" media="all" />
     @yield('css')
-
 </head>
 
 <body>
@@ -81,19 +80,24 @@
                     </form>
                 </li>
                 @if(Auth::check())
-                <li>
-                    <div class="dropdown">
-                        <a style="text-decoration: none;" class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="avatar-user" width="40" height="40" src="{{ Auth::user()->profile_photo_path }}">
-                        </a>
+                <li class="menu">
+                    <span>
+                        <img class="avatar-user" width="40" height="40" src="/{{ Auth::user()->profile_photo_path }}">
+                    </span>
+                    <ul>
+                        <li >
+                            <a class="account" href="{{ route('profile.edit') }}">
+                                {{__('Profile')}}
+                            </a>
+                        </li>
 
-                        <ul class="dropdown-menu mt-2 p-3" aria-labelledby="dropdownMenuLink">
-                            <li class="d-flex justify-content-center align-items-center"><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="fas fa-user mr-2"></i> {{ __('Profile') }}</a></li>
-                            <li class="d-flex justify-content-center align-items-center"><a class="dropdown-item" href="{{ route('my.group') }}"><i class="fas fa-users mr-2"></i> {{ __('My group') }}</a></li>
-                            <hr>
-                            <li><a class="dropdown-item" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2"></i>{{ __('Log out') }}</a></li>
-                        </ul>
-                    </div>
+                        <li>
+                            <a class="account" href="{{ route('my.group') }}">
+                                {{__('My group')}}
+                            </a>
+                        </li>
+                        <li><a class="dropdown-item account" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2 "></i>{{ __('Log out') }}</a></li>
+                    </ul>
                 </li>
                 @else
                 <li><a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a></li>
