@@ -123,6 +123,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
         }
     );
 });
-Auth::routes(['verify' => true]);
-Auth::routes(['register' => false]);
 
