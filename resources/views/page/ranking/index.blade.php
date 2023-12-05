@@ -54,7 +54,7 @@
                         </div>
                     </td>
                     <td class="col-player d-flex align-content-center">
-                        <div class="player d-flex"><span><a style="color: black" href="{{ route('player.info', ['id' => $rank->users->id]) }}"><span><span class="name-1">{{ $rank->users->name }}</span></span></a></span></div>
+                        <div class="player d-flex"><span><a style="color: black" href="{{ route('player.info', ['id' => Illuminate\Support\Facades\Crypt::encryptString($rank->users->id)]) }}"><span><span class="name-1">{{ $rank->users->name }}</span></span></a></span></div>
                         <div style="margin-left: 5px;">
                             <span><img src="{{ asset($rank->users->profile_photo_path) }}" width="40" height="40" /></span>
                         </div>

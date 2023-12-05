@@ -13,8 +13,10 @@ use App\Repositories\GroupUserRepository;
 use App\Repositories\MessageRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\RankingRepository;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Config;
 use Session;
 
@@ -115,7 +117,7 @@ class HomeController extends Controller
                 abort(404);
             }
         } else {
-            $type = 'male-doubles';
+            $type = Ranking::RANKING_MALE_DOUBLES;
         }
 
         $ranking = $this->rankingRepository->getTopByType($type);
@@ -124,14 +126,23 @@ class HomeController extends Controller
 
     public function viewInforPlayer($id)
     {
-        $user = $this->userRepository->getUserWithRanking($id);
-        return view('page.user.player', compact('user'));
+        try {
+            $user_id = Crypt::decryptString($id);
+            $user = $this->userRepository->getInformationUser($user_id);
+            $group = $this->groupUserRepository->getGroupByUserId($user_id);
+            $league = $this->userLeagueRepository->getLeagueByUserId($user_id);
+
+            return view('page.user.player', compact('user', 'group', 'league'));
+        } catch (DecryptException $e) {
+            abort(404);
+        }
     }
 
     public function listLeague()
     {
         $listLeague = $this->leagueRepository->index();
         $paginateLeague = $this->utility->paginate($listLeague, 5);
+
         return view('page.league.index', compact('listLeague', 'paginateLeague'));
     }
 

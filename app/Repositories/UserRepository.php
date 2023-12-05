@@ -51,8 +51,8 @@ class UserRepository extends BaseRepository
         return $this->model->where('id', $id)->delete();
     }
 
-    public function getUserWithRanking($user_id)
+    public function getInformationUser($user_id)
     {
-        return $this->model->with('ranking')->where('id', $user_id)->first();
+        return $this->model->with('ranking')->with('group')->where('id', $user_id)->first();
     }
 }

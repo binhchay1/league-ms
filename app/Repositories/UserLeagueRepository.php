@@ -15,4 +15,9 @@ class UserLeagueRepository extends BaseRepository
     {
         return $this->model->create($input);
     }
+
+    public function getLeagueByUserId($userId)
+    {
+        return $this->model->with('league')->where('user_id', $userId)->get();
+    }
 }

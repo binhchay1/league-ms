@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LeagueController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\GroupController;
-use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
