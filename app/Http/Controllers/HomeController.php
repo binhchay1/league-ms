@@ -124,12 +124,13 @@ class HomeController extends Controller
 
     public function viewInforPlayer($id)
     {
-
         $user_id = $this->utility->decode_hash_id($id);
         $users = $this->userRepository->getById($user_id);
+
         if (empty($users)) {
             abort(404);
         }
+
         $user = $this->userRepository->getInformationUser($user_id);
         $group = $this->groupUserRepository->getGroupByUserId($user_id);
         $league = $this->userLeagueRepository->getLeagueByUserId($user_id);
