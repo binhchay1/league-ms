@@ -46,7 +46,7 @@ Route::get('/team-register', [HomeController::class, 'viewTeamRegister'])->name(
 Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');
 Route::get('/term-and-conditions', [HomeController::class, 'viewTermAndConditions'])->name('term.and.conditions');
 Route::get('/pricing', [HomeController::class, 'viewPricing'])->name('pricing');
-Route::get('/info/{slug}', [HomeController::class, 'showInfo'])->name('tour.info');
+Route::get('/info/{slug}', [HomeController::class, 'showInfo'])->name('league.info');
 Route::get('/info/{slug}/player', [HomeController::class, 'showPlayer'])->name('league.player.info');
 Route::get('/info/{slug}/result', [HomeController::class, 'showResult'])->name('result.info');
 Route::get('/list-teams', [HomeController::class, 'listTeam'])->name('list.team');
@@ -123,6 +123,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
         }
     );
 });
-Auth::routes(['verify' => true]);
-Auth::routes(['register' => false]);
 
