@@ -1134,6 +1134,9 @@ select {
 .visible {
   visibility: visible;
 }
+.collapse {
+  visibility: collapse;
+}
 .fixed {
   position: fixed;
 }
@@ -1300,6 +1303,12 @@ select {
 }
 .mt-8 {
   margin-top: 2rem;
+}
+.me-auto {
+  margin-inline-end: auto;
+}
+.ms-auto {
+  margin-inline-start: auto;
 }
 .block {
   display: block;
@@ -1833,6 +1842,9 @@ select {
 }
 .text-right {
   text-align: right;
+}
+.align-baseline {
+  vertical-align: baseline;
 }
 .font-mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
