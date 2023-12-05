@@ -14,14 +14,14 @@ class ChangeDataSchedulesTable extends Migration
     public function up()
     {
         Schema::table('schedules', function (Blueprint $table) {
-            $table->renameColumn('tournament_id', 'league_id');
+            $table->renameColumn('leaguenament_id', 'league_id');
         });
     }
 
     public function down()
     {
         Schema::table('schedules', function (Blueprint $table) {
-            $table->renameColumn('league_id', 'tournament_id');
+            $table->renameColumn('league_id', 'leaguenament_id');
         });
     }
 }

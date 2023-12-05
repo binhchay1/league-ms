@@ -20,7 +20,7 @@
         <div class="item-results">
             @foreach($listLeague as $listLeague)
             <div class="tblResultLanding" >
-                <a href="{{route('tour.info', $listLeague['slug'])}}">
+                <a href="{{route('league.info', $listLeague['slug'])}}">
                     <div class="tr-tournament-detail" id="4734">
                         <div class="tournament-detail ">
                             <div class="inner-tournament-detail">

@@ -30,13 +30,13 @@ class LeagueController extends Controller
 
     public function create()
     {
-        $type_tours = config('league.type');
-        $format_tours = config('league.format');
+        $type_leagues = config('league.type');
+        $format_leagues = config('league.format');
         if (Auth::user()->role == Role::ADMIN) {
-            return view('admin.league.create', compact('type_tours', 'format_tours'));
+            return view('admin.league.create', compact('type_leagues', 'format_leagues'));
         }
 
-        return view('page.league.create', compact('type_tour', 'format_tour'));
+        return view('page.league.create', compact('type_league', 'format_league'));
     }
 
     public function store(LeagueRequest $request)
@@ -66,10 +66,10 @@ class LeagueController extends Controller
 
     public function edit($id)
     {
-        $type_tours = config('league.type');
-        $format_tours = config('league.format');
+        $type_leagues = config('league.type');
+        $format_leagues = config('league.format');
         $dataLeague = $this->leagueRepository->show($id);
-        return view('admin.league.edit', compact('dataLeague', 'format_tours', 'type_tours'));
+        return view('admin.league.edit', compact('dataLeague', 'format_leagues', 'type_leagues'));
     }
 
 

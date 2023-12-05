@@ -47,7 +47,7 @@
             <li class="subheading">Top Features</li>
             <li class="summary"></li>
             <li class="subheading">All Features</li>
-            <li>Create unlimited divisions and tournaments</li>
+            <li>Create unlimited divisions and leaguenaments</li>
             <li>Scheduling tools</li>
             <li>Match conflict checking</li>
             <li>Flexible scoring system</li>
@@ -138,7 +138,7 @@
                 </ul>
             </li>
             <li class="subheading"></li>
-            <li class="center"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Create unlimited divisions and tournaments</span></li>
+            <li class="center"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Create unlimited divisions and leaguenaments</span></li>
             <li class="center"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Scheduling tools</span></li>
             <li class="center"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Match conflict checking</span></li>
             <li class="center"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Flexible scoring system</span></li>
@@ -196,7 +196,7 @@
             </li>
             <li class="subheading"></li>
             <li class="center mobile mobile-summary">Everything in <span class="badge free">Free</span> plus</li>
-            <li class="center desktop"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Create unlimited divisions and tournaments</span></li>
+            <li class="center desktop"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Create unlimited divisions and leaguenaments</span></li>
             <li class="center desktop"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Scheduling tools</span></li>
             <li class="center desktop"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Match conflict checking</span></li>
             <li class="center desktop"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Flexible scoring system</span></li>
@@ -267,7 +267,7 @@
             </li>
             <li class="subheading"></li>
             <li class="center mobile mobile-summary">Everything in <span class="badge bronze">Bronze</span> plus</li>
-            <li class="center desktop"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Create unlimited divisions and tournaments</span></li>
+            <li class="center desktop"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Create unlimited divisions and leaguenaments</span></li>
             <li class="center desktop"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Scheduling tools</span></li>
             <li class="center desktop"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Match conflict checking</span></li>
             <li class="center desktop"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Flexible scoring system</span></li>
@@ -358,7 +358,7 @@
             </li>
             <li class="subheading"></li>
             <li class="center mobile mobile-summary">Everything in <span class="badge silver">Silver</span> plus</li>
-            <li class="center desktop"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Create unlimited divisions and tournaments</span></li>
+            <li class="center desktop"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Create unlimited divisions and leaguenaments</span></li>
             <li class="center desktop"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Scheduling tools</span></li>
             <li class="center desktop"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Match conflict checking</span></li>
             <li class="center desktop"><img src="{{ asset('svg/icon-tick.svg') }}" alt="checked icon" width="20" height="20"><span>Flexible scoring system</span></li>
@@ -426,7 +426,7 @@
             <button>How do you calculate the number of teams in a league?</button>
         </dt>
         <dd>
-            <p>The total team count is the total number of unique teams in divisions in the default season. We don't count singles, doubles or triples teams or normal teams in tournaments. If you are still in the process of creating teams for the season then make sure that you choose a plan that will allow for the final number of teams in your league.</p>
+            <p>The total team count is the total number of unique teams in divisions in the default season. We don't count singles, doubles or triples teams or normal teams in leaguenaments. If you are still in the process of creating teams for the season then make sure that you choose a plan that will allow for the final number of teams in your league.</p>
         </dd>
     </dl>
     <dl class="faq">
@@ -466,7 +466,7 @@
             <button>I have more than one league website that I want to upgrade, do I need to purchase multiple plans?</button>
         </dt>
         <dd>
-            <p>Yes. Our pricing applies to each league website, however, you can create multiple divisions and tournaments within one league.</p>
+            <p>Yes. Our pricing applies to each league website, however, you can create multiple divisions and leaguenaments within one league.</p>
         </dd>
     </dl>
 </section>

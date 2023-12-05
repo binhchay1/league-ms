@@ -36,11 +36,11 @@ p {
 }
 
 .badge {
-    background-color: #eee;
+    background: none !important;
 }
 
 .badge span {
-    background-color: #fffbec;
+    background: none !important;
     padding: 7px;
     border-radius: 5px;
     display: flex;

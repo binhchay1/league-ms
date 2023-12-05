@@ -24,11 +24,21 @@ $isFull = false;
 <section id="group" class="container">
     <div class="row">
         @foreach($listGroup as $group)
-        @if($group->group_users->count() == $group->number_of_members)
+        @php
+        if($group->group_users->count() == $group->number_of_members) {
         $isFull = true;
-        @endif
+        }
+        @endphp
+
+        @foreach($group->group_users as $user)
+        @php
+        if($user->user_id == Auth::user()->id) {
+        $isJoin = true;
+        }
+        @endphp
+        @endforeach
         <div class="col-md-4">
-            <div class="card p-3 mb-4">
+            <div class="card p-3 mb-4" style="background: url('/images/auth-logo-opacity-50.png') !important">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex flex-row align-items-center">
                         <div class="icon"> <img class="avatar-group" src="{{ $group->images }}"></div>
@@ -55,13 +65,7 @@ $isFull = false;
                                 <a class="btn btn-success" href="{{ route('login') }}?return_url={{ url()->full() }}">{{ __('Sign in for join') }}</a>
                             </div>
                             @else
-                            @foreach($group->group_users as $user)
 
-                            @if($user->user_id == Auth::user()->id)
-                            $isJoin = true;
-                            @endif
-
-                            @endforeach
                             <div id="btn-join">
                                 @if(!$isJoin and !$isFull)
                                 <div>
@@ -78,8 +82,8 @@ $isFull = false;
                                 </div>
                                 @endif
                                 @endif
-                                @endif
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

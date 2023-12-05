@@ -98,7 +98,7 @@
                                                 <label for="location" class="control-label required">Thể thức thi đấu</label>
                                                 <div>
                                                     <select id="type" name="type" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                                        @foreach($type_tour as $type_tour => $value)
+                                                        @foreach($type_league as $type_league => $value)
                                                         <option id="type" value="{{$value}}">{{$value}}</option>
                                                         @endforeach
                                                     </select>

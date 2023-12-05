@@ -106,7 +106,7 @@
                                 <div class="form-group">
                                     <label>{{ __('Format of league') }}</label>
                                     <select  id="format_of_league" value="{{ old('format_of_league') }}" name="format_of_league" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
-                                        @foreach($format_tours as $format_tour => $value)
+                                        @foreach($format_leagues as $format_league => $value)
                                         <option id="format_of_league" value="{{ $value }}">{{ $value }}</option>
                                         @endforeach
                                     </select>
@@ -116,7 +116,7 @@
                                 <div class="form-group">
                                     <label>{{ __('Type of league') }}</label>
                                     <select id="type_of_league" value="{{ old('type_of_league') }}" name="type_of_league" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
-                                        @foreach($type_tours as $type_tour => $value)
+                                        @foreach($type_leagues as $type_league => $value)
                                         <option id="type_of_league" value="{{ $value }}">{{ $value }}</option>
                                         @endforeach
                                     </select>
