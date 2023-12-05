@@ -71,4 +71,21 @@ final class Utility
         $slug = strtolower(trim(preg_replace('/[\s-]+/', $delimiter, preg_replace('/[^A-Za-z0-9-]+/', $delimiter, preg_replace('/[&]/', 'and', preg_replace('/[\']/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $str))))), $delimiter));
         return $slug;
     }
+
+    public function encode_hash_id($id)
+    {
+        $timestamp = 125346164;
+        $randomKey = 21415;
+        $key = base64_encode($timestamp  .  $randomKey . $id);
+
+        return $key;
+    }
+
+    public function decode_hash_id($string)
+    {
+        $decode = base64_decode($string);
+        $id = substr($decode, 14);
+
+        return (int) $id;
+    }
 }

@@ -5,7 +5,6 @@
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/page/shop.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/jquery.mmenu.all.css') }}" />
 @endsection
 

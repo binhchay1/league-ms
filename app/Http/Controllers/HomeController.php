@@ -13,10 +13,8 @@ use App\Repositories\GroupUserRepository;
 use App\Repositories\MessageRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\RankingRepository;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\Encryption\DecryptException;
 use Config;
 use Session;
 
@@ -126,16 +124,17 @@ class HomeController extends Controller
 
     public function viewInforPlayer($id)
     {
-        try {
-            $user_id = Crypt::decryptString($id);
-            $user = $this->userRepository->getInformationUser($user_id);
-            $group = $this->groupUserRepository->getGroupByUserId($user_id);
-            $league = $this->userLeagueRepository->getLeagueByUserId($user_id);
 
-            return view('page.user.player', compact('user', 'group', 'league'));
-        } catch (DecryptException $e) {
+        $user_id = $this->utility->decode_hash_id($id);
+        $users = $this->userRepository->getById($user_id);
+        if (empty($users)) {
             abort(404);
         }
+        $user = $this->userRepository->getInformationUser($user_id);
+        $group = $this->groupUserRepository->getGroupByUserId($user_id);
+        $league = $this->userLeagueRepository->getLeagueByUserId($user_id);
+
+        return view('page.user.player', compact('user', 'group', 'league'));
     }
 
     public function listLeague()
