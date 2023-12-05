@@ -40,7 +40,7 @@ class UpdateRanking extends Command
      */
     public function handle()
     {
-        $ranking = $this->rankingRepository->getRankingForUpdatePlaces();
+        $ranking = $this->rankingRepository->getRankingByTypeForUpdatePlaces();
 
         dd($ranking);
     }
