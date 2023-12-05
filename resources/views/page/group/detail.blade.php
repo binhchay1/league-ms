@@ -185,7 +185,8 @@ use Illuminate\Support\Facades\Hash;
                                 <i class="fa fa-paper-plane"></i>
                             </button>
                         </div>
-                        @else
+                        @endif
+                        @if(!Auth::check() or !$isJoined)
                         <div id="chat-area-no-login">
                             <div id="bg-chat-area">
 
@@ -201,21 +202,28 @@ use Illuminate\Support\Facades\Hash;
                                 </div>
                             </div>
                         </div>
-                        @if(!Auth::check())
+
+                        @php
+                        if(!Auth::check()) {
+                        @endphp
                         <div class="form-outline d-flex flex-column">
                             <p>{{ __('Please login for join group') }}</p>
                             <a id="login" class="btn btn-success" href="{{ route('login') }}?return_url={{ url()->full() }}">
                                 {{ __('Login') }}
                             </a>
                         </div>
-                        @else
+                        @php
+                        } else {
+                        @endphp
                         <div class="form-outline d-flex flex-column">
                             <p>{{ __('Please join group for explore chat, ...') }}</p>
-                            <a id="login" class="btn btn-primary" href="{{ route('login') }}?return_url={{ url()->full() }}">
+                            <button id="login" class="btn btn-primary" id="groups-{{ $getGroup->name }}" onclick="requestJoin(this.id)">
                                 {{ __('Join group') }}
-                            </a>
+                            </button>
                         </div>
-                        @endif
+                        @php }
+                        @endphp
+
                         @endif
                     </div>
                 </div>
@@ -320,6 +328,32 @@ use Illuminate\Support\Facades\Hash;
         function scrollToEnd() {
             let elem = document.getElementById('chat-area');
             elem.scrollTop = elem.scrollHeight;
+        }
+
+        function requestJoin(id) {
+            let g_i = id.substring(7);
+            let url = '/join-group/';
+
+            $.ajax({
+                url: url,
+                type: 'get',
+                data: {
+                    g_i: g_i
+                }
+            }).done(function(result) {
+                if (result == 'success') {
+                    let btnSuccess = '<div><button class="btn btn-secondary" disabled>' + '<?php echo __('Joined') ?>' + '</button></div>'
+                    $('#btn-join').empty();
+                    $('#btn-join').append(btnSuccess);
+                } else if (result == 'wait') {
+                    let btnWait = '<div><button class="btn btn-secondary" disabled>' + '<?php echo __('Wait group owner accept') ?>' + '</button></div>'
+                    $('#btn-join').empty();
+                    $('#btn-join').append(btnWait);
+                } else {
+                    let btnFail = '<div><p class="text-red">' + '<?php echo __('Fail to join. Try again later!') ?>' + '</p></div>'
+                    $('#btn-join').append(btnFail);
+                }
+            });
         }
     <?php } ?>
 </script>

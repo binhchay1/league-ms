@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Message;
 use App\Models\VerifyUser;
 use App\Models\Ranking;
+use App\Models\GroupUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -86,5 +87,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function ranking()
     {
         return $this->hasMany(Ranking::class);
+    }
+
+    public function group()
+    {
+        return $this->hasMany(GroupUser::class, 'id', 'user_id');
     }
 }

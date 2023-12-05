@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Ranking;
 use App\Enums\Utility;
 use App\Repositories\GroupRepository;
 use App\Repositories\LeagueRepository;
@@ -106,16 +107,25 @@ class HomeController extends Controller
         return view('page.term');
     }
 
-    public function viewRanking()
+    public function viewRanking(Request $request)
     {
-        $ranking = $this->rankingRepository->get();
-        return view('page.ranking', compact('ranking'));
+        $type = $request->get('type');
+        if (!empty($type)) {
+            if (!in_array($type, Ranking::RANKING_ARRAY_TYPE)) {
+                abort(404);
+            }
+        } else {
+            $type = 'male-doubles';
+        }
+
+        $ranking = $this->rankingRepository->getTopByType($type);
+        return view('page.ranking.index', compact('ranking'));
     }
 
     public function viewInforPlayer($id)
     {
-        $user = $this->userRepository->getById($id);
-        return view('page.player', compact('user'));
+        $user = $this->userRepository->getUserWithRanking($id);
+        return view('page.user.player', compact('user'));
     }
 
     public function listLeague()
@@ -178,7 +188,6 @@ class HomeController extends Controller
                 $isJoined = true;
             }
             $messages = $this->messageRepository->getMessagesByGroupId($getGroup->id);
-
 
             return view('page.group.detail', compact('getGroup', 'messages', 'members', 'isJoined'));
         }

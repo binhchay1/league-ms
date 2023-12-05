@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Enums\Role;
 use App\Enums\Utility;
-use App\Mail\VerifyEmail;
 use App\Models\User;
 use App\Enums\Title;
 use App\Enums\Group;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\VerifyUser;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\GroupUserRepository;
 use App\Events\MessageSent;
