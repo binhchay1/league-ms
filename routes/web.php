@@ -83,7 +83,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/team-manager', [HomeController::class, 'teamManager'])->name('team-manager');
     Route::get('/league-manager', [HomeController::class, 'leagueManager'])->name('league-manager');
 
-    Route::middleware(['admin', 'auth'])->group(
+
+    Route::middleware(['admin', 'auth', 'verified'])->group(
         function () {
             Route::get('/dashboard', [AuthController::class, 'dashboard']);
 
@@ -97,12 +98,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/edit-league/{id}', [LeagueController::class, 'edit'])->name('league.edit');
             Route::post('/update-league/{id}', [LeagueController::class, 'update'])->name('league.update');
 
-            Route::get('/list-team', [TeamController::class, 'index'])->name('team.index');
-            Route::get('/create-team', [TeamController::class, 'create'])->name('team.create');
-            Route::post('/store-team', [TeamController::class, 'store'])->name('team.store');
-            Route::get('/team/{id}', [TeamController::class, 'show'])->name('team.show');
-            Route::get('/edit-team/{id}', [TeamController::class, 'edit'])->name('team.edit');
-            Route::post('/update-team/{id}', [TeamController::class, 'update'])->name('team.update');
+//            Route::get('/list-team', [TeamController::class, 'index'])->name('team.index');
+//            Route::get('/create-team', [TeamController::class, 'create'])->name('team.create');
+//            Route::post('/store-team', [TeamController::class, 'store'])->name('team.store');
+//            Route::get('/team/{id}', [TeamController::class, 'show'])->name('team.show');
+//            Route::get('/edit-team/{id}', [TeamController::class, 'edit'])->name('team.edit');
+//            Route::post('/update-team/{id}', [TeamController::class, 'update'])->name('team.update');
 
             Route::get('/list-schedule', [ScheduleController::class, 'index'])->name('schedule.index');
             Route::get('/create-schedule', [ScheduleController::class, 'create'])->name('schedule.create');
@@ -122,3 +123,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
         }
     );
 });
+Auth::routes(['verify' => true]);
+Auth::routes(['register' => false]);
+

@@ -15,6 +15,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/socialite": "^5.10",
         "laravel/tinker": "^2.5",
+        "laravel/ui": "*",
         "livewire/livewire": "^2.5",
         "predis/predis": "^2.2",
         "pusher/pusher-php-server": "^7.2",
