@@ -153,7 +153,7 @@ use Illuminate\Support\Facades\Hash;
             <div class="col-md-8 col-lg-6 col-xl-6">
                 <div class="card" id="chat1" style="border-radius: 15px;">
                     <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0">
-                        <p class="mb-0 fw-bold">{{ ('Live chat') }}</p>
+                        <p class="mb-0 fw-bold">{{ __('Live chat') }}</p>
                     </div>
                     <div class="card-body">
                         @if(Auth::check() and $isJoined)

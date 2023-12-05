@@ -23,6 +23,7 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+Auth::routes(['register' => false, 'reset' => false]);
 Route::get('test-mail', function () {
     return view('auth.verify-email');
 });
@@ -97,13 +98,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/league/{id}', [LeagueController::class, 'show'])->name('league.show');
             Route::get('/edit-league/{id}', [LeagueController::class, 'edit'])->name('league.edit');
             Route::post('/update-league/{id}', [LeagueController::class, 'update'])->name('league.update');
-
-//            Route::get('/list-team', [TeamController::class, 'index'])->name('team.index');
-//            Route::get('/create-team', [TeamController::class, 'create'])->name('team.create');
-//            Route::post('/store-team', [TeamController::class, 'store'])->name('team.store');
-//            Route::get('/team/{id}', [TeamController::class, 'show'])->name('team.show');
-//            Route::get('/edit-team/{id}', [TeamController::class, 'edit'])->name('team.edit');
-//            Route::post('/update-team/{id}', [TeamController::class, 'update'])->name('team.update');
 
             Route::get('/list-schedule', [ScheduleController::class, 'index'])->name('schedule.index');
             Route::get('/create-schedule', [ScheduleController::class, 'create'])->name('schedule.create');
