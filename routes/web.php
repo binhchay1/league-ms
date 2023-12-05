@@ -22,7 +22,7 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Auth::routes(['register' => false, 'reset' => false]);
+
 Route::get('test-mail', function () {
     return view('auth.verify-email');
 });
@@ -30,7 +30,7 @@ Route::get('test', function () {
     return view('auth.verify-email-success');
 });
 
-Route::get('/user/verify/{token}', [AuthController::class, 'verifyEmail'])->name('user.verify');
+Route::get('/user/verify/{token}/', [AuthController::class, 'verifyEmail'])->name('user.verify');
 
 Route::middleware(['verify_email'])->group(function () {
 });
@@ -103,7 +103,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/schedule/{id}/', [ScheduleController::class, 'show'])->name('schedule.show');
             Route::get('/edit-schedule/{id}/', [ScheduleController::class, 'edit'])->name('schedule.edit');
             Route::post('/update-schedule/{id}/', [ScheduleController::class, 'update'])->name('schedule.update');
-            Route::get('/result', [ScheduleController::class, 'result'])->name('schedule.result');
+            Route::get('/result/', [ScheduleController::class, 'result'])->name('schedule.result');
 
             Route::get('/list-group/', [GroupController::class, 'index'])->name('group.index');
             Route::post('/store-group/', [GroupController::class, 'store'])->name('group.store');
