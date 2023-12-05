@@ -18,6 +18,7 @@ class CreateRankingTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('points');
             $table->string('type');
+            $table->index(['user_id', 'created_at', 'type']);
             $table->timestamps();
         });
     }

@@ -8,7 +8,7 @@
                     MEN'S SINGLES <span>8 ENTRIES FROM 7 COUNTRIES</span>
                 </div>
                 <ul>
-                    @foreach($tourInfo->userLeagues as $listTour)
+                    @foreach($leagueInfor->userLeagues as $listTour)
                     <li>
                         <div class="info">
                             <div class="flag-name-wrap">

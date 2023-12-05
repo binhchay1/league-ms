@@ -65,13 +65,13 @@
                     <div class="box-results-tournament">
                         <div>
                             <div class="logo-left">
-                                <img height="90" src="{{ $tourInfo->images }}" alt="logo">
+                                <img height="90" src="{{ $leagueInfor->images }}" alt="logo">
                             </div>
                             <div class="info">
-                                <h2>{{ $tourInfo->name }}</h2>
-                                <h5>{{__('Start Date')}}: {{ $tourInfo->start_date }}</h5>
-                                <h5>{{__('End Date')}}: {{ $tourInfo->end_date }}</h5>
-                                <div class="prize">{{__('PRIZE MONEY USD ')}}${{ $tourInfo->money }}</div>
+                                <h2>{{ $leagueInfor->name }}</h2>
+                                <h5>{{__('Start Date')}}: {{ $leagueInfor->start_date }}</h5>
+                                <h5>{{__('End Date')}}: {{ $leagueInfor->end_date }}</h5>
+                                <div class="prize">{{__('PRIZE MONEY USD ')}}${{ $leagueInfor->money }}</div>
                             </div>
                         </div>
                     </div>
@@ -80,13 +80,13 @@
                 <div class="wrapper-content-results" style="padding: 0px; margin-top: 18px;">
                     <ul id="ajaxTabs" class="content-tabs">
                         <li>
-                            <a href="{{route('result.info', $tourInfo['slug'])}}">{{__('Result')}} </a>
+                            <a href="{{route('result.info', $leagueInfor['slug'])}}">{{__('Result')}} </a>
                         </li>
                         <li><a href="">{{__('Schedule')}}</a>
                         </li>
                         <li><a href="">{{__('Fighting Branch')}}</a>
                         </li>
-                        <li><a id="player-data" href="{{route('player.info', $tourInfo['slug'])}}">{{__('Player ')}}</a>
+                        <li><a id="player-data" href="{{ route('league.player.info', $leagueInfor['slug']) }}">{{__('Player ')}}</a>
                         </li>
                     </ul>
                     <div class="register mt-4" align="right">
@@ -110,14 +110,14 @@
                                         <div class="tab-content" id="tab-content">
                                             <div class="row">
                                                 <div class="col-lg-4">
-                                                    <img class="image-modal-data lazy truncated initial loaded white center" src="{{$tourInfo->images}}">
+                                                    <img class="image-modal-data lazy truncated initial loaded white center" src="{{$leagueInfor->images}}">
                                                 </div>
                                                 <div class="col-lg-8 league-data">
-                                                    <h4 class="">{{ $tourInfo->name }}</h4>
-                                                    {{ $tourInfo->type_of_league }}
-                                                    <h6 class="">{{__('Start Date')}}: {{ $tourInfo->start_date }}</h6>
-                                                    <h6 class="">{{__('End Date')}}: {{ $tourInfo->end_date }}</h6>
-                                                    <p class="">{{__('PRIZE MONEY USD ')}}${{ $tourInfo->money }}</p>
+                                                    <h4 class="">{{ $leagueInfor->name }}</h4>
+                                                    {{ $leagueInfor->type_of_league }}
+                                                    <h6 class="">{{__('Start Date')}}: {{ $leagueInfor->start_date }}</h6>
+                                                    <h6 class="">{{__('End Date')}}: {{ $leagueInfor->end_date }}</h6>
+                                                    <p class="">{{__('PRIZE MONEY USD ')}}${{ $leagueInfor->money }}</p>
                                                 </div>
                                                 <div class="checkbox" align="center">
                                                     <input id="check" name="checkbox" type="checkbox">
@@ -145,7 +145,7 @@
                                                         </tr>
                                                         </thead>
                                                         <tr class="row-top-eight">
-                                                            <input type="hidden" name="league_id" id="" value="{{$tourInfo->id}}">
+                                                            <input type="hidden" name="league_id" id="" value="{{$leagueInfor->id}}">
                                                             <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                                             <input type="hidden" name="status" value="0">
                                                             <td align="center" >
@@ -187,7 +187,7 @@
 
                     <div class="content-results">
                         <div class="item-results">
-                            @if(Route::current()->getName() == 'player.info')
+                            @if(Route::current()->getName() == 'league.player.info')
                                 <div>
                                     @include('page.league.detail.player')
                                 </div>

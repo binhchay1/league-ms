@@ -32,11 +32,8 @@ Route::get('test', function () {
 
 Route::get('/user/verify/{token}', [AuthController::class, 'verifyEmail'])->name('user.verify');
 
-Route::middleware(['verify_email'])->group(function ()
-{
-
+Route::middleware(['verify_email'])->group(function () {
 });
-
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/list-of-league', [HomeController::class, 'listLeague'])->name('list.league');
@@ -50,14 +47,14 @@ Route::get('/privacy', [HomeController::class, 'viewPrivacy'])->name('privacy');
 Route::get('/term-and-conditions', [HomeController::class, 'viewTermAndConditions'])->name('term.and.conditions');
 Route::get('/pricing', [HomeController::class, 'viewPricing'])->name('pricing');
 Route::get('/info/{slug}', [HomeController::class, 'showInfo'])->name('tour.info');
-Route::get('/info/{slug}/player', [HomeController::class, 'showPlayer'])->name('player.info');
+Route::get('/info/{slug}/player', [HomeController::class, 'showPlayer'])->name('league.player.info');
 Route::get('/info/{slug}/result', [HomeController::class, 'showResult'])->name('result.info');
 Route::get('/list-teams', [HomeController::class, 'listTeam'])->name('list.team');
 Route::get('/group', [HomeController::class, 'listGroup'])->name('list.group');
 Route::get('/detail-group', [HomeController::class, 'detailGroup'])->name('detail.group');
 Route::post('/register-league', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
 Route::get('/ranking', [HomeController::class, 'viewRanking'])->name('ranking');
-
+Route::get('/player/{id}', [HomeController::class, 'viewInforPlayer'])->name('player.info');
 
 Route::middleware(['verified'])->group(function () {
     Route::get('/signout', [AuthController::class, 'signOut'])->name('signout');
@@ -86,7 +83,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/team-manager', [HomeController::class, 'teamManager'])->name('team-manager');
     Route::get('/league-manager', [HomeController::class, 'leagueManager'])->name('league-manager');
 
-    Route::middleware(['admin', 'auth'])->group(
+
+    Route::middleware(['admin', 'auth', 'verified'])->group(
         function () {
             Route::get('/dashboard', [AuthController::class, 'dashboard']);
 
@@ -100,12 +98,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/edit-league/{id}', [LeagueController::class, 'edit'])->name('league.edit');
             Route::post('/update-league/{id}', [LeagueController::class, 'update'])->name('league.update');
 
-            Route::get('/list-team', [TeamController::class, 'index'])->name('team.index');
-            Route::get('/create-team', [TeamController::class, 'create'])->name('team.create');
-            Route::post('/store-team', [TeamController::class, 'store'])->name('team.store');
-            Route::get('/team/{id}', [TeamController::class, 'show'])->name('team.show');
-            Route::get('/edit-team/{id}', [TeamController::class, 'edit'])->name('team.edit');
-            Route::post('/update-team/{id}', [TeamController::class, 'update'])->name('team.update');
+//            Route::get('/list-team', [TeamController::class, 'index'])->name('team.index');
+//            Route::get('/create-team', [TeamController::class, 'create'])->name('team.create');
+//            Route::post('/store-team', [TeamController::class, 'store'])->name('team.store');
+//            Route::get('/team/{id}', [TeamController::class, 'show'])->name('team.show');
+//            Route::get('/edit-team/{id}', [TeamController::class, 'edit'])->name('team.edit');
+//            Route::post('/update-team/{id}', [TeamController::class, 'update'])->name('team.update');
 
             Route::get('/list-schedule', [ScheduleController::class, 'index'])->name('schedule.index');
             Route::get('/create-schedule', [ScheduleController::class, 'create'])->name('schedule.create');
@@ -125,3 +123,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
         }
     );
 });
+Auth::routes(['verify' => true]);
+Auth::routes(['register' => false]);
+

@@ -83,7 +83,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(VerifyUser::class);
     }
 
-    public function ranking() {
-        return $this->hasOne(Ranking::class);
+    public function ranking()
+    {
+        return $this->hasMany(Ranking::class);
     }
 }
