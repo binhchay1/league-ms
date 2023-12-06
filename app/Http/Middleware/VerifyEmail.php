@@ -17,10 +17,10 @@ class VerifyEmail
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::user()->email_verified_at) {
-            Auth()->logout();
-            return redirect()->route('login')
-                ->with('message', 'You need to confirm your account. We have sent you an activation code, please check your email.');
+        if (Auth::check()) {
+            if (!Auth::user()->email_verified_at) {
+                return redirect()->route('verify.email');
+            }
         }
 
         return $next($request);

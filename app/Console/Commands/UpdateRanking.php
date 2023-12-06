@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Enums\Ranking;
 use App\Repositories\RankingRepository;
 use Illuminate\Console\Command;
 
@@ -20,7 +21,7 @@ class UpdateRanking extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Update place of rankings';
 
     /**
      * Create a new command instance.
@@ -40,8 +41,20 @@ class UpdateRanking extends Command
      */
     public function handle()
     {
-        $ranking = $this->rankingRepository->getRankingByTypeForUpdatePlaces();
+        $listType = Ranking::RANKING_ARRAY_TYPE;
+        foreach ($listType as $type) {
+            $ranking = $this->rankingRepository->getRankingByTypeForUpdatePlaces($type);
+            $places = 1;
+            foreach ($ranking as $record) {
+                $data = [
+                    'places' => $places,
+                    'places_old' => $record->places
+                ];
 
-        dd($ranking);
+                $this->rankingRepository->updateById($record->id, $data);
+            }
+        }
+
+        dump('--------------- Updated places of ranking ---------------');
     }
 }
