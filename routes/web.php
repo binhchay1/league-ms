@@ -45,8 +45,9 @@ Route::middleware(['verified'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/user/verify/{token}/', [AuthController::class, 'verifyEmail'])->name('user.verify');
+    Route::get('/verify/{token}/', [AuthController::class, 'verifyEmail'])->name('user.verify');
     Route::get('/verify-email/', [AuthController::class, 'viewVerifyEmail'])->name('verify.email');
+    Route::post('/resend-verify/', [AuthController::class, 'resendVerify'])->name('resend.verify.email');
 
     Route::middleware(['verified'])->group(function () {
         Route::get('/signout/', [AuthController::class, 'signOut'])->name('signout');
@@ -108,7 +109,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/list-product', [ProductController::class, 'index'])->name('product.index');
             Route::post('/store-product', [ProductController::class, 'store'])->name('product.store');
             Route::get('/create-product', [ProductController::class, 'create'])->name('product.create');
-
         }
     );
 });

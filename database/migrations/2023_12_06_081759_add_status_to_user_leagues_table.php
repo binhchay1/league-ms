@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStatusToUserLeagueTable extends Migration
+class AddStatusToUserLeaguesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddStatusToUserLeagueTable extends Migration
      */
     public function up()
     {
-        Schema::table('user_league', function (Blueprint $table) {
+        Schema::table('user_leagues', function (Blueprint $table) {
             $table->integer('status');
         });
     }
@@ -25,7 +25,7 @@ class AddStatusToUserLeagueTable extends Migration
      */
     public function down()
     {
-        Schema::table('user_league', function (Blueprint $table) {
+        Schema::table('user_leagues', function (Blueprint $table) {
             $table->dropColumn('status');
         });
     }
