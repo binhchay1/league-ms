@@ -9,6 +9,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('/images/logo-no-background.png') }}">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link rel="stylesheet" href="{{ asset('/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/admin/adminlte.min.css') }}">

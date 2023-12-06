@@ -77,35 +77,39 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/league-manager/', [HomeController::class, 'leagueManager'])->name('league-manager');
 
 
-    Route::middleware(['admin', 'auth', 'verified'])->group(
+    Route::middleware(['admin', 'auth'])->group(
         function () {
-            Route::get('/dashboard/', [AuthController::class, 'dashboard']);
+            Route::get('/dashboard', [AuthController::class, 'dashboard']);
 
-            Route::get('/list-user/', [UserController::class, 'index'])->name('user.index');
-            Route::get('/delete/{id}/', [UserController::class, 'destroy'])->name('user.delete');
+            Route::get('/list-user', [UserController::class, 'index'])->name('user.index');
+            Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
 
-            Route::get('/list-league/', [LeagueController::class, 'index'])->name('league.index');
-            Route::get('/create-league/', [LeagueController::class, 'create'])->name('league.create');
-            Route::post('/store-league/', [LeagueController::class, 'store'])->name('league.store');
-            Route::get('/league/{id}/', [LeagueController::class, 'show'])->name('league.show');
-            Route::get('/edit-league/{id}/', [LeagueController::class, 'edit'])->name('league.edit');
-            Route::post('/update-league/{id}/', [LeagueController::class, 'update'])->name('league.update');
+            Route::get('/list-league', [LeagueController::class, 'index'])->name('league.index');
+            Route::get('/create-league', [LeagueController::class, 'create'])->name('league.create');
+            Route::post('/store-league', [LeagueController::class, 'store'])->name('league.store');
+            Route::get('/league/{id}', [LeagueController::class, 'show'])->name('league.show');
+            Route::get('/edit-league/{id}', [LeagueController::class, 'edit'])->name('league.edit');
+            Route::post('/update-league/{id}', [LeagueController::class, 'update'])->name('league.update');
+            Route::post('/update-player-league/{id}', [LeagueController::class, 'updatePlayer'])->name('league.updatePlayer');
+            Route::get('/delete-player-league/{id}', [LeagueController::class, 'destroyPlayer'])->name('league.destroyPlayer');
 
-            Route::get('/list-schedule/', [ScheduleController::class, 'index'])->name('schedule.index');
-            Route::get('/create-schedule/', [ScheduleController::class, 'create'])->name('schedule.create');
-            Route::post('/store-schedule/', [ScheduleController::class, 'store'])->name('schedule.store');
-            Route::get('/schedule/{id}/', [ScheduleController::class, 'show'])->name('schedule.show');
-            Route::get('/edit-schedule/{id}/', [ScheduleController::class, 'edit'])->name('schedule.edit');
-            Route::post('/update-schedule/{id}/', [ScheduleController::class, 'update'])->name('schedule.update');
-            Route::get('/result/', [ScheduleController::class, 'result'])->name('schedule.result');
 
-            Route::get('/list-group/', [GroupController::class, 'index'])->name('group.index');
-            Route::post('/store-group/', [GroupController::class, 'store'])->name('group.store');
-            Route::get('/create-group/', [GroupController::class, 'create'])->name('group.create');
+            Route::get('/list-schedule', [ScheduleController::class, 'index'])->name('schedule.index');
+            Route::get('/create-schedule', [ScheduleController::class, 'create'])->name('schedule.create');
+            Route::post('/store-schedule', [ScheduleController::class, 'store'])->name('schedule.store');
+            Route::get('/schedule/{id}', [ScheduleController::class, 'show'])->name('schedule.show');
+            Route::get('/edit-schedule/{id}', [ScheduleController::class, 'edit'])->name('schedule.edit');
+            Route::post('/update-schedule/{id}', [ScheduleController::class, 'update'])->name('schedule.update');
+            Route::get('/result', [ScheduleController::class, 'result'])->name('schedule.result');
 
-            Route::get('/list-product/', [ProductController::class, 'index'])->name('product.index');
-            Route::post('/store-product/', [ProductController::class, 'store'])->name('product.store');
-            Route::get('/create-product/', [ProductController::class, 'create'])->name('product.create');
+            Route::get('/list-group', [GroupController::class, 'index'])->name('group.index');
+            Route::post('/store-group', [GroupController::class, 'store'])->name('group.store');
+            Route::get('/create-group', [GroupController::class, 'create'])->name('group.create');
+
+            Route::get('/list-product', [ProductController::class, 'index'])->name('product.index');
+            Route::post('/store-product', [ProductController::class, 'store'])->name('product.store');
+            Route::get('/create-product', [ProductController::class, 'create'])->name('product.create');
+
         }
     );
 });

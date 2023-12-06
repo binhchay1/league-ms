@@ -13,7 +13,7 @@ class LeagueRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->orderBy('created_at', 'desc')->paginate(env('PAGINATION_PER_PAGE', 10));
+        return $this->model->orderBy('created_at', 'desc')->get();
     }
 
     public function store($input)
@@ -23,7 +23,7 @@ class LeagueRepository extends BaseRepository
 
     public function show($id)
     {
-        return $this->model->where('id', $id)->first();
+        return $this->model->with('userLeagues', 'userLeagues.user')->where('id', $id)->first();
     }
 
     public function updateLeague($input, $id)
