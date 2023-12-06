@@ -12,11 +12,6 @@
 </style>
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span> {{ __('List User') }}</h4>
-    @if(session()->has('success'))
-    <div class="alert alert-success text-center">
-        {{ session()->get('success') }}
-    </div>
-    @endif
     <div class="card" style="padding: 10px">
         <div class=" container-xl table-responsive text-nowrap">
             <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">

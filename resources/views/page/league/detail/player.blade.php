@@ -2,13 +2,11 @@
     <div class="item-results">
         <div class="item-results-podium">
             <h3 class="title">
-                TOURNAMENT WINNERS 2022 </h3>
+                {{__('TOURNAMENT PLAYER')}} </h3>
             <div class="men-single">
-                <div class="title">
-                    MEN'S SINGLES <span>8 ENTRIES FROM 7 COUNTRIES</span>
-                </div>
                 <ul>
-                    @foreach($leagueInfor->userLeagues as $listTour)
+                    @forelse($leagueInfor->userLeagues as $listTour)
+                        @if($listTour->status == 1)
                     <li>
                         <div class="info">
                             <div class="flag-name-wrap">
@@ -37,7 +35,11 @@
                         <div class="points-gained">
                             POINTS GAINED - <b>12,000</b></div>
                     </li>
-                        @endforeach
+
+                        @endif
+                    @empty
+                        <h2>{{__('No players found')}}</h2>
+                    @endforelse
                 </ul>
             </div>
         </div>

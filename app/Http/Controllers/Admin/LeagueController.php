@@ -4,22 +4,28 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\Role;
 use App\Http\Requests\LeagueRequest;
+use App\Models\UserLeague;
 use App\Repositories\LeagueRepository;
 use App\Http\Controllers\Controller;
 use App\Enums\Utility;
+use App\Repositories\UserLeagueRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class LeagueController extends Controller
 {
     protected $leagueRepository;
+    protected $userLeagueRepository;
     protected $utility;
 
     public function __construct(
+        UserLeagueRepository $userLeagueRepository,
         LeagueRepository $leagueRepository,
         Utility $ultity
     ) {
         $this->leagueRepository = $leagueRepository;
+        $this->userLeagueRepository = $userLeagueRepository;
         $this->utility = $ultity;
     }
     public function index()
@@ -61,7 +67,8 @@ class LeagueController extends Controller
 
     public function show($id)
     {
-        $this->leagueRepository->show($id);
+        $userRegisterLeague = $this->leagueRepository->show($id);
+        return view('admin.league.user-register-league', compact('userRegisterLeague'));
     }
 
     public function edit($id)
@@ -87,5 +94,22 @@ class LeagueController extends Controller
 
         $this->leagueRepository->updateLeague($input, $id);
         return redirect('list-league');
+    }
+
+    public function updatePlayer(Request $request, $id)
+    {
+
+        $input = $request->except(['_token']);
+        foreach($input['status'] as $key => $value)
+        {
+            $this->userLeagueRepository->updatePlayer(['status' => $value], $key);
+        }
+        return back()->with('success', __('Thông tin đã được gửi đi thành công!'));
+    }
+
+    public function destroyPlayer($id)
+    {
+        $this->userLeagueRepository->destroy($id);
+        return back()->with('success', 'Delete User successfully!');
     }
 }

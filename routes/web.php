@@ -23,7 +23,6 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Auth::routes(['register' => false, 'reset' => false]);
 Route::get('test-mail', function () {
     return view('auth.verify-email');
 });
@@ -85,7 +84,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/league-manager', [HomeController::class, 'leagueManager'])->name('league-manager');
 
 
-    Route::middleware(['admin', 'auth', 'verified'])->group(
+    Route::middleware(['admin', 'auth'])->group(
         function () {
             Route::get('/dashboard', [AuthController::class, 'dashboard']);
 
@@ -98,6 +97,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/league/{id}', [LeagueController::class, 'show'])->name('league.show');
             Route::get('/edit-league/{id}', [LeagueController::class, 'edit'])->name('league.edit');
             Route::post('/update-league/{id}', [LeagueController::class, 'update'])->name('league.update');
+            Route::post('/update-player-league/{id}', [LeagueController::class, 'updatePlayer'])->name('league.updatePlayer');
+            Route::get('/delete-player-league/{id}', [LeagueController::class, 'destroyPlayer'])->name('league.destroyPlayer');
+
 
             Route::get('/list-schedule', [ScheduleController::class, 'index'])->name('schedule.index');
             Route::get('/create-schedule', [ScheduleController::class, 'create'])->name('schedule.create');
