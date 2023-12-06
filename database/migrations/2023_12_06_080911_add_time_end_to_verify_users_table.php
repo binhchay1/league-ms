@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPlacesOldToRankingTable extends Migration
+class AddTimeEndToVerifyUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddPlacesOldToRankingTable extends Migration
      */
     public function up()
     {
-        Schema::table('ranking', function (Blueprint $table) {
-            $table->bigInteger('places_old');
+        Schema::table('verify_users', function (Blueprint $table) {
+            $table->timestamp('time_end');
         });
     }
 
@@ -25,8 +25,8 @@ class AddPlacesOldToRankingTable extends Migration
      */
     public function down()
     {
-        Schema::table('ranking', function (Blueprint $table) {
-            $table->dropColumn('places_old');
+        Schema::table('verify_users', function (Blueprint $table) {
+            $table->dropColumn('time_end');
         });
     }
 }

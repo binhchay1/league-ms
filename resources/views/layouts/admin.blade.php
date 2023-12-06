@@ -10,6 +10,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <link rel="stylesheet" href="{{ asset('backend/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
@@ -23,6 +24,9 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 =======
+=======
+
+>>>>>>> cd44485d281ce03d9e4ee915a0864b6fab5fd7b1
     <link rel="stylesheet" href="{{ asset('/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/admin/adminlte.min.css') }}">
@@ -31,7 +35,10 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+<<<<<<< HEAD
 >>>>>>> e4a074c07bb3e00eff31d789573e3490536a181b
+=======
+>>>>>>> cd44485d281ce03d9e4ee915a0864b6fab5fd7b1
 
     @yield('css')
 
