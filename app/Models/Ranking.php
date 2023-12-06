@@ -13,11 +13,11 @@ class Ranking extends Model
     protected $table = 'ranking';
 
     protected $fillable = [
-        'user_id', 'points', 'type'
+        'user_id', 'points', 'type', 'places'
     ];
 
     public function users()
     {
-        return $this->belongsTo(User::class, 'id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }
