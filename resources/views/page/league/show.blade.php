@@ -100,10 +100,11 @@
                             <div class="modal-content" id="modal-content">
                                 <!-- Modal Header -->
                                 <div class="modal-header">
-                                    <h4 class="modal-title">{{__('Register')}}</h4>
+                                    <h4 class="modal-title">{{__('Register Tournament')}}</h4>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
 
+                            @if(Auth::check())
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     <div class="leagueInfo">
@@ -124,7 +125,7 @@
                                                     <label for="checkbox">{{__('I have read and agree to the tournament rules')}}</label>
                                                 </div>
                                                 <div align="center">
-                                                    <button id="open-tab1" class="btn btn-success" disabled>{{__('Register')}}</button>
+                                                    <button id="open-tab1" class="btn btn-success" disabled>{{__('Register ')}}</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,25 +136,34 @@
                                             @csrf()
                                             <div class="tab-content rankings-content_tabpanel">
                                                 <div class="item-active">
-                                                    <table width="100%" cellpadding="0" cellspacing="0" border="0" class="rankings-table">
+                                                    <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                                           class="rankings-table">
                                                         <thead align="center">
                                                         <tr>
-                                                            <th style="text-align: center" class="col-rank" align="center">{{__('Name')}}</th>
-                                                            <th style="text-align: center" class="col-country" align="center">{{__('Image')}}</th>
-                                                            <th style="text-align: center"  class="col-player">{{__('Age')}}</th>
-                                                            <th style="text-align: center" class="col-points" align="center">{{__('Address')}}</th>
+                                                            <th style="text-align: center" class="col-rank"
+                                                                align="center">{{__('Name')}}</th>
+                                                            <th style="text-align: center" class="col-country"
+                                                                align="center">{{__('Image')}}</th>
+                                                            <th style="text-align: center"
+                                                                class="col-player">{{__('Age')}}</th>
+                                                            <th style="text-align: center" class="col-points"
+                                                                align="center">{{__('Address')}}</th>
                                                         </tr>
                                                         </thead>
                                                         <tr class="row-top-eight">
-                                                            <input type="hidden" name="league_id" id="" value="{{$leagueInfor->id}}">
-                                                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                                            <input type="hidden" name="league_id" id=""
+                                                                   value="{{$leagueInfor->id}}">
+                                                            <input type="hidden" name="user_id"
+                                                                   value="{{Auth::user()->id}}">
                                                             <input type="hidden" name="status" value="0">
-                                                            <td align="center" >
+                                                            <td align="center">
                                                                 {{Auth::user()->name}}
                                                             </td>
                                                             <td align="center">
                                                                 <div class="country">
-                                                                    <img  width="48" src="/{{Auth::user()->profile_photo_path}}" title="Japan" class="flag image-user">
+                                                                    <img width="48"
+                                                                         src="/{{Auth::user()->profile_photo_path}}"
+                                                                         title="Japan" class="flag image-user">
                                                                 </div>
                                                             </td>
 
@@ -170,17 +180,18 @@
                                                 </div>
                                             </div>
                                             <div class="mt-4">
-                                                <button type="submit" class="btn btn-success me-2">{{ __('Send Information') }}</button>
+                                                <button type="submit"
+                                                        class="btn btn-success me-2">{{ __('Send Information') }}</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
-
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                </div>
-
+                                @else
+                                    <div align="center">
+                                        <h3>{{__('Please log in before registering for the tournament!')}}</h3>
+                                        <a class="btn btn-dark btn-lg btn-block" href="{{ route('login') }}"> {{ __('Login') }}</a>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
