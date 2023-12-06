@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/verify/{token}/', [AuthController::class, 'verifyEmail'])->name('user.verify');
     Route::get('/verify-email/', [AuthController::class, 'viewVerifyEmail'])->name('verify.email');
     Route::post('/resend-verify/', [AuthController::class, 'resendVerify'])->name('resend.verify.email');
+    Route::get('/verified-email/', [AuthController::class, 'viewVerifiedEmail'])->name('verified.email');
 
     Route::middleware(['verified'])->group(function () {
         Route::get('/signout/', [AuthController::class, 'signOut'])->name('signout');
