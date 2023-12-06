@@ -30,6 +30,7 @@ $isFull = false;
         }
         @endphp
 
+        @if(Auth::check())
         @foreach($group->group_users as $user)
         @php
         if($user->user_id == Auth::user()->id) {
@@ -37,6 +38,7 @@ $isFull = false;
         }
         @endphp
         @endforeach
+        @endif
         <div class="col-md-4">
             <div class="card p-3 mb-4" style="background: url('/images/auth-logo-opacity-50.png') !important">
                 <div class="d-flex justify-content-between">
@@ -135,14 +137,14 @@ $isFull = false;
 <script>
     function detailGroup(id) {
         let name = id.substring(6);
-        let url = 'detail-group?g_i=' + name;
+        let url = '/detail-group?g_i=' + name;
 
         window.location.href = url;
     }
 
     function requestJoin(id) {
         let g_i = id.substring(7);
-        let url = 'join-group';
+        let url = '/join-group/';
 
         $.ajax({
             url: url,
@@ -152,15 +154,15 @@ $isFull = false;
             }
         }).done(function(result) {
             if (result == 'success') {
-                let btnSuccess = '<div><button class="btn btn-secondary" disabled>' + '<?php __('Joined') ?>' + '</button></div>'
+                let btnSuccess = '<div><button class="btn btn-secondary" disabled>' + '<?php echo __('Joined') ?>' + '</button></div>'
                 $('#btn-join').empty();
                 $('#btn-join').append(btnSuccess);
             } else if (result == 'wait') {
-                let btnWait = '<div><button class="btn btn-secondary" disabled>' + '<?php __('Wait group owner accept') ?>' + '</button></div>'
+                let btnWait = '<div><button class="btn btn-secondary" disabled>' + '<?php echo __('Wait group owner accept') ?>' + '</button></div>'
                 $('#btn-join').empty();
                 $('#btn-join').append(btnWait);
             } else {
-                let btnFail = '<div><p class="text-red">' + '<?php __('Fail to join. Try again later!') ?>' + '</p></div>'
+                let btnFail = '<div><p class="text-red">' + '<?php echo __('Fail to join. Try again later!') ?>' + '</p></div>'
                 $('#btn-join').append(btnFail);
             }
         });

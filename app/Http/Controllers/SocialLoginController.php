@@ -25,7 +25,6 @@ class SocialLoginController extends Controller
 
     public function handleGoogleCallback()
     {
-        dd(1);
         try {
             $user = Socialite::driver('google')->user();
             $getUserByEmail = $this->userRepository->getUserByEmail($user->email);

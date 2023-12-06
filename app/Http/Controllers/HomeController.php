@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Ranking;
 use App\Enums\Utility;
 use App\Repositories\GroupRepository;
 use App\Repositories\LeagueRepository;
@@ -106,22 +107,42 @@ class HomeController extends Controller
         return view('page.term');
     }
 
-    public function viewRanking()
+    public function viewRanking(Request $request)
     {
-        $ranking = $this->rankingRepository->get();
-        return view('page.ranking', compact('ranking'));
+        $type = $request->get('type');
+        if (!empty($type)) {
+            if (!in_array($type, Ranking::RANKING_ARRAY_TYPE)) {
+                abort(404);
+            }
+        } else {
+            $type = Ranking::RANKING_MALE_DOUBLES;
+        }
+
+        $ranking = $this->rankingRepository->getTopByType($type);
+        return view('page.ranking.index', compact('ranking'));
     }
 
     public function viewInforPlayer($id)
     {
-        $user = $this->userRepository->getById($id);
-        return view('page.player', compact('user'));
+        $user_id = $this->utility->decode_hash_id($id);
+        $users = $this->userRepository->getById($user_id);
+
+        if (empty($users)) {
+            abort(404);
+        }
+
+        $user = $this->userRepository->getInformationUser($user_id);
+        $group = $this->groupUserRepository->getGroupByUserId($user_id);
+        $league = $this->userLeagueRepository->getLeagueByUserId($user_id);
+
+        return view('page.user.player', compact('user', 'group', 'league'));
     }
 
     public function listLeague()
     {
         $listLeague = $this->leagueRepository->index();
         $paginateLeague = $this->utility->paginate($listLeague, 5);
+
         return view('page.league.index', compact('listLeague', 'paginateLeague'));
     }
 
@@ -178,7 +199,6 @@ class HomeController extends Controller
                 $isJoined = true;
             }
             $messages = $this->messageRepository->getMessagesByGroupId($getGroup->id);
-
 
             return view('page.group.detail', compact('getGroup', 'messages', 'members', 'isJoined'));
         }

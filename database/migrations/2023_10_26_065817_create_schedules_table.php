@@ -20,7 +20,7 @@ class CreateSchedulesTable extends Migration
             $table->string('match');
             $table->string('time');
             $table->dateTime('date');
-            $table->bigInteger('tournament_id');
+            $table->bigInteger('league_id');
             $table->string('stadium')->nullable();
             $table->timestamps();
         });
