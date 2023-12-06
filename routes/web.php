@@ -22,42 +22,6 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-<<<<<<< HEAD
-
-Route::get('test-mail', function () {
-    return view('auth.verify-email');
-});
-Route::get('test', function () {
-    return view('auth.verify-email-success');
-});
-
-Route::get('/user/verify/{token}/', [AuthController::class, 'verifyEmail'])->name('user.verify');
-
-Route::middleware(['verify_email'])->group(function () {
-});
-
-Route::get('/', [HomeController::class, 'viewHome'])->name('home');
-Route::get('/list-of-league/', [HomeController::class, 'listLeague'])->name('list.league');
-Route::get('/top-league/', [HomeController::class, 'listTopLeague'])->name('top.league');
-Route::post('/search/', [HomeController::class, 'viewSearch'])->name('search.result');
-Route::get('/search/', [HomeController::class, 'viewSearch'])->name('search');
-Route::get('/shop/', [HomeController::class, 'viewShop'])->name('shop');
-Route::get('/about/', [HomeController::class, 'viewAbout'])->name('about');
-Route::get('/privacy/', [HomeController::class, 'viewPrivacy'])->name('privacy');
-Route::get('/term-and-conditions/', [HomeController::class, 'viewTermAndConditions'])->name('term.and.conditions');
-Route::get('/pricing/', [HomeController::class, 'viewPricing'])->name('pricing');
-Route::get('/info/{slug}/', [HomeController::class, 'showInfo'])->name('league.info');
-Route::get('/info/{slug}/player/', [HomeController::class, 'showPlayer'])->name('league.player.info');
-Route::get('/info/{slug}/result/', [HomeController::class, 'showResult'])->name('result.info');
-Route::get('/list-teams/', [HomeController::class, 'listTeam'])->name('list.team');
-Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
-Route::get('/detail-group/', [HomeController::class, 'detailGroup'])->name('detail.group');
-Route::post('/register-league/', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
-Route::get('/ranking/', [HomeController::class, 'viewRanking'])->name('ranking');
-Route::get('/player/{id}/', [HomeController::class, 'viewInforPlayer'])->name('player.info');
-
-=======
->>>>>>> cd44485d281ce03d9e4ee915a0864b6fab5fd7b1
 Route::middleware(['verified'])->group(function () {
     Route::get('/', [HomeController::class, 'viewHome'])->name('home');
     Route::get('/list-of-league/', [HomeController::class, 'listLeague'])->name('list.league');
@@ -120,8 +84,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/list-user', [UserController::class, 'index'])->name('user.index');
             Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
 
-<<<<<<< HEAD
-=======
             Route::get('/list-league', [LeagueController::class, 'index'])->name('league.index');
             Route::get('/create-league', [LeagueController::class, 'create'])->name('league.create');
             Route::post('/store-league', [LeagueController::class, 'store'])->name('league.store');
@@ -130,7 +92,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('/update-league/{id}', [LeagueController::class, 'update'])->name('league.update');
             Route::post('/update-player-league/{id}', [LeagueController::class, 'updatePlayer'])->name('league.updatePlayer');
             Route::get('/delete-player-league/{id}', [LeagueController::class, 'destroyPlayer'])->name('league.destroyPlayer');
-
 
             Route::get('/list-schedule', [ScheduleController::class, 'index'])->name('schedule.index');
             Route::get('/create-schedule', [ScheduleController::class, 'create'])->name('schedule.create');
@@ -151,4 +112,3 @@ Route::middleware(['auth:sanctum'])->group(function () {
         }
     );
 });
->>>>>>> cd44485d281ce03d9e4ee915a0864b6fab5fd7b1
