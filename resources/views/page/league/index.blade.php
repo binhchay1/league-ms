@@ -6,6 +6,7 @@
 
 @section('css')
 <link rel="stylesheet" id="bwf-style-css" href="{{asset('css/content/league.css')}}" type="text/css" media="all" />
+
 @endsection
 
 @section('content')
@@ -23,7 +24,7 @@
         </div>
         <div class="item-results">
             @foreach($listLeague as $listLeague)
-            <div class="tblResultLanding" style=" margin-top: 10px; background:#d8d8d8" onmouseover="this.style.background='#a4a4a4';" onmouseout="this.style.background='#d8d8d8';">
+            <div class="tblResultLanding" style=" margin-top: 10px; background:#ffffff" onmouseover="this.style.background='#a4a4a4';" onmouseout="this.style.background='#ffffff';">
                 <a href="{{route('league.info', $listLeague['slug'])}}">
                     <div class="tr-tournament-detail" id="4734">
                         <div class="tournament-detail ">
@@ -50,7 +51,7 @@
                                         </div>
                                         <div>
                                             <div>
-                                                <img width="75" src="{{$listLeague->image_nation_flag}}" title="China" class=" b-error b-error">
+                                                <img width="75" src="{{$listLeague->image_nation_flag ?? asset('/images/vietnam.png')}}"  class=" b-error b-error">
                                             </div>
                                         </div>
                                     </div>
@@ -64,37 +65,15 @@
         </div>
 
         <!-- Paginate -->
-        <div class="navigator short">
+        <div class="navigator short" >
             <div class="head d-flex justify-content-center ">
                     <ul class="pagination">
                         <li>
                             <a href="{{ $paginateLeague->previousPageUrl() }}" aria-label="Previous" class="prevPlayersList">
                                 <span aria-hidden="true"><span class="fa fa-angle-left"></span> PREVIOUS</span>
                             </a>
-                        </li>
-                        @if($paginateLeague->currentPage() != 1)
-                            <li>
-                                <a href="{{ $paginateLeague->previousPageUrl() }}">{{ $paginateLeague->currentPage() - 1 }}</a>
-                            </li>
-                        @endif
-                        <li class='current'>
-                            <span>{{ $paginateLeague->currentPage() }}</span>
-                        </li>
-                        @if($paginateLeague->currentPage() != $paginateLeague->lastPage())
-                            <li>
-                                <a href="{{ $paginateLeague->nextPageUrl() }}">{{ $paginateLeague->currentPage() + 1 }}</a>
-                            </li>
-                        @endif
-                        @if($paginateLeague->lastPage() > $paginateLeague->currentPage() + 2)
-                            <li class="separator">
-                                <span>...</span>
-                            </li>
-                        @endif
-                        @if($paginateLeague->lastPage() > $paginateLeague->currentPage() + 1)
-                            <li>
-                                <a href="?page={{ $paginateLeague->lastPage() }}">{{ $paginateLeague->lastPage() }}</a>
-                            </li>
-                        @endif
+                        </li >
+                        &emsp;
                         <li>
                             <a href="{{ $paginateLeague->nextPageUrl() }}" aria-label="Next" class="nextPlayersList">
                                 <span aria-hidden="true">NEXT <span class="fa fa-angle-right"></span></span>
