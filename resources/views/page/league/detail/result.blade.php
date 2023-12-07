@@ -175,7 +175,7 @@
 
             <div class="std-title">
                 <div class="std-title-left">
-                    <h2 class="left">TOURNAMENT RESULTS</h2>
+                    <h2 class="left">{{__('LEAGUE RESULT')}}</h2>
                 </div>
                 <div class="std-title-center">
                 </div>

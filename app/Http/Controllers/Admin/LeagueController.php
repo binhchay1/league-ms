@@ -49,15 +49,13 @@ class LeagueController extends Controller
     {
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->slug);
-
-        if (isset($input['image'])) {
+        if (isset($input['images'])) {
             $img = $this->utility->saveImageLeague($input);
             if ($img) {
                 $path = '/images/upload/league/' . $input['images']->getClientOriginalName();
                 $input['images'] = $path;
             }
         }
-
         $this->leagueRepository->store($input);
         if (Auth::user()->role == Role::ADMIN) {
             return redirect()->to('list-league');
@@ -84,11 +82,11 @@ class LeagueController extends Controller
     {
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->slug);
-        if (isset($input['image'])) {
+        if (isset($input['images'])) {
             $img = $this->utility->saveImageLeague($input);
             if ($img) {
                 $path = '/images/upload/league/' . $input['image']->getClientOriginalName();
-                $input['image'] = $path;
+                $input['images'] = $path;
             }
         }
 

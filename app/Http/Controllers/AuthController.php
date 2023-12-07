@@ -7,33 +7,40 @@ use App\Enums\Utility;
 use App\Models\User;
 use App\Enums\Title;
 use App\Enums\Group;
+use App\Enums\Ranking;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\VerifyUser;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\GroupUserRepository;
 use App\Events\MessageSent;
+use App\Jobs\SendMail;
+use App\Mail\VerifyEmail;
 use App\Repositories\GroupRepository;
-use Illuminate\Support\Facades\Mail;
+use App\Repositories\RankingRepository;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Http\Request;
-use Hash;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Hash;
 use Session;
 
 class  AuthController extends Controller
 {
     protected $groupUserRepository;
     protected $groupRepository;
+    protected $rankingRepository;
     protected $utility;
 
     public function __construct(
         GroupUserRepository $groupUserRepository,
         GroupRepository $groupRepository,
+        RankingRepository $rankingRepository,
         Utility $ultity
     ) {
         $this->groupUserRepository = $groupUserRepository;
         $this->groupRepository = $groupRepository;
+        $this->rankingRepository = $rankingRepository;
         $this->utility = $ultity;
     }
 
@@ -98,17 +105,37 @@ class  AuthController extends Controller
         ]);
 
         $token = Str::random(60);
+        $carbonNow = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
+        $timeEnd = $carbonNow->addMinutes(60)->format('Y-m-d H:i:s');
         VerifyUser::create([
             'token' => $token,
             'user_id' => $user->id,
+            'time_end' => $timeEnd
         ]);
 
-        Mail::send('emails.verifyEmail', ['token' => $token], function($message) use($request){
-            $message->to($request->email);
-            $message->subject('Email Verification Mail');
-        });
+        $listType = Ranking::RANKING_ARRAY_TYPE;
+        foreach ($listType as $type) {
+            $data = [
+                'user_id' => $user->id,
+                'points' => 0,
+                'type' => $type,
+                'places' => 0,
+                'places_old' => 0
+            ];
 
-        return \redirect()->route('login')->with('success', 'Please click on the link sent to your email');
+            $this->rankingRepository->create($data);
+        }
+
+        $url = route('user.verify', ['token' => $token]);
+        $dataEmail = [
+            'url' => $url,
+            'user_name' => $user->name,
+        ];
+
+        $verifyEmail = new VerifyEmail($dataEmail);
+        SendMail::dispatch($request['email'], $verifyEmail)->onQueue('send_email_verify');
+
+        return \redirect()->route('verify.email');
     }
 
     public function verifyEmail($token)
@@ -117,10 +144,10 @@ class  AuthController extends Controller
         $currentDateTime = date('Y-m-d H:i:s');
         $message = 'Sorry your email cannot be identified.';
 
-        if(!is_null($verifyUser) ){
+        if (!is_null($verifyUser)) {
             $dataUser = $verifyUser->user;
 
-            if(!$dataUser->email_verified_at) {
+            if (!$dataUser->email_verified_at) {
 
                 $dataUser->email_verified_at = $currentDateTime;
                 $dataUser->save();
@@ -144,6 +171,12 @@ class  AuthController extends Controller
         $listGroup = $this->utility->paginate($getGroup, 30, '/my-group');
 
         return view('page.user.my-group', compact('listGroup'));
+    }
+
+    public function viewVerifyEmail()
+    {
+        // $token = $this->userV
+        return view('auth.verify-email');
     }
 
     public function joinGroup(Request $request)

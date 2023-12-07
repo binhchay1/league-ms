@@ -6,6 +6,8 @@
 
 @php
 use Illuminate\Support\Facades\Hash;
+
+$utility = new \App\Enums\Utility();
 @endphp
 
 @section('css')
@@ -144,6 +146,7 @@ use Illuminate\Support\Facades\Hash;
             <p><span class="fw-bold">* Location : </span>{{ $getGroup->location }}</p>
             <p><em><span class="fw-bold">----- Note : </span>{{ $getGroup->note }}</em></p>
         </div>
+        <hr>
     </div>
 </section>
 
@@ -239,7 +242,7 @@ use Illuminate\Support\Facades\Hash;
                             @foreach($members as $member)
                             <li class="d-flex mt-3">
                                 <img src="{{ $member->users->profile_photo_path }}" width="40" height="40" />
-                                <p style="margin-left: 10px;">{{ $member->users->name }}</p>
+                                <a href="{{ route('player.info', ['id' => $utility->encode_hash_id($member->users->id)]) }}" style="margin-left: 10px;">{{ $member->users->name }}</a>
                             </li>
                             @endforeach
                         </ul>
@@ -252,7 +255,7 @@ use Illuminate\Support\Facades\Hash;
 @endsection
 
 @section('js')
-<script src="http://localhost:6001/socket.io/socket.io.js"></script>
+<script src="//{{ $_SERVER['SERVER_NAME'] }}:6001/socket.io/socket.io.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script>
     <?php if (Auth::check()) { ?>

@@ -25,7 +25,7 @@ class UserLeagueRepository extends BaseRepository
     {
         return $this->model->where('id', $id)->delete();
     }
-  
+
     public function getLeagueByUserId($userId)
     {
         return $this->model->with('league')->where('user_id', $userId)->get();

@@ -11,7 +11,7 @@
         }
     </style>
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span> {{ __('List User') }}</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span> {{ __('List League') }}</h4>
         <div class="card" style="padding: 10px">
             <div class=" container-xl table-responsive text-nowrap">
                 <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">
@@ -35,7 +35,7 @@
                             <td>{{$data->name}}</td>
                             <td>{{ $data->start_date }}</td>
                             <td>{{ $data->end_date }}</td>
-                            <td><img class="image" src="{{$data->image ?? asset('/images/champion.png')}}" alt="avatar" style="width: 150px"></td>
+                            <td><img class="image" src="{{$data->images ?? asset('/images/champion.png')}}" alt="avatar" style="width: 150px"></td>
                             <td>{{ $data->location }}</td>
                             <td>{{ $data->money }}</td>
                             <td>{{ $data->number_of_athletes }}</td>
