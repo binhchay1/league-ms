@@ -2,7 +2,7 @@
     <div class="item-results">
         <div class="item-results-podium">
             <h3 class="title">
-                {{__('TOURNAMENT PLAYER')}} </h3>
+                {{__('LEAGUE PLAYER')}} </h3>
             <div class="men-single">
                 <ul>
                     @forelse($leagueInfor->userLeagues as $listTour)
@@ -26,14 +26,6 @@
                                 <img src="{{$listTour->user->image ?? '/images/no-image.png'}}" alt="" class=" b-error b-error">
                             </a>
                         </div>
-
-                        <div class="ranked">
-                            RANKED N/A
-                        </div>
-                        <div class="prize-money">
-                            PRIZE MONEY - <b>120,000</b></div>
-                        <div class="points-gained">
-                            POINTS GAINED - <b>12,000</b></div>
                     </li>
 
                         @endif

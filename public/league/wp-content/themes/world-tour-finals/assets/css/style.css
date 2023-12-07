@@ -4832,7 +4832,6 @@ li.chart table {
 
 .results .matchResult-select select,
 .results .tournament-select select {
-    width: 400px;
     background-color: #333;
     border: none;
     box-sizing: border-box;
@@ -4860,7 +4859,6 @@ li.chart table {
 .matchResult-select:after,
 .tournament-select:after {
     font-family: FontAwesome;
-    content: "\f078";
     position: absolute;
     right: 12px;
     top: 15px;

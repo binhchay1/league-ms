@@ -16,10 +16,14 @@
 </style>
 
     <div class="container">
-        <h2>{{__('List League')}}</h2>
+        <div class="std-title">
+            <div class="std-title-left">
+                <h2 class="left">{{__('LEAGUE CALENDAR')}}</h2>
+            </div>
+        </div>
         <div class="item-results">
             @foreach($listLeague as $listLeague)
-            <div class="tblResultLanding" >
+            <div class="tblResultLanding" style=" margin-top: 10px; background:#d8d8d8" onmouseover="this.style.background='#a4a4a4';" onmouseout="this.style.background='#d8d8d8';">
                 <a href="{{route('league.info', $listLeague['slug'])}}">
                     <div class="tr-tournament-detail" id="4734">
                         <div class="tournament-detail ">
@@ -27,13 +31,13 @@
                                 <div class="description">
                                     <div class="logo-wrap">
                                         <div class="image">
-                                            <img src="{{$listLeague->image}}" class=" b-error b-error">
+                                            <img src="{{$listLeague->images}}" class="show-image-league">
                                         </div>
                                     </div>
 
                                     <div class="info" style="color:black;">
-                                        <h2>{{ $listLeague->name }}</h2>
-                                        <h3>{{ $listLeague->start_date }} - {{ $listLeague->end_date }}</h3>
+                                        <h3>{{ $listLeague->name }}</h3>
+                                        <h4>{{ $listLeague->start_date }} - {{ $listLeague->end_date }}</h4>
                                         <div class="prize">
                                             {{__('PRIZE MONEY USD ')}}${{ $listLeague->money }} </div>
                                     </div>

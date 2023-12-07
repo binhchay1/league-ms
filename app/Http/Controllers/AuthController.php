@@ -175,7 +175,6 @@ class  AuthController extends Controller
 
     public function viewVerifyEmail()
     {
-        dd(Auth::user());
         // $token = $this->userV
         return view('auth.verify-email');
     }

@@ -87,4 +87,17 @@
 .image-user{
     width: 100px;
     height: 100px;
+    margin: 10px;
+}
+
+h2 {
+    font-weight: 400;
+}
+h4 {
+    font-weight: 400;
+}
+
+.show-image-league {
+    width: 160px;
+    height: 160px;
 }
