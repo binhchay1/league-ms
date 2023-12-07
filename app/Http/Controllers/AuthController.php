@@ -184,6 +184,7 @@ class  AuthController extends Controller
 
     public function viewVerifyEmail()
     {
+
         $verify = $this->verifyUserRepository->getVerifyByUserId(Auth::user()->id);
         $timer = 0;
         if ($verify->status == 0) {
@@ -196,6 +197,7 @@ class  AuthController extends Controller
         }
 
         return view('auth.verify-email', compact('verify', 'message', 'expired', 'timer'));
+
     }
 
     public function joinGroup(Request $request)

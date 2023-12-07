@@ -65,7 +65,7 @@
                     <div class="box-results-tournament">
                         <div>
                             <div class="logo-left">
-                                <img height="90" src="{{ $leagueInfor->images }}" alt="logo">
+                                <img  src="{{ $leagueInfor->images }}" class="show-image-league" alt="logo">
                             </div>
                             <div class="info">
                                 <h2>{{ $leagueInfor->name }}</h2>
@@ -100,7 +100,7 @@
                             <div class="modal-content" id="modal-content">
                                 <!-- Modal Header -->
                                 <div class="modal-header">
-                                    <h4 class="modal-title">{{__('Register Tournament')}}</h4>
+                                    <h4 class="modal-title">{{__('Register League')}}</h4>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
 
