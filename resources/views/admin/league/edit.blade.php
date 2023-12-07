@@ -19,17 +19,17 @@
                             <label>{{__('Logo league')}}</label>
                             <div class="">
                                 <div>
-                                    <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
+                                    <input value="" type="file" class="border-0 bg-light pl-0" name="images" id="image" hidden>
                                     <div class=" choose-avatar">
                                         <div id="btnimage">
-                                            <img id="showImage" class="show-avatar" src="{{ $dataLeague->image ?? asset('/images/champion.png') }}" alt="avatar" >
+                                            <img id="showImage" class="show-avatar" src="{{ $dataLeague->images ?? asset('/images/champion.png') }}" alt="avatar" >
                                         </div>
                                         <div id="button">
                                             <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image') }}</i>
                                         </div>
                                     </div>
-                                    @if ($errors->has('image'))
-                                    <span class="text-danger">{{ $errors->first('image') }}</span>
+                                    @if ($errors->has('images'))
+                                    <span class="text-danger">{{ $errors->first('images') }}</span>
                                     @endif
                                 </div>
                             </div>

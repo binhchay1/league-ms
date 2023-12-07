@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\League;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\League;
 use App\Models\User;
 
 class UserLeague extends Model
@@ -22,6 +22,6 @@ class UserLeague extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class, 'id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }
