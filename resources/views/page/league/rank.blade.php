@@ -43,30 +43,5 @@
     </div>
     <div class="ranking-note">
     </div>
-    <nav class="text-right rankings-content_paging">
-
-        <ul class="pagination">
-            <li>
-                <a href="#" aria-label="Previous" class="prevPlayersList">
-                    <span aria-hidden="true"><span class="fa fa-angle-left"></span> PREVIOUS</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" aria-label="Next" class="nextPlayersList">
-                    <span aria-hidden="true">NEXT <span class="fa fa-angle-right"></span></span>
-                </a>
-            </li>
-        </ul>
-
-        <div class="per-page">
-            <span>RESULTS PER PAGE </span>
-            <label class="resultPage-select">
-                <select class="ddlResultPage" id="result_per_page" style="width:70px;">
-                    <option value="25" selected="selected">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
-            </label>
-        </div>
-    </nav>
 </div>
+
