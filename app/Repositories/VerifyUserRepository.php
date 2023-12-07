@@ -18,7 +18,7 @@ class VerifyUserRepository extends BaseRepository
 
     public function updateStatusByToken($token)
     {
-        return $this->model->where('token', $token)->update(['status' => false]);
+        return $this->model->where('token', $token)->update(['status' => 1]);
     }
 
     public function getVerifyByToken($token)
