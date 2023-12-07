@@ -8,16 +8,19 @@ use App\Models\User;
 use App\Enums\Title;
 use App\Enums\Group;
 use App\Enums\Ranking;
+use App\Jobs\SendMail;
+use App\Events\MessageSent;
+use App\Mail\VerifyEmail;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Jobs\ChangeStatusTokenVerify;
 use App\Models\VerifyUser;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\GroupUserRepository;
-use App\Events\MessageSent;
-use App\Jobs\SendMail;
-use App\Mail\VerifyEmail;
 use App\Repositories\GroupRepository;
 use App\Repositories\RankingRepository;
+use App\Repositories\UserLeagueRepository;
+use App\Repositories\VerifyUserRepository;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -30,17 +33,23 @@ class  AuthController extends Controller
     protected $groupUserRepository;
     protected $groupRepository;
     protected $rankingRepository;
+    protected $userLeagueRepository;
+    protected $verifyUserRepository;
     protected $utility;
 
     public function __construct(
         GroupUserRepository $groupUserRepository,
         GroupRepository $groupRepository,
         RankingRepository $rankingRepository,
+        UserLeagueRepository $userLeagueRepository,
+        VerifyUserRepository $verifyUserRepository,
         Utility $ultity
     ) {
         $this->groupUserRepository = $groupUserRepository;
         $this->groupRepository = $groupRepository;
         $this->rankingRepository = $rankingRepository;
+        $this->userLeagueRepository = $userLeagueRepository;
+        $this->verifyUserRepository = $verifyUserRepository;
         $this->utility = $ultity;
     }
 
@@ -104,18 +113,21 @@ class  AuthController extends Controller
             'title' => Title::USER
         ]);
 
-        $token = Str::random(60);
+        $token = $this->regenerateToken();
         $carbonNow = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
         $timeEnd = $carbonNow->addMinutes(60)->format('Y-m-d H:i:s');
-        VerifyUser::create([
+        $dataVerify = [
             'token' => $token,
             'user_id' => $user->id,
-            'time_end' => $timeEnd
-        ]);
+            'time_end' => $timeEnd,
+            'status' => 1
+        ];
+        $this->verifyUserRepository->create($dataVerify);
 
+        ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $token)->delay(now()->addMinutes(60));
         $listType = Ranking::RANKING_ARRAY_TYPE;
         foreach ($listType as $type) {
-            $data = [
+            $dataRanking = [
                 'user_id' => $user->id,
                 'points' => 0,
                 'type' => $type,
@@ -123,13 +135,13 @@ class  AuthController extends Controller
                 'places_old' => 0
             ];
 
-            $this->rankingRepository->create($data);
+            $this->rankingRepository->create($dataRanking);
         }
 
         $url = route('user.verify', ['token' => $token]);
         $dataEmail = [
             'url' => $url,
-            'user_name' => $user->name,
+            'user_name' => $user->name
         ];
 
         $verifyEmail = new VerifyEmail($dataEmail);
@@ -140,21 +152,18 @@ class  AuthController extends Controller
 
     public function verifyEmail($token)
     {
-        $verifyUser = VerifyUser::where('token', $token)->first();
-        $currentDateTime = date('Y-m-d H:i:s');
-        $message = 'Sorry your email cannot be identified.';
+        if (empty($token)) {
+            abort(404);
+        }
 
-        if (!is_null($verifyUser)) {
-            $dataUser = $verifyUser->user;
+        $verifyUser = $this->verifyUserRepository->getVerifyByToken($token);
 
-            if (!$dataUser->email_verified_at) {
+        if (empty($verifyUser)) {
+            abort(404);
+        }
 
-                $dataUser->email_verified_at = $currentDateTime;
-                $dataUser->save();
-                $message = "Your e-mail is verified. You can now login.";
-            } else {
-                $message = "Your e-mail is already verified. You can now login.";
-            }
+        if ($verifyUser->status == 0) {
+            return redirect()->route('verify.email');
         }
 
         return redirect()->route('login')->with('message', $message);
@@ -175,8 +184,20 @@ class  AuthController extends Controller
 
     public function viewVerifyEmail()
     {
-        // $token = $this->userV
-        return view('auth.verify-email');
+
+        $verify = $this->verifyUserRepository->getVerifyByUserId(Auth::user()->id);
+        $timer = 0;
+        if ($verify->status == 0) {
+            $expired = 1;
+            $message = __('Your email verification is expired! Please click button to resend your email');
+        } else {
+            $expired = 0;
+            $message = __('Your email verification is sent! Please check your email');
+            $timer = strtotime($verify->time_end) - strtotime(date('Y-m-d H:i:s'));
+        }
+
+        return view('auth.verify-email', compact('verify', 'message', 'expired', 'timer'));
+
     }
 
     public function joinGroup(Request $request)
@@ -247,6 +268,45 @@ class  AuthController extends Controller
             return ['status' => 'sent'];
         } catch (\Predis\Connection\ConnectionException $e) {
             return response('error connection redis');
+        }
+    }
+
+    public function resendVerify(Request $request)
+    {
+        $token = $request->get('token_verify');
+        if ($token == null) {
+            abort(404);
+        }
+
+        $new_token = $this->regenerateToken();
+        $carbonNow = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
+        $timeEnd = $carbonNow->addMinutes(60)->format('Y-m-d H:i:s');
+
+        $dataUpdate = [
+            'token' => $new_token,
+            'time_end' => $timeEnd,
+            'status' => 1
+        ];
+
+        $this->verifyUserRepository->updateTokenByUserId(Auth::user()->id, $dataUpdate);
+        ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $new_token)->delay(now()->addMinutes(60));
+
+        return redirect()->route('verify.email');
+    }
+
+    public function regenerateToken($old_token = null)
+    {
+        $token = Str::random(60);
+        if ($old_token != null) {
+            if ($token == $old_token) {
+                $this->regenerateToken($old_token);
+            }
+        }
+        $checkToken = $this->verifyUserRepository->getVerifyByToken($token);
+        if (!empty($checkToken)) {
+            $this->regenerateToken();
+        } else {
+            return $token;
         }
     }
 }
