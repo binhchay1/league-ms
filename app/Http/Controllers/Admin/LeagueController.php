@@ -85,7 +85,7 @@ class LeagueController extends Controller
         if (isset($input['images'])) {
             $img = $this->utility->saveImageLeague($input);
             if ($img) {
-                $path = '/images/upload/league/' . $input['image']->getClientOriginalName();
+                $path = '/images/upload/league/' . $input['images']->getClientOriginalName();
                 $input['images'] = $path;
             }
         }

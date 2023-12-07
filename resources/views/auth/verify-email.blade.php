@@ -21,15 +21,15 @@
                                 </div>
 
                                 <div class="mt-4 flex items-center justify-center">
-                                    <form action="POST" method="{{ route('resend.verify.email') }}" class="d-flex justify-content-center">
+                                    <form action="{{ route('resend.verify.email') }}" method="POST" class="d-flex justify-content-center">
                                         @csrf
                                         <input type="hidden" name="token_verify" value="{{ $verify->token }}" />
-                                        <button id="buttonSendVerify" type="submit" class="btn btn-dark btn-lg btn-block"><span id="textButtonResend">{{ __('Resend the verification email') }}</span></button>
+                                        <button id="button-send-verify" type="submit" class="btn btn-dark btn-lg btn-block"><span id="textButtonResend">{{ __('Resend the verification email') }}</span></button>
                                     </form>
                                 </div>
 
                                 <p class="mt-3 mb-0 text-center"><small>{{ __('Issues with verification or incorrect email input?') }}
-                                        <br>{{ __('Please register with') }} <a href="" style="text-decoration: underline; font-weight: 800;">{{ __('other') }}</a> {{ __('email') }}</small></p>
+                                        <br>{{ __('Please register with') }} <a href="{{ route('signout') }}" style="text-decoration: underline; font-weight: 800;">{{ __('other') }}</a> {{ __('email') }}</small></p>
                             </div>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
 
 @section('js')
 <script>
-    const btn = document.getElementById("buttonSendVerify");
+    const btn = document.getElementById("button-send-verify");
     const expired = <?php echo $expired ?>;
     var base_time = <?php echo $timer ?>;
     var display = document.getElementById('textButtonResend');

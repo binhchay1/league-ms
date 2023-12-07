@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="wrapper-results">
-                <div>
+                <div style="border: 1px solid #efefef;">
                     <div class="box-title page-header">
                         <div class="box-title-left">
                         </div>

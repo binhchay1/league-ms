@@ -124,7 +124,7 @@ class  AuthController extends Controller
         ];
         $this->verifyUserRepository->create($dataVerify);
 
-        ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $token)->delay(now()->addMinutes(60));
+        ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $token)->delay(now()->addMinutes(60))->onQueue('change_verify_token');;
         $listType = Ranking::RANKING_ARRAY_TYPE;
         foreach ($listType as $type) {
             $dataRanking = [
@@ -187,7 +187,7 @@ class  AuthController extends Controller
 
         $verify = $this->verifyUserRepository->getVerifyByUserId(Auth::user()->id);
         $timer = 0;
-        if ($verify->status == 0) {
+        if ($verify->status == 1) {
             $expired = 1;
             $message = __('Your email verification is expired! Please click button to resend your email');
         } else {
@@ -277,19 +277,32 @@ class  AuthController extends Controller
         if ($token == null) {
             abort(404);
         }
+        $isTokenVerified = $this->verifyUserRepository->getVerifyByToken($token);
+
+        if (empty($isTokenVerified)) {
+            abort(404);
+        }
 
         $new_token = $this->regenerateToken();
         $carbonNow = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
         $timeEnd = $carbonNow->addMinutes(60)->format('Y-m-d H:i:s');
+        $url = route('user.verify', ['token' => $token]);
 
         $dataUpdate = [
             'token' => $new_token,
             'time_end' => $timeEnd,
-            'status' => 1
+            'status' => 0
+        ];
+        $dataEmail = [
+            'url' => $url,
+            'user_name' => Auth::user()->name
         ];
 
         $this->verifyUserRepository->updateTokenByUserId(Auth::user()->id, $dataUpdate);
-        ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $new_token)->delay(now()->addMinutes(60));
+        ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $new_token)->delay(now()->addMinutes(60))->onQueue('change_verify_token');
+
+        $verifyEmail = new VerifyEmail($dataEmail);
+        SendMail::dispatch(Auth::user()->email, $verifyEmail)->onQueue('send_email_verify');
 
         return redirect()->route('verify.email');
     }
