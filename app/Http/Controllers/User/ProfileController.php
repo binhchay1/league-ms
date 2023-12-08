@@ -16,12 +16,10 @@ class ProfileController extends Controller
 
     protected $userRepository;
 
-    public function __construct
-    (
+    public function __construct(
         UserRepository $userRepository,
         Utility $utility
-    )
-    {
+    ) {
         $this->userRepository = $userRepository;
         $this->utility = $utility;
     }
@@ -53,7 +51,6 @@ class ProfileController extends Controller
      */
     public function update(UserRequest $request, $userIdHash)
     {
-        dd(1);
         if (empty($userIdHash)) {
             abort(404);
         }
@@ -67,7 +64,7 @@ class ProfileController extends Controller
             }
         }
         $this->userRepository->update($input, $userIdHash);
-        return back()->with('success', __('Thông tin đã được cập nhật thành công!'));
+        return back()->with('success', __('Information has been updated successfully!'));
     }
 
     /**
@@ -89,13 +86,13 @@ class ProfileController extends Controller
         ]);
 
         if (!Hash::check($request->old_password, auth()->user()->password)) {
-            return back()->with("error", __("Mật khẩu cũ không trùng khớp!"));
+            return back()->with("error", __("Old passwords do not match!"));
         }
 
         User::whereId(auth()->user()->id)->update([
             'password' => Hash::make($request->new_password)
         ]);
 
-        return back()->with("status", __("Mật khẩu thay đổi thành công!"));
+        return back()->with("status", __("Password successfully changed!"));
     }
 }

@@ -76,12 +76,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/user-profile/{id}/', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/change-password/', [ProfileController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password/', [ProfileController::class, 'updatePassword'])->name('update-password');
-    Route::get('/team-manager/', [HomeController::class, 'teamManager'])->name('team-manager');
     Route::get('/league-manager/', [HomeController::class, 'leagueManager'])->name('league-manager');
 
-
-    Route::middleware(['admin', 'auth'])->group(
-        function () {
+    Route::middleware(['admin', 'auth'])->group(function () {
             Route::get('/dashboard/', [AuthController::class, 'dashboard']);
 
             Route::get('/list-user/', [UserController::class, 'index'])->name('user.index');
