@@ -224,9 +224,15 @@ class HomeController extends Controller
 
     public function saveRegisterLeague(Request $request)
     {
+        $dateRegister = strtotime($request['end_date_register']);
+        $dateCurrent = strtotime(date('Y-m-d'));
+
+        if ($dateRegister < $dateCurrent) {
+            abort(404);
+        }
         $userRegisterLeague = $request->except(['_token']);
         $this->userLeagueRepository->store($userRegisterLeague);
 
-        return back()->with('success', __('Thông tin đã được gửi đi thành công!'));
+        return back()->withSuccess('You are allowed to access');
     }
 }

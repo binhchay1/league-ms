@@ -58,10 +58,10 @@ $utility = new \App\Enums\Utility();
                         </div>
                     </td>
                     <td class="col-player d-flex align-content-center">
-                        <div class="player d-flex"><span><a style="color: black" href="{{ route('player.info', ['id' => $utility->encode_hash_id($rank->users->id)]) }}"><span><span class="name-1">{{ $rank->users->name }}</span></span></a></span></div>
                         <div style="margin-left: 5px;">
-                            <span><img src="{{ asset($rank->users->profile_photo_path) }}" width="40" height="40" /></span>
+                            <span><img src="{{ asset($rank->users->profile_photo_path  ?? '/images/no-image.png') }}" width="40" height="40" /></span>
                         </div>
+                        <div class="player d-flex"><span><a style="color: black" href="{{ route('player.info', ['id' => $utility->encode_hash_id($rank->users->id)]) }}"><span><span class="name-1">{{ $rank->users->name }}</span></span></a></span></div>
                     </td>
                     <td class="col-points">{{ $rank->points }}</td>
                     <td class="col-points">{{ $rank->users->title }}</td>
