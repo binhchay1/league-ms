@@ -40,7 +40,6 @@
                         <button type="submit" class="btn btn-success float-right" style="margin: 10px;">{{__('Active player')}}</button>
                     </div>
                 </div>
-                <hr class="my-0" />
                 <div class="card-body">
                     <div class="card" style="padding: 10px">
                         <div class=" container-xl table-responsive text-nowrap">
