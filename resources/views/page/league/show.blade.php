@@ -89,8 +89,9 @@
                         <li><a id="player-data" href="{{ route('league.player.info', $leagueInfor['slug']) }}">{{__('Player ')}}</a>
                         </li>
                     </ul>
-                    <div class="register mt-4" align="right">
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+                    <div class="register mt-4" align="right"> 
+                        <p>{{__('Register')}} : {{$leagueInfor->end_date_register}}</p>
+                        <button type="button" id="btn-register" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
                            {{__('Register League')}}
                         </button>
                     </div>
@@ -153,6 +154,8 @@
                                                         <tr class="row-top-eight">
                                                             <input type="hidden" name="league_id" id=""
                                                                    value="{{$leagueInfor->id}}">
+                                                            <input type="hidden" name="end_date_register" id=""
+                                                                   value="{{$leagueInfor->end_date_register}}">
                                                             <input type="hidden" name="user_id"
                                                                    value="{{Auth::user()->id}}">
                                                             <input type="hidden" name="status" value="0">
@@ -226,6 +229,16 @@
             window.location.href = window.location.origin + '/info/' + edit_id;
         });
 
+
+        var date_register = '<?php  echo strtotime($leagueInfor->end_date_register); ?>';
+        var date_current = '<?php  echo strtotime(date('Y-m-d')); ?>';
+
+        if(date_register < date_current) {
+            $('#btn-register').prop("disabled", true);
+        }
+        else {
+            $('#btn-register').prop("disabled", false);
+        }
     </script>
 
 @endsection

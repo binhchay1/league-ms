@@ -14,7 +14,6 @@ use App\Mail\VerifyEmail;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Jobs\ChangeStatusTokenVerify;
-use App\Models\VerifyUser;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\GroupUserRepository;
 use App\Repositories\GroupRepository;
@@ -184,7 +183,6 @@ class  AuthController extends Controller
 
     public function viewVerifyEmail()
     {
-
         $verify = $this->verifyUserRepository->getVerifyByUserId(Auth::user()->id);
         $timer = 0;
         if ($verify->status == 1) {
@@ -197,7 +195,11 @@ class  AuthController extends Controller
         }
 
         return view('auth.verify-email', compact('verify', 'message', 'expired', 'timer'));
+    }
 
+    public function viewVerifiedEmail()
+    {
+        return view('auth.verify-email-success');
     }
 
     public function joinGroup(Request $request)
