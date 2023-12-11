@@ -51,6 +51,8 @@ class UpdateRanking extends Command
                     'places_old' => $record->places
                 ];
 
+                $places++;
+
                 $this->rankingRepository->updateById($record->id, $data);
             }
         }
