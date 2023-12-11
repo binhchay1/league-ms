@@ -12,14 +12,14 @@
             <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">
                 <thead>
                     <tr class="design-text">
-                        <th scope="col" style="width: 15px">{{__('Giải đấu')}}</th>
-                        <th scope="col" style="width: 15px">{{__('Vòng đấu')}}</th>
-                        <th scope="col">{{__('')}}Đội 1</th>
-                        <th scope="col">{{__('')}}Đội 2</th>
-                        <th scope="col" style="width: 15px">{{__('Tổng tỉ số')}}</th>
-                        <th scope="col" style="width: 15px">{{__('Tỉ số trận 1')}}</th>
-                        <th scope="col" style="width: 15px">{{__('Tỉ số trận 2')}}</th>
-                        <th scope="col" style="width: 15px">{{__('Tỉ số trận 3')}}</th>
+                        <th scope="col" style="width: 15px">{{__('League')}}</th>
+                        <th scope="col" >{{__('Round')}}</th>
+                        <th scope="col">{{__('Team 1')}}</th>
+                        <th scope="col">{{__('Team 2')}}</th>
+                        <th scope="col" style="width: 30px" >{{__('Final Score')}}</th>
+                        <th scope="col" >{{__('Set 1')}}</th>
+                        <th scope="col" >{{__('Set 2')}}</th>
+                        <th scope="col" >{{__('Set 3')}}</th>
                         <th scope="col">{{__('Sân thi đấu')}}</th>
                     </tr>
                 </thead>
@@ -27,9 +27,17 @@
                     @foreach($dataResult as $data)
                     <tr>
                         <td>{{ $data->league->name }}</td>
-                        <td>{{ $data->match }}</td>
-                        <td>{{ $data->team1->name }}</td>
-                        <td>{{ $data->team2->name }}</td>
+                        <td>{{ $data->round }}</td>
+                        <td>
+                            {{$data->player1Team1->name ?? ""}}
+                            <br>
+                            {{$data->player2Team1->name ?? ""}}
+                        </td>
+                        <td>
+                            {{$data->player1Team2->name ?? ""}}
+                            <br>
+                            {{$data->player2Team2->name ?? ""}}
+                        </td>
                         <td>
                             <div class="row">
                                 <div class="col-lg-4">

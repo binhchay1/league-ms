@@ -14,4 +14,11 @@ return [
         5 =>  'Đôi nam nữ',
     ],
 
+    'round' => [
+        1 => 'Vòng 1/16',
+        2 =>  'Vòng 1/8',
+        3 =>  'Vòng tứ kết',
+        4 =>  'Vòng bán kết',
+        5 =>  'Chung kết',
+    ],
 ];

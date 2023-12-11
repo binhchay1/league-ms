@@ -7,6 +7,7 @@ use App\Http\Requests\ResultScheduleRequest;
 use App\Http\Requests\ScheduleRequest;
 use App\Repositories\ScheduleRepository;
 use App\Repositories\LeagueRepository;
+use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
@@ -24,21 +25,29 @@ class ScheduleController extends Controller
 
     public function index()
     {
-        $listSchedule = $this->scheduleRepository->index();
-        return view('admin.schedule.index', compact('listSchedule'));
+        $listLeagues = $this->leagueRepository->index();
+        $rounds = config('league.round');
+        $listSchedules = $this->scheduleRepository->index();
+        return view('admin.schedule.index', compact('listSchedules', 'listLeagues', 'rounds'));
     }
 
-    public function create()
+    public function league()
     {
-        $listLeague = $this->leagueRepository->index();
-        return view('admin.schedule.create', compact('listLeague'));
+        $listLeagues = $this->leagueRepository->index();
+        return view('admin.schedule.list-league', compact('listLeagues'));
     }
 
-    public function store(ScheduleRequest $request)
+    public function leagueSchedule($id)
+    {
+        $league = $this->leagueRepository->show($id);
+        $rounds = config('league.round');
+        return view('admin.schedule.create', compact('league', 'rounds'));
+    }
+
+    public function store(Request $request)
     {
         $input = $request->except(['_token']);
         $data = $this->scheduleRepository->store($input);
-
         return redirect('list-schedule')->with('success', 'Create schedule successfully!');
     }
 

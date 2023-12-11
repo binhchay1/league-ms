@@ -61,9 +61,6 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $appends = [
-        'profile_photo_path',
-    ];
 
     public function setPasswordAttribute($password)
     {
@@ -93,5 +90,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function userLeagues()
     {
         return $this->hasMany('App\Models\UserLeague');
+    }
+
+    public function schedule()
+    {
+        return $this->hasMany('App\Models\Schedule');
     }
 }
