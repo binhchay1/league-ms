@@ -110,9 +110,9 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('schedule.create') }}" class="nav-link">
+                                    <a href="{{ route('schedule.league') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ __('Create Schedule') }}</p>
+                                        <p>{{ __('League Schedule') }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

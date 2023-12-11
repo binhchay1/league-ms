@@ -26,12 +26,12 @@ class ResultScheduleRequest extends FormRequest
         return [
             'result_team_1' => 'required|min:1|max:2',
             'result_team_2' => 'required|min:1|max:2',
-            'set_1_team_1' => 'required|min:0',
-            'set_1_team_2' => 'required|min:0',
-            'set_2_team_1' => 'required|min:0',
-            'set_2_team_2' => 'required|min:0',
-            'set_3_team_1' => 'required|min:0',
-            'set_3_team_2' => 'required|min:0',
+            'set_1_team_1' => 'min:0|max:30',
+            'set_1_team_2' => 'min:0|max:30',
+            'set_2_team_1' => 'min:0|max:30',
+            'set_2_team_2' => 'min:0|max:30',
+            'set_3_team_1' => 'min:0|max:30',
+            'set_3_team_2' => 'min:0|max:30',
         ];
     }
 
@@ -44,18 +44,18 @@ class ResultScheduleRequest extends FormRequest
             'result_team_2.required' => __('Tỉ số đội 2 không được để trống'),
             'result_team_2.min' => __('Tỉ số đội 2 tối thiểu trên 1 '),
             'result_team_2.max' => __('Tỉ số đội 2 không vượt quá 2 '),
-            'set_1_team_1.required' => __('Tỉ số trận 1 không được để trống'),
             'set_1_team_1.min' => __('Tỉ số trận 1 tối thiểu là 0'),
-            'set_1_team_2.required' => __('Tỉ số trân 1 không được để trống'),
+            'set_1_team_1.max' => __('Tỉ số đội 1 không vượt quá 2 '),
             'set_1_team_2.min' => __('Tỉ số trận 1 tối thiểu là 0'),
-            'set_2_team_1.required' => __('Tỉ số trân 2 không được để trống'),
+            'set_1_team_2.max' => __('Tỉ số đội 1 không vượt quá 2 '),
             'set_2_team_1.min' => __('Tỉ số trận 2 tối thiểu là 0'),
-            'set_2_team_2.required' => __('Tỉ số trân 2 không được để trống'),
+            'set_2_team_1.max' => __('Tỉ số đội 1 không vượt quá 2 '),
             'set_2_team_2.min' => __('Tỉ số trận 2 tối thiểu là 0'),
-            'set_3_team_1.required' => __('Tỉ số trân 3 không được để trống'),
+            'set_2_team_2.max' => __('Tỉ số đội 1 không vượt quá 2 '),
             'set_3_team_1.min' => __('Tỉ số trận 3 tối thiểu là 0'),
-            'set_3_team_2.required' => __('Tỉ số trân 3 không được để trống'),
+            'set_3_team_1.max' => __('Tỉ số đội 1 không vượt quá 2 '),
             'set_3_team_2.min' => __('Tỉ số trận 4 tối thiểu là 0'),
+            'set_3_team_2.max' => __('Tỉ số đội 1 không vượt quá 2 '),
         ];
 
     }
