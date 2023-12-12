@@ -10,7 +10,10 @@ class Schedule extends Model
     use HasFactory;
 
     protected $fillable = [
-        'match','league_id', 'team_id_1','team_id_2','time','date','stadium'
+        'round','match','league_id', 'time',
+        'stadium','date','set_1_team_1','set_1_team_2','set_2_team_1',
+        'set_2_team_2','set_3_team_2','set_3_team_1','result_team_2','result_team_1',
+        'player1_team_1','player2_team_1','player1_team_2','player2_team_2',
     ];
 
     public function league()
@@ -18,14 +21,23 @@ class Schedule extends Model
         return $this->belongsTo('App\Models\League', 'league_id', 'id');
     }
 
-    public function team1()
+
+    public function player1Team1()
     {
-        return $this->belongsTo('App\Models\Team', 'team_id_1', 'id');
+        return $this->belongsTo('App\Models\User', 'player1_team_1', 'id');
+    }
+    public function player2Team1()
+    {
+        return $this->belongsTo('App\Models\User', 'player2_team_1', 'id');
+    }
+    public function player1Team2()
+    {
+        return $this->belongsTo('App\Models\User', 'player1_team_2', 'id');
+    }
+    public function player2Team2()
+    {
+        return $this->belongsTo('App\Models\User', 'player2_team_2', 'id');
     }
 
-    public function team2()
-    {
-        return $this->belongsTo('App\Models\Team', 'team_id_2', 'id');
-    }
 
 }

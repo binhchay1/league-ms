@@ -93,8 +93,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('/update-player-league/{id}/', [LeagueController::class, 'updatePlayer'])->name('league.updatePlayer');
             Route::get('/delete-player-league/{id}/', [LeagueController::class, 'destroyPlayer'])->name('league.destroyPlayer');
 
+            Route::get('/list-schedule-league/', [ScheduleController::class, 'league'])->name('schedule.league');
             Route::get('/list-schedule/', [ScheduleController::class, 'index'])->name('schedule.index');
-            Route::get('/create-schedule/', [ScheduleController::class, 'create'])->name('schedule.create');
+            Route::get('/create-schedule', [ScheduleController::class, 'create'])->name('schedule.create');
+            Route::get('/create-schedule-league/{id}', [ScheduleController::class, 'leagueSchedule'])->name('schedule.leagueSchedule');
             Route::post('/store-schedule/', [ScheduleController::class, 'store'])->name('schedule.store');
             Route::get('/schedule/{id}/', [ScheduleController::class, 'show'])->name('schedule.show');
             Route::get('/edit-schedule/{id}/', [ScheduleController::class, 'edit'])->name('schedule.edit');
