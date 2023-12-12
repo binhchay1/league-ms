@@ -73,13 +73,25 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="mt-4">
-                            <label for="lastName" class="form-label">{{ __('Number of athletes') }}</label>
-                            <input class="form-control" value="{{ old('number_of_athletes') }}" type="text" name="number_of_athletes" id="number_of_athletes" />
-                            @if ($errors->has('number_of_athletes'))
-                            <span class="text-danger">{{ $errors->first('number_of_athletes') }}</span>
-                            @endif
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="address" class="form-label">{{ __('Register league ') }}</label>
+                                    <input type="date" value="{{ old('end_date_register') }}" class="form-control" id="end_date_register" name="end_date_register" placeholder="Address" />
+                                    @if ($errors->has('end_date_register'))
+                                        <span class="text-danger">{{ $errors->first('end_date_register') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="lastName" class="form-label">{{ __('Number of athletes') }}</label>
+                                    <input class="form-control" value="{{ old('number_of_athletes') }}" type="text" name="number_of_athletes" id="number_of_athletes" />
+                                    @if ($errors->has('number_of_athletes'))
+                                        <span class="text-danger">{{ $errors->first('number_of_athletes') }}</span>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                         <div class="row mt-4">
                             <div class="col-6">
@@ -106,7 +118,7 @@
                                 <div class="form-group">
                                     <label>{{ __('Format of league') }}</label>
                                     <select  id="format_of_league" value="{{ old('format_of_league') }}" name="format_of_league" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
-                                        @foreach($format_leagues as $format_league => $value)
+                                        @foreach($listFormat as $format => $value)
                                         <option id="format_of_league" value="{{ $value }}">{{ $value }}</option>
                                         @endforeach
                                     </select>
@@ -116,7 +128,7 @@
                                 <div class="form-group">
                                     <label>{{ __('Type of league') }}</label>
                                     <select id="type_of_league" value="{{ old('type_of_league') }}" name="type_of_league" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
-                                        @foreach($type_leagues as $type_league => $value)
+                                        @foreach($listType as $type => $value)
                                         <option id="type_of_league" value="{{ $value }}">{{ $value }}</option>
                                         @endforeach
                                     </select>

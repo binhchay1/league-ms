@@ -13,4 +13,12 @@ final class Ranking
     const RANKING_ARRAY_TYPE = [
         'male-doubles', 'female-doubles', 'male-singles', 'female-singles', 'mixed-doubles'
     ];
+
+    const RANKING_ARRAY_FORMAT = [
+        'league-single-limination', 'league-round'
+    ];
+
+    const RANKING_ARRAY_ROUND = [
+        'round 1/16',  'round 1/8', 'quarter-finals', 'semi-finals', 'finals'
+    ];
 }

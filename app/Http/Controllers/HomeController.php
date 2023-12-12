@@ -23,7 +23,6 @@ class HomeController extends Controller
     protected $userLeagueRepository;
     protected $leagueRepository;
     protected $userRepository;
-    protected $matchesRepository;
     protected $groupRepository;
     protected $groupUserRepository;
     protected $messageRepository;
@@ -35,7 +34,6 @@ class HomeController extends Controller
         UserLeagueRepository $userLeagueRepository,
         LeagueRepository $leagueRepository,
         UserRepository $userRepository,
-        MatchesRepository $matchesRepository,
         GroupRepository $groupRepository,
         GroupUserRepository $groupUserRepository,
         MessageRepository $messageRepository,
@@ -46,7 +44,6 @@ class HomeController extends Controller
         $this->userLeagueRepository = $userLeagueRepository;
         $this->leagueRepository = $leagueRepository;
         $this->userRepository = $userRepository;
-        $this->matchesRepository = $matchesRepository;
         $this->groupRepository = $groupRepository;
         $this->groupUserRepository = $groupUserRepository;
         $this->messageRepository = $messageRepository;
@@ -57,12 +54,11 @@ class HomeController extends Controller
 
     public function viewHome()
     {
-        $totalMatch = $this->matchesRepository->count();
         $totalGroup = $this->groupRepository->count();
         $totalLeague = $this->leagueRepository->count();
         $totalView = strtotime(date('Y-m-d H:i:s')) / 1242222;
 
-        return view('page.homepage', compact('totalMatch', 'totalGroup', 'totalLeague', 'totalView'));
+        return view('page.homepage', compact( 'totalGroup', 'totalLeague', 'totalView'));
     }
 
     public function viewSearch(Request $request)
@@ -233,6 +229,6 @@ class HomeController extends Controller
         $userRegisterLeague = $request->except(['_token']);
         $this->userLeagueRepository->store($userRegisterLeague);
 
-        return back()->withSuccess('You are allowed to access');
+        return back()->with('message','You are allowed to access');
     }
 }

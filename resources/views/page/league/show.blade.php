@@ -35,8 +35,9 @@
           href="{{asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/owl-carousel2/dist/assets/owl.theme.default.css?ver=1717160f66b565489b11f0a0e460e849')}}"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <div id="page" class="hfeed site">
         <div class="container-1280 results">
             <div class="std-title">
@@ -44,14 +45,23 @@
                     <h2 class="left">{{__('LEAGUE INFORMATION')}}</h2>
                 </div>
             </div>
+            @if(Session::has('message'))
+                <script>
+                    toastr.options = {
+                        "progressBar" :true,
+                        "closeButton": true,
+                    }
+                    toastr.success("{{Session::get('message')}}",'Success!', {timeout:12000});
+                </script>
+            @endif
             <div class="wrapper-results">
                 <div style="border: 1px solid #efefef;">
                     <div class="box-title page-header">
                         <div class="box-title-left">
                         </div>
                         <div class="box-title-right">
-                            <h4 class="right">
-                                {{__('OTHER LEAGUE')}} </h4>
+                            <h3 class="right">
+                                {{__('OTHER LEAGUE')}} </h3>
                             <label class="tournament-select clear">
                                 <select name='record' class="ddlTournament">
                                     @foreach($listLeagues as $league => $value )
@@ -89,11 +99,15 @@
                         <li><a id="player-data" href="{{ route('league.player.info', $leagueInfor['slug']) }}">{{__('Player ')}}</a>
                         </li>
                     </ul>
-                    <div class="register mt-4" align="right"> 
-                        <p>{{__('Register')}} : {{$leagueInfor->end_date_register}}</p>
-                        <button type="button" id="btn-register" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
-                           {{__('Register League')}}
-                        </button>
+                    <div class="register  row" align="right" >
+                        <div class="col-lg-10 mt-4">
+                            <h5>{{__('Registration Deadline')}} : {{$leagueInfor->end_date_register}}</h5>
+                        </div>
+                        <div class="col-lg-2 mt-3">
+                            <button type="button" id="btn-register" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+                                {{__('Register League')}}
+                            </button>
+                        </div>
                     </div>
                     <!-- The Modal -->
                     <div class="modal" id="myModal">
