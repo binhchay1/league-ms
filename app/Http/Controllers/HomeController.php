@@ -215,6 +215,7 @@ class HomeController extends Controller
         $leagueInfor = $this->leagueRepository->showInfo($slug);
         dd($leagueInfor);
         $listLeagues = $this->leagueRepository->index();
+        // $schedule = $this->scheduleRepository->showInfo();
 
         return view('page.league.show', compact('leagueInfor', 'listLeagues'));
     }

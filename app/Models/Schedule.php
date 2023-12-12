@@ -21,7 +21,6 @@ class Schedule extends Model
         return $this->belongsTo('App\Models\League', 'league_id', 'id');
     }
 
-
     public function player1Team1()
     {
         return $this->belongsTo('App\Models\User', 'player1_team_1', 'id');

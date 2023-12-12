@@ -243,7 +243,6 @@
             window.location.href = window.location.origin + '/info/' + edit_id;
         });
 
-
         var date_register = '<?php  echo strtotime($leagueInfor->end_date_register); ?>';
         var date_current = '<?php  echo strtotime(date('Y-m-d')); ?>';
 
