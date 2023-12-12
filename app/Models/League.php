@@ -19,7 +19,6 @@ class League extends Model
         return $this->hasMany(Schedule::class);
     }
 
-
     public function userLeagues()
     {
         return $this->hasMany('App\Models\UserLeague');

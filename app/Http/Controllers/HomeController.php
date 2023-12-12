@@ -214,16 +214,44 @@ class HomeController extends Controller
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
         $listLeagues = $this->leagueRepository->index();
+        $groupSchedule = [];
+        foreach ($leagueInfor->schedule as $schedule) {
+            $groupSchedule[$schedule['round']][] = $schedule;
+        }
+
+        // $schedule = $this->scheduleRepository->showInfo();
+
+        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule'));
+    }
+
+    public function showFightBranch($slug)
+    {
+        $leagueInfor = $this->leagueRepository->showInfo($slug);
+        $listLeagues = $this->leagueRepository->index();
 
         return view('page.league.show', compact('leagueInfor', 'listLeagues'));
+    }
+
+    public function showSchedule($slug)
+    {
+        $leagueInfor = $this->leagueRepository->showInfo($slug);
+        $listLeagues = $this->leagueRepository->index();
+        $groupSchedule = [];
+        foreach ($leagueInfor->schedule as $schedule) {
+            $groupSchedule[$schedule['round']][] = $schedule;
+        }
+
+        // $schedule = $this->scheduleRepository->showInfo();
+
+        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule'));
     }
 
     public function saveRegisterLeague(Request $request)
     {
         $dateRegister = strtotime($request['end_date_register']);
-        $dateCurrent = strtotime(date('Y-m-d'));
+        $dateCurrent = strtotime($request['start_date']);
 
-        if ($dateRegister < $dateCurrent) {
+        if ($dateRegister > $dateCurrent) {
             abort(404);
         }
         $userRegisterLeague = $request->except(['_token']);

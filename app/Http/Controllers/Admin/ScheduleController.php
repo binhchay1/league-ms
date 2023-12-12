@@ -41,6 +41,7 @@ class ScheduleController extends Controller
     public function leagueSchedule($id)
     {
         $league = $this->leagueRepository->show($id);
+
         $rounds =  Ranking::RANKING_ARRAY_ROUND;
         return view('admin.schedule.create', compact('league', 'rounds'));
     }

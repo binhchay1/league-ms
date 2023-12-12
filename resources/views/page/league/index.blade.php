@@ -38,7 +38,11 @@
 
                                     <div class="info" style="color:black;">
                                         <h3>{{ $listLeague->name }}</h3>
-                                        <h4>{{ $listLeague->start_date }} - {{ $listLeague->end_date }}</h4>
+                                        <?php $start_date = date('d/m/Y',strtotime($listLeague->start_date));
+                                                $end_date = date('d/m/Y',strtotime($listLeague->end_date));
+                                        ?>
+                                        <h6 class="">{{__('Start Date')}}: {{ $start_date }}</h6>
+                                        <h6 class="">{{__('End Date')}}: {{ $end_date }}</h6>
                                         <div class="prize">
                                             {{__('PRIZE MONEY USD ')}}${{ $listLeague->money }} </div>
                                     </div>
