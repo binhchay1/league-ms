@@ -17,7 +17,7 @@ class ScheduleRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->with('league')->orderBy('created_at', 'desc')->get();
+        return $this->model->with('league')->orderBy('match', 'desc')->get();
     }
 
     public function showInfo($id)

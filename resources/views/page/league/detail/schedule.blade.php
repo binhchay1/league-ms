@@ -34,51 +34,59 @@
 
                                                                 <div class="team-details-wrap">
                                                                     <div class="player1-wrap">
-                                                                        <div class="player1 player">
+                                                                        <div class="player1 player_winner player">
                                                                             {{$schedule->player1Team1->name ?? ""}} </div>
                                                                         <div class="flag">
-                                                                            <img src="{{$schedule->player2Team1->profile_photo_path ?? asset('/images/no-image.png')}}">
+                                                                            <img src="{{$schedule->player1Team1->profile_photo_path ?? asset('/images/no-image.png')}}">
+
                                                                         </div>
                                                                     </div>
                                                                     @if(isset($schedule->player2Team1->name))
-                                                                    <div class="player2-wrap">
-                                                                        <div class="player2 player">
-                                                                            {{$schedule->player2Team1->name ?? ""}} </div>
-                                                                        <div class="flag">
-                                                                            <img src="{{$schedule->player2Team1->profile_photo_path ?? asset('/images/no-image.png')}}">
+                                                                        <div class="player2-wrap">
+                                                                            <div class="player2 player_winner player">
+                                                                                {{$schedule->player2Team1->name ?? ""}} </div>
+                                                                            <div class="flag">
+                                                                                <img src="{{$schedule->player2Team1->profile_photo_path ?? asset('/images/no-image.png')}}">
+
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                        @endif
+                                                                    @endif
                                                                 </div>
 
                                                                 <div class="vs"> bt </div>
 
                                                                 <div class="team-details-wrap">
-                                                                    <div class="player3-wrap">
+                                                                    <div class="player3-wrap player">
                                                                         <div class="flag">
                                                                             <img src="{{$schedule->player1Team2->profile_photo_path ?? asset('/images/no-image.png')}}">
+
                                                                         </div>
-                                                                        <div class="player1 player">
+                                                                        <div class="player3 player">
                                                                             {{$schedule->player1Team2->name ?? ""}} </div>
                                                                     </div>
                                                                     @if(isset($schedule->player2Team2->name))
-                                                                    <div class="player4-wrap">
-                                                                        <div class="flag">
-                                                                            <img src="{{$schedule->player2Team2->profile_photo_path ?? asset('/images/no-image.png')}}">
+                                                                        <div class="player4-wrap player">
+                                                                            <div class="flag">
+                                                                                <img src="{{$schedule->player2Team2->profile_photo_path ?? asset('/images/no-image.png')}}">
+
+                                                                            </div>
+                                                                            <div class="player4 player">
+                                                                                {{$schedule->player2Team2->name ?? asset('/images/no-image.png')}}</div>
                                                                         </div>
-                                                                        <div class="player4 player">
-                                                                            {{$schedule->player2Team2->name ?? ""}}</div>
-                                                                    </div>
-                                                                        @endif
+                                                                    @endif
                                                                 </div>
                                                             </div>
 
+
                                                             <div class="score">
-                                                                {{$schedule->result_team_1 ?? ""}}  {{$schedule->result_team_1 ?? ""}} </div>
+                                                                {{$schedule->set_1_team_1}} - {{$schedule->set_1_team_2 }} ,
+                                                                {{$schedule->set_2_team_1 }} - {{$schedule->set_2_team_2 }} ,
+                                                                {{$schedule->set_3_team_1 }} - {{$schedule->set_3_team_2 }}
+                                                            </div>
                                                         </div>
                                                         <div class="timer1">
                                                             <?php $date = date('d/m/Y',strtotime($schedule->date)); ?>
-                                                           {{$date}}
+                                                            {{$date}}
                                                         </div>
                                                     </a>
                                                 </li>

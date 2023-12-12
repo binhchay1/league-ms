@@ -79,8 +79,11 @@
                             </div>
                             <div class="info">
                                 <h2>{{ $leagueInfor->name }}</h2>
-                                <h5>{{__('Start Date')}}: {{ $leagueInfor->start_date }}</h5>
-                                <h5>{{__('End Date')}}: {{ $leagueInfor->end_date }}</h5>
+                                <?php $start_date = date('d/m/Y',strtotime($leagueInfor->start_date));
+                                $end_date = date('d/m/Y',strtotime($leagueInfor->end_date));
+                                ?>
+                                <h5 class="">{{__('Start Date')}}: {{ $start_date }}</h5>
+                                <h5 class="">{{__('End Date')}}: {{ $end_date }}</h5>
                                 <div class="prize">{{__('PRIZE MONEY USD ')}}${{ $leagueInfor->money }}</div>
                             </div>
                         </div>
@@ -90,13 +93,13 @@
                 <div class="wrapper-content-results" style="padding: 0px; margin-top: 18px;">
                     <ul id="ajaxTabs" class="content-tabs">
                         <li>
-                            <a href="{{route('result.info', $leagueInfor['slug'])}}">{{__('Result')}} </a>
+                            <a href="{{route('leagueResult.info', $leagueInfor['slug'])}}">{{__('Result')}} </a>
                         </li>
-                        <li><a href="">{{__('Schedule')}}</a>
+                        <li><a href="{{route('leagueSchedule.info', $leagueInfor['slug'])}}">{{__('Schedule')}}</a>
                         </li>
-                        <li><a href="">{{__('Fighting Branch')}}</a>
+                        <li><a href="{{route('LeagueFightBranch.info', $leagueInfor['slug'])}}">{{__('Fighting Branch')}}</a>
                         </li>
-                        <li><a id="player-data" href="{{ route('league.player.info', $leagueInfor['slug']) }}">{{__('Player ')}}</a>
+                        <li><a id="player-data" href="{{ route('leaguePlayer.info', $leagueInfor['slug']) }}">{{__('Player ')}}</a>
                         </li>
                     </ul>
                     <div class="register  row" align="right" >
@@ -131,8 +134,11 @@
                                                 <div class="col-lg-8 league-data">
                                                     <h4 class="">{{ $leagueInfor->name }}</h4>
                                                     {{ $leagueInfor->type_of_league }}
-                                                    <h6 class="">{{__('Start Date')}}: {{ $leagueInfor->start_date }}</h6>
-                                                    <h6 class="">{{__('End Date')}}: {{ $leagueInfor->end_date }}</h6>
+                                                    <?php $start_date = date('d/m/Y',strtotime($leagueInfor->start_date));
+                                                          $end_date = date('d/m/Y',strtotime($leagueInfor->end_date));
+                                                    ?>
+                                                    <h6 class="">{{__('Start Date')}}: {{ $start_date }}</h6>
+                                                    <h6 class="">{{__('End Date')}}: {{ $end_date }}</h6>
                                                     <p class="">{{__('PRIZE MONEY USD ')}}${{ $leagueInfor->money }}</p>
                                                 </div>
                                                 <div class="checkbox" align="center">
@@ -170,6 +176,8 @@
                                                                    value="{{$leagueInfor->id}}">
                                                             <input type="hidden" name="end_date_register" id=""
                                                                    value="{{$leagueInfor->end_date_register}}">
+                                                            <input type="hidden" name="start_date" id=""
+                                                                   value="{{$leagueInfor->start_date}}">
                                                             <input type="hidden" name="user_id"
                                                                    value="{{Auth::user()->id}}">
                                                             <input type="hidden" name="status" value="0">
@@ -215,17 +223,25 @@
 
                     <div class="content-results">
                         <div class="item-results">
-                            @if(Route::current()->getName() == 'league.player.info')
+                            @if(Route::current()->getName() == 'leaguePlayer.info')
                                 <div>
                                     @include('page.league.detail.player')
                                 </div>
-                            @elseif(Route::current()->getName() == 'result.info')
+                            @elseif(Route::current()->getName() == 'leagueResult.info')
                                 <div>
                                     @include('page.league.detail.result')
                                 </div>
+                            @elseif(Route::current()->getName() == 'leagueSchedule.info')
+                                <div>
+                                    @include('page.league.detail.schedule')
+                                </div>
+                            @elseif(Route::current()->getName() == 'leagueFightBranch.info')
+                                <div>
+                                    @include('page.league.detail.fight-branch')
+                                </div>
                             @else
                                 <div>
-                                    @include('page.league.rank')
+
                                 </div>
                             @endif
                         </div>
@@ -244,9 +260,9 @@
         });
 
         var date_register = '<?php  echo strtotime($leagueInfor->end_date_register); ?>';
-        var date_current = '<?php  echo strtotime(date('Y-m-d')); ?>';
+        var start_date = '<?php  echo strtotime($leagueInfor->start_date); ?>';
 
-        if(date_register < date_current) {
+        if(date_register > start_date) {
             $('#btn-register').prop("disabled", true);
         }
         else {
