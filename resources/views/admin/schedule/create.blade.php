@@ -1,9 +1,8 @@
 @extends('layouts.admin')
 @section('content')
     <style>
-        label:not(.form-check-label):not(.custom-file-label) {
-            font-weight: 500;
-        }
+
+
     </style>
     <div class="container-fluid mt-4">
         <div class="card card-default">

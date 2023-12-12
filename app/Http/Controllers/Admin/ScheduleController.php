@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Ranking;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResultScheduleRequest;
 use App\Http\Requests\ScheduleRequest;
@@ -26,7 +27,7 @@ class ScheduleController extends Controller
     public function index()
     {
         $listLeagues = $this->leagueRepository->index();
-        $rounds = config('league.round');
+        $rounds =  Ranking::RANKING_ARRAY_ROUND;
         $listSchedules = $this->scheduleRepository->index();
         return view('admin.schedule.index', compact('listSchedules', 'listLeagues', 'rounds'));
     }
@@ -40,7 +41,7 @@ class ScheduleController extends Controller
     public function leagueSchedule($id)
     {
         $league = $this->leagueRepository->show($id);
-        $rounds = config('league.round');
+        $rounds =  Ranking::RANKING_ARRAY_ROUND;
         return view('admin.schedule.create', compact('league', 'rounds'));
     }
 
