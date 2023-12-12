@@ -131,7 +131,7 @@ $utility = new \App\Enums\Utility();
 
 @section('content')
 <section id="heading">
-    <div class="container d-flex">
+    <div class="container d-flex" style="background: #ad9696;">
         <div>
             <img src="{{ $getGroup->images }}" width="80" alt="Group Avatar" />
         </div>
@@ -155,7 +155,7 @@ $utility = new \App\Enums\Utility();
         <div class="row d-flex justify-content-center">
             <div class="col-md-8 col-lg-6 col-xl-6">
                 <div class="card" id="chat1" style="border-radius: 15px;">
-                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0">
+                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0" style="background: #ad9696 !important;">
                         <p class="mb-0 fw-bold">{{ __('Live chat') }}</p>
                     </div>
                     <div class="card-body">
@@ -233,7 +233,7 @@ $utility = new \App\Enums\Utility();
             </div>
             <div class="col-md-4 col-lg-6 col-xl-6">
                 <div class="card" id="chat1" style="border-radius: 15px;">
-                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0">
+                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0" style="background: #ad9696 !important;">
                         <p class="mb-0 fw-bold">{{ __('List members') }}</p>
                         <p class="mb-0 fw-bold">( {{ $getGroup->group_users->count() }} / {{ $getGroup->number_of_members }} )</p>
                     </div>

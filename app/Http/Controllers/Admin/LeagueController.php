@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Ranking;
 use App\Enums\Role;
 use App\Http\Requests\LeagueRequest;
 use App\Models\UserLeague;
@@ -36,10 +37,10 @@ class LeagueController extends Controller
 
     public function create()
     {
-        $type_leagues = config('league.type');
-        $format_leagues = config('league.format');
+        $listType = Ranking::RANKING_ARRAY_TYPE;
+        $listFormat = Ranking::RANKING_ARRAY_FORMAT;
         if (Auth::user()->role == Role::ADMIN) {
-            return view('admin.league.create', compact('type_leagues', 'format_leagues'));
+            return view('admin.league.create', compact('listType', 'listFormat'));
         }
 
         return view('page.league.create', compact('type_league', 'format_league'));
@@ -71,10 +72,10 @@ class LeagueController extends Controller
 
     public function edit($id)
     {
-        $type_leagues = config('league.type');
-        $format_leagues = config('league.format');
+        $listType = Ranking::RANKING_ARRAY_TYPE;
+        $listFormat = Ranking::RANKING_ARRAY_FORMAT;
         $dataLeague = $this->leagueRepository->show($id);
-        return view('admin.league.edit', compact('dataLeague', 'format_leagues', 'type_leagues'));
+        return view('admin.league.edit', compact('dataLeague', 'listType', 'listFormat'));
     }
 
 

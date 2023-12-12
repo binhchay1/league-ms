@@ -377,7 +377,6 @@
             <ul>
                 <li><strong>{{ $totalLeague }}</strong> {{ __('Total League') }}</li>
                 <li><strong>{{ $totalGroup }}</strong> {{ __('Total Group') }}</li>
-                <li><strong>{{ $totalMatch }}</strong> {{ __('Total Match') }}</li>
                 <li><strong>{{ intval($totalView) }}</strong> {{ __('Visit website') }}</li>
             </ul>
         </div>

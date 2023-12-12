@@ -25,9 +25,7 @@ class ScheduleRequest extends FormRequest
     {
         return [
             'league_id' => 'required',
-            'team_id_1' => 'required',
-            'team_id_2' => 'required',
-            'match' => 'required',
+            'round' => 'required',
             'time' => 'required',
             'date' => 'required',
 
@@ -38,10 +36,8 @@ class ScheduleRequest extends FormRequest
     {
         return [
             'league_id.required' => __('Giải đấu không được để trống'),
-            'team_id_1.required' => __('Đội thi đấu không được để trống'),
-            'team_id_2.required' => __('Đội thi đấu không được để trống'),
             'name.required' => __('Tên không được để trống'),
-            'match.required' => __('Vòng đấu không được để trống'),
+            'round.required' => __('Vòng đấu không được để trống'),
             'time.required' => __('Thời gian thi đấu không được để trống'),
             'date.required' => __('Ngày thi đấu không được bỏ trống'),
         ];
