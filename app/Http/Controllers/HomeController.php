@@ -213,6 +213,7 @@ class HomeController extends Controller
     public function showResult($slug)
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
+        dd($leagueInfor);
         $listLeagues = $this->leagueRepository->index();
 
         return view('page.league.show', compact('leagueInfor', 'listLeagues'));
