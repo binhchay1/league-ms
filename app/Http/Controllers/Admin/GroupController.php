@@ -25,7 +25,7 @@ class GroupController extends Controller
 
     public function index()
     {
-        $listGroup = $this->groupRepository->getGroup();
+        $listGroup = $this->groupRepository->get();
         return view('admin.group.index', compact('listGroup'));
     }
 

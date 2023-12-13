@@ -37,7 +37,7 @@ Route::middleware(['verified'])->group(function () {
     Route::get('/info/{slug}/player/', [HomeController::class, 'showPlayer'])->name('leaguePlayer.info');
     Route::get('/info/{slug}/result/', [HomeController::class, 'showResult'])->name('leagueResult.info');
     Route::get('/info/{slug}/schedule/', [HomeController::class, 'showSchedule'])->name('leagueSchedule.info');
-    Route::get('/info/{slug}/fight-branch/', [HomeController::class, 'showFightBranch'])->name('LeagueFightBranch.info');
+    Route::get('/info/{slug}/fight-branch/', [HomeController::class, 'showFightBranch'])->name('leagueFightBranch.info');
     Route::get('/list-teams/', [HomeController::class, 'listTeam'])->name('list.team');
     Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
     Route::get('/detail-group/', [HomeController::class, 'detailGroup'])->name('detail.group');
