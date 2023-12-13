@@ -132,8 +132,8 @@ $utility = new \App\Enums\Utility();
 @section('content')
 <section id="heading">
     <div class="container d-flex" style="background: #ad9696;">
-        <div>
-            <img src="{{ $getGroup->images }}" width="80" alt="Group Avatar" />
+        <div class="mt-2">
+            <img src="{{ $getGroup->images }}" width="100" height="100" healt="Group Avatar" />
         </div>
         <div style="margin-left: 20px;">
             <div class="d-flex">
@@ -166,10 +166,10 @@ $utility = new \App\Enums\Utility();
                             <div class="d-flex flex-row justify-content-end mb-4">
                                 <div class="p-3 me-3 border append-css-this">
                                     <p class="small mb-0">{{ $message->message }}</p>
-                                </div><img src="{{ $message->users->profile_photo_path }}" alt="Avatar" width="45">
+                                </div><img src="{{ $message->users->profile_photo_path ?? asset('/images/no-image.png') }}" alt="Avatar" width="40" height="40">
                             </div>
                             @else
-                            <div class="d-flex flex-row justify-content-start mb-4"><img src="{{ $message->users->profile_photo_path }}" alt="Avatar" width="45">
+                            <div class="d-flex flex-row justify-content-start mb-4"><img src="{{ $message->users->profile_photo_path ?? asset('/images/no-image.png') }}" alt="Avatar" width="40" height="40">
                                 <div class="p-3 ms-3 append-css-that">
                                     <p class="small mb-0">{{ $message->message }}</p>
                                 </div>
@@ -199,7 +199,7 @@ $utility = new \App\Enums\Utility();
                                     <p class="small mb-0">{{ __('Hi') }}</p>
                                 </div><img src="{{ asset('images/default-avatar.png') }}" alt="Avatar" width="45">
                             </div>
-                            <div class="d-flex flex-row justify-content-start mb-4"><img src="{{ asset('images/default-avatar.png') }}" alt="Avatar" width="45">
+                            <div class="d-flex flex-row justify-content-start mb-4"><img src="{{ asset('images/no-image.png') }}" alt="Avatar" width="45">
                                 <div class="p-3 ms-3 append-css-that">
                                     <p class="small mb-0">{{ __('Hello') }}</p>
                                 </div>
@@ -241,7 +241,7 @@ $utility = new \App\Enums\Utility();
                         <ul>
                             @foreach($members as $member)
                             <li class="d-flex mt-3">
-                                <img src="{{ $member->users->profile_photo_path }}" width="40" height="40" />
+                                <img src="{{ $member->users->profile_photo_path ?? asset('/images/no-image.png')  }}" width="40" height="40" />
                                 <a href="{{ route('player.info', ['id' => $utility->encode_hash_id($member->users->id)]) }}" style="margin-left: 10px;">{{ $member->users->name }}</a>
                             </li>
                             @endforeach

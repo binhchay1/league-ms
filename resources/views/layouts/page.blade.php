@@ -76,7 +76,7 @@
                 @if(Auth::check())
                 <li class="menu">
                     <span>
-                        <img class="avatar-user" width="40" height="40" src="/{{ Auth::user()->profile_photo_path }}">
+                        <img class="avatar-user" width="40" height="40" src="{{ Auth::user()->profile_photo_path ?? asset('/images/no-image.png') }}">
                     </span>
                     <ul>
                         <li>
