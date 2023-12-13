@@ -79,9 +79,7 @@
 
 
                                                             <div class="score">
-                                                                {{$schedule->set_1_team_1}} - {{$schedule->set_1_team_2 }} ,
-                                                                {{$schedule->set_2_team_1 }} - {{$schedule->set_2_team_2 }} ,
-                                                                {{$schedule->set_3_team_1 }} - {{$schedule->set_3_team_2 }}
+
                                                             </div>
                                                         </div>
                                                         <div class="timer1">
@@ -93,7 +91,7 @@
                                             @endforeach
                                             <hr>
                                         @empty
-                                            <h5>Chưa cập nhập lịch thi đấu </h5>
+                                            <h2>{{__('Data has not been updated!')}}</h2>
                                         @endforelse
                                     </ul>
                                 </div>

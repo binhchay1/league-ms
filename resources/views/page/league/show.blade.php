@@ -64,6 +64,7 @@
                                 {{__('OTHER LEAGUE')}} </h3>
                             <label class="tournament-select clear">
                                 <select name='record' class="ddlTournament">
+                                    <option id="format_of_league" value="">{{__('Select League')}}</option>
                                     @foreach($listLeagues as $league => $value )
                                         <?php $dataLeague = str_slug($value->name) ?>
                                         <option value="{{$dataLeague}}">{{$value->name}}</option>
@@ -97,14 +98,16 @@
                         </li>
                         <li><a href="{{route('leagueSchedule.info', $leagueInfor['slug'])}}">{{__('Schedule')}}</a>
                         </li>
-                        <li><a href="{{route('LeagueFightBranch.info', $leagueInfor['slug'])}}">{{__('Fighting Branch')}}</a>
+                        <li><a href="{{route('leagueFightBranch.info', $leagueInfor['slug'])}}">{{__('Fighting Branch')}}</a>
                         </li>
                         <li><a id="player-data" href="{{ route('leaguePlayer.info', $leagueInfor['slug']) }}">{{__('Player ')}}</a>
                         </li>
                     </ul>
-                    <div class="register  row" align="right" >
+                    <div class="register  row" align="right" id="register-league" >
                         <div class="col-lg-10 mt-4">
-                            <h5>{{__('Registration Deadline')}} : {{$leagueInfor->end_date_register}}</h5>
+                            <?php $end_date_register= date('d/m/Y',strtotime($leagueInfor->end_date_register));
+                            ?>
+                            <h5>{{__('Registration Deadline')}} : {{$end_date_register}}</h5>
                         </div>
                         <div class="col-lg-2 mt-3">
                             <button type="button" id="btn-register" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
@@ -263,10 +266,10 @@
         var start_date = '<?php  echo strtotime($leagueInfor->start_date); ?>';
 
         if(date_register > start_date) {
-            $('#btn-register').prop("disabled", true);
+            $('#register-league').prop("hidden", true);
         }
         else {
-            $('#btn-register').prop("disabled", false);
+            $('.btn-register').prop("disabled", false);
         }
     </script>
 

@@ -17,7 +17,7 @@ class UserLeague extends Model
 
     public function league()
     {
-        return $this->belongsTo(League::class, 'user_id', 'id');
+        return $this->belongsTo(League::class, 'league_id', 'id');
     }
 
     public function user()

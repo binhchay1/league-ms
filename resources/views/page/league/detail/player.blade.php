@@ -2,7 +2,6 @@
     <div class="item-results">
         <div class="item-results-podium">
             <h3 class="title">
-                {{__('LEAGUE PLAYER')}} </h3>
             <div class="men-single">
                 <ul>
                     @forelse($leagueInfor->userLeagues as $listTour)
@@ -28,7 +27,7 @@
                             </li>
                         @endif
                     @empty
-                        <h2>{{__('No players found')}}</h2>
+                        <h2>{{__('Data has not been updated!')}}</h2>
                     @endforelse
                 </ul>
             </div>
