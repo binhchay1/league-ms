@@ -51,4 +51,9 @@ class LeagueRepository extends BaseRepository
     {
         return $this->model->with('userLeagues')->whereDate('date', '>=', $start_date)->get();
     }
+
+    public function listLeagueHomePage()
+    {
+        return $this->model->orderBy('created_at', 'desc')->take(1)->get();
+    }
 }
