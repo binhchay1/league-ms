@@ -57,8 +57,9 @@ class HomeController extends Controller
         $totalGroup = $this->groupRepository->count();
         $totalLeague = $this->leagueRepository->count();
         $totalView = strtotime(date('Y-m-d H:i:s')) / 1242222;
+        $listLeague = $this->leagueRepository->listLeagueHomePage();
 
-        return view('page.homepage', compact( 'totalGroup', 'totalLeague', 'totalView'));
+        return view('page.homepage', compact( 'totalGroup', 'totalLeague', 'totalView', 'listLeague'));
     }
 
     public function viewSearch(Request $request)
@@ -154,12 +155,6 @@ class HomeController extends Controller
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
         $listLeagues = $this->leagueRepository->index();
-        //        $groupSchedule = [];
-        //
-        //        foreach ($leagueInfor->schedule as $schedule) {
-        //            $groupSchedule[$schedule['match']][] = $schedule;
-        //        }
-
         return view('page.league.show', compact('leagueInfor', 'listLeagues'));
     }
 
