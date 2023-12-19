@@ -1,0 +1,285 @@
+
+.img-responsive {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.std-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.container-1280 {
+    width: 1280px;
+    margin: auto;
+    padding: 30px;
+    max-width: 100%;
+}
+
+.std-title a h2 {
+    color: #df2027;
+}
+
+.next-tournament-section {
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000 url(../images/bg-next-tmt.jpg) top center no-repeat;
+    background-size: cover;
+}
+.bg-black {
+    background-color: #000!important;
+}
+
+.next-tournament-section .next-tournament-wrap {
+    width: 1280px;
+    padding: 0 30px;
+    margin: 0;
+}
+
+.next-tournament-section .next-tournament-wrap .box-results-tournament {
+    margin-top: 0;
+}
+.results .wrapper-results .box-results-tournament {
+    box-sizing: border-box;
+    margin: 20px 0 0;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.results .wrapper-results .box-results-tournament>div {
+    display: flex;
+    align-items: center;
+}
+
+.results .wrapper-results .box-results-tournament .info {
+    padding: 0 0 0 42px;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+}
+
+.results .wrapper-results .box-results-tournament .info a h2 , .results .wrapper-results .box-results-tournament .info a h4 {
+    color: #fff;
+    transition: .35s color ease-in-out;
+}
+
+.results .wrapper-results .box-results-tournament .info h2 {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 100%;
+    margin: 0;
+    color: #fff;
+}
+
+h6 {
+    color: white;
+}
+
+.owl-carousel.owl-loaded {
+    display: block;
+}
+
+.owl-carousel {
+    display: none;
+    width: 100%;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    z-index: 1;
+}
+
+.owl-item cloned {
+    width: 1220px;
+}
+
+.owl-carousel. owl-item {
+    position: relative;
+    min-height: 1px;
+    float: left;
+    -webkit-backface-visibility: hidden;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.top-player {
+    margin-top: -10px;
+    margin-bottom: -450px;
+}
+
+.top-player .rankings-content_tabpanel {
+    background: #000 url(../images/background-rank-home.jpg) top center no-repeat;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap {
+    display: flex;
+    background-color: rgba(115,115,115,.4);
+    color: #fff;
+    padding: 42px;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-left-single {
+    display: flex;
+    flex-direction: column;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-left-single .top-ranked-avatar {
+    overflow: hidden;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-right-single {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 24px;
+    flex-grow: 1;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-right-single .top-ranked-country-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-right-single .top-ranked-country-wrap .top-ranked-country {
+    display: flex;
+    align-items: center;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-right-single .top-ranked-country-wrap .top-ranked-country a {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 300;
+    transition: .35s color ease-in-out;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-right-single .top-ranked-country-wrap .top-ranked-country img {
+    margin-right: 12px;
+    width: 100px;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-ranking {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    color: #df2027;
+    padding: 42px 54px;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-extra-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-grow: 1;
+    background-color: #222;
+    margin-left: 12px;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-change {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #222;
+    padding: 24px;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-points {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #222;
+    padding: 24px;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-wins {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #222;
+    padding: 24px;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-ranking span:first-child {
+    font-size: 18px;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-ranking span:last-child {
+    font-size: 48px;
+}
+
+.owl-carousel .owl-item img {
+    display: block;
+    width: 100%;
+}
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-change span:first-child {
+    font-size: 18px;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-change span:last-child {
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-points span:first-child {
+    font-size: 18px;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-points span:last-child {
+    font-size: 36px;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-wins span:first-child {
+    font-size: 18px;
+}
+
+.rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-wins span:last-child {
+    font-size: 36px;
+}
+
+.rankings-content_tabpanel .top-ranked-nav-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(55,55,55,.5);
+}
+
+.rankings-content_tabpanel .top-ranked-nav-wrap .top-ranked-nav-left {
+    width: 50px;
+    text-align: center;
+    margin-left: 24px;
+    cursor: pointer;
+}
+
+.text-red {
+    color: #df2027;
+}
+
+.rankings-content_tabpanel .top-ranked-nav-wrap .top-ranked-nav-center {
+    text-align: center;
+    text-transform: uppercase;
+    color: #df2027;
+    font-size: 24px;
+    font-weight: 400;
+    padding: 12px;
+}
+
+a {
+    color: #df2027;
+}
