@@ -16,8 +16,13 @@ class RankingRepository extends BaseRepository
         return $this->model->with('users')->where('type', $type)->limit(100)->get();
     }
 
-    public function getRankingByTypeForUpdatePlaces($type)
+    public function updatePointByUser($user_id, $data)
     {
-        return $this->model->select('id', 'places', 'points')->where('type', $type)->orderBy('points', 'desc')->get();
+        return $this->model->where('user_id', $user_id)->update($data);
+    }
+
+    public function getRankingOrderByPoint()
+    {
+        return $this->model->orderBy('points', 'DESC')->get();
     }
 }
