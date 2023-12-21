@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\GroupRequest;
+use App\Http\Requests\ProductRequest;
 use App\Repositories\ProductRepository;
 use App\Http\Controllers\Controller;
 use App\Enums\Utility;
-use Illuminate\Support\Str;
-use App\Enums\Group;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -37,11 +35,9 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $input = $request->except(['_token']);
-        $input['product_owner'] = Auth::user()->id;
-        $input['rate'] = Group::RATE_NEWLY_ESTABLISHED;
 
         if (isset($input['images'])) {
-            $img = $this->utility->saveImageGroup($input);
+            $img = $this->utility->saveImageProduct($input);
             if ($img) {
                 $path = '/images/upload/product/' . $input['images']->getClientOriginalName();
                 $input['images'] = $path;
@@ -53,20 +49,19 @@ class ProductController extends Controller
         return redirect()->route('product.index');
     }
 
-    public function edit($id)
+    public function edit(Request $request)
     {
-        $dataGroup = $this->productRepository->getById($id);
+        $dataProduct = $this->productRepository->getById($request->get('id'));
 
-        return view('admin.product.edit', compact('dataGroup'));
+        return view('admin.product.edit', compact('dataProduct'));
     }
 
-
-    public function update(GroupRequest $request, $id)
+    public function update(ProductRequest $request, $id)
     {
         $input = $request->except(['_token']);
-        $input['slug'] = Str::slug($request->slug);
+
         if (isset($input['images'])) {
-            $img = $this->utility->saveImageGroup($input);
+            $img = $this->utility->saveImageProduct($input);
             if ($img) {
                 $path = '/images/upload/product/' . $input['image']->getClientOriginalName();
                 $input['images'] = $path;
@@ -74,6 +69,13 @@ class ProductController extends Controller
         }
 
         $this->productRepository->updateById($id, $input);
+        return redirect()->route('product.index');
+    }
+
+    public function delete(Request $request)
+    {
+        $this->productRepository->deleteById($request->get('id'));
+
         return redirect()->route('product.index');
     }
 }
