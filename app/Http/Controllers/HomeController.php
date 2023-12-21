@@ -59,7 +59,7 @@ class HomeController extends Controller
         $totalView = strtotime(date('Y-m-d H:i:s')) / 1242222;
         $listLeague = $this->leagueRepository->listLeagueHomePage();
 
-        return view('page.homepage', compact( 'totalGroup', 'totalLeague', 'totalView', 'listLeague'));
+        return view('page.homepage', compact('totalGroup', 'totalLeague', 'totalView', 'listLeague'));
     }
 
     public function viewSearch(Request $request)
@@ -106,16 +106,8 @@ class HomeController extends Controller
 
     public function viewRanking(Request $request)
     {
-        $type = $request->get('type');
-        if (!empty($type)) {
-            if (!in_array($type, Ranking::RANKING_ARRAY_TYPE)) {
-                abort(404);
-            }
-        } else {
-            $type = Ranking::RANKING_MALE_DOUBLES;
-        }
+        $ranking = $this->rankingRepository->getTop();
 
-        $ranking = $this->rankingRepository->getTopByType($type);
         return view('page.ranking.index', compact('ranking'));
     }
 
@@ -129,10 +121,15 @@ class HomeController extends Controller
         }
 
         $user = $this->userRepository->getInformationUser($user_id);
-        $group = $this->groupUserRepository->getGroupByUserId($user_id);
-        $league = $this->userLeagueRepository->getLeagueByUserId($user_id);
+        $groups = $this->groupUserRepository->getGroupByUserId($user_id);
+        $leagues = $this->userLeagueRepository->getLeagueByUserId($user_id);
 
-        return view('page.user.player', compact('user', 'group', 'league'));
+        foreach ($groups as $group) {
+            $totalMembers = $this->groupUserRepository->countMembers($group->id);
+            $group->totalMembers = $totalMembers;
+        }
+
+        return view('page.user.player', compact('user', 'groups', 'leagues'));
     }
 
     public function listLeague()
@@ -219,8 +216,6 @@ class HomeController extends Controller
             $groupSchedule[$schedule['round']][] = $schedule;
         }
 
-        // $schedule = $this->scheduleRepository->showInfo();
-
         return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule'));
     }
 
@@ -241,8 +236,6 @@ class HomeController extends Controller
             $groupSchedule[$schedule['round']][] = $schedule;
         }
 
-        // $schedule = $this->scheduleRepository->showInfo();
-
         return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule'));
     }
 
@@ -257,6 +250,6 @@ class HomeController extends Controller
         $userRegisterLeague = $request->except(['_token']);
         $this->userLeagueRepository->store($userRegisterLeague);
 
-        return back()->with('message','You are allowed to access');
+        return back()->with('message', 'You are allowed to access');
     }
 }

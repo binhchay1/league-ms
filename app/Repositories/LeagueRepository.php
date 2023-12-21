@@ -49,7 +49,7 @@ class LeagueRepository extends BaseRepository
 
     public function getLeagueForPre($date)
     {
-        return $this->model->with('userLeagues')->whereDate('date', '>=', $start_date)->get();
+        return $this->model->with('userLeagues')->whereDate('date', '>=', $date)->get();
     }
 
     public function listLeagueHomePage()

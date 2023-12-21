@@ -14,7 +14,7 @@ class AddPlacesToRankingTable extends Migration
     public function up()
     {
         Schema::table('ranking', function (Blueprint $table) {
-            $table->integer('places');
+            $table->bigInteger('places');
         });
     }
 

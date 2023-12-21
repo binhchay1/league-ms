@@ -11,9 +11,9 @@ class RankingRepository extends BaseRepository
         return Ranking::class;
     }
 
-    public function getTopByType($type)
+    public function getTop()
     {
-        return $this->model->with('users')->where('type', $type)->limit(100)->get();
+        return $this->model->with('users')->limit(100)->get();
     }
 
     public function updatePointByUser($user_id, $data)

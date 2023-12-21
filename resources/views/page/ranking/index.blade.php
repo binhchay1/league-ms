@@ -25,51 +25,40 @@ $utility = new \App\Enums\Utility();
         <p class="fw-bold">Updated: {{ $ranking[0]->updated_at }}</p>
     </div>
 
-        <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="panel panel-default">
-                        <div class="panel-body table-responsive">
-                            <table class="table table-bordered">
-                                <thead>
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-body table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
                                 <tr>
-                                    <th>{{__('Rank')}}</th>
-                                    <th>{{__('Name')}}</th>
-                                    <th>{{__('Point')}}</th>
+                                    <th>{{ __('Rank') }}</th>
+                                    <th>{{ __('Name') }}</th>
+                                    <th>{{ __('Point') }}</th>
                                 </tr>
-                                </thead>
+                            </thead>
 
-                                <tbody>
+                            <tbody>
                                 @foreach($ranking as $index => $rank)
-                                    <tr>
-                                        <td class="col-rank">
-                                            <div class="col-rank-wrapper d-flex">
-                                                <span class="rank-value d-flex-align-center">{{ $index + 1 }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="col-player align-content-center">
-                                            <div class="player d-flex"><span><a style="color: black" href="{{ route('player.info', ['id' => $utility->encode_hash_id($rank->users->id)]) }}"><span><span class="name-1">{{ $rank->users->name }}</span></span></a></span></div>
-                                        </td>
-                                        <td class="col-points" style="font-weight: 700">{{ $rank->points }}</td>
-                                    </tr>
+                                <tr>
+                                    <td class="col-rank">
+                                        <div class="col-rank-wrapper d-flex">
+                                            <span class="rank-value d-flex-align-center">{{ $index + 1 }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="col-player align-content-center">
+                                        <div class="player d-flex"><span><a style="color: black" href="{{ route('player.info', ['id' => $utility->encode_hash_id($rank->users->id)]) }}"><span><span class="name-1">{{ $rank->users->name }}</span></span></a></span></div>
+                                    </td>
+                                    <td class="col-points" style="font-weight: 700">{{ $rank->points }}</td>
+                                </tr>
                                 @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </section>
-@endsection
-
-@section('js')
-<script type="text/javascript">
-    function selectTypeRank() {
-        let selected = $('#type-ranking').find(":selected").val();
-        let url = '/ranking?type=' + selected;
-
-        window.location.href = url;
-    }
-</script>
 @endsection

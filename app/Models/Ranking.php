@@ -13,7 +13,7 @@ class Ranking extends Model
     protected $table = 'ranking';
 
     protected $fillable = [
-        'user_id', 'points', 'places'
+        'user_id', 'points', 'places', 'places_old'
     ];
 
     public function users()
