@@ -1,6 +1,4 @@
-.wrapper-ranking {
-    padding: 48px 36px 36px;
-}
+
 
 .ranking-event-tabs {
     display: flex;
@@ -176,4 +174,20 @@ th {
     .ranking-event-tabs li a span.ranking-tab-mobile {
         display: none;
     }
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+.table-responsive {
+    max-height:300px;
+    overflow-x: auto;
+}
+
+.table-bordered tr th {
+    font-weight: 700;
+
 }

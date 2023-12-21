@@ -50,12 +50,9 @@
                                 <div class="country-detail">
                                     <div class="venue-country"  style="color:black;">
                                         <div>
-                                            <div class="country_code">
-                                                {{$listLeague->national}} </div>
-                                        </div>
-                                        <div>
-                                            <div>
-                                                <img width="75" src="{{$listLeague->image_nation_flag ?? asset('/images/vietnam.png')}}"  class=" b-error b-error">
+                                            <div style="margin-bottom: 40px; margin-right: 100px;">
+                                                <img src="{{ asset('/images/logo-no-background.png') }}"  class=" b-error b-error" width="100"
+                                                     height="100">
                                             </div>
                                         </div>
                                     </div>
@@ -73,13 +70,13 @@
             <div class="head d-flex justify-content-center ">
                     <ul class="pagination">
                         <li>
-                            <a href="{{ $paginateLeague->previousPageUrl() }}" aria-label="Previous" class="prevPlayersList">
+                            <a href="{{ $paginateLeague->previousPageUrl() }}" aria-label="Previous" style="color: red" class="prevPlayersList">
                                 <span aria-hidden="true"><span class="fa fa-angle-left"></span> PREVIOUS</span>
                             </a>
                         </li >
                         &emsp;
                         <li>
-                            <a href="{{ $paginateLeague->nextPageUrl() }}" aria-label="Next" class="nextPlayersList">
+                            <a href="{{ $paginateLeague->nextPageUrl() }}" aria-label="Next" style="color: red" class="nextPlayersList">
                                 <span aria-hidden="true">NEXT <span class="fa fa-angle-right"></span></span>
                             </a>
                         </li>

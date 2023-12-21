@@ -244,7 +244,7 @@
                                 </div>
                             @else
                                 <div>
-
+                                    @include('page.league.detail.schedule')
                                 </div>
                             @endif
                         </div>
