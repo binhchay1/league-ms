@@ -102,10 +102,6 @@
     </header>
 
     @yield('content')
-    <div class="partners-section-wrap">
-        <div class="partners-section">
-            <div class="partners-left">
-
     <footer style="background-color: #222">
         <div class="container color-white">
             <div>

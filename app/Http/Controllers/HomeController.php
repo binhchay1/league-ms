@@ -153,9 +153,14 @@ class HomeController extends Controller
 
     public function showInfo($slug)
     {
+
         $leagueInfor = $this->leagueRepository->showInfo($slug);
         $listLeagues = $this->leagueRepository->index();
-        return view('page.league.show', compact('leagueInfor', 'listLeagues'));
+        $groupSchedule = [];
+        foreach ($leagueInfor->schedule as $schedule) {
+            $groupSchedule[$schedule['round']][] = $schedule;
+        }
+        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule'));
     }
 
     public function changeLocate($locale)

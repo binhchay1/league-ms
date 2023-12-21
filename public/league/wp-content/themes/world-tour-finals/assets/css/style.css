@@ -5510,7 +5510,6 @@ li.chart table {
 
 .results .wrapper-results .item-results {
     position: relative;
-    min-height: 750px;
     padding-top: 10px;
     color: #333
 }
