@@ -13,14 +13,13 @@ $utility = new \App\Enums\Utility();
 @endsection
 
 @section('content')
-<section id="heading">
-    <div class="container">
-        <h1 class="center">{{ __('Ranking') }}</h1>
-        <p class="center">{{ __('Join all league of us for ranking') }}</p>
-    </div>
-</section>
 
 <section id="ranking" class="container" style="margin-bottom: 100px">
+    <div class="std-title">
+        <div class="std-title-left">
+            <h2 class="left">{{__('RANKING')}}</h2>
+        </div>
+    </div>
     <div class="wrapper-ranking" style="padding-top: 0; padding-bottom: 0">
         <p class="fw-bold">Updated: {{ $ranking[0]->updated_at }}</p>
     </div>
