@@ -20,56 +20,46 @@ $utility = new \App\Enums\Utility();
     </div>
 </section>
 
-<section id="ranking" class="container">
-    <div class="wrapper-ranking">
-        <select class="form-control" onchange="selectTypeRank()" id="type-ranking">
-            <option value="male-doubles">{{ __('Male doubles') }}</option>
-            <option value="female-doubles">{{ __('Female doubles') }}</option>
-            <option value="male-singles">{{ __('Male singles') }}</option>
-            <option value="female-singles">{{ __('Female singles') }}</option>
-            <option value="mixed-doubles">{{ __('Mixed doubles') }}</option>
-        </select>
-    </div>
+<section id="ranking" class="container" style="margin-bottom: 100px">
     <div class="wrapper-ranking" style="padding-top: 0; padding-bottom: 0">
         <p class="fw-bold">Updated: {{ $ranking[0]->updated_at }}</p>
     </div>
 
-    <div class="wrapper-ranking" style="padding-top: 0;">
-        <table width="100%" class="table">
-            <thead>
-                <tr>
-                    <th scope="col" class="fw-bold">{{ __('Rank') }}</th>
-                    <th scope="col" class="fw-bold">{{ __('Name') }}</th>
-                    <th scope="col" class="fw-bold">{{ __('Points') }}</th>
-                    <th scope="col" class="fw-bold">{{ __('Title') }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($ranking as $index => $rank)
-                <tr>
-                    <td class="col-rank">
-                        <div class="col-rank-wrapper d-flex">
-                            <span class="rank-value d-flex-align-center">{{ $index + 1 }}</span>
-                            @if($rank->places_old - $rank->places >= 0)
-                            <span class="ranking-change d-flex-align-center" style="color: green; margin-left: 10px"><i class="fas fa-2x fa-caret-up"></i> {{ abs($rank->places_old - $rank->places) }}</span>
-                            @else
-                            <span class="ranking-change d-flex-align-center" style="color: red; margin-left: 10px"><i class="fas fa-2x fa-caret-down"></i> {{ abs($rank->places_old - $rank->places) }}</span>
-                            @endif
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="panel panel-default">
+                        <div class="panel-body table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>{{__('Rank')}}</th>
+                                    <th>{{__('Name')}}</th>
+                                    <th>{{__('Point')}}</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                @foreach($ranking as $index => $rank)
+                                    <tr>
+                                        <td class="col-rank">
+                                            <div class="col-rank-wrapper d-flex">
+                                                <span class="rank-value d-flex-align-center">{{ $index + 1 }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="col-player align-content-center">
+                                            <div class="player d-flex"><span><a style="color: black" href="{{ route('player.info', ['id' => $utility->encode_hash_id($rank->users->id)]) }}"><span><span class="name-1">{{ $rank->users->name }}</span></span></a></span></div>
+                                        </td>
+                                        <td class="col-points" style="font-weight: 700">{{ $rank->points }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                    </td>
-                    <td class="col-player d-flex align-content-center">
-                        <div style="margin-left: 5px;">
-                            <span><img src="{{ asset($rank->users->profile_photo_path  ?? '/images/no-image.png') }}" width="40" height="40" /></span>
-                        </div>
-                        <div class="player d-flex"><span><a style="color: black" href="{{ route('player.info', ['id' => $utility->encode_hash_id($rank->users->id)]) }}"><span><span class="name-1">{{ $rank->users->name }}</span></span></a></span></div>
-                    </td>
-                    <td class="col-points">{{ $rank->points }}</td>
-                    <td class="col-points">{{ $rank->users->title }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </section>
 @endsection
 
