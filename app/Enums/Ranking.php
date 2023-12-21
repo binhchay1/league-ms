@@ -19,6 +19,6 @@ final class Ranking
     ];
 
     const RANKING_ARRAY_ROUND = [
-        'round 1/16',  'round 1/8', 'quarter-finals', 'semi-finals', 'finals'
+        'round 1',  'round 2', 'quarter-finals', 'semi-finals', 'finals'
     ];
 }
