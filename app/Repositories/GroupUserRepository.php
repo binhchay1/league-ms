@@ -26,4 +26,9 @@ class GroupUserRepository extends BaseRepository
     {
         return $this->model->with('users')->where('group_id', $group_id)->get();
     }
+
+    public function countMembers($group_id)
+    {
+        return $this->model->where('group_id', $group_id)->count();
+    }
 }

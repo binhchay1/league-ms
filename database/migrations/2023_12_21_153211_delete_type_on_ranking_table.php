@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPlacesToRankingTable extends Migration
+class DeleteTypeOnRankingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddPlacesToRankingTable extends Migration
     public function up()
     {
         Schema::table('ranking', function (Blueprint $table) {
-            $table->bigInteger('places');
+            $table->dropColumn('type');
         });
     }
 
@@ -26,7 +26,7 @@ class AddPlacesToRankingTable extends Migration
     public function down()
     {
         Schema::table('ranking', function (Blueprint $table) {
-            $table->dropColumn('places');
+            $table->string('type');
         });
     }
 }

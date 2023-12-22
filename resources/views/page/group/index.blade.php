@@ -14,16 +14,15 @@ $isFull = false;
 @endsection
 
 @section('content')
-<section id="heading">
-    <div class="container">
-        <h1 class="center">{{ __('Group') }}</h1>
-        <p class="center">{{ __('Join the group to have the opportunity to interact and chat with others.') }}</p>
-    </div>
-</section>
 
 <section id="group" class="container">
+    <div class="std-title">
+        <div class="std-title-left">
+            <h2 class="left">{{__('GROUP')}}</h2>
+        </div>
+    </div>
     <div class="row">
-        @foreach($listGroup as $group)
+        @forelse($listGroup as $group)
         @php
         if($group->group_users->count() == $group->number_of_members) {
         $isFull = true;
@@ -39,13 +38,13 @@ $isFull = false;
         @endphp
         @endforeach
         @endif
-        <div class="col-md-4">
-            <div class="card p-3 mb-4" style="background: url('/images/auth-logo-opacity-50.png') !important">
+        <div class="">
+            <div class="card p-3 mb-4" >
                 <div class="d-flex justify-content-between">
                     <div class="d-flex flex-row align-items-center">
-                        <div class="icon" width="50" height="50"> <img class="avatar-group" src="{{ $group->images ?? asset('/images/group.png') }}"></div>
-                        <div class="ms-2 c-details name-group" id="group-{{ $group->name }}" onclick="detailGroup(this.id)">
-                            <h6 class="mb-0">{{ $group->name }}</h6> <span>{{ $group->users->name }}</span>
+                        <div class="icon" width="300" height="300"> <img class="avatar-group" src="{{ $group->images  }}"></div>
+                        <div class=" c-details name-group" id="group-{{ $group->name }}" onclick="detailGroup(this.id)">
+                            <h6 class="mb-0">{{ $group->name }}</h6> <span style="font-weight: 500">{{ $group->users->name }}</span>
                         </div>
                     </div>
                     <div class="badge"> <span class="{{ \App\Enums\Group::COLOR_OF_RATE[$group->rate] }}">{{ $group->rate }}</span> </div>
@@ -91,42 +90,28 @@ $isFull = false;
                 </div>
             </div>
         </div>
-        @endforeach
+        @empty
+            <h2>{{__('Group has not data!')}}</h2>
+        @endforelse
     </div>
 
-    <div class="navigator short">
-        <div class="head d-flex justify-content-center">
-            @if(empty($listGroup->previousPageUrl()))
-            <a aria-label="arrow previous" class="arrow previous disable-link"></a>
-            @else
-            <a aria-label="arrow previous" class="arrow previous" href="{{ $listGroup->previousPageUrl() }}"></a>
-            @endif
-            <ul>
-                @if($listGroup->currentPage() != 1)
+
+    <!-- Paginate -->
+    <div class="navigator short" >
+        <div class="head d-flex justify-content-center ">
+            <ul class="pagination">
                 <li>
-                    <a href="{{ $listGroup->previousPageUrl() }}">{{ $listGroup->currentPage() - 1 }}</a>
-                </li>
-                @endif
-                <li class='current'>
-                    <span>{{ $listGroup->currentPage() }}</span>
-                </li>
-                @if($listGroup->currentPage() != $listGroup->lastPage())
+                    <a href="{{ $listGroup->previousPageUrl() }}" aria-label="Previous" style="color: red" class="prevPlayersList">
+                        <span aria-hidden="true"><span class="fa fa-angle-left"></span> PREVIOUS</span>
+                    </a>
+                </li >
+                &emsp;
                 <li>
-                    <a href="{{ $listGroup->nextPageUrl() }}">{{ $listGroup->currentPage() + 1 }}</a>
+                    <a href="{{ $listGroup->nextPageUrl() }}" aria-label="Next" style="color: red" class="nextPlayersList">
+                        <span aria-hidden="true">NEXT <span class="fa fa-angle-right"></span></span>
+                    </a>
                 </li>
-                @endif
-                @if($listGroup->lastPage() > $listGroup->currentPage() + 2)
-                <li class="separator">
-                    <span>...</span>
-                </li>
-                @endif
-                @if($listGroup->lastPage() > $listGroup->currentPage() + 1)
-                <li>
-                    <a href="?page={{ $listGroup->lastPage() }}">{{ $listGroup->lastPage() }}</a>
-                </li>
-                @endif
             </ul>
-            <a aria-label="arrow next" class="arrow next {{ $listGroup->currentPage() == $listGroup->lastPage() ? 'disable-link' : '' }}" href="{{ $listGroup->nextPageUrl() }}"></a>
         </div>
     </div>
 </section>

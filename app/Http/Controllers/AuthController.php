@@ -124,18 +124,13 @@ class  AuthController extends Controller
         $this->verifyUserRepository->create($dataVerify);
 
         ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $token)->delay(now()->addMinutes(60))->onQueue('change_verify_token');;
-        $listType = Ranking::RANKING_ARRAY_TYPE;
-        foreach ($listType as $type) {
-            $dataRanking = [
-                'user_id' => $user->id,
-                'points' => 0,
-                'type' => $type,
-                'places' => 0,
-                'places_old' => 0
-            ];
-
-            $this->rankingRepository->create($dataRanking);
-        }
+        $dataRanking = [
+            'user_id' => $user->id,
+            'points' => 0,
+            'places' => 0,
+            'places_old' => 0
+        ];
+        $this->rankingRepository->create($dataRanking);
 
         $url = route('user.verify', ['token' => $token]);
         $dataEmail = [
