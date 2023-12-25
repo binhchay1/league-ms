@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\Ranking;
 use App\Enums\Role;
 use App\Http\Requests\LeagueRequest;
-use App\Models\UserLeague;
 use App\Repositories\LeagueRepository;
 use App\Http\Controllers\Controller;
 use App\Enums\Utility;

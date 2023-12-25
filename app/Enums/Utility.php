@@ -33,6 +33,14 @@ final class Utility
         }
     }
 
+    public function saveImageProduct($input)
+    {
+        if ($input) {
+            $status = Storage::disk('public-image-product')->put($input['images']->getClientOriginalName(), $input['images']->get());
+            return $status;
+        }
+    }
+
     public function saveImageUser($input)
     {
         if ($input) {

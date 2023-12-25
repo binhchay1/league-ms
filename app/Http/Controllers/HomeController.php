@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\Ranking;
 use App\Enums\Utility;
 use App\Repositories\GroupRepository;
 use App\Repositories\LeagueRepository;
-use App\Repositories\MatchesRepository;
 use App\Repositories\UserLeagueRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\GroupUserRepository;

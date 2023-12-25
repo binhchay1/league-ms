@@ -80,7 +80,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/change-password/', [ProfileController::class, 'updatePassword'])->name('update-password');
     Route::get('/league-manager/', [HomeController::class, 'leagueManager'])->name('league-manager');
 
-    Route::middleware(['admin', 'auth'])->group(function () {
+    Route::middleware(['admin', 'auth'])->group(
+        function () {
             Route::get('/dashboard/', [AuthController::class, 'dashboard']);
 
             Route::get('/list-user/', [UserController::class, 'index'])->name('user.index');
@@ -112,6 +113,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/list-product/', [ProductController::class, 'index'])->name('product.index');
             Route::post('/store-product/', [ProductController::class, 'store'])->name('product.store');
             Route::get('/create-product/', [ProductController::class, 'create'])->name('product.create');
+            Route::get('/edit-product/', [ProductController::class, 'edit'])->name('product.edit');
+            Route::post('/update-product/', [ProductController::class, 'update'])->name('product.update');
+            Route::get('/delete-product/', [ProductController::class, 'delete'])->name('product.delete');
         }
     );
 });

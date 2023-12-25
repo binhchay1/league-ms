@@ -11,9 +11,9 @@ class ScheduleRepository extends BaseRepository
         return Schedule::class;
     }
 
-    public function store($input)
+    public function store($dataSchedule)
     {
-        return $this->model->create($input);
+        return $this->model->create($dataSchedule);
     }
 
     public function index()
