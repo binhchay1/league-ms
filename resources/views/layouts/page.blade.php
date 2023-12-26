@@ -29,7 +29,9 @@
     <link rel="stylesheet" id="bwf-style-css" href="{{ asset('css/content/league.css') }}" type="text/css" media="all" />
     @yield('css')
 </head>
-
+@section('css')
+    <link rel="stylesheet" id="bwf-style-css" href="{{asset('css/page/homepage.css')}}" type="text/css" media="all"/>
+@endsection
 <body>
     <header style="background-color: #222">
         <div class="top-nav">
@@ -102,7 +104,7 @@
     </header>
 
     @yield('content')
-    <footer style="background-color: #222">
+    <footer style="background-color: #222; height: 500px;">
         <div class="container color-white">
             <div>
                 <h4 class="h3 color-white">Criteria</h4>

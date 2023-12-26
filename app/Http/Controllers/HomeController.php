@@ -56,8 +56,9 @@ class HomeController extends Controller
         $totalLeague = $this->leagueRepository->count();
         $totalView = strtotime(date('Y-m-d H:i:s')) / 1242222;
         $listLeague = $this->leagueRepository->listLeagueHomePage();
+        $listRank = $this->rankingRepository->listRankHomePage();
 
-        return view('page.homepage', compact('totalGroup', 'totalLeague', 'totalView', 'listLeague'));
+        return view('page.homepage', compact('totalGroup', 'totalLeague', 'totalView', 'listLeague', 'listRank'));
     }
 
     public function viewSearch(Request $request)
@@ -105,8 +106,9 @@ class HomeController extends Controller
     public function viewRanking(Request $request)
     {
         $ranking = $this->rankingRepository->getTop();
-
-        return view('page.ranking.index', compact('ranking'));
+        $paginateRank = $this->utility->paginate($ranking, 5);
+        $listRank = $this->rankingRepository->listRankHomePage();
+        return view('page.ranking.index', compact('ranking', 'paginateRank', 'listRank'));
     }
 
     public function viewInforPlayer($id)

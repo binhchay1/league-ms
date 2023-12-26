@@ -48,8 +48,17 @@ class ScheduleController extends Controller
 
     public function store(Request $request)
     {
+//        dd($request->all());
         $input = $request->except(['_token']);
-        $data = $this->scheduleRepository->store($input);
+        foreach($input as $key => $value)
+        {
+            dd($key,$value );
+
+            $data = $this->scheduleRepository->store($dataSchedule);
+
+        }
+
+
         return redirect('list-schedule')->with('success', 'Create schedule successfully!');
     }
 

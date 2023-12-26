@@ -79,7 +79,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function ranking()
     {
-        return $this->hasMany(Ranking::class);
+        return $this->hasOne(Ranking::class);
     }
 
     public function group()
