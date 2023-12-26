@@ -111,7 +111,7 @@ h6 {
     user-select: none;
 }
 .top-player {
-    margin-top: -10px;
+    margin-top: 50px;
     margin-bottom: -450px;
 }
 
@@ -282,3 +282,36 @@ h6 {
 a {
     color: #df2027;
 }
+
+.site-footer_nav {
+    padding-top: 20px;
+}
+
+.footer-nav {
+    overflow: hidden;
+    font-size: 11px;
+    padding: 24px 18px 24px 6%;
+}
+
+.row {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+.site-footer {
+    color: #fff;
+    overflow: hidden;
+}
+
+.text-uppercase, .initialism {
+    text-transform: uppercase;
+}
+
+footer a {
+    color: white;
+}
+
+h3 {
+    font-size: calc(0.3rem + .6vw);
+}
+
