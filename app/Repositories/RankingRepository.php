@@ -25,4 +25,9 @@ class RankingRepository extends BaseRepository
     {
         return $this->model->orderBy('points', 'DESC')->get();
     }
+
+    public function listRankHomePage()
+    {
+        return $this->model->with('users')->orderBy('points', 'desc')->take(1)->get();
+    }
 }
