@@ -21,7 +21,7 @@
                                             <li class="location-name">
                                                 <strong>{{$round}}</strong>
                                             </li>
-                                            @foreach($schedules as $schedule)
+                                            @foreach($schedules as $schedule )
                                                 <li class="row1 draw-WD - Group B match-147 ">
                                                     <a id="match-link" href="">
                                                         <div class="round_time">

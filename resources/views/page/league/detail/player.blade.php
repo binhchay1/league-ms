@@ -1,7 +1,7 @@
 <div class="content-results">
     <div class="item-results">
         <div class="item-results-podium">
-            <h3 class="title">
+            <h3 class="title"></h3>
             <div class="men-single">
                 <ul>
                     @forelse($leagueInfor->userLeagues as $listTour)
@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="img">
                                     <a href="">
-                                        <img src="{{$listTour->user->image ?? '/images/no-image.png'}}" alt="" class=" b-error b-error">
+                                        <img src="{{$listTour->user->profile_photo_path ?? '/images/no-image.png'}}" alt="" class=" b-error b-error">
                                     </a>
                                 </div>
                             </li>
