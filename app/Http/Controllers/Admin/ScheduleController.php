@@ -49,16 +49,23 @@ class ScheduleController extends Controller
 
     public function store(Request $request)
     {
-//        dd($request->all());
         $input = $request->except(['_token']);
-        foreach($input as $key => $value)
-        {
-            dd($key,$value );
-
-            $data = $this->scheduleRepository->store($dataSchedule);
-
+        foreach ($input as $key => $arrValue) {
+            $count = count($arrValue);
+            break;
         }
+        for ($i = 0; $i < $count; $i++) {
+            $dataRecord = [];
+            foreach ($input as $key => $arrValue) {
+                if ($key == 'league_id') {
+                    $dataRecord['league_id'] = $arrValue;
+                } else {
+                    $dataRecord[$key] = $arrValue[$i];
+                }
+            }
 
+            $this->scheduleRepository->store($dataRecord);
+        }
 
         return redirect('list-schedule')->with('success', 'Create schedule successfully!');
     }
