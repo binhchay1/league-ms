@@ -14,8 +14,6 @@ p {
 }
 
 .card {
-    border: none;
-    border-radius: 10px;
     background-color: #eee;
 }
 

@@ -75,7 +75,7 @@ $utility = new \App\Enums\Utility();
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($ranking as $index => $rank)
+                    @foreach($listRankings as $index => $rank)
                     <tr>
                         <td align="center">
                             {{ $index + 1 }}
@@ -102,17 +102,17 @@ $utility = new \App\Enums\Utility();
             </div>
         </div>
         <!-- Paginate -->
-        <div class="navigator short" >
+        <div class="navigator short mt-4" >
             <div class="head d-flex justify-content-center ">
                 <ul class="pagination">
                     <li>
-                        <a href="{{ $paginateRank->previousPageUrl() }}" aria-label="Previous" style="color: red" class="prevPlayersList">
+                        <a href="{{ $listRankings->previousPageUrl() }}" aria-label="Previous" style="color: red" class="prevPlayersList">
                             <span aria-hidden="true"><span class="fa fa-angle-left"></span> PREVIOUS</span>
                         </a>
                     </li >
                     &emsp;
                     <li>
-                        <a href="{{ $paginateRank->nextPageUrl() }}" aria-label="Next" style="color: red" class="nextPlayersList">
+                        <a href="{{ $listRankings->nextPageUrl() }}" aria-label="Next" style="color: red" class="nextPlayersList">
                             <span aria-hidden="true">NEXT <span class="fa fa-angle-right"></span></span>
                         </a>
                     </li>
