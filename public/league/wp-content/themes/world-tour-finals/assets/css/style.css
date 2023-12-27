@@ -3917,6 +3917,7 @@ section.player-gallery .player-gallery .player-gallery-image img {
 }
 
 .live-profile-wrap .player1-wrap .player1-info {
+    font-weight: 500;
     margin-right: 15px;
     width: 110px;
     display: flex;
@@ -3925,6 +3926,7 @@ section.player-gallery .player-gallery .player-gallery-image img {
 }
 
 .live-profile-wrap .player2-wrap .player2-info {
+    font-weight: 500;
     margin-left: 15px;
     width: 110px;
     display: flex;
@@ -3980,13 +3982,6 @@ section.player-gallery .player-gallery .player-gallery-image img {
     }
 }
 
-.live-profile-wrap .player1-wrap .player1-profile img {
-    border-bottom: 10px solid #00b331
-}
-
-.live-profile-wrap .player2-wrap .player2-profile img {
-    border-bottom: 10px solid #ffbc20
-}
 
 .watch-now {
     width: 100%;
@@ -4613,13 +4608,11 @@ li.chart table {
 }
 
 .game-completed .game-score-1.won-green {
-    background-color: #00b331;
-    color: #fff
+    color: black;
 }
 
 .game-completed .game-score-2.won-yellow {
-    background-color: #ffbc20;
-    color: #fff
+    color: black;
 }
 
 .game-completed .game-duration,

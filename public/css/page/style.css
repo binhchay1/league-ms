@@ -826,7 +826,6 @@ footer ul.social li {
 }
 
 div.tabs {
-    background-image: linear-gradient(-180deg, #FFFFFF 22%, #F7F7F7 100%);
     background-position: bottom center;
     padding-top: 35px;
     overflow: hidden

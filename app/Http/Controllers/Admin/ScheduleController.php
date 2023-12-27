@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\Ranking;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResultScheduleRequest;
+use App\Http\Requests\ScheduleRequest;
 use App\Repositories\ScheduleRepository;
 use App\Repositories\LeagueRepository;
 use Illuminate\Http\Request;
@@ -47,8 +48,9 @@ class ScheduleController extends Controller
         return view('admin.schedule.create', compact('league', 'rounds'));
     }
 
-    public function store(Request $request)
+    public function store(ScheduleRequest $request)
     {
+
         $input = $request->except(['_token']);
         foreach ($input as $key => $arrValue) {
             $count = count($arrValue);

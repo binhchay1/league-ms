@@ -43,7 +43,7 @@ $isFull = false;
                 <div class="d-flex justify-content-between">
                     <div class="d-flex flex-row align-items-center">
                         <div class="icon" width="300" height="300"> <img class="avatar-group" src="{{ $group->images  }}"></div>
-                        <div class=" c-details name-group" id="group-{{ $group->name }}" onclick="detailGroup(this.id)">
+                        <div style="margin-left: 15px" class=" c-details name-group" id="group-{{ $group->name }}" onclick="detailGroup(this.id)">
                             <h6 class="mb-0">{{ $group->name }}</h6> <span style="font-weight: 500">{{ $group->users->name }}</span>
                         </div>
                     </div>

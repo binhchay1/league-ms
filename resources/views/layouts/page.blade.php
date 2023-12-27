@@ -61,8 +61,8 @@
             <ul id="menu" style="display: flex !important;">
                 <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
                 <li class="pt-2"><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
-                <li class="pt-2"><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li>
                 <li class="pt-2"><a href="{{ route('ranking') }}">{{ __('Ranking') }}</a></li>
+                <li class="pt-2"><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li>
                 <li class="pt-2"><a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
                 <li id="search">
                     <form id="search-league" action="{{ route('search') }}" method="post">
