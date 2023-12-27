@@ -22,7 +22,8 @@
                                             <li class="location-name">
                                                 <strong>{{$round}}</strong>
                                             </li>
-                                            @foreach($schedules as $index => $schedule )
+                                            <?php $collection = collect($schedules)->sortBy('match'); ?>
+                                            @foreach($collection as $index => $schedule )
                                             <li class="row1 draw-WD - Group B match-147 " id="{{$index}}">
                                                 <a id="match-link">
                                                     <div class="round_time">
