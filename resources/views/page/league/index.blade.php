@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="item-results">
-            @foreach($listLeague as $listLeague)
+            @foreach($listLeagues as $listLeague)
             <div class="tblResultLanding" style=" margin-top: 10px; background:#ffffff" onmouseover="this.style.background='#a4a4a4';" onmouseout="this.style.background='#ffffff';">
                 <a href="{{route('league.info', $listLeague['slug'])}}">
                     <div class="tr-tournament-detail" id="4734">
@@ -70,13 +70,13 @@
             <div class="head d-flex justify-content-center ">
                     <ul class="pagination">
                         <li>
-                            <a href="{{ $paginateLeague->previousPageUrl() }}" aria-label="Previous" style="color: red" class="prevPlayersList">
+                            <a href="{{ $listLeagues->previousPageUrl() }}" aria-label="Previous" style="color: red" class="prevPlayersList">
                                 <span aria-hidden="true"><span class="fa fa-angle-left"></span> PREVIOUS</span>
                             </a>
                         </li >
                         &emsp;
                         <li>
-                            <a href="{{ $paginateLeague->nextPageUrl() }}" aria-label="Next" style="color: red" class="nextPlayersList">
+                            <a href="{{ $listLeagues->nextPageUrl() }}" aria-label="Next" style="color: red" class="nextPlayersList">
                                 <span aria-hidden="true">NEXT <span class="fa fa-angle-right"></span></span>
                             </a>
                         </li>

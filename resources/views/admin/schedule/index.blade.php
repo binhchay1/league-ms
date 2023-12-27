@@ -20,9 +20,9 @@
                 </select>
             </div>
             <div class="form-group col-lg-3">
-                <label style="font-weight: 600">{{ __('League') }}</label>
+                <label style="font-weight: 600">{{ __('Round') }}</label>
                 <select  id="round" value="{{ old('format_of_league') }}" name="" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
-                    <option id="format_of_league" value="">{{__('Select League')}}</option>
+                    <option id="format_of_league" value="">{{__('Select Round')}}</option>
                     @foreach ($rounds as $round )
                         <option value="{{ $round }}">
                             {{$round}}
@@ -46,7 +46,7 @@
                     <tbody class="table-border-bottom-0">
                     @foreach($listSchedules as $data)
                         <tr>
-                            <td>{{ $data->league->name }}</td>
+                            <td>{{ $data->league->name ?? "" }}</td>
                             <td>{{ $data->round }}</td>
                             <td>{{ $data->time }}</td>
                             <td>
