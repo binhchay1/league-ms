@@ -45,7 +45,6 @@ Route::middleware(['verified'])->group(function () {
     Route::get('/ranking/', [HomeController::class, 'viewRanking'])->name('ranking');
     Route::get('/player/{id}/', [HomeController::class, 'viewInforPlayer'])->name('player.info');
 });
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/verify/{token}/', [AuthController::class, 'verifyEmail'])->name('user.verify');
     Route::get('/verify-email/', [AuthController::class, 'viewVerifyEmail'])->name('verify.email');
@@ -64,6 +63,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');
 Route::post('/custom-login/', [AuthController::class, 'customLogin'])->name('login.custom');
+Route::post('/custom-login-mobile/', [AuthController::class, 'customLogin'])->name('login.custom-mobile');
 Route::get('/auth/google/', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/auth/google/callback/', [SocialLoginController::class, 'handleGoogleCallback']);
 Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
