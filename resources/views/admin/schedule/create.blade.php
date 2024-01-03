@@ -55,7 +55,11 @@
                                         @endforeach
                                     </select>
                                 </td>
-                                <td><input style="width: 200px;" class="form-control" value="{{ old('match') }}" type="number" name="match[]" id="match" min="1"/>
+                                <td>
+                                    <input style="width: 200px;" class="form-control" value="{{ old('match') }}" type="number" name="match[]" id="match" min="1"/>
+                                    @if ($errors->has('match'))
+                                        <span class="text-danger">{{ $errors->first('match') }}</span>
+                                    @endif
                                 </td>
                                 <td>
                                     <select style="width: 200px;"  id="player1_team_1" value="{{ old('player1_team_1') }}" name="player1_team_1[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
@@ -106,9 +110,18 @@
                                         @endforeach
                                     </select>
                                 </td>
-                                <td><input style="width: 200px;" type="time" value="{{ old('time') }}" class="form-control" id="time" name="time[]"/></td>
-                                <td><input style="width: 200px;" type="date" value="{{ old('date') }}" class="form-control" id="date" name="date[]"/></td>
-                                <td><input style="width: 200px;" type="hidden" name="league_id" value="{{$league->id}}"></td>
+                                <td>
+                                    <input style="width: 200px;" type="time" value="{{ old('time') }}" class="form-control" id="time" name="time[]"/></td>
+                                    @if ($errors->has('time'))
+                                        <span class="text-danger">{{ $errors->first('time') }}</span>
+                                    @endif
+                                <td>
+                                    <input style="width: 200px;" type="date" value="{{ old('date') }}" class="form-control" id="date" name="date[]"/></td>
+                                    @if ($errors->has('date'))
+                                        <span class="text-danger">{{ $errors->first('date') }}</span>
+                                    @endif
+                                <td>
+                                    <input style="width: 200px;" type="hidden" name="league_id" value="{{$league->id}}"></td>
                                 <td><a href="javascript:void(0)" class="text-success font-18" title="Add" id="addBtn"><i class="fa fa-plus"></i></a></td>
                             </tr>
                             </tbody>
