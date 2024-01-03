@@ -35,32 +35,26 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown user user-menu">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-                        <img src="{{ auth()->user()->image ?? asset('image/default-avatar .png') }}" class="user-image" alt="User Image">
-                        <span class="hidden-xs"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <div class="dropdown-divider"></div>
-                        <div class="d-flex bd-highlight">
-                            <div class="p-2 bd-highlight">
-                                <a href="" class="btn btn-default">{{ __('Change Password') }}</a>
-                            </div>
-                            <div class="ml-auto p-2 bd-highlight">
-                                <a href="{{ route('signout') }}" class="btn btn-default">{{ __('Logout') }}</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+             <li>
+                 <a class="btn btn-danger" href="{{url('/signout')}}">Logout</a>
+             </li>
             </ul>
         </nav>
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <a href="" class="brand-link">
                 <img src="{{ asset('/images/logo-no-background.png') }}" class="brand-image img-circle elevation-3">
-                <span class="brand-text font-weight-light">{{ env('APP_NAME', 'Badminton.io') }}</span>
+                <span class="brand-text font-weight-light">{{__('Badmiton')}}</span>
             </a>
             <div class="sidebar">
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="{{ asset( Auth::user()->profile_photo_path ?? '/images/no-image.png') }}" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">{{  Auth::user()->name }}</a>
+                    </div>
+                </div>
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
