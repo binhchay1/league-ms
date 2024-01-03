@@ -30,7 +30,7 @@
                                             </li>
                                             <?php $collection = collect($schedules)->sortBy('match'); ?>
                                             @foreach($collection as $index => $schedule)
-                                                <li class="row1 draw-WD - Group B match-147 " id="{{$index }}" onclick="liveScorce(this.id)">
+                                                <li class="row1 draw-WD - Group B match-147 " id="{{$count }}" onclick="liveScorce(this.id)">
                                                     <a id="match-link">
                                                         <div class="round_time">
                                                             <div class="time">
@@ -92,7 +92,24 @@
 
 
                                                             <div class="score">
-
+                                                                @if(empty($schedule->set_1_team_1 && $schedule->set_1_team_2))
+                                                                    @else
+                                                                <div>
+                                                                    {{$schedule->set_1_team_1 }} - {{$schedule->set_1_team_2 }},
+                                                                    @endif
+                                                                </div>
+                                                                @if(empty($schedule->set_2_team_1 && $schedule->set_2_team_2))
+                                                                @else
+                                                                <div>
+                                                                    {{$schedule->set_2_team_1 }} - {{$schedule->set_2_team_2 }}
+                                                                @endif
+                                                                </div>
+                                                                @if(empty($schedule->set_3_team_1 && $schedule->set_3_team_2))
+                                                                @else
+                                                                <div>
+                                                                    ,{{$schedule->set_3_team_1 }} - {{$schedule->set_3_team_2 }}
+                                                                </div>
+                                                                    @endif
                                                             </div>
                                                         </div>
                                                         <div class="timer1">
@@ -102,7 +119,7 @@
                                                     </a>
                                                 </li>
 
-                                                <section id="livescore-top{{$index}}" class="container-livescore hidden" style="padding-bottom: 0px; color: white;" >
+                                                <section id="livescore-top{{$count}}" class="container-livescore hidden" style="padding-bottom: 0px; color: white;" >
                                                     <div class="tabs">
                                                         <div id="tab-content3" class="live-tab-content">
                                                             <!-- Check match for players -->
@@ -249,6 +266,7 @@
                                                         </div>
                                                     </div>
                                                 </section>
+                                                <?php $count++?>
                                             @endforeach
                                         @empty
                                             <h2>{{__('Data has not been updated!')}}</h2>

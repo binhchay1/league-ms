@@ -41,7 +41,7 @@ $utility = new \App\Enums\Utility();
                 <div class="top-ranked-right-single">
                     <div class="top-ranked-country-wrap">
                         <div class="top-ranked-country">
-                            <a style="color: black; font-size: 20px; font-weight: 500"
+                            <a style="color: white; font-size: 20px; font-weight: 500"
                                 href=""
                                 title="Kodai NARAOKA | Profile">
                                 {{$rank->users->name}}</a>
