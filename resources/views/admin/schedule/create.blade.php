@@ -29,6 +29,15 @@
             </div>
             <div class="col-md-12 col-sm-12">
                 <form id="formAccountSettings" method="POST" action="{{route('schedule.store')}}" enctype="multipart/form-data">
+                    @if ($errors->any())
+                        <div class="notification is-danger is-light">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     @csrf()
                     <div class="table-responsive">
                         <table class="table table-hover table-white" id="tableEstimate">
@@ -37,10 +46,10 @@
                                 <th style="width: 20px">#</th>
                                 <th class="" style="width: 200px;" >{{__('Round')}}</th>
                                 <th class="" style="width: 200px;" >{{__('Match')}}</th>
-                                <th style="" style="width: 200px;" >{{ __('Player1_Team_1') }}</th>
-                                <th style="" style="width: 200px;" >{{ __('Player2_Team_1') }}</th>
-                                <th style="" style="width: 200px;" >{{ __('Player1_Team_2') }}</th>
-                                <th style="" style="width: 200px;" >{{ __('Player2_Team_2') }}</th>
+                                <th style="" style="width: 200px;" >{{ __('Player 1_Team 1') }}</th>
+                                <th style="" style="width: 200px;" >{{ __('Player 2_Team 1') }}</th>
+                                <th style="" style="width: 200px;" >{{ __('Player 1_Team 2') }}</th>
+                                <th style="" style="width: 200px;" >{{ __('Player 2_Team 2') }}</th>
                                 <th style="" style="width: 150px;" >{{ __('Time') }}</th>
                                 <th style="" style="width: 300px;" >{{ __('Competition Day') }}</th>
                             </tr>
@@ -129,7 +138,7 @@
                     </div>
                     <div class="" style="margin: 40px;">
                         <button type="submit" class="btn btn-primary me-2">{{__('Save')}} </button>
-                        <button type="reset" class="btn btn-outline-secondary">{{__('Cancel')}}Cancel</button>
+                        <button type="reset" class="btn btn-outline-secondary">{{__('Cancel')}}</button>
                     </div>
                 </form>
             </div>

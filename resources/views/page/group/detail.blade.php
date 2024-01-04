@@ -133,7 +133,7 @@ $utility = new \App\Enums\Utility();
 <section id="heading">
     <div class="container d-flex" style="background: #ad9696;">
         <div class="mt-2">
-            <img src="{{ $getGroup->images }}" width="100" height="100" healt="Group Avatar" />
+            <img src="{{ asset($getGroup->images) }}" width="100" height="100" healt="Group Avatar" />
         </div>
         <div style="margin-left: 20px;">
             <div class="d-flex">
@@ -141,10 +141,10 @@ $utility = new \App\Enums\Utility();
                 <div class="badge"> <span class="{{ \App\Enums\Group::COLOR_OF_RATE[$getGroup->rate] }}">{{ $getGroup->rate }}</span> </div>
             </div>
             <p>{{ $getGroup->users->name }}</p>
-            <p><span class="fw-bold">* Description : </span>{{ $getGroup->description }}</p>
-            <p><span class="fw-bold">* Activity time : </span>{{ $getGroup->activity_time }}</p>
-            <p><span class="fw-bold">* Location : </span>{{ $getGroup->location }}</p>
-            <p><em><span class="fw-bold">----- Note : </span>{{ $getGroup->note }}</em></p>
+            <p><span class="fw-bold">* {{__('Description')}} : </span>{{ $getGroup->description }}</p>
+            <p><span class="fw-bold">* {{__('Activity time')}} : </span>{{ $getGroup->activity_time }}</p>
+            <p><span class="fw-bold">* {{__('Location')}} : </span>{{ $getGroup->location }}</p>
+            <p><em><span class="fw-bold">-----{{__('Note')}} : </span>{{ $getGroup->note }}</em></p>
         </div>
         <hr>
     </div>

@@ -49,13 +49,13 @@ $utility = new \App\Enums\Utility();
                     </div>
                     <div class="top-ranked-info-wrap">
                         <div class="top-ranked-ranking">
-                            <span>Ranking</span>
+                            <span>{{__('Ranking')}}</span>
                             <span>{{$index+1}}</span>
                         </div>
 
                         <div class="top-ranked-extra-wrap">
                             <div class="top-ranked-points">
-                                <span>Points</span>
+                                <span>{{__('Points')}}</span>
                                 <span>{{$rank->points}}</span>
                             </div>
                         </div>
@@ -69,9 +69,9 @@ $utility = new \App\Enums\Utility();
                        class="rankings-table" width="100%">
                     <thead>
                     <tr height="54">
-                        <th align="center" class="text-center">RANK</th>
-                        <th class="rank-col_no3 text-left">PLAYER</th>
-                        <th align="center" class="text-center">POINTS</th>
+                        <th align="center" class="text-center">{{__('RANK')}}</th>
+                        <th class="rank-col_no3 text-left">{{__('PLAYER')}}</th>
+                        <th align="center" class="text-center">{{__('POINTS')}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -107,13 +107,13 @@ $utility = new \App\Enums\Utility();
                 <ul class="pagination">
                     <li>
                         <a href="{{ $listRankings->previousPageUrl() }}" aria-label="Previous" style="color: red" class="prevPlayersList">
-                            <span aria-hidden="true"><span class="fa fa-angle-left"></span> PREVIOUS</span>
+                            <span aria-hidden="true"><span class="fa fa-angle-left"></span> {{__('PREVIOUS')}}</span>
                         </a>
                     </li >
                     &emsp;
                     <li>
                         <a href="{{ $listRankings->nextPageUrl() }}" aria-label="Next" style="color: red" class="nextPlayersList">
-                            <span aria-hidden="true">NEXT <span class="fa fa-angle-right"></span></span>
+                            <span aria-hidden="true">{{__('NEXT')}} <span class="fa fa-angle-right"></span></span>
                         </a>
                     </li>
                 </ul>

@@ -48,7 +48,7 @@ class ScheduleController extends Controller
         return view('admin.schedule.create', compact('league', 'rounds'));
     }
 
-    public function store(ScheduleRequest $request)
+    public function store(Request $request)
     {
 
         $input = $request->except(['_token']);
@@ -104,8 +104,10 @@ class ScheduleController extends Controller
 
     public function result()
     {
+        $listLeagues = $this->leagueRepository->index();
+        $rounds =  Ranking::RANKING_ARRAY_ROUND;
         $dataResult = $this->scheduleRepository->index();
 
-        return view('admin.schedule.result', compact('dataResult'));
+        return view('admin.schedule.result', compact('dataResult', 'listLeagues', 'rounds'));
     }
 }

@@ -41,7 +41,7 @@
                                                                         {{$schedule->player1Team1->name ?? ""}}
                                                                     </div>
                                                                     <div class="flag">
-                                                                        <img src="{{$schedule->player1Team1->profile_photo_path ?? asset('/images/no-image.png')}}">
+                                                                        <img src="{{asset( $schedule->player1Team1->profile_photo_path ?? '/images/no-image.png')}}">
 
                                                                     </div>
                                                                 </div>
@@ -51,7 +51,7 @@
                                                                         {{$schedule->player2Team1->name ?? ""}}
                                                                     </div>
                                                                     <div class="flag">
-                                                                        <img src="{{$schedule->player2Team1->profile_photo_path ?? asset('/images/no-image.png')}}">
+                                                                        <img src="{{asset( $schedule->player2Team1->profile_photo_path ?? '/images/no-image.png')}}">
 
                                                                     </div>
                                                                 </div>
@@ -63,7 +63,7 @@
                                                             <div class="team-details-wrap">
                                                                 <div class="player3-wrap player">
                                                                     <div class="flag">
-                                                                        <img src="{{$schedule->player1Team2->profile_photo_path ?? asset('/images/no-image.png')}}">
+                                                                        <img src="{{asset( $schedule->player1Team2->profile_photo_path ?? '/images/no-image.png')}}">
 
                                                                     </div>
                                                                     <div class="player3 player">
@@ -73,7 +73,7 @@
                                                                 @if(isset($schedule->player2Team2->name))
                                                                 <div class="player4-wrap player">
                                                                     <div class="flag">
-                                                                        <img src="{{$schedule->player2Team2->profile_photo_path ?? asset('/images/no-image.png')}}">
+                                                                        <img src="{{asset( $schedule->player2Team2->profile_photo_path ?? '/images/no-image.png')}}">
 
                                                                     </div>
                                                                     <div class="player4 player">

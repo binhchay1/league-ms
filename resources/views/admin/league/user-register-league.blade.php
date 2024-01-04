@@ -34,7 +34,7 @@
         <div class="card mb-4">
             <div class="row">
                 <div class="col-lg-6">
-                    <h5 class="card-header">{{ __('Thông tin vận động viên') }}</h5>
+                    <h5 class="card-header">{{ __('Information Player') }}</h5>
                 </div>
                 <div class="col-lg-6 ">
                     <button type="submit" class="btn btn-success float-right" style="margin: 10px;">{{__('Active player')}}</button>

@@ -8,7 +8,7 @@
 <section id="search-heading">
     <div class="container">
         <h1 class="center">{{ __('Search') }}</h1>
-        <p class="center">Find my league</p>
+        <p class="center">{{__('Find my league')}}</p>
     </div>
     <div id="search-bar" class="no-search-results">
         <form id="search-form" action="{{ route('search') }}" method="post">
@@ -45,12 +45,12 @@
                     </div>
                 </div>
                 <div class="info">
-                    <h2 class="h21px">IFA Grassroots Armagh, Banbridge &amp; Craigavon Small Sided Games Centre</h2>
+                    <h2 class="h21px">{{__('IFA Grassroots Armagh, Banbridge &amp; Craigavon Small Sided Games Centre')}}</h2>
                     <p>
-                        <span>Soccer/ Football</span> / United Kingdom
+                        <span>{{__('Soccer/ Football')}}</span>/{{__(' United Kingdom')}}
                     </p>
                     <p>
-                        <a href="http://ifagrassrootsabc.leaguerepublic.com/" class="button" target="_blank">View Site</a>
+                        <a href="http://ifagrassrootsabc.leaguerepublic.com/" class="button" target="_blank">{{__('View Site')}}</a>
                     </p>
                 </div>
             </div>

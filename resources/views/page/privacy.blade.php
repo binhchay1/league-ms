@@ -56,7 +56,7 @@
         </ul>
         <p>{{ __('The above can be used by the') }} {{ env('APP_NAME', 'Badminton.io') }} {{ __('to provide email notifications (after an opt-in) and result entry SMS message prompts. It will not be used for marketing purposes.') }}</p>
 
-        <p class="bold">{{ env('APP_NAME', 'Badminton.io') }} will not use the following personal data of league members collected by leagues for any purpose:</p>
+        <p class="bold">{{ env('APP_NAME', 'Badminton.io') }}  {{__('will not use the following personal data of league members collected by leagues for any purpose:')}}</p>
         <ul>
             <li>{{ __('Date Of Birth<') }}/li>
             <li>{{ __('League reference numbers') }}</li>
@@ -84,10 +84,10 @@
         <h3>{{ __('And optionally:') }}</h3>
         <ul>
             <li>{{ __('Email address') }}</li>
-            <li>Date Of Birth</li>
-            <li>League reference numbers</li>
-            <li>Telephone contact details</li>
-            <li>Address</li>
+            <li>{{__('Date Of Birth')}}</li>
+            <li>{{__('League reference numbers')}}</li>
+            <li>{{__('Telephone contact details')}}</li>
+            <li>{{__('Address')}}</li>
         </ul>
 
         <h2 class="h24px">{{ env('APP_NAME', 'Badminton.io') }} {{ __('provides leagues with the following tools') }}</h2>
@@ -217,14 +217,14 @@
         <p>{{ __('We offer a support chat facility on our website via') }} www.whoson.com , {{ __('please visit their website for details of the') }} <a href="http://www.whoson.com/privacy.aspx" target="_blank">{{ __('Whoson privacy policy') }}</a></p>
 
         <h3>{{ __('Category 4 - Targeting / Advertising Cookies') }}</h3>
-        <p class="bold">These cookies collect information about your browsing habits in order to make advertising relevant to you and your interests.</p>
+        <p class="bold">{{__('These cookies collect information about your browsing habits in order to make advertising relevant to you and your interests.')}}</p>
         <p>{{ __('LR does not directly store cookies related to advertising from our website. We serve adverts via Google DoubleClick for Publishers Small Business and Google Adsense. Please see') }}<a href="http://www.google.com/policies/privacy/ads/" target="_blank">{{ __('Googles advertising privacy statements') }}</a></p>
 
         <h3>{{ __('Restricting and blocking cookies') }}</h3>
         <p>{{ __('If you wish to restrict or block the cookies which are set by our websites, or any other website, you can do this through your browser settings. The Help function within your browser should tell you how.') }}</p>
         <p>{{ __('Alternatively, visit www.aboutcookies.org which contains comprehensive information on how to restrict or block the cookies on a wide variety of browsers. This site provides details on how to delete cookies from your computer as well as more general information about cookies.') }}</p>
         <p>{{ __('For information on how to do this on the browser of your mobile phone you will need to refer to your handset manual.') }}</p>
-        <p>{{ __('Click here to') }} <a href="http://tools.google.com/dlpage/gaoptout" target="_blank">opt out of being tracked by Google Analytics across all websites</a></p>
+        <p>{{ __('Click here to') }} <a href="http://tools.google.com/dlpage/gaoptout" target="_blank">{{__('opt out of being tracked by Google Analytics across all websites')}}</a></p>
         <p>{{ __('Please be aware that restricting cookies may impact on the functionality of our website.') }}</p>
         <p>{{ __('To obtain further information on the ICC (UK) UK cookie guide visit') }} <a href="http://www.international-chamber.co.uk/our-expertise/digitaleconomy" target="_blank">http://www.international-chamber.co.uk/our-expertise/digitaleconomy</a></p>
 
