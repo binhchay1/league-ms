@@ -266,10 +266,10 @@
         var start_date = '<?php  echo strtotime($leagueInfor->start_date); ?>';
 
         if(date_register > start_date) {
-            $('#register-league').prop("hidden", true);
+            $('#register-league').show();
         }
         else {
-            $('.btn-register').prop("disabled", false);
+            $('#register-league').hide();
         }
     </script>
 
