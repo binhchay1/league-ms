@@ -43,13 +43,13 @@
                     <ul>
                         <li>
                             <a class="{{ Session::get('locale') == 'en' ? 'active' : ''}}" href="{{ route('app.setLocale', ['locale' => 'en']) }}">
-                               {{_('English')}}
+                               {{__('English')}}
                             </a>
                         </li>
 
                         <li>
                             <a class="{{ Session::get('locale') == 'vi' ? 'active' : ''}}" href="{{ route('app.setLocale', ['locale' => 'vi']) }}">
-                                {{_('Vietnamese')}}
+                                {{__('Vietnamese')}}
                             </a>
                         </li>
                     </ul>
