@@ -84,6 +84,21 @@ class ScheduleController extends Controller
         $input = $request->except(['_token']);
         $this->scheduleRepository->update($input, $id);
 
+        if ($input['result_team_1'] == 2 or $input['result_team_2'] == 2) {
+            $league_id = $input['league_id'];
+            $match = (int) $input['match'] + 1;
+
+            // $getNextSchedule = $this->scheduleRepository->getScheduleByLeagueAndMatch($league_id, $match);
+            // dd($getNextSchedule);
+
+            // if (!empty($getNextSchedule)) {
+            //     if() {
+
+            //     }
+            // }
+        }
+
+
         return redirect()->to('result');
     }
 
