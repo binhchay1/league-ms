@@ -30,8 +30,9 @@
     @yield('css')
 </head>
 @section('css')
-    <link rel="stylesheet" id="bwf-style-css" href="{{asset('css/page/homepage.css')}}" type="text/css" media="all"/>
+<link rel="stylesheet" id="bwf-style-css" href="{{asset('css/page/homepage.css')}}" type="text/css" media="all" />
 @endsection
+
 <body>
     <header style="background-color: #222">
         <div class="top-nav">
@@ -42,13 +43,13 @@
                     <ul>
                         <li>
                             <a class="{{ Session::get('locale') == 'en' ? 'active' : ''}}" href="{{ route('app.setLocale', ['locale' => 'en']) }}">
-                                English (US)
+                               {{__('English')}}
                             </a>
                         </li>
 
                         <li>
                             <a class="{{ Session::get('locale') == 'vi' ? 'active' : ''}}" href="{{ route('app.setLocale', ['locale' => 'vi']) }}">
-                                Tiếng Việt
+                                {{__('Vietnamese')}}
                             </a>
                         </li>
                     </ul>
@@ -62,8 +63,7 @@
                 <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
                 <li class="pt-2"><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
                 <li class="pt-2"><a href="{{ route('ranking') }}">{{ __('Ranking') }}</a></li>
-                <li class="pt-2"><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li>
-                <li class="pt-2"><a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
+                <!-- <li class="pt-2"><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li> -->
                 <li id="search">
                     <form id="search-league" action="{{ route('search') }}" method="post">
                         @csrf
@@ -83,13 +83,13 @@
                     <ul>
                         <li>
                             <a class="account" href="{{ route('profile.edit') }}">
-                                {{__('Profile')}}
+                                {{ __('Profile') }}
                             </a>
                         </li>
 
                         <li>
                             <a class="account" href="{{ route('my.group') }}">
-                                {{__('My group')}}
+                                {{ __('My group') }}
                             </a>
                         </li>
                         <li><a class="dropdown-item account" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2 "></i>{{ __('Log out') }}</a></li>
@@ -97,8 +97,17 @@
                 </li>
                 @else
                 <li><a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a></li>
-                <li><a href="{{ route('register_user') }}" class="button">{{ __('Sign Up') }}</a></li>
+                <li><a href="{{ route('register_user') }}" class="button">{{ __('Register') }}</a></li>
                 @endif
+                <li class="li-notification">
+                    <a href="#" class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </a>
+                    <div>
+
+                    </div>
+                </li>
             </ul>
         </nav>
     </header>
@@ -107,7 +116,7 @@
     <footer style="background-color: #222; height: 500px;">
         <div class="container color-white">
             <div>
-                <h4 class="h3 color-white">Criteria</h4>
+                <h4 class="h3 color-white">{{ __('Criteria') }}</h4>
                 <p>{{ __('Efficiency and ease-of-use are our mission, simplifying the process of running a sports league.') }}</p>
                 <p>{{ env('APP_NAME', 'Badminton.io') }} {{ __('is available to all at no cost. Additionally, we offer premium plans that include additional functionality.') }}</p>
             </div>

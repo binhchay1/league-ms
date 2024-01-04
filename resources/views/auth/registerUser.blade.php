@@ -53,7 +53,7 @@
                                         <button class="btn btn-dark btn-lg btn-block" type="submit">{{ __('Register') }}</button>
                                     </div>
                                     <p class="mb-5 pb-lg-2" style="color: #393f81;">{{ __('Do you have an account ?') }}
-                                        <a href="{{ route('login') }}" style="color: #393f81;">{{ __('Sign in') }}</a>
+                                        <a href="{{ route('login') }}" style="color: #393f81;">{{ __('Login') }}</a>
                                     </p>
                                 </form>
                             </div>

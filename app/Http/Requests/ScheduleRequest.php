@@ -24,8 +24,8 @@ class ScheduleRequest extends FormRequest
     public function rules()
     {
         return [
-            'league_id.*' => 'required',
-            'round.*' => 'required',
+            'league_id.*' => ['required'],
+            'round.*' =>['required'],
             'match.*' => 'required',
             'time.*' => 'required',
             'date.*' => 'required',

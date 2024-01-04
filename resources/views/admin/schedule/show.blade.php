@@ -4,56 +4,20 @@
     <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span>{{ __('Create Result') }}</h5>
     <div class="card container">
         <div class="row justify-content-start m-1 mb-2 mt-2">
-            <button type="submit" class="btn btn-success">{{ __('Vòng') }}: {{ $dataSchedule->round }}</button>
+            <button type="submit" class="btn btn-success">{{ __('Round') }}: {{ $dataSchedule->round }}</button>
         </div>
         <div class="row">
-            <div class="col-lg-5 mt-4">
-                <div class="row">
-                    <div class="col-lg-7 text-right mt-4">
-                        <strong>{{ $dataSchedule->player1Team1->name ?? ""}} / {{ $dataSchedule->player2Team1->name ?? "" }}</strong>
-                    </div>
-                    <div class="col-lg-5">
-                        <div class="form-group text-left">
-                            <div class="" style="display: inline-grid;">
-                                <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image"
-                                       hidden>
-                                <div class=" choose-avatar">
-                                    <div id="btnimage">
-                                        <img class="show-avatar" style="width:50px; height: 50px; border-radius: 50%"
-                                             src="{{ asset('/images/default_team_logo.png')}}" alt="avatar">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-5 mt-4 text-center" >
+                <strong>{{ $dataSchedule->player1Team1->name ?? ""}} / {{ $dataSchedule->player2Team1->name ?? "" }}</strong>
             </div>
 
-            <div class="col-lg-2 text-center" style="vertical-align: middle;line-height: 120px;">
+            <div class="col-lg-2 text-center" style="vertical-align: middle;line-height: 40px;">
                 <?php $date = date("m-d-Y", strtotime($dataSchedule->date)) ?>
                 <strong>{{ $dataSchedule->time }} &nbsp {{ $date }} </strong>
             </div>
 
-            <div class="col-lg-5 mt-4">
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="form-group text-right">
-                            <div class="" style="display: inline-grid;">
-                                <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image"
-                                       hidden>
-                                <div class=" choose-avatar">
-                                    <div id="btnimage">
-                                        <img class="show-avatar" style="width:50px; height: 50px; border-radius: 50%"
-                                             src="{{ asset('/images/default_team_logo.png')}}" alt="avatar">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-7 mt-4 ">
-                        <strong>{{ $dataSchedule->player1Team2->name ?? "" }} / {{ $dataSchedule->player2Team2->name ?? "" }}</strong>
-                    </div>
-                </div>
+            <div class="col-lg-5 mt-4 text-center">
+                <strong>{{ $dataSchedule->player1Team2->name ?? "" }} / {{ $dataSchedule->player2Team2->name ?? "" }}</strong>
             </div>
         </div>
         <div class="form-group text-right m-0 p-0 pt-5 pb-5">
@@ -89,7 +53,7 @@
                         <div class="row container">
                             <div class="col-md-6">
                                 <div class="text-center" style="font-size: 30px">
-                                    <p>{{ __('Team 1') }}</p>
+                                    <p>{{ $dataSchedule->player1Team1->name ?? ""}} / {{ $dataSchedule->player2Team1->name ?? "" }}</p>
                                 </div>
                                 <div class="container">
                                     <div class="form-group">
@@ -129,7 +93,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="text-center" style="font-size: 30px">
-                                    <p>{{ __('Team 2') }}</p>
+                                    <p>{{ $dataSchedule->player1Team2->name ?? "" }} / {{ $dataSchedule->player2Team2->name ?? "" }}</p>
                                 </div>
                                 <div class="container">
                                     <div class="form-group">

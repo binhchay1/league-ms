@@ -32,7 +32,7 @@
                                 <div class="description">
                                     <div class="logo-wrap">
                                         <div class="image">
-                                            <img src="{{$listLeague->images}}" class="show-image-league">
+                                            <img src="{{asset($listLeague->images)}}" class="show-image-league">
                                         </div>
                                     </div>
 

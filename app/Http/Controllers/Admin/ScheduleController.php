@@ -48,7 +48,7 @@ class ScheduleController extends Controller
         return view('admin.schedule.create', compact('league', 'rounds'));
     }
 
-    public function store(ScheduleRequest $request)
+    public function store(Request $request)
     {
 
         $input = $request->except(['_token']);
@@ -84,13 +84,30 @@ class ScheduleController extends Controller
         $input = $request->except(['_token']);
         $this->scheduleRepository->update($input, $id);
 
+        if ($input['result_team_1'] == 2 or $input['result_team_2'] == 2) {
+            $league_id = $input['league_id'];
+            $match = (int) $input['match'] + 1;
+
+            // $getNextSchedule = $this->scheduleRepository->getScheduleByLeagueAndMatch($league_id, $match);
+            // dd($getNextSchedule);
+
+            // if (!empty($getNextSchedule)) {
+            //     if() {
+
+            //     }
+            // }
+        }
+
+
         return redirect()->to('result');
     }
 
     public function result()
     {
+        $listLeagues = $this->leagueRepository->index();
+        $rounds =  Ranking::RANKING_ARRAY_ROUND;
         $dataResult = $this->scheduleRepository->index();
 
-        return view('admin.schedule.result', compact('dataResult'));
+        return view('admin.schedule.result', compact('dataResult', 'listLeagues', 'rounds'));
     }
 }

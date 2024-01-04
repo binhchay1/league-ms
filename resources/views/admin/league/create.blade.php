@@ -35,7 +35,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /.col -->
                     <div class="col-md-6">
                         <div class="row mt-4">
                             <div class="col-6">
@@ -85,7 +84,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="lastName" class="form-label">{{ __('Number of athletes') }}</label>
+                                    <label for="lastName" class="form-label">{{ __('Number of players') }}</label>
                                     <input class="form-control" value="{{ old('number_of_athletes') }}" type="text" name="number_of_athletes" id="number_of_athletes" />
                                     @if ($errors->has('number_of_athletes'))
                                         <span class="text-danger">{{ $errors->first('number_of_athletes') }}</span>

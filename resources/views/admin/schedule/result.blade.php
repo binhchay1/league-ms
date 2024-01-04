@@ -8,6 +8,28 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span>{{__('Lịch Thi Đấu')}} </h4>
     <div class="card" style="padding: 10px">
+        <div class="form-group col-lg-3">
+            <label style="font-weight: 600">{{ __('League') }}</label>
+            <select  id="league" value="{{ old('format_of_league') }}" name="" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                <option id="format_of_league" value="">{{__('Select League')}}</option>
+                @foreach ($listLeagues as $league )
+                    <option value="{{ $league->name }}">
+                        {{$league->name}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group col-lg-3">
+            <label style="font-weight: 600">{{ __('Round') }}</label>
+            <select  id="round" value="{{ old('format_of_league') }}" name="" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                <option id="format_of_league" value="">{{__('Select Round')}}</option>
+                @foreach ($rounds as $round )
+                    <option value="{{ $round }}">
+                        {{$round}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
         <div class=" container-xl table-responsive text-nowrap">
             <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">
                 <thead>
@@ -20,13 +42,13 @@
                         <th scope="col" >{{__('Set 1')}}</th>
                         <th scope="col" >{{__('Set 2')}}</th>
                         <th scope="col" >{{__('Set 3')}}</th>
-                        <th scope="col">{{__('Sân thi đấu')}}</th>
+                        <th scope="col">{{__('Stadium')}}</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
                     @foreach($dataResult as $data)
                     <tr>
-                        <td>{{ $data->league->name }}</td>
+                        <td>{{ $data->league->name ?? "" }}</td>
                         <td>{{ $data->round }}</td>
                         <td>
                             {{$data->player1Team1->name ?? ""}}
@@ -106,5 +128,15 @@
         });
         $('.dataTables_length').addClass('bs-select');
     })
+
+    $('#league').on('change', function(){
+        var league = $('#dataTables').DataTable();
+        league.search(this.value).draw();
+    });
+
+    $('#round').on('change', function(){
+        var round = $('#dataTables').DataTable();
+        round.search(this.value).draw();
+    });
 </script>
 @endsection

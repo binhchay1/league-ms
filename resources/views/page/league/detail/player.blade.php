@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="img">
                                     <a href="">
-                                        <img src="{{$listTour->user->profile_photo_path ?? '/images/no-image.png'}}" alt="" class=" b-error b-error">
+                                        <img src="{{asset($listTour->user->profile_photo_path ?? '/images/no-image.png')}}" alt="" class=" b-error b-error" style="height: 250px">
                                     </a>
                                 </div>
                             </li>
