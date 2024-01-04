@@ -66,7 +66,7 @@
                                     <a class="small text-muted" href="{{ route('password.request') }}">{{ __('Forgot password') }}</a>
                                     @endif
                                     <p class="mb-5 pb-lg-2" style="color: #393f81;">{{ __('Do not have an account ?') }}
-                                        <a href="{{ route('register_user') }}" style="color: #393f81;">{{ __('Sign up') }}</a>
+                                        <a href="{{ route('register_user') }}" style="color: #393f81;">{{ __('Register') }}</a>
                                     </p>
                                 </form>
                             </div>

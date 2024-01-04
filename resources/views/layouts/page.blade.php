@@ -43,13 +43,13 @@
                     <ul>
                         <li>
                             <a class="{{ Session::get('locale') == 'en' ? 'active' : ''}}" href="{{ route('app.setLocale', ['locale' => 'en']) }}">
-                                English (US)
+                               {{_('English')}}
                             </a>
                         </li>
 
                         <li>
                             <a class="{{ Session::get('locale') == 'vi' ? 'active' : ''}}" href="{{ route('app.setLocale', ['locale' => 'vi']) }}">
-                                Tiếng Việt
+                                {{_('Vietnamese')}}
                             </a>
                         </li>
                     </ul>
@@ -97,7 +97,7 @@
                 </li>
                 @else
                 <li><a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a></li>
-                <li><a href="{{ route('register_user') }}" class="button">{{ __('Sign Up') }}</a></li>
+                <li><a href="{{ route('register_user') }}" class="button">{{ __('Register') }}</a></li>
                 @endif
                 <li class="li-notification">
                     <a href="#" class="notification">

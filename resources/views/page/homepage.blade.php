@@ -17,9 +17,9 @@
         </section>
 
         <div class="std-title container-1280">
-            <h2 class="left">Next Tournament</h2>
+            <h2 class="left">{{__('Next Tournament')}}</h2>
             <a href="{{ route('list.league') }}">
-                <h2 class="right">All Tournaments</h2>
+                <h2 class="right">{{__('All Tournaments')}}</h2>
             </a>
         </div>
         <section id="next-tournament" class="next-tournament-section bg-black">
@@ -62,8 +62,8 @@
         </section>
         <section id="news" class="container-1280 news-section bg-white" style="margin-bottom: 35pc">
             <div class="std-title" style="margin-top: 10px">
-                <h2 class="left">World Tour Leaders</h2>
-                <a href="{{route('ranking')}}"><h2 class="right">Full Rankings</h2></a>
+                <h2 class="left">{{__('World Tour Leaders')}}</h2>
+                <a href="{{route('ranking')}}"><h2 class="right">{{__('Full Rankings')}}</h2></a>
             </div>
             <div class="top-player">
                 <div class="owl-carousel-rank owl-theme owl-carousel owl-loaded">
@@ -94,13 +94,13 @@
                                             <div class="top-ranked-info-wrap">
 
                                                 <div class="top-ranked-ranking">
-                                                    <span>Ranking</span>
+                                                    <span>{{__('Ranking')}}</span>
                                                     <span>{{$index+1}}</span>
                                                 </div>
 
                                                 <div class="top-ranked-extra-wrap">
                                                     <div class="top-ranked-points">
-                                                        <span>Points</span>
+                                                        <span>{{__('Points')}}</span>
                                                         <span>{{$rank->points}}</span>
                                                     </div>
                                                 </div>
@@ -110,7 +110,7 @@
                                     </div>
                                     <div class="top-ranked-nav-wrap">
                                         <div class="top-ranked-nav-center text-right">
-                                           Rankings
+                                            {{__('Rankings')}}
                                         </div>
                                     </div>
                                 </div>

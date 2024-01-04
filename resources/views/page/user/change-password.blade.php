@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-success">{{ __('Lưu') }}</button>
+                            <button class="btn btn-success">{{ __('Save') }}</button>
                         </div>
                     </form>
                 </div>
