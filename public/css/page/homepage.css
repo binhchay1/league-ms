@@ -1,4 +1,3 @@
-
 .img-responsive {
     margin-left: auto;
     margin-right: auto;
@@ -31,8 +30,9 @@
     background: #000 url(../images/bg-next-tmt.jpg) top center no-repeat;
     background-size: cover;
 }
+
 .bg-black {
-    background-color: #000!important;
+    background-color: #000 !important;
 }
 
 .next-tournament-section .next-tournament-wrap {
@@ -44,6 +44,7 @@
 .next-tournament-section .next-tournament-wrap .box-results-tournament {
     margin-top: 0;
 }
+
 .results .wrapper-results .box-results-tournament {
     box-sizing: border-box;
     margin: 20px 0 0;
@@ -65,7 +66,8 @@
     flex-direction: column;
 }
 
-.results .wrapper-results .box-results-tournament .info a h2 , .results .wrapper-results .box-results-tournament .info a h4 {
+.results .wrapper-results .box-results-tournament .info a h2,
+.results .wrapper-results .box-results-tournament .info a h4 {
     color: #fff;
     transition: .35s color ease-in-out;
 }
@@ -98,11 +100,10 @@ h6 {
     width: 1220px;
 }
 
-.owl-carousel. owl-item {
+.owl-carousel.owl-item {
     position: relative;
     min-height: 1px;
     float: left;
-    -webkit-backface-visibility: hidden;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -110,6 +111,7 @@ h6 {
     -ms-user-select: none;
     user-select: none;
 }
+
 .top-player {
     margin-top: 50px;
     margin-bottom: -450px;
@@ -121,7 +123,7 @@ h6 {
 
 .rankings-content_tabpanel .top-ranked-wrap {
     display: flex;
-    background-color: rgba(115,115,115,.4);
+    background-color: rgba(115, 115, 115, .4);
     color: #fff;
     padding: 42px;
 }
@@ -227,6 +229,7 @@ h6 {
     display: block;
     width: 100%;
 }
+
 .rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-change span:first-child {
     font-size: 18px;
 }
@@ -256,7 +259,7 @@ h6 {
 .rankings-content_tabpanel .top-ranked-nav-wrap {
     align-items: center;
     justify-content: space-between;
-    background-color: rgba(55,55,55,.5);
+    background-color: rgba(55, 55, 55, .5);
 }
 
 .rankings-content_tabpanel .top-ranked-nav-wrap .top-ranked-nav-left {
@@ -303,7 +306,8 @@ a {
     overflow: hidden;
 }
 
-.text-uppercase, .initialism {
+.text-uppercase,
+.initialism {
     text-transform: uppercase;
 }
 
@@ -315,3 +319,21 @@ h3 {
     font-size: calc(0.3rem + .6vw);
 }
 
+.notification .badge {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    padding: 0px 5px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+}
+
+.fa-bell:before {
+    font-size: 25px;
+}
+
+.li-notification {
+    display: flex;
+    align-items: center;
+}
