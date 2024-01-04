@@ -227,6 +227,9 @@ class HomeController extends Controller
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
+
+        dd($leagueInfor);
+
         return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule'));
     }
 
