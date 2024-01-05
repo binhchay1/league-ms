@@ -701,7 +701,7 @@ header.site-header>div.head-content .menu-button img {
     z-index: 100;
     padding: 1rem;
     width: 100%;
-    *zoom: 1
+    zoom: 1
 }
 
 .widget-area .main-navigation #mobile-social:before,
@@ -3998,7 +3998,7 @@ li.chart table {
 }
 
 .page-header {
-    *zoom: 1;
+    zoom: 1;
     width: auto;
     max-width: 1280px;
     float: none;

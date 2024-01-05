@@ -36,6 +36,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .country_code{
@@ -50,7 +52,8 @@
 
 @media (max-width: 767px) {
    .tblResultLanding .tournament-detail .inner-tournament-detail {
-        flex-wrap: wrap;
+        /* flex-wrap: wrap;
+        justify-content: center; */
     }
     }
 @media (max-width: 467px){
@@ -100,4 +103,29 @@ h4 {
 .show-image-league {
     width: 160px;
     height: 160px;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .tblResultLanding .tournament-detail .inner-tournament-detail .country-detail{
+        display: none;
+    }
+}
+@media screen and (max-width: 576px) {
+    .tblResultLanding .tournament-detail .inner-tournament-detail .country-detail{
+        display: none;
+    }
+    .tblResultLanding .tournament-detail .inner-tournament-detail {
+        justify-content: center;
+    }
+    .tblResultLanding .tournament-detail .inner-tournament-detail .description{
+        align-items: center;
+    flex-direction: column;
+    text-align: center;
+    row-gap: 1rem;
+    }
+    .tblResultLanding .tournament-detail .inner-tournament-detail .description .image{
+        margin-right: 0;
+    }
+    .tblResultLanding .tournament-detail .inner-tournament-detail .description .info h3{padding-bottom: 0;}
 }

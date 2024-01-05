@@ -12,10 +12,10 @@
 }
 
 .container-1280 {
-    width: 1280px;
+    max-width: 1280px;
     margin: auto;
     padding: 30px;
-    max-width: 100%;
+    width: 100%;
 }
 
 .std-title a h2 {
@@ -89,11 +89,11 @@ h6 {
 }
 
 .owl-carousel {
-    display: none;
+    /* display: none;
     width: 100%;
     -webkit-tap-highlight-color: transparent;
-    position: relative;
-    z-index: 1;
+    position: relative; */
+    /* z-index: 1; */
 }
 
 .owl-item cloned {
@@ -113,8 +113,8 @@ h6 {
 }
 
 .top-player {
-    margin-top: 50px;
-    margin-bottom: -450px;
+    margin-top: 20px;
+    /* margin-bottom: -450px; */
 }
 
 .top-player .rankings-content_tabpanel {
@@ -173,6 +173,7 @@ h6 {
     display: flex;
     align-items: center;
     flex-grow: 1;
+    column-gap: 12px;
 }
 
 .rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-ranking {
@@ -185,12 +186,17 @@ h6 {
 }
 
 .rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-extra-wrap {
-    display: flex;
+    /* display: flex;
     align-items: center;
     justify-content: space-around;
     flex-grow: 1;
+    background-color: #222; */
+    /* margin-left: 12px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
     background-color: #222;
-    margin-left: 12px;
 }
 
 .rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-change {
@@ -336,4 +342,119 @@ h3 {
 .li-notification {
     display: flex;
     align-items: center;
+}
+
+
+/* #menu{display: flex !important;}
+#menu.menu-mo{display: none !important;}
+.close-btn{display: none;}
+.open-btn{display: none;} */
+
+@media screen and (max-width: 1300px) {
+    /* .img-responsive{
+        width: 100%;
+    }
+    .owl-item.active{width: 100% !important} */
+}
+@media screen and (max-width: 992px) {
+    /* .top-nav{
+        display: none;
+    }
+    nav.container{
+        padding-block: .4rem;
+    }
+    nav img.left{
+        margin-bottom: 0 !important;
+    }
+    #menu{
+        display: none !important;
+    }
+    #menu.menu-main.active{
+        display: flex !important;
+        margin-bottom: 0;
+        position: fixed;
+        top: 0;right: 0;width: 100%;
+        height: 0;
+        z-index: 1000000;
+        background-color: #231a1a;
+        flex-direction: column;
+        padding-top: 5rem;
+    align-items: center;
+    transition: .4s;
+    animation: show .4s forwards;
+    }
+    @keyframes show {
+        from{height: 0%;}
+        to{height: 400px;}
+    }
+    #menu li{
+        margin-top: 1rem !important;
+    }
+    #menu.menu-mo.active{display: flex !important;}
+    #menu.menu-main.active li{display: none;}
+    #menu.menu-main.active li.pt-2{display: block;}
+    .close-btn{
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 1rem;
+        z-index: 100000000;
+    }
+    .close-btn svg{background-color: #fff;cursor: pointer;}
+    .open-btn{
+        display: block;
+        cursor: pointer;
+        margin-top: 14px;
+    }
+    .open-btn .line{
+        width: 18px;
+        height: 2px;
+        background-color: #fff;
+        margin-block: 5px;
+        display: block;
+    } */
+
+    .box-results-tournament-right>div{display: none;}
+    .results .wrapper-results .box-results-tournament{
+        justify-content: center;
+    }
+    .results .wrapper-results .box-results-tournament>div{
+        flex-direction: column;
+    }
+    .results .wrapper-results .box-results-tournament .info{
+        padding-left: 0;
+        align-items: center;
+        text-align: center;
+    }
+    .rankings-content_tabpanel .top-ranked-wrap{
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+    .rankings-content_tabpanel .top-ranked-wrap .top-ranked-right-single {
+        width: 100%;
+        padding-left: 0;
+    }
+    .rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-ranking{
+        flex: 1;
+        padding-inline: 0;
+        padding-block: 18px;
+    }
+    .rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap{
+        align-items: stretch;
+    }
+    .rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-points{
+        padding:0;
+    }
+    .container-1280{
+        padding: 1rem;
+    }
+    
+}
+@media screen and (max-width: 768px) {
+    .img-responsive{
+        /* height: 380px; */
+        object-fit: cover;
+    }
 }

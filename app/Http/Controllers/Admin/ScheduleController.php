@@ -88,14 +88,13 @@ class ScheduleController extends Controller
             $league_id = $input['league_id'];
             $match = (int) $input['match'] + 1;
 
-            // $getNextSchedule = $this->scheduleRepository->getScheduleByLeagueAndMatch($league_id, $match);
-            // dd($getNextSchedule);
+            $getNextSchedule = $this->scheduleRepository->getScheduleByLeagueAndMatch($league_id, $match);
 
-            // if (!empty($getNextSchedule)) {
-            //     if() {
+            if (!empty($getNextSchedule)) {
+                // if(!empty($getNextSchedule)) {
 
-            //     }
-            // }
+                // }
+            }
         }
 
 
