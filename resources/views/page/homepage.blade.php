@@ -60,7 +60,7 @@
                 </div>
             </div>
         </section>
-        <section id="news" class="container-1280 news-section bg-white" style="margin-bottom: 35pc">
+        <section id="news" class="container-1280 news-section bg-white" style="/*margin-bottom: 35pc*/">
             <div class="std-title" style="margin-top: 10px">
                 <h2 class="left">{{__('World Tour Leaders')}}</h2>
                 <a href="{{route('ranking')}}"><h2 class="right">{{__('Full Rankings')}}</h2></a>
