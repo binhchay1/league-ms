@@ -43,13 +43,13 @@
                     <ul>
                         <li>
                             <a class="{{ Session::get('locale') == 'en' ? 'active' : ''}}" href="{{ route('app.setLocale', ['locale' => 'en']) }}">
-                               {{__('English')}}
+                                {{ __('English') }}
                             </a>
                         </li>
 
                         <li>
                             <a class="{{ Session::get('locale') == 'vi' ? 'active' : ''}}" href="{{ route('app.setLocale', ['locale' => 'vi']) }}">
-                                {{__('Vietnamese')}}
+                                {{ __('Vietnamese') }}
                             </a>
                         </li>
                     </ul>
@@ -99,15 +99,33 @@
                 <li><a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a></li>
                 <li><a href="{{ route('register_user') }}" class="button">{{ __('Register') }}</a></li>
                 @endif
+
+                @if(Auth::check())
+                @php
+                $count = 0;
+                $listNotification = Cache::get('notification_next_match_' . Auth::user()->id);
+                foreach($listNotification as $notification) {
+                if($notification->status == 0) {
+                $count++;
+                }
+                }
+                @endphp
                 <li class="li-notification">
                     <a href="#" class="notification">
                         <i class="fas fa-bell"></i>
-                        <span class="badge">3</span>
+                        <span class="badge">{{ $count }}</span>
                     </a>
-                    <div>
-
-                    </div>
+                    <ul class="dropdown-notification">
+                        @foreach($listNotification as $notification)
+                        @if($notification->status == 0)
+                        <li class="noti-unread"><a href="#">{{ $notification->content }}</a></li>
+                        @else
+                        <li><a href="#">{{ $notification->content }}</a></li>
+                        @endif
+                        @endforeach
+                    </ul>
                 </li>
+                @endif
             </ul>
         </nav>
     </header>

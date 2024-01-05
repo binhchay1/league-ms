@@ -22,7 +22,7 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::middleware(['verified'])->group(function () {
+Route::middleware(['verified', 'cache.notification'])->group(function () {
     Route::get('/', [HomeController::class, 'viewHome'])->name('home');
     Route::get('/list-of-league/', [HomeController::class, 'listLeague'])->name('list.league');
     Route::get('/top-league/', [HomeController::class, 'listTopLeague'])->name('top.league');
@@ -44,7 +44,9 @@ Route::middleware(['verified'])->group(function () {
     Route::post('/register-league/', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
     Route::get('/ranking/', [HomeController::class, 'viewRanking'])->name('ranking');
     Route::get('/player/{id}/', [HomeController::class, 'viewInforPlayer'])->name('player.info');
+    Route::get('/read-notifications/', [HomeController::class, 'readNotification'])->name('read.notification');
 });
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/verify/{token}/', [AuthController::class, 'verifyEmail'])->name('user.verify');
     Route::get('/verify-email/', [AuthController::class, 'viewVerifyEmail'])->name('verify.email');

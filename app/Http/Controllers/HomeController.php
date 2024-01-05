@@ -9,10 +9,12 @@ use App\Repositories\UserLeagueRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\GroupUserRepository;
 use App\Repositories\MessageRepository;
+use App\Repositories\NotificationRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\RankingRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Config;
 use Session;
 
@@ -26,6 +28,7 @@ class HomeController extends Controller
     protected $messageRepository;
     protected $rankingRepository;
     protected $productRepository;
+    protected $notificationRepository;
     protected $utility;
 
     public function __construct(
@@ -37,6 +40,7 @@ class HomeController extends Controller
         MessageRepository $messageRepository,
         RankingRepository $rankingRepository,
         ProductRepository $productRepository,
+        NotificationRepository $notificationRepository,
         Utility $ultity
     ) {
         $this->userLeagueRepository = $userLeagueRepository;
@@ -47,6 +51,7 @@ class HomeController extends Controller
         $this->messageRepository = $messageRepository;
         $this->rankingRepository = $rankingRepository;
         $this->productRepository = $productRepository;
+        $this->notificationRepository = $notificationRepository;
         $this->utility = $ultity;
     }
 
@@ -257,5 +262,18 @@ class HomeController extends Controller
         $this->userLeagueRepository->store($userRegisterLeague);
 
         return back()->with('message', 'You are allowed to access');
+    }
+
+    public function readNotification()
+    {
+        if (!Auth::check()) {
+            abort(405);
+        }
+
+        $user_id = Auth::user()->id;
+        $this->notificationRepository->updateReadNotification($user_id);
+        $key = 'notification_next_match_' . $user_id;
+        $getNotification = $this->notificationRepository->getNotificationByUser($user_id);
+        Cache::set($key, $getNotification);
     }
 }
