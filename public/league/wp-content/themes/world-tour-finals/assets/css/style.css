@@ -266,7 +266,7 @@ ul.site-main-menu li.current-menu-item a {
 }
 
 .right-nav {
-    *zoom: 1;
+    zoom: 1;
     width: auto;
     max-width: 1410px;
     float: none;
@@ -776,7 +776,7 @@ header.site-header>div.head-content .menu-button img {
     z-index: 100;
     padding: 1rem;
     width: 100%;
-    *zoom: 1
+    zoom: 1
 }
 
 .widget-area .main-navigation #mobile-social:before,
@@ -4865,7 +4865,7 @@ li.chart table {
 }
 
 .page-header {
-    *zoom: 1;
+    zoom: 1;
     width: auto;
     max-width: 1280px;
     float: none;
@@ -5175,7 +5175,7 @@ li.chart table {
 
 @media(max-width:767px) {
     .results .wrapper-results .box-results-tournament .logo-left {
-        display: none
+        /* display: none */
     }
 }
 
@@ -5203,7 +5203,7 @@ li.chart table {
 
 .results .wrapper-results .box-results-tournament .info h2 {
     font-size: 32px;
-    font-weight: 400;
+    font-weight: 600;
     line-height: 100%;
     margin: 0;
     color: #333
@@ -5217,7 +5217,9 @@ li.chart table {
 
 @media only screen and (max-width:599px) {
     .results .wrapper-results .box-results-tournament .info h2 {
-        font-size: 18px
+        font-size: 26px;
+        font-weight: 600;
+        padding-block: 1rem;
     }
 }
 
@@ -5242,14 +5244,14 @@ li.chart table {
 
 .results .wrapper-results .box-results-tournament .info h5 {
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 600;
     margin: 6px 0;
     color: #333
 }
 
 .results .wrapper-results .box-results-tournament .info .prize {
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 600;
     margin: 2px 0 0
 }
 
@@ -5795,7 +5797,7 @@ li.chart table {
 .results .wrapper-results .item-results .item ul li .team-details-wrap {
     display: flex;
     flex-direction: column;
-    width: 210px
+    width: 162px
 }
 
 @media(max-width:467px) {
