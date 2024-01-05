@@ -88,8 +88,8 @@
                     </li>
                     <li><a href="{{route('leagueSchedule.info', $leagueInfor['slug'])}}">{{ __('Schedule') }}</a>
                     </li>
-                    <li><a href="{{route('leagueFightBranch.info', $leagueInfor['slug'])}}">{{ __('Fighting Branch') }}</a>
-                    </li>
+                    <!-- <li><a href="{{route('leagueFightBranch.info', $leagueInfor['slug'])}}">{{ __('Fighting Branch') }}</a>
+                    </li> -->
                     <li><a id="player-data" href="{{ route('leaguePlayer.info', $leagueInfor['slug']) }}">{{ __('Player ') }}</a>
                     </li>
                 </ul>
@@ -213,10 +213,6 @@
                         @elseif(Route::current()->getName() == 'leagueSchedule.info')
                         <div>
                             @include('page.league.detail.schedule')
-                        </div>
-                        @elseif(Route::current()->getName() == 'leagueFightBranch.info')
-                        <div>
-                            @include('page.league.detail.fight-branch')
                         </div>
                         @else
                         <div>
