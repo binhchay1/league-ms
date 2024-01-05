@@ -3450,8 +3450,6 @@ ul li a .fas {
     color: white !important;
 }
 
-
-
 section a:hover {
     text-decoration: none !important;
 }
@@ -3459,12 +3457,15 @@ section a:hover {
 .menu ul li a.account:hover {
     color: red;
 }
+
 .menu ul li a.account {
     color: black;
 }
+
 .menu ul {
     margin-top: 5px;
 }
+
 #menu{display: flex !important;column-gap: 1rem;}
 #menu.menu-mo{display: none !important;}
 .close-btn{display: none;}
@@ -3571,4 +3572,33 @@ header nav>ul li.menu:hover ul.submenu{display: block;top: 100%;}
         width: auto;
     }
     
+}
+
+.dropdown-notification li a {
+    color: black !important;
+}
+
+.dropdown-notification {
+    display: none;
+    position: absolute;
+    padding: 0 !important;
+    top: 42px;
+    right: 0px;
+    left: inherit;
+    background: #fff;
+    -webkit-box-shadow: 0 7px 15px 0 rgba(0, 0, 0, .15);
+    box-shadow: 0 7px 15px 0 rgba(0, 0, 0, .15);
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px !important;
+    line-height: 1.75em;
+    z-index: 10;
+}
+
+.dropdown-notification li {
+    padding: 10px;
+
+}
+
+.noti-unread {
+    background: darkgray;
 }

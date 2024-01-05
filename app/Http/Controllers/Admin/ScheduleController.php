@@ -5,23 +5,27 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\Ranking;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResultScheduleRequest;
-use App\Http\Requests\ScheduleRequest;
+use App\Jobs\NotificationNextMatch;
 use App\Repositories\ScheduleRepository;
 use App\Repositories\LeagueRepository;
+use App\Repositories\NotificationRepository;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
     protected $scheduleRepository;
     protected $leagueRepository;
+    protected $notificationRepository;
 
     public function __construct(
         ScheduleRepository $scheduleRepository,
-        LeagueRepository $leagueRepository
+        LeagueRepository $leagueRepository,
+        NotificationRepository $notificationRepository
 
     ) {
         $this->scheduleRepository = $scheduleRepository;
         $this->leagueRepository = $leagueRepository;
+        $this->notificationRepository = $notificationRepository;
     }
 
     public function index()
@@ -88,15 +92,8 @@ class ScheduleController extends Controller
             $league_id = $input['league_id'];
             $match = (int) $input['match'] + 1;
 
-            $getNextSchedule = $this->scheduleRepository->getScheduleByLeagueAndMatch($league_id, $match);
-
-            if (!empty($getNextSchedule)) {
-                // if(!empty($getNextSchedule)) {
-
-                // }
-            }
+            NotificationNextMatch::dispatch($league_id, $match, $this->leagueRepository, $this->scheduleRepository, $this->notificationRepository)->onQueue('next-match');
         }
-
 
         return redirect()->to('result');
     }
