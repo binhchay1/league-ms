@@ -272,7 +272,7 @@
                                             <?php $count++ ?>
                                             @endforeach
                                             @empty
-                                            <h2>{{__('Data has not been updated!')}}</h2>
+                                            <h2 class="text-center">{{__('Data has not been updated!')}}</h2>
                                             @endforelse
                                         </ul>
                                     </div>
