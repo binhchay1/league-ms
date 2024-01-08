@@ -237,7 +237,7 @@
     var date_register = '<?php echo strtotime($leagueInfor->end_date_register); ?>';
     var start_date = '<?php echo strtotime($leagueInfor->start_date); ?>';
 
-    if (date_register > start_date) {
+    if (date_register < start_date) {
         $('#register-league').show();
     } else {
         $('#register-league').hide();
