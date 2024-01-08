@@ -233,8 +233,6 @@ class HomeController extends Controller
             $groupSchedule[$schedule['round']][] = $schedule;
         }
 
-        dd($leagueInfor);
-
         return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule'));
     }
 

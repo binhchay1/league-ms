@@ -88,8 +88,8 @@
                     </li>
                     <li><a href="{{route('leagueSchedule.info', $leagueInfor['slug'])}}">{{ __('Schedule') }}</a>
                     </li>
-                    <li><a href="{{route('leagueFightBranch.info', $leagueInfor['slug'])}}">{{ __('Fighting Branch') }}</a>
-                    </li>
+                    <!-- <li><a href="{{route('leagueFightBranch.info', $leagueInfor['slug'])}}">{{ __('Fighting Branch') }}</a>
+                    </li> -->
                     <li><a id="player-data" href="{{ route('leaguePlayer.info', $leagueInfor['slug']) }}">{{ __('Player ') }}</a>
                     </li>
                 </ul>
@@ -214,10 +214,6 @@
                         <div>
                             @include('page.league.detail.schedule')
                         </div>
-                        @elseif(Route::current()->getName() == 'leagueFightBranch.info')
-                        <div>
-                            @include('page.league.detail.fight-branch')
-                        </div>
                         @else
                         <div>
                             @include('page.league.detail.schedule')
@@ -241,7 +237,7 @@
     var date_register = '<?php echo strtotime($leagueInfor->end_date_register); ?>';
     var start_date = '<?php echo strtotime($leagueInfor->start_date); ?>';
 
-    if (date_register > start_date) {
+    if (date_register < start_date) {
         $('#register-league').show();
     } else {
         $('#register-league').hide();
