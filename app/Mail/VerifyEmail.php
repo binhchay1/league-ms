@@ -10,29 +10,20 @@ class VerifyEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $data;
+    private $dataEmail;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($dataEmail)
     {
-        $this->data = $data;
+        $this->dataEmail = $dataEmail;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function content(): Content
+    public function build()
     {
-        return new Content(
-            view: 'emails.verify-email',
-            with: [
-                'data' => $this->data
-            ],
-        );
+        $data = $this->dataEmail;
+        return $this->from('badminton.io@gmail.com')->view('emails.verify-email', compact('data'));
     }
 }

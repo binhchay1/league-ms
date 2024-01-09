@@ -59,7 +59,7 @@
         <nav class="container">
             <a href="{{ route('home') }}"><img style="margin-bottom: 30px" class="left" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
             {{-- <button id="toggle-menu" onclick="toggleMobileMenu()"></button> --}}
-            
+
             <ul id="menu" class="menu-main">
                 <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
                 <li class="pt-2"><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
@@ -97,11 +97,13 @@
                         <li><a class="dropdown-item account" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2 "></i>{{ __('Log out') }}</a></li>
                     </ul>
                 </li>
-                
+
                     @else
                 <li><a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a></li>
                 <li><a href="{{ route('register_user') }}" class="button">{{ __('Register') }}</a></li>
                 @endif
+
+                @if(Auth::check())
                 <li class="li-notification">
                     <a href="#" class="notification">
                         <i class="fas fa-bell"></i>
@@ -112,7 +114,8 @@
                     </div>
                 </li>
                 </div>
-                
+                @endif
+
             </ul>
             <div class="open-btn">
                 <span class="line"></span>
@@ -120,7 +123,7 @@
                 <span class="line"></span>
             </div>
             {{-- <ul id="menu" class="menu-mo active">
-                
+
                 <li id="search">
                     <form id="search-league" action="{{ route('search') }}" method="post">
                         @csrf
@@ -131,7 +134,7 @@
                             </button>
                         </div>
                     </form>
-                </li> 
+                </li>
                 @if(Auth::check())
                 <li class="menu">
                     <span>
@@ -207,8 +210,6 @@
                         <h4 class="h3 color-white">{{ __('Company') }}</h4>
                     </li>
                     <li><a href="{{ route('about') }}">{{ __('About') }}</a></li>
-                    <li><a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
-                    <li><a href="{{ route('top.league') }}">{{ __('Top League') }}</a></li>
                     <li><a href="{{ route('search') }}">{{ __('Search') }}</a></li>
                 </ul>
             </div>
