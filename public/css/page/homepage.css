@@ -27,7 +27,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #000 url(../images/bg-next-tmt.jpg) top center no-repeat;
     background-size: cover;
 }
 
@@ -115,10 +114,6 @@ h6 {
 .top-player {
     margin-top: 20px;
     /* margin-bottom: -450px; */
-}
-
-.top-player .rankings-content_tabpanel {
-    background: #000 url(../images/background-rank-home.jpg) top center no-repeat;
 }
 
 .rankings-content_tabpanel .top-ranked-wrap {
@@ -450,7 +445,7 @@ h3 {
     .container-1280{
         padding: 1rem;
     }
-    
+
 }
 @media screen and (max-width: 768px) {
     .img-responsive{

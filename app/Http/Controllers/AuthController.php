@@ -7,7 +7,6 @@ use App\Enums\Utility;
 use App\Models\User;
 use App\Enums\Title;
 use App\Enums\Group;
-use Illuminate\Support\Facades\Mail;
 use App\Jobs\SendMail;
 use App\Events\MessageSent;
 use App\Mail\VerifyEmail;
@@ -119,7 +118,7 @@ class  AuthController extends Controller
             'token' => $token,
             'user_id' => $user->id,
             'time_end' => $timeEnd,
-            'status' => 1
+            'status' => 0
         ];
         $this->verifyUserRepository->create($dataVerify);
 

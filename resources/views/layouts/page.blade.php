@@ -37,7 +37,6 @@
     <header style="background-color: #222">
         <div class="top-nav">
             <ul class="container">
-                <li><a href="/top-sites.html">{{ __('Top league') }}</a></li>
                 <li class="menu">
                     <span>en</span>
                     <ul>
@@ -58,7 +57,6 @@
         </div>
         <nav class="container">
             <a href="{{ route('home') }}"><img style="margin-bottom: 30px" class="left" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
-            {{-- <button id="toggle-menu" onclick="toggleMobileMenu()"></button> --}}
 
             <ul id="menu" class="menu-main">
                 <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
@@ -77,42 +75,63 @@
                 </li>
                 <!-- <li class="pt-2"><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li> -->
                 <div class="nav-group">
-                @if(Auth::check())
-                <li class="menu">
-                    <span>
-                        <img class="avatar-user" width="40" height="40" src="{{ asset( Auth::user()->profile_photo_path ?? '/images/no-image.png') }}">
-                    </span>
-                    <ul class="submenu">
-                        <li>
-                            <a class="account" href="{{ route('profile.edit') }}">
-                                {{ __('Profile') }}
-                            </a>
-                        </li>
+                    @if(Auth::check())
+                    <li class="menu">
+                        <span>
+                            <img class="avatar-user" width="40" height="40" src="{{ asset( Auth::user()->profile_photo_path ?? '/images/no-image.png') }}">
+                        </span>
+                        <ul class="submenu">
+                            <li>
+                                <a class="account" href="{{ route('profile.edit') }}">
+                                    {{ __('Profile') }}
+                                </a>
+                            </li>
 
-                        <li>
-                            <a class="account" href="{{ route('my.group') }}">
-                                {{ __('My group') }}
-                            </a>
-                        </li>
-                        <li><a class="dropdown-item account" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2 "></i>{{ __('Log out') }}</a></li>
-                    </ul>
-                </li>
+                            <li>
+                                <a class="account" href="{{ route('my.group') }}">
+                                    {{ __('My group') }}
+                                </a>
+                            </li>
+                            <li><a class="dropdown-item account" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2 "></i>{{ __('Log out') }}</a></li>
+                        </ul>
+                    </li>
 
                     @else
-                <li><a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a></li>
-                <li><a href="{{ route('register_user') }}" class="button">{{ __('Register') }}</a></li>
-                @endif
+                    <li><a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a></li>
+                    <li><a href="{{ route('register_user') }}" class="button">{{ __('Register') }}</a></li>
+                    @endif
 
-                @if(Auth::check())
-                <li class="li-notification">
-                    <a href="#" class="notification">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge">3</span>
-                    </a>
-                    <div>
-
-                    </div>
-                </li>
+                    @if(Auth::check())
+                    @php
+                    $count = 0;
+                    $listNotification = Cache::get('notification_next_match_' . Auth::user()->id);
+                    foreach($listNotification as $notification) {
+                    if($notification->status == 0) {
+                    $count++;
+                    }
+                    }
+                    @endphp
+                    <li class="li-notification">
+                        <a class="notification" id="notification">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge">{{ $count }}</span>
+                        </a>
+                        @if(count($listNotification) > 0)
+                        <ul class="dropdown-notification" id="dropdown-notification">
+                            @foreach($listNotification as $notification)
+                            @if($notification->status == 0)
+                            <li class="noti-unread"><a>{{ $notification->content }}</a></li>
+                            @else
+                            <li><a>{{ $notification->content }}</a></li>
+                            @endif
+                            @endforeach
+                        </ul>
+                        @else
+                        <ul class="dropdown-notification" id="dropdown-notification">
+                            <li><a>{{ __('Empty Notification') }}</a></li>
+                        </ul>
+                        @endif
+                    </li>
                 </div>
                 @endif
 
@@ -122,77 +141,6 @@
                 <span class="line"></span>
                 <span class="line"></span>
             </div>
-            {{-- <ul id="menu" class="menu-mo active">
-
-                <li id="search">
-                    <form id="search-league" action="{{ route('search') }}" method="post">
-                        @csrf
-                        <div onclick="openSearch()">
-                            <input type="search" name="search" placeholder="{{ __('Search leagues') }}...">
-                            <button type="button">
-                                <img src="{{ asset('/svg/icon-search.svg') }}" alt="{{ __('Search') }}" title="{{ __('Search') }}" width="15" height="15">
-                            </button>
-                        </div>
-                    </form>
-                </li>
-                @if(Auth::check())
-                <li class="menu">
-                    <span>
-                        <img class="avatar-user" width="40" height="40" src="{{ asset( Auth::user()->profile_photo_path ?? '/images/no-image.png') }}">
-                    </span>
-                    <ul>
-                        <li>
-                            <a class="account" href="{{ route('profile.edit') }}">
-                                {{ __('Profile') }}
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="account" href="{{ route('my.group') }}">
-                                {{ __('My group') }}
-                            </a>
-                        </li>
-                        <li><a class="dropdown-item account" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2 "></i>{{ __('Log out') }}</a></li>
-                    </ul>
-                </li>
-                @else
-                <li><a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a></li>
-                <li><a href="{{ route('register_user') }}" class="button">{{ __('Register') }}</a></li>
-                @endif
-
-                @if(Auth::check())
-                @php
-                $count = 0;
-                $listNotification = Cache::get('notification_next_match_' . Auth::user()->id);
-                foreach($listNotification as $notification) {
-                if($notification->status == 0) {
-                $count++;
-                }
-                }
-                @endphp
-                <li class="li-notification">
-                    <a href="#" class="notification">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge">{{ $count }}</span>
-                    </a>
-                    <ul class="dropdown-notification">
-                        @foreach($listNotification as $notification)
-                        @if($notification->status == 0)
-                        <li class="noti-unread"><a href="#">{{ $notification->content }}</a></li>
-                        @else
-                        <li><a href="#">{{ $notification->content }}</a></li>
-                        @endif
-                        @endforeach
-                    </ul>
-                </li>
-                <li class="header-btn">
-                    <div class="open-btn">
-                        <span class="line"></span>
-                        <span class="line"></span>
-                        <span class="line"></span>
-                    </div>
-                </li>
-            </ul> --}}
         </nav>
     </header>
 
@@ -252,7 +200,7 @@
     <script src="{{ asset('/js/page/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('/js/page/common.min.js') }}"></script>
     <script>
-        $('.open-btn').click(function(){
+        $('.open-btn').click(function() {
             $('nav.container').toggleClass('active');
         })
     </script>
