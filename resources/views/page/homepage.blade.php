@@ -3,9 +3,11 @@
 @section('title')
 {{ env('APP_NAME', 'Badminton.io') }} - {{ __('Homepage') }}
 @endsection
+
 @section('css')
-<link rel="stylesheet" id="bwf-style-css" href="{{asset('css/page/homepage.css')}}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{ asset('css/page/homepage.css') }}" type="text/css" media="all" />
 @endsection
+
 @section('content')
 <div class="wrapper">
 

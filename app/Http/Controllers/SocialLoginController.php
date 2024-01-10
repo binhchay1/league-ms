@@ -7,15 +7,19 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\Role;
+use App\Enums\Title;
+use App\Repositories\RankingRepository;
 use Exception;
 
 class SocialLoginController extends Controller
 {
     private $userRepository;
+    private $rankingRepository;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, RankingRepository $rankingRepository)
     {
         $this->userRepository = $userRepository;
+        $this->rankingRepository = $rankingRepository;
     }
 
     public function redirectToGoogle()
@@ -33,13 +37,14 @@ class SocialLoginController extends Controller
                 $this->userRepository->updateSocialID($user->email, ['google_id' => $user->id]);
                 Auth::login($getUserByEmail);
 
-                return redirect()->intended('/');
+                return redirect()->route('home');
             } else {
                 $getUserByGoogle = $this->userRepository->getUserByGoogle($user->id);
 
                 if ($getUserByGoogle) {
                     Auth::login($getUserByGoogle);
-                    return redirect()->intended('/');
+
+                    return redirect()->route('home');
                 } else {
                     $data = [
                         'email' => $user->email,
@@ -47,13 +52,24 @@ class SocialLoginController extends Controller
                         'google_id' => $user->id,
                         'password' => Hash::make('123456dummy'),
                         'email_verified_at' => date("Y-m-d h:i:s"),
-                        'role' => Role::USER
+                        'role' => Role::USER,
+                        'title' => Title::USER,
+                        'profile_photo_path' => $user->avatar
                     ];
 
                     $newUser = $this->userRepository->create($data);
 
-                    Auth::login($newUser);
-                    return redirect()->intended('/');
+                    $dataRanking = [
+                        'user_id' => $newUser->id,
+                        'points' => 0,
+                        'places' => 0,
+                        'places_old' => 0
+                    ];
+                    $this->rankingRepository->create($dataRanking);
+
+                    Auth::loginUsingId($newUser->id);
+
+                    return redirect()->route('home');
                 }
             }
         } catch (Exception $e) {
@@ -76,13 +92,14 @@ class SocialLoginController extends Controller
                 $this->userRepository->updateSocialID($user->email, ['google_id' => $user->id]);
                 Auth::login($getUserByEmail);
 
-                return redirect()->intended('/');
+                return redirect()->route('home');
             } else {
                 $getUserByGoogle = $this->userRepository->getUserByFacebook($user->id);
 
                 if ($getUserByGoogle) {
                     Auth::login($getUserByGoogle);
-                    return redirect()->intended('/');
+
+                    return redirect()->route('home');
                 } else {
                     $data = [
                         'email' => $user->email,
@@ -90,13 +107,23 @@ class SocialLoginController extends Controller
                         'google_id' => $user->id,
                         'password' => Hash::make('123456dummy'),
                         'email_verified_at' => date("Y-m-d h:i:s"),
-                        'role' => Role::USER
+                        'role' => Role::USER,
+                        'title' => Title::USER
                     ];
 
                     $newUser = $this->userRepository->create($data);
 
-                    Auth::login($newUser);
-                    return redirect()->intended('/');
+                    $dataRanking = [
+                        'user_id' => $newUser->id,
+                        'points' => 0,
+                        'places' => 0,
+                        'places_old' => 0
+                    ];
+                    $this->rankingRepository->create($dataRanking);
+
+                    Auth::loginUsingId($newUser->id);
+
+                    return redirect()->route('home');
                 }
             }
         } catch (Exception $e) {
