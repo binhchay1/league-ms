@@ -44,7 +44,7 @@ class LeagueRepository extends BaseRepository
 
     public function getLeagueBySearch($search)
     {
-        return $this->model->where('name', 'like', '%' . $search . '%')->get();
+        return $this->model->where('name', 'like', '%' . $search . '%')->paginate(5);
     }
 
     public function getLeagueForPre($date)

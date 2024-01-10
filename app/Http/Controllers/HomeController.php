@@ -70,16 +70,15 @@ class HomeController extends Controller
     {
         $search = $request->get('search');
         $isList = false;
+        $listLeagues = [];
         if ($search) {
-            $listLeagueBySearch = $this->leagueRepository->getLeagueBySearch($search);
-            if ($listLeagueBySearch->count() > 0) {
+            $listLeagues = $this->leagueRepository->getLeagueBySearch($search);
+            if (count($listLeagues) > 0) {
                 $isList = true;
             }
-
-            return view('page.search', compact('listLeagueBySearch', 'search', 'isList'));
         }
 
-        return view('page.search', compact('search', 'isList'));
+        return view('page.search', compact('listLeagues', 'search', 'isList'));
     }
 
     public function viewShop()
@@ -140,7 +139,7 @@ class HomeController extends Controller
     public function listLeague()
     {
         $listLeague = $this->leagueRepository->index();
-        $listLeagues = $this->utility->paginate($listLeague, 10);
+        $listLeagues = $this->utility->paginate($listLeague, 5, 'list-of-league');
 
         return view('page.league.index', compact('listLeague', 'listLeagues'));
     }
