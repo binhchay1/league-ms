@@ -38,25 +38,22 @@ class ResultScheduleRequest extends FormRequest
     public function messages()
     {
         return [
-            'result_team_1.required' => __('Tỉ số đội 1 không được để trống'),
-            'result_team_1.min' => __('Tỉ số đội 1 tối thiểu trên 1 '),
-            'result_team_1.max' => __('Tỉ số đội 1 không vượt quá 2 '),
-            'result_team_2.required' => __('Tỉ số đội 2 không được để trống'),
-            'result_team_2.min' => __('Tỉ số đội 2 tối thiểu trên 1 '),
-            'result_team_2.max' => __('Tỉ số đội 2 không vượt quá 2 '),
-            'set_1_team_1.min' => __('Tỉ số trận 1 tối thiểu là 0'),
-            'set_1_team_1.max' => __('Tỉ số đội 1 không vượt quá 2 '),
-            'set_1_team_2.min' => __('Tỉ số trận 1 tối thiểu là 0'),
-            'set_1_team_2.max' => __('Tỉ số đội 1 không vượt quá 2 '),
-            'set_2_team_1.min' => __('Tỉ số trận 2 tối thiểu là 0'),
-            'set_2_team_1.max' => __('Tỉ số đội 1 không vượt quá 2 '),
-            'set_2_team_2.min' => __('Tỉ số trận 2 tối thiểu là 0'),
-            'set_2_team_2.max' => __('Tỉ số đội 1 không vượt quá 2 '),
-            'set_3_team_1.min' => __('Tỉ số trận 3 tối thiểu là 0'),
-            'set_3_team_1.max' => __('Tỉ số đội 1 không vượt quá 2 '),
-            'set_3_team_2.min' => __('Tỉ số trận 4 tối thiểu là 0'),
-            'set_3_team_2.max' => __('Tỉ số đội 1 không vượt quá 2 '),
+            'result_team_1.required' => __('Team 1 score cannot be left blank'),
+            'result_team_1.min' => __('Minimum score of 1st team is over 1'),
+            'result_team_2.min' => __('Team 2 score must be at least 1'),
+            'result_team_2.max' => __('Team 2 score cannot exceed 2'),
+            'set_1_team_1.min' => __('The minimum score of match 1 is 0'),
+            'set_1_team_1.max' => __('Team 1 score cannot exceed 2'),
+            'set_1_team_2.min' => __('The minimum score of match 2 is 0'),
+            'set_1_team_2.max' => __('Team 2 score cannot exceed 2'),
+            'set_2_team_1.min' => __('The minimum score of match 2 is 0'),
+            'set_2_team_1.max' => __('Team 1 score cannot exceed 2'),
+            'set_2_team_2.min' => __('The minimum score of match 2 is 0'),
+            'set_2_team_2.max' => __('Team 2 score cannot exceed 2'),
+            'set_3_team_1.min' => __('The minimum score of match 3 is 0'),
+            'set_3_team_1.max' => __('Team 1 score cannot exceed 2'),
+            'set_3_team_2.min' => __('The minimum score of match 4 is 0'),
+            'set_3_team_2.max' => __('Team 1 score cannot exceed 2'),
         ];
-
     }
 }

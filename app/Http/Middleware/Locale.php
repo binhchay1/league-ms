@@ -28,7 +28,7 @@ class Locale
     {
         $currentLocale = Session::get('locale');
         if (empty($currentLocale)) {
-            $currentLocale = 'vi';
+            $currentLocale = 'en';
         }
 
         if (in_array($currentLocale, Config::get('app.locales') ?? [])) {

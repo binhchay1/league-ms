@@ -70,11 +70,11 @@
                     <div class="col-lg-10 mt-4">
                         <?php $end_date_register = date('d/m/Y', strtotime($leagueInfor->end_date_register));
                         ?>
-                        <h5>{{__('Registration Deadline')}} : {{$end_date_register}}</h5>
+                        <h5>{{ __('Registration Deadline') }} : {{ $end_date_register }}</h5>
                     </div>
                     <div class="col-lg-2 mt-3">
                         <button type="button" id="btn-register" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
-                            {{__('Register League')}}
+                            {{ __('Register League') }}
                         </button>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content" id="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">{{__('Register League')}}</h4>
+                                <h4 class="modal-title">{{ __('Register League') }}</h4>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
 
@@ -101,16 +101,16 @@
                                                 <?php $start_date = date('d/m/Y', strtotime($leagueInfor->start_date));
                                                 $end_date = date('d/m/Y', strtotime($leagueInfor->end_date));
                                                 ?>
-                                                <h6 class="">{{__('Start Date')}}: {{ $start_date }}</h6>
-                                                <h6 class="">{{__('End Date')}}: {{ $end_date }}</h6>
-                                                <p class="">{{__('PRIZE MONEY USD ')}}${{ $leagueInfor->money }}</p>
+                                                <h6 class="">{{ __('Start Date') }}: {{ $start_date }}</h6>
+                                                <h6 class="">{{ __('End Date') }}: {{ $end_date }}</h6>
+                                                <p class="">{{ __('PRIZE MONEY USD ') }}${{ $leagueInfor->money }}</p>
                                             </div>
                                             <div class="checkbox" align="center">
                                                 <input id="check" name="checkbox" type="checkbox">
-                                                <label for="checkbox">{{__('I have read and agree to the tournament rules')}}</label>
+                                                <label for="checkbox">{{ __('I have read and agree to the tournament rules') }}</label>
                                             </div>
                                             <div align="center">
-                                                <button id="open-tab1" class="btn btn-success" disabled>{{__('Register ')}}</button>
+                                                <button id="open-tab1" class="btn btn-success" disabled>{{ __('Register ') }}</button>
                                             </div>
                                         </div>
                                     </div>

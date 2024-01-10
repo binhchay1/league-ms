@@ -38,6 +38,10 @@ p {
     background: none !important;
 }
 
+.notification .badge {
+    background: red !important;
+}
+
 .badge span {
     background: none !important;
     padding: 7px;
