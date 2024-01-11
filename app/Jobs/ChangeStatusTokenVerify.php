@@ -33,10 +33,10 @@ class ChangeStatusTokenVerify implements ShouldQueue
      */
     public function handle()
     {
-        $getToken = $this->verifyUserRepository->getVerifyByToken($token);
+        $getToken = $this->verifyUserRepository->getVerifyByToken($this->token);
         if (!empty($getToken)) {
             if ($getToken->status == 0) {
-                $this->verifyUserRepository->updateStatusByToken($token);
+                $this->verifyUserRepository->updateStatusByToken($this->token);
             }
         }
     }
