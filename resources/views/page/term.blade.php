@@ -48,9 +48,9 @@
             any libellous or defamatory statements published resulting in any form of
             consequence. In addition, you will be responsible for our reasonable legal
             costs incurred in defending any defamation or libel action caused by your
-            page content. You also agree to indemnify {{ env('APP_NAME', 'Badminton.io') }} for any damages awarded
+            page content. You also agree to indemnify')}} {{ env('APP_NAME', 'Badminton.io') }} {{__('for any damages awarded
             against our company or its employees in a court of law or as a settlement
-            action upon Counsel's advice.') }}</p>
+            action upon Counsel`s advice.') }}</p>
 
         <p>{{ env('APP_NAME', 'Badminton.io') }} {{ __('reserves the right to place adverts on the web pages of clients
             using the free service. Current policy is to place relevant Google adverts
@@ -69,7 +69,7 @@
         <p>{{ __('You agree to keep secure your user ID, password and other confidential information
             provided by') }} {{ env('APP_NAME', 'Badminton.io') }}.</p>
 
-        <p>{{ __('You agree not to break or attempt to break security on') }} {{ env('APP_NAME', 'Badminton.io') }}{{ __(''s system,
+        <p>{{ __('You agree not to break or attempt to break security on') }} {{ env('APP_NAME', 'Badminton.io') }}{{ __(' system,
             or to access an account which does not belong to you.') }}</p>
 
         <p>{{ __('You agree not to screen scrape data from') }} {{ env('APP_NAME', 'Badminton.io') }} {{ __('sites to store elsewhere or display on other websites.') }}</p>
@@ -151,7 +151,7 @@
         </p>
 
         <p>{{ env('APP_NAME', 'Badminton.io') }} {{ __('does not warrant that the functions contained in these Web
-            pages or the Internet Web site will meet the client's requirements or that
+            pages or the Internet Web site will meet the client of requirements or that
             the operation of the Web pages will be uninterrupted or error-free. The entire
             risk as to the quality and performance of the Web pages and Web site is with
             the client.') }}</p>
