@@ -98,8 +98,8 @@
                     </li>
 
                     @else
-                    <li><a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a></li>
-                    <li><a href="{{ route('register_user') }}" class="button">{{ __('Register') }}</a></li>
+                    <li><a href="{{ route('login') }}" class="button white " style="height: 45px;">{{ __('Log In') }}</a></li>
+                    <li><a href="{{ route('register_user') }}" class="button" style="height: 45px;">{{ __('Register') }}</a></li>
                     @endif
 
                     @if(Auth::check())
@@ -159,7 +159,6 @@
                         <h4 class="h3 color-white">{{ __('Company') }}</h4>
                     </li>
                     <li><a href="{{ route('about') }}">{{ __('About') }}</a></li>
-                    <li><a href="{{ route('search') }}">{{ __('Search') }}</a></li>
                 </ul>
             </div>
             <div>
@@ -168,7 +167,7 @@
                         <h4 class="h3 color-white">{{ __('Features') }}</h4>
                     </li>
                     <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
-                    <li><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li>
+                    <li><a href="">{{ __('Shop') }}</a></li>
                     <li><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
                 </ul>
             </div>
@@ -183,10 +182,10 @@
                     </small>
                 </p>
                 <ul class="social">
-                    <li><a href="https://www.linkedin.com/company/badminton.io"><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="{{ __('LinkedIn') }}" width="30" height="31"></a></li>
-                    <li><a href="https://twitter.com/badminton.io"><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="{{ __('Twitter') }}" width="30" height="31"></a></li>
-                    <li><a href="https://www.facebook.com/badminton.io"><img src="{{ asset('/svg/icon-facebook.svg') }}" alt="{{ __('Facebook') }}" width="30" height="31"></a></li>
-                    <li><a href="https://www.youtube.com/user/badminton.io"><img src="{{ asset('/svg/icon-youtube.svg') }}" alt="{{ __('YouTube') }}" width="30" height="31"></a></li>
+                    <li><a href=""><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="{{ __('LinkedIn') }}" width="30" height="31"></a></li>
+                    <li><a href=""><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="{{ __('Twitter') }}" width="30" height="31"></a></li>
+                    <li><a href=""><img src="{{ asset('/svg/icon-facebook.svg') }}" alt="{{ __('Facebook') }}" width="30" height="31"></a></li>
+                    <li><a href=""><img src="{{ asset('/svg/icon-youtube.svg') }}" alt="{{ __('YouTube') }}" width="30" height="31"></a></li>
                 </ul>
             </div>
         </div>
