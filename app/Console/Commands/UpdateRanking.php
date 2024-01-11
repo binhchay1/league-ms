@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Enums\Ranking;
 use App\Repositories\RankingRepository;
 use App\Repositories\ScheduleRepository;
 use Illuminate\Console\Command;
