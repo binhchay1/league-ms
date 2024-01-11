@@ -210,7 +210,7 @@ return [
                 'queue' => ['change_verify_token'],
                 'balance' => 'auto',
                 'minProcesses' => 1,
-                'maxProcesses' => 10,
+                'maxProcesses' => 5,
                 'tries' => 0,
             ],
             'supervisor-2' => [
