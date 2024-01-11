@@ -45,6 +45,10 @@ Route::middleware(['verified', 'cache.notification'])->group(function () {
     Route::get('/ranking/', [HomeController::class, 'viewRanking'])->name('ranking');
     Route::get('/player/{id}/', [HomeController::class, 'viewInforPlayer'])->name('player.info');
     Route::get('/read-notifications/', [HomeController::class, 'readNotification'])->name('read.notification');
+    Route::get('/profile/', [AuthController::class, 'profile'])->name('profile');
+    Route::get('/my-group/', [AuthController::class, 'viewMyGroup'])->name('my.group');
+    Route::get('/join-group/', [AuthController::class, 'joinGroup'])->name('join.group');
+    Route::post('/messages/', [AuthController::class, 'sendMessage'])->name('send.message');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -53,14 +57,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/resend-verify/', [AuthController::class, 'resendVerify'])->name('resend.verify.email');
     Route::get('/verified-email/', [AuthController::class, 'viewVerifiedEmail'])->name('verified.email');
     Route::get('/signout/', [AuthController::class, 'signOut'])->name('signout');
-
-    Route::middleware(['verified'])->group(function () {
-
-        Route::get('/profile/', [AuthController::class, 'profile'])->name('profile');
-        Route::get('/my-group/', [AuthController::class, 'viewMyGroup'])->name('my.group');
-        Route::get('/join-group/', [AuthController::class, 'joinGroup'])->name('join.group');
-        Route::post('/messages/', [AuthController::class, 'sendMessage'])->name('send.message');
-    });
 });
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');

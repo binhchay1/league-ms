@@ -252,32 +252,27 @@ class  AuthController extends Controller
 
     public function sendMessage(Request $request)
     {
-        try {
-            Redis::connect(env('REDIS_HOST', '127.0.0.1'), 3306);
-            $user = Auth::user();
-            $message = $request->get('message');
-            $group_id = $request->get('g_i');
+        $user = Auth::user();
+        $message = $request->get('message');
+        $group_id = $request->get('g_i');
 
-            if ($message == null or $group_id == null) {
-                abort(403);
-            }
-
-            $isJoined = $this->groupUserRepository->checkJoinedGroupByName($user->id, $group_id);
-            if (empty($isJoined)) {
-                abort(403);
-            }
-
-            $message = $user->messages()->create([
-                'message' => $message,
-                'group_id' => $group_id
-            ]);
-
-            broadcast(new MessageSent($user, $message, $group_id))->toOthers();
-
-            return ['status' => 'sent'];
-        } catch (\Predis\Connection\ConnectionException $e) {
-            return response('error connection redis');
+        if ($message == null or $group_id == null) {
+            abort(403);
         }
+
+        $isJoined = $this->groupUserRepository->checkJoinedGroupByName($user->id, $group_id);
+        if (empty($isJoined)) {
+            abort(403);
+        }
+
+        $message = $user->messages()->create([
+            'message' => $message,
+            'group_id' => $group_id
+        ]);
+
+        broadcast(new MessageSent($user, $message, $group_id))->toOthers();
+
+        return ['status' => 'sent'];
     }
 
     public function resendVerify(Request $request)
