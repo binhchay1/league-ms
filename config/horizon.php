@@ -210,7 +210,7 @@ return [
                 'queue' => ['change_verify_token'],
                 'balance' => 'auto',
                 'minProcesses' => 1,
-                'maxProcesses' => 100,
+                'maxProcesses' => 10,
                 'tries' => 0,
             ],
             'supervisor-2' => [
@@ -218,7 +218,7 @@ return [
                 'queue' => ['send_email_verify'],
                 'balance' => 'auto',
                 'minProcesses' => 1,
-                'maxProcesses' => 20,
+                'maxProcesses' => 5,
                 'tries' => 2,
             ],
         ],
