@@ -47,7 +47,6 @@ $isFull = false;
                             <h6 class="mb-0">{{ $group->name }}</h6> <span style="font-weight: 500">{{ $group->users->name }}</span>
                         </div>
                     </div>
-                    <div class="badge"> <span class="{{ \App\Enums\Group::COLOR_OF_RATE[$group->rate] }}">{{ $group->rate }}</span> </div>
                 </div>
                 <div class="mt-3">
                     <p>* {{ __('Description') }}: {{ $group->description }}</p>

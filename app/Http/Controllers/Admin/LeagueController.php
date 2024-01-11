@@ -102,7 +102,7 @@ class LeagueController extends Controller
         {
             $this->userLeagueRepository->updatePlayer(['status' => $value], $key);
         }
-        return back()->with('success', __('Thông tin đã được gửi đi thành công!'));
+        return back()->with('success', __('Information has been sent successfully!'));
     }
 
     public function destroyPlayer($id)

@@ -951,8 +951,6 @@ label.error {
     position: absolute !important;
 }
 
-/* Margin and padding helpers */
-/* Margin */
 .margin-0 {
     margin: 0px !important;
 }
@@ -983,7 +981,6 @@ label.error {
     margin-right: 0px !important;
 }
 
-/* Padding */
 .padding-0 {
     padding: 0px !important;
 }

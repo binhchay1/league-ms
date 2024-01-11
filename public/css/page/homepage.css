@@ -27,7 +27,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #000 url(../images/bg-next-tmt.jpg) top center no-repeat;
     background-size: cover;
 }
 
@@ -88,14 +87,6 @@ h6 {
     display: block;
 }
 
-.owl-carousel {
-    /* display: none;
-    width: 100%;
-    -webkit-tap-highlight-color: transparent;
-    position: relative; */
-    /* z-index: 1; */
-}
-
 .owl-item cloned {
     width: 1220px;
 }
@@ -114,11 +105,6 @@ h6 {
 
 .top-player {
     margin-top: 20px;
-    /* margin-bottom: -450px; */
-}
-
-.top-player .rankings-content_tabpanel {
-    background: #000 url(../images/background-rank-home.jpg) top center no-repeat;
 }
 
 .rankings-content_tabpanel .top-ranked-wrap {
@@ -325,136 +311,59 @@ h3 {
     font-size: calc(0.3rem + .6vw);
 }
 
-.notification .badge {
-    position: absolute;
-    top: 0;
-    right: 5px;
-    padding: 0px 5px;
-    border-radius: 50%;
-    background: red;
-    color: white;
-}
-
-.fa-bell:before {
-    font-size: 25px;
-}
-
-.li-notification {
-    display: flex;
-    align-items: center;
-}
-
-
-/* #menu{display: flex !important;}
-#menu.menu-mo{display: none !important;}
-.close-btn{display: none;}
-.open-btn{display: none;} */
-
-@media screen and (max-width: 1300px) {
-    /* .img-responsive{
-        width: 100%;
-    }
-    .owl-item.active{width: 100% !important} */
-}
 @media screen and (max-width: 992px) {
-    /* .top-nav{
+
+    .box-results-tournament-right>div {
         display: none;
     }
-    nav.container{
-        padding-block: .4rem;
-    }
-    nav img.left{
-        margin-bottom: 0 !important;
-    }
-    #menu{
-        display: none !important;
-    }
-    #menu.menu-main.active{
-        display: flex !important;
-        margin-bottom: 0;
-        position: fixed;
-        top: 0;right: 0;width: 100%;
-        height: 0;
-        z-index: 1000000;
-        background-color: #231a1a;
-        flex-direction: column;
-        padding-top: 5rem;
-    align-items: center;
-    transition: .4s;
-    animation: show .4s forwards;
-    }
-    @keyframes show {
-        from{height: 0%;}
-        to{height: 400px;}
-    }
-    #menu li{
-        margin-top: 1rem !important;
-    }
-    #menu.menu-mo.active{display: flex !important;}
-    #menu.menu-main.active li{display: none;}
-    #menu.menu-main.active li.pt-2{display: block;}
-    .close-btn{
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 1rem;
-        z-index: 100000000;
-    }
-    .close-btn svg{background-color: #fff;cursor: pointer;}
-    .open-btn{
-        display: block;
-        cursor: pointer;
-        margin-top: 14px;
-    }
-    .open-btn .line{
-        width: 18px;
-        height: 2px;
-        background-color: #fff;
-        margin-block: 5px;
-        display: block;
-    } */
 
-    .box-results-tournament-right>div{display: none;}
-    .results .wrapper-results .box-results-tournament{
+    .results .wrapper-results .box-results-tournament {
         justify-content: center;
     }
-    .results .wrapper-results .box-results-tournament>div{
+
+    .results .wrapper-results .box-results-tournament>div {
         flex-direction: column;
     }
-    .results .wrapper-results .box-results-tournament .info{
+
+    .results .wrapper-results .box-results-tournament .info {
         padding-left: 0;
         align-items: center;
         text-align: center;
     }
-    .rankings-content_tabpanel .top-ranked-wrap{
+
+    .rankings-content_tabpanel .top-ranked-wrap {
         flex-direction: column;
         align-items: center;
         padding: 1rem;
     }
+
     .rankings-content_tabpanel .top-ranked-wrap .top-ranked-right-single {
         width: 100%;
         padding-left: 0;
     }
-    .rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-ranking{
+
+    .rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-ranking {
         flex: 1;
         padding-inline: 0;
         padding-block: 18px;
     }
-    .rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap{
+
+    .rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap {
         align-items: stretch;
     }
-    .rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-points{
-        padding:0;
+
+    .rankings-content_tabpanel .top-ranked-wrap .top-ranked-info-wrap .top-ranked-points {
+        padding: 0;
     }
-    .container-1280{
+
+    .container-1280 {
         padding: 1rem;
     }
-    
+
 }
+
 @media screen and (max-width: 768px) {
-    .img-responsive{
-        /* height: 380px; */
+    .img-responsive {
         object-fit: cover;
     }
 }

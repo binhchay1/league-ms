@@ -34,11 +34,6 @@ class SendMail implements ShouldQueue
      */
     public function handle()
     {
-        try {
-            Mail::to($this->user_email)->send($this->email);
-            $this->fail();
-        } catch (\Exception $e) {
-            $e->getMessage();
-        }
+        Mail::to($this->user_email)->send($this->email);
     }
 }

@@ -53,7 +53,6 @@
                         <h6 class="mb-0">{{ $group->groups->name }}</h6> <span>{{ $group->users->name }}</span>
                     </div>
                 </div>
-                <div class="badge"> <span class="{{ \App\Enums\Group::COLOR_OF_RATE[$group->groups->rate] }}">{{ $group->groups->rate }}</span> </div>
             </div>
             <div class="mt-3">
                 <p>* {{ __('Description') }}: {{ $group->groups->description }}</p>

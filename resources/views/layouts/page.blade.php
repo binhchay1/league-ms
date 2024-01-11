@@ -18,26 +18,23 @@
     <title>@yield('title')</title>
 
     <link rel="canonical" href="https://badminton.io">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/page/style.css') }}">
     <link rel="alternate" hreflang="en-US" href="https://badminton.io">
     <link rel="alternate" hreflang="af" href="https://badminton.io">
     <link rel="alternate" hreflang="x-default" href="https://badminton.io">
     <link rel="icon" type="image/x-icon" href="{{ asset('/images/logo-no-background.png') }}">
 
     <link rel="stylesheet" href="{{ asset('/plugins/fontawesome-free/css/all.min.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" id="bwf-style-css" href="{{ asset('css/content/league.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('css/page/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/content/league.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/page/homepage.css') }}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     @yield('css')
 </head>
-@section('css')
-<link rel="stylesheet" id="bwf-style-css" href="{{asset('css/page/homepage.css')}}" type="text/css" media="all" />
-@endsection
 
 <body>
     <header style="background-color: #222">
         <div class="top-nav">
             <ul class="container">
-                <li><a href="/top-sites.html">{{ __('Top league') }}</a></li>
                 <li class="menu">
                     <span>en</span>
                     <ul>
@@ -58,8 +55,7 @@
         </div>
         <nav class="container">
             <a href="{{ route('home') }}"><img style="margin-bottom: 30px" class="left" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
-            {{-- <button id="toggle-menu" onclick="toggleMobileMenu()"></button> --}}
-            
+
             <ul id="menu" class="menu-main">
                 <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
                 <li class="pt-2"><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
@@ -75,121 +71,77 @@
                         </div>
                     </form>
                 </li>
-                <!-- <li class="pt-2"><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li> -->
                 <div class="nav-group">
-                @if(Auth::check())
-                <li class="menu">
-                    <span>
-                        <img class="avatar-user" width="40" height="40" src="{{ asset( Auth::user()->profile_photo_path ?? '/images/no-image.png') }}">
-                    </span>
-                    <ul class="submenu">
-                        <li>
-                            <a class="account" href="{{ route('profile.edit') }}">
-                                {{ __('Profile') }}
-                            </a>
-                        </li>
+                    @if(Auth::check())
+                    <li class="menu">
+                        <span>
+                            @if (strpos(Auth::user()->profile_photo_path, 'http') > 0)
+                            <img class="avatar-user" width="40" height="40" src="{{ Auth::user()->profile_photo_path ?? asset('/images/no-image.png') }}">
+                            @else
+                            <img class="avatar-user" width="40" height="40" src="{{ asset( Auth::user()->profile_photo_path ?? '/images/no-image.png') }}">
+                            @endif
+                        </span>
+                        <ul class="submenu">
+                            <li>
+                                <a class="account" href="{{ route('profile.edit') }}">
+                                    {{ __('Profile') }}
+                                </a>
+                            </li>
 
-                        <li>
-                            <a class="account" href="{{ route('my.group') }}">
-                                {{ __('My group') }}
-                            </a>
-                        </li>
-                        <li><a class="dropdown-item account" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2 "></i>{{ __('Log out') }}</a></li>
-                    </ul>
-                </li>
-                
+                            <li>
+                                <a class="account" href="{{ route('my.group') }}">
+                                    {{ __('My group') }}
+                                </a>
+                            </li>
+                            <li><a class="dropdown-item account" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2 "></i>{{ __('Log out') }}</a></li>
+                        </ul>
+                    </li>
+
                     @else
-                <li><a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a></li>
-                <li><a href="{{ route('register_user') }}" class="button">{{ __('Register') }}</a></li>
-                @endif
-                <li class="li-notification">
-                    <a href="#" class="notification">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge">3</span>
-                    </a>
-                    <div>
+                    <li><a href="{{ route('login') }}" class="button white " style="height: 45px;">{{ __('Log In') }}</a></li>
+                    <li><a href="{{ route('register_user') }}" class="button" style="height: 45px;">{{ __('Register') }}</a></li>
+                    @endif
 
-                    </div>
-                </li>
+                    @if(Auth::check())
+                    @php
+                    $count = 0;
+                    $listNotification = Cache::get('notification_next_match_' . Auth::user()->id);
+                    foreach($listNotification as $notification) {
+                    if($notification->status == 0) {
+                    $count++;
+                    }
+                    }
+                    @endphp
+                    <li class="li-notification">
+                        <a class="notification" id="notification">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge">{{ $count }}</span>
+                        </a>
+                        @if(count($listNotification) > 0)
+                        <ul class="dropdown-notification" id="dropdown-notification">
+                            @foreach($listNotification as $notification)
+                            @if($notification->status == 0)
+                            <li class="noti-unread"><a>{{ $notification->content }}</a></li>
+                            @else
+                            <li><a>{{ $notification->content }}</a></li>
+                            @endif
+                            @endforeach
+                        </ul>
+                        @else
+                        <ul class="dropdown-notification" id="dropdown-notification">
+                            <li><a>{{ __('Empty Notification') }}</a></li>
+                        </ul>
+                        @endif
+                    </li>
                 </div>
-                
+                @endif
+
             </ul>
             <div class="open-btn">
                 <span class="line"></span>
                 <span class="line"></span>
                 <span class="line"></span>
             </div>
-            {{-- <ul id="menu" class="menu-mo active">
-                
-                <li id="search">
-                    <form id="search-league" action="{{ route('search') }}" method="post">
-                        @csrf
-                        <div onclick="openSearch()">
-                            <input type="search" name="search" placeholder="{{ __('Search leagues') }}...">
-                            <button type="button">
-                                <img src="{{ asset('/svg/icon-search.svg') }}" alt="{{ __('Search') }}" title="{{ __('Search') }}" width="15" height="15">
-                            </button>
-                        </div>
-                    </form>
-                </li> 
-                @if(Auth::check())
-                <li class="menu">
-                    <span>
-                        <img class="avatar-user" width="40" height="40" src="{{ asset( Auth::user()->profile_photo_path ?? '/images/no-image.png') }}">
-                    </span>
-                    <ul>
-                        <li>
-                            <a class="account" href="{{ route('profile.edit') }}">
-                                {{ __('Profile') }}
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="account" href="{{ route('my.group') }}">
-                                {{ __('My group') }}
-                            </a>
-                        </li>
-                        <li><a class="dropdown-item account" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2 "></i>{{ __('Log out') }}</a></li>
-                    </ul>
-                </li>
-                @else
-                <li><a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a></li>
-                <li><a href="{{ route('register_user') }}" class="button">{{ __('Register') }}</a></li>
-                @endif
-
-                @if(Auth::check())
-                @php
-                $count = 0;
-                $listNotification = Cache::get('notification_next_match_' . Auth::user()->id);
-                foreach($listNotification as $notification) {
-                if($notification->status == 0) {
-                $count++;
-                }
-                }
-                @endphp
-                <li class="li-notification">
-                    <a href="#" class="notification">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge">{{ $count }}</span>
-                    </a>
-                    <ul class="dropdown-notification">
-                        @foreach($listNotification as $notification)
-                        @if($notification->status == 0)
-                        <li class="noti-unread"><a href="#">{{ $notification->content }}</a></li>
-                        @else
-                        <li><a href="#">{{ $notification->content }}</a></li>
-                        @endif
-                        @endforeach
-                    </ul>
-                </li>
-                <li class="header-btn">
-                    <div class="open-btn">
-                        <span class="line"></span>
-                        <span class="line"></span>
-                        <span class="line"></span>
-                    </div>
-                </li>
-            </ul> --}}
         </nav>
     </header>
 
@@ -207,9 +159,6 @@
                         <h4 class="h3 color-white">{{ __('Company') }}</h4>
                     </li>
                     <li><a href="{{ route('about') }}">{{ __('About') }}</a></li>
-                    <li><a href="{{ route('pricing') }}">{{ __('Pricing') }}</a></li>
-                    <li><a href="{{ route('top.league') }}">{{ __('Top League') }}</a></li>
-                    <li><a href="{{ route('search') }}">{{ __('Search') }}</a></li>
                 </ul>
             </div>
             <div>
@@ -218,7 +167,7 @@
                         <h4 class="h3 color-white">{{ __('Features') }}</h4>
                     </li>
                     <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
-                    <li><a href="{{ route('shop') }}">{{ __('Shop') }}</a></li>
+                    <li><a href="">{{ __('Shop') }}</a></li>
                     <li><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
                 </ul>
             </div>
@@ -233,25 +182,25 @@
                     </small>
                 </p>
                 <ul class="social">
-                    <li><a href="https://www.linkedin.com/company/badminton.io"><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="{{ __('LinkedIn') }}" width="30" height="31"></a></li>
-                    <li><a href="https://twitter.com/badminton.io"><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="{{ __('Twitter') }}" width="30" height="31"></a></li>
-                    <li><a href="https://www.facebook.com/badminton.io"><img src="{{ asset('/svg/icon-facebook.svg') }}" alt="{{ __('Facebook') }}" width="30" height="31"></a></li>
-                    <li><a href="https://www.youtube.com/user/badminton.io"><img src="{{ asset('/svg/icon-youtube.svg') }}" alt="{{ __('YouTube') }}" width="30" height="31"></a></li>
+                    <li><a href=""><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="{{ __('LinkedIn') }}" width="30" height="31"></a></li>
+                    <li><a href=""><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="{{ __('Twitter') }}" width="30" height="31"></a></li>
+                    <li><a href=""><img src="{{ asset('/svg/icon-facebook.svg') }}" alt="{{ __('Facebook') }}" width="30" height="31"></a></li>
+                    <li><a href=""><img src="{{ asset('/svg/icon-youtube.svg') }}" alt="{{ __('YouTube') }}" width="30" height="31"></a></li>
                 </ul>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="{{ asset('/js/page/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('/js/page/common.min.js') }}"></script>
     <script>
-        $('.open-btn').click(function(){
+        $('.open-btn').click(function() {
             $('nav.container').toggleClass('active');
         })
     </script>

@@ -13,7 +13,8 @@ class VerifyUser extends Model
     protected $fillable = [
         'token',
         'user_id',
-        'time_end'
+        'time_end',
+        'status'
     ];
     public function user()
     {

@@ -3,46 +3,21 @@
 @section('title')
 {{ env('APP_NAME', 'Badminton.io') }} - {{ __('Detail League') }}
 @endsection
+
 @section('css')
-<link rel="stylesheet" id="bwf-style-css" href="{{asset('css/content/league.css')}}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{ asset('css/page/show.css') }}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 @endsection
+
 @section('content')
-<link rel="stylesheet" id="dashicons-css" href="{{ asset('league/wp-includes/css/dashicons.min.css') }}" />
-<link rel="stylesheet" id="editor-buttons-css" href="{{ asset('league/wp-includes/css/editor.min.css') }}" />
-<link rel="stylesheet" id="wp-block-library-css" href="{{ asset('league/wp-includes/css/dist/block-library/style.min.css') }}" />
-<link rel="stylesheet" id="bwf-newsletter-signup-style-css" href="{{asset('league/wp-content/plugins/bwf-newsletter/css/newsletter-signup.css') }}" />
-<link rel="stylesheet" id="bwf_menu_style-css" href="{{ asset('league/wp-content/plugins/bwf-menu-system/css/bwf-menu-system.css') }}" />
-<link rel="stylesheet" id="bwf-style-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/css/style.css') }}" />
-<link rel="stylesheet" id="hover-style-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/css/hover-min.css') }}" />
-<link rel="stylesheet" id="fancybox-style-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/js/fancybox-master/dist/jquery.fancybox.css') }}" />
-<link rel="stylesheet" id="select2-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/select2/dist/css/select2.css') }}" />
-<link rel="stylesheet" id="fontawesome-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/fontawesome/css/font-awesome.css') }}" />
-<link rel="stylesheet" id="animate.ss-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/animate.css/animate.min.css') }}" />
-<link rel="stylesheet" id="owl-style-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/owl-carousel2/dist/assets/owl.carousel.css') }}" />
-<link rel="stylesheet" id="owl-theme-css" href="{{ asset('league/wp-content/themes/world-tour-finals/assets/js/vendor/owl-carousel2/dist/assets/owl.theme.default.css') }}" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <div id="page" class="hfeed site">
     <div class="container-1280 results">
         <div class="std-title">
             <div class="std-title-left">
-                <h2 class="left">{{__('LEAGUE INFORMATION')}}</h2>
+                <h2 class="left">{{ __('LEAGUE INFORMATION') }}</h2>
             </div>
         </div>
-        @if(Session::has('message'))
-        <script>
-            toastr.options = {
-                "progressBar": true,
-                "closeButton": true,
-            }
-            toastr.success("{{Session::get('message')}}", 'Success!', {
-                timeout: 12000
-            });
-        </script>
-        @endif
+
         <div class="wrapper-results">
             <div style="border: 1px solid #efefef;">
                 <div class="box-title page-header">
@@ -88,8 +63,6 @@
                     </li>
                     <li><a href="{{route('leagueSchedule.info', $leagueInfor['slug'])}}">{{ __('Schedule') }}</a>
                     </li>
-                    <!-- <li><a href="{{route('leagueFightBranch.info', $leagueInfor['slug'])}}">{{ __('Fighting Branch') }}</a>
-                    </li> -->
                     <li><a id="player-data" href="{{ route('leaguePlayer.info', $leagueInfor['slug']) }}">{{ __('Player ') }}</a>
                     </li>
                 </ul>
@@ -97,11 +70,11 @@
                     <div class="col-lg-10 mt-4">
                         <?php $end_date_register = date('d/m/Y', strtotime($leagueInfor->end_date_register));
                         ?>
-                        <h5>{{__('Registration Deadline')}} : {{$end_date_register}}</h5>
+                        <h5>{{ __('Registration Deadline') }} : {{ $end_date_register }}</h5>
                     </div>
                     <div class="col-lg-2 mt-3">
                         <button type="button" id="btn-register" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
-                            {{__('Register League')}}
+                            {{ __('Register League') }}
                         </button>
                     </div>
                 </div>
@@ -110,7 +83,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content" id="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">{{__('Register League')}}</h4>
+                                <h4 class="modal-title">{{ __('Register League') }}</h4>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
 
@@ -128,16 +101,16 @@
                                                 <?php $start_date = date('d/m/Y', strtotime($leagueInfor->start_date));
                                                 $end_date = date('d/m/Y', strtotime($leagueInfor->end_date));
                                                 ?>
-                                                <h6 class="">{{__('Start Date')}}: {{ $start_date }}</h6>
-                                                <h6 class="">{{__('End Date')}}: {{ $end_date }}</h6>
-                                                <p class="">{{__('PRIZE MONEY USD ')}}${{ $leagueInfor->money }}</p>
+                                                <h6 class="">{{ __('Start Date') }}: {{ $start_date }}</h6>
+                                                <h6 class="">{{ __('End Date') }}: {{ $end_date }}</h6>
+                                                <p class="">{{ __('PRIZE MONEY USD ') }}${{ $leagueInfor->money }}</p>
                                             </div>
                                             <div class="checkbox" align="center">
                                                 <input id="check" name="checkbox" type="checkbox">
-                                                <label for="checkbox">{{__('I have read and agree to the tournament rules')}}</label>
+                                                <label for="checkbox">{{ __('I have read and agree to the tournament rules') }}</label>
                                             </div>
                                             <div align="center">
-                                                <button id="open-tab1" class="btn btn-success" disabled>{{__('Register ')}}</button>
+                                                <button id="open-tab1" class="btn btn-success" disabled>{{ __('Register ') }}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -228,6 +201,7 @@
 @endsection
 @section('js')
 <script src="{{ asset('js/league.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
     $("[name='record']").on("change", function(e) {
         let edit_id = $(this).val();
@@ -243,5 +217,15 @@
         $('#register-league').hide();
     }
 </script>
-
+@if(Session::has('message'))
+<script>
+    toastr.options = {
+        "progressBar": true,
+        "closeButton": true,
+    }
+    toastr.success("{{Session::get('message')}}", 'Success!', {
+        timeout: 12000
+    });
+</script>
+@endif
 @endsection

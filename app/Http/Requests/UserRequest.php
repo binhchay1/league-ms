@@ -22,11 +22,8 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:2',
+            'name' => 'required|min:2',
             'email' => 'string|email',
-            'age' => 'date_format:Y-m-d|before:today',
-            'phone' => 'bail|digits_between:10,11',
-            'profile_photo_path' => 'image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
 
@@ -34,16 +31,9 @@ class UserRequest extends FormRequest
     {
         return [
             'name.required' => __('validation.required'),
-            'name.max' => __('validation.max'),
+            'name.min' => __('validation.min'),
             'email.email' => __('validation.email'),
             'email.string' => __('validation.string'),
-            'age.before' => __('validation.before'),
-            'age.date_format' => __('validation.before'),
-            'phone.before' => __('validation.bail'),
-            'phone.digits_between' => __('validation.digits_between'),
-            'profile_photo_path.image' => __('validation.image'),
-            'profile_photo_path.mimes' => __('validation.mimes'),
-            'profile_photo_path.max' => __('validation.max'),
         ];
     }
 }

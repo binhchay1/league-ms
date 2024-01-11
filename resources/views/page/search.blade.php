@@ -4,11 +4,18 @@
 {{ env('APP_NAME', 'Badminton.io') }} - {{ __('Privacy') }}
 @endsection
 
+@section('css')
+<style type="text/css">
+    .item-results {
+        margin-bottom: 30px !important;
+    }
+</style>
+@endsection
+
 @section('content')
 <section id="search-heading">
     <div class="container">
         <h1 class="center">{{ __('Search') }}</h1>
-        <p class="center">{{__('Find my league')}}</p>
     </div>
     <div id="search-bar" class="no-search-results">
         <form id="search-form" action="{{ route('search') }}" method="post">
@@ -18,43 +25,73 @@
                 <button type="submit"><span class="hidden">{{ __('Search') }}</span></button>
             </div>
 
-            @if(!$isList)
             <div class="no-results-message">
-                {{ __('Your search for') }} <strong>'{{ $search }}'</strong> {{ __('returned') }} <strong>{{ __('0 results') }}</strong>
+                {{ __('Your search for') }} <strong>'{{ $search }}'</strong> {{ __('returned') }} <strong>{{ count($listLeagues) }}{{ __(' results') }}</strong>
             </div>
-            @endif
         </form>
     </div>
 </section>
 
 <section class="container">
-    @if($isList)
-    <div class="search-results-container mtop30px">
-        <div class="results-heading">
-            <p>
-                {{ __('Your search for') }} <strong>'{{ $search }}'</strong> {{ __('returned') }} <strong>{{ $listLeagueBySearch->count() }} {{ __('results') }}</strong>
-            </p>
-        </div>
-        <div id="search-results">
-            <div class="screenshot-info">
-                <div class="screenshot">
-                    <div>
-                        <a href="http://ifagrassrootsabc.leaguerepublic.com/" title="View Site" target="_blank">
-                            <img src="https://images.leaguerepublic.com/data/shrinktheweb/632281563.jpg" width="220" height="240" alt="IFA Grassroots Armagh, Banbridge &amp; Craigavon Small Sided Games Centre - screenshot">
-                        </a>
+    <div class="item-results">
+        @foreach($listLeagues as $listLeague)
+        <div class="tblResultLanding" style=" margin-top: 10px; background:#ffffff" onmouseover="this.style.background='#a4a4a4';" onmouseout="this.style.background='#ffffff';">
+            <a href="{{ route('league.info', $listLeague['slug']) }}">
+                <div class="tr-tournament-detail" id="4734">
+                    <div class="tournament-detail ">
+                        <div class="inner-tournament-detail">
+                            <div class="description">
+                                <div class="logo-wrap">
+                                    <div class="image">
+                                        <img src="{{asset($listLeague->images)}}" class="show-image-league">
+                                    </div>
+                                </div>
+
+                                <div class="info" style="color:black;">
+                                    <h3>{{ $listLeague->name }}</h3>
+                                    <?php $start_date = date('d/m/Y', strtotime($listLeague->start_date));
+                                    $end_date = date('d/m/Y', strtotime($listLeague->end_date));
+                                    ?>
+                                    <h6 class="">{{ __('Start Date') }}: {{ $start_date }}</h6>
+                                    <h6 class="">{{ __('End Date') }}: {{ $end_date }}</h6>
+                                    <div class="prize">
+                                        {{ __('PRIZE MONEY USD ') }}${{ $listLeague->money }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="country-detail">
+                                <div class="venue-country" style="color:black;">
+                                    <div>
+                                        <div style="margin-bottom: 40px; margin-right: 100px;">
+                                            <img src="{{ asset('/images/logo-no-background.png') }}" class=" b-error b-error" width="100" height="100">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="info">
-                    <h2 class="h21px">{{__('IFA Grassroots Armagh, Banbridge &amp; Craigavon Small Sided Games Centre')}}</h2>
-                    <p>
-                        <span>{{__('Soccer/ Football')}}</span>/{{__(' United Kingdom')}}
-                    </p>
-                    <p>
-                        <a href="http://ifagrassrootsabc.leaguerepublic.com/" class="button" target="_blank">{{__('View Site')}}</a>
-                    </p>
-                </div>
-            </div>
+            </a>
+        </div>
+        @endforeach
+    </div>
 
+    @if($listLeagues->hasPages())
+    <div class="navigator short">
+        <div class="head d-flex justify-content-center ">
+            <ul class="pagination">
+                <li>
+                    <a href="{{ $listLeagues->previousPageUrl() }}" aria-label="Previous" style="color: red" class="prevPlayersList">
+                        <span aria-hidden="true"><span class="fa fa-angle-left"></span> {{ __('PREVIOUS') }}</span>
+                    </a>
+                </li>
+                &emsp;
+                <li>
+                    <a href="{{ $listLeagues->nextPageUrl() }}" aria-label="Next" style="color: red" class="nextPlayersList">
+                        <span aria-hidden="true">{{ __('NEXT') }} <span class="fa fa-angle-right"></span></span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
     @endif

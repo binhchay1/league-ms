@@ -76,9 +76,8 @@
 </head>
 
 <body style="background-color: #e9ecef;">
-    <div class="preheader"
-        style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
-        Complete register for your account
+    <div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
+        {{ $data['text-1'] }}
     </div>
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
@@ -86,9 +85,8 @@
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td align="center" valign="top" style="padding: 36px 24px;">
-                            <a href="https://www.blogdesire.com" target="_blank" style="display: inline-block;">
-                                <img src="{{ asset('/images/logo-no-background.png') }}" alt="Logo" border="0"
-                                    width="48" style="display: block; width: 48px; max-width: 48px; min-width: 48px;">
+                            <a href="{{ $data['urlHome'] }}" target="_blank" style="display: inline-block;">
+                                <img src="{{ $data['logo'] }}" alt="Logo" border="0" width="48" style="display: block; width: 48px; max-width: 48px; min-width: 48px;">
                             </a>
                         </td>
                     </tr>
@@ -99,11 +97,10 @@
             <td align="center" bgcolor="#e9ecef">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
-                        <td align="left" bgcolor="#ffffff"
-                            style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
-                            <h1
-                                style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">
-                                Confirm Your Email Address</h1>
+                        <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
+                            <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">
+                                {{ $data['text-2'] }}
+                            </h1>
                         </td>
                     </tr>
                 </table>
@@ -113,10 +110,8 @@
             <td align="center" bgcolor="#e9ecef">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
-                        <td align="left" bgcolor="#ffffff"
-                            style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                            <p style="margin: 0;">Thank you for your attention. Welcome to Badminton.io. Tap the button
-                                below to confirm your email address.
+                        <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
+                            <p style="margin: 0;">{{ $data['text-3'] }}
                         </td>
                     </tr>
                     <tr>
@@ -127,9 +122,8 @@
                                         <table border="0" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
-                                                    <a href="https://www.blogdesire.com" target="_blank"
-                                                        style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">
-                                                        Verify Your Email</a>
+                                                    <a href="{{ $data['urlHome'] }}" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">
+                                                        {{ $data['text-4'] }}</a>
                                                 </td>
                                             </tr>
                                         </table>
@@ -139,18 +133,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" bgcolor="#ffffff"
-                            style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                            <p style="margin: 0;">If that doesn't work, copy and paste the following link in your
-                                browser:</p>
-                            <p style="margin: 0;"><a href="{{ $data['url'] }}" target="_blank">{{ $data['url'] }}</a>
+                        <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
+                            <p style="margin: 0;">{{ $data['text-5'] }}</p>
+                            <p style="margin: 0;"><a href="{{ $data['urlVerify'] }}" target="_blank">{{ $data['urlVerify'] }}</a>
                             </p>
                         </td>
                     </tr>
                     <tr>
-                        <td align="left" bgcolor="#ffffff"
-                            style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; border-bottom: 3px solid #d4dadf">
-                            <p style="margin: 0;">Cheers,<br> {{ $data['user_name'] }}</p>
+                        <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; border-bottom: 3px solid #d4dadf">
+                            <p style="margin: 0;">{{ $data['text-6'] }}<br> {{ $data['user_name'] }}</p>
                         </td>
                     </tr>
                 </table>
@@ -160,11 +151,8 @@
             <td align="center" bgcolor="#e9ecef" style="padding: 24px;">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
-                        <td align="center" bgcolor="#e9ecef"
-                            style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
-                            <p style="margin: 0;">You received this email because we received a request for
-                                register for your account. If you didn't request register, you can safely
-                                delete this email.</p>
+                        <td align="center" bgcolor="#e9ecef" style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
+                            <p style="margin: 0;">{{ $data['text-7'] }}</p>
                         </td>
                     </tr>
                 </table>
