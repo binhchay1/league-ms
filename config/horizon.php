@@ -198,14 +198,6 @@ return [
     'environments' => [
         'production' => [
             'supervisor-1' => [
-                'maxProcesses' => 10,
-                'balanceMaxShift' => 1,
-                'balanceCooldown' => 3,
-            ],
-        ],
-
-        'local' => [
-            'supervisor-1' => [
                 'connection' => 'redis',
                 'queue' => ['change_verify_token'],
                 'balance' => 'auto',
@@ -221,6 +213,10 @@ return [
                 'maxProcesses' => 5,
                 'tries' => 2,
             ],
+        ],
+
+        'local' => [
+
         ],
     ],
 ];
