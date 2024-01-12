@@ -13,120 +13,6 @@ $utility = new \App\Enums\Utility();
 @section('css')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <link rel="stylesheet" href="{{ asset('/css/page/group.css') }}" />
-<style>
-    #chat1 .form-outline .form-control~.form-notch div {
-        pointer-events: none;
-        border: 1px solid;
-        border-color: #eee;
-        box-sizing: border-box;
-        background: transparent;
-    }
-
-    #chat1 .form-outline .form-control~.form-notch .form-notch-leading {
-        left: 0;
-        top: 0;
-        height: 100%;
-        border-right: none;
-        border-radius: .65rem 0 0 .65rem;
-    }
-
-    #chat1 .form-outline .form-control~.form-notch .form-notch-middle {
-        flex: 0 0 auto;
-        max-width: calc(100% - 1rem);
-        height: 100%;
-        border-right: none;
-        border-left: none;
-    }
-
-    #chat1 .form-outline .form-control~.form-notch .form-notch-trailing {
-        flex-grow: 1;
-        height: 100%;
-        border-left: none;
-        border-radius: 0 .65rem .65rem 0;
-    }
-
-    #chat1 .form-outline .form-control:focus~.form-notch .form-notch-leading {
-        border-top: 0.125rem solid #39c0ed;
-        border-bottom: 0.125rem solid #39c0ed;
-        border-left: 0.125rem solid #39c0ed;
-    }
-
-    #chat1 .form-outline .form-control:focus~.form-notch .form-notch-leading,
-    #chat1 .form-outline .form-control.active~.form-notch .form-notch-leading {
-        border-right: none;
-        transition: all 0.2s linear;
-    }
-
-    #chat1 .form-outline .form-control:focus~.form-notch .form-notch-middle {
-        border-bottom: 0.125rem solid;
-        border-color: #39c0ed;
-    }
-
-    #chat1 .form-outline .form-control:focus~.form-notch .form-notch-middle,
-    #chat1 .form-outline .form-control.active~.form-notch .form-notch-middle {
-        border-top: none;
-        border-right: none;
-        border-left: none;
-        transition: all 0.2s linear;
-    }
-
-    #chat1 .form-outline .form-control:focus~.form-notch .form-notch-trailing {
-        border-top: 0.125rem solid #39c0ed;
-        border-bottom: 0.125rem solid #39c0ed;
-        border-right: 0.125rem solid #39c0ed;
-    }
-
-    #chat1 .form-outline .form-control:focus~.form-notch .form-notch-trailing,
-    #chat1 .form-outline .form-control.active~.form-notch .form-notch-trailing {
-        border-left: none;
-        transition: all 0.2s linear;
-    }
-
-    #chat1 .form-outline .form-control:focus~.form-label {
-        color: #39c0ed;
-    }
-
-    #chat1 .form-outline .form-control~.form-label {
-        color: #bfbfbf;
-    }
-
-    .card-header {
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-    }
-
-    .append-css-this {
-        border-radius: 15px;
-        background-color: #fbfbfb;
-    }
-
-    .append-css-that {
-        border-radius: 15px;
-        background-color: rgba(57, 192, 237, .2);
-    }
-
-    #bg-chat-area {
-        width: 100%;
-        position: absolute;
-        background-color: #dfe7f5;
-        height: 56%;
-        left: 0px;
-        top: 70px;
-        opacity: 0.9;
-    }
-
-    .badge {
-        margin-left: 20px;
-        display: flex;
-    }
-
-    @media screen and (min-width: 1080px) {
-        #chat-area {
-            height: 300px;
-            overflow-x: auto;
-        }
-    }
-</style>
 @endsection
 
 @section('content')
@@ -138,7 +24,6 @@ $utility = new \App\Enums\Utility();
         <div style="margin-left: 20px;">
             <div class="d-flex">
                 <h1 class="m-0 p-0">{{ $getGroup->name }}</h1>
-                <div class="badge"> <span class="{{ \App\Enums\Group::COLOR_OF_RATE[$getGroup->rate] }}">{{ $getGroup->rate }}</span> </div>
             </div>
             <p>{{ $getGroup->users->name }}</p>
             <p><span class="fw-bold">* {{__('Description')}} : </span>{{ $getGroup->description }}</p>
