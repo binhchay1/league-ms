@@ -109,7 +109,7 @@ class  AuthController extends Controller
             'password' => Hash::make($request['password']),
             'role' => Role::USER,
             'title' => Title::USER,
-            'email_verified' => date('Y-m-d H:i:s')
+            'email_verified_at' => date('Y-m-d H:i:s')
         ]);
 
         $token = $this->regenerateToken();
