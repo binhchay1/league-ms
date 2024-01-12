@@ -140,7 +140,8 @@ $utility = new \App\Enums\Utility();
 @endsection
 
 @section('js')
-<script src="//{{ $_SERVER['SERVER_NAME'] }}:6001/socket.io/socket.io.js"></script>
+<!-- <script src="//{{ $_SERVER['SERVER_NAME'] }}:6001/socket.io/socket.io.js"></script> -->
+<script src="{{ asset('/js/socket.io.js') }}"></script>
 <script src="{{ asset('/js/app.js') }}"></script>
 <script>
     <?php if (Auth::check()) { ?>
@@ -151,6 +152,7 @@ $utility = new \App\Enums\Utility();
 
         const g_i = '<?php echo $getGroup->id ?>';
         const group = 'chat-group-' + g_i;
+        console.log(Echo);
 
         Echo.channel('chat-group-1').listen('.message-group', function(e) {
             let cU = e.user_id;
