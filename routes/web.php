@@ -22,7 +22,12 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::middleware(['verified', 'cache.notification'])->group(function () {
+Route::middleware(['auth', 'cache.notification'])->group(function () {
+    // Route::get('/verify/{token}/', [AuthController::class, 'verifyEmail'])->name('user.verify');
+    // Route::get('/verify-email/', [AuthController::class, 'viewVerifyEmail'])->name('verify.email');
+    // Route::post('/resend-verify/', [AuthController::class, 'resendVerify'])->name('resend.verify.email');
+    // Route::get('/verified-email/', [AuthController::class, 'viewVerifiedEmail'])->name('verified.email');
+    Route::get('/signout/', [AuthController::class, 'signOut'])->name('signout');
     Route::get('/', [HomeController::class, 'viewHome'])->name('home');
     Route::get('/list-of-league/', [HomeController::class, 'listLeague'])->name('list.league');
     Route::get('/top-league/', [HomeController::class, 'listTopLeague'])->name('top.league');
@@ -49,14 +54,6 @@ Route::middleware(['verified', 'cache.notification'])->group(function () {
     Route::get('/my-group/', [AuthController::class, 'viewMyGroup'])->name('my.group');
     Route::get('/join-group/', [AuthController::class, 'joinGroup'])->name('join.group');
     Route::post('/messages/', [AuthController::class, 'sendMessage'])->name('send.message');
-});
-
-Route::middleware(['auth'])->group(function () {
-    // Route::get('/verify/{token}/', [AuthController::class, 'verifyEmail'])->name('user.verify');
-    // Route::get('/verify-email/', [AuthController::class, 'viewVerifyEmail'])->name('verify.email');
-    // Route::post('/resend-verify/', [AuthController::class, 'resendVerify'])->name('resend.verify.email');
-    // Route::get('/verified-email/', [AuthController::class, 'viewVerifiedEmail'])->name('verified.email');
-    Route::get('/signout/', [AuthController::class, 'signOut'])->name('signout');
 });
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');

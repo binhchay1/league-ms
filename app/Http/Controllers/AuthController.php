@@ -158,24 +158,24 @@ class  AuthController extends Controller
         return \redirect()->route('home');
     }
 
-    public function verifyEmail($token)
-    {
-        if (empty($token)) {
-            abort(404);
-        }
+    // public function verifyEmail($token)
+    // {
+    //     if (empty($token)) {
+    //         abort(404);
+    //     }
 
-        $verifyUser = $this->verifyUserRepository->getVerifyByToken($token);
+    //     $verifyUser = $this->verifyUserRepository->getVerifyByToken($token);
 
-        if (empty($verifyUser)) {
-            abort(404);
-        }
+    //     if (empty($verifyUser)) {
+    //         abort(404);
+    //     }
 
-        if ($verifyUser->status == 0) {
-            return redirect()->route('verify.email');
-        }
+    //     if ($verifyUser->status == 0) {
+    //         return redirect()->route('verify.email');
+    //     }
 
-        return redirect()->route('login')->with('message', $message);
-    }
+    //     return redirect()->route('login')->with('message', $message);
+    // }
 
     public function profile()
     {
@@ -277,41 +277,41 @@ class  AuthController extends Controller
         return ['status' => 'sent'];
     }
 
-    public function resendVerify(Request $request)
-    {
-        $token = $request->get('token_verify');
-        if ($token == null) {
-            abort(404);
-        }
-        $isTokenVerified = $this->verifyUserRepository->getVerifyByToken($token);
+    // public function resendVerify(Request $request)
+    // {
+    //     $token = $request->get('token_verify');
+    //     if ($token == null) {
+    //         abort(404);
+    //     }
+    //     $isTokenVerified = $this->verifyUserRepository->getVerifyByToken($token);
 
-        if (empty($isTokenVerified)) {
-            abort(404);
-        }
+    //     if (empty($isTokenVerified)) {
+    //         abort(404);
+    //     }
 
-        $new_token = $this->regenerateToken();
-        $carbonNow = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
-        $timeEnd = $carbonNow->addMinutes(60)->format('Y-m-d H:i:s');
-        $url = route('user.verify', ['token' => $token]);
+    //     $new_token = $this->regenerateToken();
+    //     $carbonNow = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
+    //     $timeEnd = $carbonNow->addMinutes(60)->format('Y-m-d H:i:s');
+    //     $url = route('user.verify', ['token' => $token]);
 
-        $dataUpdate = [
-            'token' => $new_token,
-            'time_end' => $timeEnd,
-            'status' => 0
-        ];
-        $dataEmail = [
-            'url' => $url,
-            'user_name' => Auth::user()->name
-        ];
+    //     $dataUpdate = [
+    //         'token' => $new_token,
+    //         'time_end' => $timeEnd,
+    //         'status' => 0
+    //     ];
+    //     $dataEmail = [
+    //         'url' => $url,
+    //         'user_name' => Auth::user()->name
+    //     ];
 
-        $this->verifyUserRepository->updateTokenByUserId(Auth::user()->id, $dataUpdate);
-        ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $new_token)->delay(now()->addMinutes(60))->onQueue('change_verify_token');
+    //     $this->verifyUserRepository->updateTokenByUserId(Auth::user()->id, $dataUpdate);
+    //     ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $new_token)->delay(now()->addMinutes(60))->onQueue('change_verify_token');
 
-        $verifyEmail = new VerifyEmail($dataEmail);
-        SendMail::dispatch(Auth::user()->email, $verifyEmail)->onQueue('send_email_verify');
+    //     $verifyEmail = new VerifyEmail($dataEmail);
+    //     SendMail::dispatch(Auth::user()->email, $verifyEmail)->onQueue('send_email_verify');
 
-        return redirect()->route('verify.email');
-    }
+    //     return redirect()->route('verify.email');
+    // }
 
     public function regenerateToken($old_token = null)
     {
