@@ -19,11 +19,11 @@ use App\Repositories\GroupRepository;
 use App\Repositories\RankingRepository;
 use App\Repositories\UserLeagueRepository;
 use App\Repositories\VerifyUserRepository;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Hash;
+use Illuminate\Support\Facades\Hash as FacadesHash;
 use Session;
 
 class  AuthController extends Controller
@@ -74,7 +74,7 @@ class  AuthController extends Controller
             }
         } else {
             return back()->withErrors([
-                'custom' => 'Email or Password is wrong!'
+                'custom' => __('Email or Password is wrong!')
             ]);
         }
     }
@@ -152,10 +152,10 @@ class  AuthController extends Controller
         // SendMail::dispatch($request['email'], $verifyEmail)->onQueue('send_email_verify');
         // ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $token)->delay(now()->addMinutes(60))->onQueue('change_verify_token');
 
-        Auth::loginUsingId($user->id);
+        // Auth::loginUsingId($user->id);
 
         // return \redirect()->route('verify.email');
-        return \redirect()->route('home');
+        return \redirect()->route('login');
     }
 
     // public function verifyEmail($token)

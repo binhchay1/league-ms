@@ -75,6 +75,7 @@
                             <div class="rankings-content_tabpanel item">
                                 <div class="top-ranked-wrap">
                                     @foreach($listRank as $index => $rank)
+                                    @if($rank->users != null)
                                     <div class="top-ranked-left-single">
                                         <div class="top-ranked-avatar">
                                             <a title="" href="">
@@ -105,6 +106,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                     @endforeach
                                 </div>
                                 <div class="top-ranked-nav-wrap">
