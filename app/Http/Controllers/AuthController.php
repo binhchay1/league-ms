@@ -108,7 +108,8 @@ class  AuthController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'role' => Role::USER,
-            'title' => Title::USER
+            'title' => Title::USER,
+            'email_verified' => date('Y-m-d H:i:s')
         ]);
 
         $token = $this->regenerateToken();
@@ -130,30 +131,31 @@ class  AuthController extends Controller
         ];
         $this->rankingRepository->create($dataRanking);
 
-        $urlVerify = route('user.verify', ['token' => $token]);
-        $urlVerify = '';
-        $urlHome = route('home');
-        $dataEmail = [
-            'urlVerify' => $urlVerify,
-            'urlHome' => $urlHome,
-            'user_name' => $user->name,
-            'logo' => asset('/images/logo-no-background.png'),
-            'text-1' => __('Complete register for your account'),
-            'text-2' => __('Confirm Your Email Address'),
-            'text-3' => __('Thank you for your attention. Welcome to Badminton.io. Tap the button below to confirm your email address.'),
-            'text-4' => __('Verify Your Email'),
-            'text-5' => __("If that doesn't work, copy and paste the following link in your browser:"),
-            'text-6' => __('Cheers,'),
-            'text-7' => __("You received this email because we received a request for register for your account. If you didn't request register, you can safely delete this email."),
-        ];
+        // $urlVerify = route('user.verify', ['token' => $token]);
+        // $urlVerify = '';
+        // $urlHome = route('home');
+        // $dataEmail = [
+        //     'urlVerify' => $urlVerify,
+        //     'urlHome' => $urlHome,
+        //     'user_name' => $user->name,
+        //     'logo' => asset('/images/logo-no-background.png'),
+        //     'text-1' => __('Complete register for your account'),
+        //     'text-2' => __('Confirm Your Email Address'),
+        //     'text-3' => __('Thank you for your attention. Welcome to Badminton.io. Tap the button below to confirm your email address.'),
+        //     'text-4' => __('Verify Your Email'),
+        //     'text-5' => __("If that doesn't work, copy and paste the following link in your browser:"),
+        //     'text-6' => __('Cheers,'),
+        //     'text-7' => __("You received this email because we received a request for register for your account. If you didn't request register, you can safely delete this email."),
+        // ];
 
-        $verifyEmail = new VerifyEmail($dataEmail);
-        SendMail::dispatch($request['email'], $verifyEmail)->onQueue('send_email_verify');
-        ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $token)->delay(now()->addMinutes(60))->onQueue('change_verify_token');
+        // $verifyEmail = new VerifyEmail($dataEmail);
+        // SendMail::dispatch($request['email'], $verifyEmail)->onQueue('send_email_verify');
+        // ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $token)->delay(now()->addMinutes(60))->onQueue('change_verify_token');
 
         Auth::loginUsingId($user->id);
 
-        return \redirect()->route('verify.email');
+        // return \redirect()->route('verify.email');
+        return \redirect()->route('home');
     }
 
     public function verifyEmail($token)
