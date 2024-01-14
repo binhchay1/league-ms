@@ -140,8 +140,8 @@ $utility = new \App\Enums\Utility();
 @endsection
 
 @section('js')
-<!-- <script src="//{{ $_SERVER['SERVER_NAME'] }}:6001/socket.io/socket.io.js"></script> -->
-<script src="{{ asset('/js/socket.io.js') }}"></script>
+<script src="//{{ $_SERVER['SERVER_NAME'] }}:6001/socket.io/socket.io.js"></script>
+<!-- <script src="{{ asset('/js/socket.io.js') }}"></script> -->
 <script src="{{ asset('/js/app.js') }}"></script>
 <script>
     <?php if (Auth::check()) { ?>
@@ -152,10 +152,10 @@ $utility = new \App\Enums\Utility();
 
         const g_i = '<?php echo $getGroup->id ?>';
         const group = 'chat-group-' + g_i;
-        console.log(Echo);
 
         Echo.channel('chat-group-1').listen('.message-group', function(e) {
             let cU = e.user_id;
+            let cDate = new Date();
             let bU = '<?php echo Hash::make(Auth::user()->id); ?>';
             let ap = '';
             let datetime = cDate.getDate() + "/" +
@@ -164,6 +164,7 @@ $utility = new \App\Enums\Utility();
                 cDate.getHours() + ":" +
                 cDate.getMinutes() + ":" +
                 cDate.getSeconds();
+
             if (cU == bU) {
                 ap = '<div class="d-flex flex-row justify-content-end mb-4"><div class="p-3 me-3 border append-css-this"><p class="small mb-0">' + e.message + '</p></div><img src="' + e.user_image + '" alt="Avatar" width="45"></div>';
             } else {
@@ -173,6 +174,7 @@ $utility = new \App\Enums\Utility();
                 $('#statusMessage').empty();
                 $('#statusMessage').html(statusMessage);
             }
+
             $('#chat-area').append(ap);
         });
 

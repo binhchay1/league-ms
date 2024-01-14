@@ -19,6 +19,7 @@ class MessageSent implements ShouldBroadcast
     public $message;
     public $group_id;
     public $connection = 'redis';
+    public $queue = 'chat-message';
 
     public function __construct(User $user, Message $message, $group_id)
     {

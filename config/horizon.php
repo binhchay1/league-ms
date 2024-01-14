@@ -213,6 +213,14 @@ return [
                 'maxProcesses' => 5,
                 'tries' => 2,
             ],
+            'supervisor-3' => [
+                'connection' => 'redis',
+                'queue' => ['chat-message'],
+                'balance' => 'auto',
+                'minProcesses' => 1,
+                'maxProcesses' => 5,
+                'tries' => 2,
+            ],
         ],
 
         'local' => [
@@ -227,6 +235,14 @@ return [
             'supervisor-2' => [
                 'connection' => 'redis',
                 'queue' => ['send_email_verify'],
+                'balance' => 'auto',
+                'minProcesses' => 1,
+                'maxProcesses' => 5,
+                'tries' => 2,
+            ],
+            'supervisor-3' => [
+                'connection' => 'redis',
+                'queue' => ['chat-message'],
                 'balance' => 'auto',
                 'minProcesses' => 1,
                 'maxProcesses' => 5,
