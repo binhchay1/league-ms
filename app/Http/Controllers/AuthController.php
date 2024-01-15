@@ -152,10 +152,14 @@ class  AuthController extends Controller
         // SendMail::dispatch($request['email'], $verifyEmail)->onQueue('send_email_verify');
         // ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $token)->delay(now()->addMinutes(60))->onQueue('change_verify_token');
 
-        // Auth::loginUsingId($user->id);
+        Auth::loginUsingId($user->id);
 
         // return \redirect()->route('verify.email');
-        return \redirect()->route('login');
+        if ($user->role == 'user') {
+            return \redirect()->route('home');
+        } else {
+            return \redirect()->route('dashboard');
+        }
     }
 
     // public function verifyEmail($token)
