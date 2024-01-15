@@ -140,8 +140,7 @@ $utility = new \App\Enums\Utility();
 @endsection
 
 @section('js')
-<script src="//{{ $_SERVER['SERVER_NAME'] }}:6001/socket.io/socket.io.js"></script>
-<!-- <script src="{{ asset('/js/socket.io.js') }}"></script> -->
+<script src="{{ asset('/js/socket.io.js') }}"></script>
 <script src="{{ asset('/js/app.js') }}"></script>
 <script>
     <?php if (Auth::check()) { ?>
