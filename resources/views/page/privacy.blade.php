@@ -19,7 +19,7 @@
             {{ __('Leagues are responsible for managing the "individual rights" of the individuals they are keeping data for in their leagues.') }}
         </p>
 
-        <p>{{ __('User's are not permitted to have a') }} {{ env('APP_NAME', 'Badminton.io') }} {{ __('account (login / sign-in) unless they are 16 years old or over.') }}</p>
+        <p>{{ __("User's are not permitted to have a") }} {{ env('APP_NAME', 'Badminton.io') }} {{ __('account (login / sign-in) unless they are 16 years old or over.') }}</p>
 
         <h3>{{ env('APP_NAME', 'Badminton.io') }} {{ __('holds the following data on an individual with a') }} {{ env('APP_NAME', 'Badminton.io') }} {{ __('account') }}:</h3>
         <ul>
@@ -46,7 +46,7 @@
         <h3>{{ env('APP_NAME', 'Badminton.io') }} {{ __('holds data on league members on behalf of leagues') }}</h3>
         <p>
             {{ __('As a "Processor"') }} {{ env('APP_NAME', 'Badminton.io') }} {{ __('holds personal data of league members who do not have a') }} {{ env('APP_NAME', 'Badminton.io') }} {{ __('account, on behalf of leagues.') }}
-            {{ __('For example, a League Administrator could create a "Player" in the system who won't have a') }} {{ env('APP_NAME', 'Badminton.io') }} {{ __('account and therefore won't be able to sign-in to the') }} {{ env('APP_NAME', 'Badminton.io') }} {{ __('system.') }}
+            {{ __("For example, a League Administrator could create a 'Player' in the system who won't have a") }} {{ env('APP_NAME', 'Badminton.io') }} {{ __("account and therefore won't be able to sign-in to the") }} {{ env('APP_NAME', 'Badminton.io') }} {{ __('system.') }}
         </p>
 
         <p class="bold">{{ __('The following personal data of league members without') }} {{ env('APP_NAME', 'Badminton.io') }} {{ __('accounts') }}:</p>
@@ -91,14 +91,14 @@
         </ul>
 
         <h2 class="h24px">{{ env('APP_NAME', 'Badminton.io') }} {{ __('provides leagues with the following tools') }}</h2>
-        <h3>{{ __('Display the league's own privacy policy') }}</h3>
-        <p>{{ __('You can upload your own privacy policy under 'Site Builder < Documents'. In here you can state how and what personal data you collect and how you store, what you do with it, i.e. your purpose and which third parties you share the data with.') }}</p>
+        <h3>{{ __("Display the league's own privacy policy") }}</h3>
+        <p>{{ __("You can upload your own privacy policy under 'Site Builder < Documents'. In here you can state how and what personal data you collect and how you store, what you do with it, i.e. your purpose and which third parties you share the data with.") }}</p>
 
         <h3>{{ __('Leagues must comply with the GDPR "Individual Rights"') }}</h3>
 
         <p class="bold">{{ __('Right to be informed') }}</p>
-        <p>{{ __('This can be implemented in the league's privacy policy.') }}</p>
-        <p>{{ __('If the league uses the') }} {{ env('APP_NAME', 'Badminton.io') }} {{ __('Player Registration system then consent can be obtained by requiring league members to accept the league's terms / privacy policy when registering for the league.') }}</p>
+        <p>{{ __("This can be implemented in the league's privacy policy.") }}</p>
+        <p>{{ __('If the league uses the') }} {{ env('APP_NAME', 'Badminton.io') }} {{ __("Player Registration system then consent can be obtained by requiring league members to accept the league's terms / privacy policy when registering for the league.") }}</p>
 
         <p class="bold">{{ __('Right of access') }}</p>
         <p>{{ __('Individuals have a right to access their personal data.') }} {{ env('APP_NAME', 'Badminton.io') }} {{ __('provide a web page detailing personal information and related league sports data about an individual which a league can give to that individual.') }}</p>
@@ -124,7 +124,7 @@
 
         <h2 class="h24px">{{ __('Use of Smartlook Services') }}</h2>
         <p>
-            {{ __('We have engaged Smartlook to analyst the user behavior of visitors to this website and provide research information designed to improve the customer experience. Smartlook's standard use of cookies and other tracking technologies can enable it to have access to Personal Information of visitors to this website. Such access to and use of Personal Information by Inspectlet is governed by') }} <a href="https://help.smartlook.com/en/articles/3244452-privacy-policy">{{ __('Smartlook's Privacy Policy') }}</a>.
+            {{ __("We have engaged Smartlook to analyst the user behavior of visitors to this website and provide research information designed to improve the customer experience. Smartlook's standard use of cookies and other tracking technologies can enable it to have access to Personal Information of visitors to this website. Such access to and use of Personal Information by Inspectlet is governed by") }} <a href="https://help.smartlook.com/en/articles/3244452-privacy-policy">{{ __("Smartlook's Privacy Policy") }}</a>.
             {{ __('Note: we do not allow Smartlook to record sensitive information input into our forms such as first name, last name, date of birth, email address or password.') }}
         </p>
 
@@ -142,7 +142,7 @@
             <li>{{ __('the purposes for which they are used; and') }}</li>
             <li>{{ __('how you can manage and/or disable them.') }}</li>
         </ul>
-        <p>{{ __('Cookies are small text files which are placed on your device when you visit a website. They contain information that is transferred to your device's hard drive and help us to improve our site and to deliver a better and more personalized service to you. Cookies enable us to:') }}</p>
+        <p>{{ __("Cookies are small text files which are placed on your device when you visit a website. They contain information that is transferred to your device's hard drive and help us to improve our site and to deliver a better and more personalized service to you. Cookies enable us to:") }}</p>
         <ul>
             <li>{{ __('estimate our audience size and usage pattern;') }}</li>
             <li>{{ __('store information about your preferences, and so allow us to customize our site according to your individual interests; and') }}</li>
@@ -167,7 +167,7 @@
             <tbody>
                 <tr>
                     <td>JSESSIONID</td>
-                    <td>{{ __('This cookie contains a session ID which is a mechanism for distinguishing different users' visits when multiple users are visiting the website at the same time. It is essential for interactive use of the site.') }}</td>
+                    <td>{{ __("This cookie contains a session ID which is a mechanism for distinguishing different users' visits when multiple users are visiting the website at the same time. It is essential for interactive use of the site.") }}</td>
                     <td>{{ __('On closing the web browser') }}</td>
                 </tr>
             </tbody>
@@ -177,7 +177,7 @@
 
         <p class="bold">{{ __('These cookies collect anonymous information about the pages visited by you') }}</p>
 
-        <p>{{ __('These cookies collect information about how visitors use a website, for instance which pages visitors go to most often, and if they get error messages from web pages. These cookies don't collect information that identifies a visitor. All information these cookies collect is aggregated and therefore anonymous. It is only used to improve how a website works.') }}</p>
+        <p>{{ __("These cookies collect information about how visitors use a website, for instance which pages visitors go to most often, and if they get error messages from web pages. These cookies don't collect information that identifies a visitor. All information these cookies collect is aggregated and therefore anonymous. It is only used to improve how a website works.") }}</p>
 
         <table>
             <thead>
