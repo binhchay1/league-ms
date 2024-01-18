@@ -197,22 +197,22 @@ return [
 
     'environments' => [
         'production' => [
-            'supervisor-1' => [
-                'connection' => 'redis',
-                'queue' => ['change_verify_token'],
-                'balance' => 'auto',
-                'minProcesses' => 1,
-                'maxProcesses' => 5,
-                'tries' => 0,
-            ],
-            'supervisor-2' => [
-                'connection' => 'redis',
-                'queue' => ['send_email_verify'],
-                'balance' => 'auto',
-                'minProcesses' => 1,
-                'maxProcesses' => 5,
-                'tries' => 2,
-            ],
+            // 'supervisor-1' => [
+            //     'connection' => 'redis',
+            //     'queue' => ['change_verify_token'],
+            //     'balance' => 'auto',
+            //     'minProcesses' => 1,
+            //     'maxProcesses' => 5,
+            //     'tries' => 0,
+            // ],
+            // 'supervisor-2' => [
+            //     'connection' => 'redis',
+            //     'queue' => ['send_email_verify'],
+            //     'balance' => 'auto',
+            //     'minProcesses' => 1,
+            //     'maxProcesses' => 5,
+            //     'tries' => 2,
+            // ],
             'supervisor-3' => [
                 'connection' => 'redis',
                 'queue' => ['chat-message'],

@@ -20,6 +20,6 @@ yarn-error.log
 laravel-echo-server.lock
 package-lock.json
 composer.lock
+laravel-echo-server.json
 resources/js/bootstrap.js
 public/js/app.js
-laravel-echo-server.json
