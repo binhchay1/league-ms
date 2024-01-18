@@ -22,7 +22,7 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::middleware(['cache.notification'])->group(function () {
+Route::middleware(['verified', 'cache.notification'])->group(function () {
     Route::get('/', [HomeController::class, 'viewHome'])->name('home');
     Route::get('/list-of-league/', [HomeController::class, 'listLeague'])->name('list.league');
     Route::post('/search/', [HomeController::class, 'viewSearch'])->name('search.result');
@@ -40,13 +40,7 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
     Route::get('/detail-group/', [HomeController::class, 'detailGroup'])->name('detail.group');
     Route::get('/ranking/', [HomeController::class, 'viewRanking'])->name('ranking');
-});
 
-Route::middleware(['auth'])->group(function () {
-    // Route::get('/verify/{token}/', [AuthController::class, 'verifyEmail'])->name('user.verify');
-    // Route::get('/verify-email/', [AuthController::class, 'viewVerifyEmail'])->name('verify.email');
-    // Route::post('/resend-verify/', [AuthController::class, 'resendVerify'])->name('resend.verify.email');
-    // Route::get('/verified-email/', [AuthController::class, 'viewVerifiedEmail'])->name('verified.email');
     Route::post('/register-league/', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
     Route::get('/player/{id}/', [HomeController::class, 'viewInforPlayer'])->name('player.info');
     Route::get('/read-notifications/', [HomeController::class, 'readNotification'])->name('read.notification');
@@ -54,6 +48,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/my-group/', [AuthController::class, 'viewMyGroup'])->name('my.group');
     Route::get('/join-group/', [AuthController::class, 'joinGroup'])->name('join.group');
     Route::post('/messages/', [AuthController::class, 'sendMessage'])->name('send.message');
+
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/verify/{token}/', [AuthController::class, 'verifyEmail'])->name('user.verify');
+    Route::get('/verify-email/', [AuthController::class, 'viewVerifyEmail'])->name('verify.email');
+    Route::post('/resend-verify/', [AuthController::class, 'resendVerify'])->name('resend.verify.email');
+    Route::get('/verified-email/', [AuthController::class, 'viewVerifiedEmail'])->name('verified.email');
     Route::get('/signout/', [AuthController::class, 'signOut'])->name('signout');
 });
 
@@ -64,6 +66,9 @@ Route::get('/auth/google/', [SocialLoginController::class, 'redirectToGoogle'])-
 Route::get('/auth/google/callback/', [SocialLoginController::class, 'handleGoogleCallback']);
 Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
 Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
+Route::get('/auth/line/', [SocialLoginController::class, 'redirectToLine'])->name('auth.line');
+Route::get('/auth/line/callback/', [SocialLoginController::class, 'handleLineCallback']);
+Route::get('/auth/line/callbackInformation/', [SocialLoginController::class, 'handleLineCallbackInformation']);
 Route::get('/register/', [AuthController::class, 'registerUser'])->name('register_user');
 Route::post('/register/', [AuthController::class, 'storeUser'])->name('storeUser');
 Route::get('/setLocale/{locale}/', [HomeController::class, 'changeLocate'])->name('app.setLocale');
