@@ -44,28 +44,30 @@
                     </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                    @foreach($listSchedules as $data)
-                        <tr>
-                            <td>{{ $data->league->name ?? "" }}</td>
-                            <td>{{ $data->round }}</td>
-                            <td>{{ $data->time }}</td>
-                            <td>
-                                {{ $data->player1Team1->name ?? "" }}
-                                <br>
-                                {{ $data->player2Team1->name ?? "" }}
-                            </td>
-                            <td>
-                                {{ $data->player1Team2->name ?? "" }}
-                                <br>
-                                {{ $data->player2Team2->name ?? "" }}
-                            </td>
-                            <td>{{ $data->stadium }}</td>
-                            <td class="text-center">
-                                <a href="{{route('schedule.show', $data['id'])}}" class="btn btn-info">
-                                    <span style="color:white"></span>{{ __('Create Result') }}
-                                </a>
-                            </td>
-                        </tr>
+                    @foreach ($listLeagues as $league )
+                        @foreach($league->schedule as $data)
+                            <tr>
+                                <td>{{ $data->league->name ?? "" }}</td>
+                                <td>{{ $data->round }}</td>
+                                <td>{{ $data->time }}</td>
+                                <td>
+                                    {{ $data->player1Team1->name ?? "" }}
+                                    <br>
+                                    {{ $data->player2Team1->name ?? "" }}
+                                </td>
+                                <td>
+                                    {{ $data->player1Team2->name ?? "" }}
+                                    <br>
+                                    {{ $data->player2Team2->name ?? "" }}
+                                </td>
+                                <td>{{ $data->stadium }}</td>
+                                <td class="text-center">
+                                    <a href="{{route('schedule.show', $data['id'])}}" class="btn btn-info">
+                                        <span style="color:white"></span>{{ __('Create Result') }}
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                     @endforeach
                     </tbody>
                 </table>

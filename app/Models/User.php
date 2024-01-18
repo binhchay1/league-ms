@@ -95,4 +95,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany('App\Models\Schedule');
     }
+
+    public function league()
+    {
+        return $this->hasMany('App\Models\League');
+    }
 }
