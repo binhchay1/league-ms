@@ -59,4 +59,9 @@ class LeagueRepository extends BaseRepository
     {
         return $this->model->orderBy('created_at', 'desc')->take(1)->get();
     }
+
+    public function getLeagueHome()
+    {
+        return $this->model->orderBy('created_at', 'desc')->get();
+    }
 }

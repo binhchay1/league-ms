@@ -165,9 +165,9 @@ $utility = new \App\Enums\Utility();
                 cDate.getSeconds();
 
             if (cU == bU) {
-                ap = '<div class="d-flex flex-row justify-content-end mb-4"><div class="p-3 me-3 border append-css-this"><p class="small mb-0">' + e.message + '</p></div><img src="' + e.user_image + '" alt="Avatar" width="45"></div>';
+                ap = '<div class="d-flex flex-row justify-content-end mb-4"><div class="p-3 me-3 border append-css-this"><p class="small mb-0">' + e.message + '</p></div><img src="' + e.user_image + '" alt="Avatar" width="40" height="40"></div>';
             } else {
-                ap = '<div class="d-flex flex-row justify-content-start mb-4"><img src="' + e.user_image + '" alt="Avatar" width="45"><div class="p-3 ms-3 append-css-that"><p class="small mb-0">' + e.message + '</p></div></div>';
+                ap = '<div class="d-flex flex-row justify-content-start mb-4"><img src="' + e.user_image + '" alt="Avatar" width="40" height="40"><div class="p-3 ms-3 append-css-that"><p class="small mb-0">' + e.message + '</p></div></div>';
                 let statusMessage = '<?php echo __('Last message :')  ?>' + ' ' + datetime;
                 scrollToEnd();
                 $('#statusMessage').empty();
@@ -189,8 +189,8 @@ $utility = new \App\Enums\Utility();
                 cDate.getMinutes() + ":" +
                 cDate.getSeconds();
             let statusMessage = '<?php echo __('Sending :')  ?>' + ' ' + datetime;
-            let sImage = '<?php echo Auth::user()->profile_photo_path ?>';
-            let ap = '<div class="d-flex flex-row justify-content-end mb-4"><div class="p-3 me-3 border append-css-this"><p class="small mb-0">' + message + '</p></div><img src="' + sImage + '" alt="Avatar" width="45"></div>';
+            let sImage = '<?php echo (Auth::user()->profile_photo_path == null ? '/images/no-image.png' : Auth::user()->profile_photo_path) ?>';
+            let ap = '<div class="d-flex flex-row justify-content-end mb-4"><div class="p-3 me-3 border append-css-this"><p class="small mb-0">' + message + '</p></div><img src="' + sImage + '" alt="Avatar" width="40" height="40"></div>';
             $('#chat-area').append(ap);
             $('#statusMessage').empty();
             $('#statusMessage').html(statusMessage);
