@@ -30,7 +30,7 @@ class MessageSent implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        return new Channel(['chat-group-' . $this->group_id]);
+        return new Channel('chat-group-' . $this->group_id);
     }
 
     public function broadcastAs()

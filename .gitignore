@@ -19,5 +19,7 @@ yarn-error.log
 /public/images/upload
 laravel-echo-server.lock
 package-lock.json
-laravel-echo-server.json
 composer.lock
+laravel-echo-server.json
+resources/js/bootstrap.js
+public/js/app.js
