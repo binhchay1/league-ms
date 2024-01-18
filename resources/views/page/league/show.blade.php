@@ -208,13 +208,12 @@
         window.location.href = window.location.origin + '/info/' + edit_id;
     });
 
-    var date_register = '<?php echo strtotime($leagueInfor->end_date_register); ?>';
+    var current_date = '<?php echo  strtotime(date("Y-m-d")); ?>';
     var start_date = '<?php echo strtotime($leagueInfor->start_date); ?>';
-
-    if (date_register < start_date) {
-        $('#register-league').show();
-    } else {
+    if ( current_date >= start_date ) {
         $('#register-league').hide();
+    } else {
+        $('#register-league').show();
     }
 </script>
 @if(Session::has('message'))
