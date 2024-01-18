@@ -11,7 +11,7 @@ class League extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'images', 'start_date', 'end_date', 'format_of_league', 'number_of_athletes', 'type_of_league', 'slug', 'location', 'money','end_date_register'
+        'name', 'images', 'start_date', 'end_date', 'format_of_league', 'number_of_athletes', 'type_of_league', 'slug', 'location', 'money','end_date_register', 'status'
     ];
 
     public function schedule()
@@ -22,5 +22,10 @@ class League extends Model
     public function userLeagues()
     {
         return $this->hasMany('App\Models\UserLeague');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'owner_id', 'id');
     }
 }
