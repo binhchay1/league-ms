@@ -57,6 +57,7 @@
                 </div>
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        @if(Auth::user()->role == 'admin')
                         <li class="nav-item">
                             <a href="{{ route('user.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
@@ -66,6 +67,16 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('league.activeLeague' ) }}" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    {{ __('Active League') }}
+                                    <span class="badge badge-info right"></span>
+                                </p>
+                            </a>
+                        </li>
+                        @endif
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -123,6 +134,7 @@
                                 </li>
                             </ul>
                         </li>
+                            @if(Auth::user()->role == 'admin')
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -148,6 +160,7 @@
                                 </li>
                             </ul>
                         </li>
+                        @endif
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">

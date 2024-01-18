@@ -48,9 +48,11 @@
                             <a href="{{route('league.show',$data['id'])}}">
                                 <button type="button" class="btn btn-success">{{ __('Register League') }}</button>
                             </a>
+                            @if(Auth::user()->role == 'admin')
                             <a href="">
                                 <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
                             </a>
+                                @endif
                         </td>
                     </tr>
                     @endforeach
