@@ -11,9 +11,12 @@ class LeagueRepository extends BaseRepository
         return League::class;
     }
 
-    public function index()
+    public function index($user)
     {
-        return $this->model->orderBy('created_at', 'desc')->get();
+        if(\Auth::user()->role == 'admin'){
+            return $this->model->with('schedule')->orderBy('created_at', 'desc')->get();
+        }
+        return $this->model->where('owner_id', $user)->with('schedule')->orderBy('created_at', 'desc')->get();
     }
 
     public function store($input)

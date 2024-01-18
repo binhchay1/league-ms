@@ -46,7 +46,8 @@
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    @foreach($dataResult as $data)
+                    @foreach($listLeagues as $league)
+                    @foreach($league->schedule as $data)
                     <tr>
                         <td>{{ $data->league->name ?? "" }}</td>
                         <td>{{ $data->round }}</td>
@@ -114,6 +115,7 @@
                         </td>
                         <td>{{ $data->stadium }}</td>
                     </tr>
+                    @endforeach
                     @endforeach
                 </tbody>
             </table>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\Ranking;
 use App\Enums\Role;
 use App\Http\Requests\LeagueRequest;
+use App\Models\League;
 use App\Repositories\LeagueRepository;
 use App\Http\Controllers\Controller;
 use App\Enums\Utility;
@@ -30,7 +31,8 @@ class LeagueController extends Controller
     }
     public function index()
     {
-        $listLeagues = $this->leagueRepository->index();
+        $user = Auth::user()->id;
+        $listLeagues = $this->leagueRepository->index($user);
         return view('admin.league.index', compact('listLeagues'));
     }
 
@@ -38,11 +40,9 @@ class LeagueController extends Controller
     {
         $listType = Ranking::RANKING_ARRAY_TYPE;
         $listFormat = Ranking::RANKING_ARRAY_FORMAT;
-        if (Auth::user()->role == Role::ADMIN) {
-            return view('admin.league.create', compact('listType', 'listFormat'));
-        }
 
-        return view('page.league.create', compact('type_league', 'format_league'));
+            return view('admin.league.create', compact('listType', 'listFormat'));
+
     }
 
     public function store(LeagueRequest $request)
@@ -96,7 +96,6 @@ class LeagueController extends Controller
 
     public function updatePlayer(Request $request, $id)
     {
-
         $input = $request->except(['_token']);
         foreach($input['status'] as $key => $value)
         {
@@ -109,5 +108,28 @@ class LeagueController extends Controller
     {
         $this->userLeagueRepository->destroy($id);
         return back()->with('success', 'Delete User successfully!');
+    }
+
+    public function leagues()
+    {
+        $user = Auth::user()->id;
+
+        $listLeagues = $this->leagueRepository->index($user);
+        return view('admin.league.active-league', compact('listLeagues'));
+    }
+
+    public function activeLeague(Request $request, $id)
+    {
+
+        $league = League::find($id);
+        if($league->status) {
+            $league->status = 0;
+        }
+        else{
+            $league->status = 1;
+        }
+        $league->save();
+
+        return back();
     }
 }
