@@ -4,7 +4,7 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
-class         Kernel extends HttpKernel
+class Kernel extends HttpKernel
 {
     /**
      * The application's global HTTP middleware stack.
@@ -67,7 +67,7 @@ class         Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => \App\Http\Middleware\isAdmin::class,
         'locale' => \App\Http\Middleware\Locale::class,
-        'verified' => \App\Http\Middleware\VerifyEmail::class,
+        // 'verified' => \App\Http\Middleware\VerifyEmail::class,
         'cache.notification' => \App\Http\Middleware\CacheNotification::class,
     ];
 }

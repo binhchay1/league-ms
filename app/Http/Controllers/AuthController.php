@@ -19,11 +19,11 @@ use App\Repositories\GroupRepository;
 use App\Repositories\RankingRepository;
 use App\Repositories\UserLeagueRepository;
 use App\Repositories\VerifyUserRepository;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Hash;
+use Illuminate\Support\Facades\Hash as FacadesHash;
 use Session;
 
 class  AuthController extends Controller
@@ -74,7 +74,7 @@ class  AuthController extends Controller
             }
         } else {
             return back()->withErrors([
-                'custom' => 'Email or Password is wrong!'
+                'custom' => __('Email or Password is wrong!')
             ]);
         }
     }
@@ -108,7 +108,8 @@ class  AuthController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'role' => Role::USER,
-            'title' => Title::USER
+            'title' => Title::USER,
+            'email_verified_at' => date('Y-m-d H:i:s')
         ]);
 
         $token = $this->regenerateToken();
@@ -130,50 +131,55 @@ class  AuthController extends Controller
         ];
         $this->rankingRepository->create($dataRanking);
 
-        $urlVerify = route('user.verify', ['token' => $token]);
-        $urlVerify = '';
-        $urlHome = route('home');
-        $dataEmail = [
-            'urlVerify' => $urlVerify,
-            'urlHome' => $urlHome,
-            'user_name' => $user->name,
-            'logo' => asset('/images/logo-no-background.png'),
-            'text-1' => __('Complete register for your account'),
-            'text-2' => __('Confirm Your Email Address'),
-            'text-3' => __('Thank you for your attention. Welcome to Badminton.io. Tap the button below to confirm your email address.'),
-            'text-4' => __('Verify Your Email'),
-            'text-5' => __("If that doesn't work, copy and paste the following link in your browser:"),
-            'text-6' => __('Cheers,'),
-            'text-7' => __("You received this email because we received a request for register for your account. If you didn't request register, you can safely delete this email."),
-        ];
+        // $urlVerify = route('user.verify', ['token' => $token]);
+        // $urlVerify = '';
+        // $urlHome = route('home');
+        // $dataEmail = [
+        //     'urlVerify' => $urlVerify,
+        //     'urlHome' => $urlHome,
+        //     'user_name' => $user->name,
+        //     'logo' => asset('/images/logo-no-background.png'),
+        //     'text-1' => __('Complete register for your account'),
+        //     'text-2' => __('Confirm Your Email Address'),
+        //     'text-3' => __('Thank you for your attention. Welcome to Badminton.io. Tap the button below to confirm your email address.'),
+        //     'text-4' => __('Verify Your Email'),
+        //     'text-5' => __("If that doesn't work, copy and paste the following link in your browser:"),
+        //     'text-6' => __('Cheers,'),
+        //     'text-7' => __("You received this email because we received a request for register for your account. If you didn't request register, you can safely delete this email."),
+        // ];
 
-        $verifyEmail = new VerifyEmail($dataEmail);
-        SendMail::dispatch($request['email'], $verifyEmail)->onQueue('send_email_verify');
-        ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $token)->delay(now()->addMinutes(60))->onQueue('change_verify_token');
+        // $verifyEmail = new VerifyEmail($dataEmail);
+        // SendMail::dispatch($request['email'], $verifyEmail)->onQueue('send_email_verify');
+        // ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $token)->delay(now()->addMinutes(60))->onQueue('change_verify_token');
 
         Auth::loginUsingId($user->id);
 
-        return \redirect()->route('verify.email');
+        // return \redirect()->route('verify.email');
+        if ($user->role == 'user') {
+            return \redirect()->route('home');
+        } else {
+            return \redirect()->route('dashboard');
+        }
     }
 
-    public function verifyEmail($token)
-    {
-        if (empty($token)) {
-            abort(404);
-        }
+    // public function verifyEmail($token)
+    // {
+    //     if (empty($token)) {
+    //         abort(404);
+    //     }
 
-        $verifyUser = $this->verifyUserRepository->getVerifyByToken($token);
+    //     $verifyUser = $this->verifyUserRepository->getVerifyByToken($token);
 
-        if (empty($verifyUser)) {
-            abort(404);
-        }
+    //     if (empty($verifyUser)) {
+    //         abort(404);
+    //     }
 
-        if ($verifyUser->status == 0) {
-            return redirect()->route('verify.email');
-        }
+    //     if ($verifyUser->status == 0) {
+    //         return redirect()->route('verify.email');
+    //     }
 
-        return redirect()->route('login')->with('message', $message);
-    }
+    //     return redirect()->route('login')->with('message', $message);
+    // }
 
     public function profile()
     {
@@ -252,69 +258,64 @@ class  AuthController extends Controller
 
     public function sendMessage(Request $request)
     {
-        try {
-            Redis::connect(env('REDIS_HOST', '127.0.0.1'), 3306);
-            $user = Auth::user();
-            $message = $request->get('message');
-            $group_id = $request->get('g_i');
+        $user = Auth::user();
+        $message = $request->get('message');
+        $group_id = $request->get('g_i');
 
-            if ($message == null or $group_id == null) {
-                abort(403);
-            }
-
-            $isJoined = $this->groupUserRepository->checkJoinedGroupByName($user->id, $group_id);
-            if (empty($isJoined)) {
-                abort(403);
-            }
-
-            $message = $user->messages()->create([
-                'message' => $message,
-                'group_id' => $group_id
-            ]);
-
-            broadcast(new MessageSent($user, $message, $group_id))->toOthers();
-
-            return ['status' => 'sent'];
-        } catch (\Predis\Connection\ConnectionException $e) {
-            return response('error connection redis');
+        if ($message == null or $group_id == null) {
+            abort(403);
         }
+
+        $isJoined = $this->groupUserRepository->checkJoinedGroupByName($user->id, $group_id);
+        if (empty($isJoined)) {
+            abort(403);
+        }
+
+        $message = $user->messages()->create([
+            'message' => $message,
+            'group_id' => $group_id
+        ]);
+
+        broadcast(new MessageSent($user, $message, $group_id))->toOthers();
+
+        return ['status' => 'sent'];
     }
 
-    public function resendVerify(Request $request)
-    {
-        $token = $request->get('token_verify');
-        if ($token == null) {
-            abort(404);
-        }
-        $isTokenVerified = $this->verifyUserRepository->getVerifyByToken($token);
+    // public function resendVerify(Request $request)
+    // {
+    //     $token = $request->get('token_verify');
+    //     if ($token == null) {
+    //         abort(404);
+    //     }
+    //     $isTokenVerified = $this->verifyUserRepository->getVerifyByToken($token);
 
-        if (empty($isTokenVerified)) {
-            abort(404);
-        }
+    //     if (empty($isTokenVerified)) {
+    //         abort(404);
+    //     }
 
-        $new_token = $this->regenerateToken();
-        $carbonNow = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
-        $timeEnd = $carbonNow->addMinutes(60)->format('Y-m-d H:i:s');
-        $url = route('user.verify', ['token' => $token]);
+    //     $new_token = $this->regenerateToken();
+    //     $carbonNow = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
+    //     $timeEnd = $carbonNow->addMinutes(60)->format('Y-m-d H:i:s');
+    //     $url = route('user.verify', ['token' => $token]);
 
-        $dataUpdate = [
-            'token' => $new_token,
-            'time_end' => $timeEnd,
-            'status' => 0
-        ];
-        $dataEmail = [
-            'url' => $url,
-            'user_name' => Auth::user()->name
-        ];
+    //     $dataUpdate = [
+    //         'token' => $new_token,
+    //         'time_end' => $timeEnd,
+    //         'status' => 0
+    //     ];
+    //     $dataEmail = [
+    //         'url' => $url,
+    //         'user_name' => Auth::user()->name
+    //     ];
 
-        $this->verifyUserRepository->updateTokenByUserId(Auth::user()->id, $dataUpdate);
-        ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $new_token)->delay(now()->addMinutes(60))->onQueue('change_verify_token');
+    //     $this->verifyUserRepository->updateTokenByUserId(Auth::user()->id, $dataUpdate);
+    //     ChangeStatusTokenVerify::dispatch($this->verifyUserRepository, $new_token)->delay(now()->addMinutes(60))->onQueue('change_verify_token');
 
-        $verifyEmail = new VerifyEmail($dataEmail);
-        SendMail::dispatch(Auth::user()->email, $verifyEmail)->onQueue('send_email_verify');
+    //     $verifyEmail = new VerifyEmail($dataEmail);
+    //     SendMail::dispatch(Auth::user()->email, $verifyEmail)->onQueue('send_email_verify');
 
-        return redirect()->route('verify.email');
-    }
+    //     return redirect()->route('verify.email');
+    // }
 
     public function regenerateToken($old_token = null)
     {

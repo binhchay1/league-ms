@@ -10,6 +10,7 @@ use App\Repositories\ScheduleRepository;
 use App\Repositories\LeagueRepository;
 use App\Repositories\NotificationRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ScheduleController extends Controller
 {
@@ -30,7 +31,8 @@ class ScheduleController extends Controller
 
     public function index()
     {
-        $listLeagues = $this->leagueRepository->index();
+        $user = Auth::user()->id;
+        $listLeagues = $this->leagueRepository->index($user);
         $rounds =  Ranking::RANKING_ARRAY_ROUND;
         $listSchedules = $this->scheduleRepository->index();
 
@@ -39,7 +41,8 @@ class ScheduleController extends Controller
 
     public function league()
     {
-        $listLeagues = $this->leagueRepository->index();
+        $user = Auth::user()->id;
+        $listLeagues = $this->leagueRepository->index($user);
 
         return view('admin.schedule.list-league', compact('listLeagues'));
     }
@@ -100,7 +103,8 @@ class ScheduleController extends Controller
 
     public function result()
     {
-        $listLeagues = $this->leagueRepository->index();
+        $user = Auth::user()->id;
+        $listLeagues = $this->leagueRepository->index($user);
         $rounds =  Ranking::RANKING_ARRAY_ROUND;
         $dataResult = $this->scheduleRepository->index();
 

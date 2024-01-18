@@ -25,8 +25,8 @@ class GroupRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', Rule::unique('groups')->ignore($this->id)],
-            'images' => ['image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'name' => ['required', Rule::unique('groups')->ignore($this->name)],
+            'images' => ['image', 'mimes:jpeg,png,jpg'],
             'description' => ['required', 'max:255'],
             'activity_time_start' => ['required'],
             'activity_time_end' => ['after_or_equal:activity_time_start'],
@@ -46,7 +46,6 @@ class GroupRequest extends FormRequest
             'images.required' => __('Image is required'),
             'images.image' => __('Incorrect image format'),
             'images.mimes' => __('Incorrect image format'),
-            'images.max' => __('Image size is maximum'),
             'activity_time_start.required' => __('Activity time start is required'),
             'activity_time_end.after_or_equal' => __('Activity time end must be after or equal to activity time start'),
             'number_of_members.required' => __('Number of members is required'),
