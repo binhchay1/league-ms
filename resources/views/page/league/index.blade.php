@@ -3,7 +3,7 @@
 @section('title')
 {{ env('APP_NAME', 'Badminton.io') }} - {{ __('League') }}
 @endsection
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 @section('css')
 <link rel="stylesheet" id="bwf-style-css" href="{{ asset('css/content/league.css') }}" type="text/css" media="all" />
 
@@ -20,6 +20,13 @@
     <div class="std-title">
         <div class="std-title-left">
             <h2 class="left">{{ __('LEAGUE CALENDAR') }}</h2>
+            <div id="select-list-state card">
+                <ul class="select-list">
+                    <li id="state-remaining"><a data-state="remaining" href="#" class="active-menu" >All</a></li>
+                    <li id="state-completed"><a data-state="completed" href="#">COMPLETED</a></li>
+                    <li id="state-all"><a data-state="all" href="#">NEXT</a></li>
+                </ul>
+            </div>
         </div>
         <a href="{{route('league.create')}}"><button class="btn btn-success">{{__('Create League')}}</button></a>
     </div>
@@ -87,3 +94,16 @@
     @endif
 </div>
 @endsection
+<script src="{{ asset('js/league.js') }}"></script>
+<script>
+    $(document).ready(function(){
+        $('ul li a').click(function(){
+            $('li a').removeClass("active-menu"  );
+            $(this).addClass("active-menu");
+        });
+    });
+
+
+</script>
+
+
