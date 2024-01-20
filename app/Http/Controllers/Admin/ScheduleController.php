@@ -57,7 +57,6 @@ class ScheduleController extends Controller
 
     public function store(Request $request)
     {
-
         $input = $request->except(['_token']);
         foreach ($input as $key => $arrValue) {
             $count = count($arrValue);
@@ -109,5 +108,111 @@ class ScheduleController extends Controller
         $dataResult = $this->scheduleRepository->index();
 
         return view('admin.schedule.result', compact('dataResult', 'listLeagues', 'rounds'));
+    }
+
+    public function autoCreateLeague(Request $request)
+    {
+        if (empty($request->get('s'))) {
+            abort(404);
+        }
+
+        $slug = $request->get('s');
+        $getLeague = $this->leagueRepository->getLeagueBySlug($slug);
+
+        if (empty($getLeague)) {
+            abort(404);
+        }
+
+        $listMember = $getLeague->userLeagues;
+        $listAuto = [];
+        foreach ($listMember as $member) {
+            $listAuto[] = $member->user_id;
+        }
+        shuffle($listAuto);
+        $dataSchedule = [];
+        $timeInDay = $getLeague->start_time;
+        $countMatch = 1;
+
+        if (strpos($getLeague->type_of_league, 'singles') > 0) {
+            for ($i = 0; $i < count($listAuto); $i++) {
+                if ($i % 2 != 0) {
+                    continue;
+                }
+
+                $data = [
+                    'league_id' => $getLeague->id,
+                    'match' => $countMatch,
+                    'round' => 1,
+                    'time' => $timeInDay,
+                    'date' => $getLeague->start_date,
+                    'player1_team_1' => $listAuto[$i],
+                ];
+
+                if ($i != (count($listAuto) - 1)) {
+                    $data['player1_team_2'] = $listAuto[$i + 1];
+                }
+
+                $dataSchedule[] = $data;
+                $endTime = strtotime($timeInDay) + (90 * 60);
+                $timeInDay = date('h:i:s', $endTime);
+                $countMatch++;
+            }
+        } else {
+            $countLack = 0;
+            $breakFor = 0;
+            for ($i = 0; $i < count($listAuto); $i++) {
+                if ($i <= $breakFor and $i != 0) {
+                    continue;
+                }
+
+                $data = [
+                    'league_id' => $getLeague->id,
+                    'match' => $countMatch,
+                    'round' => 1,
+                    'time' => $timeInDay,
+                    'date' => $getLeague->start_date,
+                    'player1_team_1' => $listAuto[$i],
+                ];
+
+                if (!isset($listAuto[$i + 1])) {
+                    $countLack++;
+                    break;
+                } else {
+                    $data['player2_team_1'] = $listAuto[$i + 1];
+                    if (!isset($listAuto[$i + 2])) {
+                        $countLack = 0;
+                        $dataSchedule[] = $data;
+                        break;
+                    } else {
+                        $data['player1_team_2'] = $listAuto[$i + 2];
+                        if (!isset($listAuto[$i + 3])) {
+                            $countLack++;
+                            break;
+                        } else {
+                            $data['player2_team_2'] = $listAuto[$i + 3];
+                        }
+                    }
+                }
+
+                $dataSchedule[] = $data;
+                $endTime = strtotime($timeInDay) + (90 * 60);
+                $timeInDay = date('h:i:s', $endTime);
+                $breakFor = $i + 3;
+                $countMatch++;
+            }
+
+            if ($countLack != 0) {
+                $stringAfter = __('Your league need ');
+                $stringBefore = __(' member to be use auto create schedule');
+                $report = $stringAfter . $countLack . $stringBefore;
+
+                return redirect()->route('schedule.leagueSchedule', $getLeague->id)->with('message', $report);
+            }
+        }
+
+        // dd($dataSchedule);
+        $this->scheduleRepository->createMultiple($dataSchedule);
+
+        return redirect()->route('schedule.index')->with('message', __('Create auto schedule successfully!'));
     }
 }

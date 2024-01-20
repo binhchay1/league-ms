@@ -13,9 +13,10 @@ class LeagueRepository extends BaseRepository
 
     public function index($user)
     {
-        if(\Auth::user()->role == 'admin'){
+        if (\Auth::user()->role == 'admin') {
             return $this->model->with('schedule')->orderBy('created_at', 'desc')->get();
         }
+
         return $this->model->where('owner_id', $user)->with('schedule')->orderBy('created_at', 'desc')->get();
     }
 
@@ -63,5 +64,10 @@ class LeagueRepository extends BaseRepository
     public function getLeagueHome()
     {
         return $this->model->orderBy('created_at', 'desc')->get();
+    }
+
+    public function getLeagueBySlug($slug)
+    {
+        return $this->model->with('userLeagues')->where('slug', $slug)->first();
     }
 }
