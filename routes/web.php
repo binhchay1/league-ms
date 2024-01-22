@@ -117,7 +117,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('/store-group/', [GroupController::class, 'store'])->name('group.store');
             Route::get('/create-group/', [GroupController::class, 'create'])->name('group.create');
             Route::post('/store-group-training/', [GroupController::class, 'groupTraining'])->name('groupTraining.create');
-            Route::get('/group-training/', [GroupController::class, 'listGroupTraining'])->name('list.groupTraining');
+            Route::get('/list-group-training/', [GroupController::class, 'listGroupTraining'])->name('list.groupTraining');
 
             Route::get('/list-product/', [ProductController::class, 'index'])->name('product.index');
             Route::post('/store-product/', [ProductController::class, 'store'])->name('product.store');
