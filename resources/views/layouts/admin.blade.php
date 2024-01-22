@@ -158,6 +158,12 @@
                                         <p>{{ __('List Group') }}</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('list.groupTraining' ) }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('List Group Training') }}</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         @endif

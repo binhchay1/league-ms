@@ -16,12 +16,12 @@ $utility = new \App\Enums\Utility();
 @endsection
 
 @section('content')
-<section id="heading">
-    <div class="container d-flex" style="background: #ad9696;">
-        <div class="mt-2">
+<section class="container " id="heading">
+    <div class="row training"  style="background: #ad9696;">
+        <div class="col-lg-2 mt-4">
             <img src="{{ asset($getGroup->images) }}" width="100" height="100" healt="Group Avatar" />
         </div>
-        <div style="margin-left: 20px;">
+        <div class="col-sm mt-3">
             <div class="d-flex">
                 <h1 class="m-0 p-0">{{ $getGroup->name }}</h1>
             </div>
@@ -31,7 +31,11 @@ $utility = new \App\Enums\Utility();
             <p><span class="fw-bold">* {{__('Location')}} : </span>{{ $getGroup->location }}</p>
             <p><em><span class="fw-bold">-----{{__('Note')}} : </span>{{ $getGroup->note }}</em></p>
         </div>
-        <hr>
+        @if(Auth::check() and $isJoined)
+        <div class="col-sm mt-4" style="text-align: center">
+            <button class=" btn btn-success" id="group-{{ $getGroup->name }}" onclick="training(this.id)">Training</button>
+        </div>
+            @endif
     </div>
 </section>
 
@@ -246,5 +250,13 @@ $utility = new \App\Enums\Utility();
             });
         }
     <?php } ?>
+
+
+    function training(id) {
+        let name = id.substring(6);
+        let url = '/group-training?g_i=' + name;
+
+        window.location.href = url;
+    }
 </script>
 @endsection

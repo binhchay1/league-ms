@@ -40,6 +40,8 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/list-teams/', [HomeController::class, 'listTeam'])->name('list.team');
     Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
     Route::get('/detail-group/', [HomeController::class, 'detailGroup'])->name('detail.group');
+    Route::get('/group-training/', [HomeController::class, 'groupTraining'])->name('list.train');
+    Route::get('/training/', [HomeController::class, 'detailGroupTraining'])->name('groupTrain.detail');
     Route::get('/ranking/', [HomeController::class, 'viewRanking'])->name('ranking');
 });
 
@@ -111,8 +113,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/result', [ScheduleController::class, 'result'])->name('schedule.result');
 
             Route::get('/list-group/', [GroupController::class, 'index'])->name('group.index');
+            Route::get('/group/{id}', [GroupController::class, 'show'])->name('group.show');
             Route::post('/store-group/', [GroupController::class, 'store'])->name('group.store');
             Route::get('/create-group/', [GroupController::class, 'create'])->name('group.create');
+            Route::post('/store-group-training/', [GroupController::class, 'groupTraining'])->name('groupTraining.create');
+            Route::get('/list-group-training/', [GroupController::class, 'listGroupTraining'])->name('list.groupTraining');
 
             Route::get('/list-product/', [ProductController::class, 'index'])->name('product.index');
             Route::post('/store-product/', [ProductController::class, 'store'])->name('product.store');

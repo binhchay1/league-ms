@@ -3,10 +3,10 @@
     padding: 0;
 }
 
-.row {
-    display: flex;
-    justify-content: center;
-}
+/*.row {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
 
 p {
     margin-bottom: 0 !important;
@@ -208,4 +208,9 @@ p {
         height: 300px;
         overflow-x: auto;
     }
+}
+
+.training {
+    margin: 4px;
+    border-radius: 4px;
 }

@@ -5574,7 +5574,6 @@ li.chart table {
     display: flex;
     align-items: center;
     text-align: right;
-    margin-top: 48px
 }
 
 @media(max-width:767px) {

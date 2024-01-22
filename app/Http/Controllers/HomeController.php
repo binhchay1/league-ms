@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\Utility;
 use App\Repositories\GroupRepository;
+use App\Repositories\GroupTrainingRepository;
 use App\Repositories\LeagueRepository;
 use App\Repositories\UserLeagueRepository;
 use App\Repositories\UserRepository;
@@ -32,6 +33,7 @@ class HomeController extends Controller
     protected $notificationRepository;
     protected $scheduleRepository;
     protected $utility;
+    protected $groupTraining;
 
     public function __construct(
         UserLeagueRepository $userLeagueRepository,
@@ -44,7 +46,8 @@ class HomeController extends Controller
         ProductRepository $productRepository,
         NotificationRepository $notificationRepository,
         ScheduleRepository $scheduleRepository,
-        Utility $ultity
+        Utility $ultity,
+        GroupTrainingRepository $groupTraining
     ) {
         $this->userLeagueRepository = $userLeagueRepository;
         $this->leagueRepository = $leagueRepository;
@@ -57,6 +60,7 @@ class HomeController extends Controller
         $this->notificationRepository = $notificationRepository;
         $this->scheduleRepository = $scheduleRepository;
         $this->utility = $ultity;
+        $this->groupTraining = $groupTraining;
     }
 
     public function viewHome()
@@ -277,5 +281,32 @@ class HomeController extends Controller
         $key = 'notification_next_match_' . $user_id;
         $getNotification = $this->notificationRepository->getNotificationByUser($user_id);
         Cache::set($key, $getNotification);
+    }
+
+
+    public function groupTraining(Request $request)
+    {
+        $nameGroup = $request->get('g_i');
+        if (empty($nameGroup)) {
+            abort(404);
+        }
+
+        $listTrainings = $this->groupRepository->getGroupByName($nameGroup);
+
+        if (empty($listTrainings)) {
+            abort(404);
+        }
+        return view('page.group.training', compact('listTrainings'));
+    }
+
+    public function detailGroupTraining(Request $request)
+    {
+        $nameGroupTraining = $request->get('g_t');
+        if (empty($nameGroupTraining)) {
+            abort(404);
+        }
+
+        $groupTrainingDetail = $this->groupTraining->getGroupTrainByName($nameGroupTraining);
+        return view('page.group.detail-group-train', compact('groupTrainingDetail'));
     }
 }
