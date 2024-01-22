@@ -7,7 +7,7 @@
             <button type="submit" class="btn btn-success">{{ __('Round') }}: {{ $dataSchedule->round }}</button>
         </div>
         <div class="row">
-            <div class="col-lg-5 mt-4 text-center" >
+            <div class="col-lg-5 mt-4 text-center">
                 <strong>{{ $dataSchedule->player1Team1->name ?? ""}} / {{ $dataSchedule->player2Team1->name ?? "" }}</strong>
             </div>
 
@@ -27,13 +27,11 @@
         </div>
         <form action="{{ route('schedule.update', $dataSchedule['id']) }}" method="POST" enctype="multipart/form-data">
             @csrf()
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="form-group">
                             <input class="form-control" type="text" value="{{ $dataSchedule->league_id }}" name="league_id" id="name" hidden />
@@ -57,8 +55,7 @@
                                 </div>
                                 <div class="container">
                                     <div class="form-group">
-                                        <input class="form-control" value="" type="text" name="" id="name"
-                                               hidden/>
+                                        <input class="form-control" value="" type="text" name="" id="name" hidden />
                                     </div>
 
                                     <div class="form-group mt-4">
@@ -97,8 +94,7 @@
                                 </div>
                                 <div class="container">
                                     <div class="form-group">
-                                        <input class="form-control" type="text" value="" name="" id="name"
-                                               hidden/>
+                                        <input class="form-control" type="text" value="" name="" id="name" hidden />
                                     </div>
                                     <div class="form-group mt-4">
                                         <strong>{{ __('Final Score') }}</strong>

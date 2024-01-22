@@ -28,7 +28,7 @@
                 </ul>
             </div>
         </div>
-        <a href="{{route('league.create')}}"><button class="btn btn-success">{{__('Create League')}}</button></a>
+        <a href="{{route('league.create')}}"><button class="btn btn-success">{{ __('Create League') }}</button></a>
     </div>
     <div class="item-results">
         @foreach($listLeagues as $listLeague)

@@ -35,6 +35,7 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/info/{slug}/player/', [HomeController::class, 'showPlayer'])->name('leaguePlayer.info');
     Route::get('/info/{slug}/result/', [HomeController::class, 'showResult'])->name('leagueResult.info');
     Route::get('/info/{slug}/schedule/', [HomeController::class, 'showSchedule'])->name('leagueSchedule.info');
+    Route::get('/info/{slug}/bracket/', [HomeController::class, 'showBracket'])->name('leagueResult.bracket');
     Route::get('/info/{slug}/fight-branch/', [HomeController::class, 'showFightBranch'])->name('leagueFightBranch.info');
     Route::get('/list-teams/', [HomeController::class, 'listTeam'])->name('list.team');
     Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
@@ -78,6 +79,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/change-password/', [ProfileController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password/', [ProfileController::class, 'updatePassword'])->name('update-password');
     Route::get('/league-manager/', [HomeController::class, 'leagueManager'])->name('league-manager');
+
+    Route::get('/auto-create-league', [ScheduleController::class, 'autoCreateLeague'])->name('auto.create.schedule');
 
     Route::middleware(['admin', 'auth'])->group(
         function () {
