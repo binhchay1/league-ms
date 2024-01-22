@@ -30,6 +30,11 @@ class Group extends Model
         return $this->hasMany(GroupUser::class);
     }
 
+    public function group_trainings()
+    {
+        return $this->hasMany(GroupTraining::class);
+    }
+
     public function users()
     {
         return $this->hasOne(User::class, 'id', 'group_owner');

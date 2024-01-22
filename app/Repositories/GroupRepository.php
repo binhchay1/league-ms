@@ -19,6 +19,6 @@ class GroupRepository extends BaseRepository
 
     public function getGroupByName($name)
     {
-        return $this->model->with('group_users')->with('users')->where('name', $name)->first();
+        return $this->model->with('group_users')->with('users')->with('group_trainings')->where('name', $name)->first();
     }
 }
