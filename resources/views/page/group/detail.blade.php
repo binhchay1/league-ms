@@ -16,12 +16,12 @@ $utility = new \App\Enums\Utility();
 @endsection
 
 @section('content')
-<section id="heading">
-    <div class="container d-flex" style="background: #ad9696;">
-        <div class="mt-2">
+<section class="container " id="heading">
+    <div class="row training"  style="background: #ad9696;">
+        <div class="col-lg-2 mt-4">
             <img src="{{ asset($getGroup->images) }}" width="100" height="100" healt="Group Avatar" />
         </div>
-        <div style="margin-left: 20px;">
+        <div class="col-sm mt-3">
             <div class="d-flex">
                 <h1 class="m-0 p-0">{{ $getGroup->name }}</h1>
             </div>
@@ -31,7 +31,11 @@ $utility = new \App\Enums\Utility();
             <p><span class="fw-bold">* {{__('Location')}} : </span>{{ $getGroup->location }}</p>
             <p><em><span class="fw-bold">-----{{__('Note')}} : </span>{{ $getGroup->note }}</em></p>
         </div>
-        <hr>
+        @if(Auth::check() and $isJoined)
+        <div class="col-sm mt-4" style="text-align: center">
+            <button class=" btn btn-success" id="group-{{ $getGroup->name }}" onclick="training(this.id)">Training</button>
+        </div>
+            @endif
     </div>
 </section>
 
@@ -165,9 +169,9 @@ $utility = new \App\Enums\Utility();
                 cDate.getSeconds();
 
             if (cU == bU) {
-                ap = '<div class="d-flex flex-row justify-content-end mb-4"><div class="p-3 me-3 border append-css-this"><p class="small mb-0">' + e.message + '</p></div><img src="' + e.user_image + '" alt="Avatar" width="45"></div>';
+                ap = '<div class="d-flex flex-row justify-content-end mb-4"><div class="p-3 me-3 border append-css-this"><p class="small mb-0">' + e.message + '</p></div><img src="' + e.user_image + '" alt="Avatar" width="40" height="40"></div>';
             } else {
-                ap = '<div class="d-flex flex-row justify-content-start mb-4"><img src="' + e.user_image + '" alt="Avatar" width="45"><div class="p-3 ms-3 append-css-that"><p class="small mb-0">' + e.message + '</p></div></div>';
+                ap = '<div class="d-flex flex-row justify-content-start mb-4"><img src="' + e.user_image + '" alt="Avatar" width="40" height="40"><div class="p-3 ms-3 append-css-that"><p class="small mb-0">' + e.message + '</p></div></div>';
                 let statusMessage = '<?php echo __('Last message :')  ?>' + ' ' + datetime;
                 scrollToEnd();
                 $('#statusMessage').empty();
@@ -189,8 +193,8 @@ $utility = new \App\Enums\Utility();
                 cDate.getMinutes() + ":" +
                 cDate.getSeconds();
             let statusMessage = '<?php echo __('Sending :')  ?>' + ' ' + datetime;
-            let sImage = '<?php echo Auth::user()->profile_photo_path ?>';
-            let ap = '<div class="d-flex flex-row justify-content-end mb-4"><div class="p-3 me-3 border append-css-this"><p class="small mb-0">' + message + '</p></div><img src="' + sImage + '" alt="Avatar" width="45"></div>';
+            let sImage = '<?php echo (Auth::user()->profile_photo_path == null ? '/images/no-image.png' : Auth::user()->profile_photo_path) ?>';
+            let ap = '<div class="d-flex flex-row justify-content-end mb-4"><div class="p-3 me-3 border append-css-this"><p class="small mb-0">' + message + '</p></div><img src="' + sImage + '" alt="Avatar" width="40" height="40"></div>';
             $('#chat-area').append(ap);
             $('#statusMessage').empty();
             $('#statusMessage').html(statusMessage);
@@ -246,5 +250,13 @@ $utility = new \App\Enums\Utility();
             });
         }
     <?php } ?>
+
+
+    function training(id) {
+        let name = id.substring(6);
+        let url = '/group-training?g_i=' + name;
+
+        window.location.href = url;
+    }
 </script>
 @endsection

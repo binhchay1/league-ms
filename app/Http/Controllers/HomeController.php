@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\Utility;
 use App\Repositories\GroupRepository;
+use App\Repositories\GroupTrainingRepository;
 use App\Repositories\LeagueRepository;
 use App\Repositories\UserLeagueRepository;
 use App\Repositories\UserRepository;
@@ -12,6 +13,7 @@ use App\Repositories\MessageRepository;
 use App\Repositories\NotificationRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\RankingRepository;
+use App\Repositories\ScheduleRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -29,7 +31,9 @@ class HomeController extends Controller
     protected $rankingRepository;
     protected $productRepository;
     protected $notificationRepository;
+    protected $scheduleRepository;
     protected $utility;
+    protected $groupTraining;
 
     public function __construct(
         UserLeagueRepository $userLeagueRepository,
@@ -41,7 +45,9 @@ class HomeController extends Controller
         RankingRepository $rankingRepository,
         ProductRepository $productRepository,
         NotificationRepository $notificationRepository,
-        Utility $ultity
+        ScheduleRepository $scheduleRepository,
+        Utility $ultity,
+        GroupTrainingRepository $groupTraining
     ) {
         $this->userLeagueRepository = $userLeagueRepository;
         $this->leagueRepository = $leagueRepository;
@@ -52,7 +58,9 @@ class HomeController extends Controller
         $this->rankingRepository = $rankingRepository;
         $this->productRepository = $productRepository;
         $this->notificationRepository = $notificationRepository;
+        $this->scheduleRepository = $scheduleRepository;
         $this->utility = $ultity;
+        $this->groupTraining = $groupTraining;
     }
 
     public function viewHome()
@@ -223,16 +231,17 @@ class HomeController extends Controller
         return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule'));
     }
 
-    public function showFightBranch($slug)
+    public function showBracket($slug)
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
         $listLeagues = $this->leagueRepository->getLeagueHome();
+        $listSchedules = $this->scheduleRepository->getScheduleByLeague($leagueInfor->id);
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
 
-        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule'));
+        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'listSchedules'));
     }
 
     public function showSchedule($slug)
@@ -272,5 +281,32 @@ class HomeController extends Controller
         $key = 'notification_next_match_' . $user_id;
         $getNotification = $this->notificationRepository->getNotificationByUser($user_id);
         Cache::set($key, $getNotification);
+    }
+
+
+    public function groupTraining(Request $request)
+    {
+        $nameGroup = $request->get('g_i');
+        if (empty($nameGroup)) {
+            abort(404);
+        }
+
+        $listTrainings = $this->groupRepository->getGroupByName($nameGroup);
+
+        if (empty($listTrainings)) {
+            abort(404);
+        }
+        return view('page.group.training', compact('listTrainings'));
+    }
+
+    public function detailGroupTraining(Request $request)
+    {
+        $nameGroupTraining = $request->get('g_t');
+        if (empty($nameGroupTraining)) {
+            abort(404);
+        }
+
+        $groupTrainingDetail = $this->groupTraining->getGroupTrainByName($nameGroupTraining);
+        return view('page.group.detail-group-train', compact('groupTrainingDetail'));
     }
 }

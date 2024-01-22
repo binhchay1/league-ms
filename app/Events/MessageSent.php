@@ -43,11 +43,17 @@ class MessageSent implements ShouldBroadcast
         $userHash = Hash::make($this->user->id);
         $groupHash = Hash::make($this->group_id);
 
+        if ($this->user->profile_photo_path == null) {
+            $userImage = '/images/no-image.png';
+        } else {
+            $userImage = $this->user->profile_photo_path;
+        }
+
         return [
             'user_id' => $userHash,
             'message' => $this->message->message,
             'group_id' => $groupHash,
-            'user_image' => $this->user->profile_photo_path,
+            'user_image' => $userImage
         ];
     }
 }

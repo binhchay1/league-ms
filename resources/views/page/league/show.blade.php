@@ -59,9 +59,12 @@
             <div class="wrapper-content-results" style="padding: 0px; margin-top: 18px;">
                 <ul id="ajaxTabs" class="content-tabs">
                     <li>
-                        <a href="{{route('leagueResult.info', $leagueInfor['slug'])}}">{{ __('Result') }} </a>
+                        <a href="{{ route('leagueResult.bracket', $leagueInfor['slug']) }}">{{ __('Bracket') }} </a>
                     </li>
-                    <li><a href="{{route('leagueSchedule.info', $leagueInfor['slug'])}}">{{ __('Schedule') }}</a>
+                    <li>
+                        <a href="{{ route('leagueResult.info', $leagueInfor['slug']) }}">{{ __('Result') }} </a>
+                    </li>
+                    <li><a href="{{ route('leagueSchedule.info', $leagueInfor['slug']) }}">{{ __('Schedule') }}</a>
                     </li>
                     <li><a id="player-data" href="{{ route('leaguePlayer.info', $leagueInfor['slug']) }}">{{ __('Player ') }}</a>
                     </li>
@@ -187,8 +190,12 @@
                         <div>
                             @include('page.league.detail.schedule')
                         </div>
-                        @else
+                        @elseif(Route::current()->getName() == 'leagueResult.bracket')
                         <div>
+                            @include('page.league.detail.bracket')
+                        </div>
+                        @else
+                        <div class="item draws" style="display:block;">
                             @include('page.league.detail.schedule')
                         </div>
                         @endif
@@ -199,6 +206,7 @@
     </div>
 </div>
 @endsection
+
 @section('js')
 <script src="{{ asset('js/league.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -210,7 +218,7 @@
 
     var current_date = '<?php echo  strtotime(date("Y-m-d")); ?>';
     var start_date = '<?php echo strtotime($leagueInfor->start_date); ?>';
-    if ( current_date >= start_date ) {
+    if (current_date >= start_date) {
         $('#register-league').hide();
     } else {
         $('#register-league').show();
