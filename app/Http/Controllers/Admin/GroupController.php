@@ -44,6 +44,7 @@ class GroupController extends Controller
         if ($input['activity_time_end'] != null) {
             $input['activity_time'] .= ' - ' . $input['activity_time_end'];
         }
+
         if (isset($input['images'])) {
             $img = $this->utility->saveImageGroup($input);
             if ($img) {

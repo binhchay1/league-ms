@@ -89,15 +89,15 @@ class SocialLoginController extends Controller
             $getUserByEmail = $this->userRepository->getUserByEmail($user->email);
 
             if ($getUserByEmail) {
-                $this->userRepository->updateSocialID($user->email, ['google_id' => $user->id]);
+                $this->userRepository->updateSocialID($user->email, ['facebook_id' => $user->id]);
                 Auth::login($getUserByEmail);
 
                 return redirect()->route('home');
             } else {
-                $getUserByGoogle = $this->userRepository->getUserByFacebook($user->id);
+                $getUserByFacebook = $this->userRepository->getUserByFacebook($user->id);
 
-                if ($getUserByGoogle) {
-                    Auth::login($getUserByGoogle);
+                if ($getUserByFacebook) {
+                    Auth::login($getUserByFacebook);
 
                     return redirect()->route('home');
                 } else {
@@ -108,7 +108,8 @@ class SocialLoginController extends Controller
                         'password' => Hash::make('123456dummy'),
                         'email_verified_at' => date("Y-m-d h:i:s"),
                         'role' => Role::USER,
-                        'title' => Title::USER
+                        'title' => Title::USER,
+                        'profile_photo_path' => $user->avatar
                     ];
 
                     $newUser = $this->userRepository->create($data);
@@ -124,6 +125,88 @@ class SocialLoginController extends Controller
                     Auth::loginUsingId($newUser->id);
 
                     return redirect()->route('home');
+                }
+            }
+        } catch (Exception $e) {
+            return redirect()->intended('login')->with('error', $e->getMessage());
+        }
+    }
+
+    public function redirectToLine()
+    {
+        return Socialite::driver('line')->redirect();
+    }
+
+    public function handleLineCallback()
+    {
+        try {
+            $user = Socialite::driver('line')->user();
+            if ($user->email == null) {
+                $data = [
+                    'email' => 'login_by_line_' . date('Y-m-d H:i:s') . '@gmail.com',
+                    'name' => $user->name,
+                    'line_id' => $user->id,
+                    'password' => Hash::make('123456dummy'),
+                    'email_verified_at' => date("Y-m-d h:i:s"),
+                    'role' => Role::USER,
+                    'title' => Title::USER,
+                    'profile_photo_path' => $user->avatar
+                ];
+
+                $newUser = $this->userRepository->create($data);
+
+                $dataRanking = [
+                    'user_id' => $newUser->id,
+                    'points' => 0,
+                    'places' => 0,
+                    'places_old' => 0
+                ];
+                $this->rankingRepository->create($dataRanking);
+
+                Auth::loginUsingId($newUser->id);
+
+                return redirect()->route('home');
+            } else {
+                $getUserByEmail = $this->userRepository->getUserByEmail($user->email);
+
+                if ($getUserByEmail) {
+                    $this->userRepository->updateSocialID($user->email, ['google_id' => $user->id]);
+                    Auth::login($getUserByEmail);
+
+                    return redirect()->route('home');
+                } else {
+                    $getUserByLine = $this->userRepository->getUserByFacebook($user->id);
+
+                    if ($getUserByLine) {
+                        Auth::login($getUserByLine);
+
+                        return redirect()->route('home');
+                    } else {
+                        $data = [
+                            'email' => $user->email,
+                            'name' => $user->name,
+                            'google_id' => $user->id,
+                            'password' => Hash::make('123456dummy'),
+                            'email_verified_at' => date("Y-m-d h:i:s"),
+                            'role' => Role::USER,
+                            'title' => Title::USER,
+                            'profile_photo_path' => $user->avatar
+                        ];
+
+                        $newUser = $this->userRepository->create($data);
+
+                        $dataRanking = [
+                            'user_id' => $newUser->id,
+                            'points' => 0,
+                            'places' => 0,
+                            'places_old' => 0
+                        ];
+                        $this->rankingRepository->create($dataRanking);
+
+                        Auth::loginUsingId($newUser->id);
+
+                        return redirect()->route('home');
+                    }
                 }
             }
         } catch (Exception $e) {

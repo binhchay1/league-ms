@@ -22,17 +22,15 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::middleware(['verified', 'cache.notification'])->group(function () {
+Route::middleware(['cache.notification'])->group(function () {
     Route::get('/', [HomeController::class, 'viewHome'])->name('home');
     Route::get('/list-of-league/', [HomeController::class, 'listLeague'])->name('list.league');
-    Route::get('/top-league/', [HomeController::class, 'listTopLeague'])->name('top.league');
     Route::post('/search/', [HomeController::class, 'viewSearch'])->name('search.result');
     Route::get('/search/', [HomeController::class, 'viewSearch'])->name('search');
-    Route::get('/shop/', [HomeController::class, 'viewShop'])->name('shop');
+    // Route::get('/shop/', [HomeController::class, 'viewShop'])->name('shop');
     Route::get('/about/', [HomeController::class, 'viewAbout'])->name('about');
     Route::get('/privacy/', [HomeController::class, 'viewPrivacy'])->name('privacy');
     Route::get('/term-and-conditions/', [HomeController::class, 'viewTermAndConditions'])->name('term.and.conditions');
-    Route::get('/pricing/', [HomeController::class, 'viewPricing'])->name('pricing');
     Route::get('/info/{slug}/', [HomeController::class, 'showInfo'])->name('league.info');
     Route::get('/info/{slug}/player/', [HomeController::class, 'showPlayer'])->name('leaguePlayer.info');
     Route::get('/info/{slug}/result/', [HomeController::class, 'showResult'])->name('leagueResult.info');
@@ -41,26 +39,22 @@ Route::middleware(['verified', 'cache.notification'])->group(function () {
     Route::get('/list-teams/', [HomeController::class, 'listTeam'])->name('list.team');
     Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
     Route::get('/detail-group/', [HomeController::class, 'detailGroup'])->name('detail.group');
-    Route::post('/register-league/', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
     Route::get('/ranking/', [HomeController::class, 'viewRanking'])->name('ranking');
-    Route::get('/player/{id}/', [HomeController::class, 'viewInforPlayer'])->name('player.info');
-    Route::get('/read-notifications/', [HomeController::class, 'readNotification'])->name('read.notification');
 });
 
 Route::middleware(['auth'])->group(function () {
+    Route::post('/register-league/', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
+    Route::get('/player/{id}/', [HomeController::class, 'viewInforPlayer'])->name('player.info');
+    Route::get('/read-notifications/', [HomeController::class, 'readNotification'])->name('read.notification');
+    Route::get('/profile/', [AuthController::class, 'profile'])->name('profile');
+    Route::get('/my-group/', [AuthController::class, 'viewMyGroup'])->name('my.group');
+    Route::get('/join-group/', [AuthController::class, 'joinGroup'])->name('join.group');
+    Route::post('/messages/', [AuthController::class, 'sendMessage'])->name('send.message');
     Route::get('/verify/{token}/', [AuthController::class, 'verifyEmail'])->name('user.verify');
     Route::get('/verify-email/', [AuthController::class, 'viewVerifyEmail'])->name('verify.email');
     Route::post('/resend-verify/', [AuthController::class, 'resendVerify'])->name('resend.verify.email');
     Route::get('/verified-email/', [AuthController::class, 'viewVerifiedEmail'])->name('verified.email');
     Route::get('/signout/', [AuthController::class, 'signOut'])->name('signout');
-
-    Route::middleware(['verified'])->group(function () {
-
-        Route::get('/profile/', [AuthController::class, 'profile'])->name('profile');
-        Route::get('/my-group/', [AuthController::class, 'viewMyGroup'])->name('my.group');
-        Route::get('/join-group/', [AuthController::class, 'joinGroup'])->name('join.group');
-        Route::post('/messages/', [AuthController::class, 'sendMessage'])->name('send.message');
-    });
 });
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');
@@ -70,6 +64,9 @@ Route::get('/auth/google/', [SocialLoginController::class, 'redirectToGoogle'])-
 Route::get('/auth/google/callback/', [SocialLoginController::class, 'handleGoogleCallback']);
 Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
 Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
+Route::get('/auth/line/', [SocialLoginController::class, 'redirectToLine'])->name('auth.line');
+Route::get('/auth/line/callback/', [SocialLoginController::class, 'handleLineCallback']);
+Route::get('/auth/line/callbackInformation/', [SocialLoginController::class, 'handleLineCallbackInformation']);
 Route::get('/register/', [AuthController::class, 'registerUser'])->name('register_user');
 Route::post('/register/', [AuthController::class, 'storeUser'])->name('storeUser');
 Route::get('/setLocale/{locale}/', [HomeController::class, 'changeLocate'])->name('app.setLocale');
@@ -97,6 +94,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('/update-league/{id}/', [LeagueController::class, 'update'])->name('league.update');
             Route::post('/update-player-league/{id}/', [LeagueController::class, 'updatePlayer'])->name('league.updatePlayer');
             Route::get('/delete-player-league/{id}/', [LeagueController::class, 'destroyPlayer'])->name('league.destroyPlayer');
+            Route::get('/leagues/', [LeagueController::class, 'leagues'])->name('league.activeLeague');
+            Route::get('/active-league/{id}', [LeagueController::class, 'activeLeague'])->name('activeLeague');
 
             Route::get('/list-schedule-league/', [ScheduleController::class, 'league'])->name('schedule.league');
             Route::get('/list-schedule/', [ScheduleController::class, 'index'])->name('schedule.index');

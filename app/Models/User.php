@@ -36,6 +36,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at',
         'google_id',
         'facebook_id',
+        'line_id',
         'profile_photo_path',
     ];
 
@@ -66,11 +67,6 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
 
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
-
     public function messages()
     {
         return $this->hasMany(Message::class, 'user_id', 'id');
@@ -99,5 +95,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function schedule()
     {
         return $this->hasMany('App\Models\Schedule');
+    }
+
+    public function league()
+    {
+        return $this->hasMany('App\Models\League');
     }
 }

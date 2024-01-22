@@ -13,7 +13,7 @@
 
     <section style="background-color: #DA0011; margin-top: -25px">
         <div>
-            <img class="img-responsive b-error b-error" alt="" src="{{ asset('images/World_Tour_Website_Placeholder-KV_June-2023-(2).jpg') }}">
+            <img class="img-responsive b-error b-error" width="100%" src="{{ asset('images/banner-homepage.jpg') }}">
         </div>
     </section>
 
@@ -75,6 +75,7 @@
                             <div class="rankings-content_tabpanel item">
                                 <div class="top-ranked-wrap">
                                     @foreach($listRank as $index => $rank)
+                                    @if($rank->users != null)
                                     <div class="top-ranked-left-single">
                                         <div class="top-ranked-avatar">
                                             <a title="" href="">
@@ -86,7 +87,8 @@
                                         <div class="top-ranked-country-wrap">
                                             <div class="top-ranked-country">
                                                 <a title="" href="">
-                                                    {{ $rank->users->name }} </a>
+                                                    {{ $rank->users->name }}
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="top-ranked-info-wrap">
@@ -104,6 +106,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                     @endforeach
                                 </div>
                                 <div class="top-ranked-nav-wrap">
