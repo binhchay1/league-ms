@@ -148,7 +148,7 @@ class HomeController extends Controller
     public function listLeague()
     {
         $listLeague = $this->leagueRepository->getLeagueHome();
-        $listLeagues = $this->utility->paginate($listLeague, 5, 'list-of-league');
+        $listLeagues = $this->utility->paginate($listLeague, 5, 'leagues');
 
         return view('page.league.index', compact('listLeague', 'listLeagues'));
     }

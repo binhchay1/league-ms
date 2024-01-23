@@ -15,7 +15,6 @@ class Group extends Model
         'name',
         'images',
         'description',
-        'activity_time',
         'number_of_members',
         'location',
         'note',
