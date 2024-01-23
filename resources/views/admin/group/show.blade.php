@@ -13,6 +13,9 @@
                     </div>
                     <div class="col-lg-6">
                         <h2>{{ $dataGroup->name }}</h2>
+                        <p>* {{ __('Description') }}: {{ $dataGroup->description }}</p>
+                        <p>* {{ __('Location') }}: {{ $dataGroup->location }}</p>
+                        <p class="fst-italic fw-light fw-bold">----- {{ __('Note') }}: {{ $dataGroup->note }}</p>
                     </div>
                 </div>
             </div>

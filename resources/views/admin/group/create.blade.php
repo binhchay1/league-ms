@@ -58,29 +58,6 @@
                             <span class="text-danger">{{ $errors->first('description') }}</span>
                             @endif
                         </div>
-
-                        <div>
-                            <label for="activity_time" class="form-label">{{ __('Activity time') }}</label>
-                            <p>Start</p>
-                            <input class="form-control" type="time" name="activity_time_start" id="activity_time_start" value="{{ old('activity_time_start') }}" />
-                            @if ($errors->has('activity_time_start'))
-                            <span class="text-danger">{{ $errors->first('activity_time_start') }}</span>
-                            @endif
-                            <p>End</p>
-                            <input class="form-control" type="time" name="activity_time_end" id="activity_time_end" value="{{ old('activity_time_end') }}" />
-                            @if ($errors->has('activity_time_end'))
-                            <span class="text-danger">{{ $errors->first('activity_time_end') }}</span>
-                            @endif
-                        </div>
-
-                        <div>
-                            <label for="number_of_members" class="form-label">{{ __('Number of members') }}</label>
-                            <input class="form-control" type="number" name="number_of_members" id="number_of_members" min="1" max="50" value="{{ old('number_of_members') }}" placeholder="{{ __('Choose number of member') }}" />
-                            @if ($errors->has('number_of_members'))
-                            <span class="text-danger">{{ $errors->first('number_of_members') }}</span>
-                            @endif
-                        </div>
-
                         <div>
                             <label for="location" class="form-label">{{ __('Location') }}</label>
                             <input class="form-control" type="text" name="location" id="location" value="{{ old('location') }}" placeholder="{{ __('Enter group location') }}" />
