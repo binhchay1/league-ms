@@ -30,4 +30,9 @@ class UserLeagueRepository extends BaseRepository
     {
         return $this->model->with('league')->where('user_id', $userId)->get();
     }
+
+    public function countTotalMembersInLeague($league_id)
+    {
+        return $this->model->where('league_id', $league_id)->count();
+    }
 }
