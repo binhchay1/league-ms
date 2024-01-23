@@ -21,7 +21,7 @@ $utility = new \App\Enums\Utility();
         <div class="col-lg-2 mt-4">
             <img src="{{ asset($getGroup->images) }}" width="100" height="100" healt="Group Avatar" />
         </div>
-        <div class="col-sm mt-3">
+        <div class="col-lg-10 mt-3">
             <div class="d-flex">
                 <h1 class="m-0 p-0">{{ $getGroup->name }}</h1>
             </div>
@@ -32,7 +32,7 @@ $utility = new \App\Enums\Utility();
             <p><em><span class="fw-bold">-----{{__('Note')}} : </span>{{ $getGroup->note }}</em></p>
         </div>
         @if(Auth::check() and $isJoined)
-        <div class="col-sm mt-4" style="text-align: center">
+        <div class=" mt-4" style="text-align: left; margin-bottom: 10px">
             <button class=" btn btn-success" id="group-{{ $getGroup->name }}" onclick="training(this.id)">Training</button>
         </div>
             @endif

@@ -19,7 +19,7 @@
 
     <div class="container">
         <div class="row">
-            @foreach($listTrainings->group_trainings as $train)
+            @forelse($listTrainings->group_trainings as $train)
             <div class="col-sm-4">
                 <div class="card " style="margin: 5px">
                     <div class="card-header">
@@ -42,7 +42,9 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+            @empty
+                <h2 class="text-center" style="height: 420px">{{__('There is no group training!')}}</h2>
+            @endforelse
         </div>
     </div>
 

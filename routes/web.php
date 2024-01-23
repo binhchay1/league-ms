@@ -24,7 +24,7 @@ use App\Http\Controllers\AuthController;
 
 Route::middleware(['cache.notification'])->group(function () {
     Route::get('/', [HomeController::class, 'viewHome'])->name('home');
-    Route::get('/list-of-league/', [HomeController::class, 'listLeague'])->name('list.league');
+    Route::get('/tournament-leagues/', [HomeController::class, 'listLeague'])->name('list.league');
     Route::post('/search/', [HomeController::class, 'viewSearch'])->name('search.result');
     Route::get('/search/', [HomeController::class, 'viewSearch'])->name('search');
     // Route::get('/shop/', [HomeController::class, 'viewShop'])->name('shop');
