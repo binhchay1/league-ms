@@ -9,8 +9,8 @@ $utility = new \App\Enums\Utility();
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/page/ranking.css') }}" />
-<link rel="stylesheet" id="bwf-style-css" href="{{asset('css/page/homepage.css')}}" type="text/css" media="all"/>
+    <link rel="stylesheet" href="{{ asset('css/page/ranking.css') }}" />
+    <link rel="stylesheet" id="bwf-style-css" href="{{asset('css/page/homepage.css')}}" type="text/css" media="all"/>
 
 @endsection
 
@@ -18,11 +18,11 @@ $utility = new \App\Enums\Utility();
     <section class="container-1280 rankings-section pb-200" id="ranking">
         <div class="std-title">
             <div class="std-title-left">
-                <h2 class="left">{{__('RANKING')}}</h2>
+                <h2 class="left" style=" font-weight: 400;">{{__('RANKING')}}</h2>
             </div>
         </div>
         <div class="wrapper-ranking" style="padding-top: 0; padding-bottom: 0">
-            <p class="fw-bold">Updated: {{ $ranking[0]->updated_at }}</p>
+            <p class="fw-bold">{{__('Updated')}}: {{ $ranking[0]->updated_at }}</p>
         </div>
 
         <div class="tab-content rankings-content_tabpanel">

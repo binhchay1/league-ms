@@ -166,12 +166,21 @@ ul.select-list li:nth-child(1) a {
     border-left: 2px solid  #000;
 }
 
-.active-menu{
-    background-color:#d90000;
-    color:#fff;
-
-}
-
 .tblResultLanding{
     margin-bottom: 20px;
 }
+
+ul.select-list li :hover {
+    background-color: red;
+}
+
+.btn-league {
+    font-size: 20px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    background-color: #6cbe4c;
+    border-color: transparent;
+    font-weight: 500;
+    width: 200px;
+}
+

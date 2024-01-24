@@ -33,7 +33,7 @@ $utility = new \App\Enums\Utility();
         </div>
         @if(Auth::check() and $isJoined)
         <div class=" mt-4" style="text-align: left; margin-bottom: 10px">
-            <button class=" btn btn-success" id="group-{{ $getGroup->name }}" onclick="training(this.id)">Training</button>
+            <button class=" btn btn-success btn-training" id="group-{{ $getGroup->name }}" onclick="training(this.id)">{{__('Training')}}</button>
         </div>
             @endif
     </div>
