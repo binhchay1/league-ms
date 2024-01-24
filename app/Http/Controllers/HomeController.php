@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Utility;
+use App\Enums\League;
 use App\Repositories\GroupRepository;
 use App\Repositories\GroupTrainingRepository;
 use App\Repositories\LeagueRepository;
@@ -235,14 +236,31 @@ class HomeController extends Controller
     public function showBracket($slug)
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
-        $listLeagues = $this->leagueRepository->getLeagues();
-        $listSchedules = $this->scheduleRepository->getScheduleByLeague($leagueInfor->id);
+        $listLeagues = $this->leagueRepository->getLeagueHome();
+        $listSchedules = $this->scheduleRepository->getScheduleByLeagueOrderByMatch($leagueInfor->id);
+        $totalMembers = $this->userLeagueRepository->countTotalMembersInLeague($leagueInfor->id);
+        $listRound = League::ROUND_LEAGUE;
+        $listSchedulesRound = [];
+        foreach ($listSchedules as $schedule) {
+            if (!in_array($schedule->round, $listSchedulesRound)) {
+                $listSchedulesRound[] = $schedule->round;
+            }
+        }
+
+        $diffRound = array_diff($listSchedulesRound, $listRound);
+        if (empty($diffRound)) {
+            $displayRound = $listSchedulesRound;
+        } else {
+            $displayRound = $diffRound;
+        }
+
+        dd($listSchedules);
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
 
-        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'listSchedules'));
+        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'listSchedules', 'displayRound'));
     }
 
     public function showSchedule($slug)
