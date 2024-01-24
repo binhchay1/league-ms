@@ -132,8 +132,24 @@ class ScheduleController extends Controller
         $dataSchedule = [];
         $timeInDay = $getLeague->start_time;
         $countMatch = 1;
+        $totalMembers = count($listAuto);
 
         if (strpos($getLeague->type_of_league, 'singles') > 0) {
+            if ($totalMembers < 4) {
+                $report = __('The number of members participating in the tournament must be greater than 8');
+                return redirect()->route('schedule.leagueSchedule', $getLeague->id)->with('message', $report);
+            }
+
+            if ($totalMembers == 4) {
+                $round = 'semi-finals';
+            } elseif ($totalMembers <= 8) {
+                $round = 'quarter-finals';
+            } elseif ($totalMembers <= 16) {
+                $round = 'round 2';
+            } else {
+                $round = 'round 1';
+            }
+
             for ($i = 0; $i < count($listAuto); $i++) {
                 if ($i % 2 != 0) {
                     continue;
@@ -142,7 +158,7 @@ class ScheduleController extends Controller
                 $data = [
                     'league_id' => $getLeague->id,
                     'match' => $countMatch,
-                    'round' => 1,
+                    'round' => $round,
                     'time' => $timeInDay,
                     'date' => $getLeague->start_date,
                     'player1_team_1' => $listAuto[$i],
@@ -160,7 +176,23 @@ class ScheduleController extends Controller
         } else {
             $countLack = 0;
             $breakFor = 0;
+            if ($totalMembers < 8) {
+                $report = __('The number of members participating in the tournament must be greater than 16');
+                return redirect()->route('schedule.leagueSchedule', $getLeague->id)->with('message', $report);
+            }
+
+            if ($totalMembers <= 8) {
+                $round = 'semi-finals';
+            } elseif ($totalMembers <= 16) {
+                $round = 'quarter-finals';
+            } elseif ($totalMembers <= 32) {
+                $round = 'round 2';
+            } else {
+                $round = 'round 1';
+            }
+
             for ($i = 0; $i < count($listAuto); $i++) {
+
                 if ($i <= $breakFor and $i != 0) {
                     continue;
                 }
@@ -168,7 +200,7 @@ class ScheduleController extends Controller
                 $data = [
                     'league_id' => $getLeague->id,
                     'match' => $countMatch,
-                    'round' => 1,
+                    'round' => $round,
                     'time' => $timeInDay,
                     'date' => $getLeague->start_date,
                     'player1_team_1' => $listAuto[$i],
@@ -210,7 +242,6 @@ class ScheduleController extends Controller
             }
         }
 
-        // dd($dataSchedule);
         $this->scheduleRepository->createMultiple($dataSchedule);
 
         return redirect()->route('schedule.index')->with('message', __('Create auto schedule successfully!'));

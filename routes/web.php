@@ -40,8 +40,6 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/list-teams/', [HomeController::class, 'listTeam'])->name('list.team');
     Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
     Route::get('/detail-group/', [HomeController::class, 'detailGroup'])->name('detail.group');
-    Route::get('/group-training/', [HomeController::class, 'groupTraining'])->name('list.train');
-    Route::get('/training/', [HomeController::class, 'detailGroupTraining'])->name('groupTrain.detail');
     Route::get('/ranking/', [HomeController::class, 'viewRanking'])->name('ranking');
 });
 
@@ -58,6 +56,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/resend-verify/', [AuthController::class, 'resendVerify'])->name('resend.verify.email');
     Route::get('/verified-email/', [AuthController::class, 'viewVerifiedEmail'])->name('verified.email');
     Route::get('/signout/', [AuthController::class, 'signOut'])->name('signout');
+    Route::get('/training/', [HomeController::class, 'detailGroupTraining'])->name('groupTrain.detail');
+    Route::get('/group-training/', [HomeController::class, 'groupTraining'])->name('list.train');
 });
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');

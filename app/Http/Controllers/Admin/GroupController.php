@@ -104,7 +104,7 @@ class GroupController extends Controller
         }
         $this->groupTraining->create($input);
 
-        return redirect()->route('groupTraining.index');
+        return redirect()->route('list.groupTraining');
     }
 
     public function listGroupTraining()
