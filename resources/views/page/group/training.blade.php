@@ -17,7 +17,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container" style="margin-bottom: 125px">
         <div class="row">
             @forelse($listTrainings->group_trainings as $train)
             <div class="col-sm-4">
