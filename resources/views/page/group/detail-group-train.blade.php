@@ -29,13 +29,26 @@
             </div>
         </div>
 
-        <div class="card" style="width: 50rem; margin-top: 20px; margin-bottom: 20px">
+        <div class="card" style="width: 50rem; margin-top: 20px; margin-bottom: 120px">
 
             <div class="card-header">
                 {{__('Join')}}
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"></li>
+                <li class="list-group-item">1</li>
+                <li class="list-group-item">1</li>
+                <li class="list-group-item">1</li>
+                <li class="list-group-item">1</li>
+                <li class="list-group-item">1</li>
+                <li class="list-group-item">1</li>
+                <li class="list-group-item">1</li>
+                <li class="list-group-item">1</li>
+                <li class="list-group-item">1</li>
+                <li class="list-group-item">1</li>
+                <li class="list-group-item">1</li>
+                <li class="list-group-item">1</li>
+                <li class="list-group-item">1</li>
+                <li class="list-group-item">1</li>
             </ul>
         </div>
     </div>

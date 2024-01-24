@@ -17,7 +17,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container" style="margin-bottom: 125px">
         <div class="row">
             @forelse($listTrainings->group_trainings as $train)
             <div class="col-sm-4">
@@ -33,8 +33,8 @@
                     </div>
                     <div class="card-footer text-muted d-flex">
                         <div class="col-lg-6">
-                            <button class="btn btn-success"
-                                    id="group-{{ $train->name }}" onclick="detailGroupTraining(this.id)">Join</button>
+                            <button class="btn btn-success btn-training"
+                                    id="group-{{ $train->name }}" onclick="detailGroupTraining(this.id)">{{__('Join')}}</button>
                         </div>
                         <div class="col-lg-6">
                             <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">10/20</div>

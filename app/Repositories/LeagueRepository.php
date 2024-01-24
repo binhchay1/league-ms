@@ -61,7 +61,27 @@ class LeagueRepository extends BaseRepository
         return $this->model->orderBy('created_at', 'desc')->take(1)->get();
     }
 
-    public function getLeagueHome()
+    public function getLeagueHome($getLeagueByState)
+    {
+
+        if ($getLeagueByState == 'all')
+        {
+            return $this->model->orderBy('created_at', 'desc')->get();
+        }
+        elseif ($getLeagueByState == 'next')
+        {
+            return $this->model->whereDate('created_at', '>',  date('Y-m-d'))->orderBy('created_at', 'desc')->get();
+        }
+        elseif ($getLeagueByState == 'completed')
+        {
+            return $this->model->whereDate('created_at', '<',  date('Y-m-d'))->orderBy('created_at', 'desc')->get();
+        }
+
+        return $this->model->orderBy('created_at', 'desc')->get();
+
+    }
+
+    public function getLeagues()
     {
         return $this->model->orderBy('created_at', 'desc')->get();
     }
