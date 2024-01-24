@@ -16,8 +16,8 @@
                                 <form method="POST" action="{{ route('login.custom') }}">
                                     @csrf
                                     <div class="d-flex align-items-center mb-3 pb-1">
-                                        <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                                        <span class="h1 fw-bold mb-0">{{ __('Login') }}</span>
+                                        <a href="{{route('home')}}"> <img src="{{ asset('/images/logo-no-background.png') }}" style="width: 50px; height: 50px"></a>
+                                        <span style="margin-left: 20px;" class="h1 fw-bold mb-0">{{ __('Login') }}</span>
                                     </div>
 
                                     <div class="form-outline mb-4">

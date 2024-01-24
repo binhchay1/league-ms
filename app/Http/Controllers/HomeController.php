@@ -144,9 +144,10 @@ class HomeController extends Controller
         return view('page.user.player', compact('user', 'groups', 'leagues'));
     }
 
-    public function listLeague()
+    public function listLeague(Request $request)
     {
-        $listLeague = $this->leagueRepository->getLeagueHome();
+        $getLeagueByState = $request->get('state');
+        $listLeague = $this->leagueRepository->getLeagueHome($getLeagueByState);
         $listLeagues = $this->utility->paginate($listLeague, 5, 'leagues');
 
         return view('page.league.index', compact('listLeague', 'listLeagues'));
@@ -164,7 +165,7 @@ class HomeController extends Controller
     {
 
         $leagueInfor = $this->leagueRepository->showInfo($slug);
-        $listLeagues = $this->leagueRepository->getLeagueHome();
+        $listLeagues = $this->leagueRepository->getLeagues();
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
@@ -214,7 +215,7 @@ class HomeController extends Controller
     public function showPlayer($slug)
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
-        $listLeagues = $this->leagueRepository->getLeagueHome();
+        $listLeagues = $this->leagueRepository->getLeagues();
 
         return view('page.league.show', compact('leagueInfor', 'listLeagues'));
     }
@@ -222,7 +223,7 @@ class HomeController extends Controller
     public function showResult($slug)
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
-        $listLeagues = $this->leagueRepository->getLeagueHome();
+        $listLeagues = $this->leagueRepository->getLeagues();
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
@@ -234,7 +235,7 @@ class HomeController extends Controller
     public function showBracket($slug)
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
-        $listLeagues = $this->leagueRepository->getLeagueHome();
+        $listLeagues = $this->leagueRepository->getLeagues();
         $listSchedules = $this->scheduleRepository->getScheduleByLeague($leagueInfor->id);
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
@@ -247,7 +248,7 @@ class HomeController extends Controller
     public function showSchedule($slug)
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
-        $listLeagues = $this->leagueRepository->getLeagueHome();
+        $listLeagues = $this->leagueRepository->getLeagues();
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
