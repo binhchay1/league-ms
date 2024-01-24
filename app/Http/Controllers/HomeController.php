@@ -164,9 +164,8 @@ class HomeController extends Controller
 
     public function showInfo($slug)
     {
-
         $leagueInfor = $this->leagueRepository->showInfo($slug);
-        $listLeagues = $this->leagueRepository->getLeagues();
+        $listLeagues = $this->leagueRepository->getLeagueHome();
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
@@ -216,7 +215,7 @@ class HomeController extends Controller
     public function showPlayer($slug)
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
-        $listLeagues = $this->leagueRepository->getLeagues();
+        $listLeagues = $this->leagueRepository->getLeagueHome();
 
         return view('page.league.show', compact('leagueInfor', 'listLeagues'));
     }
@@ -224,7 +223,7 @@ class HomeController extends Controller
     public function showResult($slug)
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
-        $listLeagues = $this->leagueRepository->getLeagues();
+        $listLeagues = $this->leagueRepository->getLeagueHome();
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
@@ -239,34 +238,25 @@ class HomeController extends Controller
         $listLeagues = $this->leagueRepository->getLeagueHome();
         $listSchedules = $this->scheduleRepository->getScheduleByLeagueOrderByMatch($leagueInfor->id);
         $totalMembers = $this->userLeagueRepository->countTotalMembersInLeague($leagueInfor->id);
-        $listRound = League::ROUND_LEAGUE;
-        $listSchedulesRound = [];
-        foreach ($listSchedules as $schedule) {
-            if (!in_array($schedule->round, $listSchedulesRound)) {
-                $listSchedulesRound[] = $schedule->round;
-            }
-        }
+        $groupRound = $listSchedules->groupBy('round');
+        $totalColumn = count($groupRound);
+        $totalRow = League::TOTAL_COUNT_LEAGUE[$totalColumn];
+        // $groupRoundByKey =
 
-        $diffRound = array_diff($listSchedulesRound, $listRound);
-        if (empty($diffRound)) {
-            $displayRound = $listSchedulesRound;
-        } else {
-            $displayRound = $diffRound;
-        }
-
-        dd($listSchedules);
+        // dd($totalMembers);
+        // dd($groupRound);
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
 
-        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'listSchedules', 'displayRound'));
+        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'listSchedules', 'groupRound', 'totalColumn', 'totalRow'));
     }
 
     public function showSchedule($slug)
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
-        $listLeagues = $this->leagueRepository->getLeagues();
+        $listLeagues = $this->leagueRepository->getLeagueHome();
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
