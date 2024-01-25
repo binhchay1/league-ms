@@ -57,9 +57,10 @@
             <a href="{{ route('home') }}"><img style="margin-bottom: 30px" class="left" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
 
             <ul id="menu" class="menu-main">
-                <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
-                <li class="pt-2"><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
-                <li class="pt-2"><a href="{{ route('ranking') }}">{{ __('Ranking') }}</a></li>
+                <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('LEAGUE') }}</a></li>
+                <li class="pt-2"><a href="{{ route('list.group') }}">{{ __('GROUP') }}</a></li>
+                <li class="pt-2"><a href="{{ route('ranking') }}">{{ __('RANKING') }}</a></li>
+                <li class="pt-2"><a href="{{route('match')}}">{{ __('MATCH CENTER') }}</a></li>
                 <li id="search">
                     <form id="search-league" action="{{ route('search') }}" method="post">
                         @csrf

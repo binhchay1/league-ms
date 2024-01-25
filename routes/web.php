@@ -41,6 +41,8 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
     Route::get('/detail-group/', [HomeController::class, 'detailGroup'])->name('detail.group');
     Route::get('/ranking/', [HomeController::class, 'viewRanking'])->name('ranking');
+    Route::get('/match-center/', [HomeController::class, 'viewMatch'])->name('match');
+    Route::get('/live/', [HomeController::class, 'live'])->name('live');
 });
 
 Route::middleware(['auth'])->group(function () {
