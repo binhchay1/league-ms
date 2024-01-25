@@ -1,0 +1,357 @@
+.content-left {
+    display: flex;
+    width: 100%;
+    flex-shrink: 1;
+}
+
+.content-left-scroll {
+    width: 100%;
+}
+
+.current-tmt-outer {
+    width: 100%;
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.current-tmt-logo {
+    width: 200px;
+    margin: 0 auto;
+}
+
+.current-tmt-name {
+    margin-top: 24px;
+    font-weight: 700;
+    text-align: center;
+}
+
+ul.result-match-cards {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 0
+}
+
+ul.result-match-cards.result-no-match-card {
+    margin-top: 30px;
+    opacity: .4;
+    filter: blur(1px)
+}
+
+ul.result-match-cards .result-match-single-card {
+    background-color: #fff;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    margin: 12px 0;
+    border-radius: 9px;
+    color: #333
+}
+
+@media(max-width:767px) {
+    ul.result-match-cards .result-match-single-card {
+        margin: 12px 0
+    }
+}
+
+ul.result-match-cards .result-match-single-card a {
+    color: #333 !important;
+    transition: all .35s ease-in-out;
+    border-radius: 9px
+}
+
+ul.result-match-cards .result-match-single-card a:hover {
+    background-color: #efefef
+}
+
+ul.result-match-cards .result-match-single-card a:hover .card-top-row {
+    font-weight: 700
+}
+
+ul.result-match-cards .result-match-single-card .player-match-tournament {
+    padding: 18px 0;
+    padding-top: 0;
+    font-size: 16px;
+    font-weight: 700
+}
+
+ul.result-match-cards .result-match-single-card.team-header {
+    border: none;
+    background-color: unset;
+    padding-top: 0;
+    padding-left: 0;
+    flex-direction: column
+}
+
+ul.result-match-cards .result-match-single-card.team-header:before {
+    content: "";
+    position: absolute;
+    left: -36px;
+    top: 0;
+    border-style: solid;
+    border-color: #ddd;
+    border-width: 6px;
+    border-radius: 12px;
+    width: 24px;
+    height: 24px;
+    background-color: #960e14
+}
+
+ul.result-match-cards .result-match-single-card.team-header .team-header-card {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 24px
+}
+
+ul.result-match-cards .result-match-single-card.team-header .team-header-card .team-header-info {
+    display: flex;
+    width: 290px;
+    flex-direction: column;
+    color: #960e14
+}
+
+ul.result-match-cards .result-match-single-card.team-header .team-header-card .team-header-info .team-start-hour {
+    font-size: 16px;
+    font-weight: 700
+}
+
+ul.result-match-cards .result-match-single-card.team-header .team-header-card .team-header-info .team-round {
+    font-size: 14px
+}
+
+ul.result-match-cards .result-match-single-card.team-header .team-header-card .team-header-info .team-event {
+    font-size: 14px;
+    font-weight: 700
+}
+
+ul.result-match-cards .result-match-single-card.team-header .team-header-card .team-header-country-wrap {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    margin-left: 18px
+}
+
+ul.result-match-cards .result-match-single-card.team-header .team-header-card .team-header-country-wrap .team-country-name {
+    width: 160px
+}
+
+ul.result-match-cards .result-match-single-card.team-header .team-header-card .team-header-country-wrap .team-country-name:first-child {
+    text-align: right
+}
+
+ul.result-match-cards .result-match-single-card.team-header .team-header-card .team-header-country-wrap .team-country-score {
+    width: 18px;
+    text-align: center
+}
+
+ul.result-match-cards .result-match-single-card.team-header .team-header-card .team-header-country-wrap .flag {
+    display: flex;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-left: 14px;
+    margin-right: 14px
+}
+
+ul.result-match-cards .result-match-single-card.team-header .team-header-card .team-header-country-wrap .flag img {
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 3px 3px 3px #666
+}
+
+ul.result-match-cards .result-match-single-card.team-header .team-header-card .team-header-country-wrap .team-country-dash {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px
+}
+
+ul.result-match-cards .result-match-single-card.team-header .team-matches {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px
+}
+
+ul.result-match-cards .result-match-single-card .player-score-wrap-card {
+    /* width:100%; */
+    padding: 12px 18px;
+}
+
+ul.result-match-cards .result-match-single-card .team-details-wrap-card {
+    /* display:flex; */
+    align-items: center;
+    justify-content: space-between;
+}
+
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .player-wrap-outer {
+    display: flex;
+    align-items: center
+}
+
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .player-wrap-outer .player-doubles-flag {
+    display: flex;
+    align-items: center;
+    justify-self: center
+}
+
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .player-detail-wrap.team-win a {
+    font-weight: 700 !important
+}
+
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .player1-wrap,
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .player2-wrap,
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .player3-wrap,
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .player4-wrap {
+    display: flex;
+    font-size: 12px;
+    align-items: center
+}
+
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .player1-wrap a,
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .player2-wrap a,
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .player3-wrap a,
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .player4-wrap a {
+    color: #333;
+    transition: color .35s ease-in-out
+}
+
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .player1-wrap a:hover,
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .player2-wrap a:hover,
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .player3-wrap a:hover,
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .player4-wrap a:hover {
+    color: var(--bwf-red)
+}
+
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .flag {
+    display: flex;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 14px
+}
+
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .flag img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    box-shadow: var(--flag-shadow)
+}
+
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .score {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0
+}
+
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .score img {
+    margin-right: 6px;
+    width: 9px;
+    height: 9px
+}
+
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .score span {
+    width: 28px;
+    display: inline-block;
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px
+}
+
+ul.result-match-cards .result-match-single-card .team-details-wrap-card .score.team-win span {
+    font-weight: 700
+}
+
+ul.result-match-cards .result-match-single-card .card-top-row {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    padding: 6px 18px;
+    background-color: #fff;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    color: #333;
+    text-transform: uppercase;
+    transition: font-weight .35s ease-in-out
+}
+
+ul.result-match-cards .result-match-single-card .card-top-row.active {
+    color: #fff;
+    background-color: var(--bwf-red)
+}
+
+ul.result-match-cards .result-match-single-card .card-top-row .card-top-row-right-wrap {
+    display: flex;
+    /* align-items:center; */
+}
+
+ul.result-match-cards .result-match-single-card .card-top-row .animated-line {
+    width: 45px;
+    margin-right: 18px;
+    display: flex
+}
+
+ul.result-match-cards .result-match-single-card .card-top-row .animated-line img {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px
+}
+
+ul.result-match-cards .result-match-single-card .round-details {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-top: 1px solid #ddd;
+    padding: 12px 18px
+}
+
+ul.result-match-cards .result-match-single-card .round-details .round-details-text {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    justify-content: space-between;
+    width: 100%
+}
+
+ul.result-match-cards .result-match-single-card .round-details .round-details-text .round-oop {
+    font-weight: 700
+}
+
+ul.result-match-cards .result-match-single-card .round-details .round-details-text .round-court {
+    font-weight: 400
+}
+
+ul.result-match-cards .result-match-single-card .round-details .round-details-text .round-status {
+    font-weight: 700;
+    color: var(--bwf-dark-red)
+}
+
+ul.result-match-cards .result-match-single-card .round-details .round-details-text .round-event {
+    font-weight: 700;
+    margin-left: 6px
+}
+
+ul.result-match-cards .result-match-single-card .round-time {
+    display: flex;
+    align-items: center;
+    margin-right: 6px
+}
+
+
+
