@@ -241,10 +241,7 @@ class HomeController extends Controller
         $groupRound = $listSchedules->groupBy('round');
         $totalColumn = count($groupRound);
         $totalRow = League::TOTAL_COUNT_LEAGUE[$totalColumn];
-        // $groupRoundByKey =
 
-        // dd($totalMembers);
-        // dd($groupRound);
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
@@ -292,7 +289,6 @@ class HomeController extends Controller
         Cache::set($key, $getNotification);
     }
 
-
     public function groupTraining(Request $request)
     {
         $nameGroup = $request->get('g_i');
@@ -316,10 +312,42 @@ class HomeController extends Controller
         }
 
         $groupTrainingDetail = $this->groupTraining->getGroupTrainByName($nameGroupTraining);
+        if (count($groupTrainingDetail) == 0) {
+            abort(404);
+        }
+
         return view('page.group.detail-group-train', compact('groupTrainingDetail'));
     }
 
-    //match-center
+    public function joinGroupTraining(Request $request)
+    {
+        $idTraining = $request->get('g_t');
+        if (empty($idTraining)) {
+            abort(404);
+        }
+
+        $members = $this->groupTraining->getMembersById($idTraining);
+        if (empty($members)) {
+            $dataMembers = [
+                'members' => json_encode([Auth::user()->id])
+            ];
+
+            $this->groupTraining->updateById($idTraining, $dataMembers);
+        } else {
+            $members = json_decode($members, true);
+            if (!in_array(Auth::user()->id, $members)) {
+                $members[] = Auth::user()->id;
+            }
+
+            $dataMembers = [
+                'members' => json_encode($members)
+            ];
+
+            $this->groupTraining->updateById($idTraining, $dataMembers);
+        }
+
+        return redirect()->route('groupTrain.detail');
+    }
 
     public function viewMatch()
     {

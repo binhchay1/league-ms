@@ -18,7 +18,6 @@ class GroupController extends Controller
     protected $utility;
     protected $groupTraining;
 
-
     public function __construct(
         GroupRepository $groupRepository,
         Utility $ultity,
@@ -71,7 +70,6 @@ class GroupController extends Controller
 
         return view('admin.group.edit', compact('dataGroup'));
     }
-
 
     public function update(GroupRequest $request, $id)
     {

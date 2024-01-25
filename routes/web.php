@@ -60,6 +60,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/signout/', [AuthController::class, 'signOut'])->name('signout');
     Route::get('/training/', [HomeController::class, 'detailGroupTraining'])->name('groupTrain.detail');
     Route::get('/group-training/', [HomeController::class, 'groupTraining'])->name('list.train');
+    Route::get('/join-group-training/', [HomeController::class, 'joinGroupTraining'])->name('join.group.training');
 });
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');
