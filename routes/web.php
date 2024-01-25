@@ -43,6 +43,8 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/group-training/', [HomeController::class, 'groupTraining'])->name('list.train');
     Route::get('/training/', [HomeController::class, 'detailGroupTraining'])->name('groupTrain.detail');
     Route::get('/ranking/', [HomeController::class, 'viewRanking'])->name('ranking');
+    Route::get('/match-center/', [HomeController::class, 'viewMatch'])->name('match');
+    Route::get('/live/', [HomeController::class, 'live'])->name('live');
 });
 
 Route::middleware(['auth'])->group(function () {

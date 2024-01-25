@@ -328,4 +328,16 @@ class HomeController extends Controller
         $groupTrainingDetail = $this->groupTraining->getGroupTrainByName($nameGroupTraining);
         return view('page.group.detail-group-train', compact('groupTrainingDetail'));
     }
+
+    //match-center
+
+    public function viewMatch()
+    {
+        return view('page.match-center.index');
+    }
+
+    public function live()
+    {
+        return view('page.match-center.show-live');
+    }
 }
