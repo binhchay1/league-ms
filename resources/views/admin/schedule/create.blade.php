@@ -9,7 +9,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-4" style="text-align: center;">
-                    <img height="150" width="150" src="{{ $league->images }}" alt="logo">
+                    <img height="150" width="150" src="{{ $league->images ?? asset('/images/champion.png') }}" alt="logo">
                 </div>
                 <div class="col-lg-6">
                     <h2>{{ $league->name }}</h2>

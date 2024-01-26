@@ -45,6 +45,15 @@
                                 @endif
                             </div>
                             <div class="col-6">
+                                <div class="form-group">
+                                    <label for="lastName" class="form-label">{{ __('Prize money') }}</label>
+                                    <input class="form-control" value="{{ old('money') }}" type="number" name="money" id="money" placeholder="{{ __('Enter league money') }}"/>
+                                    @if ($errors->has('money'))
+                                        <span class="text-danger">{{ $errors->first('money') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-6" hidden>
                                 <label for="lastName" class="form-label">{{ __('Slug') }}</label>
                                 <input class="form-control" value="{{ old('slug') }}" type="text" name="slug" id="slug" placeholder="{{ __('Enter group slug') }}"/>
                                 @if ($errors->has('slug'))
@@ -71,6 +80,7 @@
                                     @endif
                                 </div>
                             </div>
+
                         </div>
                         <div class="row mt-4">
                             <div class="col-6">
@@ -84,13 +94,14 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="lastName" class="form-label">{{ __('Number of players') }}</label>
-                                    <input class="form-control" value="{{ old('number_of_athletes') }}" type="text" name="number_of_athletes" id="number_of_athletes" placeholder="{{ __('Enter league number of player') }}"/>
-                                    @if ($errors->has('number_of_athletes'))
-                                        <span class="text-danger">{{ $errors->first('number_of_athletes') }}</span>
+                                    <label for="lastName" class="form-label">{{ __('Start time league') }}</label>
+                                    <input class="form-control" value="{{ old('start_time') }}" type="time" name="start_time" id="start_time" placeholder="{{ __('Enter league start time') }}"/>
+                                    @if ($errors->has('start_time'))
+                                        <span class="text-danger">{{ $errors->first('start_time') }}</span>
                                     @endif
                                 </div>
                             </div>
+
                         </div>
                         <div class="row mt-4">
                             <div class="col-6">
@@ -104,10 +115,10 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="lastName" class="form-label">{{ __('Prize money') }}</label>
-                                    <input class="form-control" value="{{ old('money') }}" type="number" name="money" id="money" placeholder="{{ __('Enter league money') }}"/>
-                                    @if ($errors->has('money'))
-                                    <span class="text-danger">{{ $errors->first('money') }}</span>
+                                    <label for="lastName" class="form-label">{{ __('Number of players') }}</label>
+                                    <input class="form-control" value="{{ old('number_of_athletes') }}" type="text" name="number_of_athletes" id="number_of_athletes" placeholder="{{ __('Enter league number of player') }}"/>
+                                    @if ($errors->has('number_of_athletes'))
+                                        <span class="text-danger">{{ $errors->first('number_of_athletes') }}</span>
                                     @endif
                                 </div>
                             </div>
@@ -133,15 +144,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="lastName" class="form-label">{{ __('Start time league') }}</label>
-                                    <input class="form-control" value="{{ old('start_time') }}" type="time" name="start_time" id="start_time" placeholder="{{ __('Enter league start time') }}"/>
-                                    @if ($errors->has('start_time'))
-                                        <span class="text-danger">{{ $errors->first('start_time') }}</span>
-                                    @endif
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
