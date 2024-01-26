@@ -30,4 +30,9 @@ class RankingRepository extends BaseRepository
     {
         return $this->model->with('users')->orderBy('points', 'desc')->take(1)->get();
     }
+
+    public function getRankingListUsers($listId)
+    {
+        return $this->model->whereIn('user_id', $listId)->orderBy('points', 'desc')->get();
+    }
 }

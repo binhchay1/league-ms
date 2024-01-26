@@ -55,4 +55,9 @@ class UserRepository extends BaseRepository
     {
         return $this->model->with('ranking')->with('group')->where('id', $user_id)->first();
     }
+
+    public function getListMembers($listId)
+    {
+        return $this->model->whereIn('id', $listId)->get();
+    }
 }

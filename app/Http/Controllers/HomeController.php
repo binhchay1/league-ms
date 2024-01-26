@@ -121,6 +121,7 @@ class HomeController extends Controller
         $ranking = $this->rankingRepository->getTop();
         $listRankings = $this->utility->paginate($ranking, 10);
         $listRank = $this->rankingRepository->listRankHomePage();
+
         return view('page.ranking.index', compact('ranking', 'listRankings', 'listRank'));
     }
 
@@ -196,6 +197,12 @@ class HomeController extends Controller
 
         $isJoined = false;
         $members = $this->groupUserRepository->getMembersByGroupId($getGroup->id);
+        $listId = [];
+        foreach($members as $member) {
+            $listId[] = $member->user_id;
+        }
+
+        $listRankings = $this->rankingRepository->getRankingListUsers($listId);
 
         if (Auth::check()) {
             $user = Auth::user();
@@ -206,10 +213,10 @@ class HomeController extends Controller
             }
             $messages = $this->messageRepository->getMessagesByGroupId($getGroup->id);
 
-            return view('page.group.detail', compact('getGroup', 'messages', 'members', 'isJoined'));
+            return view('page.group.detail', compact('getGroup', 'messages', 'members', 'isJoined', 'listRankings'));
         }
 
-        return view('page.group.detail', compact('getGroup', 'members', 'isJoined'));
+        return view('page.group.detail', compact('getGroup', 'members', 'isJoined', 'listRankings'));
     }
 
     public function showPlayer($slug)
@@ -301,6 +308,19 @@ class HomeController extends Controller
         if (empty($listTrainings)) {
             abort(404);
         }
+
+        foreach ($listTrainings->group_trainings as $trainings) {
+            $listId = json_decode($trainings->members);
+            $trainings->isJoin = false;
+            $trainings->totalMembers = 0;
+            if (!empty($listId)) {
+                if (in_array(Auth::user()->id, $listId)) {
+                    $trainings->isJoin = true;
+                }
+                $trainings->totalMembers = count($listId);
+            }
+        }
+
         return view('page.group.training', compact('listTrainings'));
     }
 
@@ -312,11 +332,14 @@ class HomeController extends Controller
         }
 
         $groupTrainingDetail = $this->groupTraining->getGroupTrainByName($nameGroupTraining);
-        if (count($groupTrainingDetail) == 0) {
+        if (empty($groupTrainingDetail)) {
             abort(404);
         }
 
-        return view('page.group.detail-group-train', compact('groupTrainingDetail'));
+        $listId = json_decode($groupTrainingDetail->members);
+        $listMembers = $this->userRepository->getListMembers($listId);
+
+        return view('page.group.detail-group-train', compact('groupTrainingDetail', 'listMembers'));
     }
 
     public function joinGroupTraining(Request $request)
@@ -327,12 +350,13 @@ class HomeController extends Controller
         }
 
         $members = $this->groupTraining->getMembersById($idTraining);
-        if (empty($members)) {
+
+        if (empty($members->members)) {
             $dataMembers = [
                 'members' => json_encode([Auth::user()->id])
             ];
 
-            $this->groupTraining->updateById($idTraining, $dataMembers);
+            $this->groupTraining->updateMembers($idTraining, $dataMembers);
         } else {
             $members = json_decode($members, true);
             if (!in_array(Auth::user()->id, $members)) {
@@ -343,10 +367,10 @@ class HomeController extends Controller
                 'members' => json_encode($members)
             ];
 
-            $this->groupTraining->updateById($idTraining, $dataMembers);
+            $this->groupTraining->updateMembers($idTraining, $dataMembers);
         }
 
-        return redirect()->route('groupTrain.detail');
+        return redirect('training?g_t=' . $members->name);
     }
 
     public function viewMatch()
