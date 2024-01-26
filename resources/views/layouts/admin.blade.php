@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
 
     @yield('css')
 
@@ -40,7 +42,6 @@
              </li>
             </ul>
         </nav>
-
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <a href="" class="brand-link">
                 <img src="{{ asset('/images/logo-no-background.png') }}" class="brand-image img-circle elevation-3">
@@ -198,6 +199,9 @@
         </aside>
 
         <div class="content-wrapper">
+            <div id="message">
+                @include('flash-message')
+            </div>
             <section class="content">
                 <div class="container-fluid">
                     @yield('content')

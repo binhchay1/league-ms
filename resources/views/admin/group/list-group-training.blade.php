@@ -50,5 +50,10 @@
             });
             $('.dataTables_length').addClass('bs-select');
         })
+
+
+        setTimeout(function() {
+            $('.alert-block').remove();
+        }, 5000);
     </script>
 @endsection

@@ -73,7 +73,6 @@
         @endforeach
     </div>
 
-    @if($listLeagues->hasPages())
     <div class="navigator short">
         <div class="head d-flex justify-content-center ">
             <ul class="pagination">
@@ -91,7 +90,6 @@
             </ul>
         </div>
     </div>
-    @endif
 </div>
 @endsection
 <script src="{{ asset('js/league.js') }}"></script>
