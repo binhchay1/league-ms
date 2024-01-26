@@ -45,12 +45,21 @@
                                 <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif
                             </div>
-                            <div class="col-6">
+                            <div class="col-6" hidden>
                                 <label for="lastName" class="form-label">{{ __('Slug') }}</label>
                                 <input class="form-control" value="{{ old('slug', $dataLeague['slug']) }}" type="text" name="slug" id="slug" placeholder="{{ __('Enter league slug') }}"/>
                                 @if ($errors->has('slug'))
                                 <span class="text-danger">{{ $errors->first('slug') }}</span>
                                 @endif
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="lastName" class="form-label">{{ __('Prize money') }}</label>
+                                    <input class="form-control" value="{{ old('money',$dataLeague['money']) }}" type="number" name="money" id="money" placeholder="{{ __('Enter league money') }}"/>
+                                    @if ($errors->has('money'))
+                                        <span class="text-danger">{{ $errors->first('money') }}</span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                         <div class="row mt-4">
@@ -78,7 +87,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="address" class="form-label">{{ __('Register league ') }}</label>
-                                    <input type="date" value="{{ old('end_date_register') }}" class="form-control" id="end_date_register" name="end_date_register" placeholder="{{ __('Enter league register date') }}" />
+                                    <input type="date" value="{{ old('end_date_register',$dataLeague['end_date_register']) }}" class="form-control" id="end_date_register" name="end_date_register" placeholder="{{ __('Enter league register date') }}" />
                                     @if ($errors->has('end_date_register'))
                                         <span class="text-danger">{{ $errors->first('end_date_register') }}</span>
                                     @endif
@@ -86,10 +95,10 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="lastName" class="form-label">{{ __('Number of athletes') }}</label>
-                                    <input class="form-control" value="{{ old('number_of_athletes') }}" type="text" name="number_of_athletes" id="number_of_athletes" placeholder="{{ __('Enter league number of players') }}"/>
-                                    @if ($errors->has('number_of_athletes'))
-                                        <span class="text-danger">{{ $errors->first('number_of_athletes') }}</span>
+                                    <label for="lastName" class="form-label">{{ __('Start time league') }}</label>
+                                    <input class="form-control" value="{{ old('start_time',$dataLeague['start_time']) }}" type="time" name="start_time" id="start_time" placeholder="{{ __('Enter league start time') }}"/>
+                                    @if ($errors->has('start_time'))
+                                        <span class="text-danger">{{ $errors->first('start_time') }}</span>
                                     @endif
                                 </div>
                             </div>
@@ -107,13 +116,14 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="lastName" class="form-label">{{ __('Prize money') }}</label>
-                                    <input class="form-control" value="{{ old('money', $dataLeague['money']) }}" type="number" name="money" id="money" placeholder="{{ __('Enter league money') }}"/>
-                                    @if ($errors->has('money'))
-                                    <span class="text-danger">{{ $errors->first('money') }}</span>
+                                    <label for="lastName" class="form-label">{{ __('Number of athletes') }}</label>
+                                    <input class="form-control" value="{{ old('number_of_athletes',$dataLeague['number_of_athletes']) }}" type="text" name="number_of_athletes" id="number_of_athletes" placeholder="{{ __('Enter league number of players') }}"/>
+                                    @if ($errors->has('number_of_athletes'))
+                                        <span class="text-danger">{{ $errors->first('number_of_athletes') }}</span>
                                     @endif
                                 </div>
                             </div>
+
                         </div>
                         <div class="row mt-4">
                             <div class="col-6">
@@ -136,15 +146,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="lastName" class="form-label">{{ __('Prize money') }}</label>
-                                    <input class="form-control" value="{{ old('money') }}" type="number" name="money" id="money" placeholder="{{ __('Enter league money') }}"/>
-                                    @if ($errors->has('money'))
-                                        <span class="text-danger">{{ $errors->first('money') }}</span>
-                                    @endif
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
