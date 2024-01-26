@@ -17,11 +17,11 @@ $utility = new \App\Enums\Utility();
 
 @section('content')
 <section class="container " id="heading">
-    <div class="row training"  style="background: #ad9696;">
-        <div class="col-lg-2 mt-4">
+    <div class="row training" style="background: #ad9696;">
+        <div class="col-lg-1 mt-4">
             <img src="{{ asset($getGroup->images) }}" width="100" height="100" healt="Group Avatar" />
         </div>
-        <div class="col-lg-10 mt-3">
+        <div class="col-lg-10 mt-3" style="margin-left: 10px;">
             <div class="d-flex">
                 <h1 class="m-0 p-0">{{ $getGroup->name }}</h1>
             </div>
@@ -31,18 +31,25 @@ $utility = new \App\Enums\Utility();
             <p><span class="fw-bold">* {{__('Location')}} : </span>{{ $getGroup->location }}</p>
             <p><em><span class="fw-bold">-----{{__('Note')}} : </span>{{ $getGroup->note }}</em></p>
         </div>
-        @if(Auth::check() and $isJoined)
-        <div class=" mt-4" style="text-align: left; margin-bottom: 10px">
-            <button class=" btn btn-success btn-training" id="group-{{ $getGroup->name }}" onclick="training(this.id)">{{__('Training')}}</button>
-        </div>
-            @endif
     </div>
+    <div class="d-flex">
+        @if(Auth::check() and $isJoined)
+        <div class="mt-4" style="margin-right: 10px;">
+            <button class="btn btn-success btn-training" id="group-{{ $getGroup->name }}" onclick="training(this.id)">{{ __('Training') }}</button>
+        </div>
+        @endif
+
+        <div class="mt-4" data-bs-toggle="modal" data-bs-target="#rankingModal">
+            <button class="btn btn-success btn-training">{{ __('Ranking') }}</button>
+        </div>
+    </div>
+
 </section>
 
 <section id="detail-group" class="container-fluid">
-    <div class="container py-5">
+    <div class="container py-5" style="padding-top: 0 !important;">
         <div class="row d-flex justify-content-center">
-            <div class="col-md-8 col-lg-6 col-xl-6">
+            <div class="col-md-8 col-lg-6 col-xl-6" style="padding-left: 0;">
                 <div class="card" id="chat1" style="border-radius: 15px;">
                     <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0" style="background: #ad9696 !important;">
                         <p class="mb-0 fw-bold">{{ __('Live chat') }}</p>
@@ -141,6 +148,7 @@ $utility = new \App\Enums\Utility();
         </div>
     </div>
 </section>
+@include('includes.modal_ranking_group')
 @endsection
 
 @section('js')
