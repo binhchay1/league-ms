@@ -119,7 +119,7 @@ class HomeController extends Controller
     public function viewRanking(Request $request)
     {
         $ranking = $this->rankingRepository->getTop();
-        $listRankings = $this->utility->paginate($ranking, 20);
+        $listRankings = $this->utility->paginate($ranking, 10);
         $listRank = $this->rankingRepository->listRankHomePage();
 
         return view('page.ranking.index', compact('ranking', 'listRankings', 'listRank'));
@@ -149,10 +149,10 @@ class HomeController extends Controller
     public function listLeague(Request $request)
     {
         $getLeagueByState = $request->get('state');
-        $listLeague = $this->leagueRepository->getLeagueHome($getLeagueByState);
-        $listLeagues = $this->utility->paginate($listLeague, 5, 'leagues');
+        $getLeague = $this->leagueRepository->getLeagueHome($getLeagueByState);
+        $listLeagues = $this->utility->paginate($getLeague, 2);
 
-        return view('page.league.index', compact('listLeague', 'listLeagues'));
+        return view('page.league.index', compact( 'listLeagues'));
     }
 
     public function listGroup()

@@ -88,24 +88,28 @@ $utility = new \App\Enums\Utility();
                 </tbody>
             </table>
         </div>
-    </div>
 
-    <div class="navigator short mt-4">
-        <div class="head d-flex justify-content-center ">
-            <ul class="pagination">
-                <li>
-                    <a href="{{ $listRankings->previousPageUrl() }}" aria-label="Previous" style="color: red" class="prevPlayersList">
-                        <span aria-hidden="true"><span class="fa fa-angle-left"></span> {{__('PREVIOUS')}}</span>
-                    </a>
-                </li>
-                &emsp;
-                <li>
-                    <a href="{{ $listRankings->nextPageUrl() }}" aria-label="Next" style="color: red" class="nextPlayersList">
-                        <span aria-hidden="true">{{__('NEXT')}} <span class="fa fa-angle-right"></span></span>
-                    </a>
-                </li>
-            </ul>
+        <!-- Paginate -->
+        <?php $countRank = count($ranking); ?>
+        @if($countRank > $listRankings->perPage())
+        <div class="navigator short mt-4" >
+            <div class="head d-flex justify-content-center ">
+                <ul class="pagination">
+                    <li>
+                        <a href="{{ $listRankings->previousPageUrl() }}" aria-label="Previous" style="color: red" class="prevPlayersList">
+                            <span aria-hidden="true"><span class="fa fa-angle-left"></span> {{__('PREVIOUS')}}</span>
+                        </a>
+                    </li >
+                    &emsp;
+                    <li>
+                        <a href="{{ $listRankings->nextPageUrl() }}" aria-label="Next" style="color: red" class="nextPlayersList">
+                            <span aria-hidden="true">{{__('NEXT')}} <span class="fa fa-angle-right"></span></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</section>
+        @endif
+    </section>
+
 @endsection
