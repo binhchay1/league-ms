@@ -25,9 +25,9 @@ class LeagueRepository extends BaseRepository
         return $this->model->create($input);
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        return $this->model->with('userLeagues', 'userLeagues.user')->where('id', $id)->first();
+        return $this->model->with('userLeagues', 'userLeagues.user')->where('slug', $slug)->first();
     }
 
     public function updateLeague($input, $id)
