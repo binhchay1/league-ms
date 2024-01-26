@@ -99,8 +99,8 @@
                     </li>
 
                     @else
-                    <li><a href="{{ route('login') }}" class="button white " style="height: 45px;">{{ __('Log In') }}</a></li>
-                    <li><a href="{{ route('register_user') }}" class="button" style="height: 45px;">{{ __('Register') }}</a></li>
+                    <li><a href="{{ route('login') }}" class="button white " >{{ __('Log In') }}</a></li>
+                    <li><a href="{{ route('register_user') }}" class="button">{{ __('Register') }}</a></li>
                     @endif
 
                     @if(Auth::check())

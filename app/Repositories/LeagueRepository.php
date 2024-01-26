@@ -61,7 +61,7 @@ class LeagueRepository extends BaseRepository
         return $this->model->orderBy('created_at', 'desc')->take(1)->get();
     }
 
-    public function getLeagueHome($getLeagueByState)
+    public function getLeagueHome($getLeagueByState = null)
     {
 
         if ($getLeagueByState == 'all')
@@ -79,11 +79,6 @@ class LeagueRepository extends BaseRepository
 
         return $this->model->orderBy('created_at', 'desc')->get();
 
-    }
-
-    public function getLeagues()
-    {
-        return $this->model->orderBy('created_at', 'desc')->get();
     }
 
     public function getLeagueBySlug($slug)

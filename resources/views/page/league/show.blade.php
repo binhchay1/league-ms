@@ -74,7 +74,13 @@
                     <li><a id="player-data" href="{{ route('leaguePlayer.info', $leagueInfor['slug']) }}">{{ __('Player ') }}</a>
                     </li>
                 </ul>
-                <div class="register  row" align="right" id="register-league">
+                <?php $current_date =  strtotime(date("Y-m-d"));
+                      $start_date =  strtotime($leagueInfor->start_date);
+                $end_date_register =  strtotime($leagueInfor->end_date_register);
+
+                ?>
+                @if($current_date <= $start_date && $current_date <= $end_date_register)
+                <div class="register row" align="right" id="register-league">
                     <div class="col-lg-9 mt-4">
                         <?php $end_date_register = date('d/m/Y', strtotime($leagueInfor->end_date_register));
                         ?>
@@ -86,6 +92,7 @@
                         </button>
                     </div>
                 </div>
+                @endif
 
                 <div class="modal" id="myModal">
                     <div class="modal-dialog">
@@ -221,13 +228,6 @@
         window.location.href = window.location.origin + '/info/' + edit_id;
     });
 
-    var current_date = '<?php echo  strtotime(date("Y-m-d")); ?>';
-    var start_date = '<?php echo strtotime($leagueInfor->start_date); ?>';
-    if (current_date >= start_date) {
-        $('#register-league').hide();
-    } else {
-        $('#register-league').show();
-    }
 </script>
 @if(Session::has('message'))
 <script>

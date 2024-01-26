@@ -22,4 +22,8 @@ class GroupTrainingRepository extends BaseRepository
         return $this->model->create($input);
     }
 
+    public function getMembersById($id)
+    {
+        return $this->model->select('members')->where('id', $id)->first();
+    }
 }

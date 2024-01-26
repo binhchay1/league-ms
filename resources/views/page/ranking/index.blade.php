@@ -102,6 +102,8 @@ $utility = new \App\Enums\Utility();
             </div>
         </div>
         <!-- Paginate -->
+        <?php $countRank = count($ranking); ?>
+        @if($countRank > $listRankings->perPage())
         <div class="navigator short mt-4" >
             <div class="head d-flex justify-content-center ">
                 <ul class="pagination">
@@ -119,5 +121,6 @@ $utility = new \App\Enums\Utility();
                 </ul>
             </div>
         </div>
+        @endif
     </section>
 @endsection

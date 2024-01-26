@@ -58,9 +58,9 @@ class LeagueController extends Controller
         }
         $this->leagueRepository->store($input);
         if (Auth::user()->role == Role::ADMIN) {
-            return redirect()->to('list-league');
+            return redirect()->to('list-league')->with('success','League successfully created.');
         }
-        return redirect()->to('list-leagues');
+        return redirect()->to('list-league')->with('success','League successfully created.');
     }
 
     public function show($id)
@@ -91,7 +91,7 @@ class LeagueController extends Controller
         }
 
         $this->leagueRepository->updateLeague($input, $id);
-        return redirect('list-league');
+        return redirect('list-league')->with('success','League successfully updated.');
     }
 
     public function updatePlayer(Request $request, $id)
@@ -101,13 +101,13 @@ class LeagueController extends Controller
         {
             $this->userLeagueRepository->updatePlayer(['status' => $value], $key);
         }
-        return back()->with('success', __('Information has been sent successfully!'));
+        return back()->with('success', __('Player has been sent successfully!'));
     }
 
     public function destroyPlayer($id)
     {
         $this->userLeagueRepository->destroy($id);
-        return back()->with('success', 'Delete User successfully!');
+        return back()->with('success','League successfully deleted.');
     }
 
     public function leagues()

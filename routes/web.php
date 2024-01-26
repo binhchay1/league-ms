@@ -31,17 +31,15 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/about/', [HomeController::class, 'viewAbout'])->name('about');
     Route::get('/privacy/', [HomeController::class, 'viewPrivacy'])->name('privacy');
     Route::get('/term-and-conditions/', [HomeController::class, 'viewTermAndConditions'])->name('term.and.conditions');
-    Route::get('/info/{slug}/', [HomeController::class, 'showInfo'])->name('league.info');
-    Route::get('/info/{slug}/player/', [HomeController::class, 'showPlayer'])->name('leaguePlayer.info');
-    Route::get('/info/{slug}/result/', [HomeController::class, 'showResult'])->name('leagueResult.info');
-    Route::get('/info/{slug}/schedule/', [HomeController::class, 'showSchedule'])->name('leagueSchedule.info');
-    Route::get('/info/{slug}/bracket/', [HomeController::class, 'showBracket'])->name('leagueResult.bracket');
-    Route::get('/info/{slug}/fight-branch/', [HomeController::class, 'showFightBranch'])->name('leagueFightBranch.info');
+    Route::get('/league/{slug}/', [HomeController::class, 'showInfo'])->name('league.info');
+    Route::get('/league/{slug}/player/', [HomeController::class, 'showPlayer'])->name('leaguePlayer.info');
+    Route::get('/league/{slug}/result/', [HomeController::class, 'showResult'])->name('leagueResult.info');
+    Route::get('/league/{slug}/schedule/', [HomeController::class, 'showSchedule'])->name('leagueSchedule.info');
+    Route::get('/league/{slug}/bracket/', [HomeController::class, 'showBracket'])->name('leagueResult.bracket');
+    Route::get('/league/{slug}/fight-branch/', [HomeController::class, 'showFightBranch'])->name('leagueFightBranch.info');
     Route::get('/list-teams/', [HomeController::class, 'listTeam'])->name('list.team');
     Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
     Route::get('/detail-group/', [HomeController::class, 'detailGroup'])->name('detail.group');
-    Route::get('/group-training/', [HomeController::class, 'groupTraining'])->name('list.train');
-    Route::get('/training/', [HomeController::class, 'detailGroupTraining'])->name('groupTrain.detail');
     Route::get('/ranking/', [HomeController::class, 'viewRanking'])->name('ranking');
     Route::get('/match-center/', [HomeController::class, 'viewMatch'])->name('match');
     Route::get('/live/', [HomeController::class, 'live'])->name('live');
@@ -60,6 +58,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/resend-verify/', [AuthController::class, 'resendVerify'])->name('resend.verify.email');
     Route::get('/verified-email/', [AuthController::class, 'viewVerifiedEmail'])->name('verified.email');
     Route::get('/signout/', [AuthController::class, 'signOut'])->name('signout');
+    Route::get('/training/', [HomeController::class, 'detailGroupTraining'])->name('groupTrain.detail');
+    Route::get('/group-training/', [HomeController::class, 'groupTraining'])->name('list.train');
+    Route::get('/join-group-training/', [HomeController::class, 'joinGroupTraining'])->name('join.group.training');
 });
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');
