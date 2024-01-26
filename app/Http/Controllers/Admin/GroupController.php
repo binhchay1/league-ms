@@ -45,12 +45,6 @@ class GroupController extends Controller
         $input = $request->except(['_token']);
         $input['group_owner'] = Auth::user()->id;
         $input['rate'] = Group::RATE_NEWLY_ESTABLISHED;
-
-        $input['activity_time'] = $input['activity_time_start'];
-        if ($input['activity_time_end'] != null) {
-            $input['activity_time'] .= ' - ' . $input['activity_time_end'];
-        }
-
         if (isset($input['images'])) {
             $img = $this->utility->saveImageGroup($input);
             if ($img) {
@@ -60,8 +54,7 @@ class GroupController extends Controller
         }
 
         $this->groupRepository->create($input);
-
-        return redirect()->route('group.index');
+        return redirect()->route('group.index')->with('success','Group successfully created.');
     }
 
     public function edit($id)
@@ -84,7 +77,7 @@ class GroupController extends Controller
         }
 
         $this->groupRepository->updateById($id, $input);
-        return redirect()->route('group.index');
+        return redirect()->route('group.index')->with('success','Group successfully updated.');
     }
 
     public function show($id)
@@ -102,7 +95,7 @@ class GroupController extends Controller
         }
         $this->groupTraining->create($input);
 
-        return redirect()->route('list.groupTraining');
+        return redirect()->route('list.groupTraining')->with('success','Group Training successfully created.');
     }
 
     public function listGroupTraining()

@@ -11,7 +11,7 @@ class League extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'images', 'start_date', 'end_date', 'format_of_league', 'number_of_athletes', 'type_of_league', 'slug', 'location', 'money','end_date_register', 'status'
+        'name', 'images', 'start_date', 'end_date', 'format_of_league', 'number_of_athletes', 'type_of_league', 'slug', 'location', 'money','end_date_register', 'status','start_time'
     ];
 
     public function schedule()

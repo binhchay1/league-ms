@@ -28,7 +28,7 @@
                 </div>
                 @endif
                 <div class="container d-flex flex-row">
-                    <div>
+                    <div class="col-md-4">
                         <input value="" type="file" class="border-0 bg-light pl-0" name="images" id="image" hidden>
                         <div class=" choose-avatar">
                             <div id="btnimage">
@@ -67,6 +67,14 @@
                         </div>
 
                         <div>
+                            <label for="location" class="form-label">{{ __('Number of members') }}</label>
+                            <input class="form-control" type="number" name="number_of_members" id="location" value="{{ old('number_of_members') }}" placeholder="{{ __('Enter group number of members') }}" min="0"/>
+                            @if ($errors->has('number_of_members'))
+                                <span class="text-danger">{{ $errors->first('number_of_members') }}</span>
+                            @endif
+                        </div>
+
+                        <div>
                             <label for="note" class="form-label">{{ __('Note') }}</label>
                             <input class="form-control" type="text" name="note" id="note" value="{{ old('note') }}" placeholder="{{ __('Enter group note') }}" />
                             @if ($errors->has('note'))
@@ -93,7 +101,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <button type="submit" class="btn btn-primary me-2">{{ __('Save') }}</button>
+                    <button type="submit" class="btn btn-success me-2">{{ __('Save') }}</button>
                     <button type="reset" class="btn btn-outline-secondary">{{ __('Reset') }}</button>
                 </div>
             </form>
