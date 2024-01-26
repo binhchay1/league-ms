@@ -18,6 +18,7 @@
     </style>
 <link rel="stylesheet" href="{{ asset('css/page/show.css') }}" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<link rel="stylesheet" href="{{ asset('css/page/draw.css') }}" />
 @endsection
 
 @section('content')
@@ -196,9 +197,7 @@
                             @include('page.league.detail.schedule')
                         </div>
                         @elseif(Route::current()->getName() == 'leagueResult.bracket')
-                        <div>
-                            @include('page.league.detail.bracket')
-                        </div>
+                        @include('page.league.detail.bracket')
                         @else
                         <div class="item draws" style="display:block;">
                             @include('page.league.detail.schedule')

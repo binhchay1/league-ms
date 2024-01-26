@@ -198,7 +198,7 @@ class HomeController extends Controller
         $isJoined = false;
         $members = $this->groupUserRepository->getMembersByGroupId($getGroup->id);
         $listId = [];
-        foreach($members as $member) {
+        foreach ($members as $member) {
             $listId[] = $member->user_id;
         }
 

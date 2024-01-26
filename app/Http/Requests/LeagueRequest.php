@@ -25,8 +25,8 @@ class LeagueRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', Rule::unique('league')->ignore($this->id)],
-            'slug' => ['required', Rule::unique('league')->ignore($this->id)],
+            'name' => ['required', Rule::unique('leagues')->ignore($this->id)],
+            'slug' => ['required', Rule::unique('leagues')->ignore($this->id)],
             'images' => 'image|mimes:jpeg,png,jpg|max:2048',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
