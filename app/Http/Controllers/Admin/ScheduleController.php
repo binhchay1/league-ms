@@ -47,9 +47,9 @@ class ScheduleController extends Controller
         return view('admin.schedule.list-league', compact('listLeagues'));
     }
 
-    public function leagueSchedule($id)
+    public function leagueSchedule($lug)
     {
-        $league = $this->leagueRepository->show($id);
+        $league = $this->leagueRepository->show($lug);
         $rounds =  Ranking::RANKING_ARRAY_ROUND;
 
         return view('admin.schedule.create', compact('league', 'rounds'));

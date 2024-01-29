@@ -26,7 +26,6 @@ class LeagueRequest extends FormRequest
     {
         return [
             'name' => ['required', Rule::unique('leagues')->ignore($this->id)],
-            'slug' => ['required', Rule::unique('leagues')->ignore($this->id)],
             'images' => 'image|mimes:jpeg,png,jpg|max:2048',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
@@ -43,8 +42,6 @@ class LeagueRequest extends FormRequest
         return [
             'name.required' => __('Name is required'),
             'name.unique' => __('Name invalid'),
-            'slug.unique' => __('Slug invalid'),
-            'coach.required' => __('Coach is required'),
             'images.required' => __('Image is required'),
             'images.image' => __('Incorrect image format'),
             'images.mimes' => __('Incorrect image format'),

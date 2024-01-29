@@ -42,7 +42,7 @@
                         <td>{{ $data->format_of_league }}</td>
                         <td>{{ $data->type_of_league }}</td>
                         <td>
-                            <a href="{{route('league.edit',$data['id'])}}">
+                            <a href="{{route('league.edit',$data['slug'])}}">
                                 <button type="button" class="btn btn-info">{{ __('Edit') }}</button>
                             </a>
                             <a href="{{route('league.show',$data['id'])}}">
