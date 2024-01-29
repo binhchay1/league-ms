@@ -349,16 +349,16 @@ class HomeController extends Controller
             abort(404);
         }
 
-        $members = $this->groupTraining->getMembersById($idTraining);
+        $getMembers = $this->groupTraining->getMembersById($idTraining);
 
-        if (empty($members->members)) {
+        if (empty($getMembers->members)) {
             $dataMembers = [
                 'members' => json_encode([Auth::user()->id])
             ];
 
             $this->groupTraining->updateMembers($idTraining, $dataMembers);
         } else {
-            $members = json_decode($members->members, true);
+            $members = json_decode($getMembers->members, true);
             if (!in_array(Auth::user()->id, $members)) {
                 $members[] = Auth::user()->id;
             }
@@ -370,7 +370,7 @@ class HomeController extends Controller
             $this->groupTraining->updateMembers($idTraining, $dataMembers);
         }
 
-        return redirect('training?g_t=' . $members->name);
+        return redirect('training?g_t=' . $getMembers->name);
     }
 
     public function viewMatch()

@@ -157,8 +157,9 @@ class ScheduleController extends Controller
                     continue;
                 }
 
-                if($countNextDate == 4) {
-
+                if ($countNextDate == 4) {
+                    $dateData = date('Y-m-d', strtotime(' +1 day'));
+                    $countNextDate = 1;
                 }
 
                 $data = [
@@ -204,6 +205,11 @@ class ScheduleController extends Controller
                     continue;
                 }
 
+                if ($countNextDate == 4) {
+                    $dateData = date('Y-m-d', strtotime(' +1 day'));
+                    $countNextDate = 1;
+                }
+
                 $data = [
                     'league_id' => $getLeague->id,
                     'match' => $countMatch,
@@ -238,6 +244,7 @@ class ScheduleController extends Controller
                 $timeInDay = date('h:i:s', $endTime);
                 $breakFor = $i + 3;
                 $countMatch++;
+                $countNextDate;
             }
 
             if ($countLack != 0) {
