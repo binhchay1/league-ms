@@ -246,15 +246,13 @@ class HomeController extends Controller
         $listSchedules = $this->scheduleRepository->getScheduleByLeagueOrderByMatch($leagueInfor->id);
         $totalMembers = $this->userLeagueRepository->countTotalMembersInLeague($leagueInfor->id);
         $groupRound = $listSchedules->groupBy('round');
-        $totalColumn = count($groupRound);
-        $totalRow = League::TOTAL_COUNT_LEAGUE[$totalColumn];
 
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
 
-        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'listSchedules', 'groupRound', 'totalColumn', 'totalRow'));
+        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'listSchedules', 'groupRound'));
     }
 
     public function showSchedule($slug)

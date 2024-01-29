@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\Ranking;
+use App\Enums\League;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResultScheduleRequest;
 use App\Jobs\NotificationNextMatch;
@@ -90,9 +91,9 @@ class ScheduleController extends Controller
     {
         $input = $request->except(['_token']);
         $this->scheduleRepository->updateLeague($input, $id);
-        return redirect('list-schedule')->with('success','Schedule successfully updated.');
+        return redirect('list-schedule')->with('success', 'Schedule successfully updated.');
     }
-    
+
     public function show($id)
     {
         $dataSchedule = $this->scheduleRepository->showInfo($id);
@@ -112,7 +113,7 @@ class ScheduleController extends Controller
             NotificationNextMatch::dispatch($league_id, $match, $this->leagueRepository, $this->scheduleRepository, $this->notificationRepository)->onQueue('next-match');
         }
 
-        return redirect()->to('result')->with('success','Result successfully updated.');
+        return redirect()->to('result')->with('success', 'Result successfully updated.');
     }
 
     public function result()
@@ -173,7 +174,7 @@ class ScheduleController extends Controller
                 }
 
                 if ($countNextDate == 4) {
-                    $dateData = date('Y-m-d', strtotime(' +1 day'));
+                    $dateData = date('Y-m-d', strtotime($dateData . ' +1 day'));
                     $countNextDate = 1;
                 }
 
@@ -183,7 +184,7 @@ class ScheduleController extends Controller
                     'round' => $round,
                     'time' => $timeInDay,
                     'date' => $dateData,
-                    'player1_team_1' => $listAuto[$i],
+                    'player1_team_1' => $listAuto[$i]
                 ];
 
                 if ($i != (count($listAuto) - 1)) {
@@ -195,6 +196,48 @@ class ScheduleController extends Controller
                 $timeInDay = date('h:i:s', $endTime);
                 $countMatch++;
                 $countNextDate++;
+            }
+
+            $whileMatch = $totalMatch = $preCountMatch = $countMatch - 1;
+            while ($whileMatch != 1) {
+                $whileMatch = $whileMatch / 2;
+                $totalMatch = $totalMatch + $whileMatch;
+            }
+            $forMatch = $totalMatch - $preCountMatch;
+
+            $countNextDate = 1;
+            $indexRound = 1;
+            $countMatchIndex = 0;
+            $preRound = $round;
+            $dateData = date('Y-m-d', strtotime($dateData . ' +1 day'));
+            for ($i = 0; $i < $forMatch; $i++) {
+                if ($countNextDate == 4) {
+                    $dateData = date('Y-m-d', strtotime($dateData . ' +1 day'));
+                    $countNextDate = 1;
+                }
+
+                if($countMatchIndex == $preCountMatch / 2) {
+                    $preCountMatch = $preCountMatch / 2;
+                    $countMatchIndex = 0;
+                    $indexRound++;
+                }
+
+                $round = League::ROUND_PER_LEAGUE[$preRound][$indexRound];
+
+                $data = [
+                    'league_id' => $getLeague->id,
+                    'match' => $countMatch,
+                    'round' => $round,
+                    'time' => $timeInDay,
+                    'date' => $dateData,
+                ];
+
+                $dataSchedule[] = $data;
+                $endTime = strtotime($timeInDay) + (90 * 60);
+                $timeInDay = date('h:i:s', $endTime);
+                $countMatch++;
+                $countNextDate++;
+                $countMatchIndex++;
             }
         } else {
             $countLack = 0;
@@ -221,7 +264,7 @@ class ScheduleController extends Controller
                 }
 
                 if ($countNextDate == 4) {
-                    $dateData = date('Y-m-d', strtotime(' +1 day'));
+                    $dateData = date('Y-m-d', strtotime($dateData . ' +1 day'));
                     $countNextDate = 1;
                 }
 
@@ -231,7 +274,7 @@ class ScheduleController extends Controller
                     'round' => $round,
                     'time' => $timeInDay,
                     'date' => $dateData,
-                    'player1_team_1' => $listAuto[$i],
+                    'player1_team_1' => $listAuto[$i]
                 ];
 
                 if (!isset($listAuto[$i + 1])) {
@@ -259,7 +302,49 @@ class ScheduleController extends Controller
                 $timeInDay = date('h:i:s', $endTime);
                 $breakFor = $i + 3;
                 $countMatch++;
-                $countNextDate;
+                $countNextDate++;
+            }
+
+            $whileMatch = $totalMatch = $preCountMatch = $countMatch - 1;
+            while ($whileMatch != 1) {
+                $whileMatch = $whileMatch / 2;
+                $totalMatch = $totalMatch + $whileMatch;
+            }
+            $forMatch = $totalMatch - $preCountMatch;
+
+            $countNextDate = 1;
+            $indexRound = 1;
+            $countMatchIndex = 0;
+            $preRound = $round;
+            $dateData = date('Y-m-d', strtotime($dateData . ' +1 day'));
+            for ($i = 0; $i < $forMatch; $i++) {
+                if ($countNextDate == 4) {
+                    $dateData = date('Y-m-d', strtotime($dateData . ' +1 day'));
+                    $countNextDate = 1;
+                }
+
+                if($countMatchIndex == $preCountMatch / 2) {
+                    $preCountMatch = $preCountMatch / 2;
+                    $countMatchIndex = 0;
+                    $indexRound++;
+                }
+
+                $round = League::ROUND_PER_LEAGUE[$preRound][$indexRound];
+
+                $data = [
+                    'league_id' => $getLeague->id,
+                    'match' => $countMatch,
+                    'round' => $round,
+                    'time' => $timeInDay,
+                    'date' => $dateData,
+                ];
+
+                $dataSchedule[] = $data;
+                $endTime = strtotime($timeInDay) + (90 * 60);
+                $timeInDay = date('h:i:s', $endTime);
+                $countMatch++;
+                $countNextDate++;
+                $countMatchIndex++;
             }
 
             if ($countLack != 0) {
