@@ -56,6 +56,7 @@ class LeagueController extends Controller
                 $input['images'] = $path;
             }
         }
+
         $this->leagueRepository->store($input);
         if (Auth::user()->role == Role::ADMIN) {
             return redirect()->to('list-league')->with('success','League successfully created.');
