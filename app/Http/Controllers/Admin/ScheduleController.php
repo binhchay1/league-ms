@@ -78,6 +78,21 @@ class ScheduleController extends Controller
         return redirect('list-schedule')->with('success', 'Create schedule successfully!');
     }
 
+    public function edit($id)
+    {
+        $dataSchedule = $this->scheduleRepository->showInfo($id);
+        $rounds =  Ranking::RANKING_ARRAY_ROUND;
+
+        return view('admin.schedule.edit', compact('dataSchedule', 'rounds'));
+    }
+
+    public function updateSchedule(Request $request, $id)
+    {
+        $input = $request->except(['_token']);
+        $this->scheduleRepository->updateLeague($input, $id);
+        return redirect('list-schedule')->with('success','Schedule successfully updated.');
+    }
+    
     public function show($id)
     {
         $dataSchedule = $this->scheduleRepository->showInfo($id);
@@ -85,10 +100,10 @@ class ScheduleController extends Controller
         return view('admin.schedule.show', compact('dataSchedule'));
     }
 
-    public function update(ResultScheduleRequest $request, $id)
+    public function updateResult(ResultScheduleRequest $request, $id)
     {
         $input = $request->except(['_token']);
-        $this->scheduleRepository->update($input, $id);
+        $this->scheduleRepository->updateResult($input, $id);
 
         if ($input['result_team_1'] == 2 or $input['result_team_2'] == 2) {
             $league_id = $input['league_id'];
@@ -97,7 +112,7 @@ class ScheduleController extends Controller
             NotificationNextMatch::dispatch($league_id, $match, $this->leagueRepository, $this->scheduleRepository, $this->notificationRepository)->onQueue('next-match');
         }
 
-        return redirect()->to('result');
+        return redirect()->to('result')->with('success','Result successfully updated.');
     }
 
     public function result()

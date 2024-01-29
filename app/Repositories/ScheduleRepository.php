@@ -26,9 +26,15 @@ class ScheduleRepository extends BaseRepository
         return $this->model->with('league', 'player1Team1', 'player2Team1', 'player1Team2', 'player2Team2')->where('id', $id)->first();
     }
 
-    public function update($input, $id)
+    public function updateLeague($input, $id)
     {
-        return $this->model->with('league')->where('id', $id)->update($input);
+        return $this->model->with('league', 'player1Team1', 'player2Team1', 'player1Team2', 'player2Team2')->where('id', $id)->update($input);
+    }
+
+
+    public function updateResult($input, $id)
+    {
+        return $this->model->with('league', 'player1Team1', 'player2Team1', 'player1Team2', 'player2Team2')->where('id', $id)->update($input);
     }
 
     public function getScheduleByDate($date)

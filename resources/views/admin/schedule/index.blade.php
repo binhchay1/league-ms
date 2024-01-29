@@ -36,10 +36,10 @@
                     <tr class="design-text">
                         <th scope="col">{{ __('League') }}</th>
                         <th scope="col">{{ __('Round') }}</th>
+                        <th scope="col">{{ __('Match') }}</th>
                         <th scope="col">{{ __('Time') }}</th>
                         <th scope="col">{{ __('Team 1') }}</th>
                         <th scope="col">{{ __('Team 2') }}</th>
-                        <th scope="col">{{ __('Stadium') }}</th>
                         <th scope="col">{{ __('Action') }}</th>
                     </tr>
                 </thead>
@@ -49,6 +49,7 @@
                     <tr>
                         <td>{{ $data->league->name ?? "" }}</td>
                         <td>{{ $data->round }}</td>
+                        <td>{{ $data->match }}</td>
                         <td>{{ $data->time }}</td>
                         <td>
                             {{ $data->player1Team1->name ?? "" }}
@@ -60,10 +61,9 @@
                             <br>
                             {{ $data->player2Team2->name ?? "" }}
                         </td>
-                        <td>{{ $data->stadium }}</td>
                         <td class="text-center">
-                            <a href="{{route('schedule.show', $data['id'])}}" class="btn btn-info">
-                                <span style="color:white"></span>{{ __('Create Result') }}
+                            <a href="{{route('schedule.edit', $data['id'])}}" class="btn btn-info">
+                                <span style="color:white"></span>{{ __('Edit Schedule') }}
                             </a>
                         </td>
                     </tr>
@@ -92,5 +92,10 @@
         var round = $('#dataTables').DataTable();
         round.search(this.value).draw();
     });
+
+
+    setTimeout(function() {
+        $('.alert-block').remove();
+    }, 5000);
 </script>
 @endsection
