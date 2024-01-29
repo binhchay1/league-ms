@@ -30,7 +30,7 @@
                                             <div class="bracket">
                                                 <div class="bracket__participantRow bracket__participantRow--home"><span class="flag fl_218 bracket__image bracket__image--1"></span>
                                                     @if(isset($match->player1Team1))
-                                                    <div class="bracket__participant"><span class="bracket__name">{{ $match->player1Team1->name }}</span></div>
+                                                    <div class="bracket__participant"><span class="bracket__name bracket__name--advancing">{{ $match->player1Team1->name }}</span></div>
                                                     @endif
                                                 </div>
                                                 <div class="bracket__result bracket__result--home">
@@ -62,7 +62,7 @@
                                                 </div>
                                                 <div class="bracket__participantRow bracket__participantRow--away"><span class="flag fl_93 bracket__image bracket__image--1"></span>
                                                     @if(isset($match->player1Team2))
-                                                    <div class="bracket__participant"><span class="bracket__name">{{ $match->player1Team2->name }}</span></div>
+                                                    <div class="bracket__participant"><span class="bracket__name bracket__name--advancing">{{ $match->player1Team2->name }}</span></div>
                                                     @endif
                                                 </div>
                                                 <div class="bracket__result bracket__result--away">
@@ -127,10 +127,10 @@
                                                         </div>
                                                         <div class="bracket__participantRow bracket__participantRow--away">
                                                             @if(isset($match->player1Team2))
-                                                            <div class="bracket__participant"><span class="bracket__name">{{ $match->player1Team2->name }}</span></div>
+                                                            <div class="bracket__participant"><span class="bracket__name bracket__name--advancing">{{ $match->player1Team2->name }}</span></div>
                                                             @endif
                                                             @if(isset($match->player2Team2))
-                                                            <div class="bracket__participant bracket__participant--2"><span class="bracket__name">{{ $match->player2Team2->name }}</span></div>
+                                                            <div class="bracket__participant bracket__participant--2"><span class="bracket__name bracket__name--advancing">{{ $match->player2Team2->name }}</span></div>
                                                             @endif
                                                         </div>
                                                         <div class="bracket__result bracket__result--away">
@@ -146,10 +146,10 @@
                                                     <div class="bracket bracket--doubles">
                                                         <div class="bracket__participantRow bracket__participantRow--home">
                                                             @if(isset($match->player1Team1))
-                                                            <div class="bracket__participant"><span class="bracket__name">{{ $match->player1Team1->name }}</span></div>
+                                                            <div class="bracket__participant"><span class="bracket__name bracket__name--advancing">{{ $match->player1Team1->name }}</span></div>
                                                             @endif
                                                             @if(isset($match->player2Team1))
-                                                            <div class="bracket__participant bracket__participant--2"><span class="bracket__name">{{ $match->player2Team1->name }}</span></div>
+                                                            <div class="bracket__participant bracket__participant--2"><span class="bracket__name bracket__name--advancing">{{ $match->player2Team1->name }}</span></div>
                                                             @endif
                                                         </div>
                                                         <div class="bracket__result bracket__result--home">
@@ -157,7 +157,7 @@
                                                         </div>
                                                         <div class="bracket__participantRow bracket__participantRow--away">
                                                             @if(isset($match->player1Team2))
-                                                            <div class="bracket__participant"><span class="bracket__name bracket__name--advancing">{{ $match->player1Team2->name }}</span></div>
+                                                            <div class="bracket__participant"><span class="bracket__name bracket__name--advancing bracket__name--advancing" >{{ $match->player1Team2->name }}</span></div>
                                                             @endif
                                                             @if(isset($match->player2Team2))
                                                             <div class="bracket__participant bracket__participant--2"><span class="bracket__name bracket__name--advancing">{{ $match->player2Team2->name }}</span></div>

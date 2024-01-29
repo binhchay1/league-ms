@@ -21,20 +21,24 @@
                 <div class="home-wrap" tmt-detail="[object Object]">
                     <div class="home-page-outer current-tournament">
                         <div class="home-section text-left"><!----><h2>Current Live Tournament</h2>
+                            @forelse($getLeaguesMatch as $league  )
                             <div class="current-tmt-wrap">
                                 <div class="current-tmt-outer">
                                     <div class="current-tmt-inner">
                                         <div class="current-tmt-logo">
-                                            <a href="" class="">
-                                                <img src="https://extranet.bwfbadminton.com/docs/events/4737/logo-colour/Indonesia-Masters-2024.svg"></a>
+                                            <a href="" >
+                                                <img src="{{asset($league->images)}}" style="height: 100%; width: 100%"></a>
                                         </div>
-                                        <div class="current-tmt-name">DAIHATSU Indonesia Masters 2024</div>
+                                        <div class="current-tmt-name" style="font-size: 30px">{{$league->name}}</div>
                                     </div>
-                                    <div class="current-tmt-link-wrap text-center" >
-                                        <div><a href="/4737" class=" btn btn-danger "> Live Scores </a></div>
+                                    <div class="current-tmt-link-wrap text-center mt-2" >
+                                        <div><a href="{{route('league.info', $league['slug'])}}" class=" btn btn-danger "> {{__('Live Score')}} </a></div>
                                     </div>
                                 </div>
                             </div>
+                            @empty
+                                <h3 style="height: 220px" class="text-center">{{__('Data has not been updated!')}}</h3>
+                            @endforelse
                         </div>
                     </div>
                 </div>

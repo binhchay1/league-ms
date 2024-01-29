@@ -150,7 +150,7 @@ class HomeController extends Controller
     {
         $getLeagueByState = $request->get('state');
         $getLeague = $this->leagueRepository->getLeagueHome($getLeagueByState);
-        $listLeagues = $this->utility->paginate($getLeague, 2);
+        $listLeagues = $this->utility->paginate($getLeague, 5);
 
         return view('page.league.index', compact( 'listLeagues'));
     }
@@ -158,7 +158,7 @@ class HomeController extends Controller
     public function listGroup()
     {
         $getGroup = $this->groupRepository->getGroupWithStatus();
-        $listGroup = $this->utility->paginate($getGroup, 30);
+        $listGroup = $this->utility->paginate($getGroup, 5);
 
         return view('page.group.index', compact('listGroup'));
     }
@@ -375,11 +375,13 @@ class HomeController extends Controller
 
     public function viewMatch()
     {
-        return view('page.match-center.index');
+        $getLeaguesMatch = $this->leagueRepository->getLeagueMath();
+        return view('page.match-center.index', compact('getLeaguesMatch'));
     }
 
-    public function live()
+    public function live($slug)
     {
+        $league = $this->leagueRepository->showInfo($slug);
         return view('page.match-center.show-live');
     }
 }

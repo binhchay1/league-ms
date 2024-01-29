@@ -16,7 +16,7 @@
     }
 </style>
 
-<div class="container" style="margin-bottom: 100px">
+<div class="container" >
     <div class="std-title">
         <div class="std-title-left">
             <h2 class="left">{{ __('LEAGUE CALENDAR') }}</h2>
@@ -32,7 +32,7 @@
     </div>
     <div class="item-results">
         @foreach($listLeagues as $listLeague)
-        <div class="tblResultLanding" style=" margin-top: 10px; background:#ffffff; margin-bottom: -5px" onmouseover="this.style.background='#a4a4a4';" onmouseout="this.style.background='#ffffff';">
+        <div class="tblResultLanding" style=" margin-top: 10px; background:#ffffff; margin-bottom: 50px" onmouseover="this.style.background='#a4a4a4';" onmouseout="this.style.background='#ffffff';">
             <a href="{{route('league.info', $listLeague['slug'])}}">
                 <div class="tr-tournament-detail" id="4734">
                     <div class="tournament-detail ">
@@ -72,8 +72,8 @@
         </div>
         @endforeach
     </div>
-
-    <div class="navigator short">
+    @if($listLeagues->total() > $listLeagues->perPage())
+    <div class="navigator short  mt-4">
         <div class="head d-flex justify-content-center ">
             <ul class="pagination">
                 <li>
@@ -90,6 +90,7 @@
             </ul>
         </div>
     </div>
+    @endif
 </div>
 @endsection
 <script src="{{ asset('js/league.js') }}"></script>

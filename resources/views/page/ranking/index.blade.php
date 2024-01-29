@@ -110,6 +110,8 @@ $utility = new \App\Enums\Utility();
             </div>
         </div>
         @endif
+    </div>
+
     </section>
 
 @endsection
