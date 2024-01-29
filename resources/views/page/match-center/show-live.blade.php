@@ -20,7 +20,7 @@
             <div class="content-left-scroll">
                 <div class="home-wrap" tmt-detail="[object Object]">
                     <div class="home-page-outer current-tournament">
-                        <div class="home-section text-left"><!----><h2>Current Live Tournament</h2>
+                        <div class="home-section text-left"><!----><h2>{{__('Current Live Tournament League')}}</h2>
                             <div class="row">
                                 <div class="current-tmt-wrap col-lg-8">
                                     <div class="current-tmt-outer">
@@ -28,12 +28,10 @@
                                             <div class="current-tmt-logo">
                                                 <a href="" class="">
                                                     <img
-                                                        src="https://extranet.bwfbadminton.com/docs/events/4737/logo-colour/Indonesia-Masters-2024.svg"></a>
+                                                        src="{{asset($listLeague->images)}}"></a>
                                             </div>
-                                            <div class="current-tmt-name">DAIHATSU Indonesia Masters 2024</div>
-                                        </div>
-                                        <div class="current-tmt-link-wrap text-center">
-                                            <div><a href="/4737" class=" btn btn-danger "> Live Scores </a></div>
+                                            <div class="current-tmt-name">{{$listLeague->name}}</div>
+                                            <div class="current-tmt-name">{{$listLeague->name}}</div>
                                         </div>
                                     </div>
                                 </div>
