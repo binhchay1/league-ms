@@ -85,4 +85,13 @@ class LeagueRepository extends BaseRepository
     {
         return $this->model->with('userLeagues')->where('slug', $slug)->first();
     }
+
+    //match center
+    public function getLeagueMath()
+    {
+        $currentDate = date('Y-m-d ');
+        return $this->model->where('start_date', '<=' , $currentDate)
+            ->where('end_date', '>=' ,$currentDate)
+            ->orderBy('created_at', 'desc')->get();
+    }
 }

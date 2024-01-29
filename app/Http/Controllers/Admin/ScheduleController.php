@@ -148,10 +148,12 @@ class ScheduleController extends Controller
         $timeInDay = $getLeague->start_time;
         $countMatch = 1;
         $totalMembers = count($listAuto);
+        $dateData = $getLeague->start_date;
+        $countNextDate = 1;
 
         if (strpos($getLeague->type_of_league, 'singles') > 0) {
             if ($totalMembers < 4) {
-                $report = __('The number of members participating in the tournament must be greater than 8');
+                $report = __('The number of members participating in the tournament must be greater than 4');
                 return redirect()->route('schedule.leagueSchedule', $getLeague->id)->with('message', $report);
             }
 
@@ -170,12 +172,16 @@ class ScheduleController extends Controller
                     continue;
                 }
 
+                if($countNextDate == 4) {
+
+                }
+
                 $data = [
                     'league_id' => $getLeague->id,
                     'match' => $countMatch,
                     'round' => $round,
                     'time' => $timeInDay,
-                    'date' => $getLeague->start_date,
+                    'date' => $dateData,
                     'player1_team_1' => $listAuto[$i],
                 ];
 
@@ -187,12 +193,13 @@ class ScheduleController extends Controller
                 $endTime = strtotime($timeInDay) + (90 * 60);
                 $timeInDay = date('h:i:s', $endTime);
                 $countMatch++;
+                $countNextDate++;
             }
         } else {
             $countLack = 0;
             $breakFor = 0;
             if ($totalMembers < 8) {
-                $report = __('The number of members participating in the tournament must be greater than 16');
+                $report = __('The number of members participating in the tournament must be greater than 8');
                 return redirect()->route('schedule.leagueSchedule', $getLeague->id)->with('message', $report);
             }
 
@@ -217,7 +224,7 @@ class ScheduleController extends Controller
                     'match' => $countMatch,
                     'round' => $round,
                     'time' => $timeInDay,
-                    'date' => $getLeague->start_date,
+                    'date' => $dateData,
                     'player1_team_1' => $listAuto[$i],
                 ];
 
