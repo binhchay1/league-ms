@@ -288,7 +288,6 @@ body:not(.detailbody) .draw {
 }
 
 .bracket__result {
-    align-items: center;
     display: grid;
     font-weight: 700;
     grid-auto-columns: minmax(24px, max-content);
@@ -2172,4 +2171,8 @@ body:not(.detailbody) .draw {
 .topScorers__skeleton__row:after,
 .topScorers__skeleton__row:before {
     content: ""
+}
+
+.score__lose {
+    font-weight: 100 !important;
 }

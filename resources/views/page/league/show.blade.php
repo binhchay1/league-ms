@@ -18,7 +18,9 @@
     </style>
 <link rel="stylesheet" href="{{ asset('css/page/show.css') }}" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-<link rel="stylesheet" href="{{ asset('css/page/draw.css') }}" />
+@if(Route::current()->getName() == 'leagueResult.bracket')
+<link rel="stylesheet" href="{{ asset('css/page/bracket.css') }}" />
+@endif
 @endsection
 
 @section('content')
