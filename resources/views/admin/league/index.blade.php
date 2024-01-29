@@ -42,7 +42,7 @@
                         <td>{{ $data->format_of_league }}</td>
                         <td>{{ $data->type_of_league }}</td>
                         <td>
-                            <a href="{{route('league.edit',$data['id'])}}">
+                            <a href="{{route('league.edit',$data['slug'])}}">
                                 <button type="button" class="btn btn-info">{{ __('Edit') }}</button>
                             </a>
                             <a href="{{route('league.show',$data['id'])}}">
@@ -70,5 +70,9 @@
         });
         $('.dataTables_length').addClass('bs-select');
     })
+
+    setTimeout(function() {
+        $('.alert-block').remove();
+    }, 5000);
 </script>
 @endsection

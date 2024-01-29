@@ -5,19 +5,27 @@
 @endsection
 
 @section('css')
+    <style>
+        .btn-league {
+            font-size: 20px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            background-color: #6cbe4c;
+            border-color: transparent;
+            font-weight: 500;
+            width: 200px;
+        }
+    </style>
 <link rel="stylesheet" href="{{ asset('css/page/show.css') }}" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+@if(Route::current()->getName() == 'leagueResult.bracket')
+<link rel="stylesheet" href="{{ asset('css/page/bracket.css') }}" />
+@endif
 @endsection
 
 @section('content')
 <div id="page" class="hfeed site">
     <div class="container-1280 results">
-        <div class="std-title">
-            <div class="std-title-left">
-                <h2 class="left">{{ __('LEAGUE INFORMATION') }}</h2>
-            </div>
-        </div>
-
         <div class="wrapper-results">
             <div style="border: 1px solid #efefef;">
                 <div class="box-title page-header">
@@ -28,7 +36,7 @@
                             {{ __('OTHER LEAGUE') }}
                         </h3>
                         <label class="tournament-select clear">
-                            <select name='record' class="ddlTournament">
+                            <select name='record' class="ddlTournament" style="width: 300px;">
                                 <option id="format_of_league" value="">{{ __('Select League') }}</option>
                                 @foreach($listLeagues as $league => $value )
                                 <?php $dataLeague = str_slug($value->name) ?>
@@ -59,25 +67,35 @@
             <div class="wrapper-content-results" style="padding: 0px; margin-top: 18px;">
                 <ul id="ajaxTabs" class="content-tabs">
                     <li>
-                        <a href="{{route('leagueResult.info', $leagueInfor['slug'])}}">{{ __('Result') }} </a>
+                        <a href="{{ route('leagueResult.bracket', $leagueInfor['slug']) }}">{{ __('Bracket') }} </a>
                     </li>
-                    <li><a href="{{route('leagueSchedule.info', $leagueInfor['slug'])}}">{{ __('Schedule') }}</a>
+                    <li>
+                        <a href="{{ route('leagueResult.info', $leagueInfor['slug']) }}">{{ __('Result') }} </a>
+                    </li>
+                    <li><a href="{{ route('leagueSchedule.info', $leagueInfor['slug']) }}">{{ __('Schedule') }}</a>
                     </li>
                     <li><a id="player-data" href="{{ route('leaguePlayer.info', $leagueInfor['slug']) }}">{{ __('Player ') }}</a>
                     </li>
                 </ul>
-                <div class="register  row" align="right" id="register-league">
-                    <div class="col-lg-10 mt-4">
+                <?php $current_date =  strtotime(date("Y-m-d"));
+                      $start_date =  strtotime($leagueInfor->start_date);
+                $end_date_register =  strtotime($leagueInfor->end_date_register);
+
+                ?>
+                @if($current_date <= $start_date && $current_date <= $end_date_register)
+                <div class="register row" align="right" id="register-league">
+                    <div class="col-lg-9 mt-4">
                         <?php $end_date_register = date('d/m/Y', strtotime($leagueInfor->end_date_register));
                         ?>
                         <h5>{{ __('Registration Deadline') }} : {{ $end_date_register }}</h5>
                     </div>
-                    <div class="col-lg-2 mt-3">
-                        <button type="button" id="btn-register" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+                    <div class="col-lg-3 mt-3">
+                        <button type="button" id="btn-register" class="btn btn-success btn-league" data-bs-toggle="modal" data-bs-target="#myModal">
                             {{ __('Register League') }}
                         </button>
                     </div>
                 </div>
+                @endif
 
                 <div class="modal" id="myModal">
                     <div class="modal-dialog">
@@ -187,8 +205,10 @@
                         <div>
                             @include('page.league.detail.schedule')
                         </div>
+                        @elseif(Route::current()->getName() == 'leagueResult.bracket')
+                        @include('page.league.detail.bracket')
                         @else
-                        <div>
+                        <div class="item draws" style="display:block;">
                             @include('page.league.detail.schedule')
                         </div>
                         @endif
@@ -199,6 +219,7 @@
     </div>
 </div>
 @endsection
+
 @section('js')
 <script src="{{ asset('js/league.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -208,13 +229,6 @@
         window.location.href = window.location.origin + '/info/' + edit_id;
     });
 
-    var current_date = '<?php echo  strtotime(date("Y-m-d")); ?>';
-    var start_date = '<?php echo strtotime($leagueInfor->start_date); ?>';
-    if ( current_date >= start_date ) {
-        $('#register-league').hide();
-    } else {
-        $('#register-league').show();
-    }
 </script>
 @if(Session::has('message'))
 <script>

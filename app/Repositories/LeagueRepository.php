@@ -13,9 +13,10 @@ class LeagueRepository extends BaseRepository
 
     public function index($user)
     {
-        if(\Auth::user()->role == 'admin'){
+        if (\Auth::user()->role == 'admin') {
             return $this->model->with('schedule')->orderBy('created_at', 'desc')->get();
         }
+
         return $this->model->where('owner_id', $user)->with('schedule')->orderBy('created_at', 'desc')->get();
     }
 
@@ -24,9 +25,9 @@ class LeagueRepository extends BaseRepository
         return $this->model->create($input);
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        return $this->model->with('userLeagues', 'userLeagues.user')->where('id', $id)->first();
+        return $this->model->with('userLeagues', 'userLeagues.user')->where('slug', $slug)->first();
     }
 
     public function updateLeague($input, $id)
@@ -60,8 +61,28 @@ class LeagueRepository extends BaseRepository
         return $this->model->orderBy('created_at', 'desc')->take(1)->get();
     }
 
-    public function getLeagueHome()
+    public function getLeagueHome($getLeagueByState = null)
     {
+
+        if ($getLeagueByState == 'all')
+        {
+            return $this->model->orderBy('created_at', 'desc')->get();
+        }
+        elseif ($getLeagueByState == 'next')
+        {
+            return $this->model->whereDate('created_at', '>',  date('Y-m-d'))->orderBy('created_at', 'desc')->get();
+        }
+        elseif ($getLeagueByState == 'completed')
+        {
+            return $this->model->whereDate('created_at', '<',  date('Y-m-d'))->orderBy('created_at', 'desc')->get();
+        }
+
         return $this->model->orderBy('created_at', 'desc')->get();
+
+    }
+
+    public function getLeagueBySlug($slug)
+    {
+        return $this->model->with('userLeagues')->where('slug', $slug)->first();
     }
 }

@@ -15,7 +15,6 @@ class Group extends Model
         'name',
         'images',
         'description',
-        'activity_time',
         'number_of_members',
         'location',
         'note',
@@ -28,6 +27,11 @@ class Group extends Model
     public function group_users()
     {
         return $this->hasMany(GroupUser::class);
+    }
+
+    public function group_trainings()
+    {
+        return $this->hasMany(GroupTraining::class);
     }
 
     public function users()

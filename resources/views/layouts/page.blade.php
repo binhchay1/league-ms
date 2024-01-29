@@ -57,9 +57,10 @@
             <a href="{{ route('home') }}"><img style="margin-bottom: 30px" class="left" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
 
             <ul id="menu" class="menu-main">
-                <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
-                <li class="pt-2"><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
-                <li class="pt-2"><a href="{{ route('ranking') }}">{{ __('Ranking') }}</a></li>
+                <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('LEAGUE') }}</a></li>
+                <li class="pt-2"><a href="{{ route('list.group') }}">{{ __('GROUP') }}</a></li>
+                <li class="pt-2"><a href="{{ route('ranking') }}">{{ __('RANKING') }}</a></li>
+                <li class="pt-2"><a href="{{route('match')}}">{{ __('MATCH CENTER') }}</a></li>
                 <li id="search">
                     <form id="search-league" action="{{ route('search') }}" method="post">
                         @csrf
@@ -98,8 +99,8 @@
                     </li>
 
                     @else
-                    <li><a href="{{ route('login') }}" class="button white " style="height: 45px;">{{ __('Log In') }}</a></li>
-                    <li><a href="{{ route('register_user') }}" class="button" style="height: 45px;">{{ __('Register') }}</a></li>
+                    <li><a href="{{ route('login') }}" class="button white " >{{ __('Log In') }}</a></li>
+                    <li><a href="{{ route('register_user') }}" class="button">{{ __('Register') }}</a></li>
                     @endif
 
                     @if(Auth::check())
@@ -146,51 +147,64 @@
     </header>
 
     @yield('content')
-    <footer style="background-color: #222;">
-        <div class="container color-white">
-            <div>
-                <h4 class="h3 color-white">{{ __('Criteria') }}</h4>
-                <p>{{ __('Efficiency and ease-of-use are our mission, simplifying the process of running a sports league.') }}</p>
-                <p>{{ env('APP_NAME', 'Badminton.io') }} {{ __('is available to all at no cost. Additionally, we offer premium plans that include additional functionality.') }}</p>
-            </div>
-            <div>
-                <ul>
-                    <li>
-                        <h4 class="h3 color-white">{{ __('Company') }}</h4>
-                    </li>
-                    <li><a href="{{ route('about') }}">{{ __('About') }}</a></li>
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li>
-                        <h4 class="h3 color-white">{{ __('Features') }}</h4>
-                    </li>
-                    <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
-                    <li><a href="">{{ __('Shop') }}</a></li>
-                    <li><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="h3 color-white">{{ env('APP_NAME', 'Badminton.io') }}</h4>
-                <p>
-                    <small>
-                        <a href="{{ route('term.and.conditions') }}">{{ __('Terms & Conditions') }}</a>,
-                        <a href="{{ route('privacy') }}">{{ __('Privacy') }}</a>
-                        <br>
-                        <span class="color-white">{{ __('Copyright© 2023') }}</span> <a href="{{ route('home')}}">{{ env('APP_NAME', 'Badminton.io') }}</a>
-                    </small>
-                </p>
-                <ul class="social">
-                    <li><a href=""><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="{{ __('LinkedIn') }}" width="30" height="31"></a></li>
-                    <li><a href=""><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="{{ __('Twitter') }}" width="30" height="31"></a></li>
-                    <li><a href=""><img src="{{ asset('/svg/icon-facebook.svg') }}" alt="{{ __('Facebook') }}" width="30" height="31"></a></li>
-                    <li><a href=""><img src="{{ asset('/svg/icon-youtube.svg') }}" alt="{{ __('YouTube') }}" width="30" height="31"></a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
 
+    <div class="" style="background: black">
+        <footer class="container py-5">
+            <div class="row">
+                <div class="color-white col-md-3 mb-3">
+                    <h4 class="color-white">{{ __('Criteria') }}</h4>
+                    <ul class="nav flex-column">
+                        <p>{{ __('Efficiency and ease-of-use are our mission, simplifying the process of running a sports league.') }}</p>
+                        <p>{{ env('APP_NAME', 'Badminton.io') }} {{ __('is available to all at no cost. Additionally, we offer premium plans that include additional functionality.') }}</p>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 mb-3 color-white">
+                    <h4 class="color-white">{{ __('About') }}</h4>
+                    <ul class="nav">
+                        <li><a href="{{ route('about') }}">{{ __('About') }}</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <h4 class="color-white">{{ __('Features') }}</h4>
+                    <ul class="nav" style="display: flex; flex-direction: column;">
+                        <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
+                        <li><a href="">{{ __('Shop') }}</a></li>
+                        <li><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 ">
+                    <form>
+                        <h4 class="h3 color-white">{{ env('APP_NAME', 'Badminton.io') }}</h4>
+                        <p>
+                            <small>
+                                <a href="{{ route('term.and.conditions') }}">{{ __('Terms & Conditions') }}</a>,
+                                <a href="{{ route('privacy') }}">{{ __('Privacy') }}</a>
+                                <br>
+                                <span class="color-white">{{ __('Copyright© 2023') }}</span> <a href="{{ route('home')}}">{{ env('APP_NAME', 'Badminton.io') }}</a>
+                            </small>
+                        </p>
+                        <ul class="social">
+                            <li><a href=""><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="{{ __('LinkedIn') }}" width="30" height="31"></a></li>
+                            <li><a href=""><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="{{ __('Twitter') }}" width="30" height="31"></a></li>
+                            <li><a href=""><img src="{{ asset('/svg/icon-facebook.svg') }}" alt="{{ __('Facebook') }}" width="30" height="31"></a></li>
+                            <li><a href=""><img src="{{ asset('/svg/icon-youtube.svg') }}" alt="{{ __('YouTube') }}" width="30" height="31"></a></li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top color-white">
+                <p>{{__('© 2024 Company, Inc. All rights reserved.')}}</p>
+                <ul class="list-unstyled d-flex">
+                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
+                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
+                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

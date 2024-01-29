@@ -25,7 +25,7 @@ class LeagueRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', Rule::unique('league')->ignore($this->id)],
+            'name' => ['required', Rule::unique('leagues')->ignore($this->id)],
             'images' => 'image|mimes:jpeg,png,jpg|max:2048',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
@@ -33,6 +33,7 @@ class LeagueRequest extends FormRequest
             'format_of_league' => 'required',
             'number_of_athletes' => 'required',
             'type_of_league' => 'required',
+            'start_time' => 'required',
         ];
     }
 
@@ -41,7 +42,6 @@ class LeagueRequest extends FormRequest
         return [
             'name.required' => __('Name is required'),
             'name.unique' => __('Name invalid'),
-            'coach.required' => __('Coach is required'),
             'images.required' => __('Image is required'),
             'images.image' => __('Incorrect image format'),
             'images.mimes' => __('Incorrect image format'),
@@ -55,6 +55,7 @@ class LeagueRequest extends FormRequest
             'format_of_league.required' => __('Format is required'),
             'number_of_athletes.required' => __('Number of teams is required'),
             'type_of_league.required' => __('Type is required'),
+            'start_time.required' => __('Type is required'),
         ];
     }
 }

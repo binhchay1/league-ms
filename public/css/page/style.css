@@ -396,7 +396,7 @@ header nav .button {
 }
 
 header nav>ul {
-    font-size: 20px
+    font-size: 25px
 }
 
 @media screen and (min-width: 860px) {
@@ -520,7 +520,7 @@ header #search div {
     -webkit-box-shadow: 0 7px 15px 0 rgba(0, 0, 0, .15);
     box-shadow: 0 7px 15px 0 rgba(0, 0, 0, .15);
     border-radius: 50px;
-    height: 40px;
+    height: 43px;
     width: 40px;
     color: #fff;
     letter-spacing: -0.05em;
@@ -3413,7 +3413,7 @@ section a:hover {
 
 #menu {
     display: flex !important;
-    column-gap: 1rem;
+    column-gap: 3rem;
 }
 
 #menu.menu-mo {

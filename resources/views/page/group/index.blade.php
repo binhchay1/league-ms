@@ -18,7 +18,8 @@ $isFull = false;
 <section id="group" class="container">
     <div class="std-title">
         <div class="std-title-left">
-            <h2 class="left">{{__('GROUP')}}</h2>
+            <h2 class="left" style=" font-weight: 400;">{{ __('GROUP') }}</h2>
+
         </div>
     </div>
     <div class="row">

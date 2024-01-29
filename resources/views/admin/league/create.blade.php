@@ -39,14 +39,23 @@
                         <div class="row mt-4">
                             <div class="col-6">
                                 <label for="lastName" class="form-label">{{__('Name')}}</label>
-                                <input class="form-control" value="{{ old('name') }}" type="text" name="name" id="name" />
+                                <input class="form-control" value="{{ old('name') }}" type="text" name="name" id="name" placeholder="{{ __('Enter group name') }}"/>
                                 @if ($errors->has('name'))
                                 <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif
                             </div>
                             <div class="col-6">
+                                <div class="form-group">
+                                    <label for="lastName" class="form-label">{{ __('Prize money') }}</label>
+                                    <input class="form-control" value="{{ old('money') }}" type="number" name="money" id="money" placeholder="{{ __('Enter league money') }}"/>
+                                    @if ($errors->has('money'))
+                                        <span class="text-danger">{{ $errors->first('money') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-6" hidden>
                                 <label for="lastName" class="form-label">{{ __('Slug') }}</label>
-                                <input class="form-control" value="{{ old('slug') }}" type="text" name="slug" id="slug" />
+                                <input class="form-control" value="{{ old('slug') }}" type="text" name="slug" id="slug" placeholder="{{ __('Enter group slug') }}"/>
                                 @if ($errors->has('slug'))
                                 <span class="text-danger">{{ $errors->first('slug') }}</span>
                                 @endif
@@ -55,8 +64,8 @@
                         <div class="row mt-4">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="address" class="form-label">{{ __('Start date') }}</label>
-                                    <input type="date" value="{{ old('start_date') }}" class="form-control" id="start_date" name="start_date" placeholder="Address" />
+                                    <label for="address" class="form-label">{{ __('Start date league') }}</label>
+                                    <input type="date" value="{{ old('start_date') }}" class="form-control" id="start_date" name="start_date"  placeholder="{{ __('Enter league start date') }}"/>
                                     @if ($errors->has('start_date'))
                                     <span class="text-danger">{{ $errors->first('start_date') }}</span>
                                     @endif
@@ -64,19 +73,20 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="address" class="form-label">{{ __('End date') }}</label>
-                                    <input type="date" value="{{ old('end_date') }}" class="form-control" id="end_date" name="end_date" placeholder="Address" />
+                                    <label for="address" class="form-label">{{ __('End date league') }}</label>
+                                    <input type="date" value="{{ old('end_date') }}" class="form-control" id="end_date" name="end_date"  placeholder="{{ __('Enter league end date ') }}"/>
                                     @if ($errors->has('end_date'))
                                     <span class="text-danger">{{ $errors->first('end_date') }}</span>
                                     @endif
                                 </div>
                             </div>
+
                         </div>
                         <div class="row mt-4">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="address" class="form-label">{{ __('Register league ') }}</label>
-                                    <input type="date" value="{{ old('end_date_register') }}" class="form-control" id="end_date_register" name="end_date_register" placeholder="Address" />
+                                    <label for="address" class="form-label">{{ __('Register date league ') }}</label>
+                                    <input type="date" value="{{ old('end_date_register') }}" class="form-control" id="end_date_register" name="end_date_register" placeholder="{{ __('Enter league register date') }}"/>
                                     @if ($errors->has('end_date_register'))
                                         <span class="text-danger">{{ $errors->first('end_date_register') }}</span>
                                     @endif
@@ -84,8 +94,29 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
+                                    <label for="lastName" class="form-label">{{ __('Start time league') }}</label>
+                                    <input class="form-control" value="{{ old('start_time') }}" type="time" name="start_time" id="start_time" placeholder="{{ __('Enter league start time') }}"/>
+                                    @if ($errors->has('start_time'))
+                                        <span class="text-danger">{{ $errors->first('start_time') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="lastName" class="form-label">{{ __('Location') }}</label>
+                                    <input class="form-control" value="{{ old('location') }}" type="text" name="location" id="location" placeholder="{{ __('Enter league location') }}"/>
+                                    @if ($errors->has('location'))
+                                    <span class="text-danger">{{ $errors->first('location') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
                                     <label for="lastName" class="form-label">{{ __('Number of players') }}</label>
-                                    <input class="form-control" value="{{ old('number_of_athletes') }}" type="text" name="number_of_athletes" id="number_of_athletes" />
+                                    <input class="form-control" value="{{ old('number_of_athletes') }}" type="text" name="number_of_athletes" id="number_of_athletes" placeholder="{{ __('Enter league number of player') }}"/>
                                     @if ($errors->has('number_of_athletes'))
                                         <span class="text-danger">{{ $errors->first('number_of_athletes') }}</span>
                                     @endif
@@ -95,27 +126,7 @@
                         <div class="row mt-4">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="lastName" class="form-label">{{ __('Location') }}</label>
-                                    <input class="form-control" value="{{ old('location') }}" type="text" name="location" id="location" />
-                                    @if ($errors->has('location'))
-                                    <span class="text-danger">{{ $errors->first('location') }}</span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="lastName" class="form-label">{{ __('Prize money') }}</label>
-                                    <input class="form-control" value="{{ old('money') }}" type="number" name="money" id="money" />
-                                    @if ($errors->has('money'))
-                                    <span class="text-danger">{{ $errors->first('money') }}</span>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-4">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>{{ __('Format of league') }}</label>
+                                    <label>{{ __('Format league') }}</label>
                                     <select  id="format_of_league" value="{{ old('format_of_league') }}" name="format_of_league" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                                         @foreach($listFormat as $format => $value)
                                         <option id="format_of_league" value="{{ $value }}">{{ $value }}</option>
@@ -125,7 +136,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label>{{ __('Type of league') }}</label>
+                                    <label>{{ __('Type league') }}</label>
                                     <select id="type_of_league" value="{{ old('type_of_league') }}" name="type_of_league" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                                         @foreach($listType as $type => $value)
                                         <option id="type_of_league" value="{{ $value }}">{{ $value }}</option>
@@ -133,6 +144,7 @@
                                     </select>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
