@@ -358,7 +358,7 @@ class HomeController extends Controller
 
             $this->groupTraining->updateMembers($idTraining, $dataMembers);
         } else {
-            $members = json_decode($members, true);
+            $members = json_decode($members->members, true);
             if (!in_array(Auth::user()->id, $members)) {
                 $members[] = Auth::user()->id;
             }

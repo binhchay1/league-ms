@@ -133,6 +133,8 @@ class ScheduleController extends Controller
         $timeInDay = $getLeague->start_time;
         $countMatch = 1;
         $totalMembers = count($listAuto);
+        $dateData = $getLeague->start_date;
+        $countNextDate = 1;
 
         if (strpos($getLeague->type_of_league, 'singles') > 0) {
             if ($totalMembers < 4) {
@@ -155,12 +157,16 @@ class ScheduleController extends Controller
                     continue;
                 }
 
+                if($countNextDate == 4) {
+
+                }
+
                 $data = [
                     'league_id' => $getLeague->id,
                     'match' => $countMatch,
                     'round' => $round,
                     'time' => $timeInDay,
-                    'date' => $getLeague->start_date,
+                    'date' => $dateData,
                     'player1_team_1' => $listAuto[$i],
                 ];
 
@@ -172,6 +178,7 @@ class ScheduleController extends Controller
                 $endTime = strtotime($timeInDay) + (90 * 60);
                 $timeInDay = date('h:i:s', $endTime);
                 $countMatch++;
+                $countNextDate++;
             }
         } else {
             $countLack = 0;
@@ -202,7 +209,7 @@ class ScheduleController extends Controller
                     'match' => $countMatch,
                     'round' => $round,
                     'time' => $timeInDay,
-                    'date' => $getLeague->start_date,
+                    'date' => $dateData,
                     'player1_team_1' => $listAuto[$i],
                 ];
 
