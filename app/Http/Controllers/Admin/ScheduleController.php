@@ -136,7 +136,7 @@ class ScheduleController extends Controller
 
         if (strpos($getLeague->type_of_league, 'singles') > 0) {
             if ($totalMembers < 4) {
-                $report = __('The number of members participating in the tournament must be greater than 8');
+                $report = __('The number of members participating in the tournament must be greater than 4');
                 return redirect()->route('schedule.leagueSchedule', $getLeague->id)->with('message', $report);
             }
 
@@ -177,7 +177,7 @@ class ScheduleController extends Controller
             $countLack = 0;
             $breakFor = 0;
             if ($totalMembers < 8) {
-                $report = __('The number of members participating in the tournament must be greater than 16');
+                $report = __('The number of members participating in the tournament must be greater than 8');
                 return redirect()->route('schedule.leagueSchedule', $getLeague->id)->with('message', $report);
             }
 

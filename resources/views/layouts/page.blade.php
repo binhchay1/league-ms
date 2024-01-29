@@ -168,7 +168,7 @@
 
                 <div class="col-md-3 mb-3">
                     <h4 class="color-white">{{ __('Features') }}</h4>
-                    <ul class="nav">
+                    <ul class="nav" style="display: flex; flex-direction: column;">
                         <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
                         <li><a href="">{{ __('Shop') }}</a></li>
                         <li><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
