@@ -55,7 +55,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="lastName" class="form-label">{{ __('Prize money') }}</label>
-                                    <input class="form-control" value="{{ old('money',$dataLeague['money']) }}" type="number" name="money" id="money" placeholder="{{ __('Enter league money') }}"/>
+                                    <input class="form-control" value="{{ old('money',$dataLeague['money']) }}" type="text" name="money" id="money" placeholder="{{ __('Enter league money') }}"/>
                                     @if ($errors->has('money'))
                                         <span class="text-danger">{{ $errors->first('money') }}</span>
                                     @endif
@@ -117,10 +117,11 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="lastName" class="form-label">{{ __('Number of athletes') }}</label>
-                                    <input class="form-control" value="{{ old('number_of_athletes',$dataLeague['number_of_athletes']) }}" type="text" name="number_of_athletes" id="number_of_athletes" placeholder="{{ __('Enter league number of players') }}"/>
-                                    @if ($errors->has('number_of_athletes'))
-                                        <span class="text-danger">{{ $errors->first('number_of_athletes') }}</span>
-                                    @endif
+                                    <select id="format_of_league" value="{{ $dataLeague->number_of_athletes }}" name="number_of_athletes" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                                        @foreach($listPlayer as $number => $value)
+                                            <option id="format_of_league" value="{{ $value }}" {{$value == $dataLeague->number_of_athletes ? 'selected' : ''}}>{{ $value }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
@@ -131,7 +132,7 @@
                                     <label>{{ __('Format of league') }}</label>
                                     <select id="format_of_league" value="{{ $dataLeague->format_of_league }}" name="format_of_league" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                                         @foreach($listFormat as $format => $value)
-                                        <option id="format_of_league" value="{{ $value }}">{{ $value }}</option>
+                                        <option id="format_of_league" value="{{ $value }}" {{$value == $dataLeague->format_of_league ? 'selected' : ''}}>{{ $value }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -141,7 +142,7 @@
                                     <label>{{ __('Type of league') }}</label>
                                     <select id="type_of_league" value="{{ $dataLeague->type_of_league }}" name="type_of_league" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" >
                                         @foreach($listType as $type => $value)
-                                        <option id="type_of_league" value="{{ $value }}">{{ $value }}</option>
+                                        <option id="type_of_league" value="{{ $value }}" {{$value == $dataLeague->type_of_league ? 'selected' : ''}}>{{ $value }}</option>
                                         @endforeach
                                     </select>
                                 </div>

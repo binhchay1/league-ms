@@ -40,8 +40,9 @@ class LeagueController extends Controller
     {
         $listType = Ranking::RANKING_ARRAY_TYPE;
         $listFormat = Ranking::RANKING_ARRAY_FORMAT;
+        $listPlayer = \App\Enums\League::NUMBER_PLAYER;
 
-            return view('admin.league.create', compact('listType', 'listFormat'));
+        return view('admin.league.create', compact('listType', 'listFormat', 'listPlayer'));
 
     }
 
@@ -64,9 +65,9 @@ class LeagueController extends Controller
         return redirect()->to('list-league')->with('success','League successfully created.');
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $userRegisterLeague = $this->leagueRepository->show($id);
+        $userRegisterLeague = $this->leagueRepository->show($slug);
         return view('admin.league.user-register-league', compact('userRegisterLeague'));
     }
 
@@ -74,8 +75,9 @@ class LeagueController extends Controller
     {
         $listType = Ranking::RANKING_ARRAY_TYPE;
         $listFormat = Ranking::RANKING_ARRAY_FORMAT;
+        $listPlayer = \App\Enums\League::NUMBER_PLAYER;
         $dataLeague = $this->leagueRepository->show($slug);
-        return view('admin.league.edit', compact('dataLeague', 'listType', 'listFormat'));
+        return view('admin.league.edit', compact('dataLeague', 'listType', 'listFormat','listPlayer'));
     }
 
 

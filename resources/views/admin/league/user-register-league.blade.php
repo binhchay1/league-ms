@@ -57,10 +57,10 @@
                             <tbody class="table-border-bottom-0">
                                 @foreach($userRegisterLeague->userLeagues as $league)
                                 <tr>
-                                    <td><i class=""></i> <strong>{{ $league->user->name }}</strong></td>
-                                    <td><img class="image" src="" alt="avatar" style="width: 150px"></td>
-                                    <td><i class=""></i> <strong>{{ $league->user->age }}</strong></td>
-                                    <td><i class=""></i> <strong>{{ $league->user->address }}</strong></td>
+                                    <td><i class=""></i> <strong>{{ $league->user->name ?? "" }}</strong></td>
+                                    <td><img class="image" src="{{asset($league->user->profile_photo_path ?? '/images/default-avatar.png')}}" alt="avatar" style="width: 100px"></td>
+                                    <td><i class=""></i> <strong>{{ $league->user->gender ?? "" }}</strong></td>
+                                    <td><i class=""></i> <strong>{{ $league->user->address ?? "" }}</strong></td>
                                     <td><input type="checkbox" name="status" value="1" class="checkbox" {{ $league->status == 1 ? 'checked' : ''}}></td>
                                     <td class="text_flow text-center">
                                         <a href="{{ route('league.destroyPlayer', $league['id']) }}">

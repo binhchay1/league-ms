@@ -14,4 +14,8 @@ final class League
         'quarter-finals' => ['quarter-finals', 'semi-finals', 'final'],
         'semi-finals' => ['semi-finals', 'final']
     ];
+
+    const NUMBER_PLAYER = [
+        '4', '8', '16', '32',
+    ];
 }
