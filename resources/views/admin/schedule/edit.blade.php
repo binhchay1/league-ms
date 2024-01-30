@@ -26,7 +26,7 @@
                                         <label>{{ __('Round') }}</label>
                                         <select id="type_of_league" value="{{ $dataSchedule->round }}" name="round" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" >
                                             @foreach($rounds as $round => $value)
-                                                <option id="type_of_league" value="{{ $value }}">{{ $value }}</option>
+                                                <option id="type_of_league" value="{{ $value }}" {{$value == $dataSchedule->round ? 'selected' : ''}}>{{ $value }}</option>
                                             @endforeach
                                         </select>
                                     </div>

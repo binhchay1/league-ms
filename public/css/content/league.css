@@ -35,7 +35,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
     overflow: hidden;
 }
 
@@ -102,7 +101,6 @@ h4 {
 .show-image-league {
     width: 160px;
     height: 160px;
-    border-radius: 10px;
 }
 
 @media screen and (max-width: 768px) {
