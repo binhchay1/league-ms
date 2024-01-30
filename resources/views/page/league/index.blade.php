@@ -30,9 +30,9 @@
         </div>
         <a href="{{route('league.create')}}"><button class="btn btn-success btn-league">{{ __('Create League') }}</button></a>
     </div>
-    <div class="item-results">
-        @foreach($listLeagues as $listLeague)
-        <div class="tblResultLanding" style=" margin-top: 10px; background:#ffffff; margin-bottom: 50px" onmouseover="this.style.background='#a4a4a4';" onmouseout="this.style.background='#ffffff';">
+    <div class="item-results" style="margin-bottom: 50px">
+        @forelse($listLeagues as $listLeague)
+        <div class="tblResultLanding" style=" margin-top: 10px; background:#ffffff;" onmouseover="this.style.background='#a4a4a4';" onmouseout="this.style.background='#ffffff';">
             <a href="{{route('league.info', $listLeague['slug'])}}">
                 <div class="tr-tournament-detail" id="4734">
                     <div class="tournament-detail ">
@@ -70,7 +70,9 @@
                 </div>
             </a>
         </div>
-        @endforeach
+        @empty
+            <h3 style="height: 220px" class="text-center">{{__('Data has not been updated!')}}</h3>
+        @endforelse
     </div>
     @if($listLeagues->total() > $listLeagues->perPage())
     <div class="navigator short  mt-4">

@@ -39,7 +39,7 @@
                         <div class="row mt-4">
                             <div class="col-6">
                                 <label for="lastName" class="form-label">{{__('Name')}}</label>
-                                <input class="form-control" value="{{ old('name') }}" type="text" name="name" id="name" placeholder="{{ __('Enter group name') }}"/>
+                                <input class="form-control" value="{{ old('name') }}" type="text" name="name" id="name" placeholder="{{ __('Enter league name') }}"/>
                                 @if ($errors->has('name'))
                                 <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif
