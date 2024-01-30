@@ -27,7 +27,7 @@
                     {{ session()->get('success') }}
                 </div>
                 @endif
-                <div class="container d-flex flex-row">
+                <div class="row">
                     <div class="col-md-4">
                         <input value="" type="file" class="border-0 bg-light pl-0" name="images" id="image" hidden>
                         <div class=" choose-avatar">
@@ -43,7 +43,7 @@
                         @endif
                     </div>
                     <div class="container ml-4">
-                        <div>
+                        <div class="mt-2">
                             <label for="name" class="form-label">{{ __('Name') }}</label>
                             <input class="form-control" type="text" name="name" id="name" value="{{ old('name') }}" placeholder="{{ __('Enter group name') }}" />
                             @if ($errors->has('name'))
@@ -51,14 +51,14 @@
                             @endif
                         </div>
 
-                        <div>
+                        <div class="mt-4">
                             <label for="description" class="form-label">{{ __('Description') }}</label>
                             <input class="form-control" type="text" name="description" id="description" value="{{ old('description') }}" placeholder="{{ __('Enter group description') }}" />
                             @if ($errors->has('description'))
                             <span class="text-danger">{{ $errors->first('description') }}</span>
                             @endif
                         </div>
-                        <div>
+                        <div class="mt-4">
                             <label for="location" class="form-label">{{ __('Location') }}</label>
                             <input class="form-control" type="text" name="location" id="location" value="{{ old('location') }}" placeholder="{{ __('Enter group location') }}" />
                             @if ($errors->has('location'))
@@ -66,7 +66,7 @@
                             @endif
                         </div>
 
-                        <div>
+                        <div class="mt-4">
                             <label for="location" class="form-label">{{ __('Number of members') }}</label>
                             <input class="form-control" type="number" name="number_of_members" id="location" value="{{ old('number_of_members') }}" placeholder="{{ __('Enter group number of members') }}" min="0"/>
                             @if ($errors->has('number_of_members'))
@@ -74,7 +74,7 @@
                             @endif
                         </div>
 
-                        <div>
+                        <div class="mt-4">
                             <label for="note" class="form-label">{{ __('Note') }}</label>
                             <input class="form-control" type="text" name="note" id="note" value="{{ old('note') }}" placeholder="{{ __('Enter group note') }}" />
                             @if ($errors->has('note'))
@@ -82,7 +82,7 @@
                             @endif
                         </div>
 
-                        <div>
+                        <div class="mt-4">
                             <label for="status" class="form-label">{{ __('Status') }}</label>
                             <select class="form-control" name="status" id="status" value="{{ old('status') }}">
                                 <option value="public">{{ __('Public') }}</option>
@@ -90,7 +90,7 @@
                             </select>
                         </div>
 
-                        <div>
+                        <div class="mt-4">
                             <label for="status" class="form-label">{{ __('Active') }}</label>
                             <select class="form-control" name="active" id="active" value="{{ old('active') }}">
                                 <option value="1">{{ __('Active') }}</option>
