@@ -70,11 +70,11 @@ class LeagueRepository extends BaseRepository
         }
         elseif ($getLeagueByState == 'next')
         {
-            return $this->model->whereDate('created_at', '>',  date('Y-m-d'))->orderBy('created_at', 'desc')->get();
+            return $this->model->whereDate('start_date', '>',  date('Y-m-d'))->orderBy('created_at', 'desc')->get();
         }
         elseif ($getLeagueByState == 'completed')
         {
-            return $this->model->whereDate('created_at', '<',  date('Y-m-d'))->orderBy('created_at', 'desc')->get();
+            return $this->model->whereDate('end_date', '<',  date('Y-m-d'))->orderBy('created_at', 'desc')->get();
         }
 
         return $this->model->orderBy('created_at', 'desc')->get();

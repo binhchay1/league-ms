@@ -319,7 +319,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('page.group.training', compact('listTrainings'));
+        return view('page.group.group-training', compact('listTrainings'));
     }
 
     public function detailGroupTraining(Request $request)
@@ -374,12 +374,13 @@ class HomeController extends Controller
     public function viewMatch()
     {
         $getLeaguesMatch = $this->leagueRepository->getLeagueMath();
-        return view('page.match-center.index', compact('getLeaguesMatch'));
+        $listMatches = $this->utility->paginate($getLeaguesMatch, 5);
+        return view('page.match-center.index', compact('listMatches'));
     }
 
     public function live($slug)
     {
         $league = $this->leagueRepository->showInfo($slug);
-        return view('page.match-center.show-live');
+        return view('page.match-center.show-live',compact('league') );
     }
 }

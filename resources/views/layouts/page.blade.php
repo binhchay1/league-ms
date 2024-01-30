@@ -182,7 +182,7 @@
                                 <a href="{{ route('term.and.conditions') }}">{{ __('Terms & Conditions') }}</a>,
                                 <a href="{{ route('privacy') }}">{{ __('Privacy') }}</a>
                                 <br>
-                                <span class="color-white">{{ __('Copyright© 2023') }}</span> <a href="{{ route('home')}}">{{ env('APP_NAME', 'Badminton.io') }}</a>
+                               <a href="{{ route('home')}}">{{ env('APP_NAME', 'Badminton.io') }}</a>
                             </small>
                         </p>
                         <ul class="social">
@@ -196,7 +196,7 @@
             </div>
 
             <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top color-white">
-                <p>{{__('© 2024 Company, Inc. All rights reserved.')}}</p>
+                <p>{{__('© 2023 Company, Inc. All rights reserved.')}}</p>
                 <ul class="list-unstyled d-flex">
                     <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
                     <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>

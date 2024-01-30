@@ -166,10 +166,6 @@ ul.select-list li:nth-child(1) a {
     border-left: 2px solid  #000;
 }
 
-.tblResultLanding{
-    margin-bottom: 20px;
-}
-
 ul.select-list li :hover {
     background-color: red;
 }

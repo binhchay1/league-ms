@@ -64,9 +64,9 @@ class LeagueController extends Controller
         return redirect()->to('list-league')->with('success','League successfully created.');
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $userRegisterLeague = $this->leagueRepository->show($id);
+        $userRegisterLeague = $this->leagueRepository->show($slug);
         return view('admin.league.user-register-league', compact('userRegisterLeague'));
     }
 
