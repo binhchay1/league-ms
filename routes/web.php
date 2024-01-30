@@ -31,18 +31,18 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/about/', [HomeController::class, 'viewAbout'])->name('about');
     Route::get('/privacy/', [HomeController::class, 'viewPrivacy'])->name('privacy');
     Route::get('/term-and-conditions/', [HomeController::class, 'viewTermAndConditions'])->name('term.and.conditions');
-    Route::get('/league/{slug}/', [HomeController::class, 'showInfo'])->name('league.info');
-    Route::get('/league/{slug}/player/', [HomeController::class, 'showPlayer'])->name('leaguePlayer.info');
-    Route::get('/league/{slug}/result/', [HomeController::class, 'showResult'])->name('leagueResult.info');
-    Route::get('/league/{slug}/schedule/', [HomeController::class, 'showSchedule'])->name('leagueSchedule.info');
-    Route::get('/league/{slug}/bracket/', [HomeController::class, 'showBracket'])->name('leagueResult.bracket');
-    Route::get('/league/{slug}/fight-branch/', [HomeController::class, 'showFightBranch'])->name('leagueFightBranch.info');
+    Route::get('/tournament/league/{slug}/', [HomeController::class, 'showInfo'])->name('league.info');
+    Route::get('/tournament/league/{slug}/player/', [HomeController::class, 'showPlayer'])->name('leaguePlayer.info');
+    Route::get('/tournament/league/{slug}/result/', [HomeController::class, 'showResult'])->name('leagueResult.info');
+    Route::get('/tournament/league/{slug}/schedule/', [HomeController::class, 'showSchedule'])->name('leagueSchedule.info');
+    Route::get('/tournament/league/{slug}/bracket/', [HomeController::class, 'showBracket'])->name('leagueResult.bracket');
+    Route::get('/tournament/league/{slug}/fight-branch/', [HomeController::class, 'showFightBranch'])->name('leagueFightBranch.info');
     Route::get('/list-teams/', [HomeController::class, 'listTeam'])->name('list.team');
     Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
     Route::get('/detail-group/', [HomeController::class, 'detailGroup'])->name('detail.group');
     Route::get('/ranking/', [HomeController::class, 'viewRanking'])->name('ranking');
     Route::get('/match-center/', [HomeController::class, 'viewMatch'])->name('match');
-    Route::get('/match-center/{$slug}', [HomeController::class, 'live'])->name('match.live');
+    Route::get('match-center/{slug}', [HomeController::class, 'live'])->name('league.live');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -97,10 +97,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/list-league/', [LeagueController::class, 'index'])->name('league.index');
             Route::get('/create-league/', [LeagueController::class, 'create'])->name('league.create');
             Route::post('/store-league/', [LeagueController::class, 'store'])->name('league.store');
-            Route::get('/league/{id}/', [LeagueController::class, 'show'])->name('league.show');
+            Route::get('/league/{slug}/', [LeagueController::class, 'show'])->name('league.show');
             Route::get('/edit-league/{slug}/', [LeagueController::class, 'edit'])->name('league.edit');
             Route::post('/update-league/{id}/', [LeagueController::class, 'update'])->name('league.update');
-            Route::post('/update-player-league/{id}/', [LeagueController::class, 'updatePlayer'])->name('league.updatePlayer');
+            Route::post('/update-player-league/{slug}/', [LeagueController::class, 'updatePlayer'])->name('league.updatePlayer');
             Route::get('/delete-player-league/{id}/', [LeagueController::class, 'destroyPlayer'])->name('league.destroyPlayer');
             Route::get('/leagues/', [LeagueController::class, 'leagues'])->name('league.activeLeague');
             Route::get('/active-league/{id}', [LeagueController::class, 'activeLeague'])->name('activeLeague');

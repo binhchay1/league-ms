@@ -224,3 +224,15 @@ p {
     font-weight: 500;
     width: 150px;
 }
+
+.card-header a {
+    font-weight: 500;
+    font-size: 25px;
+    color: black;
+}
+
+.group-name {
+    font-weight: 500;
+    font-size: 25px;
+    color: black;
+}
