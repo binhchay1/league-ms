@@ -47,7 +47,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="lastName" class="form-label">{{ __('Prize money') }}</label>
-                                    <input class="form-control" value="{{ old('money') }}" type="number" name="money" id="money" placeholder="{{ __('Enter league money') }}"/>
+                                    <input class="form-control" value="{{ old('money') }}" type="text" name="money" id="money" placeholder="{{ __('Enter league money') }}"/>
                                     @if ($errors->has('money'))
                                         <span class="text-danger">{{ $errors->first('money') }}</span>
                                     @endif
@@ -116,10 +116,11 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="lastName" class="form-label">{{ __('Number of players') }}</label>
-                                    <input class="form-control" value="{{ old('number_of_athletes') }}" type="text" name="number_of_athletes" id="number_of_athletes" placeholder="{{ __('Enter league number of player') }}"/>
-                                    @if ($errors->has('number_of_athletes'))
-                                        <span class="text-danger">{{ $errors->first('number_of_athletes') }}</span>
-                                    @endif
+                                    <select id="type_of_league" value="{{ old('type_of_league') }}" name="number_of_athletes" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                                        @foreach($listPlayer as $type => $value)
+                                            <option id="type_of_league" value="{{ $value }}">{{ $value }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
