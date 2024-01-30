@@ -35,7 +35,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
     overflow: hidden;
 }
 
@@ -102,7 +101,6 @@ h4 {
 .show-image-league {
     width: 160px;
     height: 160px;
-    border-radius: 10px;
 }
 
 @media screen and (max-width: 768px) {
@@ -164,10 +162,6 @@ ul.select-list a.active, ul.select-list a:hover {
 
 ul.select-list li:nth-child(1) a {
     border-left: 2px solid  #000;
-}
-
-.tblResultLanding{
-    margin-bottom: 20px;
 }
 
 ul.select-list li :hover {

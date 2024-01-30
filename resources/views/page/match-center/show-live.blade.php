@@ -20,20 +20,22 @@
             <div class="content-left-scroll">
                 <div class="home-wrap" tmt-detail="[object Object]">
                     <div class="home-page-outer current-tournament">
-                        <div class="home-section text-left"><!----><h2>Current Live Tournament</h2>
-                            <div class="row">
+                        <div class="home-section text-left"><!----><h2>{{__('Current Live Tournament League')}}</h2>
+                            <div class="row match-live">
                                 <div class="current-tmt-wrap col-lg-8">
                                     <div class="current-tmt-outer">
                                         <div class="current-tmt-inner">
                                             <div class="current-tmt-logo">
                                                 <a href="" class="">
-                                                    <img
-                                                        src="https://extranet.bwfbadminton.com/docs/events/4737/logo-colour/Indonesia-Masters-2024.svg"></a>
+                                                    <img style="height: 100%; width: 100%"
+                                                        src="{{asset($league->images)}}"></a>
                                             </div>
-                                            <div class="current-tmt-name">DAIHATSU Indonesia Masters 2024</div>
-                                        </div>
-                                        <div class="current-tmt-link-wrap text-center">
-                                            <div><a href="/4737" class=" btn btn-danger "> Live Scores </a></div>
+                                            <div class="current-tmt-name">{{$league->name}}</div>
+                                            <?php $start_date = date('d/m/Y', strtotime($league->start_date));
+                                            $end_date = date('d/m/Y', strtotime($league->end_date));
+                                            ?>
+                                            <div class="current-tmt-date">{{ $start_date }} - {{ $end_date }}</div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -58,9 +60,7 @@
                                                                 <div class="player-wrap-outer"><!---->
                                                                     <div class="player-detail-wrap">
                                                                         <div class="player1-wrap">
-                                                                            <div class="flag"><img
-                                                                                    src="https://extranet.bwf.sport/docs/flags-svg/denmark.svg"
-                                                                                    alt="DEN"></div>
+                                                                            <div class="player1"> L KJAERSFELDT</div>
                                                                             <div class="player1"> L KJAERSFELDT</div>
                                                                         </div><!----></div>
                                                                 </div>
@@ -73,9 +73,7 @@
                                                                 <div class="player-wrap-outer"><!---->
                                                                     <div class="player-detail-wrap">
                                                                         <div class="player3-wrap">
-                                                                            <div class="flag"><img
-                                                                                    src="https://extranet.bwf.sport/docs/flags-svg/japan.svg"
-                                                                                    alt="JPN"></div>
+                                                                            <div class="player3"> A OHORI </div>
                                                                             <div class="player3"> A OHORI</div>
                                                                         </div><!----></div>
                                                                 </div>

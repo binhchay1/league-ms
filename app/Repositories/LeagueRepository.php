@@ -70,11 +70,11 @@ class LeagueRepository extends BaseRepository
         }
         elseif ($getLeagueByState == 'next')
         {
-            return $this->model->whereDate('created_at', '>',  date('Y-m-d'))->orderBy('created_at', 'desc')->get();
+            return $this->model->whereDate('start_date', '>',  date('Y-m-d'))->orderBy('created_at', 'desc')->get();
         }
         elseif ($getLeagueByState == 'completed')
         {
-            return $this->model->whereDate('created_at', '<',  date('Y-m-d'))->orderBy('created_at', 'desc')->get();
+            return $this->model->whereDate('end_date', '<',  date('Y-m-d'))->orderBy('created_at', 'desc')->get();
         }
 
         return $this->model->orderBy('created_at', 'desc')->get();
@@ -84,5 +84,14 @@ class LeagueRepository extends BaseRepository
     public function getLeagueBySlug($slug)
     {
         return $this->model->with('userLeagues')->where('slug', $slug)->first();
+    }
+
+    //match center
+    public function getLeagueMath()
+    {
+        $currentDate = date('Y-m-d ');
+        return $this->model->where('start_date', '<=' , $currentDate)
+            ->where('end_date', '>=' ,$currentDate)
+            ->orderBy('created_at', 'desc')->get();
     }
 }
