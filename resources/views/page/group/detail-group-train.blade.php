@@ -21,7 +21,7 @@
             <p>* {{ __('Activity time') }}: {{ $groupTrainingDetail->activity_time }}</p>
             <p class="fst-italic fw-light fw-bold">----- {{ __('Note') }}: {{ $groupTrainingDetail->note }}</p>
         </div>
-        <div class="mt-3">
+        <div class="mt-3" style="padding: 15px">
             @if(!empty($listMembers))
             <div class="progress">
                 <div class="progress-bar" role="progressbar" <?php echo 'style="width:' . ($listMembers->count() / $groupTrainingDetail->number_of_members * 100) . '%"' ?> aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
