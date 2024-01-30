@@ -335,7 +335,11 @@ class HomeController extends Controller
         }
 
         $listId = json_decode($groupTrainingDetail->members);
-        $listMembers = $this->userRepository->getListMembers($listId);
+        if(!empty($listId)) {
+            $listMembers = $this->userRepository->getListMembers($listId);
+        } else {
+            $listMembers = [];
+        }
 
         return view('page.group.detail-group-train', compact('groupTrainingDetail', 'listMembers'));
     }
