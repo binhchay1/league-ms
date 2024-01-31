@@ -16,7 +16,14 @@
     <meta name="robots" content="Index, Follow">
 
     <title>@yield('title')</title>
-
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cambria:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="./styles.css" rel="stylesheet" />
     <link rel="canonical" href="https://badminton.io">
     <link rel="alternate" hreflang="en-US" href="https://badminton.io">
     <link rel="alternate" hreflang="af" href="https://badminton.io">
@@ -54,9 +61,14 @@
             </ul>
         </div>
         <nav class="container">
-            <a href="{{ route('home') }}"><img style="margin-bottom: 30px" class="left" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
+            <div class="navigation-menu__overlay" onclick="toggleMenuClicked()"></div>
+            <button type="button" class="hamburger-menu" onclick="toggleMenuClicked()">
+                <span class="material-icons" id="open-icon">menu</span>
+                <span class="material-icons" id="close-icon">close</span>
+            </button>
+            <a href="{{ route('home') }}"><img style="margin-bottom: 30px" class="logo-image" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
 
-            <ul id="menu" class="menu-main">
+            <ul  class="menu-main navigation-menu__labels">
                 <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('LEAGUE') }}</a></li>
                 <li class="pt-2"><a href="{{ route('list.group') }}">{{ __('GROUP') }}</a></li>
                 <li class="pt-2"><a href="{{ route('ranking') }}">{{ __('RANKING') }}</a></li>
@@ -138,11 +150,6 @@
                 @endif
 
             </ul>
-            <div class="open-btn">
-                <span class="line"></span>
-                <span class="line"></span>
-                <span class="line"></span>
-            </div>
         </nav>
     </header>
 
@@ -216,6 +223,32 @@
     <script>
         $('.open-btn').click(function() {
             $('nav.container').toggleClass('active');
+        })
+
+        const toggleMenuClicked = () => {
+            const body = document.body;
+            const openIcon = document.getElementById("open-icon");
+            const closeIcon = document.getElementById("close-icon");
+
+            body.classList.toggle("open");
+
+            if (body.classList.contains("open")) {
+                openIcon.style.display = "none";
+                closeIcon.style.display = "flex";
+            } else {
+                openIcon.style.display = "flex";
+                closeIcon.style.display = "none";
+            }
+        };
+
+    </script>
+    <script>
+        $(document).ready(()=>{
+            let isMenuAlreadyOpen = false;
+            $('#open-icon').on('click',()=>{
+                $('body').css("overflow",isMenuAlreadyOpen?"auto":"hidden")
+                isMenuAlreadyOpen = !isMenuAlreadyOpen
+            })
         })
     </script>
 

@@ -49,6 +49,6 @@ class ScheduleRepository extends BaseRepository
 
     public function getScheduleByLeagueOrderByMatch($league_id)
     {
-        return $this->model->with('player1Team1', 'player2Team1', 'player1Team2', 'player2Team2')->where('league_id', $league_id)->orderBy('match')->get();
+        return $this->model->with('player1Team1', 'player2Team1', 'player1Team2', 'player2Team2')->where('league_id', $league_id)->get();
     }
 }
