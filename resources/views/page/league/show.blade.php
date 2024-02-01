@@ -183,8 +183,7 @@
                             </div>
                             @else
                             <div align="center">
-                                <h3>{{ __('Please log in before registering for the tournament!') }}</h3>
-                                <a class="btn btn-dark btn-lg btn-block" href="{{ route('login') }}"> {{ __('Login') }}</a>
+                                <h4 class="mt-4">{{ __('Please')}} <a href="{{ route('login') }}">{{__('login')}}</a> {{__('before registering for the tournament!') }}</h4>
                             </div>
                             @endif
                         </div>
