@@ -493,3 +493,10 @@ body.open .navigation-menu__labels {
     }
 
 }
+
+@media only screen and (min-width: 590px) {
+    .logo-image{
+        margin-left: 170px;
+    }
+
+}
