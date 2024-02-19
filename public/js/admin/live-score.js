@@ -1,26 +1,38 @@
 $(document).ready(function () {
     $("#add-score-team-1").click(function () {
-        let last_score = $("#score-team-1").html();
-        new_score = parseInt(last_score) + 1;
-        $("#score-team-1").html(new_score);
-
+        this.handleScore();
     });
 
     $("#deduct-score-team-1").click(function () {
-        let last_score = $("#score-team-1").html();
-        new_score = parseInt(last_score) - 1;
-        $("#score-team-1").html(new_score);
+        this.handleScore();
     });
 
     $("#add-score-team-2").click(function () {
-        let last_score = $("#score-team-2").html();
-        new_score = parseInt(last_score) + 1;
-        $("#score-team-2").html(new_score);
+        this.handleScore();
     });
 
     $("#deduct-score-team-2").click(function () {
-        let last_score = $("#score-team-2").html();
-        new_score = parseInt(last_score) - 1;
-        $("#score-team-2").html(new_score);
+        this.handleScore();
     });
 });
+
+function handleScore(team, status) {
+    let idScore = '#score-' + team;
+    let idAdd = '#add-score-' + team;
+    let idDeduct = '#deduct-score-' + team;
+
+    let last_score = $(idScore).html();
+    if (status == 'add') {
+        if (parseInt(last_score) == 1) {
+            $(idAdd).attr("disabled", true);
+        }
+        new_score = parseInt(last_score) + 1;
+    } else {
+        if (parseInt(last_score) == 1) {
+            $(idDeduct).attr("disabled", true);
+        }
+        new_score = parseInt(last_score) - 1;
+    }
+
+    $(idScore).html(new_score);
+}

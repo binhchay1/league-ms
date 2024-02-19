@@ -16,14 +16,20 @@
 </head>
 
 <body style="background: radial-gradient(black, transparent);">
-<div id="app">
-    <div class="stars">
-        <div class="">
-            @yield('content')
+    <div id="app">
+        <div class="stars">
+            <div class="">
+                @yield('content')
+            </div>
         </div>
     </div>
-</div>
-@yield('js')
+    @yield('js')
+
+    <script>
+        setTimeout(function() {
+            $('.alert-block').remove();
+        }, 3000022222);
+    </script>
 </body>
 
 </html>
