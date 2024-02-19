@@ -61,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/training/', [HomeController::class, 'detailGroupTraining'])->name('groupTrain.detail');
     Route::get('/group-training/', [HomeController::class, 'groupTraining'])->name('list.train');
     Route::get('/join-group-training/', [HomeController::class, 'joinGroupTraining'])->name('join.group.training');
+    Route::get('/live-score/', [HomeController::class, 'liveScore'])->name('live.score');
 });
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');

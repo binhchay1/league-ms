@@ -7,6 +7,13 @@
 <!DOCTYPE html>
 <html lang="en-US" class="bwf-main">
 
+<?php
+
+use \App\Enums\Utility;
+
+$utility = new Utility();
+?>
+
 <body class="wp_router_page-template-default single single-wp_router_page postid-21">
     <div id="page" class="hfeed site">
         <div class="">
@@ -20,7 +27,7 @@
                                         <ul class="list-sort-time " style="color: black">
                                             @forelse($groupSchedule as $round => $schedules)
                                             <li class="location-name">
-                                                <strong>{{$round}}</strong>
+                                                <strong>{{ $round }}</strong>
                                             </li>
                                             <?php $collection = collect($schedules)->sortBy('match'); ?>
                                             @foreach($collection as $index => $schedule )
@@ -28,7 +35,7 @@
                                                 <a id="match-link">
                                                     <div class="round_time">
                                                         <div class="time">
-                                                            <strong>{{$schedule->match}}.</strong> {{$schedule->time}}
+                                                            <strong>{{ $schedule->match }}.</strong> {{ $schedule->time }}
                                                         </div>
                                                         <div class="round"></div>
                                                     </div>
@@ -38,20 +45,20 @@
                                                             <div class="team-details-wrap">
                                                                 <div class="player1-wrap">
                                                                     <div class="player1 player_winner player">
-                                                                        {{$schedule->player1Team1->name ?? ""}}
+                                                                        {{ $schedule->player1Team1->name ?? "" }}
                                                                     </div>
                                                                     <div class="flag">
-                                                                        <img src="{{asset( $schedule->player1Team1->profile_photo_path ?? '/images/no-image.png')}}">
+                                                                        <img src="{{ asset( $schedule->player1Team1->profile_photo_path ?? '/images/no-image.png') }}">
 
                                                                     </div>
                                                                 </div>
                                                                 @if(isset($schedule->player2Team1->name))
                                                                 <div class="player2-wrap">
                                                                     <div class="player2 player_winner player">
-                                                                        {{$schedule->player2Team1->name ?? ""}}
+                                                                        {{ $schedule->player2Team1->name ?? "" }}
                                                                     </div>
                                                                     <div class="flag">
-                                                                        <img src="{{asset( $schedule->player2Team1->profile_photo_path ?? '/images/no-image.png')}}">
+                                                                        <img src="{{ asset( $schedule->player2Team1->profile_photo_path ?? '/images/no-image.png') }}">
 
                                                                     </div>
                                                                 </div>
@@ -63,21 +70,21 @@
                                                             <div class="team-details-wrap">
                                                                 <div class="player3-wrap player">
                                                                     <div class="flag">
-                                                                        <img src="{{asset( $schedule->player1Team2->profile_photo_path ?? '/images/no-image.png')}}">
+                                                                        <img src="{{ asset( $schedule->player1Team2->profile_photo_path ?? '/images/no-image.png') }}">
 
                                                                     </div>
                                                                     <div class="player3 player">
-                                                                        {{$schedule->player1Team2->name ?? ""}}
+                                                                        {{ $schedule->player1Team2->name ?? "" }}
                                                                     </div>
                                                                 </div>
                                                                 @if(isset($schedule->player2Team2->name))
                                                                 <div class="player4-wrap player">
                                                                     <div class="flag">
-                                                                        <img src="{{asset( $schedule->player2Team2->profile_photo_path ?? '/images/no-image.png')}}">
+                                                                        <img src="{{ asset( $schedule->player2Team2->profile_photo_path ?? '/images/no-image.png') }}">
 
                                                                     </div>
                                                                     <div class="player4 player">
-                                                                        {{$schedule->player2Team2->name ?? asset('/images/no-image.png')}}
+                                                                        {{ $schedule->player2Team2->name ?? asset('/images/no-image.png') }}
                                                                     </div>
                                                                 </div>
                                                                 @endif
@@ -94,11 +101,14 @@
                                                         {{$date}}
                                                     </div>
                                                 </a>
+                                                <div class="d-flex justify-content-center">
+                                                    <a href="{{ route('live.score') }}?s_i={{ $utility->encode_hash_id($schedule->id) }}" class="btn">{{ __('Be referee') }}</a>
+                                                </div>
                                             </li>
                                             @endforeach
                                             <hr>
                                             @empty
-                                            <h2  class="text-center">{{__('Data has not been updated!')}}</h2>
+                                            <h2 class="text-center">{{__('Data has not been updated!')}}</h2>
                                             @endforelse
                                         </ul>
                                     </div>

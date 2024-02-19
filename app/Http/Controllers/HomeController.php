@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Utility;
-use App\Enums\League;
 use App\Repositories\GroupRepository;
 use App\Repositories\GroupTrainingRepository;
 use App\Repositories\LeagueRepository;
@@ -15,6 +14,7 @@ use App\Repositories\NotificationRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\RankingRepository;
 use App\Repositories\ScheduleRepository;
+use App\Repositories\RefereeRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -35,6 +35,7 @@ class HomeController extends Controller
     protected $scheduleRepository;
     protected $utility;
     protected $groupTraining;
+    protected $refereeRepository;
 
     public function __construct(
         UserLeagueRepository $userLeagueRepository,
@@ -48,7 +49,8 @@ class HomeController extends Controller
         NotificationRepository $notificationRepository,
         ScheduleRepository $scheduleRepository,
         Utility $ultity,
-        GroupTrainingRepository $groupTraining
+        GroupTrainingRepository $groupTraining,
+        RefereeRepository $refereeRepository
     ) {
         $this->userLeagueRepository = $userLeagueRepository;
         $this->leagueRepository = $leagueRepository;
@@ -62,6 +64,7 @@ class HomeController extends Controller
         $this->scheduleRepository = $scheduleRepository;
         $this->utility = $ultity;
         $this->groupTraining = $groupTraining;
+        $this->refereeRepository = $refereeRepository;
     }
 
     public function viewHome()
@@ -152,7 +155,7 @@ class HomeController extends Controller
         $getLeague = $this->leagueRepository->getLeagueHome($getLeagueByState);
         $listLeagues = $this->utility->paginate($getLeague, 5);
 
-        return view('page.league.index', compact( 'listLeagues'));
+        return view('page.league.index', compact('listLeagues'));
     }
 
     public function listGroup()
@@ -335,7 +338,7 @@ class HomeController extends Controller
         }
 
         $listId = json_decode($groupTrainingDetail->members);
-        if(!empty($listId)) {
+        if (!empty($listId)) {
             $listMembers = $this->userRepository->getListMembers($listId);
         } else {
             $listMembers = [];
@@ -385,6 +388,24 @@ class HomeController extends Controller
     public function live($slug)
     {
         $league = $this->leagueRepository->showInfo($slug);
-        return view('page.match-center.show-live',compact('league') );
+        return view('page.match-center.show-live', compact('league'));
+    }
+
+    public function liveScore(Request $request)
+    {
+        $scheduleId = $request->get('s_i');
+        if (empty($scheduleId)) {
+            abort(404);
+        }
+        $decode = $this->utility->decode_hash_id($scheduleId);
+        $getSchedule = $this->scheduleRepository->getScheduleById($decode);
+
+        if (empty($getSchedule)) {
+            abort(404);
+        }
+
+        // dd(empty($getSchedule->set_1_team_1));
+
+        return view('admin.live-score', compact('getSchedule'));
     }
 }
