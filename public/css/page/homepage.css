@@ -366,4 +366,137 @@ h3 {
     .img-responsive {
         object-fit: cover;
     }
+
+}
+
+
+.navigation-menu__overlay {
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    transition: 0.3s;
+}
+
+body.open .navigation-menu__overlay {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+@media only screen and (min-width: 768px) {
+    .navigation-menu__overlay {
+        display: none;
+    }
+
+}
+
+.hamburger-menu {
+    position: absolute;
+    padding: 0;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    background: #222;
+}
+
+#close-icon {
+    display: none;
+}
+
+@media only screen and (min-width: 768px) {
+    .hamburger-menu {
+        display: none;
+    }
+
+}
+
+.navigation-menu__labels {
+    position: fixed;
+    visibility: hidden;
+    z-index: 3;
+    top: 50px;
+    left: 0;
+    width: 70%;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    background: #222;
+    transition: translate 0.3s;
+    translate: -100% 0;
+}
+
+@media only screen and (min-width: 768px) {
+    .navigation-menu__labels {
+        position: static;
+        top: 0;
+        left: 0;
+        translate: 0 0;
+        width: auto;
+        background: transparent;
+        flex-direction: row;
+        visibility: visible;
+    }
+}
+body.open .navigation-menu__labels {
+    translate: 0 0;
+    visibility: visible;
+    margin-top: 80px;
+}
+
+.navigation-menu__labels > button {
+    color: #f9f9f9;
+    background: transparent;
+    padding: 0 8px;
+}
+
+.navigation-menu__labels > button.active {
+    color: inherit;
+}
+
+.material-icons {
+    color: white;
+}
+
+
+@media screen and (max-width: 400px ) {
+    .logo-image{
+        margin-left: 120px;
+    }
+
+    .navigation-menu__labels
+    {
+        height: 1000px;
+    }
+
+}
+
+@media screen and (max-width: 480px ) {
+    .logo-image{
+        margin-left: 120px;
+    }
+
+    .navigation-menu__labels
+    {
+        height: 1000px;
+    }
+
+}
+
+@media only screen and (min-width: 590px) {
+    .logo-image{
+        margin-left: 170px;
+    }
+
 }
