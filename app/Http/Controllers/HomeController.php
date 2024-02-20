@@ -397,6 +397,7 @@ class HomeController extends Controller
         if (empty($scheduleId)) {
             abort(404);
         }
+
         $decode = $this->utility->decode_hash_id($scheduleId);
         $getSchedule = $this->scheduleRepository->getScheduleById($decode);
 
@@ -404,8 +405,53 @@ class HomeController extends Controller
             abort(404);
         }
 
-        // dd(empty($getSchedule->set_1_team_1));
+        $getReferee = $this->refereeRepository->getRefereeByUserId($getSchedule->id, Auth::user()->id);
+        if (empty($getReferee)) {
+            $listTitle = explode(',', Auth::user()->title);
+            if (in_array('referee', $listTitle)) {
+                $dataReferee = [
+                    'user_id' => Auth::user()->id,
+                    'schedule_id' => $getSchedule->id,
+                ];
+                $this->refereeRepository->create($dataReferee);
+            } else {
+                abort(403);
+            }
+        }
 
-        return view('admin.live-score', compact('getSchedule'));
+        if ($getSchedule->result_team_1 == 2 or $getSchedule->result_team_2 == 2) {
+            $typeLive = 'end';
+        } else {
+            $typeLive = 'live';
+        }
+
+        $result = $getSchedule->result_team_1 . '-' . $getSchedule->result_team_2;
+
+
+        switch ($result) {
+            case '1-0':
+                $setLive = 2;
+                $scoreT1Live = $getSchedule->set_2_team_1;
+                $scoreT2Live = $getSchedule->set_3_team_2;
+                break;
+            case '0-1':
+                $setLive = 2;
+                $scoreT1Live = $getSchedule->set_2_team_1;
+                $scoreT2Live = $getSchedule->set_2_team_2;
+                break;
+            case '1-1':
+                $setLive = 3;
+                $scoreT1Live = $getSchedule->set_3_team_1;
+                $scoreT2Live = $getSchedule->set_3_team_2;
+                break;
+            default:
+                $setLive = 1;
+                $scoreT1Live = $getSchedule->set_1_team_1;
+                $scoreT2Live = $getSchedule->set_1_team_2;
+        }
+
+        // dd(empty($getSchedule->set_2_team_1));
+
+        return view('admin.live-score', compact('getSchedule', 'typeLive', 'setLive', 'scoreT1Live', 'scoreT2Live'));
     }
 }

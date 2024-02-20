@@ -12,22 +12,25 @@ use App\Repositories\LeagueRepository;
 use App\Repositories\NotificationRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Enums\Utility;
 
 class ScheduleController extends Controller
 {
     protected $scheduleRepository;
     protected $leagueRepository;
     protected $notificationRepository;
+    protected $utility;
 
     public function __construct(
         ScheduleRepository $scheduleRepository,
         LeagueRepository $leagueRepository,
-        NotificationRepository $notificationRepository
-
+        NotificationRepository $notificationRepository,
+        Utility $utility
     ) {
         $this->scheduleRepository = $scheduleRepository;
         $this->leagueRepository = $leagueRepository;
         $this->notificationRepository = $notificationRepository;
+        $this->utility = $utility;
     }
 
     public function index()
@@ -216,7 +219,7 @@ class ScheduleController extends Controller
                     $countNextDate = 1;
                 }
 
-                if($countMatchIndex == $preCountMatch / 2) {
+                if ($countMatchIndex == $preCountMatch / 2) {
                     $preCountMatch = $preCountMatch / 2;
                     $countMatchIndex = 0;
                     $indexRound++;
@@ -323,7 +326,7 @@ class ScheduleController extends Controller
                     $countNextDate = 1;
                 }
 
-                if($countMatchIndex == $preCountMatch / 2) {
+                if ($countMatchIndex == $preCountMatch / 2) {
                     $preCountMatch = $preCountMatch / 2;
                     $countMatchIndex = 0;
                     $indexRound++;
@@ -359,5 +362,50 @@ class ScheduleController extends Controller
         $this->scheduleRepository->createMultiple($dataSchedule);
 
         return redirect()->route('schedule.index')->with('message', __('Create auto schedule successfully!'));
+    }
+
+    public function storeScore(Request $request)
+    {
+        $score = $request->get('score');
+        $team = $request->get('team');
+        $set = $request->get('set');
+        $s_i = $request->get('s_i');
+        $result = $request->get('result');
+
+        $decode = $this->utility->decode_hash_id($s_i);
+        $getSchedule = $this->scheduleRepository->getScheduleById($decode);
+
+        if (empty($getSchedule)) {
+            abort(404);
+        }
+
+        $currentTeam = explode('-', $team);
+        $columnSet = 'set_' . $set . '_team_' . $currentTeam[1];
+        $dataUpdate = [
+            $columnSet => $score,
+        ];
+
+        if ($result == 'end') {
+            $resultT1 = $getSchedule->result_team_1;
+            $resultT2 = $getSchedule->result_team_2;
+            if (empty($resultT1)) {
+                $resultT1 = 0;
+            }
+
+            if (empty($resultT2)) {
+                $resultT2 = 0;
+            }
+
+            if ($team == 'team-1') {
+                $resultT1 = $resultT1 + 1;
+            } else {
+                $resultT2 = $resultT2 + 1;
+            }
+
+            $dataUpdate['result_team_1'] = $resultT1;
+            $dataUpdate['result_team_2'] = $resultT2;
+        }
+
+        $this->scheduleRepository->updateScoreLiveById($getSchedule->id, $dataUpdate);
     }
 }

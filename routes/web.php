@@ -87,10 +87,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/league-manager/', [HomeController::class, 'leagueManager'])->name('league-manager');
 
     Route::get('/auto-create-league', [ScheduleController::class, 'autoCreateLeague'])->name('auto.create.schedule');
+    Route::get('/store-score', [ScheduleController::class, 'storeScore'])->name('store.score');
 
     Route::middleware(['admin', 'auth'])->group(
         function () {
             Route::get('/dashboard/', [AuthController::class, 'dashboard']);
+            Route::get('/set-title/{id}/', [UserController::class, 'setTitle'])->name('set.title');
+            Route::post('/save-title/{id}/', [UserController::class, 'saveTitle'])->name('save.title');
 
             Route::get('/list-user/', [UserController::class, 'index'])->name('user.index');
             Route::get('/delete/{id}/', [UserController::class, 'destroy'])->name('user.delete');
