@@ -165,8 +165,6 @@ $utility = new \App\Enums\Utility();
         const group = 'chat-group-' + g_i;
 
         Echo.channel(group).listen('.message-group', (e) => {
-            console.log(e.message);
-            console.log(e)
             let cU = e.user_id;
             let cDate = new Date();
             let bU = '<?php echo Hash::make(Auth::user()->id); ?>';
