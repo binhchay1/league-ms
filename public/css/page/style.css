@@ -1,5 +1,9 @@
 @import "https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700";
 
+body {
+    width: 100% !important;
+}
+
 footer a {
     color: white;
 }
@@ -399,11 +403,6 @@ header nav>ul {
     font-size: 25px
 }
 
-@media screen and (min-width: 860px) {
-    header nav>ul {
-        display: block !important
-    }
-}
 
 @media screen and (max-width: 859px) {
     header nav>ul {
@@ -552,7 +551,7 @@ header #search div.open input[type=search] {
 
 @media screen and (max-width: 859px) {
     header #search div {
-        width: auto !important
+        width: 200px
     }
 
     header #search div input[type=search] {

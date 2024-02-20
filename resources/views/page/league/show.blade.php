@@ -15,6 +15,10 @@
             font-weight: 500;
             width: 200px;
         }
+
+        .ddlTournament {
+            width: 300px;
+        }
     </style>
 <link rel="stylesheet" href="{{ asset('css/page/show.css') }}" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
@@ -36,7 +40,7 @@
                             {{ __('OTHER LEAGUE') }}
                         </h3>
                         <label class="tournament-select clear">
-                            <select name='record' class="ddlTournament" style="width: 300px;">
+                            <select name='record' class="ddlTournament">
                                 <option id="format_of_league" value="">{{ __('Select League') }}</option>
                                 @foreach($listLeagues as $league => $value )
                                 <?php $dataLeague = str_slug($value->name) ?>
@@ -183,8 +187,7 @@
                             </div>
                             @else
                             <div align="center">
-                                <h3>{{ __('Please log in before registering for the tournament!') }}</h3>
-                                <a class="btn btn-dark btn-lg btn-block" href="{{ route('login') }}"> {{ __('Login') }}</a>
+                                <h4 class="mt-4">{{ __('Please')}} <a href="{{ route('login') }}">{{__('login')}}</a> {{__('before registering for the tournament!') }}</h4>
                             </div>
                             @endif
                         </div>

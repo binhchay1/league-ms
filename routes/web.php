@@ -53,14 +53,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/my-group/', [AuthController::class, 'viewMyGroup'])->name('my.group');
     Route::get('/join-group/', [AuthController::class, 'joinGroup'])->name('join.group');
     Route::post('/messages/', [AuthController::class, 'sendMessage'])->name('send.message');
-    // Route::get('/verify/{token}/', [AuthController::class, 'verifyEmail'])->name('user.verify');
-    // Route::get('/verify-email/', [AuthController::class, 'viewVerifyEmail'])->name('verify.email');
-    // Route::post('/resend-verify/', [AuthController::class, 'resendVerify'])->name('resend.verify.email');
-    // Route::get('/verified-email/', [AuthController::class, 'viewVerifiedEmail'])->name('verified.email');
     Route::get('/signout/', [AuthController::class, 'signOut'])->name('signout');
     Route::get('/training/', [HomeController::class, 'detailGroupTraining'])->name('groupTrain.detail');
     Route::get('/group-training/', [HomeController::class, 'groupTraining'])->name('list.train');
     Route::get('/join-group-training/', [HomeController::class, 'joinGroupTraining'])->name('join.group.training');
+    Route::get('/live-score/', [HomeController::class, 'liveScore'])->name('live.score');
 });
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');
@@ -86,10 +83,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/league-manager/', [HomeController::class, 'leagueManager'])->name('league-manager');
 
     Route::get('/auto-create-league', [ScheduleController::class, 'autoCreateLeague'])->name('auto.create.schedule');
+    Route::get('/store-score', [ScheduleController::class, 'storeScore'])->name('store.score');
 
     Route::middleware(['admin', 'auth'])->group(
         function () {
             Route::get('/dashboard/', [AuthController::class, 'dashboard']);
+            Route::get('/set-title/{id}/', [UserController::class, 'setTitle'])->name('set.title');
+            Route::post('/save-title/{id}/', [UserController::class, 'saveTitle'])->name('save.title');
 
             Route::get('/list-user/', [UserController::class, 'index'])->name('user.index');
             Route::get('/delete/{id}/', [UserController::class, 'destroy'])->name('user.delete');

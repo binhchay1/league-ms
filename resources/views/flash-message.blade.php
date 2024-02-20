@@ -20,9 +20,3 @@
         <strong>{{ $message }}</strong>
     </div>
 @endif
-
-<script>
-    setTimeout(function() {
-        $('.alert-block').remove();
-    }, 3000022222);
-</script>
