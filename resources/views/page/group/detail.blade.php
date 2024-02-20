@@ -152,7 +152,7 @@ $utility = new \App\Enums\Utility();
 @endsection
 
 @section('js')
-<script src="{{ asset('/js/socket.io.js') }}"></script>
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 <script src="{{ asset('/js/app.js') }}"></script>
 <script>
     <?php if (Auth::check()) { ?>
@@ -164,7 +164,9 @@ $utility = new \App\Enums\Utility();
         const g_i = '<?php echo $getGroup->id ?>';
         const group = 'chat-group-' + g_i;
 
-        Echo.channel('chat-group-1').listen('.message-group', function(e) {
+        Echo.channel(group).listen('.message-group', (e) => {
+            console.log(e.message);
+            console.log(e)
             let cU = e.user_id;
             let cDate = new Date();
             let bU = '<?php echo Hash::make(Auth::user()->id); ?>';

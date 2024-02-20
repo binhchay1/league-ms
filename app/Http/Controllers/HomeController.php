@@ -450,8 +450,6 @@ class HomeController extends Controller
                 $scoreT2Live = $getSchedule->set_1_team_2;
         }
 
-        // dd(empty($getSchedule->set_2_team_1));
-
         return view('admin.live-score', compact('getSchedule', 'typeLive', 'setLive', 'scoreT1Live', 'scoreT2Live'));
     }
 }

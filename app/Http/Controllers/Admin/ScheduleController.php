@@ -407,5 +407,7 @@ class ScheduleController extends Controller
         }
 
         $this->scheduleRepository->updateScoreLiveById($getSchedule->id, $dataUpdate);
+
+        return 'success';
     }
 }

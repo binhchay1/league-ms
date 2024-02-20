@@ -53,10 +53,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/my-group/', [AuthController::class, 'viewMyGroup'])->name('my.group');
     Route::get('/join-group/', [AuthController::class, 'joinGroup'])->name('join.group');
     Route::post('/messages/', [AuthController::class, 'sendMessage'])->name('send.message');
-    // Route::get('/verify/{token}/', [AuthController::class, 'verifyEmail'])->name('user.verify');
-    // Route::get('/verify-email/', [AuthController::class, 'viewVerifyEmail'])->name('verify.email');
-    // Route::post('/resend-verify/', [AuthController::class, 'resendVerify'])->name('resend.verify.email');
-    // Route::get('/verified-email/', [AuthController::class, 'viewVerifiedEmail'])->name('verified.email');
     Route::get('/signout/', [AuthController::class, 'signOut'])->name('signout');
     Route::get('/training/', [HomeController::class, 'detailGroupTraining'])->name('groupTrain.detail');
     Route::get('/group-training/', [HomeController::class, 'groupTraining'])->name('list.train');

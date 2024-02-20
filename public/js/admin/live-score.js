@@ -132,7 +132,5 @@ function saveScore(score, team, set, result = '') {
             s_i: s_i,
             result: result
         }
-    }).done(function (result) {
-
     });
 }
