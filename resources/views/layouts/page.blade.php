@@ -23,7 +23,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cambria:wght@300;400;500&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link href="./styles.css" rel="stylesheet" />
     <link rel="canonical" href="https://badminton.io">
     <link rel="alternate" hreflang="en-US" href="https://badminton.io">
     <link rel="alternate" hreflang="af" href="https://badminton.io">

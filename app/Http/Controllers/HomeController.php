@@ -399,7 +399,7 @@ class HomeController extends Controller
             }
         }
 
-        // dd($listSchedules);
+        $listSchedules = collect($listSchedules)->sortBy('match');
 
         return view('page.match-center.show-live', compact('league', 'listSchedules'));
     }
