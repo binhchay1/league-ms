@@ -16,7 +16,10 @@
 use \App\Enums\Utility;
 
 $utility = new Utility();
-$listTitle = explode(',', Auth::user()->title);
+if(Auth::check()) {
+    $listTitle = explode(',', Auth::user()->title);
+}
+
 ?>
 
 <body class="wp_router_page-template-default single single-wp_router_page postid-21">
@@ -106,10 +109,12 @@ $listTitle = explode(',', Auth::user()->title);
                                                         {{$date}}
                                                     </div>
                                                 </a>
+                                                @if(Auth::check())
                                                 @if(in_array('referee', $listTitle))
                                                 <div class="d-flex justify-content-center">
                                                     <a href="{{ route('live.score') }}?s_i={{ $utility->encode_hash_id($schedule->id) }}" class="btn btn-referee" style="margin-bottom: 10px;">{{ __('Be referee') }}</a>
                                                 </div>
+                                                @endif
                                                 @endif
                                             </li>
                                             @endforeach

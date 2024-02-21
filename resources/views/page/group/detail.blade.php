@@ -26,10 +26,10 @@ $utility = new \App\Enums\Utility();
                 <h1 class="m-0 p-0">{{ $getGroup->name }}</h1>
             </div>
             <p>{{ $getGroup->users->name }}</p>
-            <p><span class="fw-bold">* {{__('Description')}} : </span>{{ $getGroup->description }}</p>
-            <p><span class="fw-bold">* {{__('Activity time')}} : </span>{{ $getGroup->activity_time }}</p>
-            <p><span class="fw-bold">* {{__('Location')}} : </span>{{ $getGroup->location }}</p>
-            <p><em><span class="fw-bold">-----{{__('Note')}} : </span>{{ $getGroup->note }}</em></p>
+            <p><span class="fw-bold">* {{ __('Description') }} : </span>{{ $getGroup->description }}</p>
+            <p><span class="fw-bold">* {{ __('Activity time') }} : </span>{{ $getGroup->activity_time }}</p>
+            <p><span class="fw-bold">* {{ __('Location') }} : </span>{{ $getGroup->location }}</p>
+            <p><em><span class="fw-bold">-----{{ __('Note') }} : </span>{{ $getGroup->note }}</em></p>
         </div>
     </div>
     <div class="d-flex">
@@ -165,8 +165,6 @@ $utility = new \App\Enums\Utility();
         const group = 'chat-group-' + g_i;
 
         Echo.channel(group).listen('.message-group', (e) => {
-            console.log(e.message);
-            console.log(e)
             let cU = e.user_id;
             let cDate = new Date();
             let bU = '<?php echo Hash::make(Auth::user()->id); ?>';

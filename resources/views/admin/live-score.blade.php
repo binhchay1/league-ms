@@ -61,7 +61,7 @@
                         @endif
                     </div>
 
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center" id="area-button-score-1">
                         <button class="btn btn-success" id="add-score-team-1">{{ __('Add') }}</button>
                         <button class="btn btn-danger ml-2" id="deduct-score-team-1">{{ __('Deduct') }}</button>
                     </div>
@@ -69,7 +69,7 @@
             </div>
 
             <div class="col-2">
-                <p class="text-center">{{ __('Set') }} <span id="number-set">{{ $setLive }}</span></p>
+                <p class="text-center" id="text-set">{{ __('Set') }} <span id="number-set">{{ $setLive }}</span></p>
             </div>
 
             <div class="col-5 d-flex justify-content-center">
@@ -106,7 +106,7 @@
                         @endif
                     </div>
 
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center" id="area-button-score-2">
                         <button class="btn btn-success" id="add-score-team-2">{{ __('Add') }}</button>
                         <button class="btn btn-danger ml-2" id="deduct-score-team-2">{{ __('Deduct') }}</button>
                     </div>

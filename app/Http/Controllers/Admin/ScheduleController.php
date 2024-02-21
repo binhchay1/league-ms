@@ -13,6 +13,7 @@ use App\Repositories\NotificationRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\Utility;
+use App\Events\LiveScore;
 
 class ScheduleController extends Controller
 {
@@ -404,6 +405,13 @@ class ScheduleController extends Controller
 
             $dataUpdate['result_team_1'] = $resultT1;
             $dataUpdate['result_team_2'] = $resultT2;
+
+            dd($getSchedule->id, $team, $score, $set, $resultT1, $resultT2);
+            broadcast(new LiveScore($getSchedule->id, $team, $score, $set, $resultT1, $resultT2));
+        } else {
+
+            // dd($getSchedule->id, $team, $score, $set);
+            broadcast(new LiveScore($getSchedule->id, $team, $score, $set));
         }
 
         $this->scheduleRepository->updateScoreLiveById($getSchedule->id, $dataUpdate);

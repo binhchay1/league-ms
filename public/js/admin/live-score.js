@@ -98,7 +98,10 @@ function handleGameRound(team, new_score) {
     let nextSquare = '';
     contentModal = contentModal + split[1];
 
-    if (($(squareT1).css('background-color') == "gray")) {
+    console.log(squareT1);
+    console.log($(squareT1).css('background-color'));
+
+    if (($(squareT1).css('background-color') == "rgb(128, 128, 128)")) {
         nextSquare = squareT2;
     } else {
         nextSquare = squareT1;
@@ -113,6 +116,15 @@ function handleGameRound(team, new_score) {
     $('#deduct-score-team-2').attr("disabled", true);
     $(nextSquare).css('background-color', 'gray');
     saveScore(new_score, team, set, 'end');
+
+    if (nextSquare == squareT2) {
+        $('#area-button-score-1').empty();
+        $('#area-button-score-2').empty();
+        $('#score-team-1').empty();
+        $('#score-team-2').empty();
+        $('#text-set').empty();
+        $('#text-set').html('End game');
+    }
 
     notiModal.show();
 }

@@ -382,13 +382,26 @@ class HomeController extends Controller
     {
         $getLeaguesMatch = $this->leagueRepository->getLeagueMath();
         $listMatches = $this->utility->paginate($getLeaguesMatch, 5);
+
         return view('page.match-center.index', compact('listMatches'));
     }
 
     public function live($slug)
     {
-        $league = $this->leagueRepository->showInfo($slug);
-        return view('page.match-center.show-live', compact('league'));
+        $league = $this->leagueRepository->getLiveLeague($slug);
+        $hours = date('H:i');
+        // $date = date('Y-m-d');
+        $date = '2024-02-01';
+        $listSchedules = [];
+        foreach ($league->schedule as $schedule) {
+            if (strtotime($schedule->date) == strtotime($date)) {
+                $listSchedules[] = $schedule;
+            }
+        }
+
+        $listSchedules = collect($listSchedules)->sortBy('match');
+
+        return view('page.match-center.show-live', compact('league', 'listSchedules'));
     }
 
     public function liveScore(Request $request)

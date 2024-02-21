@@ -17,10 +17,10 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()) {
+        if (Auth::user()->role == 'admin') {
             return $next($request);
         }
 
-        return redirect()->route('login')->with('message', 'Authentication Error.');
+        abort(403);
     }
 }

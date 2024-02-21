@@ -18,7 +18,6 @@ use App\Repositories\GroupUserRepository;
 use App\Repositories\GroupRepository;
 use App\Repositories\RankingRepository;
 use App\Repositories\UserLeagueRepository;
-use App\Repositories\VerifyUserRepository;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
@@ -32,7 +31,6 @@ class  AuthController extends Controller
     protected $groupRepository;
     protected $rankingRepository;
     protected $userLeagueRepository;
-    protected $verifyUserRepository;
     protected $utility;
 
     public function __construct(
@@ -40,14 +38,12 @@ class  AuthController extends Controller
         GroupRepository $groupRepository,
         RankingRepository $rankingRepository,
         UserLeagueRepository $userLeagueRepository,
-        VerifyUserRepository $verifyUserRepository,
         Utility $ultity
     ) {
         $this->groupUserRepository = $groupUserRepository;
         $this->groupRepository = $groupRepository;
         $this->rankingRepository = $rankingRepository;
         $this->userLeagueRepository = $userLeagueRepository;
-        $this->verifyUserRepository = $verifyUserRepository;
         $this->utility = $ultity;
     }
 
