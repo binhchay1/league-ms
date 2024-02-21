@@ -406,11 +406,9 @@ class ScheduleController extends Controller
             $dataUpdate['result_team_1'] = $resultT1;
             $dataUpdate['result_team_2'] = $resultT2;
 
-            dd($getSchedule->id, $team, $score, $set, $resultT1, $resultT2);
             broadcast(new LiveScore($getSchedule->id, $team, $score, $set, $resultT1, $resultT2));
         } else {
 
-            // dd($getSchedule->id, $team, $score, $set);
             broadcast(new LiveScore($getSchedule->id, $team, $score, $set));
         }
 

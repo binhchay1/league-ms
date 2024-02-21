@@ -143,13 +143,13 @@
         $(s_i).text(e.score);
         $(s_i).addClass('highlight');
         setInterval(function() {
-            $(s_i).removeClass('highlight')
+            $(s_i).removeClass('highlight');
         }, 6000);
         if (e.resultT1 > 0) {
             $(r_i_1).text(e.resultT1);
             $(r_i_1).addClass('highlight');
             setInterval(function() {
-                $(r_i_1).removeClass('highlight')
+                $(r_i_1).removeClass('highlight');
             }, 6000);
         }
 
@@ -157,7 +157,7 @@
             $(r_i_2).text(e.resultT2);
             $(r_i_2).addClass('highlight');
             setInterval(function() {
-                $(r_i_2).removeClass('highlight')
+                $(r_i_2).removeClass('highlight');
             }, 6000);
         }
     });
