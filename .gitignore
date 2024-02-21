@@ -21,4 +21,3 @@ laravel-echo-server.lock
 package-lock.json
 composer.lock
 laravel-echo-server.json
-public/js/app.js
