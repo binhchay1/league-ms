@@ -24,6 +24,7 @@
                         <th scope="col">{{ __('Address') }}</th>
                         <th scope="col">{{ __('Date of birth') }}</th>
                         <th scope="col">{{ __('Gender') }}</th>
+                        <th scope="col">{{ __('Title') }}</th>
 
                         <th style="width: 10%" scope="col">{{ __('Action') }}</th>
                     </tr>
@@ -38,8 +39,12 @@
                         <td>{{ $data->address }}</td>
                         <td>{{ $data->age }}</td>
                         <td>{{ $data->sex }}</td>
+                        <td>{{ $data->title }}</td>
                         <td class="text_flow text-center">
-                            <a href="{{route('user.delete', $data['id'])}}">
+                            <a href="{{ route('set.title', $data['id']) }}">
+                                <button type="button" class="btn btn-success">{{ __('Set Title') }}</button>
+                            </a>
+                            <a href="{{ route('user.delete', $data['id']) }}">
                                 <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
                             </a>
                         </td>
@@ -51,7 +56,7 @@
     </div>
 </div>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="{{ asset('plugins/jquery/1.7.1/jquery.min.js') }}" type="text/javascript"></script>
 <script>
     $(document).ready(function() {
         $('#dataTables').DataTable({

@@ -23,7 +23,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cambria:wght@300;400;500&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link href="./styles.css" rel="stylesheet" />
     <link rel="canonical" href="https://badminton.io">
     <link rel="alternate" hreflang="en-US" href="https://badminton.io">
     <link rel="alternate" hreflang="af" href="https://badminton.io">
@@ -68,11 +67,14 @@
             </button>
             <a href="{{ route('home') }}"><img style="margin-bottom: 30px" class="logo-image" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
 
-            <ul  class="menu-main navigation-menu__labels">
+            <ul class="menu-main navigation-menu__labels">
                 <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('LEAGUE') }}</a></li>
                 <li class="pt-2"><a href="{{ route('list.group') }}">{{ __('GROUP') }}</a></li>
                 <li class="pt-2"><a href="{{ route('ranking') }}">{{ __('RANKING') }}</a></li>
-                <li class="pt-2"><a href="{{route('match')}}">{{ __('MATCH CENTER') }}</a></li>
+                <li class="pt-2"><a href="{{ route('match') }}">{{ __('MATCH CENTER') }}</a></li>
+                @if(Auth::check())
+                <li class="pt-2"><a href="{{ route('league.create') }}">{{ __('CREATE LEAGUE') }}</a></li>
+                @endif
                 <li id="search">
                     <form id="search-league" action="{{ route('search') }}" method="post">
                         @csrf
@@ -111,7 +113,7 @@
                     </li>
 
                     @else
-                    <li><a href="{{ route('login') }}" class="button white " >{{ __('Log In') }}</a></li>
+                    <li><a href="{{ route('login') }}" class="button white ">{{ __('Log In') }}</a></li>
                     <li><a href="{{ route('register_user') }}" class="button">{{ __('Register') }}</a></li>
                     @endif
 
@@ -189,7 +191,7 @@
                                 <a href="{{ route('term.and.conditions') }}">{{ __('Terms & Conditions') }}</a>,
                                 <a href="{{ route('privacy') }}">{{ __('Privacy') }}</a>
                                 <br>
-                               <a href="{{ route('home')}}">{{ env('APP_NAME', 'Badminton.io') }}</a>
+                                <a href="{{ route('home')}}">{{ env('APP_NAME', 'Badminton.io') }}</a>
                             </small>
                         </p>
                         <ul class="social">
@@ -205,9 +207,15 @@
             <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top color-white">
                 <p>{{__('© 2023 Company, Inc. All rights reserved.')}}</p>
                 <ul class="list-unstyled d-flex">
-                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
-                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
-                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24">
+                                <use xlink:href="#twitter"></use>
+                            </svg></a></li>
+                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24">
+                                <use xlink:href="#instagram"></use>
+                            </svg></a></li>
+                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24">
+                                <use xlink:href="#facebook"></use>
+                            </svg></a></li>
                 </ul>
             </div>
         </footer>
@@ -240,13 +248,12 @@
                 closeIcon.style.display = "none";
             }
         };
-
     </script>
     <script>
-        $(document).ready(()=>{
+        $(document).ready(() => {
             let isMenuAlreadyOpen = false;
-            $('#open-icon').on('click',()=>{
-                $('body').css("overflow",isMenuAlreadyOpen?"auto":"hidden")
+            $('#open-icon').on('click', () => {
+                $('body').css("overflow", isMenuAlreadyOpen ? "auto" : "hidden")
                 isMenuAlreadyOpen = !isMenuAlreadyOpen
             })
         })

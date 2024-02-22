@@ -26,10 +26,10 @@ $utility = new \App\Enums\Utility();
                 <h1 class="m-0 p-0">{{ $getGroup->name }}</h1>
             </div>
             <p>{{ $getGroup->users->name }}</p>
-            <p><span class="fw-bold">* {{__('Description')}} : </span>{{ $getGroup->description }}</p>
-            <p><span class="fw-bold">* {{__('Activity time')}} : </span>{{ $getGroup->activity_time }}</p>
-            <p><span class="fw-bold">* {{__('Location')}} : </span>{{ $getGroup->location }}</p>
-            <p><em><span class="fw-bold">-----{{__('Note')}} : </span>{{ $getGroup->note }}</em></p>
+            <p><span class="fw-bold">* {{ __('Description') }} : </span>{{ $getGroup->description }}</p>
+            <p><span class="fw-bold">* {{ __('Activity time') }} : </span>{{ $getGroup->activity_time }}</p>
+            <p><span class="fw-bold">* {{ __('Location') }} : </span>{{ $getGroup->location }}</p>
+            <p><em><span class="fw-bold">-----{{ __('Note') }} : </span>{{ $getGroup->note }}</em></p>
         </div>
     </div>
     <div class="d-flex">
@@ -152,7 +152,7 @@ $utility = new \App\Enums\Utility();
 @endsection
 
 @section('js')
-<script src="{{ asset('/js/socket.io.js') }}"></script>
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 <script src="{{ asset('/js/app.js') }}"></script>
 <script>
     <?php if (Auth::check()) { ?>
@@ -164,7 +164,7 @@ $utility = new \App\Enums\Utility();
         const g_i = '<?php echo $getGroup->id ?>';
         const group = 'chat-group-' + g_i;
 
-        Echo.channel('chat-group-1').listen('.message-group', function(e) {
+        Echo.channel(group).listen('.message-group', (e) => {
             let cU = e.user_id;
             let cDate = new Date();
             let bU = '<?php echo Hash::make(Auth::user()->id); ?>';

@@ -31,13 +31,13 @@
                     <div class="box-results-tournament">
                         <div class="box-results-tournament-left">
                             <div class="logo-left">
-                                <a href="{{route('league.info', $league['slug'])}}">
-                                    <img width="200" src="{{$league->images}}" alt="logo" class=" b-error">
+                                <a href="{{ route('league.info', $league['slug']) }}">
+                                    <img width="200" src="{{ $league->images }}" alt="logo" class=" b-error">
                                 </a>
                             </div>
 
                             <div class="info">
-                                <a href="{{route('league.info', $league['slug'])}}">
+                                <a href="{{ route('league.info', $league['slug']) }}">
                                     <h2>{{ $league->name }}</h2>
                                     <?php $start_date = date('d/m/Y', strtotime($league->start_date));
                                     $end_date = date('d/m/Y', strtotime($league->end_date));
@@ -79,7 +79,7 @@
                                     <div class="top-ranked-left-single">
                                         <div class="top-ranked-avatar">
                                             <a title="" href="">
-                                                <img style="width: 300px; height: 300px" src="{{$rank->users->profile_photo_path ?? asset('/images/no-image.png') }}" class=" b-error">
+                                                <img style="width: 300px; height: 300px" src="{{ $rank->users->profile_photo_path ?? asset('/images/no-image.png') }}" class=" b-error">
                                             </a>
                                         </div>
                                     </div>

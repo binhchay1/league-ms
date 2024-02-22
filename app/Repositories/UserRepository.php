@@ -60,4 +60,9 @@ class UserRepository extends BaseRepository
     {
         return $this->model->whereIn('id', $listId)->get();
     }
+
+    public function updateTitle($id, $data)
+    {
+        return $this->model->where('id', $id)->update($data);
+    }
 }

@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     @empty
-                        <h2 class="text-center">{{__('Data has not been updated!')}}</h2>
+                        <h2 class="text-center">{{ __('Data has not been updated!') }}</h2>
                     @endforelse
                 </div>
             </div>

@@ -1,5 +1,9 @@
 @import "https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700";
 
+body {
+    width: 100% !important;
+}
+
 footer a {
     color: white;
 }
