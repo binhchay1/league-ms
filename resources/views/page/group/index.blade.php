@@ -39,7 +39,7 @@ $isFull = false;
         @endphp
         @endforeach
         @endif
-        <div class="">
+        <div>
             <div class="card p-3 mb-4" >
                 <div class="d-flex justify-content-between">
                     <div class="d-flex flex-row align-items-center">

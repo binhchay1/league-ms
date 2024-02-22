@@ -9,25 +9,31 @@
 @endsection
 
 @section('content')
-<style>
-    #signup:before {
-        width: 0;
-    }
-</style>
-<div class="container">
-    <div class="content-left container">
-        <div class="content-left-scroll">
-            <div class="home-wrap" tmt-detail="[object Object]">
-                <div class="home-page-outer current-tournament">
-                    <div class="home-section text-left">
-                        <h2>{{ __('Current Live Tournament') }}</h2>
-                        @forelse($listMatches as $league)
-                        <div class="current-tmt-wrap">
-                            <div class="current-tmt-outer">
-                                <div class="current-tmt-inner">
-                                    <div class="current-tmt-logo">
-                                        <a href="">
-                                            <img src="{{ asset($league->images) }}" style="height: 100%; width: 100%"></a>
+    <style>
+        #signup:before {
+            width: 0;
+        }
+    </style>
+    <div class="container">
+        <div class="content-left container">
+            <div class="content-left-scroll">
+                <div class="home-wrap" tmt-detail="[object Object]">
+                    <div class="home-page-outer current-tournament">
+                        <h2 style="font-weight: 400">{{__('Current Live Tournament')}}</h2>
+                        <div class="home-section text-left">
+                            @forelse($listMatches as $league  )
+                            <div class="current-tmt-wrap">
+                                <div class="current-tmt-outer">
+                                    <div class="current-tmt-inner">
+                                        <div class="current-tmt-logo">
+                                            <a href="" >
+                                                <img src="{{asset($league->images)}}" style="height: 100%; width: 100%"></a>
+                                        </div>
+                                        <div class="current-tmt-name" style="font-size: 30px">{{$league->name}}</div>
+                                    </div>
+                                    <div class="current-tmt-link-wrap text-center mt-2" >
+                                        <div><a href="{{route('league.live', $league['slug'])}}" class=" btn btn-danger "> {{__('Live Score')}} </a></div>
+
                                     </div>
                                     <div class="current-tmt-name" style="font-size: 30px">{{ $league->name }}</div>
                                 </div>

@@ -15,14 +15,15 @@ $utility = new \App\Enums\Utility();
 @endsection
 
 @section('content')
-<section class="container-1280 rankings-section pb-200" id="ranking">
+<section class="container rankings-section pb-200" id="ranking">
     <div class="std-title">
         <div class="std-title-left">
             <h2 class="left" style=" font-weight: 400;">{{ __('RANKING') }}</h2>
         </div>
     </div>
     <div class="wrapper-ranking" style="padding-top: 0; padding-bottom: 0">
-        <p class="fw-bold">{{ __('Updated') }}: {{ $ranking[0]->updated_at }}</p>
+        <?php $updated = date('d/m/Y',strtotime($ranking[0]->updated_at)) ?>
+        <p class="fw-bold">{{ __('Updated') }}: {{ $updated }}</p>
     </div>
 
     <div class="tab-content rankings-content_tabpanel">
@@ -112,6 +113,6 @@ $utility = new \App\Enums\Utility();
         @endif
     </div>
 
-    </section>
+</section>
 
 @endsection
