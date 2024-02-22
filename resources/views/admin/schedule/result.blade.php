@@ -42,7 +42,7 @@
                         <th scope="col" style="width: 60px">{{ __('Set 1') }}</th>
                         <th scope="col" style="width: 60px">{{ __('Set 2') }}</th>
                         <th scope="col" style="width: 60px">{{ __('Set 3') }}</th>
-                        <th scope="col">{{ __('Action') }}</th>
+                        <th scope="col" style="text-align: center; width: 60px">{{ __('Action') }}</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -116,6 +116,9 @@
                         <td class="text-center">
                             <a href="{{ route('schedule.show', $data['id']) }}" class="btn btn-info">
                                 <span style="color:white"></span>{{ __('Update Result') }}
+                            </a>
+                            <a href="{{ route('schedule.export', $data['id']) }}" class="btn btn-success">
+                                <span style="color:white"></span>{{ __('Export Result') }}
                             </a>
                         </td>
                     </tr>

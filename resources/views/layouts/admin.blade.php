@@ -37,9 +37,9 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-             <li>
-                 <a class="btn btn-danger" href="{{url('/signout')}}">Logout</a>
-             </li>
+                <li>
+                    <a class="btn btn-danger" href="{{url('/signout')}}">Logout</a>
+                </li>
             </ul>
         </nav>
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -53,7 +53,7 @@
                         <img src="{{ asset( Auth::user()->profile_photo_path ?? '/images/no-image.png') }}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">{{  Auth::user()->name }}</a>
+                        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
                     </div>
                 </div>
                 <nav class="mt-2">
@@ -135,8 +135,7 @@
                                 </li>
                             </ul>
                         </li>
-                            @if(Auth::user()->role == 'admin')
-
+                        @if(Auth::user()->role == 'admin')
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
@@ -169,6 +168,7 @@
                         </li>
                         @endif
 
+                        @if(Auth::user()->role == 'admin')
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-weight-hanging"></i>
@@ -193,6 +193,7 @@
                                 </li>
                             </ul>
                         </li>
+                        @endif
                     </ul>
                 </nav>
             </div>

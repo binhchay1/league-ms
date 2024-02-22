@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\Utility;
 use App\Events\LiveScore;
+use Excel;
+use App\Exports\ScheduleExcel;
 
 class ScheduleController extends Controller
 {
@@ -55,7 +57,6 @@ class ScheduleController extends Controller
     public function leagueSchedule($slug)
     {
         $league = $this->leagueRepository->show($slug);
-        dd($league);
         $rounds =  Ranking::RANKING_ARRAY_ROUND;
 
         return view('admin.schedule.create', compact('league', 'rounds'));
@@ -160,7 +161,7 @@ class ScheduleController extends Controller
         if (strpos($getLeague->type_of_league, 'singles') > 0) {
             if ($totalMembers < 4) {
                 $report = __('The number of members participating in the tournament must be greater than 4');
-                return redirect()->route('schedule.leagueSchedule', $getLeague->slug)->with('message', $report);
+                return redirect()->route('schedule.leagueSchedule', $getLeague->slug)->with('error', $report);
             }
 
             if ($totalMembers == 4) {
@@ -249,7 +250,7 @@ class ScheduleController extends Controller
             $breakFor = 0;
             if ($totalMembers < 8) {
                 $report = __('The number of members participating in the tournament must be greater than 8');
-                return redirect()->route('schedule.leagueSchedule', $getLeague->slug)->with('message', $report);
+                return redirect()->route('schedule.leagueSchedule', $getLeague->slug)->with('error', $report);
             }
 
             if ($totalMembers <= 8) {
@@ -357,13 +358,13 @@ class ScheduleController extends Controller
                 $stringBefore = __(' member to be use auto create schedule');
                 $report = $stringAfter . $countLack . $stringBefore;
 
-                return redirect()->route('schedule.leagueSchedule', $getLeague->slug)->with('message', $report);
+                return redirect()->route('schedule.leagueSchedule', $getLeague->slug)->with('error', $report);
             }
         }
 
         $this->scheduleRepository->createMultiple($dataSchedule);
 
-        return redirect()->route('schedule.index')->with('message', __('Create auto schedule successfully!'));
+        return redirect()->route('schedule.index')->with('success', __('Create auto schedule successfully!'));
     }
 
     public function storeScore(Request $request)
@@ -416,5 +417,14 @@ class ScheduleController extends Controller
         $this->scheduleRepository->updateScoreLiveById($getSchedule->id, $dataUpdate);
 
         return 'success';
+    }
+
+    public function exportSchedule($id)
+    {
+        $getSchedule = $this->scheduleRepository->getScheduleById($id);
+        $getLeague = $this->leagueRepository->getLeagueById($getSchedule->league_id);
+
+        $name = 'results_' . $getLeague->slug . '_' . $getSchedule->match . '_' . date('Y-m-d') . '.xlsx';
+        return Excel::download(new ScheduleExcel($this->leagueRepository, $this->scheduleRepository, $id), $name);
     }
 }

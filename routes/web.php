@@ -103,6 +103,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/update-schedule/{id}/', [ScheduleController::class, 'updateSchedule'])->name('schedule.update');
     Route::post('/update-result/{id}/', [ScheduleController::class, 'updateResult'])->name('schedule.updateResult');
     Route::get('/result', [ScheduleController::class, 'result'])->name('schedule.result');
+    Route::get('/export-schedule/{id}/', [ScheduleController::class, 'exportSchedule'])->name('schedule.export');
 
     Route::get('/list-group/', [GroupController::class, 'index'])->name('group.index');
     Route::get('/group/{id}', [GroupController::class, 'show'])->name('group.show');
