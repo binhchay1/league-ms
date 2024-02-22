@@ -52,9 +52,10 @@ class ScheduleController extends Controller
         return view('admin.schedule.list-league', compact('listLeagues'));
     }
 
-    public function leagueSchedule($lug)
+    public function leagueSchedule($slug)
     {
-        $league = $this->leagueRepository->show($lug);
+        $league = $this->leagueRepository->show($slug);
+        dd($league);
         $rounds =  Ranking::RANKING_ARRAY_ROUND;
 
         return view('admin.schedule.create', compact('league', 'rounds'));
@@ -159,7 +160,7 @@ class ScheduleController extends Controller
         if (strpos($getLeague->type_of_league, 'singles') > 0) {
             if ($totalMembers < 4) {
                 $report = __('The number of members participating in the tournament must be greater than 4');
-                return redirect()->route('schedule.leagueSchedule', $getLeague->id)->with('message', $report);
+                return redirect()->route('schedule.leagueSchedule', $getLeague->slug)->with('message', $report);
             }
 
             if ($totalMembers == 4) {
@@ -248,7 +249,7 @@ class ScheduleController extends Controller
             $breakFor = 0;
             if ($totalMembers < 8) {
                 $report = __('The number of members participating in the tournament must be greater than 8');
-                return redirect()->route('schedule.leagueSchedule', $getLeague->id)->with('message', $report);
+                return redirect()->route('schedule.leagueSchedule', $getLeague->slug)->with('message', $report);
             }
 
             if ($totalMembers <= 8) {
@@ -356,7 +357,7 @@ class ScheduleController extends Controller
                 $stringBefore = __(' member to be use auto create schedule');
                 $report = $stringAfter . $countLack . $stringBefore;
 
-                return redirect()->route('schedule.leagueSchedule', $getLeague->id)->with('message', $report);
+                return redirect()->route('schedule.leagueSchedule', $getLeague->slug)->with('message', $report);
             }
         }
 
