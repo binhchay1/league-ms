@@ -73,7 +73,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/my-group/', [AuthController::class, 'viewMyGroup'])->name('my.group');
     Route::get('/join-group/', [AuthController::class, 'joinGroup'])->name('join.group');
     Route::post('/messages/', [AuthController::class, 'sendMessage'])->name('send.message');
-    Route::get('/signout/', [AuthController::class, 'signOut'])->name('signout');
+    Route::get('/logout/', [AuthController::class, 'logout'])->name('logout');
     Route::get('/training/', [HomeController::class, 'detailGroupTraining'])->name('groupTrain.detail');
     Route::get('/group-training/', [HomeController::class, 'groupTraining'])->name('list.train');
     Route::get('/join-group-training/', [HomeController::class, 'joinGroupTraining'])->name('join.group.training');

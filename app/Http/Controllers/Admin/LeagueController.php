@@ -50,6 +50,7 @@ class LeagueController extends Controller
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->name);
         $input['owner_id'] = Auth::user()->id;
+        $input['status'] = 0;
         if (isset($input['images'])) {
             $img = $this->utility->saveImageLeague($input);
             if ($img) {

@@ -32,6 +32,7 @@
     </div>
     <div class="item-results" style="margin-bottom: 50px">
         @forelse($listLeagues as $listLeague)
+        @if($listLeague->status == 1)
         <div class="tblResultLanding" style=" margin-top: 10px; background:#ffffff;" onmouseover="this.style.background='#a4a4a4';" onmouseout="this.style.background='#ffffff';">
             <a href="{{route('league.info', $listLeague['slug'])}}">
                 <div class="tr-tournament-detail" id="4734">
@@ -70,6 +71,7 @@
                 </div>
             </a>
         </div>
+            @endif
         @empty
             <h3 style="height: 220px" class="text-center">{{__('Data has not been updated!')}}</h3>
         @endforelse

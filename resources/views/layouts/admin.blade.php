@@ -38,7 +38,7 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li>
-                    <a class="btn btn-danger" href="{{url('/signout')}}">Logout</a>
+                    <a class="btn btn-danger" href="{{ route('logout') }}">{{__('Logout')}}</a>
                 </li>
             </ul>
         </nav>

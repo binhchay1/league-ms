@@ -46,7 +46,7 @@
                                 <button type="button" class="btn btn-info">{{ __('Edit') }}</button>
                             </a>
                             <a href="{{route('league.show',$data['slug'])}}">
-                                <button type="button" class="btn btn-success">{{ __('Register League') }}</button>
+                                <button type="button" class="btn btn-success">{{ __('Active User Register') }}</button>
                             </a>
                             @if(Auth::user()->role == 'admin')
                             <a href="">
