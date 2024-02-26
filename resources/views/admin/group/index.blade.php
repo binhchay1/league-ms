@@ -24,7 +24,7 @@
                                 <div class="" style="background-color: #eff2f4; padding: 5px; margin-bottom: 15px;">
                                     <h5 class="mt-4" style=" text-align: center">{{ $group->name }}</h5>
                                     <img class="image" src="{{ $group->images }}" alt="avatar" style="display: block;margin-left: auto;margin-right: auto;width: 50%; height: 165px; ">
-                                    <a href="{{ route('group.show',$group['id']) }}" style="margin-bottom: 10px;width: 70%;margin-left: 40px;" class="btn btn-primary col-sm-12 mt-4 ">{{__('Group Training')}}</a>
+                                    <a href="{{ route('group.show',$group['id']) }}" style="margin-bottom: 10px;width: 70%;margin-left: 55px;" class="btn btn-primary col-sm-12 mt-4 ">{{__('Group Training')}}</a>
                                 </div>
                             </div>
                         @endforeach

@@ -49,7 +49,7 @@
                                 <button type="button" class="btn btn-success">{{ __('Active User Register') }}</button>
                             </a>
                             @if(Auth::user()->role == 'admin')
-                            <a href="">
+                            <a href="{{route('league.delete', $data['slug'])}}">
                                 <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
                             </a>
                                 @endif

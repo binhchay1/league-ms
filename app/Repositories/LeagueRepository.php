@@ -35,6 +35,11 @@ class LeagueRepository extends BaseRepository
         return $this->model->where('id', $id)->update($input);
     }
 
+    public function destroy($slug)
+    {
+        return $this->model->where('slug', $slug)->delete();
+    }
+
     public function showInfo($slug)
     {
         return $this->model->with(
