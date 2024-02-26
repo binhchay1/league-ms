@@ -7,12 +7,9 @@ use App\Enums\Utility;
 use App\Models\User;
 use App\Enums\Title;
 use App\Enums\Group;
-use App\Jobs\SendMail;
 use App\Events\MessageSent;
-use App\Mail\VerifyEmail;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
-use App\Jobs\ChangeStatusTokenVerify;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\GroupUserRepository;
 use App\Repositories\GroupRepository;
@@ -22,7 +19,6 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Hash;
-use Illuminate\Support\Facades\Hash as FacadesHash;
 use Session;
 
 class  AuthController extends Controller
@@ -84,12 +80,12 @@ class  AuthController extends Controller
         return redirect("login")->withSuccess('You are not allowed to access');
     }
 
-    public function signOut()
+    public function logout()
     {
         Session::flush();
-        Auth::logout();
 
-        return Redirect('login');
+        Auth::guard('web')->logout();
+        return redirect('login');
     }
 
     public function registerUser()

@@ -21,11 +21,8 @@ class ScheduleExcel implements FromView
     public function view(): View
     {
         $getSchedule = $this->scheduleRepository->getScheduleById($this->id);
-        $getLeague = $this->leagueRepository->getScheduleById($getSchedule->league_id);
+        $getLeague = $this->leagueRepository->getLeagueById($getSchedule->league_id);
 
-        return view('exports.result-schedule', [
-            'schedule' => $getSchedule,
-            'league' => $getLeague
-        ]);
+        return view('exports.result-schedule');
     }
 }
