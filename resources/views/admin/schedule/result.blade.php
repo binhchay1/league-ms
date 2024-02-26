@@ -14,7 +14,7 @@
                 <option id="format_of_league" value="">{{ __('Select League') }}</option>
                 @foreach ($listLeagues as $league )
                 <option value="{{ $league->name }}">
-                    {{$league->name}}
+                    {{ $league->name }}
                 </option>
                 @endforeach
             </select>
@@ -22,10 +22,10 @@
         <div class="form-group col-lg-3">
             <label style="font-weight: 600">{{ __('Round') }}</label>
             <select id="round" value="{{ old('format_of_league') }}" name="" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
-                <option id="format_of_league" value="">{{__('Select Round')}}</option>
+                <option id="format_of_league" value="">{{ __('Select Round') }}</option>
                 @foreach ($rounds as $round )
                 <option value="{{ $round }}">
-                    {{$round}}
+                    {{ $round }}
                 </option>
                 @endforeach
             </select>
@@ -42,7 +42,7 @@
                         <th scope="col" style="width: 60px">{{ __('Set 1') }}</th>
                         <th scope="col" style="width: 60px">{{ __('Set 2') }}</th>
                         <th scope="col" style="width: 60px">{{ __('Set 3') }}</th>
-                        <th scope="col">{{ __('Action') }}</th>
+                        <th scope="col" style="text-align: center; width: 60px">{{ __('Action') }}</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -114,8 +114,11 @@
                             </div>
                         </td>
                         <td class="text-center">
-                            <a href="{{route('schedule.show', $data['id'])}}" class="btn btn-info">
+                            <a href="{{ route('schedule.show', $data['id']) }}" class="btn btn-info">
                                 <span style="color:white"></span>{{ __('Update Result') }}
+                            </a>
+                            <a href="{{ route('schedule.export', $data['id']) }}" class="btn btn-success">
+                                <span style="color:white"></span>{{ __('Export Result') }}
                             </a>
                         </td>
                     </tr>

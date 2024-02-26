@@ -13,14 +13,14 @@
 
             <div class="col-lg-2 text-center" style="vertical-align: middle;line-height: 40px;">
                 <?php $date = date("m-d-Y", strtotime($dataSchedule->date)) ?>
-                <strong> {{ $date }} &nbsp {{ $dataSchedule->time }}  </strong>
+                <strong> {{ $date }} &nbsp {{ $dataSchedule->time }} </strong>
             </div>
 
             <div class="col-lg-5 mt-4 text-center">
                 <strong>{{ $dataSchedule->player1Team2->name ?? "" }} / {{ $dataSchedule->player2Team2->name ?? "" }}</strong>
             </div>
         </div>
-        <div class="form-group text-right m-0 p-0 pt-5 pb-5">
+        <div class="form-group text-right m-0 p-0 pt-5 pb-5 d-flex justify-content-center">
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 {{ __('Update Result') }}
             </button>

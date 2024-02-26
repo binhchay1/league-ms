@@ -73,7 +73,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/my-group/', [AuthController::class, 'viewMyGroup'])->name('my.group');
     Route::get('/join-group/', [AuthController::class, 'joinGroup'])->name('join.group');
     Route::post('/messages/', [AuthController::class, 'sendMessage'])->name('send.message');
-    Route::get('/signout/', [AuthController::class, 'signOut'])->name('signout');
+    Route::get('/logout/', [AuthController::class, 'logout'])->name('logout');
     Route::get('/training/', [HomeController::class, 'detailGroupTraining'])->name('groupTrain.detail');
     Route::get('/group-training/', [HomeController::class, 'groupTraining'])->name('list.train');
     Route::get('/join-group-training/', [HomeController::class, 'joinGroupTraining'])->name('join.group.training');
@@ -96,13 +96,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/list-schedule-league/', [ScheduleController::class, 'league'])->name('schedule.league');
     Route::get('/list-schedule/', [ScheduleController::class, 'index'])->name('schedule.index');
     Route::get('/create-schedule', [ScheduleController::class, 'create'])->name('schedule.create');
-    Route::get('/create-schedule-league/{id}', [ScheduleController::class, 'leagueSchedule'])->name('schedule.leagueSchedule');
+    Route::get('/create-schedule-league/{slug}', [ScheduleController::class, 'leagueSchedule'])->name('schedule.leagueSchedule');
     Route::post('/store-schedule/', [ScheduleController::class, 'store'])->name('schedule.store');
     Route::get('/schedule/{id}/', [ScheduleController::class, 'show'])->name('schedule.show');
     Route::get('/edit-schedule/{id}/', [ScheduleController::class, 'edit'])->name('schedule.edit');
     Route::post('/update-schedule/{id}/', [ScheduleController::class, 'updateSchedule'])->name('schedule.update');
     Route::post('/update-result/{id}/', [ScheduleController::class, 'updateResult'])->name('schedule.updateResult');
     Route::get('/result', [ScheduleController::class, 'result'])->name('schedule.result');
+    Route::get('/export-schedule/{id}/', [ScheduleController::class, 'exportSchedule'])->name('schedule.export');
 
     Route::get('/list-group/', [GroupController::class, 'index'])->name('group.index');
     Route::get('/group/{id}', [GroupController::class, 'show'])->name('group.show');
