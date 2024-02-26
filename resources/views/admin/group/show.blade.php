@@ -4,7 +4,7 @@
     <div class="container-fluid mt-4">
         <div class="card card-default">
             <div class="card-header">
-                <h5>{{ __('LEAGUE') }}</h5>
+                <h5>{{ __('Group') }}</h5>
             </div>
             <div class="card-body">
                 <div class="row">

@@ -4,7 +4,7 @@
 <div class="container-fluid mt-4">
     <div class="card card-default">
         <div class="card-header">
-            <h5>{{ __('LEAGUE') }}</h5>
+            <h5>{{ __('League') }}</h5>
         </div>
         <div class="card-body">
             <div class="row">
@@ -30,7 +30,7 @@
     <div class="card mb-4">
         <div class="row">
             <div class="col-lg-6">
-                <h5 class="card-header">{{ __('Create Schedule') }}</h5>
+                <h5 class="card-header">{{ __('Schedule') }}</h5>
             </div>
         </div>
         <div class="col-md-12 col-sm-12">

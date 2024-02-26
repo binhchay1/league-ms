@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span>{{ __('Create Result') }}</h5>
+    <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span>{{ __('Result') }}</h5>
     <div class="card container">
         <div class="row justify-content-start m-1 mb-2 mt-2">
             <h4>{{ __('Round') }}: {{ $dataSchedule->round }}</h4>
