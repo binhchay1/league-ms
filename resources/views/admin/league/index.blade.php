@@ -11,7 +11,7 @@
     }
 </style>
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span> {{ __('List League') }}</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span> {{ __('League') }}</h4>
     <div class="card" style="padding: 10px">
         <div class=" container-xl table-responsive text-nowrap">
             <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">

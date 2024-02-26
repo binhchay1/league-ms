@@ -3,7 +3,7 @@
 <div class="container-fluid mt-4">
     <div class="card card-default">
         <div class="card-header">
-            <h5>{{ __('List League') }}</h5>
+            <h5>{{ __('League') }}</h5>
         </div>
         <div class="card-body">
             <div class="container-xxl flex-grow-1 container-p-y">
