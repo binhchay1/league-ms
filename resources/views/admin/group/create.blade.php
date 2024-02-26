@@ -29,6 +29,7 @@
                 @endif
                 <div class="row">
                     <div class="col-md-4">
+                        <label>{{ __('Logo group') }}</label>
                         <input value="" type="file" class="border-0 bg-light pl-0" name="images" id="image" hidden>
                         <div class=" choose-avatar">
                             <div id="btnimage">
