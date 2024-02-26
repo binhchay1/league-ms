@@ -98,6 +98,13 @@ class LeagueController extends Controller
         return redirect('list-league')->with('success', 'League successfully updated.');
     }
 
+    public function destroy($slug)
+    {
+        $this->leagueRepository->destroy($slug);
+
+        return back()->with('success', __('Delete League successfully!'));
+    }
+
     public function updatePlayer(Request $request, $id)
     {
         $input = $request->except(['_token']);

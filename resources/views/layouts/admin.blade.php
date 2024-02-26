@@ -68,15 +68,6 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('league.activeLeague' ) }}" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
-                                <p>
-                                    {{ __('Active League') }}
-                                    <span class="badge badge-info right"></span>
-                                </p>
-                            </a>
-                        </li>
                         @endif
 
                         <li class="nav-item">

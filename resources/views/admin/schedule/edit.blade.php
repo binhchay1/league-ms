@@ -8,7 +8,7 @@
     <div class="container-fluid mt-4">
         <div class="card card-default">
             <div class="card-header" >
-                <h5>{{__('Edit schedule')}}</h5>
+                <h5>{{__('Schedule')}}</h5>
             </div>
             <div class="card-body container">
                 <form id="formAccountSettings" method="POST" action="{{ route('schedule.update',$dataSchedule['id']) }}" enctype="multipart/form-data">
