@@ -23,7 +23,7 @@
                         <th scope="col">{{ __('Image') }}</th>
                         <th scope="col">{{ __('Location') }}</th>
                         <th scope="col">{{ __('Prize Money') }}</th>
-                        <th scope="col">{{ __('Number of athletes') }}</th>
+                        <th scope="col">{{ __('Number of people') }}</th>
                         <th scope="col">{{ __('Format of league') }}</th>
                         <th scope="col">{{ __('Type of league') }}</th>
                         <th scope="col">{{ __('Action') }}</th>
@@ -38,12 +38,12 @@
                         <td><img class="image" src="{{$data->images ?? asset('/images/champion.png')}}" alt="avatar" style="width: 150px"></td>
                         <td>{{ $data->location }}</td>
                         <td>{{ $data->money }}</td>
-                        <td>{{ $data->number_of_athletes }}</td>
+                        <td>{{ $data->number_of_athletes }} {{__('people')}}</td>
                         <td>{{ $data->format_of_league }}</td>
                         <td>{{ $data->type_of_league }}</td>
                         <td>
                             <a href="{{route('league.edit',$data['slug'])}}">
-                                <button type="button" class="btn btn-info">{{ __('Edit') }}</button>
+                                <button type="button" class="btn btn-primary">{{ __('Edit') }}</button>
                             </a>
                             <a href="{{route('league.show',$data['slug'])}}">
                                 <button type="button" class="btn btn-success">{{ __('Active User Register') }}</button>
@@ -52,7 +52,10 @@
                             <a href="{{route('league.delete', $data['slug'])}}">
                                 <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
                             </a>
-                                @endif
+                            <a href="{{route('activeLeague', $data['id'])}}" class="btn btn-{{$data->status ? 'info' : 'secondary' }}">
+                                {{$data->status ? "Active League" : "Inactive League"}}
+                            </a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
