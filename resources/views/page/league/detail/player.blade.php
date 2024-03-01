@@ -9,9 +9,6 @@
                             <li>
                                 <div class="info">
                                     <div class="flag-name-wrap">
-                                        <div class="flag">
-                                            <img alt="" src="{{asset('/images/vietnam.png')}}" width="54" class=" b-error b-error">
-                                        </div>
                                         <span>
                                             <a href="" title="Viktor AXELSEN">
                                                 <strong> {{$listTour->user->name}}</strong>

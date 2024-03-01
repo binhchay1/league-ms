@@ -43,13 +43,14 @@ class LeagueController extends Controller
         $listPlayer = \App\Enums\League::NUMBER_PLAYER;
 
         return view('admin.league.create', compact('listType', 'listFormat', 'listPlayer'));
-
     }
 
     public function store(LeagueRequest $request)
     {
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->name);
+        $input['owner_id'] = Auth::user()->id;
+        $input['status'] = 0;
         if (isset($input['images'])) {
             $img = $this->utility->saveImageLeague($input);
             if ($img) {
@@ -60,9 +61,9 @@ class LeagueController extends Controller
 
         $this->leagueRepository->store($input);
         if (Auth::user()->role == Role::ADMIN) {
-            return redirect()->to('list-league')->with('success','League successfully created.');
+            return redirect()->to('list-league')->with('success', 'League successfully created.');
         }
-        return redirect()->to('list-league')->with('success','League successfully created.');
+        return redirect()->to('list-league')->with('success', 'League successfully created.');
     }
 
     public function show($slug)
@@ -77,7 +78,7 @@ class LeagueController extends Controller
         $listFormat = Ranking::RANKING_ARRAY_FORMAT;
         $listPlayer = \App\Enums\League::NUMBER_PLAYER;
         $dataLeague = $this->leagueRepository->show($slug);
-        return view('admin.league.edit', compact('dataLeague', 'listType', 'listFormat','listPlayer'));
+        return view('admin.league.edit', compact('dataLeague', 'listType', 'listFormat', 'listPlayer'));
     }
 
 
@@ -94,14 +95,20 @@ class LeagueController extends Controller
         }
 
         $this->leagueRepository->updateLeague($input, $id);
-        return redirect('list-league')->with('success','League successfully updated.');
+        return redirect('list-league')->with('success', 'League successfully updated.');
+    }
+
+    public function destroy($slug)
+    {
+        $this->leagueRepository->destroy($slug);
+
+        return back()->with('success', __('Delete League successfully!'));
     }
 
     public function updatePlayer(Request $request, $id)
     {
         $input = $request->except(['_token']);
-        foreach($input['status'] as $key => $value)
-        {
+        foreach ($input['status'] as $key => $value) {
             $this->userLeagueRepository->updatePlayer(['status' => $value], $key);
         }
         return back()->with('success', __('Player has been sent successfully!'));
@@ -110,7 +117,7 @@ class LeagueController extends Controller
     public function destroyPlayer($id)
     {
         $this->userLeagueRepository->destroy($id);
-        return back()->with('success','League successfully deleted.');
+        return back()->with('success', 'League successfully deleted.');
     }
 
     public function leagues()
@@ -125,10 +132,9 @@ class LeagueController extends Controller
     {
 
         $league = League::find($id);
-        if($league->status) {
+        if ($league->status) {
             $league->status = 0;
-        }
-        else{
+        } else {
             $league->status = 1;
         }
         $league->save();

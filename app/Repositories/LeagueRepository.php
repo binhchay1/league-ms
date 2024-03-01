@@ -35,6 +35,11 @@ class LeagueRepository extends BaseRepository
         return $this->model->where('id', $id)->update($input);
     }
 
+    public function destroy($slug)
+    {
+        return $this->model->where('slug', $slug)->delete();
+    }
+
     public function showInfo($slug)
     {
         return $this->model->with(
@@ -64,21 +69,15 @@ class LeagueRepository extends BaseRepository
     public function getLeagueHome($getLeagueByState = null)
     {
 
-        if ($getLeagueByState == 'all')
-        {
+        if ($getLeagueByState == 'all') {
             return $this->model->orderBy('created_at', 'desc')->get();
-        }
-        elseif ($getLeagueByState == 'next')
-        {
+        } elseif ($getLeagueByState == 'next') {
             return $this->model->whereDate('start_date', '>',  date('Y-m-d'))->orderBy('created_at', 'desc')->get();
-        }
-        elseif ($getLeagueByState == 'completed')
-        {
+        } elseif ($getLeagueByState == 'completed') {
             return $this->model->whereDate('end_date', '<',  date('Y-m-d'))->orderBy('created_at', 'desc')->get();
         }
 
         return $this->model->orderBy('created_at', 'desc')->get();
-
     }
 
     public function getLeagueBySlug($slug)
@@ -89,8 +88,8 @@ class LeagueRepository extends BaseRepository
     public function getLeagueMath()
     {
         $currentDate = date('Y-m-d ');
-        return $this->model->where('start_date', '<=' , $currentDate)
-            ->where('end_date', '>=' ,$currentDate)
+        return $this->model->where('start_date', '<=', $currentDate)
+            ->where('end_date', '>=', $currentDate)
             ->orderBy('created_at', 'desc')->get();
     }
 
@@ -103,5 +102,10 @@ class LeagueRepository extends BaseRepository
             'schedule.player1Team2',
             'schedule.player2Team2'
         )->where('slug', $slug)->first();
+    }
+
+    public function getLeagueById($id)
+    {
+        return $this->model->where('id', $id)->first();
     }
 }

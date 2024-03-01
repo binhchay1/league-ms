@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span>{{ __('Create Result') }}</h5>
+    <h5 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span>{{ __('Result') }}</h5>
     <div class="card container">
         <div class="row justify-content-start m-1 mb-2 mt-2">
             <h4>{{ __('Round') }}: {{ $dataSchedule->round }}</h4>
@@ -13,14 +13,14 @@
 
             <div class="col-lg-2 text-center" style="vertical-align: middle;line-height: 40px;">
                 <?php $date = date("m-d-Y", strtotime($dataSchedule->date)) ?>
-                <strong> {{ $date }} &nbsp {{ $dataSchedule->time }}  </strong>
+                <strong> {{ $date }} &nbsp {{ $dataSchedule->time }} </strong>
             </div>
 
             <div class="col-lg-5 mt-4 text-center">
                 <strong>{{ $dataSchedule->player1Team2->name ?? "" }} / {{ $dataSchedule->player2Team2->name ?? "" }}</strong>
             </div>
         </div>
-        <div class="form-group text-right m-0 p-0 pt-5 pb-5">
+        <div class="form-group text-right m-0 p-0 pt-5 pb-5 d-flex justify-content-center">
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 {{ __('Update Result') }}
             </button>
