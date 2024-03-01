@@ -38,7 +38,7 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li>
-                    <a class="btn btn-danger" href="{{url('/signout')}}">Logout</a>
+                    <a class="btn btn-danger" href="{{ route('logout') }}">{{__('Logout')}}</a>
                 </li>
             </ul>
         </nav>
@@ -64,15 +64,6 @@
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     {{ __('User') }}
-                                    <span class="badge badge-info right"></span>
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('league.activeLeague' ) }}" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
-                                <p>
-                                    {{ __('Active League') }}
                                     <span class="badge badge-info right"></span>
                                 </p>
                             </a>

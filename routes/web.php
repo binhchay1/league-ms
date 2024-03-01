@@ -73,7 +73,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/my-group/', [AuthController::class, 'viewMyGroup'])->name('my.group');
     Route::get('/join-group/', [AuthController::class, 'joinGroup'])->name('join.group');
     Route::post('/messages/', [AuthController::class, 'sendMessage'])->name('send.message');
-    Route::get('/signout/', [AuthController::class, 'signOut'])->name('signout');
+    Route::get('/logout/', [AuthController::class, 'logout'])->name('logout');
     Route::get('/training/', [HomeController::class, 'detailGroupTraining'])->name('groupTrain.detail');
     Route::get('/group-training/', [HomeController::class, 'groupTraining'])->name('list.train');
     Route::get('/join-group-training/', [HomeController::class, 'joinGroupTraining'])->name('join.group.training');
@@ -87,10 +87,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/store-league/', [LeagueController::class, 'store'])->name('league.store');
     Route::get('/league/{slug}/', [LeagueController::class, 'show'])->name('league.show');
     Route::get('/edit-league/{slug}/', [LeagueController::class, 'edit'])->name('league.edit');
+    Route::get('/delete/{slug}/', [LeagueController::class, 'destroy'])->name('league.delete');
     Route::post('/update-league/{id}/', [LeagueController::class, 'update'])->name('league.update');
     Route::post('/update-player-league/{slug}/', [LeagueController::class, 'updatePlayer'])->name('league.updatePlayer');
     Route::get('/delete-player-league/{id}/', [LeagueController::class, 'destroyPlayer'])->name('league.destroyPlayer');
-    Route::get('/leagues/', [LeagueController::class, 'leagues'])->name('league.activeLeague');
     Route::get('/active-league/{id}', [LeagueController::class, 'activeLeague'])->name('activeLeague');
 
     Route::get('/list-schedule-league/', [ScheduleController::class, 'league'])->name('schedule.league');

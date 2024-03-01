@@ -50,6 +50,7 @@ class LeagueController extends Controller
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->name);
         $input['owner_id'] = Auth::user()->id;
+        $input['status'] = 0;
         if (isset($input['images'])) {
             $img = $this->utility->saveImageLeague($input);
             if ($img) {
@@ -95,6 +96,13 @@ class LeagueController extends Controller
 
         $this->leagueRepository->updateLeague($input, $id);
         return redirect('list-league')->with('success', 'League successfully updated.');
+    }
+
+    public function destroy($slug)
+    {
+        $this->leagueRepository->destroy($slug);
+
+        return back()->with('success', __('Delete League successfully!'));
     }
 
     public function updatePlayer(Request $request, $id)

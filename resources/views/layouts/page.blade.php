@@ -108,7 +108,7 @@
                                     {{ __('My group') }}
                                 </a>
                             </li>
-                            <li><a class="dropdown-item account" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt mr-2 "></i>{{ __('Log out') }}</a></li>
+                            <li><a class="dropdown-item account" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt mr-2 "></i>{{ __('Logout') }}</a></li>
                         </ul>
                     </li>
 

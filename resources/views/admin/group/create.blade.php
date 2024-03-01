@@ -17,7 +17,7 @@
 <div class="container-fluid mt-4">
     <div class="card card-default">
         <div class="card-header">
-            <h5>{{__('Create Group')}}</h5>
+            <h5>{{__('Group')}}</h5>
         </div>
         <div class="card-body">
             <form id="formAccountSettings" method="POST" action="{{ route('group.store') }}" enctype="multipart/form-data">
@@ -29,6 +29,7 @@
                 @endif
                 <div class="row">
                     <div class="col-md-4">
+                        <label>{{ __('Logo group') }}</label>
                         <input value="" type="file" class="border-0 bg-light pl-0" name="images" id="image" hidden>
                         <div class=" choose-avatar">
                             <div id="btnimage">
