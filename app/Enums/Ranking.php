@@ -21,4 +21,12 @@ final class Ranking
     const RANKING_ARRAY_ROUND = [
         'round 1',  'round 2', 'quarter-finals', 'semi-finals', 'finals'
     ];
+
+    const TYPE_OF_LEAGUE = [
+        'male-doubles' => 'Male Doubles',
+        'female-doubles' => 'Female Doubles',
+        'male-singles' => 'Male Singles',
+        'female-singles' => 'Female Singles',
+        'mixed-doubles' => 'Mixed Doubles',
+    ];
 }

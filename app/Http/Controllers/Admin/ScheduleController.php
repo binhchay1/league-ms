@@ -16,23 +16,31 @@ use App\Enums\Utility;
 use App\Events\LiveScore;
 use Excel;
 use App\Exports\ScheduleExcel;
+use App\Repositories\ResultRepository;
+use App\Repositories\UserLeagueRepository;
 
 class ScheduleController extends Controller
 {
     protected $scheduleRepository;
     protected $leagueRepository;
     protected $notificationRepository;
+    protected $userLeagueRepository;
+    protected $resultRepository;
     protected $utility;
 
     public function __construct(
         ScheduleRepository $scheduleRepository,
         LeagueRepository $leagueRepository,
         NotificationRepository $notificationRepository,
+        UserLeagueRepository $userLeagueRepository,
+        ResultRepository $resultRepository,
         Utility $utility
     ) {
         $this->scheduleRepository = $scheduleRepository;
         $this->leagueRepository = $leagueRepository;
         $this->notificationRepository = $notificationRepository;
+        $this->userLeagueRepository = $userLeagueRepository;
+        $this->resultRepository = $resultRepository;
         $this->utility = $utility;
     }
 
@@ -422,9 +430,20 @@ class ScheduleController extends Controller
     public function exportSchedule($id)
     {
         $getSchedule = $this->scheduleRepository->getScheduleById($id);
-        $getLeague = $this->leagueRepository->getLeagueById($getSchedule->league_id);
 
+        if (empty($getSchedule)) {
+            abort(404);
+        }
+        $getUserLeague = $this->userLeagueRepository->getLeagueByUserIdAndLeagueId(Auth::user()->id, $getSchedule->league_id);
+
+        if (empty($getUserLeague)) {
+            abort(403);
+        }
+
+        $getLeague = $this->leagueRepository->getLeagueById($getSchedule->league_id);
+        $getResult = $this->resultRepository->getResultByScheduleId($id);
         $name = 'results_' . $getLeague->slug . '_' . $getSchedule->match . '_' . date('Y-m-d') . '.xlsx';
-        return Excel::download(new ScheduleExcel($this->leagueRepository, $this->scheduleRepository, $id), $name);
+
+        return Excel::download(new ScheduleExcel($getSchedule, $getResult, $getLeague), $name);
     }
 }
