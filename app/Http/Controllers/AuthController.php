@@ -103,16 +103,9 @@ class  AuthController extends Controller
             'title' => Title::USER,
         ]);
 
-        $token = $this->regenerateToken();
         $carbonNow = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
         $timeEnd = $carbonNow->addMinutes(60)->format('Y-m-d H:i:s');
-        $dataVerify = [
-            'token' => $token,
-            'user_id' => $user->id,
-            'time_end' => $timeEnd,
-            'status' => 0
-        ];
-        $this->verifyUserRepository->create($dataVerify);
+
 
         $dataRanking = [
             'user_id' => $user->id,
@@ -143,26 +136,8 @@ class  AuthController extends Controller
         return view('page.user.my-group', compact('listGroup'));
     }
 
-    public function viewVerifyEmail()
-    {
-        $verify = $this->verifyUserRepository->getVerifyByUserId(Auth::user()->id);
-        $timer = 0;
-        if ($verify->status == 1) {
-            $expired = 1;
-            $message = __('Your email verification is expired! Please click button to resend your email');
-        } else {
-            $expired = 0;
-            $message = __('Your email verification is sent! Please check your email');
-            $timer = strtotime($verify->time_end) - strtotime(date('Y-m-d H:i:s'));
-        }
 
-        return view('auth.verify-email', compact('verify', 'message', 'expired', 'timer'));
-    }
 
-    public function viewVerifiedEmail()
-    {
-        return view('auth.verify-email-success');
-    }
 
     public function joinGroup(Request $request)
     {
@@ -230,19 +205,5 @@ class  AuthController extends Controller
         return ['status' => 'sent'];
     }
 
-    public function regenerateToken($old_token = null)
-    {
-        $token = Str::random(60);
-        if ($old_token != null) {
-            if ($token == $old_token) {
-                $this->regenerateToken($old_token);
-            }
-        }
-        $checkToken = $this->verifyUserRepository->getVerifyByToken($token);
-        if (!empty($checkToken)) {
-            $this->regenerateToken();
-        } else {
-            return $token;
-        }
-    }
+
 }
