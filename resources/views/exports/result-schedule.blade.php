@@ -1,956 +1,121 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="{{ asset('/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
-<script src="{{ asset('/plugins/moment/moment.min.js') }}"></script>
-<script src="{{ asset('/plugins/daterangepicker/daterangepicker.js') }}"></script>
-<script src="{{ asset('/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-<script src="{{ asset('/js/admin/adminlte.min.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="{{ asset('/plugins/fontawesome-free/css/all.min.css') }}">
-<link rel="stylesheet" href="{{ asset('/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('/css/admin/adminlte.min.css') }}">
-<link rel="stylesheet" href="{{ asset('/plugins/daterangepicker/daterangepicker.css') }}">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700">
-<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css" />
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<?php
 
-<style>
-    label:not(.form-check-label):not(.custom-file-label) {
-        font-weight: 500;
-    }
-    .card table, td, th {
-        border: 3px solid #121212;
-        text-align: left;
-        height: 35px;
-    }
+use App\Enums\Utility;
+use App\Enums\Ranking as Ranking;
 
-    .card table {
-        border-collapse: collapse;
-        width: 100%;
-    }
+$utility = new Utility();
+?>
 
-    .card th, td {
-        border: 3px solid #121212;
-        padding: 15px;
-    }
-    .table-bordered td {
-        border: 3px solid black;
-    }
-    .table-bordered td, .table-bordered th {
-        border: 3px solid #121212;
-    }
-</style>
-
-<div class="container">
-    <h1 style="color: red" class="text-center">Biên bản cầu lông</h1>
-    <div class="row">
-        <div class="col-lg-6">
-            <h5>Mã số trận:thuytest</h5>
-            <h5>Sân số: thuytest</h5>
-            <h5>Nội dung: thuytest</h5>
-            <h5>Ngày: thuytest</h5>
-            <h5>Ngày: Giờ dự kiến: thuytest</h5>
-        </div>
-
-        <div class="col-lg-6 text-right">
-            <h5>Mã số trận:thuytest</h5>
-            <h5>Sân số: thuytest</h5>
-            <h5>Nội dung: thuytest</h5>
-            <h5>Ngày: thuytest</h5>
-            <h5>Ngày: Giờ dự kiến: thuytest</h5>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-6">
-            <h2>Đơn vị:thuytest</h2>
-        </div>
-        <div class="col-lg-6 text-right">
-            <h2>Đơn vị:thuytest</h2>
-        </div>
-
-    </div>
-</div>
-
-<div style="margin-left: 200px">
-    <table align="center" width="100%" style="border:1px solid #000">
-        <tr><th style="color:red; text-align: center; font-size: 50px; margin-left: 500px" colspan="10">Biên bản cầu lông</th></tr>
-        <tr><th colspan="10">SUBTITLE 1</th></tr>
-        <tr><th colspan="10">SUBTITLE OF SUBTITLE 1</th></tr>
-        <thead>
-        <tr style="border: 3px solid #121212;">
-            <th style="width: 200px"></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th> </th>
-            <th> </th>
-            <th> </th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
+<table>
+    <tbody>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td colspan="50" style="text-align: center;">{{ __('Mẫu số ') }} {{ $schedule->match }}</td>
         </tr>
-        </tbody>
-        <thead>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <td colspan="3" style="font-weight: bold">{{ __('Nội dung') }}:</td>
+            <td></td>
+            <td colspan="5" style="border-bottom: 1px solid black">{{ __(Ranking::TYPE_OF_LEAGUE[$league->type_of_league]) }}</td>
+            @for($i = 1; $i <= 34; $i++) <td>
+                </td>
+                @endfor
+                <td colspan="4" style="font-weight: bold">{{ __('Thời gian bắt đầu') }}</td>
+                <td></td>
+                <td colspan="4" style="border-bottom: 1px solid black">{{ $schedule->time }}</td>
         </tr>
-        </thead>
-        <tbody>
         <tr>
+            <td colspan="3" style="font-weight: bold">{{ __('Vòng') }}:</td>
+            <td></td>
+            <td colspan="5" style="border-bottom: 1px solid black"> {{ $schedule->round }}</td>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td colspan="11" style="border: 1px solid black;"></td>
+            @for($i = 1; $i <= 6; $i++) <td>
+                </td>
+                @endfor
+                <td colspan="11" style="border: 1px solid black;" bgcolor="gray"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="4" style="font-weight: bold">{{ __('Thời gian kết thúc') }}</td>
+                <td></td>
+                <td colspan="4" style="border-bottom: 1px solid black">{{ $schedule->time }}</td>
         </tr>
-        </tbody>
-    </table>
-    <table style="margin-top: 30px">
-        <thead>
         <tr>
-            <th style="width: 200px"></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <td colspan="3" style="font-weight: bold">{{ __('Mã số trận') }}:</td>
+            <td></td>
+            <td colspan="5" style="border-bottom: 1px solid black">{{ $utility->encode_hash_id($league->id) }}</td>
+            <td></td>
+            <td style="border-left: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black"></td>
+            <td style="border-top: 1px solid black; border-bottom: 1px solid black"></td>
+            <td colspan="11" style="border: 1px solid black; text-align: center;">{{ isset($schedule->player1Team1) ? $schedule->player1Team1->name : '' }}</td>
+            <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">{{ isset($schedule->set_1_team_1) ? $schedule->set_1_team_1 : '' }}</td>
+            <td colspan="2" rowspan="2" style="font-weight: bold;" valign="center" align="center">{{ __('V/S') }}</td>
+            <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">{{ isset($schedule->set_1_team_2) ? $schedule->set_1_team_2 : '' }}</td>
+            <td colspan="11" style="border: 1px solid black; text-align: center;" bgcolor="gray">{{ isset($schedule->player1Team2) ? $schedule->player1Team2->name : '' }}</td>
+            <td style="border-top: 1px solid black; border-bottom: 1px solid black"></td>
+            <td style="border-right: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black"></td>
+            <td></td>
+            <td colspan="5" style="font-weight: bold">{{ __('Tổng thời gian (p)') }}:</td>
+            <td colspan="4" style="border-bottom: 1px solid black"></td>
         </tr>
-        </thead>
-        <tbody>
         <tr>
+            <td colspan="3" style="font-weight: bold">{{ __('Ngày') }}:</td>
             <td></td>
+            <td colspan="5" style="border-bottom: 1px solid black">{{ $schedule->date }}</td>
             <td></td>
+            <td style="border-left: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black;"></td>
+            <td style="border-top: 1px solid black; border-bottom: 1px solid black;"></td>
+            <td colspan="11" style="border: 1px solid black; text-align: center;">{{ isset($schedule->player2Team1) ? $schedule->player2Team1->name : '' }}</td>
+            <td colspan="2" style="border: 1px solid black;">{{ isset($schedule->set_2_team_1) ? $schedule->set_2_team_1 : '' }}</td>
+            <td colspan="2" style="border: 1px solid black; font-weight: bold; text-align: center;">{{ isset($schedule->set_2_team_2) ? $schedule->set_2_team_2 : '' }}</td>
+            <td colspan="11" style="border: 1px solid black; text-align: center;" bgcolor="gray">{{ isset($schedule->player2Team2) ? $schedule->player2Team2->name : '' }}</td>
+            <td style="border-top: 1px solid black; border-bottom: 1px solid black"></td>
+            <td style="border-right: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black"></td>
             <td></td>
+            <td colspan="4" style="font-weight: bold">{{ __('Trọng tài chính') }}:</td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td colspan="4" style="border-bottom: 1px solid black"></td>
         </tr>
-        </tbody>
-        <thead>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <td colspan="3" style="font-weight: bold">{{ __('Buổi thi đấu') }}:</td>
+            <td></td>
+            <td colspan="5" style="border-bottom: 1px solid black"> {{ $schedule->time }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="11" style="border: 1px solid black;"></td>
+            <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">{{ isset($schedule->set_3_team_1) ? $schedule->set_3_team_1 : '' }}</td>
+            <td></td>
+            <td></td>
+            <td colspan="2" style="border: 1px solid black; text-align: center; font-weight: bold;">{{ isset($schedule->set_3_team_2) ? $schedule->set_3_team_2 : '' }}</td>
+            <td colspan="11" style="border: 1px solid black;" bgcolor="gray"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="5" style="font-weight: bold">{{ __('Trọng tài giao cầu') }}:</td>
+            <td colspan="4" style="border-bottom: 1px solid black"></td>
         </tr>
-        </thead>
-        <tbody>
         <tr>
+            <td colspan="3" style="font-weight: bold">{{ __('Sân') }}:</td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td colspan="5" style="border-bottom: 1px solid black">{{ $schedule->stadium }}</td>
+            @for($i = 1; $i <= 34; $i++) <td>
+                </td>
+                @endfor
+                <td colspan="5" style="font-weight: bold">{{ __('Số lượng cầu sử dụng') }}:</td>
+                <td colspan="4" style="border-bottom: 1px solid black"></td>
         </tr>
-        </tbody>
-    </table>
-    <table  style="margin-top: 30px">
-        <thead>
+        <tr></tr>
         <tr>
-            <th style="width: 200px"></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <td colspan="9" style="border-bottom: 1px solid black; border-top: 1px double black; border-right: 1px solid black">{{ isset($schedule->player1Team1) ? $schedule->player1Team1->name : '' }}</td>
+            <td colspan="2" style="border-bottom: 1px solid black; border-top: 1px double black;"></td>
+            @for($i = 1; $i <= 41; $i++)
+            @php if($i == 1) { @endphp
+                <td style="border-top: 1px double black; border-bottom: 1px solid black; border-right: 1px solid black; border-left: 2px solid black;"></td>
+            }
+            <td style="border-top: 1px double black; border-bottom: 1px solid black; border-right: 1px solid black; border-left: 1px solid black;"></td>
+            @endfor
         </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-        <thead>
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
-    <table  style="margin-top: 30px">
-        <thead>
-        <tr>
-            <th style="width: 200px"></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-        <thead>
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-
+    </tbody>
+</table>

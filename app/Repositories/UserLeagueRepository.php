@@ -35,4 +35,9 @@ class UserLeagueRepository extends BaseRepository
     {
         return $this->model->where('league_id', $league_id)->count();
     }
+
+    public function getLeagueByUserIdAndLeagueId($user_id, $league_id)
+    {
+        return $this->model->with('league')->where('user_id', $user_id)->where('league_id', $league_id)->first();
+    }
 }
