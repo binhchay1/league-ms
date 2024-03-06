@@ -4,25 +4,39 @@ namespace App\Exports;
 
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
 
-class ScheduleExcel implements FromView
+class ScheduleExcel implements FromView, WithColumnWidths
 {
-    protected $leagueRepository;
-    protected $scheduleRepository;
-    protected $id;
+    protected $schedule;
+    protected $result;
+    protected $league;
 
-    public function __construct($leagueRepository, $scheduleRepository, $id)
+    public function __construct($schedule, $result, $league)
     {
-        $this->leagueRepository = $leagueRepository;
-        $this->scheduleRepository = $scheduleRepository;
-        $this->id = $id;
+        $this->schedule = $schedule;
+        $this->result = $result;
+        $this->league = $league;
     }
 
     public function view(): View
     {
-        $getSchedule = $this->scheduleRepository->getScheduleById($this->id);
-        $getLeague = $this->leagueRepository->getLeagueById($getSchedule->league_id);
+        return view('exports.result-schedule', [
+            'schedule' => $this->schedule,
+            'result' => $this->result,
+            'league' => $this->league,
+        ]);
+    }
 
-        return view('exports.result-schedule');
+    public function columnWidths(): array
+    {
+        $alphas = range('A', 'Z');
+        $arrColumn = array();
+        foreach($alphas as $character) {
+            $arrColumn[$character] = 5;
+            $arrColumn['A' . $character] = 5;
+        }
+
+        return $arrColumn;
     }
 }
