@@ -100,91 +100,73 @@ $utility = new Utility();
             <td colspan="3" style="font-weight: bold">{{ __('Sân') }}:</td>
             <td></td>
             <td colspan="5" style="border-bottom: 1px solid black">{{ $schedule->stadium }}</td>
-            @for($i = 1; $i <= 34; $i++) <td>
-                </td>
-                @endfor
-                <td colspan="5" style="font-weight: bold">{{ __('Số lượng cầu sử dụng') }}:</td>
-                <td colspan="4" style="border-bottom: 1px solid black"></td>
+            @for($i = 1; $i <= 34; $i++)
+            <td></td>
+            @endfor
+            <td colspan="5" style="font-weight: bold">{{ __('Số lượng cầu sử dụng') }}:</td>
+            <td colspan="4" style="border-bottom: 1px solid black"></td>
         </tr>
         <tr></tr>
         @for($k = 1; $k <= 4; $k++)
-        @if($k == 2)
+        @php if($k == 2) { @endphp
         <tr style="border-bottom: 2px solid black;">
             <td colspan="9" style="border-bottom: 1px solid black; border-top: 1px double black; border-right: 1px solid black">{{ isset($schedule->player1Team1) ? $schedule->player1Team1->name : '' }}</td>
             <td colspan="2" style="border-bottom: 1px solid black; border-top: 1px double black;"></td>
             @for($i = 1; $i <= 41; $i++)
-            @php if($i == 1) { @endphp
-                <td style="border-top: 1px double black; border-bottom: 1px solid black; border-right: 1px solid black; border-left: 2px solid black;"></td>
-            @php } @endphp
             <td style="border-top: 1px double black; border-bottom: 1px solid black; border-right: 1px solid black; border-left: 1px solid black;"></td>
             @endfor
         </tr>
-        @else
+        @php } else { @endphp
         <tr>
             <td colspan="9" style="border-bottom: 1px solid black; border-top: 1px double black; border-right: 1px solid black">{{ isset($schedule->player1Team1) ? $schedule->player1Team1->name : '' }}</td>
             <td colspan="2" style="border-bottom: 1px solid black; border-top: 1px double black;"></td>
             @for($i = 1; $i <= 41; $i++)
-            @php if($i == 1) { @endphp
-                <td style="border-top: 1px double black; border-bottom: 1px solid black; border-right: 1px solid black; border-left: 2px solid black;"></td>
-            @php } @endphp
             <td style="border-top: 1px double black; border-bottom: 1px solid black; border-right: 1px solid black; border-left: 1px solid black;"></td>
             @endfor
         </tr>
-        @endif
+        @php } @endphp
         @endfor
         <tr></tr>
 
         @for($t = 1; $t <= 4; $t++)
-        @if($t == 2)
+        @php if($t == 2) { @endphp
         <tr style="border-bottom: 2px solid black;">
             <td colspan="9" style="border-bottom: 1px solid black; border-top: 1px double black; border-right: 1px solid black">{{ isset($schedule->player1Team1) ? $schedule->player1Team1->name : '' }}</td>
             <td colspan="2" style="border-bottom: 1px solid black; border-top: 1px double black;"></td>
             @for($i = 1; $i <= 41; $i++)
-            @php if($i == 1) { @endphp
-                <td style="border-top: 1px double black; border-bottom: 1px solid black; border-right: 1px solid black; border-left: 2px solid black;"></td>
-            @php } @endphp
             <td style="border-top: 1px double black; border-bottom: 1px solid black; border-right: 1px solid black; border-left: 1px solid black;"></td>
             @endfor
         </tr>
-        @else
+        @php } else { @endphp
         <tr>
             <td colspan="9" style="border-bottom: 1px solid black; border-top: 1px double black; border-right: 1px solid black">{{ isset($schedule->player1Team1) ? $schedule->player1Team1->name : '' }}</td>
             <td colspan="2" style="border-bottom: 1px solid black; border-top: 1px double black;"></td>
             @for($i = 1; $i <= 41; $i++)
-            @php if($i == 1) { @endphp
-                <td style="border-top: 1px double black; border-bottom: 1px solid black; border-right: 1px solid black; border-left: 2px solid black;"></td>
-            @php } @endphp
             <td style="border-top: 1px double black; border-bottom: 1px solid black; border-right: 1px solid black; border-left: 1px solid black;"></td>
             @endfor
         </tr>
-        @endif
+        @php } @endphp
         @endfor
         <tr></tr>
 
         @for($j = 1; $j <= 4; $j++)
-        @if($j == 2)
+        @php if($j == 2) { @endphp
         <tr style="border-bottom: 2px solid black;">
             <td colspan="9" style="border-bottom: 1px solid black; border-top: 1px double black; border-right: 1px solid black">{{ isset($schedule->player1Team1) ? $schedule->player1Team1->name : '' }}</td>
             <td colspan="2" style="border-bottom: 1px solid black; border-top: 1px double black;"></td>
             @for($i = 1; $i <= 41; $i++)
-            @php if($i == 1) { @endphp
-                <td style="border-top: 1px double black; border-bottom: 1px solid black; border-right: 1px solid black; border-left: 2px solid black;"></td>
-            @php } @endphp
             <td style="border-top: 1px double black; border-bottom: 1px solid black; border-right: 1px solid black; border-left: 1px solid black;"></td>
             @endfor
         </tr>
-        @else
+        @php } else { @endphp
         <tr>
             <td colspan="9" style="border-bottom: 1px solid black; border-top: 1px double black; border-right: 1px solid black">{{ isset($schedule->player1Team1) ? $schedule->player1Team1->name : '' }}</td>
             <td colspan="2" style="border-bottom: 1px solid black; border-top: 1px double black;"></td>
             @for($i = 1; $i <= 41; $i++)
-            @php if($i == 1) { @endphp
-                <td style="border-top: 1px double black; border-bottom: 1px solid black; border-right: 1px solid black; border-left: 2px solid black;"></td>
-            @php } @endphp
             <td style="border-top: 1px double black; border-bottom: 1px solid black; border-right: 1px solid black; border-left: 1px solid black;"></td>
             @endfor
         </tr>
-        @endif
+        @php } @endphp
         @endfor
         <tr></tr>
     </tbody>

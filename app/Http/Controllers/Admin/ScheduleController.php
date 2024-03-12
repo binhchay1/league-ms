@@ -418,9 +418,19 @@ class ScheduleController extends Controller
 
             broadcast(new LiveScore($getSchedule->id, $team, $score, $set, $resultT1, $resultT2));
         } else {
-
             broadcast(new LiveScore($getSchedule->id, $team, $score, $set));
         }
+
+        $getResult = $this->resultRepository->getResultByScheduleId($getSchedule->id);
+        if(empty($getResult)) {
+            $dataResult = [
+                'schedule_id' => $getSchedule->id,
+                'result_round_1' => json_encode([
+
+                ])
+            ];
+        }
+        dd($getResult);
 
         $this->scheduleRepository->updateScoreLiveById($getSchedule->id, $dataUpdate);
 

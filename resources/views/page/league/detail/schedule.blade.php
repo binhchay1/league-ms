@@ -16,7 +16,7 @@
 use \App\Enums\Utility;
 
 $utility = new Utility();
-if(Auth::check()) {
+if (Auth::check()) {
     $listTitle = explode(',', Auth::user()->title);
 }
 

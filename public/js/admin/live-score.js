@@ -98,9 +98,6 @@ function handleGameRound(team, new_score) {
     let nextSquare = '';
     contentModal = contentModal + split[1];
 
-    console.log(squareT1);
-    console.log($(squareT1).css('background-color'));
-
     if (($(squareT1).css('background-color') == "rgb(128, 128, 128)")) {
         nextSquare = squareT2;
     } else {
