@@ -16,9 +16,9 @@ class CreateResultsTable extends Migration
         Schema::create('results', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('schedule_id');
-            $table->text('result_set_1');
-            $table->text('result_set_2');
-            $table->text('result_set_3');
+            $table->text('result_set_1')->nullable();
+            $table->text('result_set_2')->nullable();
+            $table->text('result_set_3')->nullable();
             $table->timestamps();
         });
     }

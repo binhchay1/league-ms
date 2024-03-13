@@ -139,7 +139,8 @@ function saveScore(score, team, set, result = '') {
             team: team,
             set: set,
             s_i: s_i,
-            result: result
+            result: result,
+            type: 'singles'
         }
     });
 }

@@ -14,6 +14,6 @@ class Result extends Model
     protected $table = 'results';
 
     protected $fillable = [
-        'schedule_id', 'result_round_1', 'result_round_2', 'result_round_3'
+        'schedule_id', 'result_round_1', 'result_round_2', 'result_round_3', 'column', 'number_shuttlecock', 'sub_referees'
     ];
 }

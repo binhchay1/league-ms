@@ -25,18 +25,19 @@ class Schedule extends Model
     {
         return $this->belongsTo('App\Models\User', 'player1_team_1', 'id');
     }
+
     public function player2Team1()
     {
         return $this->belongsTo('App\Models\User', 'player2_team_1', 'id');
     }
+
     public function player1Team2()
     {
         return $this->belongsTo('App\Models\User', 'player1_team_2', 'id');
     }
+
     public function player2Team2()
     {
         return $this->belongsTo('App\Models\User', 'player2_team_2', 'id');
     }
-
-
 }

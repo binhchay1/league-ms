@@ -27,16 +27,11 @@
         </div>
 
         <div class="card-body row">
-            <div class="col-5 d-flex justify-content-center ">
+            <div class="col-lg-5 col-md-12 d-flex justify-content-center ">
                 <div>
                     <div class="d-flex">
                         @if(isset($getSchedule->player1Team1))
                         <p class="text-center h1">{{ $getSchedule->player1Team1->name }}</p>
-                        @endif
-
-                        @if(isset($getSchedule->player2Team1))
-                        <p class="h1 ml-2 mr-2"> - </p>
-                        <p class="text-center h1">{{ $getSchedule->player2Team1->name }}</p>
                         @endif
                     </div>
 
@@ -63,36 +58,23 @@
                     </div>
 
                     <div class="d-flex justify-content-center">
-                        <div class="d-flex justify-content-center" id="area-button-score-1-1">
-                            <button class="btn btn-success" id="add-score-team-1-1">{{ __('Add') }}</button>
-                            <button class="btn btn-danger ml-2" id="deduct-score-team-1-1">{{ __('Deduct') }}</button>
+                        <div class="d-flex justify-content-center" id="area-button-score-1">
+                            <button class="btn btn-success" id="add-score-team-1">{{ __('Add') }}</button>
+                            <button class="btn btn-danger ml-2" id="deduct-score-team-1">{{ __('Deduct') }}</button>
                         </div>
-
-                        @if(isset($getSchedule->player2Team1))
-                        <div class="d-flex justify-content-center ml-5" id="area-button-score-1-2">
-                            <button class="btn btn-success" id="add-score-team-1-2">{{ __('Add') }}</button>
-                            <button class="btn btn-danger ml-2" id="deduct-score-team-1-2">{{ __('Deduct') }}</button>
-                        </div>
-                        @endif
                     </div>
-
                 </div>
             </div>
 
-            <div class="col-2">
+            <div class="col-lg-2 col-md-12">
                 <p class="text-center" id="text-set">{{ __('Set') }} <span id="number-set">{{ $setLive }}</span></p>
             </div>
 
-            <div class="col-5 d-flex justify-content-center">
+            <div class="col-lg-5 col-md-12 d-flex justify-content-center">
                 <div>
                     <div class="d-flex">
                         @if(isset($getSchedule->player1Team2))
                         <p class="text-center h1">{{ $getSchedule->player1Team2->name }}</p>
-                        @endif
-
-                        @if(isset($getSchedule->player2Team2))
-                        <p class="h1 ml-2 mr-2"> - </p>
-                        <p class="text-center h1">{{ $getSchedule->player2Team2->name }}</p>
                         @endif
                     </div>
 
@@ -119,19 +101,11 @@
                     </div>
 
                     <div class="d-flex justify-content-center">
-                        <div class="d-flex justify-content-center" id="area-button-score-2-1">
-                            <button class="btn btn-success" id="add-score-team-2-1">{{ __('Add') }}</button>
-                            <button class="btn btn-danger ml-2" id="deduct-score-team-2-1">{{ __('Deduct') }}</button>
+                        <div class="d-flex justify-content-center" id="area-button-score-2">
+                            <button class="btn btn-success" id="add-score-team-2">{{ __('Add') }}</button>
+                            <button class="btn btn-danger ml-2" id="deduct-score-team-2">{{ __('Deduct') }}</button>
                         </div>
-
-                        @if(isset($getSchedule->player2Team2))
-                        <div class="d-flex justify-content-center ml-5" id="area-button-score-2-2">
-                            <button class="btn btn-success" id="add-score-team-2-2">{{ __('Add') }}</button>
-                            <button class="btn btn-danger ml-2" id="deduct-score-team-2-2">{{ __('Deduct') }}</button>
-                        </div>
-                        @endif
                     </div>
-
                 </div>
             </div>
         </div>
@@ -169,10 +143,6 @@
                         @if(isset($getSchedule->player1Team1))
                         <p class="text-center h1">{{ $getSchedule->player1Team1->name }}</p>
                         @endif
-
-                        @if(isset($getSchedule->player2Team1))
-                        <p class="text-center h1">{{ $getSchedule->player2Team1->name }}</p>
-                        @endif
                     </div>
 
                     <div class="d-flex justify-content-center">
@@ -200,10 +170,6 @@
                     <div>
                         @if(isset($getSchedule->player1Team2))
                         <p class="text-center h1">{{ $getSchedule->player1Team2->name }}</p>
-                        @endif
-
-                        @if(isset($getSchedule->player2Team2))
-                        <p class="text-center h1">{{ $getSchedule->player2Team2->name }}</p>
                         @endif
                     </div>
 
