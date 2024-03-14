@@ -68,10 +68,10 @@
 
                     <div class="row">
                         <div class="col-6">
-                            <p class="text-center h4" id="score-player-1-team-1">0</p>
+                            <p class="text-center h4" id="score-player-1-team-1">{{ $arrScore['player_1'] }}</p>
                         </div>
                         <div class="col-6">
-                            <p class="text-center h4" id="score-player-2-team-1">0</p>
+                            <p class="text-center h4" id="score-player-2-team-1">{{ $arrScore['player_2'] }}</p>
                         </div>
                     </div>
 
@@ -132,10 +132,10 @@
 
                     <div class="row">
                         <div class="col-6">
-                            <p class="text-center h4" id="score-player-1-team-2">0</p>
+                            <p class="text-center h4" id="score-player-1-team-2">{{ $arrScore['player_3'] }}</p>
                         </div>
                         <div class="col-6">
-                            <p class="text-center h4" id="score-player-2-team-2">0</p>
+                            <p class="text-center h4" id="score-player-2-team-2">{{ $arrScore['player_4'] }}</p>
                         </div>
                     </div>
 

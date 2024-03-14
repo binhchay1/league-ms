@@ -111,7 +111,7 @@ function handleScore(teamParam, status) {
     $(idScore).html(new_score);
     $(idScorePlayer).html(new_score_player);
 
-    saveScore(new_score, team, set, new_score_player, player);
+    saveScore(new_score, team, set, '', new_score_player, player);
 }
 
 function handleGameRound(team, new_score, new_score_player, player) {
@@ -175,6 +175,7 @@ function saveScore(score, team, set, result = '', new_score_player, player) {
     let url = new URL(window.location);
     let params = new URLSearchParams(url.search);
     let s_i = params.get('s_i');
+
     $.ajax({
         url: '/store-score',
         type: 'GET',
