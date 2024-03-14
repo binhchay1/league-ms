@@ -437,7 +437,7 @@ class ScheduleController extends Controller
             broadcast(new LiveScore($getSchedule->id, $team, $score, $set));
         }
 
-        UpdateResultJob::dispatch($decode, $type, $score, $set)->onQueue('update-result');
+        UpdateResultJob::dispatch($decode, $type, $score, $set, $this->scheduleRepository, $this->resultRepository, $request->get('new_score_player'), $request->get('player'))->onQueue('update-result');
 
         $this->scheduleRepository->updateScoreLiveById($getSchedule->id, $dataUpdate);
 
@@ -461,6 +461,8 @@ class ScheduleController extends Controller
         $getResult = $this->resultRepository->getResultByScheduleId($id);
         $getReferees = $this->refereeRepository->getRefereeByScheduleId($getSchedule->id);
         $name = 'results_' . $getLeague->slug . '_' . $getSchedule->match . '_' . date('Y-m-d') . '.xlsx';
+
+        dd($getResult);
 
         return Excel::download(new ScheduleExcel($getSchedule, $getResult, $getLeague, $getReferees), $name);
     }

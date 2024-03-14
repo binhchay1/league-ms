@@ -112,6 +112,7 @@ $utility = new Utility();
         <!-- template round -->
 
 
+
         @for($k = 1; $k <= 4; $k++)
         <tr style="border-bottom: 2px solid black;">
             @if($k == 3 or $k == 4)
