@@ -7,7 +7,9 @@
 </style>
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span>{{ __('Schedule') }} </h4>
-    <div class="card" style="padding: 10px">
+    <a href="{{route('schedule.index')}}">
+        <button type="reset" class="btn btn-primary" >{{ __('Back') }}</button></a>
+    <div class="card mt-4" style="padding: 10px">
         <div class="form-group col-lg-3">
             <label style="font-weight: 600">{{ __('League') }}</label>
             <select id="league" value="{{ old('format_of_league') }}" name="" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
