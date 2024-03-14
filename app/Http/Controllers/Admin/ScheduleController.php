@@ -462,8 +462,6 @@ class ScheduleController extends Controller
         $getReferees = $this->refereeRepository->getRefereeByScheduleId($getSchedule->id);
         $name = 'results_' . $getLeague->slug . '_' . $getSchedule->match . '_' . date('Y-m-d') . '.xlsx';
 
-        dd($getResult);
-
         return Excel::download(new ScheduleExcel($getSchedule, $getResult, $getLeague, $getReferees), $name);
     }
 }
