@@ -11,20 +11,24 @@ class ScheduleExcel implements FromView, WithColumnWidths
     protected $schedule;
     protected $result;
     protected $league;
+    protected $referees;
 
-    public function __construct($schedule, $result, $league)
+    public function __construct($schedule, $result, $league, $referees)
     {
         $this->schedule = $schedule;
         $this->result = $result;
         $this->league = $league;
+        $this->referees = $referees;
     }
 
     public function view(): View
     {
+        // dd(json_decode(json_decode($this->result->result_round_1)->player_1, true));
         return view('exports.result-schedule', [
             'schedule' => $this->schedule,
             'result' => $this->result,
             'league' => $this->league,
+            'referees' => $this->referees,
         ]);
     }
 

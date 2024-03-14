@@ -5,6 +5,8 @@
     <div class="card card-default">
         <div class="card-header">
             <h5>{{ __('League') }}</h5>
+            <a href="{{route('schedule.index')}}">
+                <button type="reset" class="btn btn-primary" >{{ __('Back') }}</button></a>
         </div>
         <div class="card-body">
             <div class="row">
