@@ -9,6 +9,8 @@
         <div class="card card-default">
             <div class="card-header" >
                 <h5>{{__('Schedule')}}</h5>
+                <a href="{{route('schedule.index')}}">
+                    <button type="reset" class="btn btn-primary" >{{ __('Back') }}</button></a>
             </div>
             <div class="card-body container">
                 <form id="formAccountSettings" method="POST" action="{{ route('schedule.update',$dataSchedule['id']) }}" enctype="multipart/form-data">
