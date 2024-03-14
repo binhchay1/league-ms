@@ -15,4 +15,9 @@ class ResultRepository extends BaseRepository
     {
         return $this->model->where('schedule_id', $schedule_id)->first();
     }
+
+    public function updateResult($schedule_id, $data)
+    {
+        return $this->model->where('schedule_id', $schedule_id)->update($data);
+    }
 }

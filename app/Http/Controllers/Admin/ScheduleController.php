@@ -16,6 +16,8 @@ use App\Enums\Utility;
 use App\Events\LiveScore;
 use Excel;
 use App\Exports\ScheduleExcel;
+use App\Jobs\UpdateResultJob;
+use App\Repositories\RefereeRepository;
 use App\Repositories\ResultRepository;
 use App\Repositories\UserLeagueRepository;
 
@@ -26,6 +28,7 @@ class ScheduleController extends Controller
     protected $notificationRepository;
     protected $userLeagueRepository;
     protected $resultRepository;
+    protected $refereeRepository;
     protected $utility;
 
     public function __construct(
@@ -34,6 +37,7 @@ class ScheduleController extends Controller
         NotificationRepository $notificationRepository,
         UserLeagueRepository $userLeagueRepository,
         ResultRepository $resultRepository,
+        RefereeRepository $refereeRepository,
         Utility $utility
     ) {
         $this->scheduleRepository = $scheduleRepository;
@@ -41,6 +45,7 @@ class ScheduleController extends Controller
         $this->notificationRepository = $notificationRepository;
         $this->userLeagueRepository = $userLeagueRepository;
         $this->resultRepository = $resultRepository;
+        $this->refereeRepository = $refereeRepository;
         $this->utility = $utility;
     }
 
@@ -377,13 +382,24 @@ class ScheduleController extends Controller
 
     public function storeScore(Request $request)
     {
+        $type = $request->query->get('type');
         $score = $request->get('score');
         $team = $request->get('team');
         $set = $request->get('set');
         $s_i = $request->get('s_i');
         $result = $request->get('result');
 
+        if (empty($type)) {
+            abort(404);
+        }
+
         $decode = $this->utility->decode_hash_id($s_i);
+        $checkReference = $this->refereeRepository->getRefereeByUserId(Auth::user()->id, $decode);
+
+        if (empty($checkReference)) {
+            abort(404);
+        }
+
         $getSchedule = $this->scheduleRepository->getScheduleById($decode);
 
         if (empty($getSchedule)) {
@@ -418,9 +434,10 @@ class ScheduleController extends Controller
 
             broadcast(new LiveScore($getSchedule->id, $team, $score, $set, $resultT1, $resultT2));
         } else {
-
             broadcast(new LiveScore($getSchedule->id, $team, $score, $set));
         }
+
+        UpdateResultJob::dispatch($decode, $type, $score, $set)->onQueue('update-result');
 
         $this->scheduleRepository->updateScoreLiveById($getSchedule->id, $dataUpdate);
 
@@ -442,8 +459,9 @@ class ScheduleController extends Controller
 
         $getLeague = $this->leagueRepository->getLeagueById($getSchedule->league_id);
         $getResult = $this->resultRepository->getResultByScheduleId($id);
+        $getReferees = $this->refereeRepository->getRefereeByScheduleId($getSchedule->id);
         $name = 'results_' . $getLeague->slug . '_' . $getSchedule->match . '_' . date('Y-m-d') . '.xlsx';
 
-        return Excel::download(new ScheduleExcel($getSchedule, $getResult, $getLeague), $name);
+        return Excel::download(new ScheduleExcel($getSchedule, $getResult, $getLeague, $getReferees), $name);
     }
 }

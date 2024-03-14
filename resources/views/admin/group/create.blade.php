@@ -18,6 +18,8 @@
     <div class="card card-default">
         <div class="card-header">
             <h5>{{__('Group')}}</h5>
+            <a href="{{route('group.index')}}">
+            <button type="reset" class="btn btn-primary" >{{ __('Back') }}</button></a>
         </div>
         <div class="card-body">
             <form id="formAccountSettings" method="POST" action="{{ route('group.store') }}" enctype="multipart/form-data">

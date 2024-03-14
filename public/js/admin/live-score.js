@@ -98,9 +98,6 @@ function handleGameRound(team, new_score) {
     let nextSquare = '';
     contentModal = contentModal + split[1];
 
-    console.log(squareT1);
-    console.log($(squareT1).css('background-color'));
-
     if (($(squareT1).css('background-color') == "rgb(128, 128, 128)")) {
         nextSquare = squareT2;
     } else {
@@ -142,7 +139,8 @@ function saveScore(score, team, set, result = '') {
             team: team,
             set: set,
             s_i: s_i,
-            result: result
+            result: result,
+            type: 'singles'
         }
     });
 }

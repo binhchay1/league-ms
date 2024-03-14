@@ -14,4 +14,9 @@ class Referee extends Model
     protected $fillable = [
         'user_id', 'schedule_id'
     ];
+
+    public function users()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+    }
 }

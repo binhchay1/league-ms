@@ -390,8 +390,7 @@ class HomeController extends Controller
     {
         $league = $this->leagueRepository->getLiveLeague($slug);
         $hours = date('H:i');
-        // $date = date('Y-m-d');
-        $date = '2024-02-01';
+        $date = date('Y-m-d');
         $listSchedules = [];
         foreach ($league->schedule as $schedule) {
             if (strtotime($schedule->date) == strtotime($date)) {
@@ -440,7 +439,6 @@ class HomeController extends Controller
 
         $result = $getSchedule->result_team_1 . '-' . $getSchedule->result_team_2;
 
-
         switch ($result) {
             case '1-0':
                 $setLive = 2;
@@ -463,6 +461,10 @@ class HomeController extends Controller
                 $scoreT2Live = $getSchedule->set_1_team_2;
         }
 
-        return view('admin.live-score', compact('getSchedule', 'typeLive', 'setLive', 'scoreT1Live', 'scoreT2Live'));
+        if (!empty($getSchedule->player2_team_1) and !empty($getSchedule->player2_team_2)) {
+            return view('admin.live-score.live-score-double', compact('getSchedule', 'typeLive', 'setLive', 'scoreT1Live', 'scoreT2Live'));
+        } else {
+            return view('admin.live-score.live-score', compact('getSchedule', 'typeLive', 'setLive', 'scoreT1Live', 'scoreT2Live'));
+        }
     }
 }
