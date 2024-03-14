@@ -495,16 +495,7 @@ body.open .navigation-menu__labels {
 
 @media only screen and (max-width: 590px) {
     .logo-image{
-        margin-left: 150px;
+        margin-left: 125px;
     }
 
-}
-
-.area-logo {
-    width: 63%;
-    display: flex;
-}
-
-.area-logo img {
-    margin-left: 0;
 }
