@@ -499,3 +499,12 @@ body.open .navigation-menu__labels {
     }
 
 }
+
+.area-logo {
+    width: 100%;
+    display: flex;
+}
+
+.area-logo img {
+    margin-left: 0;
+}
