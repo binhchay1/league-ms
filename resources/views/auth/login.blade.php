@@ -60,6 +60,10 @@
                                         <a href="{{ route('auth.line') }}" class="btn btn-light btn-floating mx-1 text-danger border" style="padding: 0.275rem 0.75rem 0.375rem">
                                             <img width="20" height="20" src="{{ asset('/images/btn_base.png') }}" />
                                         </a>
+
+                                        <a href="{{ route('auth.apple') }}" class="btn btn-light btn-floating mx-1 text-danger border" style="padding: 0.275rem 0.75rem 0.375rem">
+                                            <img width="20" height="20" src="{{ asset('/images/apple-icon.png') }}" />
+                                        </a>
                                     </div>
 
                                     @if(Request::exists('return_url'))

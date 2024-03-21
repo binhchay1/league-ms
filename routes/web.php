@@ -54,6 +54,8 @@ Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFac
 Route::get('/auth/line/', [SocialLoginController::class, 'redirectToLine'])->name('auth.line');
 Route::get('/auth/line/callback/', [SocialLoginController::class, 'handleLineCallback']);
 Route::get('/auth/line/callbackInformation/', [SocialLoginController::class, 'handleLineCallbackInformation']);
+Route::get('/auth/apple/', [SocialLoginController::class, 'redirectToApple'])->name('auth.apple');
+Route::get('/auth/apple/callback/', [SocialLoginController::class, 'handleAppleCallback']);
 Route::get('/register/', [AuthController::class, 'registerUser'])->name('register_user');
 Route::post('/register/', [AuthController::class, 'storeUser'])->name('storeUser');
 Route::get('/setLocale/{locale}/', [HomeController::class, 'changeLocate'])->name('app.setLocale');

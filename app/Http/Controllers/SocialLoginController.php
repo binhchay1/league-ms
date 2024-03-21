@@ -213,4 +213,63 @@ class SocialLoginController extends Controller
             return redirect()->intended('login')->with('error', $e->getMessage());
         }
     }
+
+    public function redirectToApple()
+    {
+        return Socialite::driver('apple')->redirect();
+    }
+
+    public function handleAppleCallback()
+    {
+        try {
+            config()->set('services.apple.client_secret', $appleToken->generate());
+
+            $user = Socialite::driver('apple')
+                ->stateless()
+                ->user();
+            $getUserByEmail = $this->userRepository->getUserByEmail($user->email);
+
+            if ($getUserByEmail) {
+                $this->userRepository->updateSocialID($user->email, ['apple_id' => $user->id]);
+                Auth::login($getUserByEmail);
+
+                return redirect()->route('home');
+            } else {
+                $getUserByFacebook = $this->userRepository->getUserByFacebook($user->id);
+
+                if ($getUserByFacebook) {
+                    Auth::login($getUserByFacebook);
+
+                    return redirect()->route('home');
+                } else {
+                    $data = [
+                        'email' => $user->email,
+                        'name' => $user->name,
+                        'google_id' => $user->id,
+                        'password' => Hash::make('123456dummy'),
+                        'email_verified_at' => date("Y-m-d h:i:s"),
+                        'role' => Role::USER,
+                        'title' => Title::USER,
+                        'profile_photo_path' => $user->avatar ? $user->avatar : ''
+                    ];
+
+                    $newUser = $this->userRepository->create($data);
+
+                    $dataRanking = [
+                        'user_id' => $newUser->id,
+                        'points' => 0,
+                        'places' => 0,
+                        'places_old' => 0
+                    ];
+                    $this->rankingRepository->create($dataRanking);
+
+                    Auth::loginUsingId($newUser->id);
+
+                    return redirect()->route('home');
+                }
+            }
+        } catch (Exception $e) {
+            return redirect()->intended('login')->with('error', $e->getMessage());
+        }
+    }
 }

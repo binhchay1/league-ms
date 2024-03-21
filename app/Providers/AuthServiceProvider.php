@@ -12,9 +12,7 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array<class-string, class-string>
      */
-    protected $policies = [
-
-    ];
+    protected $policies = [];
 
     /**
      * Register any authentication / authorization services.
@@ -25,6 +23,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        $this->app->bind(Configuration::class, fn () => Configuration::forSymmetricSigner(
+            Sha256::create(),
+            InMemory::plainText(config('services.apple.private_key')),
+        ));
     }
 }
