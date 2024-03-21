@@ -53,5 +53,10 @@ return [
         'client_secret' => env('LINE_CLIENT_SECRET'),
         'redirect' => env('LINE_REDIRECT_URI')
     ],
+    'apple' => [
+        'client_id' => env('APPLE_CLIENT_ID'),
+        'client_secret' => env('APPLE_CLIENT_SECRET'),
+        'redirect' => env('APPLE_REDIRECT_URI')
+    ],
 
 ];

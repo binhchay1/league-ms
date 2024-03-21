@@ -21,6 +21,7 @@
         "predis/predis": "^2.2",
         "pusher/pusher-php-server": "^7.2",
         "realrashid/sweet-alert": "^7.1",
+        "socialiteproviders/apple": "^5.6",
         "socialiteproviders/facebook": "^4.1",
         "socialiteproviders/google": "^4.1",
         "socialiteproviders/line": "^4.1",
