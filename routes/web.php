@@ -53,7 +53,6 @@ Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook
 Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
 Route::get('/auth/line/', [SocialLoginController::class, 'redirectToLine'])->name('auth.line');
 Route::get('/auth/line/callback/', [SocialLoginController::class, 'handleLineCallback']);
-Route::get('/auth/line/callbackInformation/', [SocialLoginController::class, 'handleLineCallbackInformation']);
 Route::get('/auth/apple/', [SocialLoginController::class, 'redirectToApple'])->name('auth.apple');
 Route::post('/auth/apple/callback/', [SocialLoginController::class, 'handleAppleCallback']);
 Route::get('/register/', [AuthController::class, 'registerUser'])->name('register_user');
@@ -113,6 +112,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/create-group/', [GroupController::class, 'create'])->name('group.create');
     Route::post('/store-group-training/', [GroupController::class, 'groupTraining'])->name('groupTraining.create');
     Route::get('/list-group-training/', [GroupController::class, 'listGroupTraining'])->name('list.groupTraining');
+    Route::get('/list-group-training/', [GroupController::class, 'listGroupTraining'])->name('list.groupTraining');
+    Route::get('/delete-account-apple/', [ProfileController::class, 'deleteAccount'])->name('delete.account.apple');
 
     Route::middleware(['admin'])->group(
         function () {

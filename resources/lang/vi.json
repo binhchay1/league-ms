@@ -461,5 +461,9 @@
     "User Information": "Thông tin người dùng",
     "Avatar": "hình đại diện",
     "Phone Number": "Số điện thoại",
-    "Date of Birth": "Ngày sinh"
+    "Date of Birth": "Ngày sinh",
+    "Delete account": "Xóa tài khoản",
+    "Are you sure you want to delete this account ?": "Bạn chắc chắn muốn xóa tài khoản này không ?",
+    "Yes": "Có",
+    "Close": "Đóng"
 }
