@@ -16,11 +16,13 @@ class SocialLoginController extends Controller
 {
     private $userRepository;
     private $rankingRepository;
+    private $appleToken;
 
-    public function __construct(UserRepository $userRepository, RankingRepository $rankingRepository)
+    public function __construct(UserRepository $userRepository, RankingRepository $rankingRepository, AppleToken $appleToken)
     {
         $this->userRepository = $userRepository;
         $this->rankingRepository = $rankingRepository;
+        $this->appleToken = $appleToken;
     }
 
     public function redirectToGoogle()
@@ -220,10 +222,10 @@ class SocialLoginController extends Controller
         return Socialite::driver('apple')->redirect();
     }
 
-    public function handleAppleCallback(AppleToken $appleToken)
+    public function handleAppleCallback()
     {
         try {
-            config()->set('services.apple.client_secret', $appleToken->generate());
+            config()->set('services.apple.client_secret', $this->appleToken->generate());
 
             $user = Socialite::driver('apple')
                 ->stateless()
