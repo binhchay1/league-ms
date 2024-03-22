@@ -515,5 +515,9 @@
     "League participated": "リーグ参加",
     "Avatar": "アバター",
     "Phone Number": "電話番号",
-    "Date of Birth": "生年月日"
+    "Date of Birth": "生年月日",
+    "Delete account": "アカウントを削除する",
+    "Are you sure you want to delete this account ?": "このアカウントを削除してもよろしいですか?",
+    "Yes": "はい",
+    "Close": "近い"
 }

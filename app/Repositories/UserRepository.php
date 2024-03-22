@@ -46,6 +46,11 @@ class UserRepository extends BaseRepository
         return $this->model->where('facebook_id', $facebookID)->first();
     }
 
+    public function getUserByAppleID($appleID)
+    {
+        return $this->model->where('apple_id', $appleID)->first();
+    }
+
     public function destroy($id)
     {
         return $this->model->where('id', $id)->delete();

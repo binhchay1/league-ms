@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        '/custom-login-mobile/'
+        '/custom-login-mobile/',
+        '/auth/apple/callback/'
     ];
 }

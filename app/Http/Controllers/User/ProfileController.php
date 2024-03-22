@@ -95,4 +95,23 @@ class ProfileController extends Controller
 
         return back()->with("status", __("Password successfully changed!"));
     }
+
+    public function deleteAccount()
+    {
+        if (Auth::user()->apple == null) {
+            abort(403);
+        }
+
+        $getUser = $this->userRepository->getUserByAppleID(Auth::user()->apple_id);
+
+        if (!$getUser) {
+            abort(404);
+        } else {
+            Session::flush();
+            $this->userRepository->deleteById($getUser->id);
+            Auth::guard('web')->logout();
+        }
+
+        return redirect()->route('login');
+    }
 }
