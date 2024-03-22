@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Enums\Role;
 use App\Enums\Title;
 use App\Repositories\RankingRepository;
+use App\Services\AppleToken;
 use Exception;
 
 class SocialLoginController extends Controller
@@ -219,7 +220,7 @@ class SocialLoginController extends Controller
         return Socialite::driver('apple')->redirect();
     }
 
-    public function handleAppleCallback()
+    public function handleAppleCallback(AppleToken $appleToken)
     {
         try {
             config()->set('services.apple.client_secret', $appleToken->generate());
