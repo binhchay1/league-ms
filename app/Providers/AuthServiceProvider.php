@@ -24,11 +24,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
-
         $this->app->bind(Configuration::class, fn () => Configuration::forSymmetricSigner(
-            Sha256::create(),
-            InMemory::plainText(config('services.apple.private_key')),
+            signer: new Sha256(),
+            key: InMemory::plainText(config('services.apple.private_key')),
         ));
     }
 }
