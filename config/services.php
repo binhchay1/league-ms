@@ -56,9 +56,10 @@ return [
     'apple' => [
         'client_id' => env('APPLE_CLIENT_ID'),
         'client_secret' => env('APPLE_CLIENT_SECRET'),
+        'key_id' => env('APPLE_KEY_ID'),
+        'private_key' => env('APPLE_PRIVATE_KEY'),
+        'team_id' => env('APPLE_TEAM_ID'),
         'redirect' => env('APPLE_REDIRECT_URI'),
-        'private_key' => env('APPLE_PRIVATE_KEY', '8XPNN63ZN8'),
-        'team_id' => env('APPLE_TEAM_ID', '3F28NM5STU')
     ],
 
 ];
