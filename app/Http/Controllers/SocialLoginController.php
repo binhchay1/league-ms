@@ -11,8 +11,7 @@ use App\Enums\Title;
 use App\Repositories\RankingRepository;
 use App\Services\AppleToken;
 use Exception;
-use GuzzleHttp\Psr7\Request;
-
+use Illuminate\Http\Request;
 class SocialLoginController extends Controller
 {
     private $userRepository;
