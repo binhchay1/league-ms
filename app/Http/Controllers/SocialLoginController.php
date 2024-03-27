@@ -225,7 +225,6 @@ class SocialLoginController extends Controller
     {
         try {
             config()->set('services.apple.client_secret', $appleToken->generate());
-            dd($request, config('services.apple.client_secret'));
 
             $user = Socialite::driver('apple')
                 ->stateless()
