@@ -12,6 +12,7 @@ use App\Repositories\RankingRepository;
 use App\Services\AppleToken;
 use Exception;
 use Illuminate\Http\Request;
+
 class SocialLoginController extends Controller
 {
     private $userRepository;
@@ -223,9 +224,8 @@ class SocialLoginController extends Controller
     public function handleAppleCallback(AppleToken $appleToken, Request $request)
     {
         try {
-
-            dd($request);
             config()->set('services.apple.client_secret', $appleToken->generate());
+            dd($request, config('services.apple.client_secret'));
 
             $user = Socialite::driver('apple')
                 ->stateless()
