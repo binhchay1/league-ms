@@ -11,6 +11,7 @@ use App\Enums\Title;
 use App\Repositories\RankingRepository;
 use App\Services\AppleToken;
 use Exception;
+use GuzzleHttp\Psr7\Request;
 
 class SocialLoginController extends Controller
 {
@@ -220,9 +221,11 @@ class SocialLoginController extends Controller
         return Socialite::driver('apple')->redirect();
     }
 
-    public function handleAppleCallback(AppleToken $appleToken)
+    public function handleAppleCallback(AppleToken $appleToken, Request $request)
     {
         try {
+
+            dd($request);
             config()->set('services.apple.client_secret', $appleToken->generate());
 
             $user = Socialite::driver('apple')
