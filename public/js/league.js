@@ -5,15 +5,12 @@ $(function () {
 
 function eventDeleteAdmin()
 {
-    // show modal and check admin (button, id, tr)
     $(document).on('click', '.btn_delete', function() {
         $('#ModalCreate').modal('show');
     });
 
 }
 
-
-//other League
 $(function () {
     otherLeague();
 })
@@ -24,8 +21,6 @@ function otherLeague() {
         window.location.href = window.location.origin + '/info/' + edit_id;
     });
 }
-
-//active
 
 $('#check').change(function () {
     $('#open-tab1').prop("disabled", !this.checked);
