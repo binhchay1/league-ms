@@ -29,7 +29,6 @@
                                     <div class="form-outline">
                                         <label class="control-label">{{ __('Password') }}</label>
                                         <input name="password" value="{{ old('password') }}" type="password" class="form-control" id="password-field" autofocus>
-
                                     </div>
 
                                     @if(isset($errors))
@@ -49,9 +48,6 @@
                                         <p class="lead fw-normal mb-0 me-3">
                                             {{ __('Login with') }}
                                         </p>
-                                        <!-- <a href="{{ route('auth.facebook') }}" class="btn btn-primary btn-floating mx-1" style="width: 40px;">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </a> -->
 
                                         <a href="{{ route('auth.google') }}" class="btn btn-light btn-floating mx-1 text-danger border">
                                             <i class="fab fa-google"></i>
