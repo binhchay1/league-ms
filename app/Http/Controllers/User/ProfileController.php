@@ -10,11 +10,13 @@ use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
 
     protected $userRepository;
+    protected $utility;
 
     public function __construct(
         UserRepository $userRepository,
