@@ -236,26 +236,25 @@ class SocialLoginController extends Controller
             $claims = explode('.', $response->id_token)[1];
             $claims = json_decode(base64_decode($claims));
 
-            dd($claims);
-            $getUserByEmail = $this->userRepository->getUserByEmail($user->email);
+            $getUserByEmail = $this->userRepository->getUserByEmail($claims->email);
 
             if ($getUserByEmail) {
-                $this->userRepository->updateSocialID($user->email, ['apple_id' => $user->id]);
+                $this->userRepository->updateSocialID($user->email, ['apple_id' => $claims->sub]);
                 Auth::login($getUserByEmail);
 
                 return redirect()->route('home');
             } else {
-                $getUserByFacebook = $this->userRepository->getUserByFacebook($user->id);
+                $getUserByApple = $this->userRepository->getUserByAppleID($claims->sub);
 
-                if ($getUserByFacebook) {
-                    Auth::login($getUserByFacebook);
+                if ($getUserByApple) {
+                    Auth::login($getUserByApple);
 
                     return redirect()->route('home');
                 } else {
                     $data = [
-                        'email' => $user->email,
-                        'name' => $user->name,
-                        'google_id' => $user->id,
+                        'email' => $claims->email,
+                        'name' => 'Apple user',
+                        'apple_id' => $claims->sub,
                         'password' => Hash::make('123456dummy'),
                         'email_verified_at' => date("Y-m-d h:i:s"),
                         'role' => Role::USER,
@@ -279,7 +278,6 @@ class SocialLoginController extends Controller
                 }
             }
         } catch (Exception $e) {
-            dd($e);
             return redirect()->intended('login')->with('error', $e->getMessage());
         }
     }
