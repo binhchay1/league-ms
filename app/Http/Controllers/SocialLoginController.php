@@ -239,7 +239,7 @@ class SocialLoginController extends Controller
             $getUserByEmail = $this->userRepository->getUserByEmail($claims->email);
 
             if ($getUserByEmail) {
-                $this->userRepository->updateSocialID($user->email, ['apple_id' => $claims->sub]);
+                $this->userRepository->updateSocialID($claims->email, ['apple_id' => $claims->sub]);
                 Auth::login($getUserByEmail);
 
                 return redirect()->route('home');
