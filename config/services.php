@@ -56,7 +56,7 @@ return [
 
     'apple' => [
         'client_id' => env('APPLE_CLIENT_ID'),
-        'client_secret' => '',
+        'client_secret' => 'eyJraWQiOiI4WFBOTjYzWk44IiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiIzRjI4Tk01U1RVIiwiaWF0IjoxNzEyMTI3NDg2LCJleHAiOjE3Mjc2Nzk0ODYsImF1ZCI6Imh0dHBzOi8vYXBwbGVpZC5hcHBsZS5jb20iLCJzdWIiOiJjb20uYmFkbWludG9uLmd0b3MuaW8ifQ.elJPYEvds0wHyj9B8fDHI1DA1okX-Mh5EfF8NJlj10QxyZO7MUnm6x9jdD6iv-3wTw2P94ZF2cP0oNewxzyhVg',
         'key_id' => env('APPLE_KEY_ID'),
         'private_key' => env('APPLE_PRIVATE_KEY'),
         'team_id' => env('APPLE_TEAM_ID'),

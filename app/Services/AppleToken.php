@@ -4,7 +4,6 @@ namespace App\Services;
 
 use Carbon\CarbonImmutable;
 use Lcobucci\JWT\Configuration;
-
 class AppleToken
 {
     private Configuration $jwtConfig;

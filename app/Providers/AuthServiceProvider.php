@@ -3,8 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Lcobucci\JWT\Configuration;
-use Illuminate\Support\Facades\Process;
+
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -22,9 +21,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $result = Process::run('ruby client_secret.rb');
-        $output = $result->output();
 
-        $this->app->bind(Configuration::class, $output);
     }
 }

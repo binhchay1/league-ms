@@ -221,13 +221,10 @@ class SocialLoginController extends Controller
         return Socialite::driver('apple')->redirect();
     }
 
-    public function handleAppleCallback(AppleToken $appleToken, Request $request)
+    public function handleAppleCallback(Request $request)
     {
         try {
-            config()->set('services.apple.client_secret', $appleToken->generate());
-
             $user = Socialite::driver('apple')
-                ->stateless()
                 ->user();
             $getUserByEmail = $this->userRepository->getUserByEmail($user->email);
 
