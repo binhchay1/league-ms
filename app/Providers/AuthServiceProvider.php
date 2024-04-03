@@ -23,9 +23,19 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $secret = [
+            '-----BEGIN PRIVATE KEY-----',
+            'MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg7ktNQa6pxH4zGHKb',
+            '/zRMAps/ke47YlZuXieO8kBRh1ygCgYIKoZIzj0DAQehRANCAAQHO+5+fdn3Zmg+',
+            'yMfTFssQpMxmma1PkOaPK+6zMzhB0O3Ca4F9LkxQnkabTV1I7vZPq3AwynGRXBag',
+            '5QDWUs+s',
+            '-----END PRIVATE KEY-----',
+        ];
+
+        $implode = implode($secret);
         $this->app->bind(Configuration::class, fn () => Configuration::forSymmetricSigner(
             signer: new Sha256(),
-            key: InMemory::plainText(asset('key.txt')),
+            key: InMemory::plainText($implode),
         ));
     }
 }
