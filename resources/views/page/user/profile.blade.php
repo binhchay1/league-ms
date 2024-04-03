@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <div>
                                     <label for="img">{{ __('Avatar') }}</label>
-                                    <input value="" type="file" class="border-0 bg-light pl-0" name="profile_photo_path" id="profile_photo_path" style="display: none">
+                                    <input value="" type="file" accept="image/*;capture=camera" class="border-0 bg-light pl-0" name="profile_photo_path" id="profile_photo_path" style="display: none">
                                     <div class=" choose-avatar">
                                         <div id="btnimage">
                                             <img id="showImage" style="width: 110px" class="show-avatar" src="{{ $dataUser->profile_photo_path ?? asset('/images/no-image.png') }}" alt="avatar">
