@@ -451,7 +451,6 @@ body.open .navigation-menu__overlay {
 body.open .navigation-menu__labels {
     translate: 0 0;
     visibility: visible;
-    margin-top: 80px;
 }
 
 .navigation-menu__labels > button {
