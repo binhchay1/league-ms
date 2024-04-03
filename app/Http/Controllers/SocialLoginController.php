@@ -233,7 +233,10 @@ class SocialLoginController extends Controller
                 'client_secret' => config('services.apple.client_secret'),
             ]);
 
-            dd($response);
+            $claims = explode('.', $response->id_token)[1];
+            $claims = json_decode(base64_decode($claims));
+
+            dd($claims);
             $getUserByEmail = $this->userRepository->getUserByEmail($user->email);
 
             if ($getUserByEmail) {
