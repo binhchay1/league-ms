@@ -224,8 +224,16 @@ class SocialLoginController extends Controller
     public function handleAppleCallback(Request $request)
     {
         try {
-            $user = Socialite::driver('apple')
-                ->user();
+
+            $response = $this->http('https://appleid.apple.com/auth/token', [
+                'grant_type' => 'authorization_code',
+                'code' => $request->get('code'),
+                'redirect_uri' => config('services.apple.redirect'),
+                'client_id' => config('services.apple.client_id'),
+                'client_secret' => config('services.apple.client_secret'),
+            ]);
+
+            dd($response);
             $getUserByEmail = $this->userRepository->getUserByEmail($user->email);
 
             if ($getUserByEmail) {
@@ -271,5 +279,18 @@ class SocialLoginController extends Controller
             dd($e);
             return redirect()->intended('login')->with('error', $e->getMessage());
         }
+    }
+
+    function http($url, $params)
+    {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Accept: application/json',
+            'User-Agent: curl',
+        ]);
+        $response = curl_exec($ch);
+        return json_decode($response);
     }
 }
