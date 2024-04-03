@@ -25,7 +25,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->app->bind(Configuration::class, fn () => Configuration::forSymmetricSigner(
             signer: new Sha256(),
-            key: InMemory::plainText(config('services.apple.private_key')),
+            key: InMemory::plainText(asset('key.txt')),
         ));
     }
 }
