@@ -259,7 +259,7 @@ class SocialLoginController extends Controller
                         'email_verified_at' => date("Y-m-d h:i:s"),
                         'role' => Role::USER,
                         'title' => Title::USER,
-                        'profile_photo_path' => $user->avatar ? $user->avatar : ''
+                        'profile_photo_path' => isset($claims->avatar) ? $claims->avatar : ''
                     ];
 
                     $newUser = $this->userRepository->create($data);
@@ -278,7 +278,6 @@ class SocialLoginController extends Controller
                 }
             }
         } catch (Exception $e) {
-            dd($e);
             return redirect()->intended('login')->with('error', $e->getMessage());
         }
     }
