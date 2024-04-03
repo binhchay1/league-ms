@@ -117,6 +117,7 @@
         </div>
     </div>
 </div>
+<video autoplay></video>
 @endsection
 
 @section('js')
