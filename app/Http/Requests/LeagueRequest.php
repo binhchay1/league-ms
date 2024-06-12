@@ -34,6 +34,7 @@ class LeagueRequest extends FormRequest
             'number_of_athletes' => 'required',
             'type_of_league' => 'required',
             'start_time' => 'required',
+            'money' => 'numeric',
         ];
     }
 
@@ -56,6 +57,7 @@ class LeagueRequest extends FormRequest
             'number_of_athletes.required' => __('Number of teams is required'),
             'type_of_league.required' => __('Type is required'),
             'start_time.required' => __('Type is required'),
+            'money.numeric' => __('Type is number'),
         ];
     }
 }
