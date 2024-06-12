@@ -12,6 +12,14 @@ class GroupRepository extends BaseRepository
         return Group::class;
     }
 
+    public function index($user)
+    {
+        if (\Auth::user()->role == 'admin') {
+            return $this->model->orderBy('created_at', 'desc')->get();
+        }
+        return $this->model->where('group_owner', $user)->orderBy('created_at', 'desc')->get();
+    }
+
     public function getGroupWithStatus()
     {
         return $this->model->with('group_users')->with('users')->where('active', GroupEnum::STATUS_ACTIVE)->get();

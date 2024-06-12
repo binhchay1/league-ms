@@ -41,8 +41,8 @@
                                 <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image') }}</i>
                             </div>
                         </div>
-                        @if ($errors->has('image'))
-                        <span class="text-danger">{{ $errors->first('image') }}</span>
+                        @if ($errors->has('images'))
+                        <span class="text-danger">{{ $errors->first('images') }}</span>
                         @endif
                     </div>
                     <div class="container ml-4">

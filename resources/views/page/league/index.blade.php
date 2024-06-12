@@ -41,7 +41,7 @@
                             <div class="description">
                                 <div class="logo-wrap">
                                     <div class="image">
-                                        <img src="{{asset($listLeague->images)}}" class="show-image-league">
+                                        <img src="{{asset($listLeague->images ?? '/images/logo-no-background.png')}}" class="show-image-league">
                                     </div>
                                 </div>
 
