@@ -19,9 +19,11 @@ $isFull = false;
     <div class="std-title">
         <div class="std-title-left">
             <h2 class="left" style=" font-weight: 400;">{{ __('GROUP') }}</h2>
-
         </div>
+        <a href="{{route('group.create')}}"><button class="btn btn-success btn-group">{{ __('Create Group') }}</button></a>
+
     </div>
+
     <div class="row">
         @forelse($listGroup as $group)
         @php

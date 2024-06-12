@@ -31,7 +31,8 @@ class GroupController extends Controller
 
     public function index()
     {
-        $listGroup = $this->groupRepository->get();
+        $user = Auth::user()->id;
+        $listGroup = $this->groupRepository->index($user);
         return view('admin.group.index', compact('listGroup'));
     }
 
