@@ -53,7 +53,7 @@ class HomeController extends Controller
         Utility $ultity,
         GroupTrainingRepository $groupTraining,
         RefereeRepository $refereeRepository,
-        ResultRepository $resultRepository,
+        ResultRepository $resultRepository
     ) {
         $this->userLeagueRepository = $userLeagueRepository;
         $this->leagueRepository = $leagueRepository;
@@ -173,12 +173,14 @@ class HomeController extends Controller
     public function showInfo($slug)
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
-        $listLeagues = $this->leagueRepository->getLeagueHome();
+        $getListLeagues = $this->leagueRepository->getListLeagues();
+        $dataLeague = $this->leagueRepository->show($slug);
+
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
-        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule'));
+        return view('page.league.show', compact('leagueInfor', 'getListLeagues', 'groupSchedule','dataLeague'));
     }
 
     public function changeLocate($locale)

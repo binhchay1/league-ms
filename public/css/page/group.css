@@ -234,3 +234,14 @@ p {
     font-size: 25px;
     color: black;
 }
+
+
+.btn-group {
+    font-size: 20px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    background-color: #6cbe4c;
+    border-color: transparent;
+    font-weight: 500;
+    width: 200px;
+}

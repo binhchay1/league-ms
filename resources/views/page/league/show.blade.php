@@ -40,10 +40,10 @@
                             {{ __('OTHER LEAGUE') }}
                         </h3>
                         <label class="tournament-select clear">
-                            <select name='record' class="ddlTournament">
-                                <option id="format_of_league" value="">{{ __('Select League') }}</option>
-                                @foreach($listLeagues as $league => $value )
-                                <?php $dataLeague = str_slug($value->name) ?>
+                            <select name='recordLeague' class="ddlTournament" >
+                                @foreach($getListLeagues as $league => $value )
+                                <?php $dataLeague = str_slug($value->name) ;
+                                ?>
                                 <option value="{{ $dataLeague }}">{{ $value->name }}</option>
                                 @endforeach
                             </select>
@@ -227,9 +227,9 @@
 <script src="{{ asset('js/league.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
-    $("[name='record']").on("change", function(e) {
+    $("[name='recordLeague']").on("change", function() {
         let edit_id = $(this).val();
-        window.location.href = window.location.origin + '/info/' + edit_id;
+        window.location.href = window.location.origin + '/tournament/league/' + edit_id;
     });
 
 </script>
