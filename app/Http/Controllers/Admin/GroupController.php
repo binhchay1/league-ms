@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\GroupRequest;
+use App\Http\Requests\GroupUpdateRequest;
 use App\Repositories\GroupRepository;
 use App\Http\Controllers\Controller;
 use App\Enums\Utility;
@@ -65,7 +66,7 @@ class GroupController extends Controller
         return view('admin.group.edit', compact('dataGroup'));
     }
 
-    public function update(GroupRequest $request, $id)
+    public function update(GroupUpdateRequest $request, $id)
     {
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->slug);
@@ -79,6 +80,27 @@ class GroupController extends Controller
 
         $this->groupRepository->updateById($id, $input);
         return redirect()->route('group.index')->with('success','Group successfully updated.');
+    }
+
+    public function destroy($id)
+    {
+        $this->groupRepository->deleteGroup($id);
+
+        return redirect()->route('group.index')->with('success', __('Delete Group successfully!'));
+    }
+
+    public function activeGroup(Request $request, $id)
+    {
+
+        $group = \App\Models\Group::find($id);
+        if ($group->active) {
+            $group->active = 0;
+        } else {
+            $group->active = 1;
+        }
+        $group->save();
+
+        return back();
     }
 
     public function show($id)

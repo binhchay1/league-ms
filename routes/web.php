@@ -110,6 +110,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/group/{id}', [GroupController::class, 'show'])->name('group.show');
     Route::post('/store-group/', [GroupController::class, 'store'])->name('group.store');
     Route::get('/create-group/', [GroupController::class, 'create'])->name('group.create');
+    Route::get('/edit-group/{id}/', [GroupController::class, 'edit'])->name('group.edit');
+    Route::post('/update-group/{id}/', [GroupController::class, 'update'])->name('group.update');
+    Route::get('/delete-group/{id}/', [GroupController::class, 'destroy'])->name('group.delete');
+    Route::get('/active-group/{id}', [GroupController::class, 'activeGroup'])->name('activeGroup');
     Route::post('/store-group-training/', [GroupController::class, 'groupTraining'])->name('groupTraining.create');
     Route::get('/list-group-training/', [GroupController::class, 'listGroupTraining'])->name('list.groupTraining');
     Route::get('/list-group-training/', [GroupController::class, 'listGroupTraining'])->name('list.groupTraining');
