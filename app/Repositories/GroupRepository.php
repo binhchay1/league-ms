@@ -29,4 +29,9 @@ class GroupRepository extends BaseRepository
     {
         return $this->model->with('group_users')->with('users')->with('group_trainings')->where('name', $name)->first();
     }
+
+    public function deleteGroup($id)
+    {
+        return $this->model->where('id', $id)->delete();
+    }
 }
