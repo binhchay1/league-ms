@@ -6,6 +6,7 @@ use App\Enums\Ranking;
 use App\Enums\League;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResultScheduleRequest;
+use App\Http\Requests\ScheduleRequest;
 use App\Jobs\NotificationNextMatch;
 use App\Repositories\ScheduleRepository;
 use App\Repositories\LeagueRepository;
@@ -75,8 +76,18 @@ class ScheduleController extends Controller
         return view('admin.schedule.create', compact('league', 'rounds'));
     }
 
-    public function store(Request $request)
+    public function store(ScheduleRequest $request)
     {
+
+        $leagueById = $request->league_id;
+        $getLeague = $this->leagueRepository->leagueId($leagueById);
+
+        $listMember = $getLeague->userLeagues;
+
+        if (count($listMember) < 4) {
+            $report = __('The number of members participating in the tournament must be greater than 4');
+            return back()->with('error', $report);
+        }
         $input = $request->except(['_token']);
         foreach ($input as $key => $arrValue) {
             $count = count($arrValue);

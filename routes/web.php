@@ -85,6 +85,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/list-league/', [LeagueController::class, 'index'])->name('league.index');
     Route::get('/create-league/', [LeagueController::class, 'create'])->name('league.create');
+    Route::get('/get-league/{id}', [LeagueController::class, 'leagueById'])->name('league.leagueById');
     Route::post('/store-league/', [LeagueController::class, 'store'])->name('league.store');
     Route::get('/league/{slug}/', [LeagueController::class, 'show'])->name('league.show');
     Route::get('/edit-league/{slug}/', [LeagueController::class, 'edit'])->name('league.edit');

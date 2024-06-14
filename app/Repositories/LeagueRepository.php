@@ -114,4 +114,9 @@ class LeagueRepository extends BaseRepository
     {
         return $this->model->where('id', $id)->first();
     }
+
+    public function leagueId($id)
+    {
+        return $this->model->with('userLeagues')->where('id', $id)->first();
+    }
 }
