@@ -26,7 +26,7 @@ class ScheduleRequest extends FormRequest
         return [
             'league_id.*' => ['required'],
             'round.*' =>['required'],
-            'match.*' => 'required',
+            'match.*' => 'required|numeric',
             'time.*' => 'required',
             'date.*' => 'required',
 
@@ -39,6 +39,7 @@ class ScheduleRequest extends FormRequest
             'league_id.*.required' =>__('validation.required'),
             'round.*.required' => __('validation.required'),
             'match.*.required' =>__('validation.required'),
+            'match.*.numeric' =>__('validation.numeric'),
             'time.*.required' => __('validation.required'),
             'date.*.required' => __('validation.required'),
         ];

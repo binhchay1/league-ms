@@ -141,4 +141,10 @@ class LeagueController extends Controller
 
         return back();
     }
+
+    public function leagueById($id)
+    {
+        $leagueById = $this->leagueRepository->leagueId($id);
+    }
+
 }

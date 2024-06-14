@@ -38,7 +38,7 @@
         <div class="col-md-12 col-sm-12">
             <form id="formAccountSettings" method="POST" action="{{ route('schedule.store') }}" enctype="multipart/form-data">
                 @if ($errors->any())
-                <div class="notification is-danger is-light">
+                <div class="notification is-danger is-light" style="color: red">
                     <ul>
                         @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -66,20 +66,20 @@
                             <tr>
                                 <td>1</td>
                                 <td>
-                                    <select style="width: 200px;" id="round" value="{{ old('round') }}" name="round[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                                    <select style="width: 200px;" id="round" value="" name="round[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                                         @foreach($rounds as $round => $value)
                                         <option id="format_of_league" value="{{ $value }}">{{ $value }}</option>
                                         @endforeach
                                     </select>
                                 </td>
                                 <td>
-                                    <input style="width: 200px;" class="form-control" value="{{ old('match') }}" type="number" name="match[]" id="match" min="1" />
+                                    <input style="width: 200px;" class="form-control" value="" type="number" name="match[]" id="match" min="1" />
                                     @if ($errors->has('match'))
                                     <span class="text-danger">{{ $errors->first('match') }}</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <select style="width: 200px;" id="player1_team_1" value="{{ old('player1_team_1') }}" name="player1_team_1[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                                    <select style="width: 200px;" id="player1_team_1" value="" name="player1_team_1[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                                         <option id="format_of_league" value="">{{ __('Select Player') }}</option>
 
                                         @foreach($league->userLeagues as $user => $value)
@@ -92,7 +92,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select style="width: 200px;" id="player2_team_1" value="{{ old('player2_team_1') }}" name="player2_team_1[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                                    <select style="width: 200px;" id="player2_team_1" value="" name="player2_team_1[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                                         <option id="format_of_league" value="">{{__('Select Player')}}</option>
                                         @foreach( $league->userLeagues as $user => $value)
                                         @if(empty($value->user))
@@ -104,7 +104,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select style="width: 200px;" id="player1_team_2" value="{{ old('player1_team_2') }}" name="player1_team_2[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                                    <select style="width: 200px;" id="player1_team_2" value="" name="player1_team_2[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                                         <option id="format_of_league" value="">{{__('Select Player')}}</option>
                                         @foreach($league->userLeagues as $user => $value)
                                         @if(empty($value->user))
@@ -116,7 +116,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select style="width: 200px;" id="player2_team_2" value="{{ old('player2_team_2') }}" name="player2_team_2[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                                    <select style="width: 200px;" id="player2_team_2" value="" name="player2_team_2[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                                         <option id="format_of_league" value="">{{__('Select Player')}}</option>
                                         @foreach($league->userLeagues as $user => $value)
                                         @if(empty($value->user))
@@ -128,13 +128,13 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input style="width: 200px;" type="time" value="{{ old('time') }}" class="form-control" id="time" name="time[]" />
+                                    <input style="width: 200px;" type="time" value="" class="form-control" id="time" name="time[]" />
                                 </td>
                                 @if ($errors->has('time'))
                                 <span class="text-danger">{{ $errors->first('time') }}</span>
                                 @endif
                                 <td>
-                                    <input style="width: 200px;" type="date" value="{{ old('date') }}" class="form-control" id="date" name="date[]" />
+                                    <input style="width: 200px;" type="date" value="" class="form-control" id="date" name="date[]" />
                                 </td>
                                 @if ($errors->has('date'))
                                 <span class="text-danger">{{ $errors->first('date') }}</span>
@@ -166,7 +166,7 @@
                 <tr id="R${++rowIdx}">
                     <td class="row-index text-center"><p> ${rowIdx}</p></td>
                     <td>
-                        <select style="width: 200px;"  id="round" value="{{ old('round') }}" name="round[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                        <select style="width: 200px;"  id="round" value="" name="round[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                             @foreach($rounds as $round => $value)
                                 @if(empty($value->user))
                                     <option id="format_of_league" value=""></option>
@@ -176,9 +176,9 @@
                             @endforeach
                         </select>
                     </td>
-                    <td><input style="width: 200px;" class="form-control" value="{{ old('match') }}" type="number" name="match[]" id="match" min="1"/></td>
+                    <td><input style="width: 200px;" class="form-control" value="" type="number" name="match[]" id="match" min="1"/></td>
                     <td>
-                        <select style="width: 200px;"  id="player1_team_1" value="{{ old('player1_team_1') }}" name="player1_team_1[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                        <select style="width: 200px;"  id="player1_team_1" value="" name="player1_team_1[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                             <option id="format_of_league" value="">{{__('Select Player')}}</option>
                             @foreach($league->userLeagues as $user => $value)
                                 @if(empty($value->user))
@@ -190,7 +190,7 @@
                         </select>
                     </td>
                     <td>
-                        <select style="width: 200px;" id="player2_team_1" value="{{ old('player2_team_1') }}" name="player2_team_1[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                        <select style="width: 200px;" id="player2_team_1" value="" name="player2_team_1[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                             <option id="format_of_league" value="">{{__('Select Player')}}</option>
                                 @foreach($league->userLeagues as $user => $value)
                                     @if(empty($value->user))
@@ -202,19 +202,19 @@
                         </select>
                     </td>
                     <td>
-                        <select style="width: 200px;" id="player1_team_2" value="{{ old('player1_team_2') }}" name="player1_team_2[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                        <select style="width: 200px;" id="player1_team_2" value="" name="player1_team_2[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                             <option id="format_of_league" value="">{{__('Select Player')}}</option>
                             @foreach($league->userLeagues as $user => $value)
                                 @if(empty($value->user))
                                     <option id="format_of_league" value=""></option>
                                 @else
-                                    <option id="format_of_league" value="{{ $value->user->id }}">{{ $value->user->name }}</option>
+                                    <option id="format_of_league" value="">{{ $value->user->name }}</option>
                                 @endif
                             @endforeach
                         </select>
                     </td>
                     <td>
-                        <select style="width: 200px;" id="player2_team_2" value="{{ old('player2_team_2') }}" name="player2_team_2[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                        <select style="width: 200px;" id="player2_team_2" value="" name="player2_team_2[]" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                             <option id="format_of_league" value="">{{__('Select Player')}}</option>
                             @foreach($league->userLeagues as $user => $value)
                                 @if(empty($value->user))
@@ -225,8 +225,8 @@
                             @endforeach
                         </select>
                     </td>
-                    <td><input style="width: 200px;" type="text" value="{{ old('time') }}" class="form-control" id="time" name="time[]"/></td>
-                    <td><input style="width: 200px;" type="date" value="{{ old('date') }}" class="form-control" id="date" name="date[]"/></td>
+                    <td><input style="width: 200px;" type="text" value="" class="form-control" id="time" name="time[]"/></td>
+                    <td><input style="width: 200px;" type="date" value="" class="form-control" id="date" name="date[]"/></td>
                     <td><input style="width: 200px;" type="hidden" name="league_id" value="{{$league->id}}"></td>
                     <td><a href="javascript:void(0)" style="width: 200px;" class="text-danger font-18 remove" title="Add" id="addBtn"><i class="fa fa-trash"></i></a></td>
                 </tr>`);
