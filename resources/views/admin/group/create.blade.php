@@ -94,11 +94,7 @@
                         </div>
 
                         <div class="mt-4">
-                            <label for="status" class="form-label">{{ __('Active') }}</label>
-                            <select class="form-control" name="active" id="active" value="{{ old('active') }}">
-                                <option value="1">{{ __('Active') }}</option>
-                                <option value="2">{{ __('De-active') }}</option>
-                            </select>
+                            <input type="hidden" class="form-control" type="text" name="active" id="note" value="0" />
                         </div>
                     </div>
                 </div>
