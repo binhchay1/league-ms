@@ -29,7 +29,7 @@
                                             </li>
                                             <?php $collection = collect($schedules)->sortBy('match'); ?>
                                             @foreach($collection as $index => $schedule)
-                                            <li class="row1 draw-WD - Group B match-147 " id="{{$count }}" onclick="liveScorce(this.id)">
+                                            <li class="row1 draw-WD - Group B match-147 " id="{{$count }}" onclick="liveScore(this.id)">
                                                 <a id="match-link">
                                                     <div class="round_time">
                                                         <div class="time">
@@ -289,7 +289,7 @@
 </html>
 
 <script>
-    function liveScorce(id) {
+    function liveScore(id) {
         let idElement = id;
         $('#livescore-top' + idElement).show();
     }

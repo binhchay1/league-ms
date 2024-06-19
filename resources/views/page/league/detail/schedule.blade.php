@@ -73,7 +73,7 @@ if (Auth::check()) {
                                                                 @endif
                                                             </div>
 
-                                                            <div class="vs"> bt </div>
+                                                            <div class="vs"> vs </div>
 
                                                             <div class="team-details-wrap">
                                                                 <div class="player3-wrap player">

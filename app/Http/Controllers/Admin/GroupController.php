@@ -7,11 +7,11 @@ use App\Http\Requests\GroupUpdateRequest;
 use App\Repositories\GroupRepository;
 use App\Http\Controllers\Controller;
 use App\Enums\Utility;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Enums\Group;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\GroupTrainingRepository;
+use App\Http\Requests\GroupTrainingRequest;
 
 class GroupController extends Controller
 {
@@ -89,7 +89,7 @@ class GroupController extends Controller
         return redirect()->route('group.index')->with('success', __('Delete Group successfully!'));
     }
 
-    public function activeGroup(Request $request, $id)
+    public function activeGroup($id)
     {
 
         $group = \App\Models\Group::find($id);
@@ -109,7 +109,7 @@ class GroupController extends Controller
         return view("admin.group.show", compact('dataGroup'));
     }
 
-    public function groupTraining(Request $request)
+    public function groupTraining(GroupTrainingRequest $request)
     {
         $input = $request->except(['_token']);
         $input['activity_time'] = $input['activity_time_start'];
