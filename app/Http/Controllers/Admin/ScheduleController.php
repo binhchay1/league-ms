@@ -336,8 +336,15 @@ class ScheduleController extends Controller
             }
 
             $whileMatch = $totalMatch = $preCountMatch = $countMatch - 1;
-            while ($whileMatch > 1) {
-                $whileMatch =  $whileMatch / 2;
+
+            if(($countMatch - 1) % 2 != 0) {
+                $whileMatch = $totalMatch = $preCountMatch = $countMatch;
+            } else {
+                $whileMatch = $totalMatch = $preCountMatch = $countMatch - 1;
+            }
+
+            while ($whileMatch != 1) {
+                $whileMatch = $whileMatch / 2;
                 $totalMatch = $totalMatch + $whileMatch;
             }
 
@@ -377,8 +384,6 @@ class ScheduleController extends Controller
                 $countNextDate++;
                 $countMatchIndex++;
             }
-
-            die;
 
             if ($countLack != 0) {
                 $stringAfter = __('Your league need ');
