@@ -94,7 +94,7 @@ $utility = new Utility();
             <td></td>
             <td></td>
             <td colspan="5" style="font-weight: bold">{{ __('Trọng tài giao cầu') }}:</td>
-            <td colspan="4" style="border-bottom: 1px solid black">{{ $result->sub_referees ? $result->sub_referees : 'N/A' }}</td>
+            <td colspan="4" style="border-bottom: 1px solid black">{{ isset($result->sub_referees) ? $result->sub_referees : 'N/A' }}</td>
         </tr>
         <tr>
             <td colspan="3" style="font-weight: bold">{{ __('Sân') }}:</td>
@@ -104,7 +104,7 @@ $utility = new Utility();
             <td></td>
             @endfor
             <td colspan="5" style="font-weight: bold">{{ __('Số lượng cầu sử dụng') }}:</td>
-            <td colspan="4" style="border-bottom: 1px solid black">{{ $result->number_shuttlecock }}</td>
+            <td colspan="4" style="border-bottom: 1px solid black">{{ isset($result->number_shuttlecock) ? $result->number_shuttlecock : 'N/A' }}</td>
         </tr>
         <tr></tr>
 
