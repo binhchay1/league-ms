@@ -42,9 +42,7 @@
                         <label class="tournament-select clear">
                             <select name='recordLeague' class="ddlTournament" >
                                 @foreach($getListLeagues as $league => $value )
-                                <?php $dataLeague = str_slug($value->name) ;
-                                ?>
-                                <option value="{{ $dataLeague }}">{{ $value->name }}</option>
+                                <option value="{{ $value->slug }}">{{ $value->name }}</option>
                                 @endforeach
                             </select>
                         </label>

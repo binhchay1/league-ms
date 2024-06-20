@@ -84,6 +84,7 @@ p {
 .avatar-group {
     width: 100px;
     height: 100px;
+    cursor: pointer;
 }
 
 .name-group {

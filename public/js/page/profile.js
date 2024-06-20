@@ -25,7 +25,7 @@ function loadImage() {
             }
         };
 
-        if(isMobile.any()) {
+        if (isMobile.any()) {
             $('#profile_photo_path_mobile').click();
         } else {
             $('#profile_photo_path').click();

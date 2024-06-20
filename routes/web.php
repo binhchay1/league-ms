@@ -80,9 +80,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/join-group-training/', [HomeController::class, 'joinGroupTraining'])->name('join.group.training');
     Route::get('/live-score/', [HomeController::class, 'liveScore'])->name('live.score');
 
-    Route::get('/auto-create-league', [ScheduleController::class, 'autoCreateLeague'])->name('auto.create.schedule');
-    Route::get('/store-score', [ScheduleController::class, 'storeScore'])->name('store.score');
 
+    //league
     Route::get('/list-league/', [LeagueController::class, 'index'])->name('league.index');
     Route::get('/create-league/', [LeagueController::class, 'create'])->name('league.create');
     Route::get('/get-league/{id}', [LeagueController::class, 'leagueById'])->name('league.leagueById');
@@ -95,6 +94,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/delete-player-league/{id}/', [LeagueController::class, 'destroyPlayer'])->name('league.destroyPlayer');
     Route::get('/active-league/{id}', [LeagueController::class, 'activeLeague'])->name('activeLeague');
 
+
+    //schedule
     Route::get('/list-schedule-league/', [ScheduleController::class, 'league'])->name('schedule.league');
     Route::get('/list-schedule/', [ScheduleController::class, 'index'])->name('schedule.index');
     Route::get('/create-schedule', [ScheduleController::class, 'create'])->name('schedule.create');
@@ -106,7 +107,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/update-result/{id}/', [ScheduleController::class, 'updateResult'])->name('schedule.updateResult');
     Route::get('/result', [ScheduleController::class, 'result'])->name('schedule.result');
     Route::get('/export-schedule/{id}/', [ScheduleController::class, 'exportSchedule'])->name('schedule.export');
-
+    Route::get('/auto-create-league', [ScheduleController::class, 'autoCreateLeague'])->name('auto.create.schedule');
+    Route::get('/store-score', [ScheduleController::class, 'storeScore'])->name('store.score');
+    //group
     Route::get('/list-group/', [GroupController::class, 'index'])->name('group.index');
     Route::get('/group/{id}', [GroupController::class, 'show'])->name('group.show');
     Route::post('/store-group/', [GroupController::class, 'store'])->name('group.store');
@@ -117,7 +120,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/active-group/{id}', [GroupController::class, 'activeGroup'])->name('activeGroup');
     Route::post('/store-group-training/', [GroupController::class, 'groupTraining'])->name('groupTraining.create');
     Route::get('/list-group-training/', [GroupController::class, 'listGroupTraining'])->name('list.groupTraining');
-    Route::get('/list-group-training/', [GroupController::class, 'listGroupTraining'])->name('list.groupTraining');
+    Route::get('/edit-group-training/{id}', [GroupController::class, 'editGroupTraining'])->name('edit.groupTraining');
+    Route::post('/update-group-training/{id}', [GroupController::class, 'updateGroupTraining'])->name('update.groupTraining');
+    Route::get('/delete-group-training/{id}', [GroupController::class, 'deleteGroupTraining'])->name('delete.groupTraining');
     Route::get('/delete-account-apple/', [ProfileController::class, 'deleteAccount'])->name('delete.account.apple');
 
     Route::middleware(['admin'])->group(

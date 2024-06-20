@@ -116,7 +116,7 @@ $utility = new \App\Enums\Utility();
                         @endphp
                         <div class="form-outline d-flex flex-column">
                             <p>{{ __('Please join group for explore chat, ...') }}</p>
-                            <button id="login" class="btn btn-primary" id="groups-{{ $getGroup->name }}" onclick="requestJoin(this.id)">
+                            <button class="btn btn-primary" id="groups-{{ $getGroup->name }}" onclick="requestJoin(this.id)">
                                 {{ __('Join group') }}
                             </button>
                         </div>
@@ -229,7 +229,10 @@ $utility = new \App\Enums\Utility();
 
         function scrollToEnd() {
             let elem = document.getElementById('chat-area');
-            elem.scrollTop = elem.scrollHeight;
+            if(elem != null) {
+                elem.scrollTop = elem.scrollHeight;
+            }
+
         }
 
         function requestJoin(id) {
@@ -247,6 +250,7 @@ $utility = new \App\Enums\Utility();
                     let btnSuccess = '<div><button class="btn btn-secondary" disabled>' + '<?php echo __('Joined') ?>' + '</button></div>'
                     $('#btn-join').empty();
                     $('#btn-join').append(btnSuccess);
+                    window.location.reload();
                 } else if (result == 'wait') {
                     let btnWait = '<div><button class="btn btn-secondary" disabled>' + '<?php echo __('Wait group owner accept') ?>' + '</button></div>'
                     $('#btn-join').empty();

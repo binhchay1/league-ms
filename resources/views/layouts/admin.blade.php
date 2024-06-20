@@ -33,7 +33,8 @@
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">{{ __('Home') }}</a>
+                    <a href="{{route('home')}}" class="nav-link">
+                        <h5 style="font-weight: 600; color: black">{{ __('HomePage') }}</h5></a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">

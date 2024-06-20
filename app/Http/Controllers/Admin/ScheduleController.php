@@ -336,10 +336,18 @@ class ScheduleController extends Controller
             }
 
             $whileMatch = $totalMatch = $preCountMatch = $countMatch - 1;
+
+            if(($countMatch - 1) % 2 != 0) {
+                $whileMatch = $totalMatch = $preCountMatch = $countMatch;
+            } else {
+                $whileMatch = $totalMatch = $preCountMatch = $countMatch - 1;
+            }
+
             while ($whileMatch != 1) {
                 $whileMatch = $whileMatch / 2;
                 $totalMatch = $totalMatch + $whileMatch;
             }
+
             $forMatch = $totalMatch - $preCountMatch;
 
             $countNextDate = 1;
@@ -359,12 +367,12 @@ class ScheduleController extends Controller
                     $indexRound++;
                 }
 
-                $round = League::ROUND_PER_LEAGUE[$preRound][$indexRound];
+                $roundInsert = League::ROUND_PER_LEAGUE[$preRound][$indexRound];
 
                 $data = [
                     'league_id' => $getLeague->id,
                     'match' => $countMatch,
-                    'round' => $round,
+                    'round' => $roundInsert,
                     'time' => $timeInDay,
                     'date' => $dateData,
                 ];
