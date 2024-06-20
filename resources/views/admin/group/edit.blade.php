@@ -35,7 +35,7 @@
                             <input value="" type="file" class="border-0 bg-light pl-0" name="images" id="image" hidden>
                             <div class=" choose-avatar">
                                 <div id="btnimage">
-                                    <img id="showImage" class="show-avatar" src="{{ asset($dataGroup->images ??'/images/champion.png') }}" alt="avatar" style="width: 200px;">
+                                    <img id="showImage" class="show-avatar" src="{{ asset($dataGroup->images ??'/images/logo-no-background.png') }}" alt="avatar" style="width: 200px;">
                                 </div>
                                 <div id="button">
                                     <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image') }}</i>

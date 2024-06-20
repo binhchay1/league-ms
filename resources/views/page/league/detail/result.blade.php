@@ -82,7 +82,7 @@
 
                                                                     </div>
                                                                     <div class="player4 player">
-                                                                        {{asset( $schedule->player2Team2->name ?? '')}}
+                                                                        {{( $schedule->player2Team2->name ?? '')}}
                                                                     </div>
                                                                 </div>
                                                                 @endif

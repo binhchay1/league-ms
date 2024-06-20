@@ -35,9 +35,9 @@
                         <td>{{ $data->name }}</td>
                         <td>{{ $data->start_date }}</td>
                         <td>{{ $data->end_date }}</td>
-                        <td><img class="image" src="{{$data->images ?? asset('/images/champion.png')}}" alt="avatar" style="width: 150px"></td>
+                        <td><img class="image" src="{{asset($data->images ?? '/images/logo-no-background.png')}}" alt="avatar" style="width: 150px"></td>
                         <td>{{ $data->location }}</td>
-                        <td>{{ $data->money }}</td>
+                        <td>{{ number_format($data->money, 0, ',', '.') }} đ</td>
                         <td>{{ $data->number_of_athletes }} {{__('people')}}</td>
                         <td>{{ $data->format_of_league }}</td>
                         <td>{{ $data->type_of_league }}</td>
@@ -48,10 +48,11 @@
                             <a href="{{route('league.show',$data['slug'])}}">
                                 <button type="button" class="btn btn-success">{{ __('Active User Register') }}</button>
                             </a>
-                            @if(Auth::user()->role == 'admin')
                             <a href="{{route('league.delete', $data['slug'])}}">
                                 <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
                             </a>
+                            @if(Auth::user()->role == 'admin')
+
                             <a href="{{route('activeLeague', $data['id'])}}" class="btn btn-{{$data->status ? 'info' : 'secondary' }}">
                                 {{$data->status ? "Active League" : "Inactive League"}}
                             </a>

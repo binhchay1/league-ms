@@ -17,7 +17,7 @@
                 @csrf()
                 <div class="row">
                     <div class="col-lg-4" style="text-align: center;">
-                        <img height="150" width="150" src="{{ $userRegisterLeague->images }}" alt="logo">
+                        <img height="150" width="150" src="{{asset($userRegisterLeague->images ?? '/images/logo-no-background.png')}}" alt="logo">
                     </div>
                     <div class="col-lg-6">
                         <h2>{{ $userRegisterLeague->name }}</h2>
