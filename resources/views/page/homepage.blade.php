@@ -26,6 +26,7 @@
     <section id="next-tournament" class="next-tournament-section bg-black">
         <div class="next-tournament-wrap">
             <div class="results">
+                @if(count($listLeague) >0 )
                 @foreach($listLeague as $league)
                 <div class="wrapper-results">
                     <div class="box-results-tournament">
@@ -57,6 +58,9 @@
                     </div>
                 </div>
                 @endforeach
+                @else
+                    <h2 style="color:white; text-align: center">{{__('League has not been updated!')}}</h2>
+                @endif
             </div>
         </div>
     </section>
