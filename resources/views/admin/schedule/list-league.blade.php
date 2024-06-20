@@ -8,20 +8,20 @@
         <div class="card-body">
             <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="card container">
-                    <div class="row product__filter mt-2">
-                        @forelse($listLeagues as $league)
+                    <div class=" product__filter mt-2">
+                        @foreach($listLeagues as $league)
                             @if($league->status == 1)
                                 <div class="col-lg-4 mt-2">
                                     <div class="" style="background-color: #eff2f4; padding: 5px; margin-bottom: 15px;">
                                         <h5 class="mt-4" style=" text-align: center">{{ $league->name }}</h5>
-                                        <img class="image" src="{{ $league->images ?? asset('/images/champion.png') }}" alt="avatar" style="display: block;margin-left: auto;margin-right: auto;width: 50%; height: 165px; ">
+                                        <img class="image" src="{{ $league->images ?? asset('/images/logo-no-background.png') }}" alt="avatar" style="display: block;margin-left: auto;margin-right: auto;width: 50%; height: 165px; ">
                                         <a href="{{ route('schedule.leagueSchedule', $league['slug']) }}" style="margin-bottom: 10px;width: 70%;margin-left: 40px;" class="btn btn-primary col-sm-12 mt-4 ">{{__('Create Schedule')}}</a>
                                     </div>
                                 </div>
+                                @else
+                                <h2 class="text-center">{{ __('League has not been activated from Admin!') }}</h2>
                             @endif
-                        @empty
-                        <h2 class="text-center">{{ __('Data has not been updated!') }}</h2>
-                        @endforelse
+                            @endforeach
                     </div>
                 </div>
             </div>

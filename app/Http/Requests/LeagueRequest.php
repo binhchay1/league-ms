@@ -55,9 +55,9 @@ class LeagueRequest extends FormRequest
             'end_date.after_or_equal' => __('The end date must be after the start date'),
             'format_of_league.required' => __('Format is required'),
             'number_of_athletes.required' => __('Number of teams is required'),
-            'type_of_league.required' => __('Type is required'),
-            'start_time.required' => __('Type is required'),
-            'money.numeric' => __('Type is number'),
+            'type_of_league.required' => __('Type league is required'),
+            'start_time.required' => __('Start_time is required'),
+            'money.numeric' => __('Money is number'),
         ];
     }
 }

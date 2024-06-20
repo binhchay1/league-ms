@@ -40,7 +40,7 @@
                                     <div class="current-tmt-inner">
                                         <div class="current-tmt-logo">
                                             <a href="" class="">
-                                                <img style="height: 100%; width: 100%" src="{{ asset($league->images) }}"></a>
+                                                <img style="height: 100%; width: 100%" src="{{ asset($league->images ?? '/images/logo-no-background.png' ) }}"></a>
                                         </div>
                                         <div class="current-tmt-name">{{ $league->name }}</div>
                                         <?php $start_date = date('d/m/Y', strtotime($league->start_date));

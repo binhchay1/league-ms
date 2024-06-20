@@ -54,7 +54,6 @@ class GroupController extends Controller
                 $input['images'] = $path;
             }
         }
-
         $this->groupRepository->create($input);
         return redirect()->route('group.index')->with('success','Group successfully created.');
     }
@@ -112,10 +111,7 @@ class GroupController extends Controller
     public function groupTraining(GroupTrainingRequest $request)
     {
         $input = $request->except(['_token']);
-        $input['activity_time'] = $input['activity_time_start'];
-        if ($input['activity_time_end'] != null) {
-            $input['activity_time'] .= ' - ' . $input['activity_time_end'];
-        }
+        $input['owner_user'] = Auth::user()->id;
         $this->groupTraining->create($input);
 
         return redirect()->route('list.groupTraining')->with('success','Group Training successfully created.');
@@ -123,7 +119,32 @@ class GroupController extends Controller
 
     public function listGroupTraining()
     {
-        $listGroupTraining = $this->groupTraining->get();
+        $user = Auth::user()->id;
+        $listGroupTraining = $this->groupTraining->index($user);
         return view('admin.group.list-group-training', compact('listGroupTraining'));
+    }
+
+    public function editGroupTraining($id)
+    {
+        $dataGroupTraining = $this->groupTraining->editGroupTraining($id);
+        return view('admin.group.edit-group-training', compact('dataGroupTraining'));
+
+    }
+
+    public function updateGroupTraining(GroupTrainingRequest $request, $id)
+    {
+        $input = $request->except(['_token']);
+        $update_GroupTraining = $this->groupTraining->update($input, $id);
+
+        return redirect()->route('list.groupTraining')->with('success','Group Training successfully created.');
+
+
+    }
+
+    public function deleteGroupTraining($id)
+    {
+        $this->groupTraining->destroy($id);
+
+        return back()->with('success', __('Delete League successfully!'));
     }
 }
