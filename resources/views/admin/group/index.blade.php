@@ -26,18 +26,18 @@
                 @foreach($listGroup as $data)
                     <tr>
                         <td>{{ $data->name }}</td>
-                        <td><img class="image" src="{{$data->images ?? asset('/images/champion.png')}}" alt="avatar" style="width: 150px"></td>
+                        <td><img class="image" src="{{$data->images ?? asset('/images/logo-no-background.png')}}" alt="avatar" style="width: 150px"></td>
                         <td>
                             <a href="{{ route('group.show',$data['id']) }}">
-                                <button type="button" class="btn btn-primary">{{__('Group Training')}}</button>
+                                <button type="button" class="btn btn-primary">{{__('Create Group Training')}}</button>
                             </a>
                             <a href="{{route('group.edit',$data['id'])}}">
                                 <button type="button" class="btn btn-success">{{ __('Edit') }}</button>
                             </a>
-                            @if(Auth::user()->role == 'admin')
                                 <a href="{{route('group.delete', $data['id'])}}">
                                     <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
                                 </a>
+                            @if(Auth::user()->role == 'admin')
                                 <a href="{{route('activeGroup', $data['id'])}}" class="btn btn-{{$data->active ? 'info' : 'secondary' }}">
                                     {{$data->active ? "Active Group" : "Inactive Group"}}
                                 </a>

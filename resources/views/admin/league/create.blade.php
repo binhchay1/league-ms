@@ -24,7 +24,7 @@
                                     <input value="" type="file" class="border-0 bg-light pl-0" name="images" id="image" hidden>
                                     <div class=" choose-avatar">
                                         <div id="btnimage">
-                                            <img id="showImage" class="show-avatar" src="{{ asset('/images/champion.png') }}" alt="avatar">
+                                            <img id="showImage" class="show-avatar" src="{{asset( '/images/logo-no-background.png')}}" alt="avatar">
                                         </div>
                                         <div id="button">
                                             <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image') }}</i>
@@ -168,4 +168,11 @@
 
 @section('js')
 <script src="{{ asset('js/eventImage.js') }}"></script>
+<script>
+    if ($('#money').val() != null || $('#money').val() != '') {
+        let input = document.getElementById('money');
+        let v = input.value.replace(/\D+/g, '');
+        input.value = v.replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.');
+    }
+</script>
 @endsection

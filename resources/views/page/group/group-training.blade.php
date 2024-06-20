@@ -26,8 +26,13 @@ $utility = new \App\Enums\Utility();
                     <a href="/training?g_t={{ $train->name }}">{{ $train->name }}</a>
                 </div>
                 <div class="card-body">
+                    <?php   $date = date("d/m/Y", strtotime($train->date));
+                    $start_time= date("H:i", strtotime($train->start_time));
+                    $end_time = date("H:i", strtotime($train->end_time));
+                    ?>
                     <p><span class="fw-bold">* {{ __('Description') }} : </span>{{ $train->description }}</p>
-                    <p><span class="fw-bold">* {{ __('Activity time') }} : </span>{{ $train->activity_time }}</p>
+                    <p><span class="fw-bold">* {{ __('Date') }} : </span>{{ $date }}</p>
+                    <p><span class="fw-bold">* {{ __('Activity time') }} : </span>{{ $start_time }} - {{$end_time}}</p>
                     <p><span class="fw-bold">* {{ __('Location') }} : </span>{{ $train->location }}</p>
                     <p><span class="fw-bold">* {{ __('Members') }} : </span>{{ $train->totalMembers }} / {{ $train->number_of_members }}</p>
                     <p><em><span class="fw-bold">-----{{ __('Note') }} : </span>{{ $train->note }}</em></p>

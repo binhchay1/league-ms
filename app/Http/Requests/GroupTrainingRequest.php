@@ -23,10 +23,13 @@ class GroupTrainingRequest extends FormRequest
     {
         return [
             'name' => ['required'],
+            'location' => ['required'],
             'description' => ['required', 'max:255'],
             'number_of_members' => ['required', 'min:0'],
-            'activity_time_start' => ['required'],
-            'activity_time_end' => ['required'],
+            'end_time' => ['required'],
+            'start_time' => ['required'],
+            'date' => ['required'],
+
         ];
     }
 
@@ -42,8 +45,9 @@ class GroupTrainingRequest extends FormRequest
             'location.required' => __('Location is required'),
             'location.string' => __('Incorrect location format'),
             'location.max' => __('Location must not exceed 255 characters'),
-            'activity_time_start.required' => __('Activity time start is required'),
-            'activity_time_end.required' => __('Activity time end is required'),
+            'start_time.required' => __('Activity time start is required'),
+            'end_time.required' => __('Activity time end is required'),
+            'date.required' => __('Activity date is required'),
         ];
     }
 }

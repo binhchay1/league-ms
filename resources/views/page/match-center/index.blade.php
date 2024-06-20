@@ -28,7 +28,7 @@
                                             <div class="current-tmt-inner">
                                                 <div class="current-tmt-logo">
                                                     <a href="" >
-                                                        <img src="{{asset($league->images)}}" style="height: 100%; width: 100%"></a>
+                                                        <img src="{{asset($league->images ?? '/images/logo-no-background.png')}}" style="height: 100%; width: 100%"></a>
                                                 </div>
                                                 <div class="current-tmt-name" style="font-size: 30px">{{$league->name}}</div>
                                             </div>

@@ -20,10 +20,12 @@
                         <tr class="design-text">
                             <th scope="col">{{ __('Name') }}</th>
                             <th scope="col">{{ __('Description') }}</th>
+                            <th scope="col">{{ __('Date') }}</th>
                             <th scope="col">{{ __('Activity time') }}</th>
                             <th scope="col">{{ __('Number of members') }}</th>
                             <th scope="col">{{ __('Location') }}</th>
                             <th scope="col">{{ __('Note') }}</th>
+                            <th scope="col">{{ __('Action') }}</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -31,10 +33,28 @@
                         <tr>
                             <td>{{ $groupTraining->name }}</td>
                             <td>{{ $groupTraining->description }}</td>
-                            <td class="text-center">{{ $groupTraining->activity_time }}</td>
+
+                            <?php   $date = date("d/m/Y", strtotime($groupTraining->date));
+                                    $start_time= date("H:i", strtotime($groupTraining->start_time));
+                                    $end_time = date("H:i", strtotime($groupTraining->end_time));
+                            ?>
+                            <td>{{ $date }}</td>
+
+
+                            <td class="text-center">{{ $start_time }} - {{ $end_time }}</td>
                             <td class="text-center">{{ $groupTraining->number_of_members }}</td>
                             <td>{{ $groupTraining->location }}</td>
                             <td>{{ $groupTraining->note }}</td>
+                            <td>
+                                <a href="{{route('edit.groupTraining',$groupTraining['id'])}}">
+                                    <button type="button" class="btn btn-primary">{{ __('Edit') }}</button>
+                                </a>
+
+                                <a href="{{route('delete.groupTraining', $groupTraining['id'])}}">
+                                    <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
+                                </a>
+
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
