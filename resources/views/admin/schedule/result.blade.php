@@ -115,14 +115,14 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="text-center">
+                        <!--<td class="text-center">
                             <a href="{{ route('schedule.show', $data['id']) }}" class="btn btn-info">
                                 <span style="color:white"></span>{{ __('Update Result') }}
                             </a>
                             <a href="{{ route('schedule.export', $data['id']) }}" class="btn btn-success">
                                 <span style="color:white"></span>{{ __('Export Result') }}
                             </a>
-                        </td>
+                        </td> -->
                     </tr>
                     @endforeach
                     @endforeach
