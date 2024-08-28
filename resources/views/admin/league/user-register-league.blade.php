@@ -41,29 +41,40 @@
                 <div class="col-lg-6 ">
                     <button type="submit" class="btn btn-success float-right" style="margin: 10px;">{{__('Active player')}}</button>
                 </div>
+                <div class="col-lg-12 " style="text-align: right; margin-left: -5px">
+                    <label>
+                        <input type="radio" name="status" value="1" checked>
+                        Active
+                    </label>
+                    <label>
+                        <input type="radio" name="status" value="0">
+                        Inactive
+                    </label>
+                </div>
             </div>
+
             <div class="card-body">
                 <div class="card" style="padding: 10px">
                     <div class=" container-xl table-responsive text-nowrap">
                         <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">
                             <thead>
                                 <tr class="design-text">
+                                    <th scope="col"></th>
                                     <th scope="col">{{ __('Name') }}</th>
                                     <th scope="col">{{ __('Image') }}</th>
                                     <th scope="col">{{ __('Gender') }}</th>
                                     <th scope="col">{{ __('Address') }}</th>
-                                    <th scope="col">{{ __('Active') }}</th>
                                     <th scope="col">{{ __('Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
                                 @foreach($userRegisterLeague->userLeagues as $league)
                                 <tr>
+                                    <td><input type="checkbox"  name="user_ids[]" value="{{ $league->id }}" class="checkbox" {{ $league->status == 1 ? 'checked' : ''}}></td>
                                     <td><i class=""></i> <strong>{{ $league->user->name ?? "" }}</strong></td>
                                     <td><img class="image" src="{{asset($league->user->profile_photo_path ?? '/images/default-avatar.png')}}" alt="avatar" style="width: 100px"></td>
                                     <td><i class=""></i> <strong>{{ $league->user->gender ?? "" }}</strong></td>
                                     <td><i class=""></i> <strong>{{ $league->user->address ?? "" }}</strong></td>
-                                    <td><input type="checkbox" name="status" value="1" class="checkbox" {{ $league->status == 1 ? 'checked' : ''}}></td>
                                     <td class="text_flow text-center">
                                         <a href="{{ route('league.destroyPlayer', $league['id']) }}">
                                             <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
