@@ -90,7 +90,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/edit-league/{slug}/', [LeagueController::class, 'edit'])->name('league.edit');
     Route::get('/delete/{slug}/', [LeagueController::class, 'destroy'])->name('league.delete');
     Route::post('/update-league/{id}/', [LeagueController::class, 'update'])->name('league.update');
-    Route::post('/update-player-league/{slug}/', [LeagueController::class, 'updatePlayer'])->name('league.updatePlayer');
+    Route::post('/update-player-league', [LeagueController::class, 'updatePlayer'])->name('league.updatePlayer');
     Route::get('/delete-player-league/{id}/', [LeagueController::class, 'destroyPlayer'])->name('league.destroyPlayer');
     Route::get('/active-league/{id}', [LeagueController::class, 'activeLeague'])->name('activeLeague');
 
