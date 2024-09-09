@@ -26,13 +26,14 @@
     <section id="next-tournament" class="next-tournament-section bg-black">
         <div class="next-tournament-wrap">
             <div class="results">
+                @if(count($listLeague) >0 )
                 @foreach($listLeague as $league)
                 <div class="wrapper-results">
                     <div class="box-results-tournament">
                         <div class="box-results-tournament-left">
                             <div class="logo-left">
                                 <a href="{{ route('league.info', $league['slug']) }}">
-                                    <img width="200" src="{{ $league->images }}" alt="logo" class=" b-error">
+                                    <img width="200" src="{{ asset($league->images ?? '/images/logo-no-background.png') }}" alt="logo" class=" b-error">
                                 </a>
                             </div>
 
@@ -57,6 +58,9 @@
                     </div>
                 </div>
                 @endforeach
+                @else
+                    <h2 style="color:white; text-align: center">{{__('League has not been updated!')}}</h2>
+                @endif
             </div>
         </div>
     </section>

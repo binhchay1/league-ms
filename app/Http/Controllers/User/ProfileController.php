@@ -10,11 +10,13 @@ use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
 
     protected $userRepository;
+    protected $utility;
 
     public function __construct(
         UserRepository $userRepository,
@@ -94,5 +96,24 @@ class ProfileController extends Controller
         ]);
 
         return back()->with("status", __("Password successfully changed!"));
+    }
+
+    public function deleteAccount()
+    {
+        if (Auth::user()->apple == null) {
+            abort(403);
+        }
+
+        $getUser = $this->userRepository->getUserByAppleID(Auth::user()->apple_id);
+
+        if (!$getUser) {
+            abort(404);
+        } else {
+            Session::flush();
+            $this->userRepository->deleteById($getUser->id);
+            Auth::guard('web')->logout();
+        }
+
+        return redirect()->route('login');
     }
 }

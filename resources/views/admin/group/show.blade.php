@@ -53,16 +53,24 @@
                             </div>
 
                             <div>
+                                <label for="description" class="form-label">{{ __('Date') }}</label>
+                                <input class="form-control" type="date" name="date" id="description" value="{{ old('date') }}" placeholder="{{ __('Enter group description') }}" />
+                                @if ($errors->has('date'))
+                                    <span class="text-danger">{{ $errors->first('date') }}</span>
+                                @endif
+                            </div>
+
+                            <div>
                                 <label for="activity_time" class="form-label">{{ __('Activity time') }}</label>
                                 <p>Start</p>
-                                <input class="form-control" type="time" name="activity_time_start" id="activity_time_start" value="{{ old('activity_time_start') }}" />
-                                @if ($errors->has('activity_time_start'))
-                                    <span class="text-danger">{{ $errors->first('activity_time_start') }}</span>
+                                <input class="form-control" type="time" name="start_time" id="start_time" value="{{ old('start_time') }}" />
+                                @if ($errors->has('start_time'))
+                                    <span class="text-danger">{{ $errors->first('start_time') }}</span>
                                 @endif
                                 <p>End</p>
-                                <input class="form-control" type="time" name="activity_time_end" id="activity_time_end" value="{{ old('activity_time_end') }}" />
-                                @if ($errors->has('activity_time_end'))
-                                    <span class="text-danger">{{ $errors->first('activity_time_end') }}</span>
+                                <input class="form-control" type="time" name="end_time" id="end_time" value="{{ old('end_time') }}" />
+                                @if ($errors->has('end_time'))
+                                    <span class="text-danger">{{ $errors->first('end_time') }}</span>
                                 @endif
                             </div>
 

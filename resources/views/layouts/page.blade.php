@@ -63,17 +63,18 @@
             <div class="navigation-menu__overlay" onclick="toggleMenuClicked()"></div>
 
             @if(Route::is('home') )
-                <button type="button" class="hamburger-menu" onclick="toggleMenuClicked()">
-                    <span class="material-icons" id="open-icon">menu</span>
-                    <span class="material-icons" id="close-icon">close</span>
-                </button>
-                @else
-                <button type="button" class="hamburger-menu" onclick="window.history.go(-1); return false;">
-                    <span class="fa fa-arrow-left" id="open-icon" style="color: white"></span>
-                </button>
+            <button type="button" class="hamburger-menu" onclick="toggleMenuClicked()">
+                <span class="material-icons" id="open-icon">menu</span>
+                <span class="material-icons" id="close-icon">close</span>
+            </button>
+            @else
+            <button type="button" class="hamburger-menu" onclick="window.history.go(-1); return false;">
+                <span class="fa fa-arrow-left" id="open-icon" style="color: white"></span>
+            </button>
             @endif
 
-            <a href="{{ route('home') }}"><img style="margin-bottom: 30px; margin-top: 50px" class="logo-image" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
+            <a href="{{ route('home') }}"><img style="margin-bottom: 30px" class="logo-image" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
+
 
             <ul class="menu-main navigation-menu__labels">
                 <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('LEAGUE') }}</a></li>

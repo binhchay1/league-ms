@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
@@ -53,7 +54,8 @@ Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook
 Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
 Route::get('/auth/line/', [SocialLoginController::class, 'redirectToLine'])->name('auth.line');
 Route::get('/auth/line/callback/', [SocialLoginController::class, 'handleLineCallback']);
-Route::get('/auth/line/callbackInformation/', [SocialLoginController::class, 'handleLineCallbackInformation']);
+Route::get('/auth/apple/', [SocialLoginController::class, 'redirectToApple'])->name('auth.apple');
+Route::post('/auth/apple/callback/', [SocialLoginController::class, 'handleAppleCallback']);
 Route::get('/register/', [AuthController::class, 'registerUser'])->name('register_user');
 Route::post('/register/', [AuthController::class, 'storeUser'])->name('storeUser');
 Route::get('/setLocale/{locale}/', [HomeController::class, 'changeLocate'])->name('app.setLocale');
@@ -79,20 +81,22 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/join-group-training/', [HomeController::class, 'joinGroupTraining'])->name('join.group.training');
     Route::get('/live-score/', [HomeController::class, 'liveScore'])->name('live.score');
 
-    Route::get('/auto-create-league', [ScheduleController::class, 'autoCreateLeague'])->name('auto.create.schedule');
-    Route::get('/store-score', [ScheduleController::class, 'storeScore'])->name('store.score');
 
+    //league
     Route::get('/list-league/', [LeagueController::class, 'index'])->name('league.index');
     Route::get('/create-league/', [LeagueController::class, 'create'])->name('league.create');
+    Route::get('/get-league/{id}', [LeagueController::class, 'leagueById'])->name('league.leagueById');
     Route::post('/store-league/', [LeagueController::class, 'store'])->name('league.store');
     Route::get('/league/{slug}/', [LeagueController::class, 'show'])->name('league.show');
     Route::get('/edit-league/{slug}/', [LeagueController::class, 'edit'])->name('league.edit');
     Route::get('/delete/{slug}/', [LeagueController::class, 'destroy'])->name('league.delete');
     Route::post('/update-league/{id}/', [LeagueController::class, 'update'])->name('league.update');
-    Route::post('/update-player-league/{slug}/', [LeagueController::class, 'updatePlayer'])->name('league.updatePlayer');
+    Route::post('/update-player-league', [LeagueController::class, 'updatePlayer'])->name('league.updatePlayer');
     Route::get('/delete-player-league/{id}/', [LeagueController::class, 'destroyPlayer'])->name('league.destroyPlayer');
     Route::get('/active-league/{id}', [LeagueController::class, 'activeLeague'])->name('activeLeague');
 
+
+    //schedule
     Route::get('/list-schedule-league/', [ScheduleController::class, 'league'])->name('schedule.league');
     Route::get('/list-schedule/', [ScheduleController::class, 'index'])->name('schedule.index');
     Route::get('/create-schedule', [ScheduleController::class, 'create'])->name('schedule.create');
@@ -104,14 +108,35 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/update-result/{id}/', [ScheduleController::class, 'updateResult'])->name('schedule.updateResult');
     Route::get('/result', [ScheduleController::class, 'result'])->name('schedule.result');
     Route::get('/export-schedule/{id}/', [ScheduleController::class, 'exportSchedule'])->name('schedule.export');
+    Route::get('/auto-create-league', [ScheduleController::class, 'autoCreateLeague'])->name('auto.create.schedule');
+    Route::get('/store-score', [ScheduleController::class, 'storeScore'])->name('store.score');
 
+
+    //group
     Route::get('/list-group/', [GroupController::class, 'index'])->name('group.index');
     Route::get('/group/{id}', [GroupController::class, 'show'])->name('group.show');
     Route::post('/store-group/', [GroupController::class, 'store'])->name('group.store');
     Route::get('/create-group/', [GroupController::class, 'create'])->name('group.create');
+    Route::get('/edit-group/{id}/', [GroupController::class, 'edit'])->name('group.edit');
+    Route::post('/update-group/{id}/', [GroupController::class, 'update'])->name('group.update');
+    Route::get('/delete-group/{id}/', [GroupController::class, 'destroy'])->name('group.delete');
+    Route::get('/active-group/{id}', [GroupController::class, 'activeGroup'])->name('activeGroup');
     Route::post('/store-group-training/', [GroupController::class, 'groupTraining'])->name('groupTraining.create');
     Route::get('/list-group-training/', [GroupController::class, 'listGroupTraining'])->name('list.groupTraining');
+    Route::get('/edit-group-training/{id}', [GroupController::class, 'editGroupTraining'])->name('edit.groupTraining');
+    Route::post('/update-group-training/{id}', [GroupController::class, 'updateGroupTraining'])->name('update.groupTraining');
+    Route::get('/delete-group-training/{id}', [GroupController::class, 'deleteGroupTraining'])->name('delete.groupTraining');
+    Route::get('/delete-account-apple/', [ProfileController::class, 'deleteAccount'])->name('delete.account.apple');
 
+
+    //category post
+    Route::get('/list-category-post/', [CategoryPostController::class, 'index'])->name('categoryPost.index');
+    Route::get('/create-category-post/', [CategoryPostController::class, 'create'])->name('categoryPost.create');
+    Route::post('/store-category-post/', [CategoryPostController::class, 'store'])->name('categoryPost.store');
+    Route::get('/category/{id}/', [CategoryPostController::class, 'show'])->name('categoryPost.show');
+    Route::get('/edit-category/{id}/', [CategoryPostController::class, 'edit'])->name('categoryPost.edit');
+    Route::post('/update-category/{id}/', [CategoryPostController::class, 'update'])->name('categoryPost.update');
+    Route::get('/destroy/{id}/', [CategoryPostController::class, 'destroy'])->name('categoryPost.destroy');
     Route::middleware(['admin'])->group(
         function () {
             Route::get('/dashboard/', [AuthController::class, 'dashboard']);

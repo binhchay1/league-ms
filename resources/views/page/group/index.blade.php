@@ -19,9 +19,11 @@ $isFull = false;
     <div class="std-title">
         <div class="std-title-left">
             <h2 class="left" style=" font-weight: 400;">{{ __('GROUP') }}</h2>
-
         </div>
+        <a href="{{route('group.create')}}"><button class="btn btn-success btn-group" style="display: block;">{{ __('Create Group') }}</button></a>
+
     </div>
+
     <div class="row">
         @forelse($listGroup as $group)
         @php
@@ -43,9 +45,9 @@ $isFull = false;
             <div class="card p-3 mb-4" >
                 <div class="d-flex justify-content-between">
                     <div class="d-flex flex-row align-items-center">
-                        <div class="icon" width="300" height="300"> <img class="avatar-group" src="{{ $group->images  }}"></div>
-                        <div style="margin-left: 15px" class=" c-details name-group" id="group-{{ $group->name }}" onclick="detailGroup(this.id)">
-                            <h6 class="mb-0">{{ $group->name }}</h6> <span style="font-weight: 500">{{ $group->users->name }}</span>
+                        <div class="icon" width="300" height="300"> <img class="avatar-group" src="{{ $group->images  }}" data-id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))"></div>
+                        <div style="margin-left: 15px" class=" c-details name-group" data-id="group-{{ $group->name }}" id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
+                            <h6 style="font-size: 30px" class="mb-0">{{ $group->name }} <span style="font-weight: 500; font-size: 20px; color: #0a59da">{{ $group->users->name }}</span></h6>
                         </div>
                     </div>
                 </div>

@@ -40,6 +40,7 @@
                                 <div>
                                     <label for="img">{{ __('Avatar') }}</label>
                                     <input value="" type="file" class="border-0 bg-light pl-0" name="profile_photo_path" id="profile_photo_path" style="display: none">
+                                    <input type="file" id="profile_photo_path_mobile" name="picture" accept="image/*;capture=camera" capture="environment" style="display: none"/>
                                     <div class=" choose-avatar">
                                         <div id="btnimage">
                                             <img id="showImage" style="width: 110px" class="show-avatar" src="{{ $dataUser->profile_photo_path ?? asset('/images/no-image.png') }}" alt="avatar">
@@ -88,13 +89,36 @@
                         <a class="btn btn-success" href="{{ route('change-password') }}" style="margin-left: 10px;">
                             {{ __('Change Password') }}
                         </a>
+                        @if(Auth::user()->apple_id != null)
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal" style="margin-left: 10px;">
+                            {{ __('Delete account') }}
+                        </button>
+                        @endif
                     </div>
-
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteAccountModalLabel">{{ __('Delete account') }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('Close') }}"></button>
+            </div>
+            <div class="modal-body">
+                {{ __('Are you sure you want to delete this account ?') }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                <button type="button" class="btn btn-primary" onclick="deleteAccount()">{{ __('Yes') }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @section('js')

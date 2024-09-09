@@ -186,6 +186,8 @@
     "English": "Tiếng Anh",
     "Vietnamese": "Tiếng Việt",
     "Ranking": "Xếp hạng",
+    "MATCH CENTER": "GIẢI ĐẤU",
+    "COMPLETED": "HOÀN THÀNH",
     "Search leagues": "Tìm kiếm giải đấu",
     "Search": "Tìm kiếm",
     "Profile": "Hồ sơ",
@@ -461,5 +463,9 @@
     "User Information": "Thông tin người dùng",
     "Avatar": "hình đại diện",
     "Phone Number": "Số điện thoại",
-    "Date of Birth": "Ngày sinh"
+    "Date of Birth": "Ngày sinh",
+    "Delete account": "Xóa tài khoản",
+    "Are you sure you want to delete this account ?": "Bạn chắc chắn muốn xóa tài khoản này không ?",
+    "Yes": "Có",
+    "Close": "Đóng"
 }

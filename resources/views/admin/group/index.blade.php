@@ -10,30 +10,47 @@
         font-weight: 500;
     }
 </style>
-<div class="container-fluid mt-4">
-    <div class="card card-default">
-        <div class="card-header">
-            <h5>{{ __('Group') }}</h5>
-        </div>
-        <div class="card-body">
-            <div class="container-xxl flex-grow-1 container-p-y">
-                <div class="card container">
-                    <div class="row product__filter mt-2">
-                        @foreach($listGroup as $group)
-                            <div class="col-lg-4 mt-2">
-                                <div class="" style="background-color: #eff2f4; padding: 5px; margin-bottom: 15px;">
-                                    <h5 class="mt-4" style=" text-align: center">{{ $group->name }}</h5>
-                                    <img class="image" src="{{ $group->images }}" alt="avatar" style="display: block;margin-left: auto;margin-right: auto;width: 50%; height: 165px; ">
-                                    <a href="{{ route('group.show',$group['id']) }}" style="margin-bottom: 10px;width: 70%;margin-left: 55px;" class="btn btn-primary col-sm-12 mt-4 ">{{__('Group Training')}}</a>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"> </span> {{ __('League') }}</h4>
+    <div class="card" style="padding: 10px">
+        <div class=" container-xl table-responsive text-nowrap">
+            <table class="table table-bordered table-hover" cellspacing="0" width="100%" id="dataTables">
+                <thead>
+                <tr class="design-text">
+                    <th scope="col">{{ __('Name') }}</th>
+                    <th scope="col">{{ __('Image') }}</th>
+                    <th scope="col">{{ __('Action') }}</th>
+                </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                @foreach($listGroup as $data)
+                    <tr>
+                        <td>{{ $data->name }}</td>
+                        <td><img class="image" src="{{$data->images ?? asset('/images/logo-no-background.png')}}" alt="avatar" style="width: 150px"></td>
+                        <td>
+                            <a href="{{ route('group.show',$data['id']) }}">
+                                <button type="button" class="btn btn-primary">{{__('Create Group Training')}}</button>
+                            </a>
+                            <a href="{{route('group.edit',$data['id'])}}">
+                                <button type="button" class="btn btn-success">{{ __('Edit') }}</button>
+                            </a>
+                                <a href="{{route('group.delete', $data['id'])}}">
+                                    <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
+                                </a>
+                            @if(Auth::user()->role == 'admin')
+                                <a href="{{route('activeGroup', $data['id'])}}" class="btn btn-{{$data->active ? 'info' : 'secondary' }}">
+                                    {{$data->active ? "Active Group" : "Inactive Group"}}
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function() {

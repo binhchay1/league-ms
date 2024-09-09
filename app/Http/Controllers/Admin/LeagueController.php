@@ -6,6 +6,7 @@ use App\Enums\Ranking;
 use App\Enums\Role;
 use App\Http\Requests\LeagueRequest;
 use App\Models\League;
+use App\Models\UserLeague;
 use App\Repositories\LeagueRepository;
 use App\Http\Controllers\Controller;
 use App\Enums\Utility;
@@ -69,6 +70,7 @@ class LeagueController extends Controller
     public function show($slug)
     {
         $userRegisterLeague = $this->leagueRepository->show($slug);
+
         return view('admin.league.user-register-league', compact('userRegisterLeague'));
     }
 
@@ -105,12 +107,16 @@ class LeagueController extends Controller
         return back()->with('success', __('Delete League successfully!'));
     }
 
-    public function updatePlayer(Request $request, $id)
+    public function updatePlayer(Request $request)
     {
         $input = $request->except(['_token']);
-        foreach ($input['status'] as $key => $value) {
-            $this->userLeagueRepository->updatePlayer(['status' => $value], $key);
-        }
+        // Retrieve the user IDs and the new status from the request
+        $userIds = $request->input('user_ids');
+        $activeStatus = $request->input('status');
+        // Update the 'active' status for all specified users
+        UserLeague::whereIn('id', $userIds)->update(['status' => $activeStatus]);
+
+
         return back()->with('success', __('Player has been sent successfully!'));
     }
 
@@ -141,4 +147,10 @@ class LeagueController extends Controller
 
         return back();
     }
+
+    public function leagueById($id)
+    {
+        $leagueById = $this->leagueRepository->leagueId($id);
+    }
+
 }

@@ -25,7 +25,7 @@ class GroupRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', Rule::unique('groups')->ignore($this->name)],
+            'name' => ['required', Rule::unique('groups')->ignore($this->id)],
             'images' => ['required','image', 'mimes:jpeg,png,jpg'],
             'description' => ['required', 'max:255'],
             'number_of_members' => ['required','min:0'],

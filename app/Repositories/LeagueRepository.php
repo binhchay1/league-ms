@@ -63,8 +63,14 @@ class LeagueRepository extends BaseRepository
 
     public function listLeagueHomePage()
     {
-        return $this->model->orderBy('created_at', 'desc')->take(1)->get();
+        return $this->model->where('status', 1)->orderBy('created_at', 'desc')->take(1)->get();
     }
+
+    public function getListLeagues()
+    {
+        return $this->model->where('status', 1)->orderBy('created_at', 'desc')->get();
+    }
+
 
     public function getLeagueHome($getLeagueByState = null)
     {
@@ -107,5 +113,10 @@ class LeagueRepository extends BaseRepository
     public function getLeagueById($id)
     {
         return $this->model->where('id', $id)->first();
+    }
+
+    public function leagueId($id)
+    {
+        return $this->model->with('userLeagues')->where('id', $id)->first();
     }
 }

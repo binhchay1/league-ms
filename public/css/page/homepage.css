@@ -451,7 +451,6 @@ body.open .navigation-menu__overlay {
 body.open .navigation-menu__labels {
     translate: 0 0;
     visibility: visible;
-    margin-top: 80px;
 }
 
 .navigation-menu__labels > button {
@@ -483,7 +482,7 @@ body.open .navigation-menu__labels {
 
 @media screen and (max-width: 480px ) {
     .logo-image{
-        margin-left: 120px;
+        margin-left: 100px;
     }
 
     .navigation-menu__labels
@@ -495,7 +494,7 @@ body.open .navigation-menu__labels {
 
 @media only screen and (max-width: 590px) {
     .logo-image{
-        margin-left: 150px;
+        margin-left: 125px;
     }
 
 }

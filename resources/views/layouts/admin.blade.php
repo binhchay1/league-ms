@@ -33,7 +33,8 @@
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">{{ __('Home') }}</a>
+                    <a href="{{route('home')}}" class="nav-link">
+                        <h5 style="font-weight: 600; color: black">{{ __('HomePage') }}</h5></a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -126,7 +127,6 @@
                                 </li>
                             </ul>
                         </li>
-                        @if(Auth::user()->role == 'admin')
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
@@ -157,7 +157,6 @@
                                 </li>
                             </ul>
                         </li>
-                        @endif
 
                         @if(Auth::user()->role == 'admin')
                         <li class="nav-item">
@@ -180,6 +179,31 @@
                                     <a href="{{ route('product.index' ) }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>{{ __('List Product') }}</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-clipboard"></i>
+                                <p>
+                                    {{ __('Category Post') }}
+                                    <i class="fas fa-angle-left right"></i>
+                                    <span class="badge badge-info right"></span>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('categoryPost.create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Create Category Post') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('categoryPost.index' ) }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('List Category Post') }}</p>
                                     </a>
                                 </li>
                             </ul>

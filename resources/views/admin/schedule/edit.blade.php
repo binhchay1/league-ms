@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="address" class="form-label">{{ __('Team 1') }}</label>
+                                        <label for="address" class="form-label">{{ __('Team 2') }}</label>
                                         <input type="" value="{{ $dataSchedule->player1Team2->name ?? "" }} - {{$dataSchedule->player2Team2->name ?? "" }} " class="form-control" disabled />
                                     </div>
                                 </div>

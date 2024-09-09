@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Enums\Role;
 use App\Enums\Title;
 use App\Repositories\RankingRepository;
+use App\Services\AppleToken;
 use Exception;
+use Illuminate\Http\Request;
 
 class SocialLoginController extends Controller
 {
@@ -212,5 +214,84 @@ class SocialLoginController extends Controller
         } catch (Exception $e) {
             return redirect()->intended('login')->with('error', $e->getMessage());
         }
+    }
+
+    public function redirectToApple()
+    {
+        return Socialite::driver('apple')->redirect();
+    }
+
+    public function handleAppleCallback(Request $request)
+    {
+        try {
+
+            $response = $this->http('https://appleid.apple.com/auth/token', [
+                'grant_type' => 'authorization_code',
+                'code' => $request->get('code'),
+                'redirect_uri' => config('services.apple.redirect'),
+                'client_id' => config('services.apple.client_id'),
+                'client_secret' => config('services.apple.client_secret'),
+            ]);
+
+            $claims = explode('.', $response->id_token)[1];
+            $claims = json_decode(base64_decode($claims));
+
+            $getUserByEmail = $this->userRepository->getUserByEmail($claims->email);
+
+            if ($getUserByEmail) {
+                $this->userRepository->updateSocialID($claims->email, ['apple_id' => $claims->sub]);
+                Auth::login($getUserByEmail);
+
+                return redirect()->route('home');
+            } else {
+                $getUserByApple = $this->userRepository->getUserByAppleID($claims->sub);
+
+                if ($getUserByApple) {
+                    Auth::login($getUserByApple);
+
+                    return redirect()->route('home');
+                } else {
+                    $data = [
+                        'email' => $claims->email,
+                        'name' => 'Apple user',
+                        'apple_id' => $claims->sub,
+                        'password' => Hash::make('123456dummy'),
+                        'email_verified_at' => date("Y-m-d h:i:s"),
+                        'role' => Role::USER,
+                        'title' => Title::USER,
+                        'profile_photo_path' => isset($claims->avatar) ? $claims->avatar : ''
+                    ];
+
+                    $newUser = $this->userRepository->create($data);
+
+                    $dataRanking = [
+                        'user_id' => $newUser->id,
+                        'points' => 0,
+                        'places' => 0,
+                        'places_old' => 0
+                    ];
+                    $this->rankingRepository->create($dataRanking);
+
+                    Auth::loginUsingId($newUser->id);
+
+                    return redirect()->route('home');
+                }
+            }
+        } catch (Exception $e) {
+            return redirect()->intended('login')->with('error', $e->getMessage());
+        }
+    }
+
+    function http($url, $params)
+    {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Accept: application/json',
+            'User-Agent: curl',
+        ]);
+        $response = curl_exec($ch);
+        return json_decode($response);
     }
 }

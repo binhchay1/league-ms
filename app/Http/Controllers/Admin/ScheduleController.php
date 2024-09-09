@@ -6,6 +6,7 @@ use App\Enums\Ranking;
 use App\Enums\League;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResultScheduleRequest;
+use App\Http\Requests\ScheduleRequest;
 use App\Jobs\NotificationNextMatch;
 use App\Repositories\ScheduleRepository;
 use App\Repositories\LeagueRepository;
@@ -75,8 +76,18 @@ class ScheduleController extends Controller
         return view('admin.schedule.create', compact('league', 'rounds'));
     }
 
-    public function store(Request $request)
+    public function store(ScheduleRequest $request)
     {
+
+        $leagueById = $request->league_id;
+        $getLeague = $this->leagueRepository->leagueId($leagueById);
+
+        $listMember = $getLeague->userLeagues;
+
+        if (count($listMember) < 4) {
+            $report = __('The number of members participating in the tournament must be greater than 4');
+            return back()->with('error', $report);
+        }
         $input = $request->except(['_token']);
         foreach ($input as $key => $arrValue) {
             $count = count($arrValue);
@@ -325,10 +336,18 @@ class ScheduleController extends Controller
             }
 
             $whileMatch = $totalMatch = $preCountMatch = $countMatch - 1;
+
+            if(($countMatch - 1) % 2 != 0) {
+                $whileMatch = $totalMatch = $preCountMatch = $countMatch;
+            } else {
+                $whileMatch = $totalMatch = $preCountMatch = $countMatch - 1;
+            }
+
             while ($whileMatch != 1) {
                 $whileMatch = $whileMatch / 2;
                 $totalMatch = $totalMatch + $whileMatch;
             }
+
             $forMatch = $totalMatch - $preCountMatch;
 
             $countNextDate = 1;
@@ -348,12 +367,12 @@ class ScheduleController extends Controller
                     $indexRound++;
                 }
 
-                $round = League::ROUND_PER_LEAGUE[$preRound][$indexRound];
+                $roundInsert = League::ROUND_PER_LEAGUE[$preRound][$indexRound];
 
                 $data = [
                     'league_id' => $getLeague->id,
                     'match' => $countMatch,
-                    'round' => $round,
+                    'round' => $roundInsert,
                     'time' => $timeInDay,
                     'date' => $dateData,
                 ];
@@ -437,7 +456,7 @@ class ScheduleController extends Controller
             broadcast(new LiveScore($getSchedule->id, $team, $score, $set));
         }
 
-        UpdateResultJob::dispatch($decode, $type, $score, $set)->onQueue('update-result');
+        UpdateResultJob::dispatch($decode, $type, $score, $set, $this->scheduleRepository, $this->resultRepository, $request->get('new_score_player'), $request->get('player'))->onQueue('update-result');
 
         $this->scheduleRepository->updateScoreLiveById($getSchedule->id, $dataUpdate);
 

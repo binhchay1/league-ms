@@ -15,6 +15,7 @@ use App\Repositories\ProductRepository;
 use App\Repositories\RankingRepository;
 use App\Repositories\ScheduleRepository;
 use App\Repositories\RefereeRepository;
+use App\Repositories\ResultRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -36,6 +37,7 @@ class HomeController extends Controller
     protected $utility;
     protected $groupTraining;
     protected $refereeRepository;
+    protected $resultRepository;
 
     public function __construct(
         UserLeagueRepository $userLeagueRepository,
@@ -50,7 +52,8 @@ class HomeController extends Controller
         ScheduleRepository $scheduleRepository,
         Utility $ultity,
         GroupTrainingRepository $groupTraining,
-        RefereeRepository $refereeRepository
+        RefereeRepository $refereeRepository,
+        ResultRepository $resultRepository
     ) {
         $this->userLeagueRepository = $userLeagueRepository;
         $this->leagueRepository = $leagueRepository;
@@ -65,6 +68,7 @@ class HomeController extends Controller
         $this->utility = $ultity;
         $this->groupTraining = $groupTraining;
         $this->refereeRepository = $refereeRepository;
+        $this->resultRepository = $resultRepository;
     }
 
     public function viewHome()
@@ -169,12 +173,14 @@ class HomeController extends Controller
     public function showInfo($slug)
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
-        $listLeagues = $this->leagueRepository->getLeagueHome();
+        $getListLeagues = $this->leagueRepository->getListLeagues();
+        $dataLeague = $this->leagueRepository->show($slug);
+
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
-        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule'));
+        return view('page.league.show', compact('leagueInfor', 'getListLeagues', 'groupSchedule','dataLeague'));
     }
 
     public function changeLocate($locale)
@@ -226,20 +232,23 @@ class HomeController extends Controller
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
         $listLeagues = $this->leagueRepository->getLeagueHome();
+        $getListLeagues = $this->leagueRepository->getListLeagues();
 
-        return view('page.league.show', compact('leagueInfor', 'listLeagues'));
+        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'getListLeagues'));
     }
 
     public function showResult($slug)
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
         $listLeagues = $this->leagueRepository->getLeagueHome();
+        $getListLeagues = $this->leagueRepository->getListLeagues();
+
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
 
-        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule'));
+        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'getListLeagues'));
     }
 
     public function showBracket($slug)
@@ -248,6 +257,7 @@ class HomeController extends Controller
         $listLeagues = $this->leagueRepository->getLeagueHome();
         $listSchedules = $this->scheduleRepository->getScheduleByLeagueOrderByMatch($leagueInfor->id);
         $totalMembers = $this->userLeagueRepository->countTotalMembersInLeague($leagueInfor->id);
+        $getListLeagues = $this->leagueRepository->getListLeagues();
         $groupRound = $listSchedules->groupBy('round');
 
         $groupSchedule = [];
@@ -255,19 +265,20 @@ class HomeController extends Controller
             $groupSchedule[$schedule['round']][] = $schedule;
         }
 
-        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'listSchedules', 'groupRound'));
+        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'listSchedules', 'groupRound', 'getListLeagues'));
     }
 
     public function showSchedule($slug)
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
         $listLeagues = $this->leagueRepository->getLeagueHome();
+        $getListLeagues = $this->leagueRepository->getListLeagues();
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
 
-        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule'));
+        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'getListLeagues'));
     }
 
     public function saveRegisterLeague(Request $request)
@@ -462,7 +473,26 @@ class HomeController extends Controller
         }
 
         if (!empty($getSchedule->player2_team_1) and !empty($getSchedule->player2_team_2)) {
-            return view('admin.live-score.live-score-double', compact('getSchedule', 'typeLive', 'setLive', 'scoreT1Live', 'scoreT2Live'));
+
+            $getResult = $this->resultRepository->getResultByScheduleId($getSchedule->id);
+            $arrScore = [
+                'player_1' => 0,
+                'player_2' => 0,
+                'player_3' => 0,
+                'player_4' => 0
+            ];
+
+            if ($getResult) {
+                $strPerResult = 'result_round_' . $setLive;
+                $getPerResult = json_decode($getResult->$strPerResult, true);
+
+                foreach ($getPerResult as $player => $scorePerPlayer) {
+                    $resultPerPlayer = json_decode($scorePerPlayer, true);
+                    $arrScore[$player] = count($resultPerPlayer);
+                }
+            }
+
+            return view('admin.live-score.live-score-double', compact('getSchedule', 'typeLive', 'setLive', 'scoreT1Live', 'scoreT2Live', 'arrScore'));
         } else {
             return view('admin.live-score.live-score', compact('getSchedule', 'typeLive', 'setLive', 'scoreT1Live', 'scoreT2Live'));
         }
