@@ -400,7 +400,7 @@ header nav .button {
 }
 
 header nav>ul {
-    font-size: 25px
+    font-size: 20px
 }
 
 
@@ -519,7 +519,7 @@ header #search div {
     -webkit-box-shadow: 0 7px 15px 0 rgba(0, 0, 0, .15);
     box-shadow: 0 7px 15px 0 rgba(0, 0, 0, .15);
     border-radius: 50px;
-    height: 43px;
+    height: 41px;
     width: 40px;
     color: #fff;
     letter-spacing: -0.05em;
