@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
@@ -109,6 +110,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/export-schedule/{id}/', [ScheduleController::class, 'exportSchedule'])->name('schedule.export');
     Route::get('/auto-create-league', [ScheduleController::class, 'autoCreateLeague'])->name('auto.create.schedule');
     Route::get('/store-score', [ScheduleController::class, 'storeScore'])->name('store.score');
+
+
     //group
     Route::get('/list-group/', [GroupController::class, 'index'])->name('group.index');
     Route::get('/group/{id}', [GroupController::class, 'show'])->name('group.show');
@@ -125,6 +128,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/delete-group-training/{id}', [GroupController::class, 'deleteGroupTraining'])->name('delete.groupTraining');
     Route::get('/delete-account-apple/', [ProfileController::class, 'deleteAccount'])->name('delete.account.apple');
 
+
+    //category post
+    Route::get('/list-category-post/', [CategoryPostController::class, 'index'])->name('categoryPost.index');
+    Route::get('/create-category-post/', [CategoryPostController::class, 'create'])->name('categoryPost.create');
+    Route::post('/store-category-post/', [CategoryPostController::class, 'store'])->name('categoryPost.store');
+    Route::get('/category/{id}/', [CategoryPostController::class, 'show'])->name('categoryPost.show');
+    Route::get('/edit-category/{id}/', [CategoryPostController::class, 'edit'])->name('categoryPost.edit');
+    Route::post('/update-category/{id}/', [CategoryPostController::class, 'update'])->name('categoryPost.update');
+    Route::get('/destroy/{id}/', [CategoryPostController::class, 'destroy'])->name('categoryPost.destroy');
     Route::middleware(['admin'])->group(
         function () {
             Route::get('/dashboard/', [AuthController::class, 'dashboard']);
