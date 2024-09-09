@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryPostController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
@@ -137,6 +138,17 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/edit-category/{id}/', [CategoryPostController::class, 'edit'])->name('categoryPost.edit');
     Route::post('/update-category/{id}/', [CategoryPostController::class, 'update'])->name('categoryPost.update');
     Route::get('/destroy/{id}/', [CategoryPostController::class, 'destroy'])->name('categoryPost.destroy');
+
+    //post
+    Route::get('/list-posts/', [PostController::class, 'index'])->name('post.index');
+    Route::get('/create-post/', [PostController::class, 'create'])->name('post.create');
+    Route::post('/store-post/', [PostController::class, 'store'])->name('post.store');
+    Route::get('/post/{id}/', [PostController::class, 'show'])->name('post.show');
+    Route::get('/edit-post/{id}/', [PostController::class, 'edit'])->name('post.edit');
+    Route::post('/update-post/{id}/', [PostController::class, 'update'])->name('post.update');
+    Route::get('/destroy/{id}/', [PostController::class, 'destroy'])->name('post.destroy');
+
+
     Route::middleware(['admin'])->group(
         function () {
             Route::get('/dashboard/', [AuthController::class, 'dashboard']);
