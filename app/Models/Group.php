@@ -36,6 +36,6 @@ class Group extends Model
 
     public function users()
     {
-        return $this->hasOne(User::class, 'id', 'group_owner');
+        return $this->belongsTo(User::class, 'group_owner', 'id');
     }
 }

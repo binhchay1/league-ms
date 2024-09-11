@@ -17,10 +17,10 @@
         </div>
     </section>
 
-    <div class="std-title container-1280">
+    <div class="std-title container-1280 " >
         <h2 class="left">{{ __('Next Tournament') }}</h2>
         <a href="{{ route('list.league') }}">
-            <h2 class="right">{{ __('All Tournaments') }}</h2>
+            <h2 class="right league-all-data">{{ __('All Tournaments') }}</h2>
         </a>
     </div>
     <section id="next-tournament" class="next-tournament-section bg-black">
@@ -64,11 +64,44 @@
             </div>
         </div>
     </section>
+
     <section id="news" class="container-1280 news-section bg-white">
-        <div class="std-title" style="margin-top: 10px">
-            <h2 class="left">{{ __('World Tour Leaders') }}</h2>
+        <div class="std-title " style="margin-top: 10px" >
+            <h2 class="left">{{ __('Latest Tour News') }}</h2>
             <a href="{{route('ranking')}}">
-                <h2 class="right">{{ __('Full Rankings') }}</h2>
+                <h2 class="right league-all-data">{{ __('All News') }}</h2>
+            </a>
+        </div>
+        <div class="news-overview-wrap">
+            @foreach($listPosts as $post)
+            <div class="news-overview-item">
+                <div class="news-overview-image">
+                    <a href="">
+                        <img src="{{asset($post->thumbnail ?? '/images/logo-no-background.png' )}}" alt="" class="img-responsive b-error">
+                    </a>
+                </div>
+
+                <div class="news-overview-text">
+                    <h4 class="media-heading fw-400 fs-16px">
+                        <a href="https://bwfworldtour.bwfbadminton.com/news-single/2024/09/10/smashing-stats-hong-kong-open-2024/" title="{{$post->title}}">
+                            {{$post->title}} </a>
+                    </h4>
+                    <span class="fw-300 fs-12px text-gray">
+                         <?php echo date_format($post->created_at, 'F-d')  ?>
+                    </span>
+                </div>
+            </div>
+                @endforeach
+        </div>
+        <div class="" style="margin-top: -9px;">
+        </div>
+    </section>
+
+    <section id="news" class="container-1280 news-section bg-white">
+        <div class="std-title " style="margin-top: 10px" >
+            <h2 class="left">{{ __('World Tour Leaders') }}</h2>
+            <a href="{{route('ranking')}}" >
+                <h2 class="right league-all-data">{{ __('Full Rankings') }}</h2>
             </a>
         </div>
         <div class="top-player">

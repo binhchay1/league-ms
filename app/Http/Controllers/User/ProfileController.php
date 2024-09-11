@@ -116,4 +116,15 @@ class ProfileController extends Controller
 
         return redirect()->route('login');
     }
+
+    public function viewMyGroup()
+    {
+        $idUser = Auth::user()->id;
+        $dataUser = $this->userRepository->showInfo($idUser);
+
+        $getGroup = $dataUser->groups;
+        $listGroup = $this->utility->paginate($getGroup, 30, '/my-group');
+
+        return view('page.user.my-group', compact('listGroup'));
+    }
 }

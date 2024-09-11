@@ -128,17 +128,6 @@ class  AuthController extends Controller
         return view('page.user.profile');
     }
 
-    public function viewMyGroup()
-    {
-        $getGroup = $this->groupUserRepository->getGroupByUserId(Auth::user()->id);
-        $listGroup = $this->utility->paginate($getGroup, 30, '/my-group');
-
-        return view('page.user.my-group', compact('listGroup'));
-    }
-
-
-
-
     public function joinGroup(Request $request)
     {
         $nameGroup = $request->get('g_i');

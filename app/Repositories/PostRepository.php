@@ -36,5 +36,10 @@ class PostRepository extends BaseRepository
         return $this->model->where('id', $id)->delete();
     }
 
+    public function listPostLimit()
+    {
+        return $this->model->with('category', 'user')->orderBy('created_at', 'desc')->take(3)->get();
+    }
+
 
 }

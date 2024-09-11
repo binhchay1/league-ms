@@ -67,13 +67,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/user-profile/{id}/', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/change-password/', [ProfileController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password/', [ProfileController::class, 'updatePassword'])->name('update-password');
+    Route::get('/my-group/', [ProfileController::class, 'viewMyGroup'])->name('my.group');
+
     Route::get('/league-manager/', [HomeController::class, 'leagueManager'])->name('league-manager');
 
     Route::post('/register-league/', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
     Route::get('/player/{id}/', [HomeController::class, 'viewInforPlayer'])->name('player.info');
     Route::get('/read-notifications/', [HomeController::class, 'readNotification'])->name('read.notification');
     Route::get('/profile/', [AuthController::class, 'profile'])->name('profile');
-    Route::get('/my-group/', [AuthController::class, 'viewMyGroup'])->name('my.group');
     Route::get('/join-group/', [AuthController::class, 'joinGroup'])->name('join.group');
     Route::post('/messages/', [AuthController::class, 'sendMessage'])->name('send.message');
     Route::get('/logout/', [AuthController::class, 'logout'])->name('logout');

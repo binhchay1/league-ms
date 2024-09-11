@@ -505,6 +505,17 @@ header nav a {
     white-space: nowrap
 }
 
+header nav a:hover {
+    color: darkgray;
+}
+
+.league-all-data:hover {
+    color: red;
+}
+
+.media-heading a:hover {
+    color: red;
+}
 header #search div {
     display: -webkit-box;
     display: -ms-flexbox;
