@@ -166,8 +166,8 @@
 
     @yield('content')
 
-    <div class="" style="background: black">
-        <footer class="container py-5">
+    <div class="" style="background: #222; ">
+        <footer class="container py-5"  >
             <div class="row">
                 <div class="color-white col-md-3 mb-3">
                     <h4 class="color-white">{{ __('Criteria') }}</h4>
