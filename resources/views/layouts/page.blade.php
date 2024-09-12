@@ -73,13 +73,14 @@
             </button>
             @endif
 
-            <a href="{{ route('home') }}"><img style="margin-bottom: 30px" class="logo-image" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
+            <a href="{{ route('home') }}"><img  class="logo-image" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
 
 
             <ul class="menu-main navigation-menu__labels">
                 <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('LEAGUE') }}</a></li>
                 <li class="pt-2"><a href="{{ route('list.group') }}">{{ __('GROUP') }}</a></li>
                 <li class="pt-2"><a href="{{ route('ranking') }}">{{ __('RANKING') }}</a></li>
+                <li class="pt-2"><a href="{{ route('news') }}">{{ __('NEWS') }}</a></li>
                 <li class="pt-2"><a href="{{ route('match') }}">{{ __('MATCH CENTER') }}</a></li>
                 @if(Auth::check())
                 <li class="pt-2"><a href="{{ route('league.create') }}">{{ __('CREATE LEAGUE') }}</a></li>

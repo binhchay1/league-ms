@@ -31,8 +31,8 @@
                     <tr>
                         <td>{{ $data->title }}</td>
                         <td>{{ $data->category->name ?? "" }}</td>
-                        <td>{!! str_limit($data->content, 150) !!}</td>
-                        <td><img class="image" src="{{ $data->thumbnail ?? asset('/images/champion.png') }}" alt="avatar" style="width: 150px"></td>
+                        <td>{!!  substr($data->content, 0, 600) !!}...</td>
+                        <td><img class="image" src="{{asset($data->thumbnail ?? '/images/logo-no-background.png')}}" alt="avatar" style="width: 150px"></td>
                         <td>{{ $data->user->name ?? "" }}</td>
                         <td>{{ $data->status }}</td>
                         <td>

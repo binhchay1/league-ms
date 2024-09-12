@@ -41,5 +41,20 @@ class PostRepository extends BaseRepository
         return $this->model->with('category', 'user')->orderBy('created_at', 'desc')->take(3)->get();
     }
 
+    public function detailPost($slug)
+    {
+        return $this->model->where('slug', $slug)->first();
+    }
+
+    public function getNewsPopular()
+    {
+        return $this->model->with('category', 'user')->where('status','popular')->orderBy('created_at', 'desc')->get();
+    }
+
+    public function getNewsNormal()
+    {
+        return $this->model->with('category', 'user')->where('status','normal')->orderBy('created_at', 'desc')->get();
+
+    }
 
 }

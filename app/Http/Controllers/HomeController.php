@@ -504,4 +504,21 @@ class HomeController extends Controller
         }
     }
 
+    public function news()
+    {
+        $listNews = $this->postRepository->index();
+        $listNewsPopulars = $this->postRepository->getNewsPopular();
+        return view('page.post.list', compact('listNews', 'listNewsPopulars'));
+
+    }
+
+    public function newsDetail($slug)
+    {
+        $newData = $this->postRepository->detailPost($slug);
+        $listNewsPopulars = $this->postRepository->getNewsPopular();
+        $listNewsNormals = $this->postRepository->getNewsNormal();
+        return view('page.post.detail', compact('newData', 'listNewsNormals','listNewsPopulars'));
+    }
+
+
 }

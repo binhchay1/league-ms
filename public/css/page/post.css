@@ -1,0 +1,136 @@
+.news-landing-wrap {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 1320px;
+    margin: auto;
+    max-width: 100%;
+}
+
+.news-landing-wrap .news-sidebar {
+    width: 27%;
+}
+
+.widget__latest-news {
+    background-color: #efefef;
+}
+
+.widget__latest-news .widget--title span {
+    display: block;
+    float: left;
+    font-size: 30px;
+    font-weight: 400;
+    margin: 24px 0 12px 12px;
+}
+
+.widget--content {
+    margin-top: 50px;
+}
+
+.widget__latest-news ul {
+    margin: 0 .6em;
+    padding: 0;
+}
+
+.widget__latest-news ul li {
+    display: block;
+    position: relative;
+    padding: 5px 0 10px 8px;
+    height: auto;
+    font-weight: 400;
+}
+
+.news-landing-wrap .news-section {
+    width: 72%;
+    overflow: hidden;
+}
+
+.widget--date {
+    font-size: 12px;
+    color: #666;
+}
+
+.widget__latest-news ul li a.widget--link {
+    line-height: 20px;
+}
+
+.widget--link {
+    display: block;
+    font-size: 14px;
+    color: #000;
+}
+
+.news-section .news-featured img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.widget--content .widget-red-line {
+    width: 15px;
+    border-top: 2px solid #df2027;
+    margin: 6px 10px;
+}
+
+.news-filter .sorting .news-select select {
+    width: 300px;
+    background-color: #333;
+    border: none;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    height: 48px;
+    outline: medium;
+    padding: 6px 12px;
+    text-transform: uppercase;
+    display: inline-block;
+    position: relative;
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+.news-overview .news-overview-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: normal;
+    justify-content: flex-start;
+}
+
+.news-overview .news-overview-wrap .news-overview-item {
+    display: flex;
+    flex-direction: column;
+    width: 33.33%;
+    background-color: #333;
+    border-left: 2px solid #fff;
+    border-top: 2px solid #fff;
+}
+
+@media (max-width: 1024px) {
+    .news-landing-wrap .news-section {
+        width: 100%;
+    }
+
+    .news-landing-wrap {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .news-landing-wrap .news-sidebar {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .news-featured img {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .news-overview .news-overview-wrap .news-overview-item {
+        width: 50% !important;
+    }
+}

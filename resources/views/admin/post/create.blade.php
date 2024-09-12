@@ -88,21 +88,22 @@
                             </div>
 
                         </div>
-                        <div class="row mt-4">
-                            <div class="col-12">
-                                <label for="lastName" class="form-label">{{__('Content')}}</label>
-                                <textarea id="summernote" name="content"></textarea>
 
-                                @if ($errors->has('content'))
-                                    <span class="text-danger">{{ $errors->first('content') }}</span>
-                                @endif
-                            </div>
-                        </div>
 
 
                     </div>
-                </div>
 
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <label for="lastName" class="form-label">{{__('Content')}}</label>
+                        <textarea id="summernote" name="content"></textarea>
+
+                        @if ($errors->has('content'))
+                            <span class="text-danger">{{ $errors->first('content') }}</span>
+                        @endif
+                    </div>
+                </div>
                 <div class="mt-4">
                     <button type="submit" class="btn btn-success me-2">{{ __('Save') }}</button>
                     <button type="reset" class="btn btn-outline-secondary">{{ __('Reset') }}</button>
@@ -128,7 +129,7 @@
         $('#summernote').summernote({
             placeholder: 'Write your content here...',
             tabsize: 2,
-            height: 200
+            height: 600
         });
     });
 </script>

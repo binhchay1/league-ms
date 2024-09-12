@@ -91,19 +91,19 @@
                                         <span class="text-danger">{{ $errors->first('status') }}</span>
                                     @endif
                                 </div>
-
-                            </div>
-                            <div class="row mt-4">
-                                <div class="col-12">
-                                    <label for="lastName" class="form-label">{{__('Content')}}</label>
-                                    <textarea id="summernote" name="content">{!! str_limit($post->content) !!}</textarea>
-
-                                    @if ($errors->has('content'))
-                                        <span class="text-danger">{{ $errors->first('content') }}</span>
-                                    @endif
-                                </div>
                             </div>
 
+
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <label for="lastName" class="form-label">{{__('Content')}}</label>
+                                <textarea id="summernote" name="content">{!! $post->content !!}</textarea>
+
+                                @if ($errors->has('content'))
+                                    <span class="text-danger">{{ $errors->first('content') }}</span>
+                                @endif
+                            </div>
                         </div>
                     </div>
 
@@ -132,7 +132,7 @@
             $('#summernote').summernote({
                 placeholder: 'Write your content here...',
                 tabsize: 2,
-                height: 200
+                height: 600
             });
         });
     </script>

@@ -68,7 +68,7 @@
     <section id="news" class="container-1280 news-section bg-white">
         <div class="std-title " style="margin-top: 10px" >
             <h2 class="left">{{ __('Latest Tour News') }}</h2>
-            <a href="{{route('ranking')}}">
+            <a href="{{route('news')}}">
                 <h2 class="right league-all-data">{{ __('All News') }}</h2>
             </a>
         </div>
@@ -83,11 +83,11 @@
 
                 <div class="news-overview-text">
                     <h4 class="media-heading fw-400 fs-16px">
-                        <a href="https://bwfworldtour.bwfbadminton.com/news-single/2024/09/10/smashing-stats-hong-kong-open-2024/" title="{{$post->title}}">
+                        <a href="{{route('news-show', $post['slug'])}}" title="{{$post->title}}">
                             {{$post->title}} </a>
                     </h4>
                     <span class="fw-300 fs-12px text-gray">
-                         <?php echo date_format($post->created_at, 'F-d')  ?>
+                        <?php echo date_format($post->created_at, 'd-F-Y')  ?><br>
                     </span>
                 </div>
             </div>

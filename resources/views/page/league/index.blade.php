@@ -28,7 +28,6 @@
                 </ul>
             </div>
         </div>
-        <a href="{{route('league.create')}}"><button class="btn btn-success btn-league">{{ __('Create League') }}</button></a>
     </div>
     <div class="item-results" style="margin-bottom: 50px">
         @forelse($listLeagues as $listLeague)
