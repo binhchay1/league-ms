@@ -82,10 +82,24 @@ p {
 }
 
 .avatar-group {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
 }
+
+hr {
+    margin: 0 !important;
+}
+
+.gr-name {
+    line-height: 50px;
+    font-size: 20px;
+}
+
+.gr-title {
+    background: #e3e3e3;
+}
+
 
 .name-group {
     cursor: pointer;
@@ -210,18 +224,34 @@ p {
 }
 
 .training {
-    margin: 4px;
-    border-radius: 4px;
+     border: 1px solid #d3d3d3;
+ }
+
+.gr-training-detail {
+    padding: 10px;
+    background: #e3e3e3;
+}
+
+.gr-training-title {
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 45px;
 }
 
 .btn-training {
-    font-size: 20px;
+    font-size: 15px;
     text-transform: uppercase;
-    border-radius: 50px;
-    background-color: #6cbe4c;
-    border-color: transparent;
     font-weight: 500;
-    width: 150px;
+    width: 100px;
+    border: 1px solid #222;
+    padding: 10px;
+    background: #222;
+    color: white;
+}
+
+.btn-training:hover {
+    background: lightgrey;
+    color: black;
 }
 
 .card-header a {
@@ -245,4 +275,44 @@ p {
     border-color: transparent;
     font-weight: 500;
     width: 200px;
+}
+
+.wp-group {
+    width: 33.33%;
+}
+
+.wp-group-content {
+    border: 0.5px solid gray;
+}
+
+.descript-group {
+    padding: 10px;
+}
+
+.c-details-group {
+    margin-left: 10px;
+}
+
+@media (max-width: 600px) {
+    .wp-group {
+        width: 50% !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #chat-area {
+        height: 300px;
+        overflow-x: auto;
+    }
+
+    .card-member {
+        margin-top: 10px;
+        width: 100% !important;
+        padding: 0;
+    }
+
+    .card-chat {
+        width: 100% !important;
+        padding: 0;
+    }
 }

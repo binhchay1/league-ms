@@ -17,15 +17,17 @@ $utility = new \App\Enums\Utility();
 
 @section('content')
 <section class="container " id="heading">
-    <div class="row training" style="background: #ad9696;">
-        <div class="col-lg-1 mt-4">
-            <img src="{{ asset($getGroup->images) }}" width="100" height="100" healt="Group Avatar" />
-        </div>
-        <div class="col-lg-10 mt-3" style="margin-left: 10px;">
-            <div class="d-flex">
-                <h1 class="m-0 p-0">{{ $getGroup->name }}</h1>
+    <div class=" training" >
+        <div class="d-flex gr-training-detail">
+            <div class="col-lg-1">
+                <img src="{{ asset($getGroup->images) }}" width="50" height="50" healt="Group Avatar" />
             </div>
-            <p>{{ $getGroup->users->name }}</p>
+            <div class="">
+                <span class="gr-training-title">{{ $getGroup->name }}</span>
+            </div>
+        </div>
+        <hr>
+        <div class="col-lg-10 mt-3" style="margin-left: 10px;">
             <p><span class="fw-bold">* {{ __('Description') }} : </span>{{ $getGroup->description }}</p>
             <p><span class="fw-bold">* {{ __('Activity time') }} : </span>{{ $getGroup->activity_time }}</p>
             <p><span class="fw-bold">* {{ __('Location') }} : </span>{{ $getGroup->location }}</p>
@@ -35,12 +37,12 @@ $utility = new \App\Enums\Utility();
     <div class="d-flex">
         @if(Auth::check() and $isJoined)
         <div class="mt-4" style="margin-right: 10px;">
-            <button class="btn btn-success btn-training" id="group-{{ $getGroup->name }}" onclick="training(this.id)">{{ __('Training') }}</button>
+            <button class=" btn-training" id="group-{{ $getGroup->name }}" onclick="training(this.id)">{{ __('Training') }}</button>
         </div>
         @endif
 
         <div class="mt-4" data-bs-toggle="modal" data-bs-target="#rankingModal">
-            <button class="btn btn-success btn-training">{{ __('Ranking') }}</button>
+            <button class=" btn-training">{{ __('Ranking') }}</button>
         </div>
     </div>
 
@@ -49,10 +51,10 @@ $utility = new \App\Enums\Utility();
 <section id="detail-group" class="container-fluid">
     <div class="container py-5" style="padding-top: 0 !important;">
         <div class="row d-flex justify-content-center">
-            <div class="col-md-8 col-lg-6 col-xl-6" style="padding-left: 0;">
-                <div class="card" id="chat1" style="border-radius: 15px;">
-                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0" style="background: #ad9696 !important;">
-                        <p class="mb-0 fw-bold">{{ __('Live chat') }}</p>
+            <div class="col-md-8 col-lg-6 col-xl-6 card-chat" style="width: 60%" >
+                <div class="card" id="chat1" style="border-radius: 0">
+                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0" style="background: #e3e3e3 !important;">
+                        <p class="mb-0 fw-bold" style="color: #222">{{ __('Live chat') }}</p>
                     </div>
                     <div class="card-body">
                         @if(Auth::check() and $isJoined)
@@ -79,7 +81,7 @@ $utility = new \App\Enums\Utility();
                         </div>
                         @endif
                         <div class="form-outline d-flex">
-                            <textarea class="form-control" id="text-area-write-message" rows="4" placeholder="{{ __('Type your message') }}"></textarea>
+                            <textarea class="form-control" id="text-area-write-message" rows="4" placeholder="{{ __('Type your message') }}" style="margin-right: 10px"></textarea>
                             <button id="send-massage">
                                 <i class="fa fa-paper-plane"></i>
                             </button>
@@ -105,12 +107,9 @@ $utility = new \App\Enums\Utility();
                         @php
                         if(!Auth::check()) {
                         @endphp
-                        <div class="form-outline d-flex flex-column">
-                            <p>{{ __('Please login for join group') }}</p>
-                            <a id="login" class="btn btn-success" href="{{ route('login') }}?return_url={{ url()->full() }}">
-                                {{ __('Login') }}
-                            </a>
-                        </div>
+                                <div>
+                                    <a class="btn btn-success" href="{{ route('login') }}?return_url={{ url()->full() }}">{{ __('Sign in for join') }}</a>
+                                </div>
                         @php
                         } else {
                         @endphp
@@ -127,21 +126,25 @@ $utility = new \App\Enums\Utility();
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-lg-6 col-xl-6">
-                <div class="card" id="chat1" style="border-radius: 15px;">
-                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0" style="background: #ad9696 !important;">
-                        <p class="mb-0 fw-bold">{{ __('List members') }}</p>
-                        <p class="mb-0 fw-bold">( {{ $getGroup->group_users->count() }} / {{ $getGroup->number_of_members }} )</p>
+            <div class="col-md-4 col-lg-6 col-xl-6 card-member" style="width: 40%">
+                <div class="card" id="chat1" style="border-radius: 0" >
+                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0" style="background: #e3e3e3 !important;">
+                        <p class="mb-0 fw-bold" style="color: #222">{{ __('List members') }}</p>
+                        <p class="mb-0 fw-bold" style="color: #222">( {{ $getGroup->group_users->count() }} / {{ $getGroup->number_of_members }} )</p>
                     </div>
-                    <div class="card-body">
-                        <ul>
+
+                    <div class="card-body" style="background: white">
+                        <table class="table table-hover" style="border: 1px solid #e3e3e3">
+                            <tbody>
                             @foreach($members as $member)
-                            <li class="d-flex mt-3">
-                                <img src="{{ $member->users->profile_photo_path ?? asset('/images/no-image.png')  }}" width="40" height="40" />
-                                <a style="margin-left: 10px;">{{ $member->users->name }}</a>
-                            </li>
+                                <tr>
+                                    <th scope="row"> <img src="{{ $member->users->profile_photo_path ?? asset('/images/no-image.png')  }}" width="40" height="40" /></th>
+                                    <td>{{ $member->users->name }}</td>
+
+                                </tr>
                             @endforeach
-                        </ul>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
