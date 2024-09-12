@@ -9,7 +9,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-4" style="text-align: center;">
-                        <img height="150" width="150" src="{{ $dataGroup->images }}" alt="logo">
+                        <img height="150" width="150" src="{{ asset($dataGroup->images ?? '/images/logo-no-background.png') }}" alt="logo">
                     </div>
                     <div class="col-lg-6">
                         <h2>{{ $dataGroup->name }}</h2>

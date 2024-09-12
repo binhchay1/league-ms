@@ -44,7 +44,7 @@ $isFull = false;
         <div class="wp-group">
             <div class=" mb-4 wp-group-content" >
                 <div class="d-flex gr-title" >
-                    <div class=" align-items-center">
+                    <div class=" align-items-center" >
                         <img class="avatar-group" src="{{ asset('https://png.pngtree.com/png-clipart/20230817/original/pngtree-badminton-icon-logo-and-sport-club-template-vector-vector-picture-image_10923178.png')  }}" data-id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
                     </div>
                     <div  class="c-details-group name-group" data-id="group-{{ $group->name }}" id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
@@ -95,7 +95,11 @@ $isFull = false;
             </div>
         </div>
         @empty
-            <h2>{{__('Group has not data!')}}</h2>
+            <div class="text-center">
+                <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
+
+                <h4 >{{ __('The group is updated!') }}</h4>
+            </div>
         @endforelse
     </div>
     @if($listGroup->toTal()> $listGroup->perPage())

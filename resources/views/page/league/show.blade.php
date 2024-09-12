@@ -36,9 +36,6 @@
                     <div class="box-title-left">
                     </div>
                     <div class="box-title-right">
-                        <h3 class="right">
-                            {{ __('OTHER LEAGUE') }}
-                        </h3>
                         <label class="tournament-select clear">
                             <select name='recordLeague' class="ddlTournament" >
                                 @foreach($getListLeagues as $league => $value )
@@ -51,7 +48,7 @@
                 <div class="box-results-tournament">
                     <div>
                         <div class="logo-left">
-                            <img src="{{ $leagueInfor->images }}" class="show-image-league" alt="logo">
+                            <img src="{{ asset($leagueInfor->images ?? '/images/logo-no-background.png') }}" class="show-image-league" alt="logo">
                         </div>
                         <div class="info">
                             <h2>{{ $leagueInfor->name }}</h2>
@@ -60,7 +57,7 @@
                             ?>
                             <h5 class="">{{ __('Start Date') }}: {{ $start_date }}</h5>
                             <h5 class="">{{ __('End Date') }}: {{ $end_date }}</h5>
-                            <div class="prize">{{ __('PRIZE MONEY USD ') }}${{ $leagueInfor->money }}</div>
+                            <div class="prize">{{ __('PRIZE MONEY VND ') }}<?php echo number_format($leagueInfor->money ?? 0)?></div>
                         </div>
                     </div>
                 </div>

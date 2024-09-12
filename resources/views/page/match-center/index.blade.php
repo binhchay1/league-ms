@@ -41,7 +41,11 @@
                                 @endif
                             @empty
                         </div>
-                        <h3 style="height: 220px" class="text-center">{{ __('Data has not been updated!') }}</h3>
+                        <div class="text-center">
+                            <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
+
+                            <h4 >{{ __('There are no live matches today!') }}</h4>
+                        </div>
                         @endforelse
                     </div>
                 </div>

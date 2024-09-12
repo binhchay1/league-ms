@@ -19,19 +19,19 @@
     <div class="row">
         @if(count($listGroup) > 0)
         @foreach($listGroup as $row)
-        <div class="col-md-4">
-            <div class="card p-3 mb-4">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row align-items-center">
-                        <div class="icon"> <img class="avatar-group" src="{{ asset($row->images) }}"></div>
+        <div class="wp-group">
+            <div class="wp-group-content mb-4">
+                <div class="d-flex gr-title" >
+                    <div class=" align-items-center">
+                        <img class="avatar-group"  style="padding: 5px" src="{{ asset($row-> images ?? 'https://png.pngtree.com/png-clipart/20230817/original/pngtree-badminton-icon-logo-and-sport-club-template-vector-vector-picture-image_10923178.png')  }}" data-id="group-{{ $row->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
                     </div>
+                    <div  class="c-details-group name-group" data-id="group-{{ $row->name }}" id="group-{{ $row->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
+                        <h6 class="mb-0 gr-name">{{ $row->name }}</h6>
+                    </div>
+                </div>
 
-{{--                    <div class="badge"> <span class="{{ \App\Enums\Group::COLOR_OF_RATE[$row->rate] }}">{{ $row->groups->rate }}</span> </div>--}}
-                </div>
-                <div class="ms-2 c-details mt-2" id="group-{{ $row->name }}" onclick="detailGroup(this.id)">
-                    <h6 class="mb-0">{{ $row->name }}</h6>
-                </div>
-                <div class="mt-3">
+                <hr>
+                <div class="mt-3 descript-group">
                     <p>* {{ __('Description') }}: {{ $row->description }}</p>
                     <p>* {{ __('Location') }}: {{ $row->location }}</p>
                     <p>* {{ __('Activity time') }}: {{ $row->activity_time }}</p>
@@ -43,9 +43,6 @@
                         <div class="d-flex justify-content-between mt-3">
                             <div> <span class="text1">{{ $row->group_users->count() }} {{ __('Applied') }} <span class="text2">of {{ $row->number_of_members }}</span></span> </div>
 
-                            <div>
-                                <button class="btn btn-secondary" disabled>{{ __('Joined') }}</button>
-                            </div>
                         </div>
                     </div>
                 </div>

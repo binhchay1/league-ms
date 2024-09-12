@@ -24,10 +24,8 @@
 
                             <label class="news-select">
                                 <select name="categories_news" id="categories_news">
-
                                     <option value="?posts=all">
                                         MOST RECENT </option>
-
                                     <option value="?pyear=2024&amp;pmonth=09"> September 2024 </option>
                                     <option value="?pyear=2024&amp;pmonth=08"> August 2024 </option>
                                     <option value="?pyear=2024&amp;pmonth=07"> July 2024 </option>
