@@ -31,7 +31,8 @@
                     <tr>
                         <td>{{ $data->title }}</td>
                         <td>{{ $data->category->name ?? "" }}</td>
-                        <td>{!!  substr($data->content, 0, 600) !!}...</td>
+
+                        <td>{!! Str::limit(strip_tags(html_entity_decode($data->content)), 50)!!}</td>
                         <td><img class="image" src="{{asset($data->thumbnail ?? '/images/logo-no-background.png')}}" alt="avatar" style="width: 150px"></td>
                         <td>{{ $data->user->name ?? "" }}</td>
                         <td>{{ $data->status }}</td>

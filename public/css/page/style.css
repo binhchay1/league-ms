@@ -335,7 +335,6 @@ header>div.top-nav ul li.menu span {
 header>div.top-nav ul li.menu ul {
     display: none;
     text-align: left;
-    position: absolute;
     top: 19px;
     right: 0;
     background: #fff;

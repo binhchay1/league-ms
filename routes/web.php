@@ -46,6 +46,7 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('match-center/{slug}', [HomeController::class, 'live'])->name('league.live');
     Route::get('/news/{slug}', [HomeController::class, 'newsDetail'])->name('news-show');
     Route::get('/news', [HomeController::class, 'news'])->name('news');
+    Route::get('/news/category/{slug}', [HomeController::class, 'newsCategory'])->name('newsCategory');
 });
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');

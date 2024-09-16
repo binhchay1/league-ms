@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Utility;
+use App\Repositories\CategoryPostRepository;
 use App\Repositories\GroupRepository;
 use App\Repositories\GroupTrainingRepository;
 use App\Repositories\LeagueRepository;
@@ -40,6 +41,7 @@ class HomeController extends Controller
     protected $refereeRepository;
     protected $resultRepository;
     protected $postRepository;
+    protected $categoryPostRepository;
 
     public function __construct(
         UserLeagueRepository $userLeagueRepository,
@@ -56,7 +58,8 @@ class HomeController extends Controller
         GroupTrainingRepository $groupTraining,
         RefereeRepository $refereeRepository,
         ResultRepository $resultRepository,
-        PostRepository $postRepository
+        PostRepository $postRepository,
+        CategoryPostRepository $categoryPostRepository
     ) {
         $this->userLeagueRepository = $userLeagueRepository;
         $this->leagueRepository = $leagueRepository;
@@ -73,6 +76,7 @@ class HomeController extends Controller
         $this->refereeRepository = $refereeRepository;
         $this->resultRepository = $resultRepository;
         $this->postRepository = $postRepository;
+        $this->categoryPostRepository = $categoryPostRepository;
     }
 
     public function viewHome()
@@ -507,9 +511,9 @@ class HomeController extends Controller
     public function news()
     {
         $listNews = $this->postRepository->index();
+        $categories = $this->categoryPostRepository->index();
         $listNewsPopulars = $this->postRepository->getNewsPopular();
-        return view('page.post.list', compact('listNews', 'listNewsPopulars'));
-
+        return view('page.post.list', compact('listNews', 'listNewsPopulars', 'categories'));
     }
 
     public function newsDetail($slug)
@@ -518,6 +522,16 @@ class HomeController extends Controller
         $listNewsPopulars = $this->postRepository->getNewsPopular();
         $listNewsNormals = $this->postRepository->getNewsNormal();
         return view('page.post.detail', compact('newData', 'listNewsNormals','listNewsPopulars'));
+    }
+
+    public function newsCategory($slug)
+    {
+        $postCategory = $this->categoryPostRepository->postCategory($slug);
+        $categories = $this->categoryPostRepository->index();
+        $listNewsPopulars = $this->postRepository->getNewsPopular();
+        $listNewsNormals = $this->postRepository->getNewsNormal();
+        return view('page.post.category-post', compact('postCategory', 'categories', 'listNewsPopulars', 'listNewsNormals'));
+
     }
 
 

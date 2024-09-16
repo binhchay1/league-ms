@@ -24,41 +24,45 @@
                                 <select name="recordCate" id="categories_news" onchange="getComboA(this)">
                                     <option value="?posts=all">
                                         {{__('CATEGORY')}} </option>
-                                        @foreach($categories as $category => $value )
-                                            <option value="{{ $value->slug }}">{{ $value->name }}</option>
-                                        @endforeach
+                                    @foreach($categories as $category => $value )
+                                        <option value="{{ $value->slug }}">{{ $value->name }}</option>
+                                    @endforeach
                                 </select>
                             </label>
                         </div>
                     </nav>
                 </div>
                 <div class="news-overview-wrap">
-                    @foreach($listNews as $new)
-                    <div class="news-overview-item">
-                        <div class="news-overview-image">
-                            <a href="{{route('news-show',$new['slug'])}}">
-                                <img class="img-responsive b-error"  src="{{asset($new->thumbnail)}}">
-                            </a>
-                        </div>
-
-                        <div class="news-overview-text">
-                            <h4 class="media-heading fw-400 fs-16px" title="Hong Kong Open: Fast and Furious Floors Holders">
+                    @if(count($postCategory->posts) > 0)
+                    @foreach($postCategory->posts as $new)
+                        <div class="news-overview-item">
+                            <div class="news-overview-image">
                                 <a href="{{route('news-show',$new['slug'])}}">
-                                    {{($new->title)}} </a>
-                            </h4>
-                            <span class="fw-300 fs-12px text-gray">  <?php echo date_format($new->created_at, 'd-F-Y')  ?><br></span>
+                                    <img class="img-responsive b-error"  src="{{asset($new->thumbnail)}}">
+                                </a>
+                            </div>
+
+                            <div class="news-overview-text">
+                                <h4 class="media-heading fw-400 fs-16px" title="Hong Kong Open: Fast and Furious Floors Holders">
+                                    <a href="">
+                                        {{($new->title)}} </a>
+                                </h4>
+                                <span class="fw-300 fs-12px text-gray">  <?php echo date_format($new->created_at, 'd-F-Y')  ?><br></span>
+                            </div>
                         </div>
-                    </div>
-                        @endforeach
+                    @endforeach
+                        @else
+                        <div class="text-center">
+                            <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
+
+                            <h4 >{{ __('The Post is updated!') }}</h4>
+                        </div>
+                        @endif
 
                 </div>
             </div>
         </div>
         <div class="news-sidebar">
-
-            <div>
-            </div>
-
             <aside id="secondary" class="sidebar-area" role="complementary" style="margin-top: 25px">
                 <div class="widget widget__latest-news ">
                     <span style="font-size: 25px; padding: 10px">

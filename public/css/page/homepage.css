@@ -551,3 +551,32 @@ body.open .navigation-menu__labels {
     width: 100%;
     display: block;
 }
+
+@media (max-width: 1024px) {
+    .news-landing-wrap .news-section {
+        width: 100%;
+    }
+
+    .news-landing-wrap {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .news-landing-wrap .news-sidebar {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .news-featured img {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .news-overview-item {
+        width: 50% !important;
+    }
+}

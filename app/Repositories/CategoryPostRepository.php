@@ -13,7 +13,7 @@ class CategoryPostRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->orderBy('created_at', 'desc')->get();
+        return $this->model->with('posts')->orderBy('created_at', 'desc')->get();
     }
 
     public function store($input)
@@ -34,6 +34,12 @@ class CategoryPostRepository extends BaseRepository
     public function destroy($id)
     {
         return $this->model->where('id', $id)->delete();
+    }
+
+
+    public function postCategory($slug)
+    {
+        return $this->model->with('posts')->where('slug', $slug)->first();
     }
 
 
