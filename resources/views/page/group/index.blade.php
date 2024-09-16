@@ -20,7 +20,6 @@ $isFull = false;
         <div class="std-title-left">
             <h2 class="left" style=" font-weight: 400;">{{ __('GROUP') }}</h2>
         </div>
-        <a href="{{route('group.create')}}"><button class="btn btn-success btn-group" style="display: block;">{{ __('Create Group') }}</button></a>
 
     </div>
 
@@ -41,17 +40,19 @@ $isFull = false;
         @endphp
         @endforeach
         @endif
-        <div>
-            <div class="card p-3 mb-4" >
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row align-items-center">
-                        <div class="icon" width="300" height="300"> <img class="avatar-group" src="{{ $group->images  }}" data-id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))"></div>
-                        <div style="margin-left: 15px" class=" c-details name-group" data-id="group-{{ $group->name }}" id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
-                            <h6 style="font-size: 30px" class="mb-0">{{ $group->name }} <span style="font-weight: 500; font-size: 20px; color: #0a59da">{{ $group->users->name }}</span></h6>
-                        </div>
+        <div class="wp-group">
+            <div class=" mb-4 wp-group-content" >
+                <div class="d-flex gr-title" >
+                    <div class=" align-items-center" >
+                        <img class="avatar-group" src="{{ asset('https://png.pngtree.com/png-clipart/20230817/original/pngtree-badminton-icon-logo-and-sport-club-template-vector-vector-picture-image_10923178.png')  }}" data-id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
+                    </div>
+                    <div  class="c-details-group name-group" data-id="group-{{ $group->name }}" id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
+                        <h6 class="mb-0 gr-name">{{ $group->name }}</h6>
                     </div>
                 </div>
-                <div class="mt-3">
+
+                <hr>
+                <div class="mt-3 descript-group">
                     <p>* {{ __('Description') }}: {{ $group->description }}</p>
                     <p>* {{ __('Location') }}: {{ $group->location }}</p>
                     <p>* {{ __('Activity time') }}: {{ $group->activity_time }}</p>
@@ -93,7 +94,11 @@ $isFull = false;
             </div>
         </div>
         @empty
-            <h2>{{__('Group has not data!')}}</h2>
+            <div class="text-center">
+                <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
+
+                <h4 >{{ __('The group is updated!') }}</h4>
+            </div>
         @endforelse
     </div>
     @if($listGroup->toTal()> $listGroup->perPage())

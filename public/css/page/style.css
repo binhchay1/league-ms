@@ -335,7 +335,6 @@ header>div.top-nav ul li.menu span {
 header>div.top-nav ul li.menu ul {
     display: none;
     text-align: left;
-    position: absolute;
     top: 19px;
     right: 0;
     background: #fff;
@@ -400,7 +399,7 @@ header nav .button {
 }
 
 header nav>ul {
-    font-size: 25px
+    font-size: 20px
 }
 
 
@@ -505,6 +504,17 @@ header nav a {
     white-space: nowrap
 }
 
+header nav a:hover {
+    color: darkgray;
+}
+
+.league-all-data:hover {
+    color: red;
+}
+
+.media-heading a:hover {
+    color: red;
+}
 header #search div {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -519,7 +529,7 @@ header #search div {
     -webkit-box-shadow: 0 7px 15px 0 rgba(0, 0, 0, .15);
     box-shadow: 0 7px 15px 0 rgba(0, 0, 0, .15);
     border-radius: 50px;
-    height: 43px;
+    height: 41px;
     width: 40px;
     color: #fff;
     letter-spacing: -0.05em;

@@ -28,12 +28,11 @@
                 </ul>
             </div>
         </div>
-        <a href="{{route('league.create')}}"><button class="btn btn-success btn-league">{{ __('Create League') }}</button></a>
     </div>
     <div class="item-results" style="margin-bottom: 50px">
         @forelse($listLeagues as $listLeague)
         @if($listLeague->status == 1)
-        <div class="tblResultLanding" style=" margin-top: 10px; background:#ffffff;" onmouseover="this.style.background='#a4a4a4';" onmouseout="this.style.background='#ffffff';">
+        <div class="tblResultLanding" style="margin-top:10px;background:#222" onmouseover="this.style.background='gray';" onmouseout="this.style.background='#222';">
             <a href="{{route('league.info', $listLeague['slug'])}}">
                 <div class="tr-tournament-detail" id="4734">
                     <div class="tournament-detail ">
@@ -45,7 +44,7 @@
                                     </div>
                                 </div>
 
-                                <div class="info" style="color:black;">
+                                <div class="info" style="color:white;">
                                     <h3>{{ $listLeague->name }}</h3>
                                     <?php $start_date = date('d/m/Y', strtotime($listLeague->start_date));
                                     $end_date = date('d/m/Y', strtotime($listLeague->end_date));
@@ -53,7 +52,7 @@
                                     <h6 class="">{{ __('Start Date') }}: {{ $start_date }}</h6>
                                     <h6 class="">{{ __('End Date') }}: {{ $end_date }}</h6>
                                     <div class="prize">
-                                        {{ __('PRIZE MONEY USD ') }}${{ $listLeague->money }}
+                                        {{ __('PRIZE MONEY VND ') }} <?php echo number_format($listLeague->money ?? 0)?>
                                     </div>
                                 </div>
                             </div>

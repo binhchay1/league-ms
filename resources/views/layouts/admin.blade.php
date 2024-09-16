@@ -183,6 +183,56 @@
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-clipboard"></i>
+                                <p>
+                                    {{ __('Category Post') }}
+                                    <i class="fas fa-angle-left right"></i>
+                                    <span class="badge badge-info right"></span>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('categoryPost.create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Create Category Post') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('categoryPost.index' ) }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('List Category Post') }}</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    {{ __('Post') }}
+                                    <i class="fas fa-angle-left right"></i>
+                                    <span class="badge badge-info right"></span>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('post.create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('Create Post') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('post.index' ) }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ __('List Post') }}</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         @endif
                     </ul>
                 </nav>

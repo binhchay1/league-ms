@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryPostController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
@@ -42,6 +44,9 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/ranking/', [HomeController::class, 'viewRanking'])->name('ranking');
     Route::get('/match-center/', [HomeController::class, 'viewMatch'])->name('match');
     Route::get('match-center/{slug}', [HomeController::class, 'live'])->name('league.live');
+    Route::get('/news/{slug}', [HomeController::class, 'newsDetail'])->name('news-show');
+    Route::get('/news', [HomeController::class, 'news'])->name('news');
+    Route::get('/news/category/{slug}', [HomeController::class, 'newsCategory'])->name('newsCategory');
 });
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');
@@ -65,13 +70,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/user-profile/{id}/', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/change-password/', [ProfileController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password/', [ProfileController::class, 'updatePassword'])->name('update-password');
+    Route::get('/my-group/', [ProfileController::class, 'viewMyGroup'])->name('my.group');
+
     Route::get('/league-manager/', [HomeController::class, 'leagueManager'])->name('league-manager');
 
     Route::post('/register-league/', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
     Route::get('/player/{id}/', [HomeController::class, 'viewInforPlayer'])->name('player.info');
     Route::get('/read-notifications/', [HomeController::class, 'readNotification'])->name('read.notification');
     Route::get('/profile/', [AuthController::class, 'profile'])->name('profile');
-    Route::get('/my-group/', [AuthController::class, 'viewMyGroup'])->name('my.group');
     Route::get('/join-group/', [AuthController::class, 'joinGroup'])->name('join.group');
     Route::post('/messages/', [AuthController::class, 'sendMessage'])->name('send.message');
     Route::get('/logout/', [AuthController::class, 'logout'])->name('logout');
@@ -109,6 +115,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/export-schedule/{id}/', [ScheduleController::class, 'exportSchedule'])->name('schedule.export');
     Route::get('/auto-create-league', [ScheduleController::class, 'autoCreateLeague'])->name('auto.create.schedule');
     Route::get('/store-score', [ScheduleController::class, 'storeScore'])->name('store.score');
+
+
     //group
     Route::get('/list-group/', [GroupController::class, 'index'])->name('group.index');
     Route::get('/group/{id}', [GroupController::class, 'show'])->name('group.show');
@@ -124,6 +132,26 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/update-group-training/{id}', [GroupController::class, 'updateGroupTraining'])->name('update.groupTraining');
     Route::get('/delete-group-training/{id}', [GroupController::class, 'deleteGroupTraining'])->name('delete.groupTraining');
     Route::get('/delete-account-apple/', [ProfileController::class, 'deleteAccount'])->name('delete.account.apple');
+
+
+    //category post
+    Route::get('/list-category-post/', [CategoryPostController::class, 'index'])->name('categoryPost.index');
+    Route::get('/create-category-post/', [CategoryPostController::class, 'create'])->name('categoryPost.create');
+    Route::post('/store-category-post/', [CategoryPostController::class, 'store'])->name('categoryPost.store');
+    Route::get('/category/{id}/', [CategoryPostController::class, 'show'])->name('categoryPost.show');
+    Route::get('/edit-category/{id}/', [CategoryPostController::class, 'edit'])->name('categoryPost.edit');
+    Route::post('/update-category/{id}/', [CategoryPostController::class, 'update'])->name('categoryPost.update');
+    Route::get('/destroy/{id}/', [CategoryPostController::class, 'destroy'])->name('categoryPost.destroy');
+
+    //post
+    Route::get('/list-posts/', [PostController::class, 'index'])->name('post.index');
+    Route::get('/create-post/', [PostController::class, 'create'])->name('post.create');
+    Route::post('/store-post/', [PostController::class, 'store'])->name('post.store');
+    Route::get('/post/{id}/', [PostController::class, 'show'])->name('post.show');
+    Route::get('/edit-post/{id}/', [PostController::class, 'edit'])->name('post.edit');
+    Route::post('/update-post/{id}/', [PostController::class, 'update'])->name('post.update');
+    Route::get('/destroy/{id}/', [PostController::class, 'destroy'])->name('post.destroy');
+
 
     Route::middleware(['admin'])->group(
         function () {

@@ -76,6 +76,7 @@ class GroupController extends Controller
                 $input['images'] = $path;
             }
         }
+        dd($input);
 
         $this->groupRepository->updateById($id, $input);
         return redirect()->route('group.index')->with('success','Group successfully updated.');
@@ -90,7 +91,6 @@ class GroupController extends Controller
 
     public function activeGroup($id)
     {
-
         $group = \App\Models\Group::find($id);
         if ($group->active) {
             $group->active = 0;
@@ -137,7 +137,6 @@ class GroupController extends Controller
         $update_GroupTraining = $this->groupTraining->update($input, $id);
 
         return redirect()->route('list.groupTraining')->with('success','Group Training successfully created.');
-
 
     }
 

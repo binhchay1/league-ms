@@ -76,9 +76,8 @@ class ScheduleController extends Controller
         return view('admin.schedule.create', compact('league', 'rounds'));
     }
 
-    public function store(ScheduleRequest $request)
+    public function store(Request $request)
     {
-
         $leagueById = $request->league_id;
         $getLeague = $this->leagueRepository->leagueId($leagueById);
 

@@ -88,7 +88,12 @@ class LeagueRepository extends BaseRepository
 
     public function getLeagueBySlug($slug)
     {
-        return $this->model->with('userLeagues')->where('slug', $slug)->first();
+        $value = 1;
+        return $this->model->with([ 'userLeagues' => function($q) use($value) {
+            // Query the name field in status table
+            $q->where('status', '=', $value); // '=' is optional
+        }])
+        ->where('slug', $slug)->first();
     }
 
     public function getLeagueMath()
@@ -117,6 +122,11 @@ class LeagueRepository extends BaseRepository
 
     public function leagueId($id)
     {
-        return $this->model->with('userLeagues')->where('id', $id)->first();
+        $value = 1;
+        return $this->model->with([ 'userLeagues' => function($q) use($value) {
+            // Query the name field in status table
+            $q->where('status', '=', $value); // '=' is optional
+        }])
+            ->where('id', $id)->first();
     }
 }

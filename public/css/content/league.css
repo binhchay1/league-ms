@@ -4,7 +4,6 @@
 
  .tblResultLanding .tournament-detail {
     display: flex;
-    background-color: rgba(155,155,155,.4);
     margin-bottom: 2px;
 }
  .tblResultLanding .tournament-detail .inner-tournament-detail {
@@ -156,7 +155,7 @@ ul.select-list li a {
 }
 
 ul.select-list a.active, ul.select-list a:hover {
-    color: #000;
+    color: gray;
     background-color: #fff;
 }
 

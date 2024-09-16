@@ -49,6 +49,14 @@ final class Utility
         }
     }
 
+    public function saveImagePost($input)
+    {
+        if ($input) {
+            $status = Storage::disk('public-image-post')->put($input['thumbnail']->getClientOriginalName(), $input['thumbnail']->get());
+            return $status;
+        }
+    }
+
     public function paginate($items, $perPage = 15, $path = null, $pageName = 'page', $page = null, $options = [])
     {
         $page = $page ?: Paginator::resolveCurrentPage($pageName);

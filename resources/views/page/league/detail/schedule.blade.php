@@ -120,7 +120,11 @@ if (Auth::check()) {
                                             @endforeach
                                             <hr>
                                             @empty
-                                            <h2 class="text-center">{{__('Data has not been updated!')}}</h2>
+                                                <div class="text-center">
+                                                    <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
+
+                                                    <h4 >{{ __('The Schedule is updated!') }}</h4>
+                                                </div>
                                             @endforelse
                                         </ul>
                                     </div>

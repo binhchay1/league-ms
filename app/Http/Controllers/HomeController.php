@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Utility;
+use App\Repositories\CategoryPostRepository;
 use App\Repositories\GroupRepository;
 use App\Repositories\GroupTrainingRepository;
 use App\Repositories\LeagueRepository;
+use App\Repositories\PostRepository;
 use App\Repositories\UserLeagueRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\GroupUserRepository;
@@ -38,6 +40,8 @@ class HomeController extends Controller
     protected $groupTraining;
     protected $refereeRepository;
     protected $resultRepository;
+    protected $postRepository;
+    protected $categoryPostRepository;
 
     public function __construct(
         UserLeagueRepository $userLeagueRepository,
@@ -53,7 +57,9 @@ class HomeController extends Controller
         Utility $ultity,
         GroupTrainingRepository $groupTraining,
         RefereeRepository $refereeRepository,
-        ResultRepository $resultRepository
+        ResultRepository $resultRepository,
+        PostRepository $postRepository,
+        CategoryPostRepository $categoryPostRepository
     ) {
         $this->userLeagueRepository = $userLeagueRepository;
         $this->leagueRepository = $leagueRepository;
@@ -69,6 +75,8 @@ class HomeController extends Controller
         $this->groupTraining = $groupTraining;
         $this->refereeRepository = $refereeRepository;
         $this->resultRepository = $resultRepository;
+        $this->postRepository = $postRepository;
+        $this->categoryPostRepository = $categoryPostRepository;
     }
 
     public function viewHome()
@@ -78,8 +86,10 @@ class HomeController extends Controller
         $totalView = strtotime(date('Y-m-d H:i:s')) / 1242222;
         $listLeague = $this->leagueRepository->listLeagueHomePage();
         $listRank = $this->rankingRepository->listRankHomePage();
+        $listPosts = $this->postRepository->listPostLimit();
 
-        return view('page.homepage', compact('totalGroup', 'totalLeague', 'totalView', 'listLeague', 'listRank'));
+
+        return view('page.homepage', compact('totalGroup', 'totalLeague', 'totalView', 'listLeague', 'listRank', 'listPosts'));
     }
 
     public function viewSearch(Request $request)
@@ -497,4 +507,32 @@ class HomeController extends Controller
             return view('admin.live-score.live-score', compact('getSchedule', 'typeLive', 'setLive', 'scoreT1Live', 'scoreT2Live'));
         }
     }
+
+    public function news()
+    {
+        $listNews = $this->postRepository->index();
+        $categories = $this->categoryPostRepository->index();
+        $listNewsPopulars = $this->postRepository->getNewsPopular();
+        return view('page.post.list', compact('listNews', 'listNewsPopulars', 'categories'));
+    }
+
+    public function newsDetail($slug)
+    {
+        $newData = $this->postRepository->detailPost($slug);
+        $listNewsPopulars = $this->postRepository->getNewsPopular();
+        $listNewsNormals = $this->postRepository->getNewsNormal();
+        return view('page.post.detail', compact('newData', 'listNewsNormals','listNewsPopulars'));
+    }
+
+    public function newsCategory($slug)
+    {
+        $postCategory = $this->categoryPostRepository->postCategory($slug);
+        $categories = $this->categoryPostRepository->index();
+        $listNewsPopulars = $this->postRepository->getNewsPopular();
+        $listNewsNormals = $this->postRepository->getNewsNormal();
+        return view('page.post.category-post', compact('postCategory', 'categories', 'listNewsPopulars', 'listNewsNormals'));
+
+    }
+
+
 }

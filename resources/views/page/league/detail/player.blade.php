@@ -4,27 +4,31 @@
             <h3 class="title"></h3>
             <div class="men-single">
                 <ul>
-                    @forelse($leagueInfor->userLeagues as $listTour)
-                        @if(isset($listTour->user) &&  $listTour->status == 1  )
+                    @forelse($leagueInfor->userLeagues as $player)
+                        @if(isset($player->user) &&  $player->status == 1  )
                             <li>
                                 <div class="info">
                                     <div class="flag-name-wrap">
                                         <span>
                                             <a href="" title="Viktor AXELSEN">
-                                                <strong> {{$listTour->user->name}}</strong>
+                                                <strong> {{$player->user->name}}</strong>
                                             </a>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="img">
                                     <a href="">
-                                        <img src="{{asset($listTour->user->profile_photo_path ?? '/images/no-image.png')}}" alt="" class=" b-error b-error" style="height: 250px">
+                                        <img src="{{asset($player->user->profile_photo_path ?? '/images/no-image.png')}}" alt="" class=" b-error b-error" style="height: 250px">
                                     </a>
                                 </div>
                             </li>
                         @endif
                     @empty
-                        <h2>{{__('Data has not been updated!')}}</h2>
+                        <div class="text-center">
+                            <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
+
+                            <h4 >{{ __('There are no players in league!') }}</h4>
+                        </div>
                     @endforelse
                 </ul>
             </div>
