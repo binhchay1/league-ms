@@ -138,10 +138,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/list-category-post/', [CategoryPostController::class, 'index'])->name('categoryPost.index');
     Route::get('/create-category-post/', [CategoryPostController::class, 'create'])->name('categoryPost.create');
     Route::post('/store-category-post/', [CategoryPostController::class, 'store'])->name('categoryPost.store');
-    Route::get('/category/{id}/', [CategoryPostController::class, 'show'])->name('categoryPost.show');
-    Route::get('/edit-category/{id}/', [CategoryPostController::class, 'edit'])->name('categoryPost.edit');
-    Route::post('/update-category/{id}/', [CategoryPostController::class, 'update'])->name('categoryPost.update');
-    Route::get('/destroy/{id}/', [CategoryPostController::class, 'destroy'])->name('categoryPost.destroy');
+    Route::get('/category-post/{id}/', [CategoryPostController::class, 'show'])->name('categoryPost.show');
+    Route::get('/edit-category-post/{id}/', [CategoryPostController::class, 'edit'])->name('categoryPost.edit');
+    Route::post('/update-category-post/{id}/', [CategoryPostController::class, 'update'])->name('categoryPost.update');
+    Route::get('/destroy-category-post/{id}/', [CategoryPostController::class, 'destroy'])->name('categoryPost.destroy');
 
     //post
     Route::get('/list-posts/', [PostController::class, 'index'])->name('post.index');

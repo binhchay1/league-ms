@@ -85,9 +85,9 @@ class CategoryPostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy( $id)
     {
         $this->categoryPostRepository->destroy($id);
-        return back()->with('success', __('Category Post deleted success'));
+        return back()->with('success', __('CategoryPost delete success'));
     }
 }

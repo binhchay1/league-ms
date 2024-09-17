@@ -27,12 +27,9 @@
                             <td>{{ $league->end_date }}</td>
                             <td>
                                 <a href="{{ route('schedule.leagueSchedule', $league['slug']) }}" style="margin-bottom: 10px;width: 70%;margin-left: 40px;" class="btn btn-primary col-sm-12 mt-4 ">{{__('Create Schedule')}}</a>
-
                             </td>
-                            @else
-                                <h2 class="text-center">{{ __('League has not been activated from Admin!') }}</h2>
-                            @endif
                         </tr>
+                        @endif
                     @endforeach
                     </tbody>
                 </table>
