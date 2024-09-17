@@ -148,7 +148,7 @@
                     </table>
                 </div>
                 <div class="" style="margin: 40px;">
-                    <button type="submit" class="btn btn-primary me-2">{{ __('Save') }} </button>
+                    <button type="submit" class="btn btn-success me-2">{{ __('Save') }} </button>
                     <button type="reset" class="btn btn-outline-secondary">{{ __('Cancel') }}</button>
                 </div>
             </form>

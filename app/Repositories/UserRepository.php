@@ -18,7 +18,7 @@ class UserRepository extends BaseRepository
 
     public function showInfo($id)
     {
-        return $this->model->with('groups')->where('id', $id)->first();
+        return $this->model->with('groups','league')->where('id', $id)->first();
     }
 
     public function update($input, $id)

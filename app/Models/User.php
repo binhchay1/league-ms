@@ -100,7 +100,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function league()
     {
-        return $this->hasMany('App\Models\League');
+        return $this->hasMany('App\Models\League','owner_id', 'id');
     }
 
     public function groups()

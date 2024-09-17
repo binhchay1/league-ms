@@ -116,7 +116,7 @@
                             </div>
                         </td>
                         <td class="text-center">
-                            <a href="{{ route('schedule.show', $data['id']) }}" class="btn btn-info">
+                            <a href="{{ route('schedule.show', $data['id']) }}" class="btn btn-primary">
                                 <span style="color:white"></span>{{ __('Update Result') }}
                             </a>
                             <a href="{{ route('schedule.export', $data['id']) }}" class="btn btn-success">

@@ -127,4 +127,15 @@ class ProfileController extends Controller
 
         return view('page.user.my-group', compact('listGroup'));
     }
+
+    public function viewMyLeague()
+    {
+        $idUser = Auth::user()->id;
+        $dataUser = $this->userRepository->showInfo($idUser);
+
+        $getLeague = $dataUser->league;
+        $listLeague = $this->utility->paginate($getLeague, 10, '/my-league');
+
+        return view('page.user.my-league', compact('listLeague'));
+    }
 }

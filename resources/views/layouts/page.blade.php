@@ -243,9 +243,13 @@
                                 <li><a class="dropdown-item" href="{{route('group.create')}}">{{__('Create Group')}}</a></li>
                             </ul>
                         </div>
-
+                        @if(Auth::check() && Auth::user()->role =="admin" )
+                        <li class="nav-item" style="background: #312f2f">
+                            <a class="nav-link mx-2 text-uppercase" href="{{ route('dashboard') }}">{{__('DASHBOARD')}}</a>
+                        </li>
+                        @endif
                         @if(Auth::check())
-                            <div class="nav-item dropdown">
+                            <div class="nav-item dropdown" style="margin-top: -1px">
 
                                 <a class="nav-link mx-2 dropdown-toggle text-uppercase " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                   <span>
@@ -261,6 +265,7 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <li><a class="dropdown-item"href="{{ route('profile.edit') }}">{{__('My profile')}}</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('my.league') }}">{{__('My league')}}</a></li>
                                     <li><a class="dropdown-item" href="{{ route('my.group') }}">{{__('My group')}}</a></li>
                                     <li><a class="dropdown-item" href="{{ route('logout') }}">{{__('Logout')}}</a></li>
                                 </ul>

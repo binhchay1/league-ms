@@ -27,7 +27,7 @@
                         <td width="70%">{{ $data->name }}</td>
                         <td>
                             <a href="{{ route('categoryPost.edit', $data['id']) }}">
-                                <button type="button" class="btn btn-info">{{ __('Edit') }}</button>
+                                <button type="button" class="btn btn-primary">{{ __('Edit') }}</button>
                             </a>
                             <a href="{{route('categoryPost.destroy', $data['id'])}}">
                                 <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
