@@ -19,6 +19,8 @@
                 <tr class="design-text">
                     <th scope="col">{{ __('Name') }}</th>
                     <th scope="col">{{ __('Image') }}</th>
+                    <th scope="col">{{ __('Description') }}</th>
+                    <th scope="col">{{ __('Location') }}</th>
                     <th scope="col">{{ __('Action') }}</th>
                 </tr>
                 </thead>
@@ -26,7 +28,9 @@
                 @foreach($listGroup as $data)
                     <tr>
                         <td>{{ $data->name }}</td>
-                        <td><img class="image" src="{{$data->images ?? asset('/images/logo-no-background.png')}}" alt="avatar" style="width: 150px"></td>
+                        <td><img class="image" src="{{asset($data->images ?? '/images/logo-no-background.png')}}" alt="avatar" style="width: 150px"></td>
+                        <td>{{ $data->description }}</td>
+                        <td>{{ $data->location }}</td>
                         <td>
                             <a href="{{ route('group.show',$data['id']) }}">
                                 <button type="button" class="btn btn-primary">{{__('Create Group Training')}}</button>

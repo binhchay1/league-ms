@@ -29,7 +29,7 @@
                             <a href="{{ route('categoryPost.edit', $data['id']) }}">
                                 <button type="button" class="btn btn-info">{{ __('Edit') }}</button>
                             </a>
-                            <a href="{{ route('categoryPost.destroy', $data['id']) }}">
+                            <a href="{{route('categoryPost.destroy', $data['id'])}}">
                                 <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
                             </a>
                         </td>
