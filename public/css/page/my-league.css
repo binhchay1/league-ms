@@ -282,7 +282,16 @@ hr {
 }
 
 .wp-group-content {
-    border: 0.5px solid gray;
+    background: #dee0e2;
+}
+
+.wp-group-content {
+    border: 1px solid #ccc;
+    background: #fff;
+
+}
+.wp-group-content:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
 
 .descript-group {

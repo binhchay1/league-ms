@@ -37,7 +37,7 @@
                                 <p>* {{ __('Location') }}: {{ $row->location }}</p>
                                 <div>
                                     <button  class="btn btn-{{$row->status ? 'info' : 'secondary' }}">
-                                        {{$row->status ? "Active League" : "Inactive League"}}
+                                        {{$row->status ? "Activated" : "Inactive"}}
                                     </button>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                 <div class="text-center">
                     <img class="" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
 
-                    <h4 >{{ __('There are no group !') }}</h4>
+                    <h4 >{{ __('There are no leagues!') }}</h4>
                 </div>
             @endif
         </div>
@@ -78,12 +78,4 @@
 @endsection
 
 @section('js')
-    <script>
-        function detailGroup(id) {
-            let name = id.substring(6);
-            let url = '/detail-group?g_i=' + name;
-
-            window.location.href = url;
-        }
-    </script>
 @endsection

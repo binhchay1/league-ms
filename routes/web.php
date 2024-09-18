@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\LeagueController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -156,7 +157,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::middleware(['admin'])->group(
         function () {
-            Route::get('/dashboard/', [AuthController::class, 'dashboard'])->name('dashboard');;
+            Route::get('/dashboard/', [DashboardController::class, 'dashboard'])->name('dashboard');;
             Route::get('/set-title/{id}/', [UserController::class, 'setTitle'])->name('set.title');
             Route::post('/save-title/{id}/', [UserController::class, 'saveTitle'])->name('save.title');
 

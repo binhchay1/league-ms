@@ -20,6 +20,11 @@ class LeagueRepository extends BaseRepository
         return $this->model->where('owner_id', $user)->with('schedule')->orderBy('created_at', 'desc')->get();
     }
 
+    public function countLeague()
+    {
+        return $this->model->orderBy('created_at', 'desc')->get();
+    }
+
     public function store($input)
     {
         return $this->model->create($input);

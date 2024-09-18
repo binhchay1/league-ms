@@ -71,15 +71,6 @@ class  AuthController extends Controller
         }
     }
 
-    public function dashboard()
-    {
-        if (Auth::check()) {
-            return view('layouts.admin');
-        }
-
-        return redirect("login")->withSuccess('You are not allowed to access');
-    }
-
     public function logout()
     {
         Session::flush();

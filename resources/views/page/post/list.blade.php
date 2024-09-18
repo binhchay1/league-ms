@@ -16,7 +16,7 @@
         <div class="news-section bg-white">
             <div class="news-overview">
                 <div class="std-title">
-                    <h2>{{__('News')}}</h2>
+                    <h2 style="font-weight: 400">{{__('News')}}</h2>
                     <nav class="news-filter">
                         <div class="sorting" id="news_sorting">
 
@@ -44,7 +44,8 @@
                         <div class="news-overview-text">
                             <h4 class="media-heading fw-400 fs-16px" title="Hong Kong Open: Fast and Furious Floors Holders">
                                 <a href="{{route('news-show',$new['slug'])}}">
-                                    {{($new->title)}} </a>
+                                    {{($new->title)}}
+                                </a>
                             </h4>
                             <span class="fw-300 fs-12px text-gray">  <?php echo date_format($new->created_at, 'd-F-Y')  ?><br></span>
                         </div>
@@ -66,10 +67,10 @@
                     <div class="widget--content">
                         <ul>
                             @foreach($listNewsPopulars as $newPopular)
-                                <li class="nn">
+                                <li class="nn ">
                                     <span class="widget--date text-uppercase"><?php echo date_format($newPopular->created_at, 'd-F-Y')  ?></span>
-                                    <a href=""
-                                       class="widget--link" target="_self">
+                                    <a  href="{{route('news-show',$newPopular['slug'])}}"
+                                       class="widget--link post-popular" target="_self">
                                         ​{{$newPopular->title}} </a>
                                 </li>
                                 <div class="widget-red-line"></div>

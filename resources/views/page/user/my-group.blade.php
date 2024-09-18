@@ -53,7 +53,7 @@
             <div class="text-center">
                 <img class="" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
 
-                <h4 >{{ __('There are no group !') }}</h4>
+                <h4 >{{ __('There are no groups !') }}</h4>
             </div>
             @endif
     </div>
