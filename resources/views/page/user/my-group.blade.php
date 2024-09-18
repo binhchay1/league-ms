@@ -50,49 +50,35 @@
         </div>
         @endforeach
             @else
-            <div style="background-color: #d9edf7;
-    border-color: #d9edf7;
-    color: #31708f;">
-                <h4>{{__('Group has not been created!')}}</h4>
+            <div class="text-center">
+                <img class="" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
+
+                <h4 >{{ __('There are no groups !') }}</h4>
             </div>
             @endif
     </div>
 
-    <div class="navigator short">
-        <div class="head d-flex justify-content-center">
-            @if(empty($listGroup->previousPageUrl()))
-            <a aria-label="arrow previous" class="arrow previous disable-link"></a>
-            @else
-            <a aria-label="arrow previous" class="arrow previous" href="{{ $listGroup->previousPageUrl() }}"></a>
-            @endif
-            <ul>
-                @if($listGroup->currentPage() != 1)
-                <li>
-                    <a href="{{ $listGroup->previousPageUrl() }}">{{ $listGroup->currentPage() - 1 }}</a>
-                </li>
-                @endif
-                <li class='current'>
-                    <span>{{ $listGroup->currentPage() }}</span>
-                </li>
-                @if($listGroup->currentPage() != $listGroup->lastPage())
-                <li>
-                    <a href="{{ $listGroup->nextPageUrl() }}">{{ $listGroup->currentPage() + 1 }}</a>
-                </li>
-                @endif
-                @if($listGroup->lastPage() > $listGroup->currentPage() + 2)
-                <li class="separator">
-                    <span>...</span>
-                </li>
-                @endif
-                @if($listGroup->lastPage() > $listGroup->currentPage() + 1)
-                <li>
-                    <a href="?page={{ $listGroup->lastPage() }}">{{ $listGroup->lastPage() }}</a>
-                </li>
-                @endif
-            </ul>
-            <a aria-label="arrow next" class="arrow next {{ $listGroup->currentPage() == $listGroup->lastPage() ? 'disable-link' : '' }}" href="{{ $listGroup->nextPageUrl() }}"></a>
+    <!-- Paginate -->
+    <?php $countGroup= count($listGroup); ?>
+    @if($countGroup > $listGroup->perPage())
+        <div class="navigator short mt-4" >
+            <div class="head d-flex justify-content-center ">
+                <ul class="pagination">
+                    <li>
+                        <a href="{{ $listGroup->previousPageUrl() }}" aria-label="Previous" style="color: red" class="prevPlayersList">
+                            <span aria-hidden="true"><span class="fa fa-angle-left"></span> {{__('PREVIOUS')}}</span>
+                        </a>
+                    </li >
+                    &emsp;
+                    <li>
+                        <a href="{{ $listGroup->nextPageUrl() }}" aria-label="Next" style="color: red" class="nextPlayersList">
+                            <span aria-hidden="true">{{__('NEXT')}} <span class="fa fa-angle-right"></span></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
+    @endif
 </section>
 @endsection
 

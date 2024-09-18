@@ -62,7 +62,7 @@
                             {{ $data->player2Team2->name ?? "" }}
                         </td>
                         <td class="text-center">
-                            <a href="{{route('schedule.edit', $data['id'])}}" class="btn btn-info">
+                            <a href="{{route('schedule.edit', $data['id'])}}" class="btn btn-primary">
                                 <span style="color:white"></span>{{ __('Edit Schedule') }}
                             </a>
                         </td>

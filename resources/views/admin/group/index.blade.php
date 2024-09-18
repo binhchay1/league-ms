@@ -33,10 +33,10 @@
                         <td>{{ $data->location }}</td>
                         <td>
                             <a href="{{ route('group.show',$data['id']) }}">
-                                <button type="button" class="btn btn-primary">{{__('Create Group Training')}}</button>
+                                <button type="button" class="btn btn-success">{{__('Create Group Training')}}</button>
                             </a>
                             <a href="{{route('group.edit',$data['id'])}}">
-                                <button type="button" class="btn btn-success">{{ __('Edit') }}</button>
+                                <button type="button" class="btn btn-primary">{{ __('Edit') }}</button>
                             </a>
                                 <a href="{{route('group.delete', $data['id'])}}">
                                     <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>

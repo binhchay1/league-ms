@@ -45,7 +45,7 @@
                         <span class="text-danger">{{ $errors->first('images') }}</span>
                         @endif
                     </div>
-                    <div class="container ml-4">
+                    <div class="col-md-6">
                         <div class="mt-2">
                             <label for="name" class="form-label">{{ __('Name') }}</label>
                             <input class="form-control" type="text" name="name" id="name" value="{{ old('name') }}" placeholder="{{ __('Enter group name') }}" />

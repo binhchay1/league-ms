@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\LeagueController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -71,6 +72,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/change-password/', [ProfileController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password/', [ProfileController::class, 'updatePassword'])->name('update-password');
     Route::get('/my-group/', [ProfileController::class, 'viewMyGroup'])->name('my.group');
+    Route::get('/my-league/', [ProfileController::class, 'viewMyLeague'])->name('my.league');
 
     Route::get('/league-manager/', [HomeController::class, 'leagueManager'])->name('league-manager');
 
@@ -155,7 +157,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::middleware(['admin'])->group(
         function () {
-            Route::get('/dashboard/', [AuthController::class, 'dashboard']);
+            Route::get('/dashboard/', [DashboardController::class, 'dashboard'])->name('dashboard');;
             Route::get('/set-title/{id}/', [UserController::class, 'setTitle'])->name('set.title');
             Route::post('/save-title/{id}/', [UserController::class, 'saveTitle'])->name('save.title');
 

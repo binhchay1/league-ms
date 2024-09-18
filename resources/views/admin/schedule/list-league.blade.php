@@ -26,7 +26,7 @@
                             <td>{{ $league->start_date }}</td>
                             <td>{{ $league->end_date }}</td>
                             <td>
-                                <a href="{{ route('schedule.leagueSchedule', $league['slug']) }}" style="margin-bottom: 10px;width: 70%;margin-left: 40px;" class="btn btn-primary col-sm-12 mt-4 ">{{__('Create Schedule')}}</a>
+                                <a href="{{ route('schedule.leagueSchedule', $league['slug']) }}" style="margin-bottom: 10px;width: 70%;margin-left: 40px;" class="btn btn-success col-sm-12 mt-4 ">{{__('Create Schedule')}}</a>
                             </td>
                         </tr>
                         @endif

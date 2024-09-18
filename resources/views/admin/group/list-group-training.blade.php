@@ -41,8 +41,8 @@
                             <td>{{ $date }}</td>
 
 
-                            <td class="text-center">{{ $start_time }} - {{ $end_time }}</td>
-                            <td class="text-center">{{ $groupTraining->number_of_members }}</td>
+                            <td class="">{{__('From: ')}} {{ $start_time }} - {{__('To: ')}} {{ $end_time }}</td>
+                            <td class="">{{ $groupTraining->number_of_members }}</td>
                             <td>{{ $groupTraining->location }}</td>
                             <td>{{ $groupTraining->note }}</td>
                             <td>

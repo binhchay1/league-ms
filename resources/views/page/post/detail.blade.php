@@ -30,7 +30,8 @@
                     <div class="news-social-links">
                         <div class="">
                             <p class="wcs-single_meta">
-                                <?php echo date_format($newData->created_at, 'd-F-Y')  ?><br>
+                                <?php echo date_format($newData->created_at, 'd-F-Y')  ?>
+                                    <br>
                                 {{__('TEXT BY')}} {{$newData->user->name ?? ""}} </p>
                         </div>
                     </div>
@@ -44,7 +45,7 @@
 
             <div class="news-overview">
                 <div class="std-title">
-                    <h2>{{__('News')}}</h2>
+                    <h2>{{__('Recent News')}}</h2>
                 </div>
                 <div class="news-overview-wrap">
                     @foreach($listNewsNormals as $new)
@@ -59,8 +60,8 @@
 
                         <div class="news-overview-text">
                             <h4 class="media-heading fw-400 fs-16px"
-                                title="Hong Kong Open: Fast and Furious Floors Holders">
-                                <a href="https://bwfworldtour.bwfbadminton.com/news-single/2024/09/10/hong-kong-open-fast-and-furious-floors-holders/">
+                                title=" {{$new->title}}">
+                                <a class="post-popular" href="{{route('news-show', $new['slug'])}}">
                                     {{$new->title}} </a>
                             </h4>
                             <span class="fw-300 fs-12px text-gray">  <?php echo date_format($newData->created_at, 'd-F-Y')  ?><br></span>
@@ -87,8 +88,8 @@
                             @foreach($listNewsPopulars as $newPopular)
                             <li class="nn">
                                 <span class="widget--date text-uppercase"><?php echo date_format($newPopular->created_at, 'd-F-Y')  ?></span>
-                                <a href="https://bwfbadminton.com/zh-cn/news-single/2024/08/19/smashing-stats-canada-open-2024-copy/"
-                                   class="widget--link" target="_self">
+                                <a href="{{route('news-show', $new['slug'])}}"
+                                   class="widget--link post-popular" target="_self">
                                     ​{{$newPopular->title}} </a>
                             </li>
                             <div class="widget-red-line"></div>

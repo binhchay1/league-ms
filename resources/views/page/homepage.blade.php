@@ -77,7 +77,7 @@
             <div class="news-overview-item">
                 <div class="news-overview-image">
                     <a href="">
-                        <img src="{{asset($post->thumbnail ?? '/images/logo-no-background.png' )}}" alt="" class="img-responsive b-error">
+                        <img src="{{asset($post->thumbnail ?? '/images/logo-no-background.png' )}}" alt="" class="img-responsive-hover b-error">
                     </a>
                 </div>
 

@@ -73,16 +73,16 @@ $isFull = false;
                             <div id="btn-join">
                                 @if(!$isJoin and !$isFull)
                                 <div>
-                                    <button class="btn btn-primary" id="groups-{{ $group->name }}" onclick="requestJoin(this.id)">{{ __('Join group') }}</button>
+                                    <button class="btn btn-success" id="groups-{{ $group->name }}" onclick="requestJoin(this.id)">{{ __('Join group') }}</button>
                                 </div>
                                 @else
                                 @if($isFull)
                                 <div>
-                                    <button class="btn btn-secondary" disabled>{{ __('Full members') }}</button>
+                                    <button class="btn btn-danger"  disabled>{{ __('Full members') }}</button>
                                 </div>
                                 @else
                                 <div>
-                                    <button class="btn btn-secondary" disabled>{{ __('Joined') }}</button>
+                                    <button class="btn btn-success"  disabled>{{ __('Joined') }}</button>
                                 </div>
                                 @endif
                                 @endif
@@ -146,7 +146,7 @@ $isFull = false;
             }
         }).done(function(result) {
             if (result == 'success') {
-                let btnSuccess = '<div><button class="btn btn-secondary" disabled>' + '<?php echo __('Joined') ?>' + '</button></div>'
+                let btnSuccess = '<div><button class="btn btn-success" disabled>' + '<?php echo __('Joined') ?>' + '</button></div>'
                 $('#btn-join').empty();
                 $('#btn-join').append(btnSuccess);
             } else if (result == 'wait') {
