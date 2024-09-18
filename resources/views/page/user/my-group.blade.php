@@ -32,10 +32,11 @@
 
                 <hr>
                 <div class="mt-3 descript-group">
-                    <p>* {{ __('Description') }}: {{ $row->description }}</p>
-                    <p>* {{ __('Location') }}: {{ $row->location }}</p>
-                    <p>* {{ __('Activity time') }}: {{ $row->activity_time }}</p>
-                    <p class="fst-italic fw-light fw-bold">----- {{ __('Note') }}: {{ $row->note }}</p>
+                    <p>■  {{ __('Description') }}: {{ $row->description }}</p>
+                    <p>■  {{ __('Location') }}: {{ $row->location }}</p>
+                    <p>■  {{ __('Location') }}: {{ $row->location }}</p>
+                    <p><span class="">■ {{ __('Number of member') }} : </span>{{ $row->number_of_members }}</p>
+                    <p class="">----- {{ __('Note') }}: {{ $row->note }}</p>
                     <div class="mt-3">
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" <?php echo 'style="width:' . ($row->group_users->count() / $row->number_of_members * 100) . '%"' ?> aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
