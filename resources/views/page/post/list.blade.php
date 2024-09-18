@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="news-overview-text">
-                            <h4 class="media-heading fw-400 fs-16px" title="Hong Kong Open: Fast and Furious Floors Holders">
+                            <h4 class="media-heading fw-400 fs-16px" title="  {{($new->title)}}">
                                 <a href="{{route('news-show',$new['slug'])}}">
                                     {{($new->title)}}
                                 </a>

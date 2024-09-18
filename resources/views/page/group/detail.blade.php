@@ -28,10 +28,10 @@ $utility = new \App\Enums\Utility();
         </div>
         <hr>
         <div class="col-lg-10 mt-3" style="margin-left: 10px;">
-            <p><span class="fw-bold">* {{ __('Description') }} : </span>{{ $getGroup->description }}</p>
-            <p><span class="fw-bold">* {{ __('Activity time') }} : </span>{{ $getGroup->activity_time }}</p>
-            <p><span class="fw-bold">* {{ __('Location') }} : </span>{{ $getGroup->location }}</p>
-            <p><em><span class="fw-bold">-----{{ __('Note') }} : </span>{{ $getGroup->note }}</em></p>
+            <p><span class="">■ {{ __('Description') }} : </span>{{ $getGroup->description }}</p>
+            <p><span class="">■ {{ __('Location') }} : </span>{{ $getGroup->location }}</p>
+            <p><span class="">■ {{ __('Number of member') }} : </span>{{ $getGroup->number_of_members }}</p>
+            <p><em><span class="">-----{{ __('Note') }} : </span>{{ $getGroup->note }}</em></p>
         </div>
     </div>
     <div class="d-flex">
@@ -54,7 +54,7 @@ $utility = new \App\Enums\Utility();
             <div class="col-md-8 col-lg-6 col-xl-6 card-chat" style="width: 60%" >
                 <div class="card" id="chat1" style="border-radius: 0">
                     <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0" style="background: #e3e3e3 !important;">
-                        <p class="mb-0 fw-bold" style="color: #222">{{ __('Live chat') }}</p>
+                        <p class="mb-0 " style="color: #222">{{ __('Live chat') }}</p>
                     </div>
                     <div class="card-body">
                         @if(Auth::check() and $isJoined)
@@ -129,8 +129,8 @@ $utility = new \App\Enums\Utility();
             <div class="col-md-4 col-lg-6 col-xl-6 card-member" style="width: 40%">
                 <div class="card" id="chat1" style="border-radius: 0" >
                     <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0" style="background: #e3e3e3 !important;">
-                        <p class="mb-0 fw-bold" style="color: #222">{{ __('List members') }}</p>
-                        <p class="mb-0 fw-bold" style="color: #222">( {{ $getGroup->group_users->count() }} / {{ $getGroup->number_of_members }} )</p>
+                        <p class="mb-0 " style="color: #222">{{ __('List members') }}</p>
+                        <p class="mb-0 " style="color: #222">( {{ $getGroup->group_users->count() }} / {{ $getGroup->number_of_members }} )</p>
                     </div>
 
                     <div class="card-body" style="background: white">

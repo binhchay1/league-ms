@@ -12,9 +12,6 @@ p {
     padding-bottom: 10px !important;
 }
 
-.card {
-    background-color: #eee;
-}
 
 .c-details span {
     font-weight: 300;
@@ -255,9 +252,10 @@ hr {
 }
 
 .card-header a {
-    font-weight: 500;
-    font-size: 25px;
     color: black;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
 }
 
 .group-name {
@@ -276,6 +274,36 @@ hr {
     font-weight: 500;
     width: 200px;
 }
+
+.gr-train {
+    padding: 0;
+}
+
+.gr-train-body {
+    padding: 10px;
+}
+
+.gr-train-footer {
+    padding: 10px;
+}
+
+.gr-train-header {
+    line-height: 50px;
+}
+
+.gr-train-body p {
+    line-height: 1;
+    font-size: 15px;
+}
+
+.badge-primary {
+    background: #0a58ca;
+}
+
+.float-right {
+    margin-left: 50%;
+}
+
 
 .wp-group {
     width: 33.33%;
