@@ -19,7 +19,7 @@
 <div class="container" >
     <div class="std-title">
         <div class="std-title-left">
-            <h2 class="left">{{ __('LEAGUE CALENDAR') }}</h2>
+            <h2 class="left" style=" color: black">{{ __('LEAGUE CALENDAR') }}</h2>
             <div id="select-list-state card">
                 <ul class="select-list" id="select-state">
                     <li data-id="all"><a data-state="remaining" href="#" class="active-menu "  data-toggle="tab">{{__('All')}}</a></li>

@@ -317,55 +317,55 @@
 
     @yield('content')
 
-    <div class="" style="background: #222; ">
+    <div class="" style="background: #222; text-transform: uppercase;">
         <footer class="container py-5"  >
             <div class="row">
                 <div class="color-white col-md-3 mb-3">
                     <h4 class="color-white">{{ __('Criteria') }}</h4>
-                    <ul class="nav flex-column">
+                    <ul class="nav flex-column footer-p">
                         <p>{{ __('Efficiency and ease-of-use are our mission, simplifying the process of running a sports league.') }}</p>
-                        <p>{{ env('APP_NAME', 'Badminton.io') }} {{ __('is available to all at no cost. Additionally, we offer premium plans that include additional functionality.') }}</p>
+                        <p>{{ __('Badminton.io is available to all at no cost. Additionally, we offer premium plans that include additional functionality.') }}</p>
                     </ul>
                 </div>
 
                 <div class="col-md-3 mb-3 color-white">
                     <h4 class="color-white">{{ __('About') }}</h4>
-                    <ul class="nav">
+                    <ul class="nav-a">
                         <li><a href="{{ route('about') }}">{{ __('About') }}</a></li>
                     </ul>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-3 mb-3 color-white">
                     <h4 class="color-white">{{ __('Features') }}</h4>
-                    <ul class="nav" style="display: flex; flex-direction: column;">
+                    <ul class="nav-a " style="display: flex; flex-direction: column;">
                         <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
                         <li><a href="">{{ __('Shop') }}</a></li>
                         <li><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
+                        <li><a href="{{ route('news') }}">{{ __('News') }}</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3 ">
+                <div class="col-md-3 color-white">
                     <form>
-                        <h4 class="h3 color-white">{{ env('APP_NAME', 'Badminton.io') }}</h4>
-                        <p>
-                            <small>
-                                <a href="{{ route('term.and.conditions') }}">{{ __('Terms & Conditions') }}</a>,
+                        <h4 class="h3 color-white">{{ __('Badminton.io') }}</h4>
+                        <p >
+                            <small class="nav-a">
+                                <a href="{{ route('term.and.conditions') }}">{{ __('Terms & Conditions') }}</a>
+                                <br>
                                 <a href="{{ route('privacy') }}">{{ __('Privacy') }}</a>
                                 <br>
-                                <a href="{{ route('home')}}">{{ env('APP_NAME', 'Badminton.io') }}</a>
+                                <a href="{{ route('home')}}">{{ __('Badminton.io') }}</a>
                             </small>
                         </p>
                         <ul class="social">
-                            <li><a href=""><img src="{{ asset('/svg/icon-linkedin.svg') }}" alt="{{ __('LinkedIn') }}" width="30" height="31"></a></li>
-                            <li><a href=""><img src="{{ asset('/svg/icon-twitter.svg') }}" alt="{{ __('Twitter') }}" width="30" height="31"></a></li>
-                            <li><a href=""><img src="{{ asset('/svg/icon-facebook.svg') }}" alt="{{ __('Facebook') }}" width="30" height="31"></a></li>
-                            <li><a href=""><img src="{{ asset('/svg/icon-youtube.svg') }}" alt="{{ __('YouTube') }}" width="30" height="31"></a></li>
+                            <li><a href="{{route('home')}}"><img src="{{ asset('/images/logo-no-background.png') }}"  width="70" height="70"></a></li>
                         </ul>
                     </form>
                 </div>
             </div>
 
-            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top color-white">
-                <p>{{__('© 2023 Company, Inc. All rights reserved.')}}</p>
+            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top color-white  footer-p">
+                <p>{{__('© 2023 Company, Inc. All rights reserved.The content of this website is the property of Badominton.io or used under licence by Badominton.io .
+                No part may be copied, republished, stored, or otherwise republished or transmitted without the prior written permission of Badominton . For further information, please refer to our')}}</p>
                 <ul class="list-unstyled d-flex">
                     <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24">
                                 <use xlink:href="#twitter"></use>

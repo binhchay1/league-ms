@@ -15,8 +15,28 @@
     <section class="news-landing-wrap container-1280" style="padding-top:0px;">
         <div class="news-section bg-white">
             <div class="news-overview">
+                <div class="news-featured">
+                    @foreach($firstNews as $new)
+                    <div class="news-featured-image">
+                        <a href="{{route('news-show',$new['slug'])}}" rel="bookmark" title="China Open: Lei Turns Tables on Axelsen">
+                            <img width="980" height="550" src="{{asset($new->thumbnail)}}" class="attachment-news-maximum size-news-maximum wp-post-image b-error" alt="" loading="lazy">
+                            <div class="news-featured-splash">
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="news-featured-title">
+                        <a href="{{route('news-show',$new['slug'])}}"  rel="bookmark" title="  {{($new->title)}}">
+                            {{($new->title)}}</a>
+                    </div>
+
+                    <div class="news-featured-excerpt">
+                        <p>{!! Str::limit(strip_tags(html_entity_decode($new->content)), 300)!!}</p>
+                    </div>
+                    @endforeach
+                </div>
                 <div class="std-title">
-                    <h2 style="font-weight: 400">{{__('News')}}</h2>
+                    <h2 style="font-weight: 400;  color: black">{{__('News')}}</h2>
                     <nav class="news-filter">
                         <div class="sorting" id="news_sorting">
 
@@ -60,7 +80,7 @@
             <div>
             </div>
 
-            <aside id="secondary" class="sidebar-area" role="complementary" style="margin-top: 25px">
+            <aside id="secondary" class="sidebar-area" role="complementary" >
                 <div class="widget widget__latest-news ">
                     <span style="font-size: 25px; padding: 10px">
                     {{__('Most News Popular')}} </span>

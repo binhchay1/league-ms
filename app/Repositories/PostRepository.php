@@ -13,7 +13,13 @@ class PostRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->with('category', 'user')->orderBy('created_at', 'desc')->get();
+        return $this->model->with('category', 'user')->orderBy('created_at', 'desc')->take(9)->get();
+    }
+
+    public function firstNew()
+    {
+        return $this->model->with('category', 'user')->orderBy('created_at', 'desc')->take(1)->get();
+
     }
 
     public function store($input)
@@ -38,7 +44,7 @@ class PostRepository extends BaseRepository
 
     public function listPostLimit()
     {
-        return $this->model->with('category', 'user')->orderBy('created_at', 'desc')->take(3)->get();
+        return $this->model->with('category', 'user')->orderBy('created_at', 'desc')->take(4)->get();
     }
 
     public function detailPost($slug)

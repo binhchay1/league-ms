@@ -263,7 +263,9 @@ header {
     position: relative;
     margin-bottom: 20px;
     background: #fff;
-    z-index: 1
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
 header #toggle-menu {
@@ -2023,7 +2025,6 @@ section.feature ul li .badge {
 
 #privacy ul {
     line-height: 1.75em;
-    padding-bottom: 30px
 }
 
 #privacy ul li {

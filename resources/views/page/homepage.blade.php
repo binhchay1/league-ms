@@ -13,7 +13,38 @@
 
     <section style="background-color: #DA0011; margin-top: -25px">
         <div>
-            <img class="img-responsive b-error b-error" width="100%" src="{{ asset('images/banner-homepage.jpg') }}">
+            <img class="img-responsive-banner b-error b-error" width="100%" height="500" src="{{ asset('images/banner-homepage.jpg') }}">
+        </div>
+    </section>
+    <section id="news" class="container-1280 news-section bg-white">
+        <div class="std-title " style="margin-top: 10px" >
+            <h2 class="left">{{ __('Latest Tour News') }}</h2>
+            <a href="{{route('news')}}">
+                <h2 class="right league-all-data">{{ __('All News') }}</h2>
+            </a>
+        </div>
+        <div class="news-overview-wrap">
+            @foreach($listPosts as $post)
+                <div class="news-overview-item">
+                    <div class="news-overview-image">
+                        <a href="">
+                            <img src="{{asset($post->thumbnail ?? '/images/logo-no-background.png' )}}" alt="" class="img-responsive-hover b-error">
+                        </a>
+                    </div>
+
+                    <div class="news-overview-text">
+                        <h4 class="media-heading fw-400 fs-16px">
+                            <a href="{{route('news-show', $post['slug'])}}" title="{{$post->title}}">
+                                {{$post->title}} </a>
+                        </h4>
+                        <span class="fw-300 fs-12px text-gray">
+                        <?php echo date_format($post->created_at, 'd-F-Y')  ?><br>
+                    </span>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="" style="margin-top: -9px;">
         </div>
     </section>
 
@@ -23,6 +54,7 @@
             <h2 class="right league-all-data">{{ __('All Tournaments') }}</h2>
         </a>
     </div>
+
     <section id="next-tournament" class="next-tournament-section bg-black">
         <div class="next-tournament-wrap">
             <div class="results">
@@ -65,37 +97,6 @@
         </div>
     </section>
 
-    <section id="news" class="container-1280 news-section bg-white">
-        <div class="std-title " style="margin-top: 10px" >
-            <h2 class="left">{{ __('Latest Tour News') }}</h2>
-            <a href="{{route('news')}}">
-                <h2 class="right league-all-data">{{ __('All News') }}</h2>
-            </a>
-        </div>
-        <div class="news-overview-wrap">
-            @foreach($listPosts as $post)
-            <div class="news-overview-item">
-                <div class="news-overview-image">
-                    <a href="">
-                        <img src="{{asset($post->thumbnail ?? '/images/logo-no-background.png' )}}" alt="" class="img-responsive-hover b-error">
-                    </a>
-                </div>
-
-                <div class="news-overview-text">
-                    <h4 class="media-heading fw-400 fs-16px">
-                        <a href="{{route('news-show', $post['slug'])}}" title="{{$post->title}}">
-                            {{$post->title}} </a>
-                    </h4>
-                    <span class="fw-300 fs-12px text-gray">
-                        <?php echo date_format($post->created_at, 'd-F-Y')  ?><br>
-                    </span>
-                </div>
-            </div>
-                @endforeach
-        </div>
-        <div class="" style="margin-top: -9px;">
-        </div>
-    </section>
 
     <section id="news" class="container-1280 news-section bg-white">
         <div class="std-title " style="margin-top: 10px" >
