@@ -19,7 +19,7 @@
 <div class="container" >
     <div class="std-title">
         <div class="std-title-left">
-            <h2 class="left">{{ __('LEAGUE CALENDAR') }}</h2>
+            <h2 class="left" style=" color: black">{{ __('LEAGUE CALENDAR') }}</h2>
             <div id="select-list-state card">
                 <ul class="select-list" id="select-state">
                     <li data-id="all"><a data-state="remaining" href="#" class="active-menu "  data-toggle="tab">{{__('All')}}</a></li>
@@ -52,7 +52,7 @@
                                     <h6 class="">{{ __('Start Date') }}: {{ $start_date }}</h6>
                                     <h6 class="">{{ __('End Date') }}: {{ $end_date }}</h6>
                                     <div class="prize">
-                                        {{ __('PRIZE MONEY VND ') }} <?php echo number_format($listLeague->money ?? 0)?>
+                                        {{ __('PRIZE MONEY:  ') }} <?php echo number_format($listLeague->money ?? 0). " VND"?>
                                     </div>
                                 </div>
                             </div>

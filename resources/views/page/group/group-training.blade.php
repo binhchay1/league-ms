@@ -19,33 +19,51 @@ $utility = new \App\Enums\Utility();
 
 <div class="container" style="margin-bottom: 125px">
     <div class="row">
+
         @forelse($listTrainings->group_trainings as $train)
-        <div class="col-sm-4">
-            <div class="card " style="margin: 5px">
-                <div class="card-header">
-                    <a href="/training?g_t={{ $train->name }}">{{ $train->name }}</a>
+            <?php   $date = date("d/m/Y", strtotime($train->date));
+            $start_time= date("H:i", strtotime($train->start_time));
+            $end_time = date("H:i", strtotime($train->end_time));
+            ?>
+        <div class="col-sm-4 wp-group-content gr-train">
+            <div class="d-flex  gr-title ">
+                <div class=" align-items-center" >
+                    <img class="avatar-group" src="{{ asset('https://png.pngtree.com/png-clipart/20230817/original/pngtree-badminton-icon-logo-and-sport-club-template-vector-vector-picture-image_10923178.png')  }}">
                 </div>
-                <div class="card-body">
-                    <?php   $date = date("d/m/Y", strtotime($train->date));
-                    $start_time= date("H:i", strtotime($train->start_time));
-                    $end_time = date("H:i", strtotime($train->end_time));
-                    ?>
-                    <p><span class="fw-bold">* {{ __('Description') }} : </span>{{ $train->description }}</p>
-                    <p><span class="fw-bold">* {{ __('Date') }} : </span>{{ $date }}</p>
-                    <p><span class="fw-bold">* {{ __('Activity time') }} : </span>{{ $start_time }} - {{$end_time}}</p>
-                    <p><span class="fw-bold">* {{ __('Location') }} : </span>{{ $train->location }}</p>
-                    <p><span class="fw-bold">* {{ __('Members') }} : </span>{{ $train->totalMembers }} / {{ $train->number_of_members }}</p>
-                    <p><em><span class="fw-bold">-----{{ __('Note') }} : </span>{{ $train->note }}</em></p>
+                <div class="card-header gr-train-header">
+                    <a href="/training?g_t={{ $train->name }}" >
+                        {{ $train->name }}   ({{__('From') }} {{$start_time}} ~ {{__('To')}} {{$end_time}})
+                    </a>
                 </div>
-                <div class="card-footer text-muted d-flex">
-                    <div class="col-lg-6">
-                        @if(!$train->isJoin)
-                        <a href="{{ route('join.group.training') }}?g_t={{ $train->id }}" class="btn btn-success btn-training">{{ __('Join') }}</a>
-                        @else
-                        <a class="btn btn-success btn-training" style="visibility: hidden;">{{ __('Join') }}</a>
-                        @endif
-                    </div>
+            </div>
+
+            <div class="card-body gr-train-body">
+
+
+                <p><span class=""> ■ {{ __('Description') }} : </span>{{ $train->description }}</p>
+                <p><span class="">■ {{ __('Date') }} : </span>{{ $date }}</p>
+                <p><span class="">■ {{ __('Activity time') }} : </span>{{ $start_time }} - {{$end_time}}</p>
+                <p><span class="">■ {{ __('Location') }} : </span>{{ $train->location }}</p>
+                <p><span class="">■ {{ __('Members') }} : </span>{{ $train->totalMembers }} / {{ $train->number_of_members }}</p>
+                <p><em><span class="">-----{{ __('Note') }} : </span>{{ $train->note }}</em></p>
+            </div>
+            <hr>
+            <div class="card-footer text-muted d-flex gr-train-footer">
+                <div class="float-left">
+                    @if(!$train->isJoin)
+                    <a class="btn btn-success" href="{{ route('join.group.training') }}?g_t={{ $train->id }}" data-toggle="tooltip" data-html="true"
+                       title="Click this button to join training">
+                        <i class="fa fa-gamepad" aria-hidden="true"></i> ▶</a>
+                    @else
+                    <a href="/training?g_t={{ $train->name }}" class="btn btn-success" data-toggle="tooltip" data-html="true"
+                            title="Join training">
+                        <i class="fa fa-gamepad" aria-hidden="true"></i> ▶</a>
+                    @endif
                 </div>
+
+                <div class="float-right btn btn-primary text-white tox-cursor-format-painter" data-toggle="tooltip" data-html="true" title="" data-original-title="<em>Number of participants</em>">
+                    <i class="fa fa-users mr-1" aria-hidden="true"></i>
+                    {{ $train->totalMembers }} / {{ $train->number_of_members }} </div>
             </div>
         </div>
         @empty

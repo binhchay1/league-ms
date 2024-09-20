@@ -57,7 +57,7 @@
                             ?>
                             <h5 class="">{{ __('Start Date') }}: {{ $start_date }}</h5>
                             <h5 class="">{{ __('End Date') }}: {{ $end_date }}</h5>
-                            <div class="prize">{{ __('PRIZE MONEY VND ') }}<?php echo number_format($leagueInfor->money ?? 0)?></div>
+                            <div class="prize">{{ __('PRIZE MONEY: ') }}<?php echo number_format($leagueInfor->money ?? 0) . " VND"?></div>
                         </div>
                     </div>
                 </div>

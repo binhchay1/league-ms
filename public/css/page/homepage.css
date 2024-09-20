@@ -2,6 +2,10 @@
     transform: scale(1.3); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
+.img-responsive-banner {
+    height: auto;
+    aspect-ratio: 1020 / 320;
+}
 .img-responsive {
     margin-left: auto;
     margin-right: auto;
@@ -18,7 +22,7 @@
 .container-1280 {
     max-width: 1280px;
     margin: auto;
-    padding: 30px;
+    padding: 10px;
     width: 100%;
 }
 
@@ -27,11 +31,12 @@
 }
 
 .next-tournament-section {
-    height: 400px;
+    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-size: cover;
+    background: url("/images/back-image.jpg");
 }
 
 .bg-black {
@@ -83,6 +88,10 @@
     color: #fff;
 }
 
+ .leage-name:hover {
+    color: red !important;
+}
+
 h6 {
     color: white;
 }
@@ -109,11 +118,12 @@ h6 {
 
 .top-player {
     margin-top: 20px;
+    background: url(https://bwfworldtour.bwfbadminton.com/wp-content/themes/world-tour/assets/images/bg-next-tmt.jpg);
 }
 
 .rankings-content_tabpanel .top-ranked-wrap {
+    background: url(https://bwfworldtour.bwfbadminton.com/wp-content/themes/world-tour/assets/images/bg-next-tmt.jpg);
     display: flex;
-    background-color: black;
     color: #fff;
     padding: 42px;
 }
@@ -584,3 +594,35 @@ body.open .navigation-menu__labels {
         width: 50% !important;
     }
 }
+
+
+.std-title h2 {
+    font-size: 28px;
+    font-weight: 400;
+    margin: 24px 0;
+    color: #646464;
+}
+
+.color-white h4 {
+    padding: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.footer-p p {
+    padding: 0 !important;
+    font-size: 12px;
+    line-height: 2.0em  !important;;
+}
+
+.nav-a a {
+    font-size: 12px;
+    padding: 0 !important;
+}
+
+.wcs-page_body {
+    color: #333;
+    padding-bottom: 10px;
+    overflow: hidden;
+}
+

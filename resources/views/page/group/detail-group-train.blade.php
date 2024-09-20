@@ -15,10 +15,18 @@
         <div class="card-header group-name">
             {{ $groupTrainingDetail->name }}
         </div>
+
+        <?php   $date = date("d/m/Y", strtotime($groupTrainingDetail->date));
+        $start_time= date("H:i", strtotime($groupTrainingDetail->start_time));
+        $end_time = date("H:i", strtotime($groupTrainingDetail->end_time));
+        ?>
+
         <div class="card-body">
-            <p>* {{ __('Description') }}: {{ $groupTrainingDetail->description }}</p>
-            <p>* {{ __('Location') }}: {{ $groupTrainingDetail->location }}</p>
-            <p>* {{ __('Activity time') }}: {{ $groupTrainingDetail->activity_time }}</p>
+            <p>■  {{ __('Description') }}: {{ $groupTrainingDetail->description }}</p>
+            <p>■  {{ __('Location') }}: {{ $groupTrainingDetail->location }}</p>
+            <p>■  {{ __('Date') }}: {{ $date }}</p>
+            <p>■  {{ __('Number of member') }}: {{ $groupTrainingDetail->location }}</p>
+            <p>■  {{ __('Activity time') }}: {{ $start_time}} ~  {{$end_time}}</p>
             <p class="fst-italic fw-light fw-bold">----- {{ __('Note') }}: {{ $groupTrainingDetail->note }}</p>
         </div>
         <div class="mt-3" style="padding: 15px">
@@ -42,9 +50,15 @@
     </div>
 
     <div class="card" style="width: 50rem; margin-top: 20px; margin-bottom: 120px">
-        <div class="card-header">
-            {{__('Join')}}
+        <div class="d-flex">
+            <div class=" align-items-center" >
+                <img class="avatar-group" src="{{ asset('https://png.pngtree.com/png-clipart/20230817/original/pngtree-badminton-icon-logo-and-sport-club-template-vector-vector-picture-image_10923178.png')  }}">
+            </div>
+            <div class="" >
+                <h5 style="line-height: 50px">{{__('Join')}}</h5>
+            </div>
         </div>
+
         <ul class="list-group list-group-flush">
             @foreach($listMembers as $members)
             <li class="list-group-item">{{ $members->name }}</li>

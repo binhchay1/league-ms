@@ -18,7 +18,7 @@ $isFull = false;
 <section id="group" class="container">
     <div class="std-title">
         <div class="std-title-left">
-            <h2 class="left" style=" font-weight: 400;">{{ __('GROUP') }}</h2>
+            <h2 class="left" style=" font-weight: 400; color: black">{{ __('GROUP') }}</h2>
         </div>
 
     </div>
@@ -53,10 +53,10 @@ $isFull = false;
 
                 <hr>
                 <div class="mt-3 descript-group">
-                    <p>* {{ __('Description') }}: {{ $group->description }}</p>
-                    <p>* {{ __('Location') }}: {{ $group->location }}</p>
-                    <p>* {{ __('Activity time') }}: {{ $group->activity_time }}</p>
-                    <p class="fst-italic fw-light fw-bold">----- {{ __('Note') }}: {{ $group->note }}</p>
+                    <p>■ {{ __('Description') }}: {{ $group->description }}</p>
+                    <p>■ {{ __('Location') }}: {{ $group->location }}</p>
+                    <p>■ {{ __('Number of member') }}: {{ $group->number_of_members }}</p>
+                    <p class="">----- {{ __('Note') }}: {{ $group->note }}</p>
                     <div class="mt-3">
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" <?php echo 'style="width:' . ($group->group_users->count() / $group->number_of_members * 100) . '%"' ?> aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>

@@ -115,7 +115,8 @@ class HomeController extends Controller
 
     public function viewAbout()
     {
-        return view('page.about');
+        $listPosts = $this->postRepository->listPostLimit();
+        return view('page.about', compact('listPosts'));
     }
 
     public function viewPricing()
@@ -136,7 +137,7 @@ class HomeController extends Controller
     public function viewRanking(Request $request)
     {
         $ranking = $this->rankingRepository->getTop();
-        $listRankings = $this->utility->paginate($ranking, 10);
+        $listRankings = $this->utility->paginate($ranking, 15);
         $listRank = $this->rankingRepository->listRankHomePage();
 
         return view('page.ranking.index', compact('ranking', 'listRankings', 'listRank'));
@@ -511,9 +512,10 @@ class HomeController extends Controller
     public function news()
     {
         $listNews = $this->postRepository->index();
+        $firstNews = $this->postRepository->firstNew();
         $categories = $this->categoryPostRepository->index();
         $listNewsPopulars = $this->postRepository->getNewsPopular();
-        return view('page.post.list', compact('listNews', 'listNewsPopulars', 'categories'));
+        return view('page.post.list', compact('listNews', 'listNewsPopulars', 'categories','firstNews'));
     }
 
     public function newsDetail($slug)
