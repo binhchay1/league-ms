@@ -52,7 +52,7 @@
                                     <h6 class="">{{ __('Start Date') }}: {{ $start_date }}</h6>
                                     <h6 class="">{{ __('End Date') }}: {{ $end_date }}</h6>
                                     <div class="prize">
-                                        {{ __('PRIZE MONEY VND ') }} <?php echo number_format($listLeague->money ?? 0)?>
+                                        {{ __('PRIZE MONEY:  ') }} <?php echo number_format($listLeague->money ?? 0). " VND"?>
                                     </div>
                                 </div>
                             </div>

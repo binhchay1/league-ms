@@ -11,7 +11,7 @@
 
 .current-tmt-outer {
     width: 100%;
-    padding: 36px;
+    padding: 17%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -33,6 +33,15 @@
 .current-tmt-date {
     margin-top: 24px;
     font-weight: 700;
+    text-align: center;
+}
+
+#live-match-schedule {
+    padding: 10px;
+}
+
+.current-tmt-date1 {
+    margin-top: 16px;
     text-align: center;
 }
 
@@ -362,12 +371,13 @@ ul.result-match-cards .result-match-single-card .round-time {
 }
 
 .match-live {
+    margin-top: -2%;
     background: grey;
-    margin-bottom: 50px;
+    background: url("/images/back-image.jpg");
 }
 
-.current-tmt-outer {
-    background: #b8b8b8;
+.living {
+    border-left: solid;
 }
 
 

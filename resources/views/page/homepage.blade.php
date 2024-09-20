@@ -71,14 +71,14 @@
 
                             <div class="info">
                                 <a href="{{ route('league.info', $league['slug']) }}">
-                                    <h2>{{ $league->name }}</h2>
+                                    <h2 class="leage-name">{{ $league->name }}</h2>
                                     <?php $start_date = date('d/m/Y', strtotime($league->start_date));
                                     $end_date = date('d/m/Y', strtotime($league->end_date));
                                     ?>
                                     <h6 class="">{{ __('Start Date')}}: {{ $start_date }}</h6>
                                     <h6 class="">{{ __('End Date')}}: {{ $end_date }}</h6>
                                 </a>
-                                <div class="prize">{{ __('PRIZE MONEY USD ') }}${{ $league->money }}</div>
+                                {{ __('PRIZE MONEY: ') }} <?php echo number_format($league->money ?? 0) . " VND"?>
                             </div>
                         </div>
 

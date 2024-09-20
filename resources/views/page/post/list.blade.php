@@ -14,6 +14,10 @@
 @section('content')
     <section class="news-landing-wrap container-1280" style="padding-top:0px;">
         <div class="news-section bg-white">
+            <div class="std-title-left d-flex " style="justify-content: space-between">
+                <h2 class="left" style=" font-weight: 400; color: black; margin: 0">{{ __('News') }}</h2>
+            </div>
+
             <div class="news-overview">
                 <div class="news-featured">
                     @foreach($firstNews as $new)
@@ -75,11 +79,7 @@
                 </div>
             </div>
         </div>
-        <div class="news-sidebar">
-
-            <div>
-            </div>
-
+        <div class="news-sidebar" style="margin-top: 7%">
             <aside id="secondary" class="sidebar-area" role="complementary" >
                 <div class="widget widget__latest-news ">
                     <span style="font-size: 25px; padding: 10px">

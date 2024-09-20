@@ -88,6 +88,10 @@
     color: #fff;
 }
 
+ .leage-name:hover {
+    color: red !important;
+}
+
 h6 {
     color: white;
 }

@@ -115,7 +115,8 @@ class HomeController extends Controller
 
     public function viewAbout()
     {
-        return view('page.about');
+        $listPosts = $this->postRepository->listPostLimit();
+        return view('page.about', compact('listPosts'));
     }
 
     public function viewPricing()
