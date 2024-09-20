@@ -13,12 +13,12 @@
 
     <section style="background-color: #DA0011; margin-top: -25px">
         <div>
-            <img class="img-responsive-banner b-error b-error" width="100%" height="500" src="{{ asset('images/banner-homepage.jpg') }}">
+            <img class=" b-error b-error" width="100%" style="margin-top: -11%"  src="{{ asset('images/banner.jpg') }}">
         </div>
     </section>
     <section id="news" class="container-1280 news-section bg-white">
-        <div class="std-title " style="margin-top: 10px" >
-            <h2 class="left">{{ __('Latest Tour News') }}</h2>
+        <div class="std-title " >
+            <h2 class="left">{{ __('Latest News') }}</h2>
             <a href="{{route('news')}}">
                 <h2 class="right league-all-data">{{ __('All News') }}</h2>
             </a>
@@ -49,9 +49,9 @@
     </section>
 
     <div class="std-title container-1280 " >
-        <h2 class="left">{{ __('Next Tournament') }}</h2>
+        <h2 class="left">{{ __('Next League') }}</h2>
         <a href="{{ route('list.league') }}">
-            <h2 class="right league-all-data">{{ __('All Tournaments') }}</h2>
+            <h2 class="right league-all-data">{{ __('All Leagues') }}</h2>
         </a>
     </div>
 
@@ -100,7 +100,7 @@
 
     <section id="news" class="container-1280 news-section bg-white">
         <div class="std-title " style="margin-top: 10px" >
-            <h2 class="left">{{ __('World Tour Leaders') }}</h2>
+            <h2 class="left">{{ __('Leaders Ranking') }}</h2>
             <a href="{{route('ranking')}}" >
                 <h2 class="right league-all-data">{{ __('Full Rankings') }}</h2>
             </a>
