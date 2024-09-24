@@ -11,10 +11,20 @@ $isFull = false;
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('/css/page/group.css') }}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
 @endsection
-
+<style>
+    .alert{
+        display: none;
+    }
+</style>
 @section('content')
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        Success! message sent successfully.
+    </div>
 
+    </div>
 <section id="group" class="container">
     <div class="std-title">
         <div class="std-title-left">
@@ -71,20 +81,30 @@ $isFull = false;
                             @else
 
                             <div id="btn-join">
-                                @if(!$isJoin and !$isFull)
+                                <?php
+                                        $checkUser = null;
+                                        $getUser = $group->group_users;
+                                        foreach ($getUser as $user) {
+                                            $checkUser = $user->user_id ;
+                                        }
+
+                                        $checkAuth = Auth::user()->id;
+
+                                ?>
+                                @if(!($checkUser ==  $checkAuth || $group->group_users->count() == $group->number_of_members))
                                 <div>
-                                    <button class="btn btn-success" id="groups-{{ $group->name }}" onclick="requestJoin(this.id)">{{ __('Join group') }}</button>
+                                    <button class="btn btn-success" id="groups-{{ $group->id }}" onclick="requestJoin(this.id)">{{ __('Join group') }}</button>
                                 </div>
-                                @else
-                                @if($isFull)
+
+                                @endif
+                                @if($group->group_users->count() == $group->number_of_members)
                                 <div>
                                     <button class="btn btn-danger"  disabled>{{ __('Full members') }}</button>
                                 </div>
-                                @else
+                                @elseif( $checkUser ==  $checkAuth)
                                 <div>
                                     <button class="btn btn-success"  disabled>{{ __('Joined') }}</button>
                                 </div>
-                                @endif
                                 @endif
                             </div>
                             @endif
@@ -124,7 +144,8 @@ $isFull = false;
 </section>
 
 @endsection
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @section('js')
 <script>
     function detailGroup(id) {
@@ -136,6 +157,7 @@ $isFull = false;
 
     function requestJoin(id) {
         let g_i = id.substring(7);
+        console.log(g_i)
         let url = '/join-group/';
 
         $.ajax({
@@ -146,16 +168,24 @@ $isFull = false;
             }
         }).done(function(result) {
             if (result == 'success') {
-                let btnSuccess = '<div><button class="btn btn-success" disabled>' + '<?php echo __('Joined') ?>' + '</button></div>'
-                $('#btn-join').empty();
-                $('#btn-join').append(btnSuccess);
+                toastr.options.timeOut = 10000;
+                toastr.success("Thank you for joining the group!");
+                setTimeout(function() {
+                    location.reload(); // Change this to your desired URL
+                }, 5000); // 5000 milliseconds = 5 seconds
+
             } else if (result == 'wait') {
-                let btnWait = '<div><button class="btn btn-secondary" disabled>' + '<?php echo __('Wait group owner accept') ?>' + '</button></div>'
-                $('#btn-join').empty();
-                $('#btn-join').append(btnWait);
+                toastr.options.timeOut = 10000;
+                toastr.success("Thank you for joining the group, we will respond immediately.!");
+                setTimeout(function() {
+                    location.reload(); // Change this to your desired URL
+                }, 5000); // 5000 milliseconds = 5 seconds
             } else {
-                let btnFail = '<div><p class="text-red">' + '<?php echo __('Fail to join. Try again later!') ?>' + '</p></div>'
-                $('#btn-join').append(btnFail);
+                toastr.options.timeOut = 10000;
+                toastr.error("Error when joining group!");
+                setTimeout(function() {
+                    location.reload(); // Change this to your desired URL
+                }, 5000); // 5000 milliseconds = 5 seconds
             }
         });
     }

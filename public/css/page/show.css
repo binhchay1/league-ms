@@ -10022,4 +10022,48 @@ ul.select-list a.active {
 
 }
 
+.league-banner--enroll {
+    margin-top: 20px;
+    color: #9b9b9b;
+    min-height: 300px;
+    padding: 40px;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(135deg, #3bbf1a, #3916b7);
+}
+
+.league-banner--enroll h4 {
+    color: white;
+}
+
+#clockdiv {
+    color: #fff;
+    display: flex;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#clockdiv div>span {
+    background: rgba(0, 0, 0, .5);
+    border-radius: 3px;
+    font-weight: 100;
+}
+
+.smalltext {
+    font-size: 13px;
+    padding-top: 5px;
+}
+
+#clockdiv div>span, #clockdiv>div {
+    display: inline-block;
+    padding: 10px;
+}
+
+#clockdiv>div {
+    background: rgba(0, 0, 0, .25);
+    border-radius: 4px;
+    margin: 2px;
+}
+
 

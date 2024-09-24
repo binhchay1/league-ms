@@ -121,12 +121,12 @@ class  AuthController extends Controller
 
     public function joinGroup(Request $request)
     {
-        $nameGroup = $request->get('g_i');
-        if (empty($nameGroup)) {
+        $dataGroup = $request->get('g_i');
+        if (empty($dataGroup)) {
             return 'fail';
         }
 
-        $getGroup = $this->groupRepository->getGroupByName($nameGroup);
+        $getGroup = $this->groupRepository->getGroupById($dataGroup);
         if (empty($getGroup)) {
             return 'fail';
         }
