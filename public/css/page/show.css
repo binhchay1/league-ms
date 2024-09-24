@@ -10066,4 +10066,7 @@ ul.select-list a.active {
     margin: 2px;
 }
 
+.login-redriect a:hover {
+    color: red;
+}
 

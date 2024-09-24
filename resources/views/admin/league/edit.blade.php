@@ -27,9 +27,11 @@
                                         <div id="btnimage">
                                             <img id="showImage" class="show-avatar" src="{{asset($dataLeague->images ?? '/images/logo-no-background.png')}}" alt="avatar" >
                                         </div>
+                                        <i class="text-red"> {{__('Image format:jpeg,png,jpg')}} </i>
                                         <div id="button">
                                             <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image') }}</i>
                                         </div>
+
                                     </div>
                                     @if ($errors->has('images'))
                                     <span class="text-danger">{{ $errors->first('images') }}</span>

@@ -231,8 +231,12 @@
                                     </div>
                                 @else
                                     <div align="center">
-                                        <h4 class="mt-4">{{ __('Please')}} <a
-                                                href="{{ route('login') }}">{{__('login')}}</a> {{__('before registering for the tournament!') }}
+                                        <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
+
+                                        <h4 class="mt-4 login-redriect">{{ __('Please')}}
+                                            <a
+                                                href="{{ route('login') }}">{{__('login')}}</a>
+                                            {{__('before registering for the tournament!') }}
                                         </h4>
                                     </div>
                                 @endif
