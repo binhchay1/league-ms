@@ -90,7 +90,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="address" class="form-label">{{ __('Register league ') }}</label>
-                                    <input type="date" value="{{ old('end_date_register',$dataLeague['end_date_register']) }}" class="form-control" id="end_date_register" name="end_date_register" placeholder="{{ __('Enter league register date') }}" />
+                                    <input type="datetime-local" value="{{ old('end_date_register',$dataLeague['end_date_register']) }}" class="form-control" id="end_date_register" name="end_date_register" placeholder="{{ __('Enter league register date') }}" />
                                     @if ($errors->has('end_date_register'))
                                         <span class="text-danger">{{ $errors->first('end_date_register') }}</span>
                                     @endif

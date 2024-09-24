@@ -25,9 +25,9 @@ class GroupRepository extends BaseRepository
         return $this->model->with('group_users')->with('users')->where('active', GroupEnum::STATUS_ACTIVE)->get();
     }
 
-    public function getGroupByName($name)
+    public function getGroupById($dataGroup)
     {
-        return $this->model->with('group_users')->with('users')->with('group_trainings')->where('name', $name)->first();
+        return $this->model->with('group_users')->with('users')->with('group_trainings')->where('id', $dataGroup)->first();
     }
 
     public function deleteGroup($id)
