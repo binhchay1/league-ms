@@ -26,5 +26,5 @@ return new class extends Migration
             $table->date('end_date_register')->change();
         });
     }
- 
+
 };
