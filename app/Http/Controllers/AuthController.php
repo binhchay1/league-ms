@@ -17,7 +17,6 @@ use App\Repositories\RankingRepository;
 use App\Repositories\UserLeagueRepository;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 use Hash;
 use Session;
 
