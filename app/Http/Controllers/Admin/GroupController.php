@@ -76,7 +76,6 @@ class GroupController extends Controller
                 $input['images'] = $path;
             }
         }
-        dd($input);
 
         $this->groupRepository->updateById($id, $input);
         return redirect()->route('group.index')->with('success','Group successfully updated.');

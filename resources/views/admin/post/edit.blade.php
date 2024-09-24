@@ -40,9 +40,12 @@
                                             <div id="btnimage">
                                                 <img id="showImage" class="show-avatar" src="{{asset($post->thumbnail ?? '/images/logo-no-background.png')}}" alt="avatar">
                                             </div>
+                                            <i class="text-red"> {{__('Image format:jpeg,png,jpg')}} </i>
+
                                             <div id="button">
                                                 <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image') }}</i>
                                             </div>
+
                                         </div>
                                         @if ($errors->has('thumbnail'))
                                             <span class="text-danger">{{ $errors->first('thumbnail') }}</span>
