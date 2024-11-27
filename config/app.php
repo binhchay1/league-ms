@@ -177,7 +177,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*

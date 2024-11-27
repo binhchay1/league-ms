@@ -4,17 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Enums\Utility;
 use App\Repositories\CategoryPostRepository;
-use App\Repositories\GroupRepository;
-use App\Repositories\GroupTrainingRepository;
 use App\Repositories\LeagueRepository;
+use App\Repositories\PlayerPostRepository;
 use App\Repositories\PostRepository;
 use App\Repositories\UserLeagueRepository;
 use App\Repositories\UserRepository;
-use App\Repositories\GroupUserRepository;
-use App\Repositories\MessageRepository;
-use App\Repositories\NotificationRepository;
 use App\Repositories\ProductRepository;
-use App\Repositories\RankingRepository;
 use App\Repositories\ScheduleRepository;
 use App\Repositories\RefereeRepository;
 use App\Repositories\ResultRepository;
@@ -29,67 +24,46 @@ class HomeController extends Controller
     protected $userLeagueRepository;
     protected $leagueRepository;
     protected $userRepository;
-    protected $groupRepository;
-    protected $groupUserRepository;
     protected $messageRepository;
-    protected $rankingRepository;
     protected $productRepository;
-    protected $notificationRepository;
     protected $scheduleRepository;
     protected $utility;
-    protected $groupTraining;
     protected $refereeRepository;
     protected $resultRepository;
     protected $postRepository;
     protected $categoryPostRepository;
+    protected $playerRepository;
 
     public function __construct(
         UserLeagueRepository $userLeagueRepository,
         LeagueRepository $leagueRepository,
         UserRepository $userRepository,
-        GroupRepository $groupRepository,
-        GroupUserRepository $groupUserRepository,
-        MessageRepository $messageRepository,
-        RankingRepository $rankingRepository,
         ProductRepository $productRepository,
-        NotificationRepository $notificationRepository,
         ScheduleRepository $scheduleRepository,
         Utility $ultity,
-        GroupTrainingRepository $groupTraining,
         RefereeRepository $refereeRepository,
         ResultRepository $resultRepository,
         PostRepository $postRepository,
-        CategoryPostRepository $categoryPostRepository
+        CategoryPostRepository $categoryPostRepository,
+        PlayerPostRepository $playerRepository
     ) {
         $this->userLeagueRepository = $userLeagueRepository;
         $this->leagueRepository = $leagueRepository;
         $this->userRepository = $userRepository;
-        $this->groupRepository = $groupRepository;
-        $this->groupUserRepository = $groupUserRepository;
-        $this->messageRepository = $messageRepository;
-        $this->rankingRepository = $rankingRepository;
         $this->productRepository = $productRepository;
-        $this->notificationRepository = $notificationRepository;
         $this->scheduleRepository = $scheduleRepository;
         $this->utility = $ultity;
-        $this->groupTraining = $groupTraining;
         $this->refereeRepository = $refereeRepository;
         $this->resultRepository = $resultRepository;
         $this->postRepository = $postRepository;
         $this->categoryPostRepository = $categoryPostRepository;
+        $this->playerRepository = $playerRepository;
     }
 
     public function viewHome()
     {
-        $totalGroup = $this->groupRepository->count();
-        $totalLeague = $this->leagueRepository->count();
-        $totalView = strtotime(date('Y-m-d H:i:s')) / 1242222;
-        $listLeague = $this->leagueRepository->listLeagueHomePage();
-        $listRank = $this->rankingRepository->listRankHomePage();
-        $listPosts = $this->postRepository->listPostLimit();
 
-
-        return view('page.homepage', compact('totalGroup', 'totalLeague', 'totalView', 'listLeague', 'listRank', 'listPosts'));
+        return view('page.homepage');
     }
 
     public function viewSearch(Request $request)
@@ -124,9 +98,13 @@ class HomeController extends Controller
         return view('page.pricing');
     }
 
-    public function viewPrivacy()
+    public function team()
     {
-        return view('page.privacy');
+        $listGoalkeeper = $this->playerRepository->goalkeeper();
+        $defender = $this->playerRepository->defender();
+        $midfielder = $this->playerRepository->midfielder();
+        $forward = $this->playerRepository->forward();
+        return view('page.team', compact('listGoalkeeper', 'defender', 'midfielder','forward'));
     }
 
     public function viewTermAndConditions()
@@ -134,14 +112,6 @@ class HomeController extends Controller
         return view('page.term');
     }
 
-    public function viewRanking(Request $request)
-    {
-        $ranking = $this->rankingRepository->getTop();
-        $listRankings = $this->utility->paginate($ranking, 15);
-        $listRank = $this->rankingRepository->listRankHomePage();
-
-        return view('page.ranking.index', compact('ranking', 'listRankings', 'listRank'));
-    }
 
     public function viewInforPlayer($id)
     {

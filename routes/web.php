@@ -25,30 +25,21 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::middleware(['cache.notification'])->group(function () {
     Route::get('/', [HomeController::class, 'viewHome'])->name('home');
     Route::get('/tournament-leagues/', [HomeController::class, 'listLeague'])->name('list.league');
     Route::post('/search/', [HomeController::class, 'viewSearch'])->name('search.result');
     Route::get('/search/', [HomeController::class, 'viewSearch'])->name('search');
-    Route::get('/about/', [HomeController::class, 'viewAbout'])->name('about');
-    Route::get('/privacy/', [HomeController::class, 'viewPrivacy'])->name('privacy');
+    Route::get('/gioi-thieu/', [HomeController::class, 'viewAbout'])->name('about');
+    Route::get('/doi-hinh/', [HomeController::class, 'team'])->name('team');
     Route::get('/term-and-conditions/', [HomeController::class, 'viewTermAndConditions'])->name('term.and.conditions');
     Route::get('/tournament-league/{slug}/', [HomeController::class, 'showInfo'])->name('league.info');
     Route::get('/tournament-league/{slug}/player/', [HomeController::class, 'showPlayer'])->name('leaguePlayer.info');
     Route::get('/tournament-league/{slug}/result/', [HomeController::class, 'showResult'])->name('leagueResult.info');
     Route::get('/tournament-league/{slug}/schedule/', [HomeController::class, 'showSchedule'])->name('leagueSchedule.info');
     Route::get('/tournament-league/{slug}/bracket/', [HomeController::class, 'showBracket'])->name('leagueResult.bracket');
-    Route::get('/tournament-league/{slug}/fight-branch/', [HomeController::class, 'showFightBranch'])->name('leagueFightBranch.info');
-    Route::get('/list-teams/', [HomeController::class, 'listTeam'])->name('list.team');
-    Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
-    Route::get('/detail-group/', [HomeController::class, 'detailGroup'])->name('detail.group');
-    Route::get('/ranking/', [HomeController::class, 'viewRanking'])->name('ranking');
-    Route::get('/match-center/', [HomeController::class, 'viewMatch'])->name('match');
-    Route::get('match-center/{slug}', [HomeController::class, 'live'])->name('league.live');
     Route::get('/news/{slug}', [HomeController::class, 'newsDetail'])->name('news-show');
     Route::get('/news', [HomeController::class, 'news'])->name('news');
     Route::get('/news/category/{slug}', [HomeController::class, 'newsCategory'])->name('newsCategory');
-});
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');
 Route::post('/custom-login/', [AuthController::class, 'customLogin'])->name('login.custom');
@@ -71,21 +62,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/user-profile/{id}/', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/change-password/', [ProfileController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password/', [ProfileController::class, 'updatePassword'])->name('update-password');
-    Route::get('/my-group/', [ProfileController::class, 'viewMyGroup'])->name('my.group');
     Route::get('/my-league/', [ProfileController::class, 'viewMyLeague'])->name('my.league');
 
     Route::get('/league-manager/', [HomeController::class, 'leagueManager'])->name('league-manager');
-
     Route::post('/register-league/', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
     Route::get('/player/{id}/', [HomeController::class, 'viewInforPlayer'])->name('player.info');
     Route::get('/read-notifications/', [HomeController::class, 'readNotification'])->name('read.notification');
     Route::get('/profile/', [AuthController::class, 'profile'])->name('profile');
-    Route::get('/join-group/', [AuthController::class, 'joinGroup'])->name('join.group');
     Route::post('/messages/', [AuthController::class, 'sendMessage'])->name('send.message');
     Route::get('/logout/', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/training/', [HomeController::class, 'detailGroupTraining'])->name('groupTrain.detail');
-    Route::get('/group-training/', [HomeController::class, 'groupTraining'])->name('list.train');
-    Route::get('/join-group-training/', [HomeController::class, 'joinGroupTraining'])->name('join.group.training');
     Route::get('/live-score/', [HomeController::class, 'liveScore'])->name('live.score');
 
 
@@ -114,26 +99,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/update-schedule/{id}/', [ScheduleController::class, 'updateSchedule'])->name('schedule.update');
     Route::post('/update-result/{id}/', [ScheduleController::class, 'updateResult'])->name('schedule.updateResult');
     Route::get('/result', [ScheduleController::class, 'result'])->name('schedule.result');
-    Route::get('/export-schedule/{id}/', [ScheduleController::class, 'exportSchedule'])->name('schedule.export');
     Route::get('/auto-create-league', [ScheduleController::class, 'autoCreateLeague'])->name('auto.create.schedule');
     Route::get('/store-score', [ScheduleController::class, 'storeScore'])->name('store.score');
 
 
-    //group
-    Route::get('/list-group/', [GroupController::class, 'index'])->name('group.index');
-    Route::get('/group/{id}', [GroupController::class, 'show'])->name('group.show');
-    Route::post('/store-group/', [GroupController::class, 'store'])->name('group.store');
-    Route::get('/create-group/', [GroupController::class, 'create'])->name('group.create');
-    Route::get('/edit-group/{id}/', [GroupController::class, 'edit'])->name('group.edit');
-    Route::post('/update-group/{id}/', [GroupController::class, 'update'])->name('group.update');
-    Route::get('/delete-group/{id}/', [GroupController::class, 'destroy'])->name('group.delete');
-    Route::get('/active-group/{id}', [GroupController::class, 'activeGroup'])->name('activeGroup');
-    Route::post('/store-group-training/', [GroupController::class, 'groupTraining'])->name('groupTraining.create');
-    Route::get('/list-group-training/', [GroupController::class, 'listGroupTraining'])->name('list.groupTraining');
-    Route::get('/edit-group-training/{id}', [GroupController::class, 'editGroupTraining'])->name('edit.groupTraining');
-    Route::post('/update-group-training/{id}', [GroupController::class, 'updateGroupTraining'])->name('update.groupTraining');
-    Route::get('/delete-group-training/{id}', [GroupController::class, 'deleteGroupTraining'])->name('delete.groupTraining');
-    Route::get('/delete-account-apple/', [ProfileController::class, 'deleteAccount'])->name('delete.account.apple');
 
 
     //category post

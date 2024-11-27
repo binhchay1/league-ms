@@ -88,10 +88,13 @@ class ScheduleController extends Controller
             return back()->with('error', $report);
         }
         $input = $request->except(['_token']);
+        dd($input);
+
         foreach ($input as $key => $arrValue) {
             $count = count($arrValue);
             break;
         }
+        dd(1);
         for ($i = 0; $i < $count; $i++) {
             $dataRecord = [];
             foreach ($input as $key => $arrValue) {
@@ -163,7 +166,6 @@ class ScheduleController extends Controller
 
         $slug = $request->get('s');
         $getLeague = $this->leagueRepository->getLeagueBySlug($slug);
-
         if (empty($getLeague)) {
             abort(404);
         }
@@ -180,8 +182,9 @@ class ScheduleController extends Controller
         $totalMembers = count($listAuto);
         $dateData = $getLeague->start_date;
         $countNextDate = 1;
-
+dd(strpos($getLeague->type_of_league, 'singles'));
         if (strpos($getLeague->type_of_league, 'singles') > 0) {
+            dd(1);
             if ($totalMembers < 4) {
                 $report = __('The number of members participating in the tournament must be greater than 4');
                 return redirect()->route('schedule.leagueSchedule', $getLeague->slug)->with('error', $report);
@@ -269,6 +272,8 @@ class ScheduleController extends Controller
                 $countMatchIndex++;
             }
         } else {
+            dd(2);
+
             $countLack = 0;
             $breakFor = 0;
             if ($totalMembers < 8) {
@@ -462,24 +467,4 @@ class ScheduleController extends Controller
         return 'success';
     }
 
-    public function exportSchedule($id)
-    {
-        $getSchedule = $this->scheduleRepository->getScheduleById($id);
-
-        if (empty($getSchedule)) {
-            abort(404);
-        }
-        $getUserLeague = $this->userLeagueRepository->getLeagueByUserIdAndLeagueId(Auth::user()->id, $getSchedule->league_id);
-
-        if (empty($getUserLeague)) {
-            abort(403);
-        }
-
-        $getLeague = $this->leagueRepository->getLeagueById($getSchedule->league_id);
-        $getResult = $this->resultRepository->getResultByScheduleId($id);
-        $getReferees = $this->refereeRepository->getRefereeByScheduleId($getSchedule->id);
-        $name = 'results_' . $getLeague->slug . '_' . $getSchedule->match . '_' . date('Y-m-d') . '.xlsx';
-
-        return Excel::download(new ScheduleExcel($getSchedule, $getResult, $getLeague, $getReferees), $name);
-    }
 }

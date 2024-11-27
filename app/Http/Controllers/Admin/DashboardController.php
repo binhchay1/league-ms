@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Repositories\GroupRepository;
 use App\Http\Controllers\Controller;
 use App\Enums\Utility;
 use App\Repositories\LeagueRepository;
@@ -41,10 +40,7 @@ class DashboardController extends Controller
             $lisPost = $this->postRepository->index();
             $countQueryPost = clone $lisPost;
             $countPost = $countQueryPost->count();
-//
-//            $lisUser = $this->userRepository->index();
-//            $countQuery = clone $lisUser;
-//            $countUser = $countQuery->count();
+
 
 
             return view('layouts.dashboard', compact('countUser', 'countLeague', 'countPost'));

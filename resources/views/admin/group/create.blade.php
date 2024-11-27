@@ -35,10 +35,9 @@
                         <input value="" type="file" class="border-0 bg-light pl-0" name="images" id="image" hidden>
                         <div class=" choose-avatar">
                             <div id="btnimage">
+                                <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image: ') }}</i> <i class="text-black"> {{__('(jpeg,png,jpg)')}} </i>
                                 <img id="showImage" class="show-avatar" src="{{ asset('/images/logo-no-background.png') }}" alt="avatar" style="width: 200px;">
                             </div>
-                            <i class="text-red"> {{__('Image format:jpeg,png,jpg')}} </i>
-
 
                             <div id="button">
                                 <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image') }}</i>
