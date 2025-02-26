@@ -46,7 +46,7 @@
         color: lightgrey;
     }
 
-    .navbar-light .navbar-nav .nav-link {
+    .navbar-nav .nav-item a {
         color: white;
         font-size: 17px;
     }
@@ -67,41 +67,182 @@
         color: white!important;
     }
 
-    .navbar-nav .nav-item a {
-        text-decoration: none;
-        font-size: 18px;
-        font-weight: 300;
-        text-transform: uppercase;
-        transition: all .5s ease;
-        font-weight: 700;
-        cursor: pointer;
-    }
-
 
 
 </style>
 <body>
-    <header style="background-color: rgb(33, 150, 243);">
+    <header style="background-color: #222">
+        <div class="top-nav">
+            <ul class="container">
+                <li class="menu">
+                    <span>en</span>
+                    <ul>
+                        <li>
+                            <a class="{{ Session::get('locale') == 'en' ? 'active' : ''}}" href="{{ route('app.setLocale', ['locale' => 'en']) }}">
+                                {{ __('English') }}
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="{{ Session::get('locale') == 'vi' ? 'active' : ''}}" href="{{ route('app.setLocale', ['locale' => 'vi']) }}">
+                                {{ __('Vietnamese') }}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+{{--        <nav class="container">--}}
+{{--            <div class="navigation-menu__overlay" onclick="toggleMenuClicked()"></div>--}}
+
+{{--            @if(Route::is('home') )--}}
+{{--            <button type="button" class="hamburger-menu" onclick="toggleMenuClicked()">--}}
+{{--                <span class="material-icons" id="open-icon">menu</span>--}}
+{{--                <span class="material-icons" id="close-icon">close</span>--}}
+{{--            </button>--}}
+{{--            @else--}}
+{{--            <button type="button" class="hamburger-menu" onclick="window.history.go(-1); return false;">--}}
+{{--                <span class="fa fa-arrow-left" id="open-icon" style="color: white"></span>--}}
+{{--            </button>--}}
+{{--            @endif--}}
+
+{{--            <a href="{{ route('home') }}"><img  class="logo-image" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>--}}
+
+
+{{--            <ul class="menu-main navigation-menu__labels">--}}
+{{--                <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('LEAGUE') }}</a></li>--}}
+{{--                <li class="pt-2"><a href="{{ route('list.group') }}">{{ __('GROUP') }}</a></li>--}}
+{{--                <li class="pt-2"><a href="{{ route('ranking') }}">{{ __('RANKING') }}</a></li>--}}
+{{--                <li class="pt-2"><a href="{{ route('news') }}">{{ __('NEWS') }}</a></li>--}}
+{{--                <li class="pt-2"><a href="{{ route('match') }}">{{ __('MATCH CENTER') }}</a></li>--}}
+{{--                @if(Auth::check())--}}
+{{--                <li class="pt-2"><a href="{{ route('league.create') }}">{{ __('CREATE LEAGUE') }}</a></li>--}}
+{{--                @endif--}}
+{{--                <li id="search">--}}
+{{--                    <form id="search-league" action="{{ route('search') }}" method="post">--}}
+{{--                        @csrf--}}
+{{--                        <div onclick="openSearch()">--}}
+{{--                            <input type="search" name="search" placeholder="{{ __('Search leagues') }}...">--}}
+{{--                            <button type="button">--}}
+{{--                                <img src="{{ asset('/svg/icon-search.svg') }}" alt="{{ __('Search') }}" title="{{ __('Search') }}" width="15" height="15">--}}
+{{--                            </button>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
+{{--                </li>--}}
+{{--                <div class="nav-group">--}}
+{{--                    @if(Auth::check())--}}
+{{--                    <li class="menu">--}}
+{{--                        <span>--}}
+{{--                            @if (strpos(Auth::user()->profile_photo_path, 'http') > 0)--}}
+{{--                            <img class="avatar-user" width="40" height="40" src="{{ Auth::user()->profile_photo_path ?? asset('/images/no-image.png') }}">--}}
+{{--                            @else--}}
+{{--                            <img class="avatar-user" width="40" height="40" src="{{ asset( Auth::user()->profile_photo_path ?? '/images/no-image.png') }}">--}}
+{{--                            @endif--}}
+{{--                        </span>--}}
+{{--                        <ul class="submenu">--}}
+{{--                            <li>--}}
+{{--                                <a class="account" href="{{ route('profile.edit') }}">--}}
+{{--                                    {{ __('Profile') }}--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+
+{{--                            <li>--}}
+{{--                                <a class="account" href="{{ route('my.group') }}">--}}
+{{--                                    {{ __('My group') }}--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                            <li><a class="dropdown-item account" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt mr-2 "></i>{{ __('Logout') }}</a></li>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
+
+{{--                    @else--}}
+{{--                    <li><a href="{{ route('login') }}" class="button white ">{{ __('Log In') }}</a></li>--}}
+{{--                    <li><a href="{{ route('register_user') }}" class="button btn-register">{{ __('Register') }}</a></li>--}}
+{{--                    @endif--}}
+
+{{--                    @if(Auth::check())--}}
+{{--                    @php--}}
+{{--                    $count = 0;--}}
+{{--                    $listNotification = Cache::get('notification_next_match_' . Auth::user()->id);--}}
+{{--                    foreach($listNotification as $notification) {--}}
+{{--                    if($notification->status == 0) {--}}
+{{--                    $count++;--}}
+{{--                    }--}}
+{{--                    }--}}
+{{--                    @endphp--}}
+{{--                    <li class="li-notification">--}}
+{{--                        <a class="notification" id="notification">--}}
+{{--                            <i class="fas fa-bell"></i>--}}
+{{--                            <span class="badge">{{ $count }}</span>--}}
+{{--                        </a>--}}
+{{--                        @if(count($listNotification) > 0)--}}
+{{--                        <ul class="dropdown-notification" id="dropdown-notification">--}}
+{{--                            @foreach($listNotification as $notification)--}}
+{{--                            @if($notification->status == 0)--}}
+{{--                            <li class="noti-unread"><a>{{ $notification->content }}</a></li>--}}
+{{--                            @else--}}
+{{--                            <li><a>{{ $notification->content }}</a></li>--}}
+{{--                            @endif--}}
+{{--                            @endforeach--}}
+{{--                        </ul>--}}
+{{--                        @else--}}
+{{--                        <ul class="dropdown-notification" id="dropdown-notification">--}}
+{{--                            <li><a>{{ __('Empty Notification') }}</a></li>--}}
+{{--                        </ul>--}}
+{{--                        @endif--}}
+{{--                    </li>--}}
+{{--                </div>--}}
+{{--                @endif--}}
+
+{{--            </ul>--}}
+{{--        </nav>--}}
+
         <nav class="navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm" >
             <div class="container">
-                <a href="{{ route('home') }}"><img  class="logo-image" src="{{ asset('/images/logohungha.jpg') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
+                <a href="{{ route('home') }}"><img  class="logo-image" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+{{--                    <div class="ms-auto d-none d-lg-block">--}}
+{{--                        <div class="input-group">--}}
+{{--                            <span class="border-warning input-group-text bg-warning text-white"><i class="fa-solid fa-magnifying-glass"></i></span>--}}
+{{--                            <input type="text" class="form-control border-warning" style="color:#7a7a7a">--}}
+{{--                            <button class="btn btn-warning text-white">Search</button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <ul class="navbar-nav ms-auto ">
+                        <div class="nav-item dropdown">
+                            <a class="nav-link mx-2 dropdown-toggle text-uppercase" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{__('LEAGUE')}}
+                                <i class="fa fa-sort-down"></i>
+
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{{route('list.league')}}">{{__('List League')}}</a></li>
+                                <li><a class="dropdown-item" href="{{route('league.create')}}">{{__('Create League')}}</a></li>
+                            </ul>
+                        </div>
                         <li class="nav-item">
-                            <a class="nav-link mx-2 text-uppercase" href="{{ route('about') }}">{{__('GIỚI THIỆU')}}</a>
+                            <a class="nav-link mx-2 text-uppercase" href="{{ route('ranking') }}">{{__('RANKING')}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-2 text-uppercase" href="{{ route('team') }}">{{__('ĐỘI HÌNH')}}</a>
+                            <a class="nav-link mx-2 text-uppercase" href="{{ route('news') }}">{{__('NEWS')}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-2 text-uppercase" href="">{{__('THI ĐẤU')}}</a>
+                            <a class="nav-link mx-2 text-uppercase" href="{{ route('match') }}">{{__('MATCH CENTER')}}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-2 text-uppercase" href="">{{__('TIN TỨC')}}</a>
-                        </li>
+                        <div class="nav-item dropdown">
+                            <a class="nav-link mx-2 dropdown-toggle text-uppercase" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{__('GROUP')}}
+                                <i class="fa fa-sort-down"></i>
+
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{{route('list.group')}}">{{__('List Group')}}</a></li>
+                                <li><a class="dropdown-item" href="{{route('group.create')}}">{{__('Create Group')}}</a></li>
+                            </ul>
+                        </div>
                         @if(Auth::check() && Auth::user()->role =="admin" )
                         <li class="nav-item" style="background: #312f2f">
                             <a class="nav-link mx-2 text-uppercase" href="{{ route('dashboard') }}">{{__('DASHBOARD')}}</a>
@@ -134,6 +275,40 @@
                             <li><a href="{{ route('register_user') }}" class="button btn-register">{{ __('Register') }}</a></li>
                         @endif
 
+                        @if(Auth::check())
+                            @php
+                                $count = 0;
+                                $listNotification = Cache::get('notification_next_match_' . Auth::user()->id);
+                                foreach($listNotification as $notification) {
+                                if($notification->status == 0) {
+                                $count++;
+                                }
+                                }
+                            @endphp
+                            <li class="li-notification">
+                                <a class="notification" id="notification">
+                                    <i class="fas fa-bell"></i>
+                                    <span class="badge">{{ $count }}</span>
+                                </a>
+                                @if(count($listNotification) > 0)
+                                    <ul class="dropdown-notification" id="dropdown-notification">
+                                        @foreach($listNotification as $notification)
+                                            @if($notification->status == 0)
+                                                <li class="noti-unread"><a>{{ $notification->content }}</a></li>
+                                            @else
+                                                <li><a>{{ $notification->content }}</a></li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <ul class="dropdown-notification" id="dropdown-notification">
+                                        <li><a>{{ __('Empty Notification') }}</a></li>
+                                    </ul>
+                                @endif
+                            </li>
+                        @endif
+
+
                 </ul>
                 </div>
             </div>
@@ -165,6 +340,7 @@
                     <ul class="nav-a " style="display: flex; flex-direction: column;">
                         <li><a href="{{ route('list.league') }}">{{ __('League') }}</a></li>
                         <li><a href="">{{ __('Shop') }}</a></li>
+                        <li><a href="{{ route('list.group') }}">{{ __('Group') }}</a></li>
                         <li><a href="{{ route('news') }}">{{ __('News') }}</a></li>
                     </ul>
                 </div>
@@ -175,12 +351,13 @@
                             <small class="nav-a">
                                 <a href="{{ route('term.and.conditions') }}">{{ __('Terms & Conditions') }}</a>
                                 <br>
+                                <a href="{{ route('privacy') }}">{{ __('Privacy') }}</a>
                                 <br>
                                 <a href="{{ route('home')}}">{{ __('Badminton.io') }}</a>
                             </small>
                         </p>
                         <ul class="social">
-                            <li><a href="{{route('home')}}"><img src="{{ asset('/images/hunghafc.jpg') }}"  width="70" height="70"></a></li>
+                            <li><a href="{{route('home')}}"><img src="{{ asset('/images/logo-no-background.png') }}"  width="70" height="70"></a></li>
                         </ul>
                     </form>
                 </div>

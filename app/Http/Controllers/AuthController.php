@@ -11,6 +11,9 @@ use App\Events\MessageSent;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\GroupUserRepository;
+use App\Repositories\GroupRepository;
+use App\Repositories\RankingRepository;
 use App\Repositories\UserLeagueRepository;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -19,15 +22,22 @@ use Session;
 
 class  AuthController extends Controller
 {
+    protected $groupUserRepository;
+    protected $groupRepository;
     protected $rankingRepository;
     protected $userLeagueRepository;
     protected $utility;
 
     public function __construct(
-
+        GroupUserRepository $groupUserRepository,
+        GroupRepository $groupRepository,
+        RankingRepository $rankingRepository,
         UserLeagueRepository $userLeagueRepository,
         Utility $ultity
     ) {
+        $this->groupUserRepository = $groupUserRepository;
+        $this->groupRepository = $groupRepository;
+        $this->rankingRepository = $rankingRepository;
         $this->userLeagueRepository = $userLeagueRepository;
         $this->utility = $ultity;
     }
@@ -108,7 +118,71 @@ class  AuthController extends Controller
         return view('page.user.profile');
     }
 
+    public function joinGroup(Request $request)
+    {
+        $dataGroup = $request->get('g_i');
+        if (empty($dataGroup)) {
+            return 'fail';
+        }
 
+        $getGroup = $this->groupRepository->getGroupById($dataGroup);
+        if (empty($getGroup)) {
+            return 'fail';
+        }
+
+        $user = Auth::user();
+        if ($getGroup->status == Group::STATUS_PRIVATE) {
+            $group_users = $this->groupUserRepository->checkJoinedGroupByName($user->id, $getGroup->id);
+            if (empty($group_users)) {
+                $data = [
+                    'group_id' => $getGroup->id,
+                    'user_id' => $user->id,
+                    'status_request' => Group::STATUS_REQUESTED
+                ];
+                $this->groupUserRepository->create($data);
+
+                return 'wait';
+            } else {
+                if ($group_users->status_request == Group::STATUS_REJECTED) {
+                    return 'reject';
+                }
+            }
+        } else {
+            $data = [
+                'group_id' => $getGroup->id,
+                'user_id' => $user->id,
+                'status_request' => Group::STATUS_ACCEPTED
+            ];
+            $this->groupUserRepository->create($data);
+        }
+
+        return 'success';
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $user = Auth::user();
+        $message = $request->get('message');
+        $group_id = $request->get('g_i');
+
+        if ($message == null or $group_id == null) {
+            abort(403);
+        }
+
+        $isJoined = $this->groupUserRepository->checkJoinedGroupByName($user->id, $group_id);
+        if (empty($isJoined)) {
+            abort(403);
+        }
+
+        $message = $user->messages()->create([
+            'message' => $message,
+            'group_id' => $group_id
+        ]);
+
+        broadcast(new MessageSent($user, $message, $group_id))->toOthers();
+
+        return ['status' => 'sent'];
+    }
 
 
 }

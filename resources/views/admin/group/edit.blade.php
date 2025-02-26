@@ -37,8 +37,9 @@
                                 <div id="btnimage">
                                     <img id="showImage" class="show-avatar" src="{{ asset($dataGroup->images ??'/images/logo-no-background.png') }}" alt="avatar" style="width: 200px;">
                                 </div>
+                                <i class="text-red"> {{__('Image format:jpeg,png,jpg')}} </i>
                                 <div id="button">
-                                    <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image: ') }}</i> <i class="text-black"> {{__('(jpeg,png,jpg)')}} </i>
+                                    <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image') }}</i>
                                 </div>
                             </div>
                             @if ($errors->has('images'))

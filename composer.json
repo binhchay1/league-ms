@@ -13,6 +13,7 @@
         "laravel/socialite": "*",
         "laravel/tinker": "^2.8",
         "lcobucci/jwt": "*",
+        "maatwebsite/excel": "^3.0.1",
         "predis/predis": "^2.2",
         "pusher/pusher-php-server": "^7.2",
         "realrashid/sweet-alert": "^7.1",

@@ -8,6 +8,7 @@ use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\Role;
 use App\Enums\Title;
+use App\Repositories\RankingRepository;
 use App\Services\AppleToken;
 use Exception;
 use Illuminate\Http\Request;

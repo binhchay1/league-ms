@@ -36,10 +36,11 @@
     align-items: center;
     justify-content: center;
     background-size: cover;
+    background: url("/images/back-image.jpg");
 }
 
 .bg-black {
-    background-color: #f0f0f0 !important;
+    background-color: #222 !important;
 }
 
 .next-tournament-section .next-tournament-wrap {
@@ -54,9 +55,11 @@
 
 .results .wrapper-results .box-results-tournament {
     box-sizing: border-box;
+    margin: 20px 0 0;
     color: #fff;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .results .wrapper-results .box-results-tournament>div {
@@ -617,110 +620,9 @@ body.open .navigation-menu__labels {
     padding: 0 !important;
 }
 
-.nav-a a:hover {
-   color: red;
-}
-
 .wcs-page_body {
     color: #333;
     padding-bottom: 10px;
     overflow: hidden;
 }
 
-.c-intro-home {
-    background: #472f92;
-    padding: 25px 0;
-    margin-top: 5%;
-}
-
-.c-intro-home .is-left {
-    width: 41.8487394958%;
-    float: left;
-}
-
-.d-home-box .is-title {
-    margin-bottom: 56px;
-}
-
-.c-intro-home .is-title h4 {
-    border-left: 4px solid #ffc904 !important;
-    color: #ffc904;
-    font-size: 30px;
-    padding-left: 16px;
-    margin-right: 16px;
-}
-
-.d-home-box .is-title a {
-    display: inline-block;
-    font-size: 16px;
-    transition: all .5s ease;
-    color: #ffc904 !important;
-}
-
-.b-maincontent {
-    font-size: 16px;
-    line-height: 20px;
-    color: #fff;
-}
-
-.c-intro-home .is-right {
-    width: 54.2016806723%;
-    float: right;
-}
-
-.c-intro-home .is-right img {
-    width: 100%;
-    border-radius: 10px;
-    vertical-align: middle;
-}
-
-.c-team-info-home {
-    padding: 50px 0;
-}
-
-.c-team-info-home .d-home-box {
-     width: calc(100% - 120px);
-}
-
-.d-home-box .is-title {
-    margin-bottom: 56px;
-}
-
-.d-home-box .is-title .h4, .d-home-box .is-title h4 {
-    font-size: 30px;
-    padding-left: 16px;
-    margin-right: 16px;
-
-}
-
-.c-team-info-home .is-title h4 {
-    border-left: 4px solid #ffc904 !important;
-    color: #472f92;
-}
-
-.box-results-tournament-left {
-    width: 40%;
-}
-
-.c-competition-match-list__item .c-flex .c-right .c-score {
-    font-size: 32px;
-    width: 16%;
-    color: #472f92;
-    font-weight: 700;
-    font-size: 18px;
-    display: flex
-;
-    align-items: center;
-    justify-content: center;
-}
-
-.box-results-tournament-right .c-left-team .c-name {
-    margin: auto;
-    padding: 10px;
-}
-
-.c-name {
-    font-size: 20px;
-    color: black;
-    font-weight: 700;
-}

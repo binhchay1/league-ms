@@ -26,8 +26,10 @@
                                         <div id="btnimage">
                                             <img id="showImage" class="show-avatar" src="{{asset( '/images/logo-no-background.png')}}" alt="avatar">
                                         </div>
+                                        <i class="text-red"> {{__('Image format:jpeg,png,jpg')}} </i>
+
                                         <div id="button">
-                                            <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image: ') }}</i> <i class="text-black"> {{__('(jpeg,png,jpg)')}} </i>
+                                            <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image') }}</i>
                                         </div>
 
                                     </div>
