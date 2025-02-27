@@ -12,7 +12,7 @@ final class Group
 
     const STATUS_REQUESTED = 'requested';
     const STATUS_ACCEPTED = 'accepted';
-    const STATUS_REJECTED = 'rejected';
+    const STATUS_WAITING = 'waiting';
 
     const RATE_ANCIENT = 'ancient';
     const RATE_EMERGING = 'emerging';

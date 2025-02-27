@@ -316,8 +316,20 @@
     </header>
 
     @yield('content')
+    <div data-wpr-lazyrender="1" class="wrapper-footer">
+        <div class="wrapper-copyright">
+            <div class="container">
+                <div class="row">
 
-    <div class="" style="background: #222; text-transform: uppercase;">
+                    <div class="col-sm-12 text-center">
+                        <img width="100" height="auto" src="{{asset('/images/MOBOBOM.png')}}" data-lazy-src="" data-ll-status="loaded" class="entered lazyloaded"><noscript><img width="198" height="41" src="//vnitourist.com/wp-content/uploads/2024/06/logo-modobom-resize.png"></noscript>
+                        <span style="margin-left: 10px;    text-transform: uppercase; margin-bottom: 12px;">badminton.com is a brand in the key project <a href="https://vnisocial.com/" style="margin-left: 3px"> VNISOCIAL ECOSYSTEM</a> of international company <a href="https://modobom.com/" style="margin-left: 3px"> Modobom</a>.</span>
+                    </div> <!-- col-sm-3 -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="" style="background: #222; text-transform: uppercase; margin-top: 10px">
         <footer class="container py-5"  >
             <div class="row">
                 <div class="color-white col-md-3 mb-3">

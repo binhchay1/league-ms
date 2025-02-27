@@ -17,7 +17,7 @@ class GroupUserRepository extends BaseRepository
         return $this->model->with('groups')->where('user_id', $userId)->get();
     }
 
-    public function checkJoinedGroupByName($user_id, $group_id)
+    public function checkJoinedGroup($user_id, $group_id)
     {
         return $this->model->where('group_id', $group_id)->where('user_id', $user_id)->where('status_request', Group::STATUS_ACCEPTED)->first();
     }
@@ -30,5 +30,10 @@ class GroupUserRepository extends BaseRepository
     public function countMembers($group_id)
     {
         return $this->model->where('group_id', $group_id)->count();
+    }
+
+    public function destroy($id)
+    {
+        return $this->model->where('id', $id)->delete();
     }
 }

@@ -19,7 +19,7 @@
             <div class="content-left-scroll">
                 <div class="home-wrap" tmt-detail="[object Object]">
                     <div class="home-page-outer current-tournament">
-                        <h2 style="font-weight: 400">{{__('Current Live Tournament')}}</h2>
+                        <h2 style="font-weight: 400">{{__('CURRENT LIVE')}}</h2>
                         <div class="home-section text-left">
                             @forelse($listMatches as $league  )
                                 @if($league->status == 1)

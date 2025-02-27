@@ -46,6 +46,9 @@
                                     {{$data->active ? "Active Group" : "Inactive Group"}}
                                 </a>
                             @endif
+                            <a href="{{route('group.userGroup',$data['id'])}}">
+                                <button type="button" class="btn btn-success">{{ __('Active User Join') }}</button>
+                            </a>
                         </td>
                     </tr>
                 @endforeach

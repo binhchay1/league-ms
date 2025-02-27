@@ -56,7 +56,7 @@ $isFull = false;
                     <div class=" align-items-center" >
                         <img class="avatar-group" src="{{ asset('https://png.pngtree.com/png-clipart/20230817/original/pngtree-badminton-icon-logo-and-sport-club-template-vector-vector-picture-image_10923178.png')  }}" data-id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
                     </div>
-                    <div  class="c-details-group name-group" data-id="group-{{ $group->name }}" id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
+                    <div  class="c-details-group name-group" data-id="{{ $group->name }}" id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
                         <h6 class="mb-0 gr-name">{{ $group->name }}</h6>
                     </div>
                 </div>
@@ -79,34 +79,40 @@ $isFull = false;
                                 <a class="btn btn-success" href="{{ route('login') }}?return_url={{ url()->full() }}">{{ __('Sign in for join') }}</a>
                             </div>
                             @else
+                                <div id="btn-join">
+                                    @php
+                                        $checkAuth = Auth::id();
+                                        $userIds = $group->group_users->pluck('user_id')->toArray();
+                                        $isJoined = in_array($checkAuth, $userIds);
+                                        $isFull = $group->group_users->count() >= $group->number_of_members;
 
-                            <div id="btn-join">
-                                <?php
-                                        $checkUser = null;
-                                        $getUser = $group->group_users;
-                                        foreach ($getUser as $user) {
-                                            $checkUser = $user->user_id ;
-                                        }
+                                        // Lấy bản ghi user hiện tại trong group_users
+                                        $userGroup = $group->group_users->firstWhere('user_id', $checkAuth);
+                                        $statusRequest = $userGroup->status_request ?? null;
+                                    @endphp
+                                    @if ($isJoined)
+                                        <div>
+                                            @if ($statusRequest == App\Enums\Group::STATUS_ACCEPTED)
+                                                <button class="btn btn-success" disabled>{{ __('Joined') }}</button>
+                                            @else
+                                                <button class="btn btn-warning" disabled>{{ __('Awaiting approval') }}</button>
+                                            @endif
+                                        </div>
+                                    @elseif ($isFull)
+                                        <div>
+                                            <button class="btn btn-danger" disabled>{{ __('Full members') }}</button>
+                                        </div>
 
-                                        $checkAuth = Auth::user()->id;
-
-                                ?>
-                                @if(!($checkUser ==  $checkAuth || $group->group_users->count() == $group->number_of_members))
-                                <div>
-                                    <button class="btn btn-success" id="groups-{{ $group->id }}" onclick="requestJoin(this.id)">{{ __('Join group') }}</button>
+                                    @else
+                                        <div>
+                                            <button class="btn btn-success" id="groups-{{ $group->id }}" onclick="requestJoin(this.id)">
+                                                {{ __('Join group') }}
+                                            </button>
+                                        </div>
+                                    @endif
                                 </div>
 
-                                @endif
-                                @if($group->group_users->count() == $group->number_of_members)
-                                <div>
-                                    <button class="btn btn-danger"  disabled>{{ __('Full members') }}</button>
-                                </div>
-                                @elseif( $checkUser ==  $checkAuth)
-                                <div>
-                                    <button class="btn btn-success"  disabled>{{ __('Joined') }}</button>
-                                </div>
-                                @endif
-                            </div>
+
                             @endif
                         </div>
                     </div>
@@ -149,11 +155,34 @@ $isFull = false;
 @section('js')
 <script>
     function detailGroup(id) {
-        let name = id.substring(6);
-        let url = '/detail-group?g_i=' + name;
+        $.ajax({
+            url: "/check-group-join",
+            type: "GET",
+            data: { group: id },
+            success: function(response) {
+                if (response.joined) {
+                    // Nếu user đã join, redirect sang trang nhóm
 
-        window.location.href = url;
+                    let url = '/detail-group?g_i=' + id;
+                    window.location.href = url;
+                } else {
+                    // Nếu chưa join, hiển thị cảnh báo
+                    toastr.options.timeOut = 10000;
+                    toastr.success("You should join group before accept");
+                    setTimeout(function() {
+                        location.reload(); // Change this to your desired URL
+                    }, 5000); // 5000 milliseconds = 5 seconds
+
+                }
+            },
+            error: function() {
+                alert("Lỗi khi kiểm tra trạng thái nhóm, vui lòng thử lại!");
+            }
+        });
+
     }
+
+
 
     function requestJoin(id) {
         let g_i = id.substring(7);

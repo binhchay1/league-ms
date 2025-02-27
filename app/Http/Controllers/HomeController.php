@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Group;
 use App\Enums\Utility;
 use App\Repositories\CategoryPostRepository;
 use App\Repositories\GroupRepository;
@@ -22,6 +23,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Config;
+use Illuminate\Support\Facades\DB;
 use Session;
 
 class HomeController extends Controller
@@ -203,6 +205,30 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
+    public function checkGroupJoin(Request $request)
+    {
+        $nameGroup = $request->input('group');
+        if (empty($nameGroup)) {
+            abort(404);
+        }
+
+        $getGroup = $this->groupRepository->getGroupByName($nameGroup);
+
+        if (empty($getGroup)) {
+            abort(404);
+        }
+
+        $userId = Auth::id(); // Lấy user đang đăng nhập
+
+        $isJoined = DB::table('group_users')
+            ->where('group_id', $getGroup->id)
+            ->where('user_id', $userId)
+            ->where('status_request', Group::STATUS_ACCEPTED)
+            ->exists(); // Kiểm tra user có trong nhóm không
+        return response()->json(['joined' => $isJoined]);
+    }
+
+
     public function detailGroup(Request $request)
     {
         $nameGroup = $request->get('g_i');
@@ -227,7 +253,7 @@ class HomeController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
 
-            $checkJoined = $this->groupUserRepository->checkJoinedGroupByName($user->id, $getGroup->id);
+            $checkJoined = $this->groupUserRepository->checkJoinedGroup($user->id, $getGroup->id);
             if (!empty($checkJoined)) {
                 $isJoined = true;
             }

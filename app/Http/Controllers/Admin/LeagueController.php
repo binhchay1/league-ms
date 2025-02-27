@@ -114,16 +114,20 @@ class LeagueController extends Controller
         $userIds = $request->input('user_ids');
         $activeStatus = $request->input('status');
         // Update the 'active' status for all specified users
+        if(empty($userIds))
+        {
+            return back()->with('success', __('No players to action!'));
+        }
+
         UserLeague::whereIn('id', $userIds)->update(['status' => $activeStatus]);
 
-
-        return back()->with('success', __('Player has been sent successfully!'));
+        return back()->with('success', __('Player has been update successfully!'));
     }
 
     public function destroyPlayer($id)
     {
         $this->userLeagueRepository->destroy($id);
-        return back()->with('success', 'League successfully deleted.');
+        return back()->with('success', 'Player successfully deleted.');
     }
 
     public function leagues()

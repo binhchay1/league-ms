@@ -32,7 +32,7 @@
     <div class="item-results" style="margin-bottom: 50px">
         @forelse($listLeagues as $listLeague)
         @if($listLeague->status == 1)
-        <div class="tblResultLanding" style="margin-top:10px;background:#222" onmouseover="this.style.background='gray';" onmouseout="this.style.background='#222';">
+        <div class="tblResultLanding" style="margin-top:10px;background:#353535" onmouseover="this.style.background='gray';" onmouseout="this.style.background='#353535';">
             <a href="{{route('league.info', $listLeague['slug'])}}">
                 <div class="tr-tournament-detail" id="4734">
                     <div class="tournament-detail ">

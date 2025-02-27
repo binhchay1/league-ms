@@ -27,7 +27,7 @@ class GroupRepository extends BaseRepository
 
     public function getGroupById($dataGroup)
     {
-        return $this->model->with('group_users')->with('users')->with('group_trainings')->where('id', $dataGroup)->first();
+        return $this->model->with('group_users')->with('group_users.users')->with('group_trainings')->where('id', $dataGroup)->first();
     }
 
     public function getGroupByName($name)
