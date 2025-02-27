@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\PostController;
@@ -164,7 +165,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/shop/', [ShopController::class, 'index'])->name('shop.index');
 
     //category product
-
     Route::get('/list-category-product/', [CategoryProductController::class, 'index'])->name('categoryProduct.index');
     Route::get('/create-category-product/', [CategoryProductController::class, 'create'])->name('categoryProduct.create');
     Route::post('/store-category-product/', [CategoryProductController::class, 'store'])->name('categoryProduct.store');
@@ -173,6 +173,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/update-category-product/{id}/', [CategoryProductController::class, 'update'])->name('categoryProduct.update');
     Route::get('/destroy-category-product/{id}/', [CategoryProductController::class, 'destroy'])->name('categoryProduct.destroy');
 
+    //brand
+    Route::get('/list-brand/', [BrandController::class, 'index'])->name('brand.index');
+    Route::get('/create-brand/', [BrandController::class, 'create'])->name('brand.create');
+    Route::post('/store-brand/', [BrandController::class, 'store'])->name('brand.store');
+    Route::get('/brand/{id}/', [BrandController::class, 'show'])->name('brand.show');
+    Route::get('/edit-brand/{id}/', [BrandController::class, 'edit'])->name('brand.edit');
+    Route::post('/update-brand/{id}/', [BrandController::class, 'update'])->name('brand.update');
+    Route::get('/destroy-brand/{id}/', [BrandController::class, 'destroy'])->name('brand.destroy');
     Route::middleware(['admin'])->group(
         function () {
             Route::get('/dashboard/', [DashboardController::class, 'dashboard'])->name('dashboard');;
