@@ -232,6 +232,9 @@
                         <li class="nav-item">
                             <a class="nav-link mx-2 text-uppercase" href="{{ route('match') }}">{{__('MATCH CENTER')}}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 text-uppercase shopping"  href="#">{{__('SHOP')}}</a>
+                        </li>
                         <div class="nav-item dropdown">
                             <a class="nav-link mx-2 dropdown-toggle text-uppercase" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{__('GROUP')}}
@@ -429,6 +432,14 @@
                 isMenuAlreadyOpen = !isMenuAlreadyOpen
             })
         })
+    </script>
+
+    <script  type="text/javascript">
+        $("a.shopping").on("click",function(){
+            let url = '/shop';
+            window.location.href = url;
+            window.open(url,'_blank');
+        });
     </script>
 
     @yield('js')
