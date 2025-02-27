@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryPostController;
+use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
@@ -140,7 +142,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/delete-user-group/{id}/', [GroupController::class, 'destroyUser'])->name('league.destroyUser');
 
 
-
     //category post
     Route::get('/list-category-post/', [CategoryPostController::class, 'index'])->name('categoryPost.index');
     Route::get('/create-category-post/', [CategoryPostController::class, 'create'])->name('categoryPost.create');
@@ -159,6 +160,18 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/update-post/{id}/', [PostController::class, 'update'])->name('post.update');
     Route::get('/destroy/{id}/', [PostController::class, 'destroy'])->name('post.destroy');
 
+    //shopping
+    Route::get('/shop/', [ShopController::class, 'index'])->name('shop.index');
+
+    //category product
+
+    Route::get('/list-category-product/', [CategoryProductController::class, 'index'])->name('categoryProduct.index');
+    Route::get('/create-category-product/', [CategoryProductController::class, 'create'])->name('categoryProduct.create');
+    Route::post('/store-category-product/', [CategoryProductController::class, 'store'])->name('categoryProduct.store');
+    Route::get('/category-product/{id}/', [CategoryProductController::class, 'show'])->name('categoryProduct.show');
+    Route::get('/edit-category-product/{id}/', [CategoryProductController::class, 'edit'])->name('categoryProduct.edit');
+    Route::post('/update-category-product/{id}/', [CategoryProductController::class, 'update'])->name('categoryProduct.update');
+    Route::get('/destroy-category-product/{id}/', [CategoryProductController::class, 'destroy'])->name('categoryProduct.destroy');
 
     Route::middleware(['admin'])->group(
         function () {
