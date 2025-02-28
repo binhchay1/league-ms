@@ -11,7 +11,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return view('page.shop.index');
+        return view('page.shop.detail-product');
     }
 
     /**

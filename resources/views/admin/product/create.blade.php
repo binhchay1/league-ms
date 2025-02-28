@@ -38,42 +38,53 @@
 
                     <div class="col-md-10">
                         <div class="row mt-4">
-                            <div class="col-3">
+                            <div class="col-4">
                                 <label for="name" class="form-label">{{ __('Name') }}</label>
                                 <input class="form-control" value="{{ old('name') }}" type="text" name="name" id="name" />
                                 @if ($errors->has('name'))
                                 <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif
                             </div>
-                            <div class="col-3">
+
+                            <div class="col-4">
                                 <div class="form-group">
-                                    <label for="price" class="form-label">{{ __('Price') }}</label>
-                                    <input type="number" value="{{ old('price') }}" class="form-control" id="price" name="price" />
-                                    @if ($errors->has('price'))
-                                    <span class="text-danger">{{ $errors->first('price') }}</span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="form-group">
-                                    <label for="category" class="form-label">{{ __('Category') }}</label>
-                                    <input type="text" value="{{ old('category') }}" class="form-control" id="category" name="category" />
-                                    @if ($errors->has('category'))
-                                    <span class="text-danger">{{ $errors->first('category') }}</span>
-                                    @endif
+                                    <label for="lastName" class="form-label">{{__('Category')}}</label>
+                                        <select id="category" value="{{ old('category_id') }}" name="category" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                                            <option value="">-- {{'Choose Category'}} --</option>
+                                            @foreach($listCategory as $category)
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
+                                        </select>
                                 </div>
                             </div>
 
-                            <div class="col-3">
+                            <div class="col-4">
+                                <label for="brand" class="form-label">{{'Brand'}}</label>
+                                <select id="brand" name="brand" class="form-control">
+                                    <option value="">-- {{'Choose Brand'}} --</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
                                 <div class="form-group">
-                                    <label for="brand" class="form-label">{{ __('Brand') }}</label>
-                                    <input type="text" value="{{ old('brand') }}" class="form-control" id="brand" name="brand" />
-                                    @if ($errors->has('brand'))
-                                    <span class="text-danger">{{ $errors->first('brand') }}</span>
+                                    <label for="price" class="form-label">{{ __('Price') }}</label>
+                                    <input type="number" value="{{ old('price') }}" class="form-control" id="price" name="price" min="0"/>
+                                    @if ($errors->has('price'))
+                                        <span class="text-danger">{{ $errors->first('price') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="price" class="form-label">{{ __('Discount') }}</label>
+                                    <input type="number" value="{{ old('discount') }}" class="form-control" id="discount" name="discount" min="0"/>
+                                    @if ($errors->has('discount'))
+                                        <span class="text-danger">{{ $errors->first('discount') }}</span>
                                     @endif
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="row mt-4">
                             <div class="col-6">
                                 <label for="description" class="form-label">{{ __('Description') }}</label>
@@ -102,4 +113,28 @@
 
 @section('js')
 <script src="{{ asset('js/eventImage.js') }}"></script>
+
+<script>
+    document.getElementById('category').addEventListener('change', function() {
+        let categoryId = this.value;
+        let brandSelect = document.getElementById('brand');
+
+        // Xóa các option cũ
+        brandSelect.innerHTML = '<option value="">-- Chọn thương hiệu --</option>';
+
+        if (categoryId) {
+            fetch(`/get-brands/${categoryId}`)// Gọi API lấy brand
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(brand => {
+                        let option = document.createElement('option');
+                        option.value = brand.id;
+                        option.textContent = brand.name;
+                        brandSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Lỗi khi lấy danh sách brand:', error));
+        }
+    });
+</script>
 @endsection

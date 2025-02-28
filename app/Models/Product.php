@@ -12,6 +12,16 @@ class Product extends Model
     protected $table = 'products';
 
     protected $fillable = [
-        'name', 'description', 'images', 'price', 'category', 'brand'
+        'name', 'description', 'images', 'price', 'category', 'brand', 'slug', 'discount_price', 'status'
     ];
+
+    public function categories()
+    {
+        return $this->belongsTo(CategoryProduct::class,'category' ,'id' );
+    }
+
+    public function brands()
+    {
+        return $this->belongsTo(Brand::class, 'brand' ,'id' );
+    }
 }

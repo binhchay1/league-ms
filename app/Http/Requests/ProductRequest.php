@@ -28,7 +28,7 @@ class ProductRequest extends FormRequest
             'images' => ['image', 'mimes:jpeg,png,jpg', 'max:2048'],
             'description' => ['required', 'max:255'],
             'category' => ['required', 'max:255'],
-            'brand' => ['required', 'max:255'],
+            'brand' => [ 'max:255'],
             'price' => ['required']
         ];
     }
@@ -45,8 +45,6 @@ class ProductRequest extends FormRequest
             'description.max' => __('Description must not exceed 255 characters'),
             'category.required' => __('Category is required'),
             'category.max' => __('Category must not exceed 255 characters'),
-            'brand.required' => __('Brand is required'),
-            'brand.max' => __('Brand must not exceed 255 characters'),
             'price.required' => __('Price is required'),
         ];
     }

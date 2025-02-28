@@ -181,6 +181,19 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/edit-brand/{id}/', [BrandController::class, 'edit'])->name('brand.edit');
     Route::post('/update-brand/{id}/', [BrandController::class, 'update'])->name('brand.update');
     Route::get('/destroy-brand/{id}/', [BrandController::class, 'destroy'])->name('brand.destroy');
+    Route::get('/get-brands/{category_id}', [BrandController::class, 'getBrandsByCategory']);
+    Route::get('/get-all-brands', [BrandController::class, 'getAllBrands']);
+
+
+    //product
+    Route::get('/list-product/', [ProductController::class, 'index'])->name('product.index');
+    Route::post('/store-product/', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/create-product/', [ProductController::class, 'create'])->name('product.create');
+    Route::get('/edit-product/', [ProductController::class, 'edit'])->name('product.edit');
+    Route::post('/update-product/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::get('/delete-product/', [ProductController::class, 'delete'])->name('product.delete');
+
+
     Route::middleware(['admin'])->group(
         function () {
             Route::get('/dashboard/', [DashboardController::class, 'dashboard'])->name('dashboard');;
@@ -190,12 +203,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/list-user/', [UserController::class, 'index'])->name('user.index');
             Route::get('/delete/{id}/', [UserController::class, 'destroy'])->name('user.delete');
 
-            Route::get('/list-product/', [ProductController::class, 'index'])->name('product.index');
-            Route::post('/store-product/', [ProductController::class, 'store'])->name('product.store');
-            Route::get('/create-product/', [ProductController::class, 'create'])->name('product.create');
-            Route::get('/edit-product/', [ProductController::class, 'edit'])->name('product.edit');
-            Route::post('/update-product/', [ProductController::class, 'update'])->name('product.update');
-            Route::get('/delete-product/', [ProductController::class, 'delete'])->name('product.delete');
+
         }
     );
 });
