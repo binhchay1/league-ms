@@ -427,37 +427,170 @@
 {{--    </div>--}}
 {{--</section>--}}
 {{--@endsection--}}
-    <!DOCTYPE html>
-<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyLeague Shop</title>
+    <title>Header Cầu Lông</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            width: 100vw;
+            left: 0;
+            top: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .group:hover .dropdown-menu {
+            display: flex;
+        }
+        .dropdown-category {
+            flex: 1 1 calc(25% - 1rem);
+            padding: 1rem;
+            min-width: 200px;
+        }
+        .dropdown-category h3 {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .dropdown-item {
+            padding: 0.5rem;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .dropdown-item:hover {
+            background: #f1f1f1;
+        }
+
+        .module-title {
+            margin: 15px 0 30px;
+            font-size: 1em;
+            position: relative;
+            background: #f5f5f5;
+            border-top: #ed3b05 3px solid;
+        }
+        .product:hover .cart-icon {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .product:hover img {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
-<!-- Header -->
-<header class="bg-green-600 p-4 text-white flex justify-between items-center">
-    <div class="text-xl font-bold">MYLEAGUE.VN</div>
-    <input type="text" placeholder="Tìm kiếm..." class="p-2 rounded text-black">
-    <div>
-        <button class="bg-white text-green-600 px-4 py-2 rounded">Tài khoản</button>
+<header class="bg-[#0b2239] p-4">
+    <div class="container mx-auto flex flex-wrap items-center justify-between">
+        <div class="flex items-center space-x-4">
+            <img src="logo.png" alt="Logo" class="h-10">
+            <nav>
+                <ul class="flex space-x-6 text-white font-semibold">
+                    <li class="hover:text-yellow-400 cursor-pointer">Mượn vợt thử</li>
+                    <li class="hover:text-yellow-400 cursor-pointer">Tin tức</li>
+                    <li class="hover:text-yellow-400 cursor-pointer">Đặt lịch đánh vợt</li>
+                    <li class="hover:text-yellow-400 cursor-pointer">Hàng cũ</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="flex items-center space-x-3 mt-3 md:mt-0">
+            <input type="text" placeholder="🔍 Tìm kiếm..." class="p-2 w-72 rounded-lg text-black">
+            <button class="bg-yellow-500 px-4 py-2 rounded-lg text-black font-bold">🔍</button>
+            <div class="bg-yellow-500 px-4 py-2 rounded-lg font-bold text-black">📞 0824.01.01.88</div>
+        </div>
     </div>
 </header>
 
-<!-- Banner -->
-<section class="w-full flex justify-center p-4">
-    <img src="banner.jpg" alt="Banner" class="w-full max-w-4xl rounded-lg shadow-lg">
+<nav class="w-full bg-white shadow-lg rounded-lg p-4 relative">
+    <ul class="flex space-x-6 text-black font-semibold">
+        <li class="group relative">
+            <button class="p-3 hover:bg-gray-200 rounded-lg">🏸 Sản phẩm</button>
+            <div class="dropdown-menu hidden group-hover:flex">
+                <div class="dropdown-category">
+                    <h3>Vợt cầu lông</h3>
+                    <div class="dropdown-item">Yonex</div>
+                    <div class="dropdown-item">Lining</div>
+                    <div class="dropdown-item">Victor</div>
+                    <div class="dropdown-item">Mizuno</div>
+                </div>
+                <div class="dropdown-category">
+                    <h3>Giày cầu lông</h3>
+                    <div class="dropdown-item">Mizuno</div>
+                    <div class="dropdown-item">Yonex</div>
+                    <div class="dropdown-item">Victor</div>
+                    <div class="dropdown-item">Lining</div>
+                </div>
+                <div class="dropdown-category">
+                    <h3>Áo cầu lông</h3>
+                    <div class="dropdown-item">Yonex</div>
+                    <div class="dropdown-item">Lining</div>
+                    <div class="dropdown-item">Victor</div>
+                    <div class="dropdown-item">Kamito</div>
+                </div>
+                <div class="dropdown-category">
+                    <h3>Quần cầu lông</h3>
+                    <div class="dropdown-item">Victor</div>
+                    <div class="dropdown-item">Yonex</div>
+                    <div class="dropdown-item">Lining</div>
+                    <div class="dropdown-item">Kamito</div>
+                </div>
+                <div class="dropdown-category">
+                    <h3>Phụ kiện</h3>
+                    <div class="dropdown-item">Balo</div>
+                    <div class="dropdown-item">Túi vợt</div>
+                    <div class="dropdown-item">Grip vợt</div>
+                    <div class="dropdown-item">Băng cổ tay</div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</nav>
+</body>
+
+
+<section class="relative w-full max-w-6xl mx-auto mt-6">
+    <div class="relative w-full h-64 overflow-hidden rounded-lg">
+        <div class="absolute inset-0 flex transition-transform duration-500 ease-in-out" id="bannerSlider">
+            <img src="https://theme.hstatic.net/200000099191/1001041918/14/slider_2_image.png?v=240" class="w-full object-cover">
+            <img src="https://theme.hstatic.net/200000099191/1001041918/14/slider_2_image.png?v=240" class="w-full object-cover">
+            <img src="https://theme.hstatic.net/200000099191/1001041918/14/slider_2_image.png?v=240" class="w-full object-cover">
+        </div>
+        <button id="prevSlide" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2">❮</button>
+        <button id="nextSlide" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2">❯</button>
+    </div>
 </section>
+
+<script>
+    let currentIndex = 0;
+    const slides = document.querySelectorAll("#bannerSlider img");
+    function showSlide(index) {
+        if (index >= slides.length) currentIndex = 0;
+        else if (index < 0) currentIndex = slides.length - 1;
+        else currentIndex = index;
+        document.querySelector("#bannerSlider").style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+    document.getElementById("nextSlide").addEventListener("click", () => showSlide(currentIndex + 1));
+    document.getElementById("prevSlide").addEventListener("click", () => showSlide(currentIndex - 1));
+    setInterval(() => showSlide(currentIndex + 1), 5000);
+</script>
 
 <!-- Danh mục sản phẩm -->
 <section class="max-w-6xl mx-auto p-4">
-    <h2 class="text-2xl font-bold mb-4">Áo thể thao</h2>
+    <h2 class="text-2xl font-bold mb-4 module-title">Áo thể thao</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="bg-white p-4 rounded shadow">
+        <div class=" product bg-white p-4 rounded shadow">
             <img src="//product.hstatic.net/200000099191/product/img20230803103516_1fdbf478d23145a083534620e3a03483_grande.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
+            <div class="cart-icon absolute top-2 right-2 bg-yellow-500 p-2 rounded-full opacity-0 transform translate-y-2 transition-all duration-300">
+                🛒
+            </div>
+            <p class="mt-2 font-semibold text-center ">Áo Wika Alpha</p>
+            <p class="text-red-600 font-bold text-center">189.000 VNĐ</p>
         </div>
         <div class="bg-white p-4 rounded shadow">
             <img src="shirt2.jpg" alt="Áo thể thao" class="w-full rounded">
@@ -469,256 +602,20 @@
             <p class="mt-2 font-semibold">Áo Wika Alpha Đỏ</p>
             <p class="text-red-600 font-bold">189.000 VNĐ</p>
         </div>
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt2.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha Đỏ</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
+        <div class="product relative bg-white p-4 rounded-lg shadow-lg cursor-pointer overflow-hidden">
+            <img src="product3.jpg" alt="Product 3" class="w-full transition-transform duration-300">
+            <div class="cart-icon absolute top-2 right-2 bg-yellow-500 p-2 rounded-full opacity-0 transform translate-y-2 transition-all duration-300">
+                🛒
+            </div>
+            <h3 class="text-center font-semibold mt-2">Áo cầu lông</h3>
         </div>
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt2.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha Đỏ</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
-        </div>
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt2.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha Đỏ</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
-        </div>
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt2.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha Đỏ</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
-        </div>
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt2.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha Đỏ</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
-        </div>
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt2.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha Đỏ</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
-        </div>
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt2.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha Đỏ</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
-        </div>
+
+
 
 
     </div>
 </section>
-<section class="max-w-6xl mx-auto p-4">
-    <h2 class="text-2xl font-bold mb-4">Áo thể thao</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt1.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
-        </div>
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt2.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha Đỏ</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
-        </div>
-    </div>
-</section>
-<section class="max-w-6xl mx-auto p-4">
-    <h2 class="text-2xl font-bold mb-4">Áo thể thao</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt1.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
-        </div>
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt2.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha Đỏ</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
-        </div>
-    </div>
-</section>
-<section class="max-w-6xl mx-auto p-4">
-    <h2 class="text-2xl font-bold mb-4">Áo thể thao</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt1.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
-        </div>
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt2.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha Đỏ</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
-        </div>
-    </div>
-</section>
-<section class="max-w-6xl mx-auto p-4">
-    <h2 class="text-2xl font-bold mb-4">Áo thể thao</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt1.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
-        </div>
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt2.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha Đỏ</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
-        </div>
-    </div>
-</section>
-<section class="max-w-6xl mx-auto p-4">
-    <h2 class="text-2xl font-bold mb-4">Áo thể thao</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt1.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
-        </div>
-        <div class="bg-white p-4 rounded shadow">
-            <img src="shirt2.jpg" alt="Áo thể thao" class="w-full rounded">
-            <p class="mt-2 font-semibold">Áo Wika Alpha Đỏ</p>
-            <p class="text-red-600 font-bold">189.000 VNĐ</p>
-        </div>
-    </div>
-</section>
-<section class="home-product">
-    <div class="container">
-        <div class="widget-header"><h2 class="widget-title"><a href="https://shop.myleague.vn/giay-bong-da.html"
-                                                               title="Giày thể thao"> Giày thể thao </a></h2>
-            <ul class="child-cat navbar-nav">
-                <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat"><h3><a
-                            href="https://shop.myleague.vn/giay-bong-da.html" title="Giày bóng đá">Giày bóng đá</a></h3>
-                </li>
-            </ul>
-        </div>
-        <div class="list-product-slide1 row">
-            <div class="col-md-3 col-6 col-sm-6 product ">
-                <div class="inner"><a href="https://shop.myleague.vn/giay-bong-da-wika-galaxy-light-do"
-                                      class="product-thumbnail" title="Giày bóng đá Wika Galaxy Light Đỏ"> <img
-                            width="255" height="330"
-                            src="https://shop.myleague.vn/storage/products/z3615924717124-2bf5a937faa9ec66797dc1f1dac684e2-20220908122409.jpg"
-                            class="attachment-thumbnail size-thumbnail wp-post-image lazyloaded"
-                            alt="Giày bóng đá Wika Galaxy Light Đỏ" data-ll-status="loaded"> </a>
-                    <div class="inner-prod"><h3 class="product-title"><a
-                                href="https://shop.myleague.vn/giay-bong-da-wika-galaxy-light-do"
-                                title="Giày bóng đá Wika Galaxy Light Đỏ"> Giày bóng đá Wika Galaxy Light Đỏ </a></h3>
-                        <div class="product-rate">
-                            <ul>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            </ul>
-                        </div>
-                        <div class="product-meta"><span class="product-price product-sale-price ">  499.000 <sup>đ</sup>  </span>
-                        </div>
-                        <div class="product-action"><a href="https://shop.myleague.vn/giay-bong-da-wika-galaxy-light-do"
-                                                       class="quick-view btn" data-product="4"
-                                                       title="Giày bóng đá Wika Galaxy Light Đỏ"> <i
-                                    class="fa fa-eye"></i>Xem chi tiết </a> <a
-                                href="https://shop.myleague.vn/cart/add/4" class="quick-buy btn" data-product="4"> <i
-                                    class="fa fa-cart-plus"></i>Mua ngay </a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6 col-sm-6 product ">
-                <div class="inner"><a href="https://shop.myleague.vn/giay-bong-da-wika-galaxy-light-bac"
-                                      class="product-thumbnail" title="Giày bóng đá Wika Galaxy Light Bạc"> <img
 
-                            src="//product.hstatic.net/200000099191/product/img20230803103516_1fdbf478d23145a083534620e3a03483_grande.jpg"
-                            class="attachment-thumbnail size-thumbnail wp-post-image lazyloaded"
-                            alt="Giày bóng đá Wika Galaxy Light Bạc" data-ll-status="loaded"> </a>
-                    <div class="inner-prod"><h3 class="product-title"><a
-                                href="https://shop.myleague.vn/giay-bong-da-wika-galaxy-light-bac"
-                                title="Giày bóng đá Wika Galaxy Light Bạc"> Giày bóng đá Wika Galaxy Light Bạc </a></h3>
-                        <div class="product-rate">
-                            <ul>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            </ul>
-                        </div>
-                        <div class="product-meta"><span class="product-price product-sale-price ">  499.000 <sup>đ</sup>  </span>
-                        </div>
-                        <div class="product-action"><a
-                                href="https://shop.myleague.vn/giay-bong-da-wika-galaxy-light-bac"
-                                class="quick-view btn" data-product="3" title="Giày bóng đá Wika Galaxy Light Bạc"> <i
-                                    class="fa fa-eye"></i>Xem chi tiết </a> <a
-                                href="https://shop.myleague.vn/cart/add/3" class="quick-buy btn" data-product="3"> <i
-                                    class="fa fa-cart-plus"></i>Mua ngay </a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6 col-sm-6 product ">
-                <div class="inner"><a href="https://shop.myleague.vn/giay-bong-da-wika-galaxy-light-navy"
-                                      class="product-thumbnail" title="Giày bóng đá Wika Galaxy Light Navy"> <img
-                            width="255" height="330"
-                            src="https://shop.myleague.vn/storage/products/z3615927180665-b573a36bfa43861090dab004c1db0181-20220831180715.jpg"
-                            class="attachment-thumbnail size-thumbnail wp-post-image lazyloaded"
-                            alt="Giày bóng đá Wika Galaxy Light Navy" data-ll-status="loaded"> </a>
-                    <div class="inner-prod"><h3 class="product-title"><a
-                                href="https://shop.myleague.vn/giay-bong-da-wika-galaxy-light-navy"
-                                title="Giày bóng đá Wika Galaxy Light Navy"> Giày bóng đá Wika Galaxy Light Navy </a>
-                        </h3>
-                        <div class="product-rate">
-                            <ul>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            </ul>
-                        </div>
-                        <div class="product-meta"><span class="product-price product-sale-price ">  499.000 <sup>đ</sup>  </span>
-                        </div>
-                        <div class="product-action"><a
-                                href="https://shop.myleague.vn/giay-bong-da-wika-galaxy-light-navy"
-                                class="quick-view btn" data-product="2" title="Giày bóng đá Wika Galaxy Light Navy"> <i
-                                    class="fa fa-eye"></i>Xem chi tiết </a> <a
-                                href="https://shop.myleague.vn/cart/add/2" class="quick-buy btn" data-product="2"> <i
-                                    class="fa fa-cart-plus"></i>Mua ngay </a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6 col-sm-6 product ">
-                <div class="inner"><a href="https://shop.myleague.vn/giay-bong-da-wika-galaxy-xanh-lam"
-                                      class="product-thumbnail" title="Giày bóng đá Wika Galaxy xanh lam"> <img
-                            width="255" height="330"
-                            src="https://shop.myleague.vn/storage/products/z3579987937227-5eebedc9552d35d28f417b1941e2e010-1-20220906104704.jpg"
-                            class="attachment-thumbnail size-thumbnail wp-post-image lazyloaded"
-                            alt="Giày bóng đá Wika Galaxy xanh lam" data-ll-status="loaded"> </a>
-                    <div class="inner-prod"><h3 class="product-title"><a
-                                href="https://shop.myleague.vn/giay-bong-da-wika-galaxy-xanh-lam"
-                                title="Giày bóng đá Wika Galaxy xanh lam"> Giày bóng đá Wika Galaxy xanh lam </a></h3>
-                        <div class="product-rate">
-                            <ul>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            </ul>
-                        </div>
-                        <div class="product-meta"><span class="product-price product-sale-price ">  499.000 <sup>đ</sup>  </span>
-                        </div>
-                        <div class="product-action"><a href="https://shop.myleague.vn/giay-bong-da-wika-galaxy-xanh-lam"
-                                                       class="quick-view btn" data-product="1"
-                                                       title="Giày bóng đá Wika Galaxy xanh lam"> <i
-                                    class="fa fa-eye"></i>Xem chi tiết </a> <a
-                                href="https://shop.myleague.vn/cart/add/1" class="quick-buy btn" data-product="1"> <i
-                                    class="fa fa-cart-plus"></i>Mua ngay </a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a href="https://shop.myleague.vn/giay-bong-da.html" class="btn btn-product-more d-md-none d-sm-block mb-3">Xem
-            thêm</a></div>
-</section>
 <!-- Footer -->
 <footer class="bg-gray-800 text-white text-center p-4 mt-6">
     &copy; 2025 MyLeague.vn - All rights reserved.

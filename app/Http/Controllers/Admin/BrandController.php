@@ -48,7 +48,7 @@ class BrandController extends Controller
     {
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->name);
-
+        dd($input);
         $this->brandRepository->store($input);
 
         return redirect()->route('brand.index')->with('success', 'Brand successfully created.');
@@ -97,4 +97,12 @@ class BrandController extends Controller
         $this->brandRepository->destroy($id);
         return back()->with('success', __('Brand delete success'));
     }
+
+    public function getBrandsByCategory($category_id)
+    {
+        $brands = $this->brandRepository->getBrandByCategory($category_id);
+
+        return response()->json($brands);
+    }
+
 }

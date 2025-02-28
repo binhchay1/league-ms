@@ -36,4 +36,10 @@ class BrandRepository extends BaseRepository
         return $this->model->where('id', $id)->delete();
     }
 
+    public function getBrandByCategory($category)
+    {
+         return $this->model->where('category_id', $category)->get();
+    }
+
+
 }
