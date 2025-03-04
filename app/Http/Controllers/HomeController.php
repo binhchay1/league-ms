@@ -447,7 +447,6 @@ class HomeController extends Controller
         }
 
         $listSchedules = collect($listSchedules)->sortBy('match');
-
         return view('page.match-center.show-live', compact('league', 'listSchedules'));
     }
 
