@@ -2,18 +2,18 @@
 
 namespace App\Repositories;
 
-use App\Models\Product;
+use App\Models\Brand;
 
-class ProductRepository extends BaseRepository
+class BrandRepository extends BaseRepository
 {
     public function model()
     {
-        return Product::class;
+        return Brand::class;
     }
 
     public function index()
     {
-        return $this->model->with('categories', 'brands')->orderBy('created_at', 'desc')->get();
+        return $this->model->with('category')->orderBy('created_at', 'desc')->get();
     }
 
     public function store($input)
@@ -36,10 +36,9 @@ class ProductRepository extends BaseRepository
         return $this->model->where('id', $id)->delete();
     }
 
-
-    public function postCategory($slug)
+    public function getBrandByCategory($category)
     {
-        return $this->model->with('posts')->where('slug', $slug)->first();
+         return $this->model->where('category_id', $category)->get();
     }
 
 

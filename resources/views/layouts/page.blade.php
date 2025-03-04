@@ -92,110 +92,6 @@
                 </li>
             </ul>
         </div>
-{{--        <nav class="container">--}}
-{{--            <div class="navigation-menu__overlay" onclick="toggleMenuClicked()"></div>--}}
-
-{{--            @if(Route::is('home') )--}}
-{{--            <button type="button" class="hamburger-menu" onclick="toggleMenuClicked()">--}}
-{{--                <span class="material-icons" id="open-icon">menu</span>--}}
-{{--                <span class="material-icons" id="close-icon">close</span>--}}
-{{--            </button>--}}
-{{--            @else--}}
-{{--            <button type="button" class="hamburger-menu" onclick="window.history.go(-1); return false;">--}}
-{{--                <span class="fa fa-arrow-left" id="open-icon" style="color: white"></span>--}}
-{{--            </button>--}}
-{{--            @endif--}}
-
-{{--            <a href="{{ route('home') }}"><img  class="logo-image" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>--}}
-
-
-{{--            <ul class="menu-main navigation-menu__labels">--}}
-{{--                <li class="pt-2"><a href="{{ route('list.league') }}">{{ __('LEAGUE') }}</a></li>--}}
-{{--                <li class="pt-2"><a href="{{ route('list.group') }}">{{ __('GROUP') }}</a></li>--}}
-{{--                <li class="pt-2"><a href="{{ route('ranking') }}">{{ __('RANKING') }}</a></li>--}}
-{{--                <li class="pt-2"><a href="{{ route('news') }}">{{ __('NEWS') }}</a></li>--}}
-{{--                <li class="pt-2"><a href="{{ route('match') }}">{{ __('MATCH CENTER') }}</a></li>--}}
-{{--                @if(Auth::check())--}}
-{{--                <li class="pt-2"><a href="{{ route('league.create') }}">{{ __('CREATE LEAGUE') }}</a></li>--}}
-{{--                @endif--}}
-{{--                <li id="search">--}}
-{{--                    <form id="search-league" action="{{ route('search') }}" method="post">--}}
-{{--                        @csrf--}}
-{{--                        <div onclick="openSearch()">--}}
-{{--                            <input type="search" name="search" placeholder="{{ __('Search leagues') }}...">--}}
-{{--                            <button type="button">--}}
-{{--                                <img src="{{ asset('/svg/icon-search.svg') }}" alt="{{ __('Search') }}" title="{{ __('Search') }}" width="15" height="15">--}}
-{{--                            </button>--}}
-{{--                        </div>--}}
-{{--                    </form>--}}
-{{--                </li>--}}
-{{--                <div class="nav-group">--}}
-{{--                    @if(Auth::check())--}}
-{{--                    <li class="menu">--}}
-{{--                        <span>--}}
-{{--                            @if (strpos(Auth::user()->profile_photo_path, 'http') > 0)--}}
-{{--                            <img class="avatar-user" width="40" height="40" src="{{ Auth::user()->profile_photo_path ?? asset('/images/no-image.png') }}">--}}
-{{--                            @else--}}
-{{--                            <img class="avatar-user" width="40" height="40" src="{{ asset( Auth::user()->profile_photo_path ?? '/images/no-image.png') }}">--}}
-{{--                            @endif--}}
-{{--                        </span>--}}
-{{--                        <ul class="submenu">--}}
-{{--                            <li>--}}
-{{--                                <a class="account" href="{{ route('profile.edit') }}">--}}
-{{--                                    {{ __('Profile') }}--}}
-{{--                                </a>--}}
-{{--                            </li>--}}
-
-{{--                            <li>--}}
-{{--                                <a class="account" href="{{ route('my.group') }}">--}}
-{{--                                    {{ __('My group') }}--}}
-{{--                                </a>--}}
-{{--                            </li>--}}
-{{--                            <li><a class="dropdown-item account" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt mr-2 "></i>{{ __('Logout') }}</a></li>--}}
-{{--                        </ul>--}}
-{{--                    </li>--}}
-
-{{--                    @else--}}
-{{--                    <li><a href="{{ route('login') }}" class="button white ">{{ __('Log In') }}</a></li>--}}
-{{--                    <li><a href="{{ route('register_user') }}" class="button btn-register">{{ __('Register') }}</a></li>--}}
-{{--                    @endif--}}
-
-{{--                    @if(Auth::check())--}}
-{{--                    @php--}}
-{{--                    $count = 0;--}}
-{{--                    $listNotification = Cache::get('notification_next_match_' . Auth::user()->id);--}}
-{{--                    foreach($listNotification as $notification) {--}}
-{{--                    if($notification->status == 0) {--}}
-{{--                    $count++;--}}
-{{--                    }--}}
-{{--                    }--}}
-{{--                    @endphp--}}
-{{--                    <li class="li-notification">--}}
-{{--                        <a class="notification" id="notification">--}}
-{{--                            <i class="fas fa-bell"></i>--}}
-{{--                            <span class="badge">{{ $count }}</span>--}}
-{{--                        </a>--}}
-{{--                        @if(count($listNotification) > 0)--}}
-{{--                        <ul class="dropdown-notification" id="dropdown-notification">--}}
-{{--                            @foreach($listNotification as $notification)--}}
-{{--                            @if($notification->status == 0)--}}
-{{--                            <li class="noti-unread"><a>{{ $notification->content }}</a></li>--}}
-{{--                            @else--}}
-{{--                            <li><a>{{ $notification->content }}</a></li>--}}
-{{--                            @endif--}}
-{{--                            @endforeach--}}
-{{--                        </ul>--}}
-{{--                        @else--}}
-{{--                        <ul class="dropdown-notification" id="dropdown-notification">--}}
-{{--                            <li><a>{{ __('Empty Notification') }}</a></li>--}}
-{{--                        </ul>--}}
-{{--                        @endif--}}
-{{--                    </li>--}}
-{{--                </div>--}}
-{{--                @endif--}}
-
-{{--            </ul>--}}
-{{--        </nav>--}}
 
         <nav class="navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm" >
             <div class="container">
@@ -232,6 +128,9 @@
                         <li class="nav-item">
                             <a class="nav-link mx-2 text-uppercase" href="{{ route('match') }}">{{__('MATCH CENTER')}}</a>
                         </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link mx-2 text-uppercase shopping"  href="#">{{__('SHOP')}}</a>--}}
+{{--                        </li>--}}
                         <div class="nav-item dropdown">
                             <a class="nav-link mx-2 dropdown-toggle text-uppercase" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{__('GROUP')}}
@@ -314,10 +213,21 @@
             </div>
         </nav>
     </header>
-
     @yield('content')
+    <div data-wpr-lazyrender="1" class="wrapper-footer">
+        <div class="wrapper-copyright">
+            <div class="container">
+                <div class="row">
 
-    <div class="" style="background: #222; text-transform: uppercase;">
+                    <div class="col-sm-12 text-center">
+                        <img width="100" height="auto" src="{{asset('/images/MOBOBOM.png')}}" data-lazy-src="" data-ll-status="loaded" class="entered lazyloaded"><noscript><img width="198" height="41" src="//vnitourist.com/wp-content/uploads/2024/06/logo-modobom-resize.png"></noscript>
+                        <span style="margin-left: 10px;    text-transform: uppercase; margin-bottom: 12px;">badminton.com is a brand in the key project <a href="https://vnisocial.com/" style="margin-left: 3px"> VNISOCIAL ECOSYSTEM</a> of international company <a href="https://modobom.com/" style="margin-left: 3px"> Modobom</a>.</span>
+                    </div> <!-- col-sm-3 -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="" style="background: #222; text-transform: uppercase; margin-top: 10px">
         <footer class="container py-5"  >
             <div class="row">
                 <div class="color-white col-md-3 mb-3">
@@ -418,6 +328,22 @@
             })
         })
     </script>
+
+{{--    <script  type="text/javascript">--}}
+{{--        $("a.shopping").on("click",function(){--}}
+{{--            let url = '/shop';--}}
+{{--            window.location.href = url;--}}
+{{--            window.open(url,'_blank');--}}
+{{--        });--}}
+{{--    </script>--}}
+
+{{--    <script  type="text/javascript">--}}
+{{--        $("a.match").on("click",function(){--}}
+{{--            let url = '/shop';--}}
+{{--            window.location.href = url;--}}
+{{--            window.open(url,'_blank');--}}
+{{--        });--}}
+{{--    </script>--}}
 
     @yield('js')
 </body>

@@ -3,11 +3,11 @@
 }
 
 .post-popular:hover {
-    color: red;
+    color: #df2027 !important;
 }
 
 .news-featured-title a:hover {
-    color: red !important;
+    color: #df2027 !important;
 }
 
 .news-landing-wrap {

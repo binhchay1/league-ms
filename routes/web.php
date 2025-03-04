@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryPostController;
+use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
@@ -41,6 +44,7 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/tournament-league/{slug}/fight-branch/', [HomeController::class, 'showFightBranch'])->name('leagueFightBranch.info');
     Route::get('/list-teams/', [HomeController::class, 'listTeam'])->name('list.team');
     Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
+    Route::get('/check-group-join', [HomeController::class, 'checkGroupJoin']);
     Route::get('/detail-group/', [HomeController::class, 'detailGroup'])->name('detail.group');
     Route::get('/ranking/', [HomeController::class, 'viewRanking'])->name('ranking');
     Route::get('/match-center/', [HomeController::class, 'viewMatch'])->name('match');
@@ -134,6 +138,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/update-group-training/{id}', [GroupController::class, 'updateGroupTraining'])->name('update.groupTraining');
     Route::get('/delete-group-training/{id}', [GroupController::class, 'deleteGroupTraining'])->name('delete.groupTraining');
     Route::get('/delete-account-apple/', [ProfileController::class, 'deleteAccount'])->name('delete.account.apple');
+    Route::get('/user-join-group/{id}', [GroupController::class, 'dataGroup'])->name('group.userGroup');
+    Route::post('/active-user-group', [GroupController::class, 'activeUserJoin'])->name('group.activeUserJoin');
+    Route::get('/delete-user-group/{id}/', [GroupController::class, 'destroyUser'])->name('league.destroyUser');
 
 
     //category post
@@ -154,6 +161,38 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/update-post/{id}/', [PostController::class, 'update'])->name('post.update');
     Route::get('/destroy/{id}/', [PostController::class, 'destroy'])->name('post.destroy');
 
+    //shopping
+    Route::get('/shop/', [ShopController::class, 'index'])->name('shop.index');
+
+    //category product
+    Route::get('/list-category-product/', [CategoryProductController::class, 'index'])->name('categoryProduct.index');
+    Route::get('/create-category-product/', [CategoryProductController::class, 'create'])->name('categoryProduct.create');
+    Route::post('/store-category-product/', [CategoryProductController::class, 'store'])->name('categoryProduct.store');
+    Route::get('/category-product/{id}/', [CategoryProductController::class, 'show'])->name('categoryProduct.show');
+    Route::get('/edit-category-product/{id}/', [CategoryProductController::class, 'edit'])->name('categoryProduct.edit');
+    Route::post('/update-category-product/{id}/', [CategoryProductController::class, 'update'])->name('categoryProduct.update');
+    Route::get('/destroy-category-product/{id}/', [CategoryProductController::class, 'destroy'])->name('categoryProduct.destroy');
+
+    //brand
+    Route::get('/list-brand/', [BrandController::class, 'index'])->name('brand.index');
+    Route::get('/create-brand/', [BrandController::class, 'create'])->name('brand.create');
+    Route::post('/store-brand/', [BrandController::class, 'store'])->name('brand.store');
+    Route::get('/brand/{id}/', [BrandController::class, 'show'])->name('brand.show');
+    Route::get('/edit-brand/{id}/', [BrandController::class, 'edit'])->name('brand.edit');
+    Route::post('/update-brand/{id}/', [BrandController::class, 'update'])->name('brand.update');
+    Route::get('/destroy-brand/{id}/', [BrandController::class, 'destroy'])->name('brand.destroy');
+    Route::get('/get-brands/{category_id}', [BrandController::class, 'getBrandsByCategory']);
+    Route::get('/get-all-brands', [BrandController::class, 'getAllBrands']);
+
+
+    //product
+    Route::get('/list-product/', [ProductController::class, 'index'])->name('product.index');
+    Route::post('/store-product/', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/create-product/', [ProductController::class, 'create'])->name('product.create');
+    Route::get('/edit-product/', [ProductController::class, 'edit'])->name('product.edit');
+    Route::post('/update-product/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::get('/delete-product/', [ProductController::class, 'delete'])->name('product.delete');
+
 
     Route::middleware(['admin'])->group(
         function () {
@@ -164,12 +203,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/list-user/', [UserController::class, 'index'])->name('user.index');
             Route::get('/delete/{id}/', [UserController::class, 'destroy'])->name('user.delete');
 
-            Route::get('/list-product/', [ProductController::class, 'index'])->name('product.index');
-            Route::post('/store-product/', [ProductController::class, 'store'])->name('product.store');
-            Route::get('/create-product/', [ProductController::class, 'create'])->name('product.create');
-            Route::get('/edit-product/', [ProductController::class, 'edit'])->name('product.edit');
-            Route::post('/update-product/', [ProductController::class, 'update'])->name('product.update');
-            Route::get('/delete-product/', [ProductController::class, 'delete'])->name('product.delete');
+
         }
     );
 });

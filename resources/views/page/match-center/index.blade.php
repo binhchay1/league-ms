@@ -19,7 +19,7 @@
             <div class="content-left-scroll">
                 <div class="home-wrap" tmt-detail="[object Object]">
                     <div class="home-page-outer current-tournament">
-                        <h2 style="font-weight: 400">{{__('Current Live Tournament')}}</h2>
+                        <h2 style="font-weight: 400">{{__('CURRENT LIVE')}}</h2>
                         <div class="home-section text-left">
                             @forelse($listMatches as $league  )
                                 @if($league->status == 1)
@@ -33,7 +33,7 @@
                                                 <div class="current-tmt-name" style="font-size: 30px">{{$league->name}}</div>
                                             </div>
                                             <div class="current-tmt-link-wrap text-center mt-2" >
-                                                <div><a href="{{route('league.live', $league['slug'])}}" class=" btn btn-danger "> {{__('Live Score')}} </a></div>
+                                                <div><a href="{{route('league.live', $league['slug'])}}" class=" btn btn-danger " target="_blank" rel="noopener noreferrer"> {{__('Live Score')}} </a></div>
 
                                             </div>
                                         </div>

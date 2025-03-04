@@ -27,20 +27,19 @@
         padding: 1px;
     }
 </style>
-<div class="">
+<div style="margin-bottom: 20px">
     <div class="home-section text-left">
         <div class="row match-live">
             <div class="current-tmt-wrap col-lg-9">
                 <h2 class="text-center text-white">{{ __('Current Live Tournament League') }} </h2>
-
-                <div class="current-tmt-outer">
+                <div class="current-tmt-outer" style="padding: 17%">
                     <div class="current-tmt-inner">
                         <div class="current-tmt-logo">
                             <a href="" class="">
                                 <img style="height: 100%; width: 100%" src="{{ asset($league->images ?? '/images/logo-no-background.png' ) }}"></a>
                         </div>
                         <div class="current-tmt-name text-white">{{ $league->name }}</div>
-                        <?php $start_date = date('D, j F', strtotime($league->start_date));
+                        <?php use function Monolog\Formatter\format;$start_date = date('D, j F', strtotime($league->start_date));
                         $end_date = date('D, j F', strtotime($league->end_date));
                         ?>
                         <div class="text-white current-tmt-date">{{ $start_date }} - {{ $end_date }}</div>
@@ -63,6 +62,12 @@
                 </div>
                 <section id="live-match-schedule" class="container-livescore">
                     <ul class="result-match-cards">
+                        @if(count($listSchedules) == 0)
+                            <div class="current-tmt-link-wrap text-center mt-2" >
+                                <div><button  class=" btn btn-danger " rel="noopener noreferrer"> {{__(' Day off')}} </button></div>
+
+                            </div>
+                        @endif
                         @foreach($listSchedules as $schedule)
                         <li class="result-match-single-card" id="schedule-{{ $schedule->id }}">
                             <div class="card-top-row"><span class="round-court">Match {{ $schedule->match }}</span>

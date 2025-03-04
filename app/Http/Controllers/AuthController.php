@@ -132,12 +132,12 @@ class  AuthController extends Controller
 
         $user = Auth::user();
         if ($getGroup->status == Group::STATUS_PRIVATE) {
-            $group_users = $this->groupUserRepository->checkJoinedGroupByName($user->id, $getGroup->id);
+            $group_users = $this->groupUserRepository->checkJoinedGroup($user->id, $getGroup->id);
             if (empty($group_users)) {
                 $data = [
                     'group_id' => $getGroup->id,
                     'user_id' => $user->id,
-                    'status_request' => Group::STATUS_REQUESTED
+                    'status_request' => Group::STATUS_WAITING
                 ];
                 $this->groupUserRepository->create($data);
 
@@ -148,12 +148,20 @@ class  AuthController extends Controller
                 }
             }
         } else {
-            $data = [
-                'group_id' => $getGroup->id,
-                'user_id' => $user->id,
-                'status_request' => Group::STATUS_ACCEPTED
-            ];
-            $this->groupUserRepository->create($data);
+            if (empty($group_users)) {
+                $data = [
+                    'group_id' => $getGroup->id,
+                    'user_id' => $user->id,
+                    'status_request' => Group::STATUS_WAITING
+                ];
+                $this->groupUserRepository->create($data);
+
+                return 'wait';
+            } else {
+                if ($group_users->status_request == Group::STATUS_REJECTED) {
+                    return 'reject';
+                }
+            }
         }
 
         return 'success';
@@ -169,7 +177,7 @@ class  AuthController extends Controller
             abort(403);
         }
 
-        $isJoined = $this->groupUserRepository->checkJoinedGroupByName($user->id, $group_id);
+        $isJoined = $this->groupUserRepository->checkJoinedGroup($user->id, $group_id);
         if (empty($isJoined)) {
             abort(403);
         }

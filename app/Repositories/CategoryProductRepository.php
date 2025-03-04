@@ -2,18 +2,18 @@
 
 namespace App\Repositories;
 
-use App\Models\Product;
+use App\Models\CategoryProduct;
 
-class ProductRepository extends BaseRepository
+class CategoryProductRepository extends BaseRepository
 {
     public function model()
     {
-        return Product::class;
+        return CategoryProduct::class;
     }
 
     public function index()
     {
-        return $this->model->with('categories', 'brands')->orderBy('created_at', 'desc')->get();
+        return $this->model->orderBy('created_at', 'desc')->get();
     }
 
     public function store($input)
