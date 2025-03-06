@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ExchangeController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
@@ -53,6 +54,12 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/news', [HomeController::class, 'news'])->name('news');
     Route::get('/news/category/{slug}', [HomeController::class, 'newsCategory'])->name('newsCategory');
 });
+
+//exchange
+
+Route::get('exchange', [ExchangeController::class, 'index'])->name('exchange.home');
+Route::get('/product/{slug}', [ExchangeController::class, 'productDetail'])->name('exchange.productDetail');
+
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');
 Route::post('/custom-login/', [AuthController::class, 'customLogin'])->name('login.custom');
@@ -192,6 +199,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/edit-product/', [ProductController::class, 'edit'])->name('product.edit');
     Route::post('/update-product/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::get('/delete-product/', [ProductController::class, 'delete'])->name('product.delete');
+    Route::delete('/delete-product-image/{id}', [ProductController::class, 'deleteProductImage']);
+
 
 
     Route::middleware(['admin'])->group(
