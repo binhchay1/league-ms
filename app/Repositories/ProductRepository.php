@@ -13,8 +13,14 @@ class ProductRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->with('categories', 'brands')->orderBy('created_at', 'desc')->get();
+        return $this->model->with('categories', 'brands')->orderBy('created_at', 'desc')->take(10)->get();;
     }
+
+    public function productDetail($slug)
+    {
+        return $this->model->with( 'categories', 'productImages')->where('slug', $slug)->first();
+    }
+
 
     public function store($input)
     {
@@ -26,7 +32,7 @@ class ProductRepository extends BaseRepository
         return $this->model->where('id', $id)->first();
     }
 
-    public function update($input, $id)
+    public function update($id, $input)
     {
         return $this->model->where('id', $id)->update($input);
     }

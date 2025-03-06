@@ -5,7 +5,6 @@ namespace App\Enums;
 final class Product
 {
     const STATUS = [
-        'in-stock', 'out-stock',
+        'new', 'used',
     ];
-    const IN_STOCK = 'in-stock';
 }

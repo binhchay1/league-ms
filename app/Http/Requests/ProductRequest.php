@@ -25,10 +25,9 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'images' => ['image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'images' => ['required','image', 'mimes:jpeg,png,jpg', 'max:2048'],
             'description' => ['required', 'max:255'],
             'category' => ['required', 'max:255'],
-            'brand' => [ 'max:255'],
             'price' => ['required']
         ];
     }

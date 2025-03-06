@@ -31,15 +31,15 @@
                     @foreach($listProduct as $data)
                     <tr>
                         <td>
-                            <div  class="btn btn-{{$data->status == 'in-stock' ? 'success' : 'danger' }}">
-                                {{$data->status == 'in-stock' ? "in-stock " : "out-stock "}}
+                            <div  class="btn btn-{{$data->status == 'new' ? 'success' : 'danger' }}">
+                                {{$data->status == 'new' ? "new" : "used "}}
                             </div>
                         </td>
                         <td>{{ $data->name }}</td>
-                        <td><img class="image" src="{{ $data->images ?? asset('/images/champion.png') }}" alt="avatar" style="width: 150px"></td>
+                        <td><img class="image" src="{{ asset( $data->images ?? '/images/champion.png') }}" alt="avatar" style="width: 150px"></td>
                         <td>{{ $data->categories->name ?? "" }}</td>
-                        <td>{{ $data->brands->name ?? "" }}</td>
-                        <td>{{ $data->description }}</td>
+                        <td>{!! Str::limit(strip_tags(html_entity_decode($data->description)), 50)!!}</td>
+
                         <td>{{ $data->price }}</td>
                         <td>
                             <a href="{{ route('product.edit') }}?id={{ $data['id'] }}">
