@@ -57,6 +57,14 @@ final class Utility
         }
     }
 
+    public function saveImageCategory($input)
+    {
+        if ($input) {
+            $status = Storage::disk('public-image-category')->put($input['image']->getClientOriginalName(), $input['image']->get());
+            return $status;
+        }
+    }
+
     public function paginate($items, $perPage = 15, $path = null, $pageName = 'page', $page = null, $options = [])
     {
         $page = $page ?: Paginator::resolveCurrentPage($pageName);

@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class CategoryProductRequest extends FormRequest
+class CategoryProductUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class CategoryProductRequest extends FormRequest
     {
         return [
             'name' => ['required', Rule::unique('post_categories')->ignore($this->id)],
-            'image' => ['required','image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'image' => ['image', 'mimes:jpeg,png,jpg', 'max:2048'],
         ];
     }
 
@@ -33,7 +33,6 @@ class CategoryProductRequest extends FormRequest
         return [
             'name.required' => __('Name is required'),
             'name.unique' => __('Name invalid'),
-            'images.required' => __('Image is required'),
             'images.image' => __('Incorrect image format'),
             'images.mimes' => __('Incorrect image format'),
             'images.max' => __('Image size is maximum'),

@@ -18,6 +18,7 @@
                 <thead>
                     <tr class="design-text">
                         <th scope="col">{{ __('Name') }}</th>
+                        <th scope="col">{{ __('Image') }}</th>
                         <th scope="col">{{ __('Action') }}</th>
                     </tr>
                 </thead>
@@ -25,6 +26,7 @@
                     @foreach($listCategoryProduct as $data)
                     <tr>
                         <td width="70%">{{ $data->name }}</td>
+                        <td><img class="image" src="{{asset($data->image ?? '/images/logo-no-background.png')}}" alt="avatar" style="width: 150px"></td>
                         <td>
                             <a href="{{ route('categoryProduct.edit', $data['id']) }}">
                                 <button type="button" class="btn btn-primary">{{ __('Edit') }}</button>

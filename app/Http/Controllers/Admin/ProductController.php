@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Product;
 use App\Http\Requests\ProductRequest;
 use App\Models\ProductImage;
@@ -90,9 +91,8 @@ class ProductController extends Controller
         return view('admin.product.edit', compact('status','dataProduct', 'listCategory', 'brands'));
     }
 
-    public function update(ProductRequest $request, $id)
+    public function update(ProductUpdateRequest $request, $id)
     {
-
         $input = $request->except(['_token']);
         if ($request->hasFile('images')) {
             $image = $request->file('images');

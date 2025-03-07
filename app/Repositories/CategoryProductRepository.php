@@ -37,9 +37,9 @@ class CategoryProductRepository extends BaseRepository
     }
 
 
-    public function postCategory($slug)
+    public function productCategory($slug)
     {
-        return $this->model->with('posts')->where('slug', $slug)->first();
+        return $this->model->with('products')->where('slug', $slug)->first();
     }
 
 

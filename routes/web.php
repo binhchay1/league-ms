@@ -59,6 +59,8 @@ Route::middleware(['cache.notification'])->group(function () {
 
 Route::get('exchange', [ExchangeController::class, 'index'])->name('exchange.home');
 Route::get('/product/{slug}', [ExchangeController::class, 'productDetail'])->name('exchange.productDetail');
+Route::get('/category/{slug}', [ExchangeController::class, 'categoryDetail'])->name('exchange.categoryDetail');
+Route::get('/search', [ExchangeController::class, 'search'])->name('products.search');
 
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');
