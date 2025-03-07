@@ -13,14 +13,13 @@ class ProductRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->with('categories', 'brands')->orderBy('created_at', 'desc')->take(10)->get();;
+        return $this->model->with('categories', 'brands')->orderBy('created_at', 'desc')->get();;
     }
 
     public function productDetail($slug)
     {
         return $this->model->with( 'categories', 'productImages')->where('slug', $slug)->first();
     }
-
 
     public function store($input)
     {
@@ -42,11 +41,9 @@ class ProductRepository extends BaseRepository
         return $this->model->where('id', $id)->delete();
     }
 
-
-    public function postCategory($slug)
+    public function productSeach($query)
     {
-        return $this->model->with('posts')->where('slug', $slug)->first();
+        return $this->model->where('name', 'LIKE', "%{$query}%")->paginate(12);
     }
-
 
 }

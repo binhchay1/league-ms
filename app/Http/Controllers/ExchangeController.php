@@ -43,48 +43,26 @@ class ExchangeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+
+    //category
+    public function categoryDetail($slug)
     {
-        //
+        $categories = $this->categoryProductRepository->index();
+        $categoryProduct =  $this->categoryProductRepository->productCategory($slug);
+
+        return view('exchange.product.category-product', compact('categoryProduct', 'categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function search(Request $request)
     {
-        //
+        $categories = $this->categoryProductRepository->index();
+
+        $query = $request->input('q');
+
+        // Tìm kiếm theo tên sản phẩm
+        $products =  $this->productRepository->productSeach($query);
+        return view('exchange.product.search', compact('products', 'query', 'categories'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
