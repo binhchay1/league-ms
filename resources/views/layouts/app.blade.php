@@ -7,7 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
+@if(session('success'))
+    <div id="alert-success" class="fixed top-5 right-5 bg-green-500 text-white text-sm font-medium px-4 py-2 rounded-lg shadow-md transition-opacity duration-300">
+        {{ session('success') }}
+    </div>
 
+@endif
 <header class="bg-gray-800 py-2 shadow-md">
     <div class="mx-auto flex items-center justify-between px-4">
         <!-- Logo + Danh mục -->
@@ -21,7 +26,7 @@
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                     </svg>
-                    Danh mục
+                    {{'CATEGORY'}}
                 </button>
 
                 <!-- Dropdown menu -->
@@ -43,7 +48,7 @@
         <!-- Thanh tìm kiếm -->
         <form action="{{ route('products.search') }}" method="GET" class=" w-full max-w-md flex items-center space-x-4 mt-2">
             <div class="flex items-center bg-white rounded-lg overflow-hidden ">
-                <input type="text" name="q" placeholder="Tìm kiếm sản phẩm"
+                <input type="text" name="q" placeholder="{{'Search product...'}}"
                        class="w-full px-4 py-2 outline-none">
                 <button class="px-4 text-white">🔍</button>
             </div>
@@ -55,23 +60,28 @@
         <div class="flex items-center space-x-4 text-white">
             <button>🔔</button>
             <button>🛍️</button>
-            <button>📋 Quản lý tin</button>
+            <a href="{{route('exchange.managerNews')}}">
+                <button>📋 {{'Manager news'}}</button>
+
+            </a>
 
             @auth
                 <div class="flex items-center space-x-2">
-                    <img src="{{ asset(Auth::user()->avatar ?? 'default-avatar.png') }}"
+                    <img src="{{ Auth::user()->profile_photo_path ?? asset('/images/no-image.png') }}"
                          class="w-8 h-8 rounded-full border">
                     <span>{{ Auth::user()->name }}</span>
                 </div>
+                <a href="{{ route('exchange.productSale') }}"
+                   class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold">
+                    + {{'POST NEWS'}}
+                </a>
             @else
-                <a href="{{ route('login') }}" class="text-white">{{ 'Login' }}</a>
-        @endauth
+                <li><a href="{{ route('login') }}" class="button white ">{{ __('Log In') }}</a></li>
+                <li><a href="{{ route('register_user') }}" class="button btn-register">{{ __('Register') }}</a></li>
+        @endif
 
         <!-- Nút Đăng Tin -->
-            <a href="{{ route('post.create') }}"
-               class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold">
-                + Đăng tin
-            </a>
+
         </div>
     </div>
 </header>
@@ -137,4 +147,14 @@
             }
         });
     });
+</script>
+
+<script>
+    setTimeout(() => {
+        let alertBox = document.getElementById('alert-success');
+        if (alertBox) {
+            alertBox.classList.add('opacity-0');
+            setTimeout(() => alertBox.remove(), 500);
+        }
+    }, 3000);
 </script>

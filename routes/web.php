@@ -61,6 +61,8 @@ Route::get('exchange', [ExchangeController::class, 'index'])->name('exchange.hom
 Route::get('/product/{slug}', [ExchangeController::class, 'productDetail'])->name('exchange.productDetail');
 Route::get('/category/{slug}', [ExchangeController::class, 'categoryDetail'])->name('exchange.categoryDetail');
 Route::get('/search', [ExchangeController::class, 'search'])->name('products.search');
+Route::get('/product-sale', [ExchangeController::class, 'productSale'])->name('exchange.productSale');
+Route::get('/manager-news', [ExchangeController::class, 'managerNews'])->name('exchange.managerNews');
 
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');
@@ -202,6 +204,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/update-product/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::get('/delete-product/', [ProductController::class, 'delete'])->name('product.delete');
     Route::delete('/delete-product-image/{id}', [ProductController::class, 'deleteProductImage']);
+    Route::post('/store-product-sale/', [ExchangeController::class, 'storeProductSale'])->name('product.storeProductSale');
 
 
 

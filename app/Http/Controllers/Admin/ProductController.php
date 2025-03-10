@@ -46,7 +46,7 @@ class ProductController extends Controller
         return view('admin.product.create', compact( 'listCategory', 'status'));
     }
 
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
         $request->validate([
             'product_images.*' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -101,7 +101,7 @@ class ProductController extends Controller
             $input['images'] = '/images/upload/product/' . $imageName; // Lưu đường dẫn
 
         }
-       $product = $this->productRepository->update($id, $input);
+        $product = $this->productRepository->update($id, $input);
         if ($request->hasFile('product_images')) {
             foreach ($request->file('product_images') as $file) {
                 $imageName = time() . '_' . $file->getClientOriginalName();

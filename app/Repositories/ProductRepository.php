@@ -13,7 +13,7 @@ class ProductRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->with('categories', 'brands')->orderBy('created_at', 'desc')->get();;
+        return $this->model->with('categories', 'brands')->orderBy('created_at', 'desc')->get();
     }
 
     public function productDetail($slug)
@@ -41,9 +41,14 @@ class ProductRepository extends BaseRepository
         return $this->model->where('id', $id)->delete();
     }
 
-    public function productSeach($query)
+    public function productSearch($query)
     {
         return $this->model->where('name', 'LIKE', "%{$query}%")->paginate(12);
+    }
+
+    public function productNews()
+    {
+        return $this->model->with('categories', 'brands')->where('status', 'accepted')->orderBy('created_at', 'desc')->get();
     }
 
 }

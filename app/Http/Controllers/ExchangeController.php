@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\CategoryProduct;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Repositories\CategoryProductRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ExchangeController extends Controller
 {
@@ -60,9 +63,59 @@ class ExchangeController extends Controller
         $query = $request->input('q');
 
         // Tìm kiếm theo tên sản phẩm
-        $products =  $this->productRepository->productSeach($query);
+        $products =  $this->productRepository->productSearch($query);
         return view('exchange.product.search', compact('products', 'query', 'categories'));
     }
 
+    public function productSale()
+    {
+        $categories = $this->categoryProductRepository->index();
+        return view('exchange.product.post-product', compact( 'categories'));
+    }
 
+    public function storeProductSale(Request $request)
+    {
+        $request->validate([
+            'product_images.*' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        // Tạo sản phẩm mới
+        $input = $request->except(['_token']);
+        $input = $request->except(['_token']);
+        $input['slug'] = Str::slug($request->name);
+        $input['status'] = \App\Enums\Product::STATUS_POST_NEWS;
+        $input['user_id'] = Auth::user()->id;
+        $input['start_date'] = now();
+        $input['expires_at'] = now()->addDays(30);
+        // Xử lý ảnh chính (image)
+        if ($request->hasFile('images')) {
+            $image = $request->file('images');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('/images/upload/product/'), $imageName);
+            $input['images'] = '/images/upload/product/' . $imageName; // Lưu đường dẫn
+
+        }
+        $product = $this->productRepository->create($input);
+        // Xử lý ảnh phụ (images)
+        if ($request->hasFile('product_images')) {
+            foreach ($request->file('product_images') as $file) {
+                $imageName = time() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('/images/upload/product/'), $imageName);
+
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image_url' => '/images/upload/product/' . $imageName
+                ]);
+            }
+        }
+
+        return redirect()->route('exchange.managerNews')->with('success', 'Post news created success!');
+    }
+
+    public function managerNews(Request $request)
+    {
+        $categories = $this->categoryProductRepository->index();
+        $productNews = $this->productRepository->productNews();
+
+        return view('exchange.manager-news.index', compact('categories', 'productNews'));
+    }
 }
