@@ -57,10 +57,15 @@ Route::middleware(['cache.notification'])->group(function () {
 
 //exchange
 
+//product
 Route::get('exchange', [ExchangeController::class, 'index'])->name('exchange.home');
 Route::get('/product/{slug}', [ExchangeController::class, 'productDetail'])->name('exchange.productDetail');
 Route::get('/category/{slug}', [ExchangeController::class, 'categoryDetail'])->name('exchange.categoryDetail');
 Route::get('/search', [ExchangeController::class, 'search'])->name('products.search');
+Route::get('/filter-by', [ExchangeController::class, 'filter'])->name('products.searchInProduct');
+Route::get('/products/load-more', [ExchangeController::class, 'loadMore'])->name('exchange.loadMore');
+
+//manager-news
 Route::get('/product-sale', [ExchangeController::class, 'productSale'])->name('exchange.productSale');
 Route::get('/manager-news', [ExchangeController::class, 'managerNews'])->name('exchange.managerNews');
 
