@@ -36,23 +36,50 @@
 
         <!-- Sản phẩm nổi bật -->
         <div class="widget-header mt-4">
-            <h2 class="widget-title mt-4">
-                <a href="https://shop.myleague.vn/ao-the-thao.html" title="Áo thể thao">{{'New Products '}} </a></h2>
+            <h2 class="widget-title">
+                <a href="#" title="Sản phẩm mới">{{ 'New Products ' }}</a>
+            </h2>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-6 gap-4 mt-4">
-            @foreach ($products as $product)
-                <div class="bg-white p-6 rounded-lg shadow-md hover:scale-105">
-                    <a href="{{route('exchange.productDetail', $product['slug'])}}">
-                        <img src="{{ asset($product->images) }}" class=" w-full  object-cover rounded-lg">
-                        <h4 class="mt-2 font-semibold">{{ $product->name }}</h4>
-                    </a>
-                    <p class="text-gray-600">{{ $product->condition }} </p>
-                    <p class="text-red-500 font-bold">{{ number_format($product->price, 0, ',', '.') }} đ</p>
-                    <div class="flex items-center text-gray-500 text-sm mt-2">
-                        <p class="fas fa-map-marker-alt"> {{ $product->location }}</p>
-                    </div>
-                </div>
-            @endforeach
+
+        <div id="product-container" class="grid grid-cols-2 md:grid-cols-6 gap-4 mt-4">
+            @include('exchange.paginate.product-list', ['products' => $products])
+        </div>
+
+        <!-- Nút Load More -->
+        <div class="text-center mt-4">
+            <button id="loadMoreBtn" class="bg-blue-500 text-white p-2 rounded-lg">Xem thêm</button>
         </div>
     </div>
 @endsection
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        let currentPage = 1;
+
+        $('#loadMoreBtn').on('click', function () {
+            currentPage++;
+
+            $.ajax({
+                url: "{{ route('exchange.loadMore') }}",
+                type: "GET",
+                data: { page: currentPage },
+                beforeSend: function() {
+                    $('#loadMoreBtn').text('Đang tải...'); // Hiển thị trạng thái loading
+                },
+                success: function (response) {
+                    if (response.products.trim() === '') {
+                        $('#loadMoreBtn').hide(); // Ẩn nút nếu không còn sản phẩm
+                    } else {
+                        $('#product-container').append(response.products);
+                        $('#loadMoreBtn').text('Xem thêm'); // Khôi phục lại trạng thái nút
+                    }
+                },
+                error: function () {
+                    alert('Lỗi khi tải dữ liệu!');
+                    $('#loadMoreBtn').text('Xem thêm'); // Khôi phục lại nếu lỗi
+                }
+            });
+        });
+    });
+</script>
+

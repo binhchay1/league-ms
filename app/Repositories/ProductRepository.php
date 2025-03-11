@@ -41,14 +41,61 @@ class ProductRepository extends BaseRepository
         return $this->model->where('id', $id)->delete();
     }
 
-    public function productSearch($query)
+    public function productSearch($location, $keyword)
     {
-        return $this->model->where('status', 'accepted')->where('name', 'LIKE', "%{$query}%")->paginate(12);
+        return $this->model
+            ->when($location, function ($query, $location) {
+                return $query->where('location', 'LIKE', "%{$location}%");
+            })
+            ->when($keyword, function ($query, $keyword) {
+                return $query->where('name', 'LIKE', "%{$keyword}%")
+                    ->orWhere('description', 'LIKE', "%{$keyword}%");
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+    }
+
+    public function getFilteredProducts($filters)
+    {
+        $query = $this->model->newQuery(); // Khởi tạo query builder từ model
+
+// Lọc theo khu vực
+        if (!empty($filters['location'])) {
+            $query->where('location', $filters['location']);
+        }
+
+// Lọc theo danh mục
+        if (!empty($filters['category'])) {
+            $query->where('category_id', $filters['category']);
+        }
+
+// Lọc theo giá
+        if (!empty($filters['min_price']) && !empty($filters['max_price'])) {
+            $query->whereBetween('price', [$filters['min_price'], $filters['max_price']]);
+        } elseif (!empty($filters['min_price'])) {
+            $query->where('price', '>=', $filters['min_price']);
+        } elseif (!empty($filters['max_price'])) {
+            $query->where('price', '<=', $filters['max_price']);
+        }
+
+// Tìm kiếm theo từ khóa
+        if (!empty($filters['q'])) {
+            $query->where('name', 'LIKE', '%' . $filters['q'] . '%');
+        }
+
+        // Lọc theo khu vực
+        if (!empty($filters['condition'])) {
+            $query->where('condition', $filters['condition']);
+        }
+
+// Phân trang kết quả
+        return $query->paginate(12);
+
     }
 
     public function homeExchange()
     {
-        return $this->model->with('categories', 'brands')->where('status', 'accepted')->orderBy('created_at', 'desc')->get();
+        return $this->model->with('categories', 'brands')->where('status', 'accepted')->orderBy('created_at', 'desc')->paginate(6);
     }
 
     public function productNews($getNewsByStatus = null, $user)

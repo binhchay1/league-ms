@@ -61,11 +61,22 @@ class ExchangeController extends Controller
     {
         $categories = $this->categoryProductRepository->index();
 
-        $query = $request->input('q');
+        $location = $request->input('location');
+        $keyword = $request->input('q');
 
+        $products = $this->productRepository->productSearch($location, $keyword);
         // Tìm kiếm theo tên sản phẩm
-        $products =  $this->productRepository->productSearch($query);
-        return view('exchange.product.search', compact('products', 'query', 'categories'));
+        return view('exchange.product.search', compact('products', 'categories'));
+    }
+
+    public function filter(Request $request)
+    {
+        $categories = $this->categoryProductRepository->index();
+
+        $filters = $request->only(['location', 'category', 'min_price', 'max_price', 'q', 'condition']);
+        $products = $this->productRepository->getFilteredProducts($filters);
+
+        return view('exchange.product.search', compact('products', 'categories'));
     }
 
     public function productSale()

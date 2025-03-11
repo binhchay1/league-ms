@@ -22,7 +22,6 @@
 
             <!-- Danh mục (Dropdown) -->
             <div class="relative">
-                <!-- Nút Danh mục -->
                 <button id="category-btn"
                         class="px-4 py-2 bg-yellow-500 text-white font-bold rounded flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -31,8 +30,6 @@
                     </svg>
                     {{'CATEGORY'}}
                 </button>
-
-                <!-- Dropdown menu -->
                 <div id="category-menu"
                      class="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-lg z-50 hidden">
                     @foreach ($categories as $category)
@@ -49,20 +46,32 @@
             </div>
         </div>
 
-        <!-- Thanh tìm kiếm -->
-        <form action="{{ route('products.search') }}" method="GET"
-              class=" w-full max-w-md flex items-center space-x-4 mt-2">
-            <div class="flex items-center bg-white rounded-lg overflow-hidden ">
-                <input type="text" name="q" placeholder="{{'Search product...'}}"
+        <!-- Thanh tìm kiếm + Lọc theo khu vực -->
+        <form action="{{ route('products.search') }}" method="GET" class="w-full max-w-lg flex items-center">
+            <!-- Wrapper chứa cả dropdown và input -->
+            <div class="flex border border-gray-300 rounded-lg overflow-hidden w-full">
+                <!-- Dropdown chọn khu vực -->
+                <select name="location" id="location-filter" class="px-3 py-2 bg-white text-gray-800 border-r border-gray-300">
+                    <option value="">{{ __('All Locations') }}</option>
+                    @foreach ($provinces as $province)
+                        <option value="{{ $province }}">{{ $province }}</option>
+                    @endforeach
+                </select>
+
+                <!-- Ô nhập tìm kiếm -->
+                <input type="text" name="q" placeholder="{{ 'Search product...' }}"
                        class="w-full px-4 py-2 outline-none">
-                <button class="px-4 text-white">🔍</button>
+
+                <!-- Nút tìm kiếm -->
+                <button class="bg-yellow-500 px-4 py-2 text-white font-bold">
+                    🔍
+                </button>
             </div>
         </form>
 
 
         <!-- Tiện ích & User -->
         <div class="flex items-center space-x-4 text-white">
-            <!-- Nút Thông Báo -->
             <button id="notification-btn" class="relative bg-gray-200 p-2 rounded-full">
                 🔔
                 <span id="notification-count"
@@ -71,21 +80,11 @@
                 </span>
             </button>
 
-            <!-- Danh sách Thông Báo -->
-            <div id="notification-list"
-                 class="absolute right-5 mt-2 w-80 bg-white shadow-lg border rounded-lg p-3 hidden">
-                <p class="text-sm text-gray-500">Không có thông báo mới</p>
-            </div>
-
-            <button>🛍️</button>
-            <a href="{{route('exchange.managerNews')}}">
-                <button>📋 {{'Manager news'}}</button>
-
-            </a>
+            <a href="{{route('exchange.managerNews')}}"><button>📋 {{'Manager news'}}</button></a>
 
             @auth
                 <div class="flex items-center space-x-2">
-                    <img src="{{ asset( Auth::user()->profile_photo_path ?? '/images/no-image.png') }}"
+                    <img src="{{ asset(Auth::user()->profile_photo_path ?? '/images/no-image.png') }}"
                          class="w-8 h-8 rounded-full border">
                     <span>{{ Auth::user()->name }}</span>
                 </div>
@@ -94,12 +93,9 @@
                     + {{'POST NEW'}}
                 </a>
             @else
-                <li><a href="{{ route('login') }}" class="button white ">{{ __('Log In') }}</a></li>
-                <li><a href="{{ route('register_user') }}" class="button btn-register">{{ __('Register') }}</a></li>
-        @endif
-
-        <!-- Nút Đăng Tin -->
-
+                <a href="{{ route('login') }}" class="button white">{{ __('Log In') }}</a>
+                <a href="{{ route('register_user') }}" class="button btn-register">{{ __('Register') }}</a>
+            @endif
         </div>
     </div>
 </header>
