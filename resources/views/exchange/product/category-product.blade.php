@@ -40,23 +40,22 @@
                 <a href="https://shop.myleague.vn/ao-the-thao.html" title="Áo thể thao">{{'New Products'}} </a></h2>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
-            @if(count($categoryProduct->products) > 0)
+            @if(isset($categoryProduct)  && count($categoryProduct->products) > 0)
             @foreach ($categoryProduct->products as $product)
                 <div class="bg-white p-6 rounded-lg shadow-md hover:scale-105">
                     <a href="{{route('exchange.productDetail', $product['slug'])}}">
                         <img src="{{ asset($product->images) }}" class=" w-full  object-cover rounded-lg">
                         <h4 class="mt-2 font-semibold">{{ $product->name }}</h4>
                     </a>
-                    <p class="text-gray-600">{{ $product->condition }} • {{ $product->status  }}</p>
+                    <p class="text-gray-600">{{ $product->condition }} </p>
                     <p class="text-red-500 font-bold">{{ number_format($product->price, 0, ',', '.') }} đ</p>
                     <div class="flex items-center text-gray-500 text-sm mt-2">
-                        <i class="fas fa-map-marker-alt mr-2"></i> {{ $product->location }}
+                        <i class="fas fa-map-marker-alt"></i> {{ $product->location }}
                     </div>
                 </div>
             @endforeach
                 @else
                     <div class="text-center">
-                        <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
                         <h4 >{{ __('No products found') }}</h4>
                     </div>
                 @endif

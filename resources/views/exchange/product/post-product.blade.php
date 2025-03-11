@@ -1,4 +1,13 @@
 @extends('layouts.app')
+<!-- Summernote CSS -->
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Summernote CSS -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
+<!-- Summernote JS -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 @section('content')
     <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow mt-4">
@@ -11,7 +20,7 @@
             <!-- Ảnh Chính -->
                 <div class="grid grid-cols-3 gap-4">
                     <div class="border p-4 rounded-lg">
-                        <label class="block font-medium">Ảnh Chính</label>
+                        <label class="block font-medium">{{'Main Photo'}}</label>
                         <input type="file" name="images" class="w-full  p-2" id="mainImageInput">
                         <div class="mt-2">
                             <img id="mainImagePreview" src="{{asset( '/images/logo-no-background.png')}}" class="hidden w-32 h-32 object-cover  " required />
@@ -23,7 +32,7 @@
 
                     <!-- Ảnh Phụ -->
                     <div class="border p-4 rounded-lg">
-                        <label class="block font-medium">Ảnh Phụ (Có thể chọn nhiều)</label>
+                        <label class="block font-medium">{{'Sub Photo'}} </label>
                         <input type="file" name="product_images[]" multiple class="w-full  p-2 " id="subImagesInput" >
                         <!-- Hiển thị lỗi validate -->
                         @if ($errors->has('product_images.*'))
@@ -68,7 +77,7 @@
 
             <div class="mt-4">
                 <label class="block font-semibold">{{'Description'}}</label>
-                <textarea name="description" class="w-full border px-3 py-2 rounded h-32"></textarea>
+                <textarea id="editor" name="description"></textarea>
             </div>
 
 
@@ -102,7 +111,7 @@
                     </select>
 
                     <label class="block font-semibold">{{'Specific address'}}</label>
-                    <input type="text" id="street" class="w-full border px-3 py-2 rounded mb-4" placeholder="Nhập số nhà, đường...">
+                    <input type="text" id="street" class="w-full border px-3 py-2 rounded mb-4" placeholder="">
 
                     <button type="button" id="confirm-address" class="bg-orange-600 text-white px-6 py-2 rounded w-full">
                         {{'Address Confirmation'}}
@@ -229,4 +238,21 @@
         }
     });
 </script>
+    <script>
+        $(document).ready(function() {
+            $('#editor').summernote({
+                placeholder: 'Content...',
+                tabsize: 2,
+                height: 300,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ]
+            });
+        });
+    </script>
 @endsection

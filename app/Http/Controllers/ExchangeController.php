@@ -31,17 +31,18 @@ class ExchangeController extends Controller
      */
     public function index()
     {
-        $products = $this->productRepository->index();
+        $products = $this->productRepository->homeExchange();
         $categories = $this->categoryProductRepository->index();
         return view('exchange.index', compact('products', 'categories'));
     }
 
     public function productDetail($slug)
     {
+        $categories = $this->categoryProductRepository->index();
         $product =  $this->productRepository->productDetail($slug);
         $relatedProducts = Product::where('category', $product->category)->where('slug', '!=', $slug)->limit(6)->get();
 
-        return view('exchange.product.show', compact('product', 'relatedProducts'));
+        return view('exchange.product.show', compact('product', 'relatedProducts', 'categories'));
     }
     /**
      * Show the form for creating a new resource.
@@ -113,9 +114,14 @@ class ExchangeController extends Controller
 
     public function managerNews(Request $request)
     {
+        $user = Auth::user();
         $categories = $this->categoryProductRepository->index();
-        $productNews = $this->productRepository->productNews();
+        $getNewsByStatus = $request->get('status');
+        $productNews = $this->productRepository->productNews($getNewsByStatus, $user->id);
+        $countProductByStatus = $this->productRepository->countProduct($user->id);
 
-        return view('exchange.manager-news.index', compact('categories', 'productNews'));
+        return view('exchange.manager-news.index', compact('categories', 'productNews', 'countProductByStatus'));
     }
+
+
 }

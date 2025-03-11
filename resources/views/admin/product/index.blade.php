@@ -18,11 +18,12 @@
                     <thead>
                     <tr class="design-text">
                         <th scope="col">{{ __('Status') }}</th>
-                            <th scope="col">{{ __('Name') }}</th>
+                            <th scope="col">{{ __('Title') }}</th>
                             <th scope="col">{{ __('Images') }}</th>
                             <th scope="col">{{ __('Category') }}</th>
                             <th scope="col">{{ __('Description') }}</th>
                             <th scope="col">{{ __('Price') }}</th>
+                            <th scope="col">{{ __('Location') }}</th>
                             <th scope="col">{{ __('Action') }}</th>
                     </tr>
                     </thead>
@@ -30,8 +31,8 @@
                     @foreach($listProduct as $data)
                         <tr>
                             <td>
-                                <div  class="btn btn-{{$data->status == 'new' ? 'success' : 'danger' }}">
-                                    {{$data->status == 'new' ? "new" : "used "}}
+                                <div class="btn {{ $data->status == 'pending' ? 'btn-warning' : ($data->status == 'accepted' ? 'btn-success' : 'btn-secondary') }}">
+                                    {{ $data->status == 'pending' ? 'Pending' : ($data->status == 'accepted' ? 'Accepted' : 'Rejected') }}
                                 </div>
                             </td>
                             <td>{{ $data->name }}</td>
@@ -40,12 +41,19 @@
                             <td>{!! Str::limit(strip_tags(html_entity_decode($data->description)), 50)!!}</td>
 
                             <td>{{ $data->price }}</td>
+                            <td>{{ $data->location }}</td>
                             <td>
                                 <a href="{{ route('product.edit') }}?id={{ $data['id'] }}">
                                     <button type="button" class="btn btn-info">{{ __('Edit') }}</button>
                                 </a>
                                 <a href="{{ route('product.delete') }}?id={{ $data['id'] }}">
                                     <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
+                                </a>
+                                <a href="{{ route('product.accept') }}?id={{ $data['id'] }}">
+                                    <button type="button" class="btn btn-success">{{ __('Accepted') }}</button>
+                                </a>
+                                <a href="{{ route('product.reject') }}?id={{ $data['id'] }}">
+                                    <button type="button" class="btn btn-secondary">{{ __('Rejected') }}</button>
                                 </a>
                             </td>
                         </tr>
