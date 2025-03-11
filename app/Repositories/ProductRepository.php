@@ -18,7 +18,7 @@ class ProductRepository extends BaseRepository
 
     public function productDetail($slug)
     {
-        return $this->model->with( 'categories', 'productImages')->where('slug', $slug)->first();
+        return $this->model->with( 'categories', 'productImages', 'users')->where('slug', $slug)->first();
     }
 
     public function store($input)
@@ -43,12 +43,45 @@ class ProductRepository extends BaseRepository
 
     public function productSearch($query)
     {
-        return $this->model->where('name', 'LIKE', "%{$query}%")->paginate(12);
+        return $this->model->where('status', 'accepted')->where('name', 'LIKE', "%{$query}%")->paginate(12);
     }
 
-    public function productNews()
+    public function homeExchange()
     {
         return $this->model->with('categories', 'brands')->where('status', 'accepted')->orderBy('created_at', 'desc')->get();
+    }
+
+    public function productNews($getNewsByStatus = null, $user)
+    {
+
+        if ($getNewsByStatus == 'accepted') {
+            return $this->model->with('categories', 'brands')->where('status', 'accepted')
+            ->where('user_id', $user)
+            ->orderBy('created_at', 'desc')->get();
+        } elseif ($getNewsByStatus == 'pending') {
+            return $this->model->with('categories', 'brands')->where('status', 'pending')
+                ->where('user_id', $user)
+                ->orderBy('created_at', 'desc')->get();
+        } elseif ($getNewsByStatus == 'rejected') {
+            return $this->model->with('categories', 'brands')->where('status', 'rejected')
+                ->where('user_id', $user)
+                ->orderBy('created_at', 'desc')->get();
+        }
+        return $this->model->with('categories', 'brands')->where('status', 'accepted')
+            ->where('user_id', $user)
+            ->orderBy('created_at', 'desc')->get();
+
+    }
+
+    public function countProduct($user)
+    {
+        return $this->model->where('user_id', $user)
+            ->selectRaw("
+            SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending_count,
+            SUM(CASE WHEN status = 'accepted' THEN 1 ELSE 0 END) as accept_count,
+            SUM(CASE WHEN status = 'rejected' THEN 1 ELSE 0 END) as reject_count
+        ")
+        ->first();
     }
 
 }

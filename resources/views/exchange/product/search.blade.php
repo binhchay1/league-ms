@@ -12,10 +12,10 @@
                             <img src="{{ asset($product->images) }}" class=" w-full  object-cover rounded-lg">
                             <h4 class="mt-2 font-semibold">{{ $product->name }}</h4>
                         </a>
-                        <p class="text-gray-600">{{ $product->condition }} • {{ $product->status  }}</p>
+                        <p class="text-gray-600">{{ $product->condition }}</p>
                         <p class="text-red-500 font-bold">{{ number_format($product->price, 0, ',', '.') }} đ</p>
                         <div class="flex items-center text-gray-500 text-sm mt-2">
-                            <i class="fas fa-map-marker-alt mr-2"></i> {{ $product->location }}
+                            <i class="fas fa-map-marker-alt "></i> {{ $product->location }}
                         </div>
                     </div>
                 @endforeach

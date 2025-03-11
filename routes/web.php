@@ -206,6 +206,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/delete-product-image/{id}', [ProductController::class, 'deleteProductImage']);
     Route::post('/store-product-sale/', [ExchangeController::class, 'storeProductSale'])->name('product.storeProductSale');
 
+    Route::get('/accept-product', [ProductController::class, 'accept'])->name('product.accept');
+    Route::get('/reject-product', [ProductController::class, 'reject'])->name('product.reject');
+
 
 
     Route::middleware(['admin'])->group(

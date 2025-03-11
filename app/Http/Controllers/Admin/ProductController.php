@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\ProductAccepted;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Product;
 use App\Http\Requests\ProductRequest;
@@ -78,7 +79,7 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('success', 'Product successfully created.');
     }
 
     public function edit(Request $request)
@@ -114,21 +115,39 @@ class ProductController extends Controller
                 ]);
             }
         }
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('success', 'Product successfully updated.');
     }
 
     public function delete(Request $request)
     {
         $this->productRepository->deleteById($request->get('id'));
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('success', 'Product successfully deleted.');
+    }
+
+    public function accept(Request $request)
+    {
+        $product = $this->productRepository->getById($request->get('id'));
+        $product->status = 'accepted';
+        $product->save();
+        broadcast(new ProductAccepted($product))->toOthers(); // Gửi thông báo real-time
+        return redirect()->route('product.index')->with('success', 'Product successfully accepted.');;
+    }
+
+    public function reject(Request $request)
+    {
+        $product = $this->productRepository->getById($request->get('id'));
+        $product->status = 'rejected';
+        $product->save();
+
+        return redirect()->route('product.index')->with('success', 'Product rejected.');
     }
 
     public function deleteProductImage($id)
     {
         $image = ProductImage::find($id);
         if (!$image) {
-            return response()->json(['success' => false, 'message' => 'Ảnh không tồn tại!']);
+            return response()->json(['success' => false, 'message' => 'Image not found']);
         }
 
         // Xóa file ảnh vật lý
@@ -139,7 +158,7 @@ class ProductController extends Controller
         // Xóa ảnh khỏi database
         $image->delete();
 
-        return response()->json(['success' => true, 'message' => 'Xóa ảnh thành công!']);
+        return response()->json(['success' => true, 'message' => 'Delete image success!']);
     }
 
 }
