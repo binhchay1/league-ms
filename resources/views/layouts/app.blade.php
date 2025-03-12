@@ -7,13 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
-@if(session('success'))
-    <div id="alert-success"
-         class="fixed top-5 right-5 bg-green-500 text-white text-sm font-medium px-4 py-2 rounded-lg shadow-md transition-opacity duration-300">
-        {{ session('success') }}
-    </div>
-
-@endif
 <header class="bg-gray-800 py-2 shadow-md">
     <div class="mx-auto flex items-center justify-between px-4">
         <!-- Logo + Danh mục -->
@@ -99,7 +92,12 @@
         </div>
     </div>
 </header>
-
+@if(session('success'))
+    <div id="alert-success"
+         class="fixed top-5 right-5 bg-green-500 text-white text-sm font-medium px-4 py-2 rounded-lg shadow-md transition-opacity duration-300">
+        {{ session('success') }}
+    </div>
+@endif
 <div class="">
     @yield('content')
 </div>

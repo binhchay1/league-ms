@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CategoryProduct;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Repositories\CategoryProductRepository;
@@ -40,6 +39,11 @@ class ExchangeController extends Controller
     {
         $categories = $this->categoryProductRepository->index();
         $product =  $this->productRepository->productDetail($slug);
+
+        if(!$product) {
+            return redirect()->route('exchange.home')->with('success', 'Product not found!');
+        }
+
         $relatedProducts = Product::where('category', $product->category)->where('slug', '!=', $slug)->limit(6)->get();
 
         return view('exchange.product.show', compact('product', 'relatedProducts', 'categories'));
@@ -79,16 +83,23 @@ class ExchangeController extends Controller
         return view('exchange.product.search', compact('products', 'categories'));
     }
 
-    public function productSale()
+    public function createProductNews()
     {
         $categories = $this->categoryProductRepository->index();
-        return view('exchange.product.post-product', compact( 'categories'));
+        return view('exchange.manager-news.post-product', compact( 'categories'));
     }
 
-    public function storeProductSale(Request $request)
+    public function storeProductNews(Request $request)
     {
         $request->validate([
-            'product_images.*' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'condition' => 'required|in:new,used',
+            'price' => 'required|numeric|min:0',
+            'location' => 'required|string',
+            'images' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'product_images'   => 'required|array',
+            'product_images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         // Tạo sản phẩm mới
         $input = $request->except(['_token']);
@@ -134,5 +145,97 @@ class ExchangeController extends Controller
         return view('exchange.manager-news.index', compact('categories', 'productNews', 'countProductByStatus'));
     }
 
+    public function editProductNews($slug)
+    {
+        $categories = $this->categoryProductRepository->index();
+        $product = $this->productRepository->productDetail($slug);
+        if(!$product) {
+            return redirect()->route('exchange.home')->with('success', 'Product not found!');
+        }
+        return view('exchange.manager-news.edit-product', compact('product', 'categories'));
+    }
+
+    public function updateProductNews(Request $request, $slug)
+    {
+        $input = $request->except(['_token']);
+        $dataProduct = $this->productRepository->productDetail($slug);
+        if(!$dataProduct) {
+            return redirect()->route('exchange.home')->with('success', 'Product not found!');
+        }
+
+         $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'condition' => 'required|in:new,used',
+            'price' => 'required|numeric|min:0',
+            'images' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+             'product_images'   => 'array',
+             'product_images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+         if(!($request->location)) {
+            $location = $dataProduct->location;
+         }
+
+        // Cập nhật thông tin sản phẩm
+        $data = [
+            'name' => $input['name'],
+            'price' => $input['price'],
+            'category' => $input['category'],
+            'condition' => $input['condition'],
+            'description' => $input['description'],
+            'location' => $location,
+            'start_date' => $dataProduct->start_date,
+            'expires_at' => $dataProduct->expires_at
+        ];
+
+        // Cập nhật ảnh chính
+        if ($request->hasFile('images')) {
+            $image = $request->file('images');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('/images/upload/product/'), $imageName);
+            $input['images'] = '/images/upload/product/' . $imageName; // Lưu đường dẫn
+
+        }
+        $product = $this->productRepository->updateBySlug($data, $slug);
+        // Xử lý ảnh phụ (images)
+        if ($request->hasFile('sub_images')) {
+            foreach ($request->file('sub_images') as $file) {
+                $imageName = time() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('/images/upload/product/'), $imageName);
+
+                ProductImage::create([
+                    'product_id' => $dataProduct->id,
+                    'image_url' => '/images/upload/product/' . $imageName
+                ]);
+            }
+        }
+
+        return redirect()->route('exchange.managerNews')->with('success', 'Product updated successfully');
+    }
+
+     public function destroy($id)
+     {
+         $this->productRepository->destroy($id);
+
+         return redirect()->route('exchange.managerNews')->with('success', 'Product updated successfully');
+     }
+
+    public function loadMore(Request $request)
+    {
+        $page = $request->input('page', 1);
+
+        $products = Product::where('status', 'accepted')
+            ->orderBy('created_at', 'desc')
+            ->paginate(6, ['*'], 'page', $page);
+
+        // Render HTML từ view (file paginate.product-list.blade.php)
+        $view = view('exchange.paginate.product-list', compact('products'))->render();
+
+        return response()->json([
+            'products' => $view, // Trả về HTML thay vì JSON
+            'next_page' => $products->nextPageUrl()
+        ]);
+    }
 
 }

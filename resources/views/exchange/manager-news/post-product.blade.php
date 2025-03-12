@@ -23,21 +23,22 @@
                         <label class="block font-medium">{{'Main Photo'}}</label>
                         <input type="file" name="images" class="w-full  p-2" id="mainImageInput">
                         <div class="mt-2">
-                            <img id="mainImagePreview" src="{{asset( '/images/logo-no-background.png')}}" class="hidden w-32 h-32 object-cover  " required />
+                            <img id="mainImagePreview" src="{{asset( '/images/logo-no-background.png')}}" class="hidden w-32 h-32 object-cover  "  />
                         </div>
-                        @if ($errors->has('images'))
-                            <span class="text-danger">{{ $errors->first('images') }}</span>
-                        @endif
+
+                        @error('images')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <!-- Ảnh Phụ -->
-                    <div class="border p-4 rounded-lg">
+                    <div class=" p-4 rounded-lg">
                         <label class="block font-medium">{{'Sub Photo'}} </label>
                         <input type="file" name="product_images[]" multiple class="w-full  p-2 " id="subImagesInput" >
                         <!-- Hiển thị lỗi validate -->
-                        @if ($errors->has('product_images.*'))
-                            <span class="text-red-500">{{ $errors->first('product_images.*') }}</span>
-                        @endif
+                        @error('product_images')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                         <div class="mt-2 flex gap-2" id="subImagesPreview"></div>
                     </div>
                 </div>
@@ -66,20 +67,29 @@
             {{-- Giá bán --}}
             <div class="mt-4">
                 <label class="block font-semibold">{{'Price'}}</label>
-                <input type="number" name="price" class="w-full border px-3 py-2 rounded" required>
+                <input type="number" name="price" class="w-full border px-3 py-2 rounded" >
+                @error('price')
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             {{-- Tiêu đề & mô tả --}}
             <div class="mt-4">
                 <label class="block font-semibold">{{'Title'}}</label>
-                <input type="text" name="name" class="w-full border px-3 py-2 rounded" required>
+                <input type="text" name="name" class="w-full border px-3 py-2 rounded" >
+                @error('name')
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mt-4">
                 <label class="block font-semibold">{{'Description'}}</label>
                 <textarea id="editor" name="description"></textarea>
-            </div>
 
+            </div>
+                @error('description')
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
 
             {{-- Popup chọn địa chỉ --}}
             {{-- Chọn địa chỉ --}}
@@ -89,6 +99,9 @@
                     {{'Select Address'}}
                 </button>
                 <input type="hidden" name="location" id="location">
+                @error('location')
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
                 <div class="text-black-600 mt-2" id="selected-location"></div>
             </div>
 
