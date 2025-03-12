@@ -36,6 +36,11 @@ class ProductRepository extends BaseRepository
         return $this->model->where('id', $id)->update($input);
     }
 
+    public function updateBySlug($input, $slug)
+    {
+        return $this->model->where('slug', $slug)->update($input);
+    }
+
     public function destroy($id)
     {
         return $this->model->where('id', $id)->delete();
@@ -104,19 +109,19 @@ class ProductRepository extends BaseRepository
         if ($getNewsByStatus == 'accepted') {
             return $this->model->with('categories', 'brands')->where('status', 'accepted')
             ->where('user_id', $user)
-            ->orderBy('created_at', 'desc')->get();
+            ->orderBy('start_date', 'asc')->get();
         } elseif ($getNewsByStatus == 'pending') {
             return $this->model->with('categories', 'brands')->where('status', 'pending')
                 ->where('user_id', $user)
-                ->orderBy('created_at', 'desc')->get();
+                ->orderBy('start_date', 'asc')->get();
         } elseif ($getNewsByStatus == 'rejected') {
             return $this->model->with('categories', 'brands')->where('status', 'rejected')
                 ->where('user_id', $user)
-                ->orderBy('created_at', 'desc')->get();
+                ->orderBy('start_date', 'asc')->get();
         }
         return $this->model->with('categories', 'brands')->where('status', 'accepted')
             ->where('user_id', $user)
-            ->orderBy('created_at', 'desc')->get();
+            ->orderBy('start_date', 'asc')->get();
 
     }
 

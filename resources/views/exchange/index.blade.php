@@ -47,7 +47,7 @@
 
         <!-- Nút Load More -->
         <div class="text-center mt-4">
-            <button id="loadMoreBtn" class="bg-blue-500 text-white p-2 rounded-lg">Xem thêm</button>
+            <button id="loadMoreBtn" class="bg-blue-500 text-white p-2 rounded-lg">{{'Load more'}}</button>
         </div>
     </div>
 @endsection
@@ -64,19 +64,19 @@
                 type: "GET",
                 data: { page: currentPage },
                 beforeSend: function() {
-                    $('#loadMoreBtn').text('Đang tải...'); // Hiển thị trạng thái loading
+                    $('#loadMoreBtn').text('Loading...'); // Hiển thị trạng thái loading
                 },
                 success: function (response) {
                     if (response.products.trim() === '') {
                         $('#loadMoreBtn').hide(); // Ẩn nút nếu không còn sản phẩm
                     } else {
                         $('#product-container').append(response.products);
-                        $('#loadMoreBtn').text('Xem thêm'); // Khôi phục lại trạng thái nút
+                        $('#loadMoreBtn').text('Load more'); // Khôi phục lại trạng thái nút
                     }
                 },
                 error: function () {
-                    alert('Lỗi khi tải dữ liệu!');
-                    $('#loadMoreBtn').text('Xem thêm'); // Khôi phục lại nếu lỗi
+                    alert('Error to update data!');
+                    $('#loadMoreBtn').text('Load more'); // Khôi phục lại nếu lỗi
                 }
             });
         });

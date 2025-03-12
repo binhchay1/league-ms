@@ -66,8 +66,11 @@ Route::get('/filter-by', [ExchangeController::class, 'filter'])->name('products.
 Route::get('/products/load-more', [ExchangeController::class, 'loadMore'])->name('exchange.loadMore');
 
 //manager-news
-Route::get('/product-sale', [ExchangeController::class, 'productSale'])->name('exchange.productSale');
-Route::get('/manager-news', [ExchangeController::class, 'managerNews'])->name('exchange.managerNews');
+Route::get('/post-product-news', [ExchangeController::class, 'createProductNews'])->name('exchange.productSale');
+
+Route::get('/product-news/{slug}', [ExchangeController::class, 'editProductNews'])->name('exchange.editNews');
+Route::post('/update-product-news/{slug}', [ExchangeController::class, 'updateProductNews'])->name('exchange.updateNews');
+Route::delete('delete/product-news/{id}', [ExchangeController::class, 'destroy'])->name('product.destroy');
 
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');
@@ -200,7 +203,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/get-brands/{category_id}', [BrandController::class, 'getBrandsByCategory']);
     Route::get('/get-all-brands', [BrandController::class, 'getAllBrands']);
 
-
     //product
     Route::get('/list-product/', [ProductController::class, 'index'])->name('product.index');
     Route::post('/store-product/', [ProductController::class, 'store'])->name('product.store');
@@ -209,10 +211,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/update-product/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::get('/delete-product/', [ProductController::class, 'delete'])->name('product.delete');
     Route::delete('/delete-product-image/{id}', [ProductController::class, 'deleteProductImage']);
-    Route::post('/store-product-sale/', [ExchangeController::class, 'storeProductSale'])->name('product.storeProductSale');
 
     Route::get('/accept-product', [ProductController::class, 'accept'])->name('product.accept');
     Route::get('/reject-product', [ProductController::class, 'reject'])->name('product.reject');
+
+    //exchange
+    Route::get('/manager-news', [ExchangeController::class, 'managerNews'])->name('exchange.managerNews');
+    Route::post('/store-product-news/', [ExchangeController::class, 'storeProductNews'])->name('product.storeProductSale');
 
 
 
