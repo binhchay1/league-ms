@@ -180,4 +180,26 @@ class GroupController extends Controller
         $this->groupUserRepository->destroy($id);
         return back()->with('success', 'User successfully deleted.');
     }
+
+
+    public function createGroup()
+    {
+        return view('page.group.create');
+    }
+
+    public function storeGroup(GroupRequest $request)
+    {
+        $input = $request->except(['_token']);
+        $input['group_owner'] = Auth::user()->id;
+        $input['rate'] = Group::RATE_NEWLY_ESTABLISHED;
+        if (isset($input['images'])) {
+            $img = $this->utility->saveImageGroup($input);
+            if ($img) {
+                $path = '/images/upload/group/' . $input['images']->getClientOriginalName();
+                $input['images'] = $path;
+            }
+        }
+        $this->groupRepository->create($input);
+        return redirect()->route('my.group')->with('success','Group successfully created.');
+    }
 }
