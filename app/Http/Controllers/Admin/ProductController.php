@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\Product;
+use App\Events\ProductAccepted;
+use App\Http\Requests\ProductUpdateRequest;
+use App\Models\Product;
 use App\Http\Requests\ProductRequest;
+use App\Models\ProductImage;
 use App\Repositories\BrandRepository;
 use App\Repositories\CategoryProductRepository;
 use App\Repositories\ProductRepository;
@@ -40,28 +43,43 @@ class ProductController extends Controller
     public function create()
     {
         $listCategory = $this->categoryProductRepository->index();
-
-        return view('admin.product.create', compact( 'listCategory'));
+        $status = \App\Enums\Product::STATUS;
+        return view('admin.product.create', compact( 'listCategory', 'status'));
     }
 
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
+        $request->validate([
+            'product_images.*' => 'required|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        // Tạo sản phẩm mới
+        $input = $request->except(['_token']);
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->name);
-        $input['status'] = Product::IN_STOCK;
-        if(empty($request->brand)) {
-            $input['brand'] = null;
+
+        // Xử lý ảnh chính (image)
+        if ($request->hasFile('images')) {
+            $image = $request->file('images');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('/images/upload/product/'), $imageName);
+            $input['images'] = '/images/upload/product/' . $imageName; // Lưu đường dẫn
+
         }
-        if (isset($input['images'])) {
-            $img = $this->utility->saveImageProduct($input);
-            if ($img) {
-                $path = '/images/upload/product/' . $input['images']->getClientOriginalName();
-                $input['images'] = $path;
+        $product = $this->productRepository->create($input);
+        // Xử lý ảnh phụ (images)
+        if ($request->hasFile('product_images')) {
+            foreach ($request->file('product_images') as $file) {
+                $imageName = time() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('/images/upload/product/'), $imageName);
+
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image_url' => '/images/upload/product/' . $imageName
+                ]);
             }
         }
-        $this->productRepository->create($input);
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('success', 'Product successfully created.');
     }
 
     public function edit(Request $request)
@@ -69,31 +87,78 @@ class ProductController extends Controller
         $dataProduct = $this->productRepository->getById($request->get('id'));
         $listCategory = $this->categoryProductRepository->index();
         $brands = $this->brandRepository->index();
-        $status = Product::STATUS;
+        $status = \App\Enums\Product::STATUS;
 
         return view('admin.product.edit', compact('status','dataProduct', 'listCategory', 'brands'));
     }
 
-    public function update(ProductRequest $request, $id)
+    public function update(ProductUpdateRequest $request, $id)
     {
         $input = $request->except(['_token']);
+        if ($request->hasFile('images')) {
+            $image = $request->file('images');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('/images/upload/product/'), $imageName);
+            $input['images'] = '/images/upload/product/' . $imageName; // Lưu đường dẫn
 
-        if (isset($input['images'])) {
-            $img = $this->utility->saveImageProduct($input);
-            if ($img) {
-                $path = '/images/upload/product/' . $input['image']->getClientOriginalName();
-                $input['images'] = $path;
+        }
+        $product = $this->productRepository->update($id, $input);
+        if ($request->hasFile('product_images')) {
+            foreach ($request->file('product_images') as $file) {
+                $imageName = time() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('/images/upload/product/'), $imageName);
+
+                // Thêm ảnh mới vào bảng `product_images`
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image_url' => '/images/upload/product/' . $imageName
+                ]);
             }
         }
-
-        $this->productRepository->updateById($id, $input);
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('success', 'Product successfully updated.');
     }
 
     public function delete(Request $request)
     {
         $this->productRepository->deleteById($request->get('id'));
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('success', 'Product successfully deleted.');
     }
+
+    public function accept(Request $request)
+    {
+        $product = $this->productRepository->getById($request->get('id'));
+        $product->status = 'accepted';
+        $product->save();
+        broadcast(new ProductAccepted($product))->toOthers(); // Gửi thông báo real-time
+        return redirect()->route('product.index')->with('success', 'Product successfully accepted.');;
+    }
+
+    public function reject(Request $request)
+    {
+        $product = $this->productRepository->getById($request->get('id'));
+        $product->status = 'rejected';
+        $product->save();
+
+        return redirect()->route('product.index')->with('success', 'Product rejected.');
+    }
+
+    public function deleteProductImage($id)
+    {
+        $image = ProductImage::find($id);
+        if (!$image) {
+            return response()->json(['success' => false, 'message' => 'Image not found']);
+        }
+
+        // Xóa file ảnh vật lý
+        if (file_exists(public_path($image->image_url))) {
+            unlink(public_path($image->image_url));
+        }
+
+        // Xóa ảnh khỏi database
+        $image->delete();
+
+        return response()->json(['success' => true, 'message' => 'Delete image success!']);
+    }
+
 }

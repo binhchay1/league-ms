@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ExchangeController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
@@ -54,6 +55,24 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/news/category/{slug}', [HomeController::class, 'newsCategory'])->name('newsCategory');
 });
 
+//exchange
+
+//product
+Route::get('exchange', [ExchangeController::class, 'index'])->name('exchange.home');
+Route::get('/product/{slug}', [ExchangeController::class, 'productDetail'])->name('exchange.productDetail');
+Route::get('/category/{slug}', [ExchangeController::class, 'categoryDetail'])->name('exchange.categoryDetail');
+Route::get('/search', [ExchangeController::class, 'search'])->name('products.search');
+Route::get('/filter-by', [ExchangeController::class, 'filter'])->name('products.searchInProduct');
+Route::get('/products/load-more', [ExchangeController::class, 'loadMore'])->name('exchange.loadMore');
+
+//manager-news
+Route::get('/post-product-news', [ExchangeController::class, 'createProductNews'])->name('exchange.productSale');
+
+Route::get('/product-news/{slug}', [ExchangeController::class, 'editProductNews'])->name('exchange.editNews');
+Route::post('/update-product-news/{slug}', [ExchangeController::class, 'updateProductNews'])->name('exchange.updateNews');
+Route::delete('delete/product-news/{id}', [ExchangeController::class, 'destroy'])->name('product.destroy');
+
+
 Route::get('/login/', [AuthController::class, 'login'])->name('login');
 Route::post('/custom-login/', [AuthController::class, 'customLogin'])->name('login.custom');
 Route::post('/custom-login-mobile/', [AuthController::class, 'customLogin'])->name('login.custom-mobile');
@@ -70,6 +89,8 @@ Route::post('/register/', [AuthController::class, 'storeUser'])->name('storeUser
 Route::get('/setLocale/{locale}/', [HomeController::class, 'changeLocate'])->name('app.setLocale');
 
 Route::middleware(['auth:sanctum'])->group(function () {
+
+    //profile
     Route::get('/profile/{nick_name}/', [ProfileController::class, 'show'])->name('profile.info');
     Route::get('/user-profile/', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/user-profile/{id}/', [ProfileController::class, 'update'])->name('profile.update');
@@ -106,6 +127,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/delete-player-league/{id}/', [LeagueController::class, 'destroyPlayer'])->name('league.destroyPlayer');
     Route::get('/active-league/{id}', [LeagueController::class, 'activeLeague'])->name('activeLeague');
 
+    Route::get('/create-tournament', [LeagueController::class, 'createLeague'])->name('league.createTour');
+    Route::post('/store-tournament/', [LeagueController::class, 'storeLeagueTour'])->name('league.storeTour');
 
     //schedule
     Route::get('/list-schedule-league/', [ScheduleController::class, 'league'])->name('schedule.league');
@@ -141,6 +164,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user-join-group/{id}', [GroupController::class, 'dataGroup'])->name('group.userGroup');
     Route::post('/active-user-group', [GroupController::class, 'activeUserJoin'])->name('group.activeUserJoin');
     Route::get('/delete-user-group/{id}/', [GroupController::class, 'destroyUser'])->name('league.destroyUser');
+
+    Route::get('/new-group/', [GroupController::class, 'createGroup'])->name('group.createGroup');
+    Route::post('/store-new-group/', [GroupController::class, 'storeGroup'])->name('group.storeGroup');
 
 
     //category post
@@ -184,7 +210,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/get-brands/{category_id}', [BrandController::class, 'getBrandsByCategory']);
     Route::get('/get-all-brands', [BrandController::class, 'getAllBrands']);
 
-
     //product
     Route::get('/list-product/', [ProductController::class, 'index'])->name('product.index');
     Route::post('/store-product/', [ProductController::class, 'store'])->name('product.store');
@@ -192,6 +217,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/edit-product/', [ProductController::class, 'edit'])->name('product.edit');
     Route::post('/update-product/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::get('/delete-product/', [ProductController::class, 'delete'])->name('product.delete');
+    Route::delete('/delete-product-image/{id}', [ProductController::class, 'deleteProductImage']);
+
+    Route::get('/accept-product', [ProductController::class, 'accept'])->name('product.accept');
+    Route::get('/reject-product', [ProductController::class, 'reject'])->name('product.reject');
+
+    //exchange
+    Route::get('/manager-news', [ExchangeController::class, 'managerNews'])->name('exchange.managerNews');
+    Route::post('/store-product-news/', [ExchangeController::class, 'storeProductNews'])->name('product.storeProductSale');
+
 
 
     Route::middleware(['admin'])->group(

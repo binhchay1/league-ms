@@ -626,3 +626,162 @@ body.open .navigation-menu__labels {
     overflow: hidden;
 }
 
+ .feature-card {
+     background: linear-gradient(135deg, #5a9fff, #b46aff);
+     color: white;
+     text-align: center;
+     padding: 30px;
+     border-radius: 10px;
+     position: relative;
+ }
+.feature-icon {
+    background: white;
+    border-radius: 50%;
+    padding: 15px;
+    display: inline-block;
+    margin-bottom: 15px;
+    position: relative;
+}
+.feature-icon img {
+    width: 40px;
+    height: 40px;
+}
+.badge-number {
+    background: red;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(50%, -50%);
+}
+
+
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+}
+.text-content {
+    animation: fadeIn 1.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.btn-gradient {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.btn-gradient:hover {
+    background: linear-gradient(45deg, #ff4b2b, #ff416c);
+    transform: scale(1.05);
+}
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.feature-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+.feature-box:hover {
+    transform: translateY(-5px);
+}
+.icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.icon-box {
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+.icon-box i {
+    font-size: 50px;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.icon-box:hover {
+    transform: scale(1.1);
+}
+.icon-box:hover i {
+    color: #4CAF50; /* Xanh lá */
+}
+.icon-box:hover i.active {
+    color: #2196F3; /* Xanh dương nhẹ */
+}
+
+.testimonial-card {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.testimonial-card:hover {
+    background: linear-gradient(45deg, #ff4b2b, #ff416c);
+    transform: translateY(-5px);
+}
+.testimonial-card img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+.rating {
+    color: #ffc107;
+}
+
+
+.feature-card {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.feature-card:hover {
+    background-color: #f1f1f1;
+    transform: translateY(-5px);
+}
+.feature-icon {
+    position: relative;
+    display: inline-block;
+    font-size: 50px;
+    color: #6c757d;
+    transition: color 0.3s ease;
+}
+.feature-card:hover .feature-icon {
+    color: #ff4757;
+}
+
+.about-us {
+    font-size: 14px;
+    font-weight: 700 !important;
+    color: red !important;
+    padding: 0px  !important;
+}
+
+.outstanding-features {
+    background: linear-gradient(221.69deg, #9dbdbe 0%, #9a89b1 101.01%);
+}
+

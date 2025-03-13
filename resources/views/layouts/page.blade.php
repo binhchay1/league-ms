@@ -53,6 +53,14 @@
 
     .dropdown-menu .dropdown-item {
         color: black !important;
+        clear: both;
+        display: block;
+        font-weight: 400;
+        line-height: 1.428571429;
+        padding: 10px;
+        white-space: nowrap;
+        font-size: 16px !important;
+
     }
 
     .dropdown-menu .dropdown-item:hover {
@@ -116,7 +124,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="{{route('list.league')}}">{{__('List League')}}</a></li>
-                                <li><a class="dropdown-item" href="{{route('league.create')}}">{{__('Create League')}}</a></li>
+                                <li><a class="dropdown-item" href="{{route('league.createTour')}}">{{__('Create League')}}</a></li>
                             </ul>
                         </div>
                         <li class="nav-item">
@@ -127,6 +135,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link mx-2 text-uppercase" href="{{ route('match') }}">{{__('MATCH CENTER')}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 text-uppercase exchange" href="{{route('exchange.home')}}" target="_blank">{{__('EXCHANGE ')}}</a>
                         </li>
 {{--                        <li class="nav-item">--}}
 {{--                            <a class="nav-link mx-2 text-uppercase shopping"  href="#">{{__('SHOP')}}</a>--}}
@@ -139,7 +150,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="{{route('list.group')}}">{{__('List Group')}}</a></li>
-                                <li><a class="dropdown-item" href="{{route('group.create')}}">{{__('Create Group')}}</a></li>
+                                <li><a class="dropdown-item" href="{{route('group.createGroup')}}">{{__('Create Group')}}</a></li>
                             </ul>
                         </div>
                         @if(Auth::check() && Auth::user()->role =="admin" )
@@ -219,7 +230,7 @@
             <div class="container">
                 <div class="row">
 
-                    <div class="col-sm-12 text-center">
+                    <div class="col-sm-12 text-center mt-4">
                         <img width="100" height="auto" src="{{asset('/images/MOBOBOM.png')}}" data-lazy-src="" data-ll-status="loaded" class="entered lazyloaded"><noscript><img width="198" height="41" src="//vnitourist.com/wp-content/uploads/2024/06/logo-modobom-resize.png"></noscript>
                         <span style="margin-left: 10px;    text-transform: uppercase; margin-bottom: 12px;">badminton.com is a brand in the key project <a href="https://vnisocial.com/" style="margin-left: 3px"> VNISOCIAL ECOSYSTEM</a> of international company <a href="https://modobom.com/" style="margin-left: 3px"> Modobom</a>.</span>
                     </div> <!-- col-sm-3 -->

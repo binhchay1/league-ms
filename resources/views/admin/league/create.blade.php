@@ -123,7 +123,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="lastName" class="form-label">{{ __('Number of players') }}</label>
-                                    <select id="type_of_league" value="{{ old('type_of_league') }}" name="number_of_athletes" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                                    <select id="type_of_league" value="{{ old('number_of_athletes') }}" name="number_of_athletes" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                                         @foreach($listPlayer as $type => $value)
                                             <option id="type_of_league" value="{{ $value }}">{{ $value }}</option>
                                         @endforeach

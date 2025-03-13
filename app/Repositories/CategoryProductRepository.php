@@ -37,9 +37,19 @@ class CategoryProductRepository extends BaseRepository
     }
 
 
-    public function postCategory($slug)
+    public function productCategory($slug)
     {
-        return $this->model->with('posts')->where('slug', $slug)->first();
+        return $this->model
+            ->where('slug', $slug)
+            ->whereHas('products', function ($query) {
+                $query->where('status', 'accepted');
+            })
+            ->with(['products' => function ($query) {
+                $query->where('status', 'accepted'); // Chỉ load sản phẩm có status accepted
+            }])
+            ->first();
+
+
     }
 
 

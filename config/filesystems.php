@@ -70,6 +70,14 @@ return [
             'throw' => false,
         ],
 
+        'public-image-category' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/exchange/category/',
+            'url' => env('APP_URL') . '/images/exchange/category/',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         'public-image-team' => [
             'driver' => 'local',
             'root' => public_path() . '/images/upload/team/',

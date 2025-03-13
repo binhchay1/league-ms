@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Utility;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryProductRequest;
+use App\Http\Requests\CategoryProductUpdateRequest;
 use App\Repositories\CategoryProductRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -12,9 +14,10 @@ class CategoryProductController extends Controller
 {
     protected $categoryProductRepository;
 
-    public function __construct(CategoryProductRepository $categoryProductRepository )
+    public function __construct(CategoryProductRepository $categoryProductRepository,Utility $utility )
     {
         $this->categoryProductRepository = $categoryProductRepository;
+        $this->utility = $utility;
     }
 
     /**
@@ -41,6 +44,13 @@ class CategoryProductController extends Controller
     {
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->name);
+        if (isset($input['image'])) {
+            $img = $this->utility->saveImageCategory($input);
+            if ($img) {
+                $path = '/images/exchange/category/' . $input['image']->getClientOriginalName();
+                $input['image'] = $path;
+            }
+        }
         $this->categoryProductRepository->store($input);
 
         return redirect()->route('categoryProduct.index')->with('success', 'Category Product successfully created.');
@@ -70,11 +80,17 @@ class CategoryProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CategoryProductRequest $request, string $id)
+    public function update(CategoryProductUpdateRequest $request, string $id)
     {
         $input = $request->except(['_token']);
         $input['slug'] =  Str::slug($input['name']);
-
+        if (isset($input['image'])) {
+            $img = $this->utility->saveImageCategory($input);
+            if ($img) {
+                $path = '/images/exchange/category/' . $input['image']->getClientOriginalName();
+                $input['image'] = $path;
+            }
+        }
         $input = $this->categoryProductRepository->update($input, $id);
 
         return redirect()->route('categoryProduct.index')->with('success',  __('Category Product updated success'));
