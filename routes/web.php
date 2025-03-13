@@ -89,6 +89,8 @@ Route::post('/register/', [AuthController::class, 'storeUser'])->name('storeUser
 Route::get('/setLocale/{locale}/', [HomeController::class, 'changeLocate'])->name('app.setLocale');
 
 Route::middleware(['auth:sanctum'])->group(function () {
+
+    //profile
     Route::get('/profile/{nick_name}/', [ProfileController::class, 'show'])->name('profile.info');
     Route::get('/user-profile/', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/user-profile/{id}/', [ProfileController::class, 'update'])->name('profile.update');
@@ -125,6 +127,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/delete-player-league/{id}/', [LeagueController::class, 'destroyPlayer'])->name('league.destroyPlayer');
     Route::get('/active-league/{id}', [LeagueController::class, 'activeLeague'])->name('activeLeague');
 
+    Route::get('/create-tournament', [LeagueController::class, 'createLeague'])->name('league.createTour');
+    Route::post('/store-tournament/', [LeagueController::class, 'storeLeagueTour'])->name('league.storeTour');
 
     //schedule
     Route::get('/list-schedule-league/', [ScheduleController::class, 'league'])->name('schedule.league');
@@ -160,6 +164,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user-join-group/{id}', [GroupController::class, 'dataGroup'])->name('group.userGroup');
     Route::post('/active-user-group', [GroupController::class, 'activeUserJoin'])->name('group.activeUserJoin');
     Route::get('/delete-user-group/{id}/', [GroupController::class, 'destroyUser'])->name('league.destroyUser');
+
+    Route::get('/new-group/', [GroupController::class, 'createGroup'])->name('group.createGroup');
+    Route::post('/store-new-group/', [GroupController::class, 'storeGroup'])->name('group.storeGroup');
 
 
     //category post

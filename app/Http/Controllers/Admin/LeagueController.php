@@ -157,4 +157,35 @@ class LeagueController extends Controller
         $leagueById = $this->leagueRepository->leagueId($id);
     }
 
+    public function createLeague()
+    {
+        $listType = Ranking::RANKING_ARRAY_TYPE;
+        $listFormat = Ranking::RANKING_ARRAY_FORMAT;
+        $listPlayer = \App\Enums\League::NUMBER_PLAYER;
+
+        return view('page.league.create', compact('listType', 'listFormat', 'listPlayer'));
+    }
+
+    public function storeLeagueTour(LeagueRequest $request)
+    {
+
+        $input = $request->except(['_token']);
+        $input['slug'] = Str::slug($request->name);
+        $input['owner_id'] = Auth::user()->id;
+        $input['status'] = 0;
+        if (isset($input['images'])) {
+            $img = $this->utility->saveImageLeague($input);
+            if ($img) {
+                $path = '/images/upload/league/' . $input['images']->getClientOriginalName();
+                $input['images'] = $path;
+            }
+        }
+
+        $this->leagueRepository->store($input);
+        if (Auth::user()->role == Role::ADMIN) {
+            return redirect()->route('my.league')->with('success', 'League successfully created.');
+        }
+        return redirect()->route('my.league')->with('success', 'League successfully created.');
+    }
+
 }
