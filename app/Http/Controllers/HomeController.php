@@ -170,7 +170,7 @@ class HomeController extends Controller
     {
         $getLeagueByState = $request->get('state');
         $getLeague = $this->leagueRepository->getLeagueHome($getLeagueByState);
-        $listLeagues = $this->utility->paginate($getLeague, 5);
+        $listLeagues = $this->utility->paginate($getLeague, 10);
 
         return view('page.league.index', compact('listLeagues'));
     }
@@ -561,5 +561,15 @@ class HomeController extends Controller
 
     }
 
+    public function searchLeague(Request $request)
+    {
+        $query = $request->input('query');
+        $sort = $request->input('sort');
+
+        $getLeague = $this->leagueRepository->searchLeague($query, $sort);
+        $listLeagues = $this->utility->paginate($getLeague, 10);
+
+        return view('page.league.search-result', compact('listLeagues'));
+    }
 
 }

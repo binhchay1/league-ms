@@ -21,14 +21,26 @@
         margin-bottom: 10px;
     }
 
+    .form-league {
+        padding: 50px !important;
+    }
+
+    h2.text-left {
+        font-weight: 400;
+        color: black;
+        margin: 0;
+        font-size: 28px;
+    }
+
 </style>
 
 @section('content')
     <div class="container mt-4 league-tour">
-        <h2 class="text-center">{{'Create league'}}</h2>
+        <h2 class="text-left">{{'Create league'}}</h2>
+        <hr>
         <form id="formAccountSettings" method="POST" action="{{ route('league.storeTour') }}" enctype="multipart/form-data">
             @csrf()
-        <div class="row mb-3">
+        <div class="row mb-3 form-league">
             <div class="col-md-3">
                     <label>{{ __('Logo league') }}</label>
                     <input value="" type="file" class="border-0 bg-light pl-0" name="images" id="image" hidden>
