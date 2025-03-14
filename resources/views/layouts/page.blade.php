@@ -149,7 +149,7 @@
 
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{{route('list.group')}}">{{__('List Group')}}</a></li>
+                                <li><a class="dropdown-item " target="_blank" href="{{route('list.group')}}">{{__('List Group')}}</a></li>
                                 <li><a class="dropdown-item" href="{{route('group.createGroup')}}">{{__('Create Group')}}</a></li>
                             </ul>
                         </div>

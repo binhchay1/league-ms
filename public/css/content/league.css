@@ -142,14 +142,14 @@ ul.select-list li {
 }
 
 ul.select-list a {
-    padding: 12px 24px;
-    border-top: 2px solid #000;
-    border-bottom: 2px solid #000;
+    padding: 6px 24px;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
     transition: background-color .35s ease-in-out;
 }
 
 ul.select-list li a {
-    border-right: 2px solid #000;
+    border-right: 1px solid #000;
     color: black;
     font-weight: 700px;
 }
@@ -160,7 +160,7 @@ ul.select-list a.active, ul.select-list a:hover {
 }
 
 ul.select-list li:nth-child(1) a {
-    border-left: 2px solid  #000;
+    border-left: 1px solid  #000;
 }
 
 ul.select-list li :hover {
