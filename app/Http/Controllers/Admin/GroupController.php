@@ -199,7 +199,14 @@ class GroupController extends Controller
                 $input['images'] = $path;
             }
         }
-        $this->groupRepository->create($input);
+        $data = $this->groupRepository->create($input);
+
+        $dataGroupUser['group_id'] = $data->id;
+        $dataGroupUser['user_id'] = $data->group_owner;
+        $dataGroupUser['status_request'] = Group::STATUS_ACCEPTED;
+
+        $this->groupUserRepository->create($dataGroupUser);
+
         return redirect()->route('my.group')->with('success','Group successfully created.');
     }
 }

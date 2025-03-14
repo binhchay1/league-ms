@@ -1,17 +1,17 @@
 @extends('layouts.page')
 
 @section('title')
-{{ env('APP_NAME', 'Badminton.io') }} - {{ __('Group') }}
+    {{ env('APP_NAME', 'Badminton.io') }} - {{ __('Group') }}
 @endsection
 
 @php
-$isJoin = false;
-$isFull = false;
+    $isJoin = false;
+    $isFull = false;
 @endphp
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('/css/page/group.css') }}">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/css/page/group.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
 @endsection
 <style>
     .alert{
@@ -42,26 +42,6 @@ $isFull = false;
         font-weight: 500;
     }
 
-    .lb-register {
-        color: #000;
-        font-size: 12px;
-        font-weight: 700;
-        padding-bottom: 6px;
-        position: relative;
-    }
-
-    .label-success {
-        border-radius: 5px;
-        color: #fff;
-        padding: 3px 8px;
-        background: mediumpurple;
-        font-size: 12px;
-        font-weight: 700;
-        padding-bottom: 6px;
-        position: relative;
-        font-size: 15px;
-    }
-
 </style>
 @section('content')
     <div class="alert alert-success alert-dismissable">
@@ -76,20 +56,15 @@ $isFull = false;
             <div class="row">
                 <div class="col-md-4">
                     <h2 style="color: black; font-weight: 400">{{ __('GROUP') }}</h2>
+
                 </div>
                 <div class="col-md-8 mt-4">
                     <form class="d-flex gap-2 justify-content-end" action="{{route('searchGroup')}}" method="GET">
 
-                        <select class="form-select" name="sort">
+                        <select class="form-select"  name="sort">
                             <option selected>{{'Sort by'}}</option>
                             <option value="newest">{{'Latest'}}</option>
                             <option value="oldest">{{'Oldest'}}</option>
-                        </select>
-
-                        <select class="form-select" name="status">
-                            <option selected>{{'Status'}}</option>
-                            <option value="private">{{'Private'}}</option>
-                            <option value="public">{{'Public'}}</option>
                         </select>
 
                         <div class="input-group">
@@ -121,17 +96,12 @@ $isFull = false;
                     <div class="col-md-4">
                         <div class="feature-box content-gr">
                             <img src="{{$group->images}}" alt="Event" data-id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
-
                             <div  class="c-details-group name-group" data-id="{{ $group->name }}" id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
                                 <h6 class="mb-0 gr-name">{{ $group->name }}</h6>
                             </div>
                             <p class="text-muted ">{{'Hosted by:'}} {{$group->users->name}} - {{$group->description}} </p>
                             <p class="event-location uppercase  ">📍 {{ $group->location }}</p>
                             <p> ✅ {{$group->note}}</p>
-                            <p>🎟
-                                <span class="extend_lb label-success">{{$group->status}}</span>
-                            </p>
-
                             <div class="mt-3">
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" <?php echo 'style="width:' . ($group->group_users->count() / $group->number_of_members * 100) . '%"' ?> aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -199,70 +169,70 @@ $isFull = false;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @section('js')
-<script>
-    function detailGroup(id) {
-        $.ajax({
-            url: "/check-group-join",
-            type: "GET",
-            data: { group: id },
-            success: function(response) {
-                if (response.joined) {
-                    // Nếu user đã join, redirect sang trang nhóm
+    <script>
+        function detailGroup(id) {
+            $.ajax({
+                url: "/check-group-join",
+                type: "GET",
+                data: { group: id },
+                success: function(response) {
+                    if (response.joined) {
+                        // Nếu user đã join, redirect sang trang nhóm
 
-                    let url = '/detail-group?g_i=' + id;
-                    window.location.href = url;
-                } else {
-                    // Nếu chưa join, hiển thị cảnh báo
+                        let url = '/detail-group?g_i=' + id;
+                        window.location.href = url;
+                    } else {
+                        // Nếu chưa join, hiển thị cảnh báo
+                        toastr.options.timeOut = 10000;
+                        toastr.success("You should join group before accept");
+                        setTimeout(function() {
+                            location.reload(); // Change this to your desired URL
+                        }, 5000); // 5000 milliseconds = 5 seconds
+
+                    }
+                },
+                error: function() {
+                    alert("Lỗi khi kiểm tra trạng thái nhóm, vui lòng thử lại!");
+                }
+            });
+
+        }
+
+
+
+        function requestJoin(id) {
+            let g_i = id.substring(7);
+            console.log(g_i)
+            let url = '/join-group/';
+
+            $.ajax({
+                url: url,
+                type: 'get',
+                data: {
+                    g_i: g_i
+                }
+            }).done(function(result) {
+                if (result == 'success') {
                     toastr.options.timeOut = 10000;
-                    toastr.success("You should join group before accept");
+                    toastr.success("Thank you for joining the group!");
                     setTimeout(function() {
                         location.reload(); // Change this to your desired URL
                     }, 5000); // 5000 milliseconds = 5 seconds
 
+                } else if (result == 'wait') {
+                    toastr.options.timeOut = 10000;
+                    toastr.success("Thank you for joining the group, we will respond immediately.!");
+                    setTimeout(function() {
+                        location.reload(); // Change this to your desired URL
+                    }, 5000); // 5000 milliseconds = 5 seconds
+                } else {
+                    toastr.options.timeOut = 10000;
+                    toastr.error("Error when joining group!");
+                    setTimeout(function() {
+                        location.reload(); // Change this to your desired URL
+                    }, 5000); // 5000 milliseconds = 5 seconds
                 }
-            },
-            error: function() {
-                alert("Lỗi khi kiểm tra trạng thái nhóm, vui lòng thử lại!");
-            }
-        });
-
-    }
-
-
-
-    function requestJoin(id) {
-        let g_i = id.substring(7);
-        console.log(g_i)
-        let url = '/join-group/';
-
-        $.ajax({
-            url: url,
-            type: 'get',
-            data: {
-                g_i: g_i
-            }
-        }).done(function(result) {
-            if (result == 'success') {
-                toastr.options.timeOut = 10000;
-                toastr.success("Thank you for joining the group!");
-                setTimeout(function() {
-                    location.reload(); // Change this to your desired URL
-                }, 5000); // 5000 milliseconds = 5 seconds
-
-            } else if (result == 'wait') {
-                toastr.options.timeOut = 10000;
-                toastr.success("Thank you for joining the group, we will respond immediately.!");
-                setTimeout(function() {
-                    location.reload(); // Change this to your desired URL
-                }, 5000); // 5000 milliseconds = 5 seconds
-            } else {
-                toastr.options.timeOut = 10000;
-                toastr.error("Error when joining group!");
-                setTimeout(function() {
-                    location.reload(); // Change this to your desired URL
-                }, 5000); // 5000 milliseconds = 5 seconds
-            }
-        });
-    }
-</script>
+            });
+        }
+    </script>
 @endsection
