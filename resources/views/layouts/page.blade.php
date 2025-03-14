@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="{{ asset('css/content/league.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/page/homepage.css') }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
     @yield('css')
 </head>
 
@@ -127,6 +129,17 @@
                                 <li><a class="dropdown-item" href="{{route('league.createTour')}}">{{__('Create League')}}</a></li>
                             </ul>
                         </div>
+                        <div class="nav-item dropdown">
+                            <a class="nav-link mx-2 dropdown-toggle text-uppercase" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{__('GROUP')}}
+                                <i class="fa fa-sort-down"></i>
+
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item " target="_blank" href="{{route('list.group')}}">{{__('List Group')}}</a></li>
+                                <li><a class="dropdown-item" href="{{route('group.createGroup')}}">{{__('Create Group')}}</a></li>
+                            </ul>
+                        </div>
                         <li class="nav-item">
                             <a class="nav-link mx-2 text-uppercase" href="{{ route('ranking') }}">{{__('RANKING')}}</a>
                         </li>
@@ -142,17 +155,7 @@
 {{--                        <li class="nav-item">--}}
 {{--                            <a class="nav-link mx-2 text-uppercase shopping"  href="#">{{__('SHOP')}}</a>--}}
 {{--                        </li>--}}
-                        <div class="nav-item dropdown">
-                            <a class="nav-link mx-2 dropdown-toggle text-uppercase" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{__('GROUP')}}
-                                <i class="fa fa-sort-down"></i>
 
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item " target="_blank" href="{{route('list.group')}}">{{__('List Group')}}</a></li>
-                                <li><a class="dropdown-item" href="{{route('group.createGroup')}}">{{__('Create Group')}}</a></li>
-                            </ul>
-                        </div>
                         @if(Auth::check() && Auth::user()->role =="admin" )
                         <li class="nav-item" style="background: #312f2f">
                             <a class="nav-link mx-2 text-uppercase" href="{{ route('dashboard') }}">{{__('DASHBOARD')}}</a>
@@ -301,6 +304,13 @@
             </div>
         </footer>
     </div>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -338,6 +348,34 @@
                 isMenuAlreadyOpen = !isMenuAlreadyOpen
             })
         })
+    </script>
+    <script>
+        $(document).ready(function() {
+            @if (session('success'))
+            toastr.success("{{ session('success') }}");
+            @endif
+
+            @if (session('error'))
+            toastr.error("{{ session('error') }}");
+            @endif
+
+            @if (session('warning'))
+            toastr.warning("{{ session('warning') }}");
+            @endif
+
+            @if (session('info'))
+            toastr.info("{{ session('info') }}");
+            @endif
+        });
+    </script>
+
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right", // Vị trí hiển thị
+            "timeOut": "5000"
+        };
     </script>
 
 {{--    <script  type="text/javascript">--}}

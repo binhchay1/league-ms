@@ -572,4 +572,16 @@ class HomeController extends Controller
         return view('page.league.search-result', compact('listLeagues'));
     }
 
+    public function searchGroup(Request $request)
+    {
+        $query = $request->input('query');
+        $sort = $request->input('sort');
+        $status= $request->input('status');
+
+        $getGroup = $this->groupRepository->searchGroup($query, $sort, $status);
+        $listGroup = $this->utility->paginate($getGroup, 10);
+
+        return view('page.group.search-result-group', compact('listGroup'));
+    }
+
 }

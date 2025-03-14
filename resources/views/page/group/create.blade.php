@@ -107,7 +107,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <input type="hidden" class="form-control" type="text" name="active" id="note" value="0" />
+                        <input type="hidden" class="form-control" type="text" name="active" id="note" value="1" />
                     </div>
                 </div>
             </div>

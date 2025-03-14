@@ -54,6 +54,7 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/news', [HomeController::class, 'news'])->name('news');
     Route::get('/news/category/{slug}', [HomeController::class, 'newsCategory'])->name('newsCategory');
     Route::get('/search-league-tour', [HomeController::class, 'searchLeague'])->name('searchLeague');
+    Route::get('/search-group', [HomeController::class, 'searchGroup'])->name('searchGroup');
 });
 
 //exchange
