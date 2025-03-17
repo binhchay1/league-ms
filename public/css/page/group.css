@@ -353,3 +353,38 @@ hr {
         padding: 0;
     }
 }
+
+.role-badge {
+    background-color: #66ff66;
+    color: #000;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+/* Xóa đường kẻ dọc */
+.table td, .table th {
+    border-left: none;
+    border-right: none;
+}
+
+.table-responsive {
+    max-height: 480px !important; ; /* Chiều cao tối đa */
+    overflow-y: auto; /* Cuộn dọc nếu cần */
+    display: block;
+
+}
+
+.table th, .table td {
+    padding: 12px 20px; /* Tăng khoảng cách giữa nội dung */
+    font-size: 16px; /* Phóng to chữ */
+}
+
+.table {
+    border: 1px solid #eeeeee; /* Viền đen dày */
+    width: 100%;
+}
+
+.text-th {
+    text-align: left;
+}
