@@ -79,7 +79,6 @@ class LeagueRepository extends BaseRepository
 
     public function getLeagueHome($getLeagueByState = null)
     {
-
         if ($getLeagueByState == 'all') {
             return $this->model->orderBy('created_at', 'desc')->get();
         } elseif ($getLeagueByState == 'next') {
@@ -133,5 +132,23 @@ class LeagueRepository extends BaseRepository
             $q->where('status', '=', $value); // '=' is optional
         }])
             ->where('id', $id)->first();
+    }
+
+    public function searchLeague($query, $sort)
+    {
+        $leagues = $this->model->query(); // Chắc chắn $leagues là Query Builder
+
+        if ($query) {
+            $leagues->where('name', 'like', "%$query%");
+        }
+
+// Sắp xếp kết quả
+        if ($sort === 'newest') {
+            $leagues->orderBy('created_at', 'desc');
+        } elseif ($sort === 'oldest') {
+            $leagues->orderBy('created_at', 'asc');
+        }
+
+        return $leagues->get();
     }
 }

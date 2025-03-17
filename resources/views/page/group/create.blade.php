@@ -21,14 +21,26 @@
         margin-bottom: 10px;
     }
 
+    .form-group-create {
+        padding: 50px !important;
+    }
+
+    h2.text-left {
+        font-weight: 400;
+        color: black;
+        margin: 0;
+        font-size: 28px;
+    }
+
 </style>
 
 @section('content')
     <div class="container mt-4 league-tour">
-        <h2 class="text-center">{{'Create group'}}</h2>
+        <h2 class="text-left">{{'Create group'}}</h2>
+        <hr>
         <form id="formAccountSettings" method="POST" action="{{ route('group.storeGroup') }}" enctype="multipart/form-data">
             @csrf()
-            <div class="row mb-3">
+            <div class="row mb-3 form-group-create">
                 <div class="col-md-3">
                     <label>{{ __('Logo ') }}</label>
                     <input value="" type="file" class="border-0 bg-light pl-0" name="images" id="image" hidden>
@@ -46,7 +58,7 @@
                         <span class="text-danger">{{ $errors->first('images') }}</span>
                     @endif
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-9">
                     <div class="mt-2">
                         <label for="name" class="form-label">{{ __('Name') }}</label>
                         <input class="form-control" type="text" name="name" id="name" value="{{ old('name') }}" placeholder="{{ __('Enter group name') }}" />
@@ -95,7 +107,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <input type="hidden" class="form-control" type="text" name="active" id="note" value="0" />
+                        <input type="hidden" class="form-control" type="text" name="active" id="note" value="1" />
                     </div>
                 </div>
             </div>
