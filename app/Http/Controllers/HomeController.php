@@ -584,4 +584,33 @@ class HomeController extends Controller
         return view('page.group.search-result-group', compact('listGroup'));
     }
 
+    public function searchGroupTraining(Request $request)
+    {
+        $group = $request->get('group');
+        $listTrainings = $this->groupRepository->getGroupByName($group);
+
+        if (empty($listTrainings)) {
+            abort(404);
+        }
+
+        foreach ($listTrainings->group_trainings as $trainings) {
+            $listId = json_decode($trainings->members);
+            $trainings->isJoin = false;
+            $trainings->totalMembers = 0;
+            if (!empty($listId)) {
+                if (in_array(Auth::user()->id, $listId)) {
+                    $trainings->isJoin = true;
+                }
+                $trainings->totalMembers = count($listId);
+            }
+        }
+        $query = $request->input('query');
+        $sort = $request->input('sort');
+
+        $getGroup = $this->groupTraining->searchGroup($query, $sort);
+        $listGroup = $this->utility->paginate($getGroup, 10);
+
+        return view('page.group.search-result-group-training', compact('listGroup', 'listTrainings'));
+    }
+
 }
