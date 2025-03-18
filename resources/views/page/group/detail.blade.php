@@ -16,25 +16,30 @@ $utility = new \App\Enums\Utility();
 @endsection
 
 @section('content')
-<section class="container " id="heading">
-    <div class=" training" >
-        <div class="d-flex gr-training-detail">
-            <div class="col-lg-1">
-                <img src="{{ asset($getGroup->images) }}" width="50" height="50" healt="Group Avatar" />
+<section class=" " id="heading">
+
+    <div class=" text-black p-3 align-items-center">
+        <div class="container d-flex  img-fluid">
+            <img src="{{ asset($getGroup->images) }}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
+            <div>
+                <h5 class="">{{$getGroup->name}}</h5>
+                <p class="">
+                    <i class="bi bi-bookmark"></i> {{$getGroup->description}}
+                </p>
+                <p class=" ">
+                    <i class="bi bi-geo-alt"></i> <em>{{$getGroup->location}}</em>
+                </p>
+                <p class="">
+                    <i class="bi bi-people"></i> <em>{{$getGroup->number_of_members}}</em>
+                </p>
+                <p class="">
+                    <i class="bi bi-card-text"></i> <em>{{$getGroup->number_of_members}}</em>
+                </p>
             </div>
-            <div class="">
-                <span class="gr-training-title">{{ $getGroup->name }}</span>
-            </div>
-        </div>
-        <hr>
-        <div class="col-lg-10 mt-3" style="margin-left: 10px;">
-            <p><span class="">■ {{ __('Description') }} : </span>{{ $getGroup->description }}</p>
-            <p><span class="">■ {{ __('Location') }} : </span>{{ $getGroup->location }}</p>
-            <p><span class="">■ {{ __('Number of member') }} : </span>{{ $getGroup->number_of_members }}</p>
-            <p><em><span class="">-----{{ __('Note') }} : </span>{{ $getGroup->note }}</em></p>
         </div>
     </div>
-    <div class="d-flex">
+    <hr>
+    <div class=" container d-flex">
         @if(Auth::check() and $isJoined)
         <div class="mt-4" style="margin-right: 10px;">
             <button class=" btn-training" id="group-{{ $getGroup->name }}" onclick="training(this.id)">{{ __('Training') }}</button>
@@ -51,7 +56,7 @@ $utility = new \App\Enums\Utility();
 <section id="detail-group" class="container-fluid">
     <div class="container py-5" style="padding-top: 0 !important;">
         <div class="row d-flex justify-content-center">
-            <div class="col-md-8 col-lg-6 col-xl-6 card-chat" style="width: 60%" >
+            <div class="col-md-6 col-lg-6 col-xl-6 card-chat" style="width: 50%" >
                 <div class="card" id="chat1" style="border-radius: 0">
                     <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0" style="background: #e3e3e3 !important;">
                         <p class="mb-0 " style="color: #222">{{ __('Live chat') }}</p>
@@ -126,22 +131,36 @@ $utility = new \App\Enums\Utility();
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-lg-6 col-xl-6 card-member" style="width: 40%">
-                <div class="card" id="chat1" style="border-radius: 0" >
-                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0" style="background: #e3e3e3 !important;">
-                        <p class="mb-0 " style="color: #222">{{ __('List members') }}</p>
-                        <p class="mb-0 " style="color: #222">( {{ $getGroup->group_users->count() }} / {{ $getGroup->number_of_members }} )</p>
+
+            <div class="col-md-6 col-lg-6 col-xl-6 card-member" style="width: 50%">
+                <div class="container">
+                    <!-- Thanh menu -->
+                    <div class="d-flex">
+                        <button class="btn btn-primary">{{'Member'}}</button>
                     </div>
 
-                    <div class="card-body" style="background: white">
-                        <table class="table table-hover" style="border: 1px solid #e3e3e3">
+                    <!-- Bảng danh sách -->
+                    <div class="table-responsive mt-2">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                            <tr class="">
+                                <th class="text-th">{{'INFORMATION'}}</th>
+                                <th class="text-th">{{'PHONE'}}</th>
+                                <th class="text-th">{{'ADDRESS'}}</th>
+                                <th class="text-th">{{'SEX'}}</th>
+                            </tr>
+                            </thead>
                             <tbody>
                             @foreach($members as $member)
-                                <tr>
-                                    <th scope="row"> <img src="{{ $member->users->profile_photo_path ?? asset('/images/no-image.png')  }}" width="40" height="40" /></th>
-                                    <td>{{ $member->users->name }}</td>
-
-                                </tr>
+                            <tr>
+                                <td class="d-flex align-items-center"  style="font-weight: 600">
+                                    <img src="{{ $member->users->profile_photo_path ?? asset('/images/no-image.png')  }}" width="40" height="40"  class="rounded-circle me-2" alt="Avatar">
+                                {{ $member->users->name }}
+                                </td>
+                                <td>{{$member->users->phone}}</td>
+                                <td>{{$member->users->address}}</td>
+                                <td>{{$member->users->sex}}</td>
+                            </tr>
                             @endforeach
                             </tbody>
                         </table>
