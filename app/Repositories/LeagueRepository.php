@@ -151,4 +151,22 @@ class LeagueRepository extends BaseRepository
 
         return $leagues->get();
     }
+
+    public function myLeague($slug,$user)
+    {
+        $value = 1;
+        return $this->model->with([ 'userLeagues' => function($q) use($value) {
+            // Query the name field in status table
+            $q->where('status', '=', $value); // '=' is optional
+        }])
+            ->with(
+                'schedule.player1Team1',
+                'schedule.player2Team1',
+                'schedule.player1Team2',
+                'schedule.player2Team2')
+            ->with('userLeagues', 'userLeagues.user')
+            ->where('slug', $slug)
+            ->where('owner_id', $user)
+            ->first();
+    }
 }
