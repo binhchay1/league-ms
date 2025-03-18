@@ -134,38 +134,70 @@ $utility = new \App\Enums\Utility();
 
             <div class="col-md-6 col-lg-6 col-xl-6 card-member" style="width: 50%">
                 <div class="container">
-                    <!-- Thanh menu -->
-                    <div class="d-flex">
-                        <button class="btn btn-primary">{{'Member'}}</button>
-                    </div>
-
-                    <!-- Bảng danh sách -->
-                    <div class="table-responsive mt-2">
-                        <table class="table table-bordered">
-                            <thead class="table-light">
-                            <tr class="">
-                                <th class="text-th">{{'INFORMATION'}}</th>
-                                <th class="text-th">{{'PHONE'}}</th>
-                                <th class="text-th">{{'ADDRESS'}}</th>
-                                <th class="text-th">{{'SEX'}}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($members as $member)
-                            <tr>
-                                <td class="d-flex align-items-center"  style="font-weight: 600">
-                                    <img src="{{ $member->users->profile_photo_path ?? asset('/images/no-image.png')  }}" width="40" height="40"  class="rounded-circle me-2" alt="Avatar">
-                                {{ $member->users->name }}
-                                </td>
-                                <td>{{$member->users->phone}}</td>
-                                <td>{{$member->users->address}}</td>
-                                <td>{{$member->users->sex}}</td>
-                            </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">{{'Member'}}</h5>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped align-middle">
+                                <thead class="table-light">
+                                <tr>
+                                    <th class="text-th">{{'INFORMATION'}}</th>
+                                    <th class="text-th">{{'PHONE'}}</th>
+                                    <th class="text-th">{{'ADDRESS'}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($members as $member)
+                                    <tr>
+                                        <td class="d-flex align-items-center">
+                                            <img src="{{ asset($member->users->profile_photo_path ?? 'images/default-avatar.png') }}" class="rounded-circle me-2" width="40" height="40" alt="Avatar">
+                                            <span>{{ $member->users->name }}</span>
+                                        </td>
+                                        <td>
+                                            <span>{{ $member->users->phone }}</span>
+                                        </td>
+                                        <td>{{ $member->users->address }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+{{--                <div class="container">--}}
+{{--                    <!-- Thanh menu -->--}}
+{{--                    <div class="d-flex">--}}
+{{--                        <button class="btn btn-primary">{{'Member'}}</button>--}}
+{{--                    </div>--}}
+
+{{--                    <!-- Bảng danh sách -->--}}
+{{--                    <div class="table-responsive mt-2">--}}
+{{--                        <table class="table table-bordered">--}}
+{{--                            <thead class="table-light">--}}
+{{--                            <tr class="">--}}
+{{--                                <th class="text-th">{{'INFORMATION'}}</th>--}}
+{{--                                <th class="text-th">{{'PHONE'}}</th>--}}
+{{--                                <th class="text-th">{{'ADDRESS'}}</th>--}}
+{{--                                <th class="text-th">{{'SEX'}}</th>--}}
+{{--                            </tr>--}}
+{{--                            </thead>--}}
+{{--                            <tbody>--}}
+{{--                            @foreach($members as $member)--}}
+{{--                            <tr>--}}
+{{--                                <td class="d-flex align-items-center"  style="font-weight: 600">--}}
+{{--                                    <img src="{{ $member->users->profile_photo_path ?? asset('/images/no-image.png')  }}" width="40" height="40"  class="rounded-circle me-2" alt="Avatar">--}}
+{{--                                {{ $member->users->name }}--}}
+{{--                                </td>--}}
+{{--                                <td>{{$member->users->phone}}</td>--}}
+{{--                                <td>{{$member->users->address}}</td>--}}
+{{--                                <td>{{$member->users->sex}}</td>--}}
+{{--                            </tr>--}}
+{{--                            @endforeach--}}
+{{--                            </tbody>--}}
+{{--                        </table>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>
