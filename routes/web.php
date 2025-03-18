@@ -101,8 +101,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/change-password/', [ProfileController::class, 'updatePassword'])->name('update-password');
     Route::get('/my-group/', [ProfileController::class, 'viewMyGroup'])->name('my.group');
     Route::get('/my-league/', [ProfileController::class, 'viewMyLeague'])->name('my.league');
-
+    Route::get('/my-league-detail/{slug}', [ProfileController::class, 'detailMyLeague'])->name('my.leagueDetail');
+    Route::get('/my-league/{slug}/player/', [ProfileController::class, 'myLeaguePlayer'])->name('my.leaguePlayer.info');
+    Route::get('/my-league/{slug}/result/', [ProfileController::class, 'myLeagueResult'])->name('my.leagueResult.info');
+    Route::get('/my-league/{slug}/schedule/', [ProfileController::class, 'myLeagueSchedule'])->name('my.leagueSchedule.info');
+    Route::get('/my-league/{slug}/bracket/', [ProfileController::class, 'myLeagueBracket'])->name('my.leagueBracket.info');
+    Route::get('/my-league/{slug}/active-player/', [ProfileController::class, 'myLeagueActivePlayer'])->name('my.myLeagueActivePlayer');
+    Route::get('/auto-create-schedule-league', [ProfileController::class, 'autoCreateMyLeague'])->name('auto.create.myLeague.schedule');
     Route::get('/league-manager/', [HomeController::class, 'leagueManager'])->name('league-manager');
+
 
     Route::post('/register-league/', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
     Route::get('/player/{id}/', [HomeController::class, 'viewInforPlayer'])->name('player.info');

@@ -121,7 +121,7 @@ class LeagueController extends Controller
 
         UserLeague::whereIn('id', $userIds)->update(['status' => $activeStatus]);
 
-        return back()->with('success', __('Player has been update successfully!'));
+        return back()->with('success', __('Player has been update status successfully!'));
     }
 
     public function destroyPlayer($id)
