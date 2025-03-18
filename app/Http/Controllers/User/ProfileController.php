@@ -129,17 +129,6 @@ class ProfileController extends Controller
         return redirect()->route('login');
     }
 
-    public function viewMyGroup()
-    {
-        $idUser = Auth::user()->id;
-        $dataUser = $this->userRepository->showInfo($idUser);
-
-        $getGroup = $dataUser->groups;
-        $listGroup = $this->utility->paginate($getGroup, 30, '/my-group');
-
-        return view('page.user.my-group', compact('listGroup'));
-    }
-
     public function viewMyLeague()
     {
         $idUser = Auth::user()->id;
@@ -475,5 +464,16 @@ class ProfileController extends Controller
         $this->scheduleRepository->createMultiple($dataSchedule);
 
         return redirect()->route('my.leagueDetail', $getLeague->slug)->with('success', __('Create auto schedule successfully!'));
+    }
+
+    public function viewMyGroup()
+    {
+        $idUser = Auth::user()->id;
+        $dataUser = $this->userRepository->showInfo($idUser);
+
+        $getGroup = $dataUser->groups;
+        $listGroup = $this->utility->paginate($getGroup, 30, '/my-group');
+
+        return view('page.user.my-group.my-group', compact('listGroup'));
     }
 }
