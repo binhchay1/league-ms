@@ -18,7 +18,7 @@
 
 
             <div class="col-md-4 d-flex flex-column">
-                <h2 style="color: black;font-weight: 400">{{ __('NEWS') }}</h2>
+                <h2 style="color: black">{{ __('NEWS') }}</h2>
             </div>
 
             <!-- Form Tìm Kiếm -->
@@ -81,6 +81,5 @@
     </div>
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-</script>
+
 
