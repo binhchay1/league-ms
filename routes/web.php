@@ -53,6 +53,7 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/news/{slug}', [HomeController::class, 'newsDetail'])->name('news-show');
     Route::get('/news', [HomeController::class, 'news'])->name('news');
     Route::get('/news/category/{slug}', [HomeController::class, 'newsCategory'])->name('newsCategory');
+    Route::get('/search-news', [HomeController::class, 'searchNews'])->name('searchNews');
     Route::get('/search-league-tour', [HomeController::class, 'searchLeague'])->name('searchLeague');
     Route::get('/search-group', [HomeController::class, 'searchGroup'])->name('searchGroup');
     Route::get('/search-group-training', [HomeController::class, 'searchGroupTraining'])->name('searchGroupTraining');
@@ -100,6 +101,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/change-password/', [ProfileController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password/', [ProfileController::class, 'updatePassword'])->name('update-password');
     Route::get('/my-group/', [ProfileController::class, 'viewMyGroup'])->name('my.group');
+    Route::get('/my-group/{id}/active-user/', [ProfileController::class, 'myGroupActiveUser'])->name('my.myGroupActiveUser');
     Route::get('/my-league/', [ProfileController::class, 'viewMyLeague'])->name('my.league');
     Route::get('/my-league-detail/{slug}', [ProfileController::class, 'detailMyLeague'])->name('my.leagueDetail');
     Route::get('/my-league/{slug}/player/', [ProfileController::class, 'myLeaguePlayer'])->name('my.leaguePlayer.info');
@@ -173,7 +175,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/delete-account-apple/', [ProfileController::class, 'deleteAccount'])->name('delete.account.apple');
     Route::get('/user-join-group/{id}', [GroupController::class, 'dataGroup'])->name('group.userGroup');
     Route::post('/active-user-group', [GroupController::class, 'activeUserJoin'])->name('group.activeUserJoin');
-    Route::get('/delete-user-group/{id}/', [GroupController::class, 'destroyUser'])->name('league.destroyUser');
+    Route::get('/delete-user-group/{id}/', [GroupController::class, 'destroyUser'])->name('user.destroyUser');
 
     Route::get('/new-group/', [GroupController::class, 'createGroup'])->name('group.createGroup');
     Route::post('/store-new-group/', [GroupController::class, 'storeGroup'])->name('group.storeGroup');

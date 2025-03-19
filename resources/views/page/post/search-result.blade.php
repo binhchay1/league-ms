@@ -18,7 +18,7 @@
 
 
             <div class="col-md-4 d-flex flex-column">
-                <h2 style="color: black;font-weight: 400">{{ __('NEWS') }}</h2>
+                <h2 style="color: black">{{ __('NEWS') }}</h2>
             </div>
 
             <!-- Form Tìm Kiếm -->
@@ -71,7 +71,7 @@
             <!-- Sidebar danh mục -->
             <div class="col-lg-3">
                 <div class="list-group">
-                    <h5 class="list-group-item  bg-light m-0">{{'Category'}}</h5>
+                    <h5 class="list-group-item bg-light m-0">{{'Category'}}</h5>
                     @foreach($categories as $category)
                         <a href="{{route('newsCategory', $category->slug)}}"  class="list-group-item list-group-item-action">{{ $category->name }}</a>
                     @endforeach
@@ -81,6 +81,5 @@
     </div>
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-</script>
+
 

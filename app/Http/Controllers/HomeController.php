@@ -463,7 +463,6 @@ class HomeController extends Controller
         if (empty($getSchedule)) {
             abort(404);
         }
-
         $getReferee = $this->refereeRepository->getRefereeByUserId($getSchedule->id, Auth::user()->id);
         if (empty($getReferee)) {
             $listTitle = explode(',', Auth::user()->title);
@@ -537,28 +536,38 @@ class HomeController extends Controller
     public function news()
     {
         $listNews = $this->postRepository->index();
-        $firstNews = $this->postRepository->firstNew();
         $categories = $this->categoryPostRepository->index();
-        $listNewsPopulars = $this->postRepository->getNewsPopular();
-        return view('page.post.list', compact('listNews', 'listNewsPopulars', 'categories','firstNews'));
+        return view('page.post.list', compact('listNews', 'categories'));
     }
 
     public function newsDetail($slug)
     {
         $newData = $this->postRepository->detailPost($slug);
-        $listNewsPopulars = $this->postRepository->getNewsPopular();
-        $listNewsNormals = $this->postRepository->getNewsNormal();
-        return view('page.post.detail', compact('newData', 'listNewsNormals','listNewsPopulars'));
+        $categories = $this->categoryPostRepository->index();
+
+        // Lấy các bài viết tương tự (cùng category, không tính bài hiện tại)
+        $relatedPosts = $this->postRepository->relatedPosts($newData->id, $newData->category_id);
+
+        return view('page.post.detail', compact('newData', 'categories', 'relatedPosts'));
     }
 
     public function newsCategory($slug)
     {
         $postCategory = $this->categoryPostRepository->postCategory($slug);
         $categories = $this->categoryPostRepository->index();
-        $listNewsPopulars = $this->postRepository->getNewsPopular();
-        $listNewsNormals = $this->postRepository->getNewsNormal();
-        return view('page.post.category-post', compact('postCategory', 'categories', 'listNewsPopulars', 'listNewsNormals'));
+        return view('page.post.category-post', compact('postCategory', 'categories'));
 
+    }
+
+    public function searchNews(Request $request)
+    {
+        $query = $request->input('query');
+        $sort = $request->input('sort');
+        $categories = $this->categoryPostRepository->index();
+        $getPosts = $this->postRepository->searchNews($query, $sort);
+        $listNews = $this->utility->paginate($getPosts, 10);
+
+        return view('page.post.search-result', compact('listNews', 'categories'));
     }
 
     public function searchLeague(Request $request)

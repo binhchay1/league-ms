@@ -7,6 +7,8 @@ use App\Enums\Utility;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use App\Repositories\GroupRepository;
+use App\Repositories\GroupUserRepository;
 use App\Repositories\LeagueRepository;
 use App\Repositories\ScheduleRepository;
 use App\Repositories\UserLeagueRepository;
@@ -19,6 +21,7 @@ use Illuminate\Support\Facades\Session;
 class ProfileController extends Controller
 {
     protected $leagueRepository;
+    protected $groupRepository;
     protected $userLeagueRepository;
     protected $scheduleRepository;
     protected $userRepository;
@@ -26,6 +29,7 @@ class ProfileController extends Controller
 
     public function __construct(
         UserLeagueRepository $userLeagueRepository,
+        GroupRepository $groupRepository,
         ScheduleRepository $scheduleRepository,
         UserRepository $userRepository,
         LeagueRepository $leagueRepository,
@@ -36,6 +40,7 @@ class ProfileController extends Controller
         $this->leagueRepository = $leagueRepository;
         $this->utility = $utility;
         $this->userLeagueRepository = $userLeagueRepository;
+        $this->groupRepository = $groupRepository;
     }
 
     public function show($id)
@@ -221,6 +226,17 @@ class ProfileController extends Controller
         }
 
         return view('page.user.my-league.my-league-active-player', compact('leagueInfor'));
+    }
+
+    public function myGroupActiveUser($id)
+    {
+        $user = Auth::user()->id;
+        $group = $this->groupRepository->myGroupActive($id, $user);
+        if (empty($group)) {
+            abort(404);
+        }
+
+        return view('page.user.my-group.my-group-active-user', compact('group'));
     }
 
     public function autoCreateMyLeague(Request $request)

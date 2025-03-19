@@ -57,7 +57,7 @@
                     <div class="col-md-10">
                         <div class="card-body">
                             <a href="{{route('my.leagueDetail',$leagueInfor->slug)}}">
-                                <h4 class="card-title color-red">{{$leagueInfor->name}}</h4>
+                                <h2 class="card-title color-red mb-1 p-0">{{$leagueInfor->name}}</h2>
                             </a>
                             <p class="card-text display"><?php echo number_format($leagueInfor->money ?? 0) . " VND"?> || {{$leagueInfor->type_of_league}}  || {{$leagueInfor->location}}</p>
                             <p class="display">

@@ -46,9 +46,11 @@
         font-size: 15px;
     }
 
-    .card-title {
-        color: black !important;
+    .gr-name {
+        color: green !important;
+        font-weight: bold;
     }
+
 </style>
 @section('content')
     <section >
@@ -58,7 +60,7 @@
                 <div class="container d-flex  img-fluid">
                     <img src="{{Auth::user()->profile_photo_path ?? asset('/images/no-image.png')}}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
                     <div>
-                        <h5 class="mb-1">{{Auth::user()->name}}</h5>
+                        <h2 class="mb-1 p-0">{{Auth::user()->name}}</h2>
                         <p class="mb-1">
                             <i class="bi bi-envelope"></i> {{Auth::user()->email}}
                         </p>
@@ -88,7 +90,7 @@
                     <div class="col-md-9 p-3">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h4>{{'My groups'}}</h4>
-                            <a href="">
+                            <a href="{{route('group.createGroup')}}">
                                 <button class="btn btn-success">{{ __('Create Group') }}</button>
                             </a>
                         </div>
@@ -105,12 +107,17 @@
                                                     <div  class=" name-group" data-id="{{ $row->name }}" title="{{ $row->name }}" id="group-{{ $row->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
                                                         <h6 class="mb-0 gr-name">{{ $row->name }}</h6>
                                                     </div>
+                                                    @if($row->status == 'private')
+                                                        <a href="{{route('my.myGroupActiveUser', $row->id)}}">
+                                                            <button class="btn btn-success">{{ __('Active User Join Group') }}</button>
+                                                        </a>
+                                                    @endif
                                                 </div>
-                                                <p class="card-text">{{'Hosted: '}}  {{$row->users->name}}|| {{$row->location}}  || {{$row->location}}</p>
-                                                <p>✅
+                                                <p class="card-text">{{'Hosted: '}}  {{$row->users->name}} || {{$row->location}} </p>
+                                                <p><i class="bi bi-bookmark"></i>
                                                     <span class="">{{$row->description}}</span>
                                                 </p>
-                                                <p>🎟
+                                                <p><i class="bi bi-shield-check"></i>
                                                     <span class="extend_lb label-success">{{$row->status}}</span>
                                                 </p>
                                             </div>

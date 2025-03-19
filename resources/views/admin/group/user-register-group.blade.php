@@ -82,7 +82,7 @@
                                         </div>
                                      </td>
                                     <td class="text_flow text-center">
-                                        <a href="{{ route('league.destroyPlayer', $user['id']) }}">
+                                        <a href="{{ route('user.destroyUser', $user['id']) }}">
                                             <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
                                         </a>
                                     </td>

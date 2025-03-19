@@ -25,23 +25,22 @@ $utility = new \App\Enums\Utility();
             <div class="container d-flex  img-fluid">
                 <img src="{{ asset($listTrainings->images) }}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
                 <div>
-                    <h5 class="">{{$listTrainings->name}}</h5>
+                    <h2 class="p-0">{{$listTrainings->name}}</h2>
                     <p class="">
                         <i class="bi bi-bookmark"></i> {{$listTrainings->description}}
                     </p>
-                    <p class="">
-                        <i class="bi bi-geo-alt"></i> <em>{{$listTrainings->location}}</em>
+                    <p class="uppercase">
+                        <i class="bi bi-geo-alt "></i> <em>{{$listTrainings->location}}</em>
                     </p>
                     <p class="">
                         <i class="bi bi-calendar-event"></i> <em>{{ $date }}</em>
                     </p>
                     <p class="">
-                        <i class="bi bi-calendar-check"></i> <em>{{ $start_time}} ~  {{$end_time}}</em>
+                        <i class="bi bi-calendar-check"></i> <em>{{ $start_time}} ~ {{$end_time}}</em>
                     </p>
                     <p class="">
-                        <i class="bi bi-card-text"></i> <em>{{$listTrainings->note}}</em>
+                        <i class="bi bi-card-checklist"></i> <em>{{$listTrainings->note}}</em>
                     </p>
-
                 </div>
             </div>
         </div>
@@ -86,24 +85,25 @@ $utility = new \App\Enums\Utility();
                 <div class="feature-box content-gr" style="text-align: left">
                     <div  class="c-details-group name-group" >
                         <a href="/training?g_t={{ $group->name }}">
-                            <h6 class="mb-0 gr-name">{{ $group->name }}</h6>
+                            <h5 class="mb-0 gr-name">{{ $group->name }}</h5>
                         </a>
                     </div>
-                    <p class="event-location uppercase">  <i class="bi bi-bookmark"></i>  {{ $group->description }}</p>
-                    <p>
-                        <i class="bi bi-geo-alt"></i> <span class="extend_lb label-success">{{$group->location}}</span>
+                    <hr>
+                    <p class="event-location">  <i class="bi bi-bookmark"></i>  {{ $group->description }}</p>
+                    <p class="uppercase">
+                        <i class="bi bi-geo-alt  uppercase"></i> <span class="">{{$group->location}}</span>
                     </p>
                     <p>
-                        <i class="bi bi-calendar-event"></i> <span class="extend_lb label-success">{{$date}}</span>
+                        <i class="bi bi-calendar-event"></i> <span class="">{{$date}}</span>
                     </p>
                     <p>
-                        <i class="bi bi-calendar-check"></i> <span class="extend_lb label-success">{{ $start_time }} - {{$end_time}}</span>
+                        <i class="bi bi-calendar-check"></i> <span class="">{{ $start_time }} - {{$end_time}}</span>
                     </p>
                     <p>
-                        <i class="bi bi-person-check-fill"></i> <span class="extend_lb label-success">{{ $group->totalMembers }} / {{ $group->number_of_members }}</span>
+                        <i class="bi bi-person-check-fill"></i> <span class="">{{ $group->totalMembers }} / {{ $group->number_of_members }}</span>
                     </p>
                     <p>
-                        <i class="bi bi-card-text"></i>  <span class="extend_lb label-success">{{$group->note}}</span>
+                        <i class="bi bi-card-checklist"></i>  <span class="">{{$group->note}}</span>
                     </p>
                     <hr>
                     <div class="card-footer text-muted d-flex gr-train-footer">
