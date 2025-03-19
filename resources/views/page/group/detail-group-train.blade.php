@@ -118,7 +118,7 @@
                         <tr>
                             @foreach($listMembers as $member)
                                 <td>
-                                    <img src="{{ $member->users->profile_photo_path ?? asset('/images/no-image.png')  }}" width="40" height="40"  alt="avatar" class="avatar">
+                                    <img src="{{ $member->profile_photo_path ?? asset('/images/no-image.png')  }}" width="40" height="40"  alt="avatar" class="avatar">
                                     {{ $member->name }}
                                 </td>
                                 <td><a href="#">{{$member->email}}</a></td>

@@ -56,8 +56,8 @@ $utility = new \App\Enums\Utility();
         <div class="row d-flex justify-content-center">
             <div class="col-md-6 col-lg-6 col-xl-6 card-chat" style="width: 50%" >
                 <div class="card" id="chat1" style="border-radius: 0">
-                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0" style="background: #e3e3e3 !important;">
-                        <p class="mb-0 " style="color: #222">{{ __('Live chat') }}</p>
+                    <div class="card-header d-flex justify-content-between " style="background: #0d6efd !important;border-radius: 0; ">
+                        <p class="mb-0  " style="color: white">{{ __('Live chat') }}</p>
                     </div>
                     <div class="card-body">
                         @if(Auth::check() and $isJoined)
@@ -131,40 +131,35 @@ $utility = new \App\Enums\Utility();
             </div>
 
             <div class="col-md-6 col-lg-6 col-xl-6 card-member" style="width: 50%">
-                <div class="container">
-                    <div class="card">
-                        <div class="card-header bg-primary text-white">
-                            <p class="mb-0">{{'Member'}}</p>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-striped align-middle">
-                                <thead class="table-light">
-                                <tr>
-                                    <th class="text-th">{{'INFORMATION'}}</th>
-                                    <th  class="text-th">{{'EMAIL'}}</th>
-                                    <th class="text-th">{{'PHONE'}}</th>
-                                    <th class="text-th">{{'ADDRESS'}}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($members as $member)
-                                    <tr>
-                                        <td class="d-flex align-items-center">
-                                            <img src="{{ asset($member->users->profile_photo_path ?? 'images/default-avatar.png') }}" class="rounded-circle me-2" width="40" height="40" alt="Avatar">
-                                            <span>{{ $member->users->name }}</span>
-                                        </td>
-                                        <td><a href="#">{{$member->users->email}}</a></td>
-                                        <td>
-                                            <span>{{ $member->users->phone }}</span>
-                                        </td>
-                                        <td>{{ $member->users->address }}</td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                <div class="card-header d-flex justify-content-start" style="background: #0d6efd !important; border-radius: 0; padding: 10px">
+                    <p class="m-0 text-white">Members</p>
                 </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-th">{{'INFORMATION'}}</th>
+                            <th  class="text-th">{{'EMAIL'}}</th>
+                            <th class="text-th">{{'PHONE'}}</th>
+                            <th class="text-th">{{'ADDRESS'}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($members as $member)
+                            <tr>
+                                <td class="d-flex ">
+                                    <img src="{{ asset($member->users->profile_photo_path ?? 'images/default-avatar.png') }}" class="rounded-circle me-2" width="40" height="40" alt="Avatar">
+                                    <span>{{ $member->users->name }}</span>
+                                </td>
+                                <td class="align-items-center"><a href="#">{{$member->users->email}}</a></td>
+                                <td class="align-items-center">
+                                    <span>{{ $member->users->phone }}</span>
+                                </td>
+                                <td class="align-items-center">{{ $member->users->address }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+
 
             </div>
         </div>
