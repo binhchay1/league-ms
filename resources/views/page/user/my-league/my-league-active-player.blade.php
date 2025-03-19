@@ -65,7 +65,7 @@
         ?>
         <div class=" text-black p-3 align-items-center">
             <div class="container d-flex  img-fluid">
-                <img src="{{$leagueInfor->images ?? asset('/images/no-image.png')}}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
+                <img src="{{asset($leagueInfor->images ?? asset('/images/no-image.png'))}}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
                 <div class="col-md-10">
                     <div class="card-body">
                         <a href="{{route('my.leagueDetail',$leagueInfor->slug)}}">

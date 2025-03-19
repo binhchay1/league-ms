@@ -43,7 +43,7 @@
                                     <input type="file" id="profile_photo_path_mobile" name="picture" accept="image/*;capture=camera" capture="environment" style="display: none"/>
                                     <div class=" choose-avatar">
                                         <div id="btnimage">
-                                            <img id="showImage" style="width: 110px" class="show-avatar" src="{{ $dataUser->profile_photo_path ?? asset('/images/no-image.png') }}" alt="avatar">
+                                            <img id="showImage" style="width: 110px" class="show-avatar" src="{{ asset($dataUser->profile_photo_path ?? asset('/images/no-image.png')) }}" alt="avatar">
                                         </div>
                                         <div id="button" style="margin-top: 10px;">
                                             <i id="btn_chooseImg" class="fa fa-camera"></i>

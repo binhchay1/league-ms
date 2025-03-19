@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use App\Enums\Title;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -31,6 +34,33 @@ class UserController extends Controller
         $this->userRepository->destroy($id);
 
         return redirect()->route('user.index')->with('success', __('Delete User successfully!'));
+    }
+
+    public function changePassword($id)
+    {
+        $user = $this->userRepository->getById($id);
+
+        return view('admin.user.update-password', compact('user'));
+    }
+
+    public function updatePassword($id, Request $request)
+    {
+        $user = User::findOrFail($id);
+
+        // Validate dữ liệu nhập vào
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        // Cập nhật mật khẩu mới
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('user.index')->with('success', __('Change password successfully!'));
     }
 
     public function setTitle($id)

@@ -248,6 +248,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
             Route::get('/list-user/', [UserController::class, 'index'])->name('user.index');
             Route::get('/delete/{id}/', [UserController::class, 'destroy'])->name('user.delete');
+            Route::get('/change-password/{id}/', [UserController::class, 'changePassword'])->name('user.changePassword');
+            Route::post('/updatePassword/{id}/', [UserController::class, 'updatePassword'])->name('user.updatePassword');
+
 
 
         }

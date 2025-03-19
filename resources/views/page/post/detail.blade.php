@@ -25,7 +25,7 @@
             <div class="col-lg-9">
                 <div class="news-featured">
                     <img width="980" height="550"
-                         src="{{asset($newData->thumbnail)}}"
+                         src="{{ asset($newData->thumbnail ?? '/images/logo-no-background.png') }}"
                          class="attachment-news-maximum size-news-maximum wp-post-image b-error" alt="" loading="lazy"
                          srcset="{{asset($newData->thumbnail)}}"
                     ></div>
@@ -63,7 +63,7 @@
                         <div class="col-md-3 mb-4">
                             <div class="card border-0 shadow-sm post-card">
                                 <div class="position-relative">
-                                    <img src="{{ asset($post->thumbnail) }}" class="card-img-top rounded-top" alt="Hình ảnh bài viết">
+                                    <img src="{{ asset($post->thumbnail ?? '/images/logo-no-background.png') }}" class="card-img-top rounded-top" alt="Hình ảnh bài viết">
                                     <div class="post-content p-3" title="{{$post->title}}">
                                         <a href="{{route('news-show', $post->slug)}}">
                                             <h6 class="fw-bold">{{ Str::limit($post->title, 60) }}</h6>

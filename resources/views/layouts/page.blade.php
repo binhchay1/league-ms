@@ -77,6 +77,57 @@
         color: white!important;
     }
 
+    .nav-link {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 160px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+
+    .dropdown-content a {
+        color: black !important;
+        padding: 10px;
+        text-decoration: none;
+        display: block;
+        clear: both;
+        font-weight: 400;
+        line-height: 1.428571429;
+        white-space: nowrap;
+        font-size: 16px !important;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+
+    .nav-item:hover .dropdown-content {
+        display: block;
+    }
+
+    /* Mobile menu */
+    @media (max-width: 768px) {
+        .nav-bar {
+            flex-direction: column;
+            align-items: center;
+        }
+        .nav-item {
+            width: 100%;
+        }
+        .dropdown-content {
+            position: static;
+            width: 100%;
+        }
+    }
+
 
 
 </style>
@@ -110,35 +161,21 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class=" collapse navbar-collapse" id="navbarNavDropdown">
-{{--                    <div class="ms-auto d-none d-lg-block">--}}
-{{--                        <div class="input-group">--}}
-{{--                            <span class="border-warning input-group-text bg-warning text-white"><i class="fa-solid fa-magnifying-glass"></i></span>--}}
-{{--                            <input type="text" class="form-control border-warning" style="color:#7a7a7a">--}}
-{{--                            <button class="btn btn-warning text-white">Search</button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                     <ul class="navbar-nav ms-auto ">
-                        <div class="nav-item dropdown">
-                            <a class="nav-link mx-2 dropdown-toggle text-uppercase" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{__('LEAGUE')}}
-                                <i class="fa fa-sort-down"></i>
-
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{{route('list.league')}}">{{__('List League')}}</a></li>
-                                <li><a class="dropdown-item" href="{{route('league.createTour')}}">{{__('Create League')}}</a></li>
-                            </ul>
+                        <div class="nav-item">
+                            <a class="mx-2 nav-link">{{__('LEAGUE')}} ▼</a>
+                            <div class="dropdown-content">
+                                <a href="{{route('list.league')}}">{{__('List League')}}</a>
+                                <a href="{{route('league.createTour')}}">{{__('Create League')}}</a>
+                            </div>
                         </div>
-                        <div class="nav-item dropdown">
-                            <a class="nav-link mx-2 dropdown-toggle text-uppercase" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{__('GROUP')}}
-                                <i class="fa fa-sort-down"></i>
 
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item " target="_blank" href="{{route('list.group')}}">{{__('List Group')}}</a></li>
-                                <li><a class="dropdown-item" href="{{route('group.createGroup')}}">{{__('Create Group')}}</a></li>
-                            </ul>
+                        <div class="nav-item">
+                            <a class="mx-2 nav-link">{{__('GROUP')}} ▼</a>
+                            <div class="dropdown-content">
+                                <a href="{{route('list.group')}}">{{__('List Group')}}</a>
+                                <a href="{{route('group.createGroup')}}">{{__('Create Group')}}</a>
+                            </div>
                         </div>
                         <li class="nav-item">
                             <a class="nav-link mx-2 text-uppercase" href="{{ route('ranking') }}">{{__('RANKING')}}</a>
@@ -152,9 +189,6 @@
                         <li class="nav-item">
                             <a class="nav-link mx-2 text-uppercase exchange" href="{{route('exchange.home')}}" target="_blank">{{__('EXCHANGE ')}}</a>
                         </li>
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link mx-2 text-uppercase shopping"  href="#">{{__('SHOP')}}</a>--}}
-{{--                        </li>--}}
 
                         @if(Auth::check() && Auth::user()->role =="admin" )
                         <li class="nav-item" style="background: #312f2f">
@@ -162,26 +196,22 @@
                         </li>
                         @endif
                         @if(Auth::check())
-                            <div class="nav-item dropdown" style="margin-top: -1px">
-
-                                <a class="nav-link mx-2 dropdown-toggle text-uppercase " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                  <span>
+                            <div class="nav-item">
+                                <a class="mx-2 nav-link"> <span>
                                         @if (strpos(Auth::user()->profile_photo_path, 'http') > 0)
-                                          <img class="avatar-user" width="25" height="25" src="{{ Auth::user()->profile_photo_path ?? asset('/images/no-image.png') }}">
-                                      @else
-                                          <img class="avatar-user" width="25" height="25" src="{{ asset( Auth::user()->profile_photo_path ?? '/images/no-image.png') }}">
-                                      @endif
+                                            <img class="avatar-user" width="25" height="25" src="{{ Auth::user()->profile_photo_path ?? asset('/images/no-image.png') }}">
+                                        @else
+                                            <img class="avatar-user" width="25" height="25" src="{{ asset( Auth::user()->profile_photo_path ?? '/images/no-image.png') }}">
+                                        @endif
                                 </span>
                                     {{ Auth::user()->name }}
-                                    <i class="fa fa-sort-down"></i>
-
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item"href="{{ route('profile.edit') }}">{{__('My profile')}}</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('my.league') }}">{{__('My league')}}</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('my.group') }}">{{__('My group')}}</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('logout') }}">{{__('Logout')}}</a></li>
-                                </ul>
+                                     ▼</a>
+                                <div class="dropdown-content">
+                                    <a href="{{ route('profile.edit') }}">{{__('My profile')}}</a>
+                                    <a href="{{ route('my.league') }}">{{__('My league')}}</a>
+                                    <a href="{{ route('my.group') }}">{{__('My group')}}</a>
+                                    <a href="{{ route('logout') }}">{{__('Logout')}}</a>
+                                </div>
                             </div>
                         @else
                             <li><a href="{{ route('login') }}" class="button white ">{{ __('Log In') }}</a></li>
@@ -192,11 +222,15 @@
                             @php
                                 $count = 0;
                                 $listNotification = Cache::get('notification_next_match_' . Auth::user()->id);
-                                foreach($listNotification as $notification) {
-                                if($notification->status == 0) {
-                                $count++;
+                                if(isset($listNotification))
+                                {
+                                   foreach($listNotification as $notification) {
+                                    if($notification->status == 0) {
+                                    $count++;
+                                        }
+                                    }
                                 }
-                                }
+
                             @endphp
                             <li class="li-notification">
                                 <a class="notification" id="notification">
@@ -376,6 +410,16 @@
             "positionClass": "toast-top-right", // Vị trí hiển thị
             "timeOut": "5000"
         };
+    </script>
+
+
+    <script>
+        document.querySelectorAll('.open-new-tab').forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                window.open(this.href, '_blank');
+            });
+        });
     </script>
 
 {{--    <script  type="text/javascript">--}}
