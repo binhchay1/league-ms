@@ -63,4 +63,13 @@ class GroupRepository extends BaseRepository
 
         return $group->where('active', GroupEnum::STATUS_ACTIVE)->get();
     }
+
+    public function myGroupActive($id, $user)
+    {
+        return $this->model->with('group_users')->with('group_users.users')
+            ->with('group_trainings')
+            ->where('id', $id)
+            ->where('status','private')
+            ->where('group_owner', $user)->first();
+    }
 }

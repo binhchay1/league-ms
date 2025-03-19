@@ -101,6 +101,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/change-password/', [ProfileController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password/', [ProfileController::class, 'updatePassword'])->name('update-password');
     Route::get('/my-group/', [ProfileController::class, 'viewMyGroup'])->name('my.group');
+    Route::get('/my-group/{id}/active-user/', [ProfileController::class, 'myGroupActiveUser'])->name('my.myGroupActiveUser');
     Route::get('/my-league/', [ProfileController::class, 'viewMyLeague'])->name('my.league');
     Route::get('/my-league-detail/{slug}', [ProfileController::class, 'detailMyLeague'])->name('my.leagueDetail');
     Route::get('/my-league/{slug}/player/', [ProfileController::class, 'myLeaguePlayer'])->name('my.leaguePlayer.info');
@@ -174,7 +175,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/delete-account-apple/', [ProfileController::class, 'deleteAccount'])->name('delete.account.apple');
     Route::get('/user-join-group/{id}', [GroupController::class, 'dataGroup'])->name('group.userGroup');
     Route::post('/active-user-group', [GroupController::class, 'activeUserJoin'])->name('group.activeUserJoin');
-    Route::get('/delete-user-group/{id}/', [GroupController::class, 'destroyUser'])->name('league.destroyUser');
+    Route::get('/delete-user-group/{id}/', [GroupController::class, 'destroyUser'])->name('user.destroyUser');
 
     Route::get('/new-group/', [GroupController::class, 'createGroup'])->name('group.createGroup');
     Route::post('/store-new-group/', [GroupController::class, 'storeGroup'])->name('group.storeGroup');

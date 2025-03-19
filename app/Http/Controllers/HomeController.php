@@ -463,7 +463,6 @@ class HomeController extends Controller
         if (empty($getSchedule)) {
             abort(404);
         }
-
         $getReferee = $this->refereeRepository->getRefereeByUserId($getSchedule->id, Auth::user()->id);
         if (empty($getReferee)) {
             $listTitle = explode(',', Auth::user()->title);

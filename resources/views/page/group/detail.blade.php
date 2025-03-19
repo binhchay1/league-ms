@@ -22,7 +22,7 @@ $utility = new \App\Enums\Utility();
         <div class="container d-flex  img-fluid">
             <img src="{{ asset($getGroup->images) }}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
             <div>
-                <h5 class="">{{$getGroup->name}}</h5>
+                <h2 class="p-0">{{$getGroup->name}}</h2>
                 <p class="">
                     <i class="bi bi-bookmark"></i> {{$getGroup->description}}
                 </p>
@@ -32,9 +32,7 @@ $utility = new \App\Enums\Utility();
                 <p class="">
                     <i class="bi bi-people"></i> <em>{{$getGroup->number_of_members}}</em>
                 </p>
-                <p class="">
-                    <i class="bi bi-card-text"></i> <em>{{$getGroup->number_of_members}}</em>
-                </p>
+                <p> <i class="bi bi-card-checklist"></i> {{$getGroup->note}}</p>
             </div>
         </div>
     </div>
@@ -136,13 +134,14 @@ $utility = new \App\Enums\Utility();
                 <div class="container">
                     <div class="card">
                         <div class="card-header bg-primary text-white">
-                            <h5 class="mb-0">{{'Member'}}</h5>
+                            <p class="mb-0">{{'Member'}}</p>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped align-middle">
                                 <thead class="table-light">
                                 <tr>
                                     <th class="text-th">{{'INFORMATION'}}</th>
+                                    <th  class="text-th">{{'EMAIL'}}</th>
                                     <th class="text-th">{{'PHONE'}}</th>
                                     <th class="text-th">{{'ADDRESS'}}</th>
                                 </tr>
@@ -154,6 +153,7 @@ $utility = new \App\Enums\Utility();
                                             <img src="{{ asset($member->users->profile_photo_path ?? 'images/default-avatar.png') }}" class="rounded-circle me-2" width="40" height="40" alt="Avatar">
                                             <span>{{ $member->users->name }}</span>
                                         </td>
+                                        <td><a href="#">{{$member->users->email}}</a></td>
                                         <td>
                                             <span>{{ $member->users->phone }}</span>
                                         </td>
@@ -165,39 +165,7 @@ $utility = new \App\Enums\Utility();
                         </div>
                     </div>
                 </div>
-{{--                <div class="container">--}}
-{{--                    <!-- Thanh menu -->--}}
-{{--                    <div class="d-flex">--}}
-{{--                        <button class="btn btn-primary">{{'Member'}}</button>--}}
-{{--                    </div>--}}
 
-{{--                    <!-- Bảng danh sách -->--}}
-{{--                    <div class="table-responsive mt-2">--}}
-{{--                        <table class="table table-bordered">--}}
-{{--                            <thead class="table-light">--}}
-{{--                            <tr class="">--}}
-{{--                                <th class="text-th">{{'INFORMATION'}}</th>--}}
-{{--                                <th class="text-th">{{'PHONE'}}</th>--}}
-{{--                                <th class="text-th">{{'ADDRESS'}}</th>--}}
-{{--                                <th class="text-th">{{'SEX'}}</th>--}}
-{{--                            </tr>--}}
-{{--                            </thead>--}}
-{{--                            <tbody>--}}
-{{--                            @foreach($members as $member)--}}
-{{--                            <tr>--}}
-{{--                                <td class="d-flex align-items-center"  style="font-weight: 600">--}}
-{{--                                    <img src="{{ $member->users->profile_photo_path ?? asset('/images/no-image.png')  }}" width="40" height="40"  class="rounded-circle me-2" alt="Avatar">--}}
-{{--                                {{ $member->users->name }}--}}
-{{--                                </td>--}}
-{{--                                <td>{{$member->users->phone}}</td>--}}
-{{--                                <td>{{$member->users->address}}</td>--}}
-{{--                                <td>{{$member->users->sex}}</td>--}}
-{{--                            </tr>--}}
-{{--                            @endforeach--}}
-{{--                            </tbody>--}}
-{{--                        </table>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
             </div>
         </div>
     </div>

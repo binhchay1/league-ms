@@ -188,52 +188,6 @@
             </div>
         </div>
 
-        {{--    <div class="item-results" style="margin-bottom: 50px">--}}
-        {{--        @forelse($listLeagues as $listLeague)--}}
-        {{--        @if($listLeague->status == 1)--}}
-        {{--        <div class="tblResultLanding" style="margin-top:10px;background:#353535" onmouseover="this.style.background='gray';" onmouseout="this.style.background='#353535';">--}}
-        {{--            <a href="{{route('league.info', $listLeague['slug'])}}">--}}
-        {{--                <div class="tr-tournament-detail" id="4734">--}}
-        {{--                    <div class="tournament-detail ">--}}
-        {{--                        <div class="inner-tournament-detail">--}}
-        {{--                            <div class="description">--}}
-        {{--                                <div class="logo-wrap">--}}
-        {{--                                    <div class="image">--}}
-        {{--                                        <img src="{{asset($listLeague->images ?? '/images/logo-no-background.png')}}" class="show-image-league">--}}
-        {{--                                    </div>--}}
-        {{--                                </div>--}}
-
-        {{--                                <div class="info" style="color:white;">--}}
-        {{--                                    <h3>{{ $listLeague->name }}</h3>--}}
-        {{--                                    <?php $start_date = date('d/m/Y', strtotime($listLeague->start_date));--}}
-        {{--                                    $end_date = date('d/m/Y', strtotime($listLeague->end_date));--}}
-        {{--                                    ?>--}}
-        {{--                                    <h6 class="">{{ __('Start Date') }}: {{ $start_date }}</h6>--}}
-        {{--                                    <h6 class="">{{ __('End Date') }}: {{ $end_date }}</h6>--}}
-        {{--                                    <div class="prize">--}}
-        {{--                                        {{ __('PRIZE MONEY:  ') }} <?php echo number_format($listLeague->money ?? 0). " VND"?>--}}
-        {{--                                    </div>--}}
-        {{--                                </div>--}}
-        {{--                            </div>--}}
-        {{--                            <div class="country-detail">--}}
-        {{--                                <div class="venue-country" style="color:black;">--}}
-        {{--                                    <div>--}}
-        {{--                                        <div style="margin-bottom: 40px; margin-right: 100px;">--}}
-        {{--                                            <img src="{{ asset('/images/logo-no-background.png') }}" class=" b-error b-error" width="100" height="100">--}}
-        {{--                                        </div>--}}
-        {{--                                    </div>--}}
-        {{--                                </div>--}}
-        {{--                            </div>--}}
-        {{--                        </div>--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--            </a>--}}
-        {{--        </div>--}}
-        {{--            @endif--}}
-        {{--        @empty--}}
-        {{--            <h3 style="height: 220px" class="text-center">{{__('Data has not been updated!')}}</h3>--}}
-        {{--        @endforelse--}}
-        {{--    </div>--}}
         @if($listLeagues->total() > $listLeagues->perPage())
             <div class="navigator short  mt-4">
                 <div class="head d-flex justify-content-center ">

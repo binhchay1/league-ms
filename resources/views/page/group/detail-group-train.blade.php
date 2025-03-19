@@ -56,7 +56,7 @@
             <div class="container d-flex  img-fluid">
                 <img src="{{ asset($groupTrainingDetail->groups->images) }}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
                 <div>
-                    <h5 class="">{{$groupTrainingDetail->name}}</h5>
+                    <h2 class="p-0">{{$groupTrainingDetail->name}}</h2>
                     <p class="">
                         <i class="bi bi-bookmark"></i> {{$groupTrainingDetail->description}}
                     </p>
@@ -70,7 +70,7 @@
                         <i class="bi bi-calendar-check"></i> <em>{{ $start_time}} ~  {{$end_time}}</em>
                     </p>
                     <p class="">
-                        <i class="bi bi-card-text"></i> <em>{{$groupTrainingDetail->note}}</em>
+                        <i class="bi bi-card-checklist"></i> <em>{{$groupTrainingDetail->note}}</em>
                     </p>
 
                     <div style="width: 200%;">
@@ -106,8 +106,8 @@
                 <!-- Bảng danh sách -->
                 <div class="table-box mt-4">
                     <table class="table">
-                        <thead>
-                        <tr>
+                        <thead class="bg-blue">
+                        <tr >
                             <th>{{'MEMBER'}}</th>
                             <th>{{'EMAIL'}}</th>
                             <th>{{'PHONE'}}</th>

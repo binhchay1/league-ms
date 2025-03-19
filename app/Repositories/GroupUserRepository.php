@@ -19,7 +19,10 @@ class GroupUserRepository extends BaseRepository
 
     public function checkJoinedGroup($user_id, $group_id)
     {
-        return $this->model->where('group_id', $group_id)->where('user_id', $user_id)->where('status_request', Group::STATUS_ACCEPTED)->first();
+        return $this->model
+            ->where('group_id', $group_id)
+            ->where('user_id', $user_id)->where('status_request', Group::STATUS_WAITING)
+            ->first();
     }
 
     public function getMembersByGroupId($group_id)

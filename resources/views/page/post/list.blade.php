@@ -71,7 +71,7 @@
             <!-- Sidebar danh mục -->
             <div class="col-lg-3">
                 <div class="list-group">
-                    <h5 class="list-group-item fw-bold bg-light m-0">{{'Category'}}</h5>
+                    <h5 class="list-group-item  bg-light m-0">{{'Category'}}</h5>
                     @foreach($categories as $category)
                         <a href="{{route('newsCategory', $category->slug)}}"  class="list-group-item list-group-item-action">{{ $category->name }}</a>
                     @endforeach

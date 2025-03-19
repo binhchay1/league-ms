@@ -13,56 +13,7 @@ $isFull = false;
 <link rel="stylesheet" href="{{ asset('/css/page/group.css') }}">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
 @endsection
-<style>
-    .alert{
-        display: none;
-    }
 
-    .content-gr {
-        text-align: left!important;
-        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    .content-gr img {
-        border-radius: 10px;
-        width: 100% !important;
-        height: 180px !important;
-        object-fit: cover;
-    }
-
-    .name-gr {
-        font-weight: 600;
-        padding: 0 !important;
-    }
-
-    .text-muted {
-        font-size: .875rem;
-        line-height: 1.25rem;
-        color: #707070;
-        font-weight: 500;
-    }
-
-    .lb-register {
-        color: #000;
-        font-size: 12px;
-        font-weight: 700;
-        padding-bottom: 6px;
-        position: relative;
-    }
-
-    .label-success {
-        border-radius: 5px;
-        color: #fff;
-        padding: 3px 8px;
-        background: mediumpurple;
-        font-size: 12px;
-        font-weight: 700;
-        padding-bottom: 6px;
-        position: relative;
-        font-size: 15px;
-    }
-
-</style>
 @section('content')
     <div class="alert alert-success alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -123,12 +74,12 @@ $isFull = false;
                             <img src="{{$group->images}}" alt="Event" data-id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
 
                             <div  class="c-details-group name-group" data-id="{{ $group->name }}" id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
-                                <h6 class="mb-0 gr-name">{{ $group->name }}</h6>
+                                <h5 class="mb-0 gr-name">{{ $group->name }}</h5>
                             </div>
                             <p class="text-muted ">{{'Hosted by:'}} {{$group->users->name}} - {{$group->description}} </p>
-                            <p class="event-location uppercase  ">📍 {{ $group->location }}</p>
-                            <p> ✅ {{$group->note}}</p>
-                            <p>🎟
+                            <p class="event-location uppercase  "> <i class="bi bi-geo-alt"></i>{{ $group->location }}</p>
+                            <p> <i class="bi bi-card-checklist"></i> {{$group->note}}</p>
+                            <p><i class="bi bi-shield-check"></i>
                                 <span class="extend_lb label-success">{{$group->status}}</span>
                             </p>
 
