@@ -20,7 +20,7 @@ $utility = new \App\Enums\Utility();
 
     <div class=" text-black p-3 align-items-center">
         <div class="container d-flex  img-fluid">
-            <img src="{{ asset($getGroup->images) }}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
+            <img src="{{ asset($getGroup->images ?? '/images/logo-no-background.png') }}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
             <div>
                 <h2 class="p-0">{{$getGroup->name}}</h2>
                 <p class="">

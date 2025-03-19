@@ -47,6 +47,9 @@
                             <a href="{{ route('user.delete', $data['id']) }}">
                                 <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
                             </a>
+                            <a href="{{ route('user.changePassword', $data['id']) }}">
+                                <button type="button" class="btn btn-warning">{{ __('Change Password') }}</button>
+                            </a>
                         </td>
                     </tr>
                     @endforeach

@@ -100,7 +100,7 @@
                                     <div class="card mb-3">
                                         <div class="row g-0">
                                             <div class="col-md-2">
-                                                <img src="{{asset($row->images )}}" class="img-fluid rounded-start" alt="BattleBots">
+                                                <img src="{{asset($row->images ?? asset('/images/no-image.png') )}}" class="img-fluid rounded-start" alt="BattleBots">
                                             </div>
                                             <div class="col-md-10">
                                                 <div class="card-body">

@@ -71,7 +71,7 @@ $isFull = false;
                     @endif
                     <div class="col-md-4">
                         <div class="feature-box content-gr">
-                            <img src="{{$group->images}}" alt="Event" data-id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
+                            <img src="{{asset( $group->images ?? '/images/logo-no-background.png') }}" alt="Event" data-id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
 
                             <div  class="c-details-group name-group" data-id="{{ $group->name }}" id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
                                 <h5 class="mb-0 gr-name">{{ $group->name }}</h5>

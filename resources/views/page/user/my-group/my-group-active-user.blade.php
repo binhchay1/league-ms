@@ -61,7 +61,7 @@
     <section >
         <div class=" text-black p-3 align-items-center">
             <div class="container d-flex  img-fluid">
-                <img src="{{ asset($group->images) }}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
+                <img src="{{ asset($row->images ?? '/images/logo-no-background.png') }}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
                 <div>
                     <h2 class="p-0">{{$group->name}}</h2>
                     <p class="">
