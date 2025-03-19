@@ -169,9 +169,9 @@
                 <div class="col-md-4">
                     <div class="testimonial-card p-3">
                         <div class="d-flex align-items-center">
-                            <img src="https://via.placeholder.com/50" alt="Avatar">
+                            <img src="{{asset('images/upload/league/tien.jpg')}}" alt="Avatar">
                             <div class="ms-3">
-                                <h5 class="mb-0">Hoàng Minh</h5>
+                                <h5 class="mb-0">Minh Tiến</h5>
                                 <small class="text-muted">Trọng tài</small>
                             </div>
                         </div>
@@ -182,9 +182,9 @@
                 <div class="col-md-4">
                     <div class="testimonial-card p-3">
                         <div class="d-flex align-items-center">
-                            <img src="https://via.placeholder.com/50" alt="Avatar">
+                            <img src="{{asset('images/upload/league/vy.jpg')}}" alt="Avatar">
                             <div class="ms-3">
-                                <h5 class="mb-0">Lê Phương</h5>
+                                <h5 class="mb-0">Thảo Vy</h5>
                                 <small class="text-muted">Vận động viên</small>
                             </div>
                         </div>
@@ -195,9 +195,9 @@
                 <div class="col-md-4">
                     <div class="testimonial-card p-3">
                         <div class="d-flex align-items-center">
-                            <img src="https://via.placeholder.com/50" alt="Avatar">
+                            <img src="{{asset('images/upload/league/tung.jpg')}}" alt="Avatar">
                             <div class="ms-3">
-                                <h5 class="mb-0">Toàn Nguyễn</h5>
+                                <h5 class="mb-0">Tùng Nguyễn</h5>
                                 <small class="text-muted">Huấn luyện viên</small>
                             </div>
                         </div>

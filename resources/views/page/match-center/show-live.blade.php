@@ -27,9 +27,6 @@
         padding: 1px;
     }
 
-    .text-white:hover {
-        background: red !important;
-    }
 </style>
 <?php
 

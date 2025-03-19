@@ -61,7 +61,7 @@
                                     </p>
                                     <div class="mt-3">
                                         <div class="current-tmt-link-wrap text-center mt-2" >
-                                            <div><a href="{{route('league.live', $league['slug'])}}" class=" btn btn-danger " target="_blank" rel="noopener noreferrer"> {{__('Live Score')}} </a></div>
+                                            <div><a href="{{route('league.live', $league['slug'])}}" class=" btn btn-danger open-new-tab "rel="noopener noreferrer"> {{__('Live Score')}} </a></div>
 
                                         </div>
                                     </div>
@@ -92,4 +92,12 @@
             </div>
         @endif
 </div>
+    <script>
+        document.querySelectorAll('.open-new-tab').forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                window.open(this.href, '_blank');
+            });
+        });
+    </script>
 @endsection

@@ -50,7 +50,7 @@
                         <div class="col-md-4 mb-4">
                             <div class="card border-0 shadow-sm post-card">
                                 <div class="position-relative">
-                                    <img src="{{ asset($post->thumbnail) }}" class="card-img-top rounded-top" alt="Hình ảnh bài viết">
+                                    <img src="{{ asset($post->thumbnail ?? '/images/logo-no-background.png') }}" class="card-img-top rounded-top" alt="Hình ảnh bài viết">
                                     <div class="post-content p-3" title="{{$post->title}}">
                                         <a href="{{route('news-show', $post->slug)}}">
                                             <h6 class="fw-bold">{{ Str::limit($post->title, 60) }}</h6>
