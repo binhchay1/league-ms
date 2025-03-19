@@ -2,17 +2,6 @@
     padding: 0;
 }
 
-/*.row {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*}*/
-
-p {
-    margin-bottom: 0 !important;
-    padding-bottom: 10px !important;
-}
-
-
 .c-details span {
     font-weight: 300;
     font-size: 13px;
@@ -90,7 +79,8 @@ hr {
 
 .gr-name {
     line-height: 50px;
-    font-size: 20px;
+    color: green;
+    font-weight: bold;
 }
 
 .gr-title {
@@ -389,3 +379,56 @@ hr {
     text-align: left;
     font-weight: 600;
 }
+
+ .alert{
+     display: none;
+ }
+
+.content-gr {
+    text-align: left!important;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.img-fluid p {
+    font-size: 18px !important;
+}
+
+.content-gr img {
+    border-radius: 10px;
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: cover;
+}
+
+.name-gr {
+    font-weight: 600;
+    padding: 0 !important;
+}
+
+.text-muted {
+    font-size: 15px;
+    line-height: 1.25rem;
+    color: #707070;
+    font-weight: 500;
+}
+
+.lb-register {
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+    padding-bottom: 6px;
+    position: relative;
+}
+
+.label-success {
+    border-radius: 5px;
+    color: #fff;
+    padding: 3px 8px;
+    background: mediumpurple;
+    font-size: 12px;
+    font-weight: 700;
+    padding-bottom: 6px;
+    position: relative;
+    font-size: 15px;
+}
+

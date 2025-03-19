@@ -30,51 +30,66 @@
 @section('content')
     <div class="container mt-4">
         <h2 style="font-weight: 400">{{__('CURRENT LIVE')}}</h2>
-        <div class="row bg-row">
-            @forelse($listMatches as $league  )
-                @if($league->status == 1)
-                <div class="col-md-3 bg-gray mt-4">
-                    <div class="card text-center border-0 shadow-sm p-3 transition hover-effect">
-                        <img src="{{ asset($league->images ?? '/images/logo-no-background.png') }}" alt="Avatar" class="card-img-top mx-auto" style="width: 80px; height: 80px;">
-                        <div class="card-body">
-                            <h5 class="text-success fw-bold">{{ $league->name }}</h5>
 
-                            <div class="mt-3">
-                                <div class="current-tmt-link-wrap text-center mt-2" >
-                                    <div><a href="{{route('league.live', $league['slug'])}}" class=" btn btn-danger " target="_blank" rel="noopener noreferrer"> {{__('Live Score')}} </a></div>
+        <div class="container mt-4">
+            <div class="row">
+                @foreach($listMatches as $league)
+                    @if($league->status == 1)
+                        <?php   $start_date = date('d/m/Y', strtotime($league->start_date));
+                        $end_date = date('d/m/Y', strtotime($league->end_date));
+                        ?>
+                        <div class="col-md-4 mt-4">
+                            <div class="card league-card">
+                                <!-- Ảnh nền -->
+                                <div class="card-header league-banner"
+                                     style="background-image: url('{{ asset('/images/bg-league.png') }}');">
+                                    <!-- Logo giải đấu -->
+                                    <div class="league-logo">
+                                        <img src="{{ asset($league->images ?? '/images/logo-no-background.png') }}"
+                                             alt="League Logo">
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <!-- Tên giải đấu -->
+                                    <a href="{{route('league.info', $league['slug'])}}">
+                                        <h5 class="league-name">{{ $league->name }}</h5>
+                                    </a>
+                                    <!-- Mô tả ngắn -->
+                                    <p class="league-info p-0">
+                                         {{ $start_date }} || {{ $end_date }}
 
+                                    </p>
+                                    <div class="mt-3">
+                                        <div class="current-tmt-link-wrap text-center mt-2" >
+                                            <div><a href="{{route('league.live', $league['slug'])}}" class=" btn btn-danger " target="_blank" rel="noopener noreferrer"> {{__('Live Score')}} </a></div>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                @endif
-                @empty
-                    <div class="text-center">
-                        <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
-
-                        <h4 >{{ __('There are no live matches today!') }}</h4>
-                    </div>
-                @endforelse
-                </div>
-    @if($listMatches->total() > $listMatches->perPage())
-    <div class="navigator short mt-4">
-        <div class="head d-flex justify-content-center">
-            <ul class="pagination">
-                <li>
-                    <a href="{{ $listMatches->previousPageUrl() }}" aria-label="Previous" style="color: red" class="prevPlayersList">
-                        <span aria-hidden="true"><span class="fa fa-angle-left"></span> {{ __('PREVIOUS') }}</span>
-                    </a>
-                </li>
-                &emsp;
-                <li>
-                    <a href="{{ $listMatches->nextPageUrl() }}" aria-label="Next" style="color: red" class="nextPlayersList">
-                        <span aria-hidden="true">{{ __('NEXT') }} <span class="fa fa-angle-right"></span></span>
-                    </a>
-                </li>
-            </ul>
+                    @endif
+                @endforeach
+            </div>
         </div>
-    </div>
-    @endif
+        @if($listMatches->total() > $listMatches->perPage())
+            <div class="navigator short mt-4">
+                <div class="head d-flex justify-content-center">
+                    <ul class="pagination">
+                        <li>
+                            <a href="{{ $listMatches->previousPageUrl() }}" aria-label="Previous" style="color: red" class="prevPlayersList">
+                                <span aria-hidden="true"><span class="fa fa-angle-left"></span> {{ __('PREVIOUS') }}</span>
+                            </a>
+                        </li>
+                        &emsp;
+                        <li>
+                            <a href="{{ $listMatches->nextPageUrl() }}" aria-label="Next" style="color: red" class="nextPlayersList">
+                                <span aria-hidden="true">{{ __('NEXT') }} <span class="fa fa-angle-right"></span></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        @endif
 </div>
 @endsection

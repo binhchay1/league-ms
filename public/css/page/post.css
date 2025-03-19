@@ -44,3 +44,7 @@
     background: #1996da;
     color: white;
 }
+
+.fw-bold {
+   color: green !important;
+}

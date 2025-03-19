@@ -45,7 +45,12 @@
     }
 
     .card-title {
-        color: black !important;
+        color: green !important;
+        font-weight: bold;
+    }
+
+    span {
+        font-weight: bold;
     }
 </style>
 @section('content')
@@ -56,7 +61,7 @@
                 <div class="container d-flex  img-fluid">
                     <img src="{{Auth::user()->profile_photo_path ?? asset('/images/no-image.png')}}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
                     <div>
-                        <h5 class="mb-1">{{Auth::user()->name}}</h5>
+                        <h2 class="p-0">{{Auth::user()->name}}</h2>
                         <p class="mb-1">
                             <i class="bi bi-envelope"></i> {{Auth::user()->email}}
                         </p>

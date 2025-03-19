@@ -5,21 +5,7 @@
 @endsection
 
 @section('css')
-    <style>
-        .btn-league {
-            font-size: 20px;
-            text-transform: uppercase;
-            border-radius: 50px;
-            background-color: #6cbe4c;
-            border-color: transparent;
-            font-weight: 500;
-            width: 200px;
-        }
 
-        .ddlTournament {
-            width: 300px;
-        }
-    </style>
     <link rel="stylesheet" href="{{ asset('css/page/show.css') }}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
     @if(Route::current()->getName() == 'leagueResult.bracket')
@@ -51,15 +37,21 @@
                                 <img src="{{ asset($leagueInfor->images ?? '/images/logo-no-background.png') }}"
                                      class="show-image-league" alt="logo">
                             </div>
-                            <div class="info">
+                            <div class="" id="info-league">
                                 <h2>{{ $leagueInfor->name }}</h2>
-                                <?php $start_date = date('d/m/Y', strtotime($leagueInfor->start_date));
+                                <p class="card-text display"><?php echo number_format($leagueInfor->money ?? 0) . " VND"?> || {{$leagueInfor->type_of_league}}  || {{$leagueInfor->location}}</p>
+                                <p class="display">
+                                    <i class="bi bi-geo-alt"></i> <em>{{ __('Location: ') }} {{$leagueInfor->location}}</em>
+                                </p>
+                            <?php $start_date = date('d/m/Y', strtotime($leagueInfor->start_date));
                                 $end_date = date('d/m/Y', strtotime($leagueInfor->end_date));
                                 ?>
-                                <h5 class="">{{ __('Start Date') }}: {{ $start_date }}</h5>
-                                <h5 class="">{{ __('End Date') }}: {{ $end_date }}</h5>
-                                <div
-                                    class="prize">{{ __('PRIZE MONEY: ') }}<?php echo number_format($leagueInfor->money ?? 0) . " VND"?></div>
+                                <p class="display">
+                                    <i class="bi bi-calendar"></i> <em>{{'From: '}} {{$start_date}} ~ {{'To: '}}{{$end_date}}</em>
+                                </p>
+                                <p class="display">
+                                    <i class="bi bi-people-fill"></i> <em>{{ __('Member: ') }} {{$leagueInfor->number_of_athletes}}</em>
+                                </p>
                             </div>
                         </div>
                     </div>

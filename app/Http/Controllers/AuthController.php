@@ -152,11 +152,11 @@ class  AuthController extends Controller
                 $data = [
                     'group_id' => $getGroup->id,
                     'user_id' => $user->id,
-                    'status_request' => Group::STATUS_WAITING
+                    'status_request' => Group::STATUS_ACCEPTED
                 ];
                 $this->groupUserRepository->create($data);
 
-                return 'wait';
+                return 'success';
             } else {
                 if ($group_users->status_request == Group::STATUS_REJECTED) {
                     return 'reject';
