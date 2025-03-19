@@ -21,7 +21,7 @@ class GroupUserRepository extends BaseRepository
     {
         return $this->model
             ->where('group_id', $group_id)
-            ->where('user_id', $user_id)->where('status_request', Group::STATUS_WAITING)
+            ->where('user_id', $user_id)->where('status_request', Group::STATUS_ACCEPTED)
             ->first();
     }
 

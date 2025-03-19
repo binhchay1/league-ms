@@ -225,6 +225,7 @@ class HomeController extends Controller
             ->where('user_id', $userId)
             ->where('status_request', Group::STATUS_ACCEPTED)
             ->exists(); // Kiểm tra user có trong nhóm không
+
         return response()->json(['joined' => $isJoined]);
     }
 
