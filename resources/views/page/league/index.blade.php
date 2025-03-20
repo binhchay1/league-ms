@@ -76,7 +76,7 @@
 
         .lb-register {
             color: #000;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 700;
             padding-bottom: 6px;
             position: relative;
@@ -120,7 +120,7 @@
 
                     <div class="input-group">
                         <input type="text" class="form-control" name="query"
-                               placeholder="Tên giải đấu, tên người quản lý">
+                               placeholder="{{'Name league...'}}">
                         <button class="btn btn-success" type="submit">
                             <i class="fas fa-search"></i>
                         </button>
@@ -149,7 +149,7 @@
                                 <div class="card-header league-banner"
                                      style="background-image: url('{{ asset('/images/bg-league.png') }}');">
                                     <!-- Logo giải đấu -->
-                                    @if($current_date < $start_date && $current_date < $end_date_register)
+                                    @if(now() < date('Y-m-d', strtotime($league->end_date_register)))
                                     <div class="label lb-register">
                                         <span class="extend_lb label-success">{{'Registering'}}</span>
                                     </div>
