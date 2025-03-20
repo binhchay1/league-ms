@@ -102,7 +102,7 @@
                     </select>
 
                     <div class="input-group">
-                        <input type="text" class="form-control"  name="query" placeholder="Tên giải đấu, tên người quản lý">
+                        <input type="text" class="form-control"  name="query" placeholder="{{'Name league...'}}">
                         <button class="btn btn-success" type="submit">
                             <i class="fas fa-search"></i>
                         </button>

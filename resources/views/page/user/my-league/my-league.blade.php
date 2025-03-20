@@ -59,7 +59,7 @@
             <!-- Header -->
             <div class=" text-black p-3 align-items-center">
                 <div class="container d-flex  img-fluid">
-                    <img src="{{Auth::user()->profile_photo_path ?? asset('/images/no-image.png')}}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
+                    <img src="{{ asset(Auth::user()->profile_photo_path ?? '/images/no-image.png')}}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
                     <div>
                         <h2 class="p-0">{{Auth::user()->name}}</h2>
                         <p class="mb-1">

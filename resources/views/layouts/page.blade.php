@@ -199,7 +199,7 @@
                             <div class="nav-item">
                                 <a class="mx-2 nav-link"> <span>
                                         @if (strpos(Auth::user()->profile_photo_path, 'http') > 0)
-                                            <img class="avatar-user" width="25" height="25" src="{{ Auth::user()->profile_photo_path ?? asset('/images/no-image.png') }}">
+                                            <img class="avatar-user" width="25" height="25" src="{{  asset(Auth::user()->profile_photo_path ?? '/images/no-image.png') }}">
                                         @else
                                             <img class="avatar-user" width="25" height="25" src="{{ asset( Auth::user()->profile_photo_path ?? '/images/no-image.png') }}">
                                         @endif
