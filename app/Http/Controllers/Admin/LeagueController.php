@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\Ranking;
 use App\Enums\Role;
 use App\Http\Requests\LeagueRequest;
+use App\Http\Requests\LeagueUpdateRequest;
 use App\Models\League;
 use App\Models\UserLeague;
 use App\Repositories\LeagueRepository;
@@ -51,7 +52,7 @@ class LeagueController extends Controller
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->name);
         $input['owner_id'] = Auth::user()->id;
-        $input['status'] = 0;
+        $input['status'] = 1;
         if (isset($input['images'])) {
             $img = $this->utility->saveImageLeague($input);
             if ($img) {
@@ -84,7 +85,7 @@ class LeagueController extends Controller
     }
 
 
-    public function update(LeagueRequest $request, $id)
+    public function update(LeagueUpdateRequest $request, $id)
     {
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->slug);
@@ -172,7 +173,7 @@ class LeagueController extends Controller
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->name);
         $input['owner_id'] = Auth::user()->id;
-        $input['status'] = 0;
+        $input['status'] = 1;
         if (isset($input['images'])) {
             $img = $this->utility->saveImageLeague($input);
             if ($img) {

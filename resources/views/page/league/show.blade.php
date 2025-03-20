@@ -197,7 +197,7 @@
                                                                 <td align="center">
                                                                     <div class="country">
                                                                         <img width="48"
-                                                                             src="/{{ Auth::user()->profile_photo_path }}"
+                                                                             src="{{ asset(Auth::user()->profile_photo_path ?? '/images/no-image.png') }}"
                                                                              title="Japan" class="flag image-user">
                                                                     </div>
                                                                 </td>
