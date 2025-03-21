@@ -1,36 +1,71 @@
 name: Deploy
 
 on:
-    workflow_run:
-        workflows: ['Build And Test']
-        types: [completed]
-        branches:
-            - 'main'
-  
+  workflow_run:
+    workflows: ['Build And Test']
+    types: [completed]
+    branches:
+      - 'main'
+
 jobs:
-  run_pull:
-    name: run pull
+  merge-and-deploy:
+    name: Merge main to production and deploy
     runs-on: ubuntu-latest
-    
+
+    # Chỉ chạy nếu workflow "Build And Test" thành công
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
     steps:
-    - name: install ssh keys
-      run: |
-        echo "Debug: SSH_HOST is ${{ secrets.SSH_HOST }}"
-        mkdir -p ~/.ssh
-        chmod 700 ~/.ssh
-        install -m 600 -D /dev/null ~/.ssh/id_rsa
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} || { echo "ssh-keyscan failed"; exit 1; }
-        ssh-keyscan -H -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
-        chmod 644 ~/.ssh/known_hosts
-    - name: connect and pull
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
-    - name: Remove composer.lock and Composer install
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && rm -rf composer.lock && composer install && exit"
-    - name: Run php artisan migrate
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && php artisan migrate --force && exit"
-    - name: Run restart cache php-fpm
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "service php8.2-fpm restart && chmod -R 777 /var/run/php"
-    - name: cleanup
-      run: rm -rf ~/.ssh
+      # Checkout repository để có thể merge
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Lấy toàn bộ lịch sử commit để merge
+
+      # Thiết lập Git credentials để merge
+      - name: Configure Git
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      # Merge main vào production
+      - name: Merge main into production
+        run: |
+          git checkout production
+          git merge main --no-ff --no-edit
+          git push origin production
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Cài đặt SSH keys để deploy lên server
+      - name: Install SSH keys
+        run: |
+          echo "Debug: SSH_HOST is ${{ secrets.SSH_HOST }}"
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} || { echo "ssh-keyscan failed"; exit 1; }
+          ssh-keyscan -H -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      # Kết nối và pull nhánh production trên server
+      - name: Connect and pull production
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout production && git pull && exit"
+
+      # Xóa composer.lock và chạy composer install
+      - name: Remove composer.lock and Composer install
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && rm -rf composer.lock && composer install && exit"
+
+      # Chạy migration
+      - name: Run php artisan migrate
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && php artisan migrate --force && exit"
+
+      # Khởi động lại PHP-FPM và cấp quyền
+      - name: Restart PHP-FPM and set permissions
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "service php8.2-fpm restart && chmod -R 777 /var/run/php"
+
+      # Dọn dẹp SSH
+      - name: Cleanup
+        run: rm -rf ~/.ssh
