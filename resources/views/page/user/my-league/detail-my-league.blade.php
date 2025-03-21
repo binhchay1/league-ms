@@ -5,21 +5,6 @@
 @endsection
 
 @section('css')
-    <style>
-        .btn-league {
-            font-size: 20px;
-            text-transform: uppercase;
-            border-radius: 50px;
-            background-color: #6cbe4c;
-            border-color: transparent;
-            font-weight: 500;
-            width: 200px;
-        }
-
-        .ddlTournament {
-            width: 300px;
-        }
-    </style>
     <link rel="stylesheet" href="{{ asset('css/page/show.css') }}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
     @if(Route::current()->getName() == 'my.leagueBracket.info')
