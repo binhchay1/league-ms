@@ -1,4 +1,3 @@
-
 @if ($message = Session::get('success'))
     <div class="alert alert-success alert-block" id="successMessage">
         <button type="button" class="close" data-dismiss="alert">×</button>
