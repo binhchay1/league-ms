@@ -7,20 +7,25 @@ on:
     branches:
       - 'main'
 
+# Cấp quyền cho GITHUB_TOKEN
+permissions:
+  contents: write  # Cần để push code và tạo PR
+  pull-requests: write  # Cần để tạo và merge PR
+
 jobs:
   merge-and-deploy:
-    name: Merge main to production and deploy
+    name: Create PR, auto-merge, and deploy
     runs-on: ubuntu-latest
 
     # Chỉ chạy nếu workflow "Build And Test" thành công
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
-      # Checkout repository để merge
+      # Checkout repository để tạo PR
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # Lấy toàn bộ lịch sử commit để merge
 
       # Thiết lập Git credentials
       - name: Configure Git
@@ -28,16 +33,46 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      # Merge main vào production
-      - name: Merge main into production
+      # Tạo Pull Request từ main vào production
+      - name: Create Pull Request from main to production
+        id: create-pr
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: main
+          destination_branch: production
+          pr_title: "Merge main into production"
+          pr_body: "Automated PR to merge main into production after successful Build And Test."
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Kích hoạt tự động merge cho PR vừa tạo
+      - name: Enable auto-merge for PR
+        if: steps.create-pr.outputs.pr_number  # Chỉ chạy nếu PR được tạo
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ steps.create-pr.outputs.pr_number }}
+          merge-method: merge
+
+      # Đợi PR được merge (có thể mất vài giây)
+      - name: Wait for PR to be merged
+        if: steps.create-pr.outputs.pr_number
         run: |
-          git checkout production
-          git merge main --no-ff --no-edit
-          git push origin production
+          echo "Waiting for PR #${{ steps.create-pr.outputs.pr_number }} to be merged..."
+          for i in {1..30}; do
+            PR_STATE=$(gh pr view ${{ steps.create-pr.outputs.pr_number }} --json state --jq .state)
+            if [ "$PR_STATE" = "MERGED" ]; then
+              echo "PR #${{ steps.create-pr.outputs.pr_number }} has been merged!"
+              exit 0
+            fi
+            echo "PR state: $PR_STATE. Waiting... ($i/30)"
+            sleep 5
+          done
+          echo "Timeout waiting for PR to be merged."
+          exit 1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Cài đặt SSH keys
+      # Cài đặt SSH keys để deploy lên server
       - name: Install SSH keys
         run: |
           echo "Debug: SSH_HOST is ${{ secrets.SSH_HOST }}"
@@ -50,11 +85,11 @@ jobs:
           ssh-keyscan -H -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
-      # Kết nối và pull nhánh production
+      # Kết nối và pull nhánh production trên server
       - name: Connect and pull production
         run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout production && git pull && exit"
 
-      # Chạy composer install (không xóa composer.lock)
+      # Chạy composer install
       - name: Composer install
         run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && composer install --no-ansi --no-interaction --no-progress && exit"
 
