@@ -1,0 +1,94 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ['Build And Test']
+    types: [completed]
+    branches:
+      - 'main'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  merge-and-deploy:
+    name: Create PR, auto-merge, and deploy
+    runs-on: ubuntu-latest
+
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # Thiết lập Git credentials
+      - name: Configure Git
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create Pull Request from main to production
+        id: create-pr
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: main
+          destination_branch: production
+          pr_title: "Merge main into production"
+          pr_body: "Automated PR to merge main into production after successful Build And Test."
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Enable auto-merge for PR
+        if: steps.create-pr.outputs.pr_number
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ steps.create-pr.outputs.pr_number }}
+          merge-method: merge
+
+      - name: Wait for PR to be merged
+        if: steps.create-pr.outputs.pr_number
+        run: |
+          echo "Waiting for PR #${{ steps.create-pr.outputs.pr_number }} to be merged..."
+          for i in {1..30}; do
+            PR_STATE=$(gh pr view ${{ steps.create-pr.outputs.pr_number }} --json state --jq .state)
+            if [ "$PR_STATE" = "MERGED" ]; then
+              echo "PR #${{ steps.create-pr.outputs.pr_number }} has been merged!"
+              exit 0
+            fi
+            echo "PR state: $PR_STATE. Waiting... ($i/30)"
+            sleep 5
+          done
+          echo "Timeout waiting for PR to be merged."
+          exit 1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install SSH keys
+        run: |
+          echo "Debug: SSH_HOST is ${{ secrets.SSH_HOST }}"
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} || { echo "ssh-keyscan failed"; exit 1; }
+          ssh-keyscan -H -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Connect and pull production
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout production && git pull && exit"
+
+      - name: Composer install
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && composer install --no-ansi --no-interaction --no-progress && exit"
+
+      - name: Run php artisan migrate
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && php artisan migrate --force && exit"
+
+      - name: Restart PHP-FPM and set permissions
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "service php8.2-fpm restart && chmod -R 777 /var/run/php"
+
+      - name: Cleanup
+        run: rm -rf ~/.ssh
