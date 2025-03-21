@@ -1,106 +1,31 @@
-name: Deploy
+name: Build And Test
 
 on:
-  workflow_run:
-    workflows: ['Build And Test']
-    types: [completed]
-    branches:
-      - 'main'
-
-# Cấp quyền cho GITHUB_TOKEN
-permissions:
-  contents: write  # Cần để push code và tạo PR
-  pull-requests: write  # Cần để tạo và merge PR
+  push:
+    branches: [ "main" ]
+  pull_request_review:
+    branches: [ "main" ]
+    types: [submitted]
 
 jobs:
-  merge-and-deploy:
-    name: Create PR, auto-merge, and deploy
+  laravel-tests:
+
     runs-on: ubuntu-latest
 
-    # Chỉ chạy nếu workflow "Build And Test" thành công
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-
     steps:
-      # Checkout repository để tạo PR
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Lấy toàn bộ lịch sử commit để merge
-
-      # Thiết lập Git credentials
-      - name: Configure Git
-        run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      # Tạo Pull Request từ main vào production
-      - name: Create Pull Request from main to production
-        id: create-pr
-        uses: repo-sync/pull-request@v2
-        with:
-          source_branch: main
-          destination_branch: production
-          pr_title: "Merge main into production"
-          pr_body: "Automated PR to merge main into production after successful Build And Test."
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      # Kích hoạt tự động merge cho PR vừa tạo
-      - name: Enable auto-merge for PR
-        if: steps.create-pr.outputs.pr_number  # Chỉ chạy nếu PR được tạo
-        uses: peter-evans/enable-pull-request-automerge@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ steps.create-pr.outputs.pr_number }}
-          merge-method: merge
-
-      # Đợi PR được merge (có thể mất vài giây)
-      - name: Wait for PR to be merged
-        if: steps.create-pr.outputs.pr_number
-        run: |
-          echo "Waiting for PR #${{ steps.create-pr.outputs.pr_number }} to be merged..."
-          for i in {1..30}; do
-            PR_STATE=$(gh pr view ${{ steps.create-pr.outputs.pr_number }} --json state --jq .state)
-            if [ "$PR_STATE" = "MERGED" ]; then
-              echo "PR #${{ steps.create-pr.outputs.pr_number }} has been merged!"
-              exit 0
-            fi
-            echo "PR state: $PR_STATE. Waiting... ($i/30)"
-            sleep 5
-          done
-          echo "Timeout waiting for PR to be merged."
-          exit 1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Cài đặt SSH keys để deploy lên server
-      - name: Install SSH keys
-        run: |
-          echo "Debug: SSH_HOST is ${{ secrets.SSH_HOST }}"
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          install -m 600 -D /dev/null ~/.ssh/id_rsa
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} || { echo "ssh-keyscan failed"; exit 1; }
-          ssh-keyscan -H -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
-
-      # Kết nối và pull nhánh production trên server
-      - name: Connect and pull production
-        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout production && git pull && exit"
-
-      # Chạy composer install
-      - name: Composer install
-        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && composer install --no-ansi --no-interaction --no-progress && exit"
-
-      # Chạy migration
-      - name: Run php artisan migrate
-        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && php artisan migrate --force && exit"
-
-      # Khởi động lại PHP-FPM
-      - name: Restart PHP-FPM and set permissions
-        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "service php8.2-fpm restart && chmod -R 777 /var/run/php"
-
-      # Dọn dẹp SSH
-      - name: Cleanup
-        run: rm -rf ~/.ssh
+    - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+      with:
+        php-version: '8.2'
+    - uses: actions/checkout@v4
+    - name: Copy .env
+      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+    - name: Install Dependencies
+      run: composer install
+    - name: Generate key
+      run: php artisan key:generate
+    - name: Directory Permissions
+      run: chmod -R 777 storage bootstrap/cache
+    - name: Create Database
+      run: |
+        mkdir -p database
+        touch database/database.sqlite
