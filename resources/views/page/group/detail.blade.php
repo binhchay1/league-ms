@@ -11,12 +11,12 @@ $utility = new \App\Enums\Utility();
 @endphp
 <style>
     .btn-training {
-        background-color: #dc3545 !important;
+        background-color: #ff3a35 !important;
         color: white !important;
         font-weight: bold;
         border-radius: 10px;
         padding: 10px 15px!important;
-        border: #dc3545 !important;
+        border: #ff3a35 !important;
     }
 
     .btn-training:hover {

@@ -78,7 +78,7 @@ class GroupController extends Controller
         if (isset($input['images'])) {
             $img = $this->utility->saveImageGroup($input);
             if ($img) {
-                $path = '/images/upload/group/' . $input['image']->getClientOriginalName();
+                $path = '/images/upload/group/' . $input['images']->getClientOriginalName();
                 $input['images'] = $path;
             }
         }
