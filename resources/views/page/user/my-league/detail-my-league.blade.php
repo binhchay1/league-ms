@@ -33,7 +33,7 @@
         transition: background 0.3s;
     }
     .list-group-item-action.active {
-        background-color: #007bff; /* Màu xanh */
+        background-color:#dc3545 !important; /* Màu xanh */
         color: white;
         border-radius: 5px;
     }
@@ -41,8 +41,35 @@
     .card-title {
         color: black !important;
     }
+
     p.display {
-        font-size: 18px !important;
+        font-size: 15px !important;
+    }
+
+    .btn-custom {
+        background-color: #dc3545 !important;
+        color: white !important;
+        font-weight: bold;
+        border-radius: 10px;
+        padding: 10px 15px!important;
+        border: none;
+    }
+
+    .btn-custom:hover {
+        background-color: #ff4b2b !important;
+    }
+
+    /* Tùy chỉnh dropdown */
+    .btn-dropdown {
+        background: white;
+        border: 2px solid #ff4b2b !important;
+        border-radius: 10px;
+        color: #dc3545;
+        padding: 10px 12px !important;
+    }
+
+    .btn-dropdown:hover {
+        background: #f1f1f1 !important;
     }
 </style>
 @section('content')
@@ -51,7 +78,7 @@
             <?php $start_date = date('d/m/Y', strtotime($leagueInfor->start_date));
             $end_date = date('d/m/Y', strtotime($leagueInfor->end_date));
             ?>
-            <div class=" text-black p-3 align-items-center">
+            <div class=" text-black p-3 ">
                 <div class="container d-flex  img-fluid">
                     <img src="{{asset($leagueInfor->images ?? asset('/images/no-image.png'))}}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
                     <div class="col-md-10">
@@ -72,8 +99,37 @@
                         </div>
                     </div>
                 </div>
+                <div class="container mt-4">
+                    <div class="d-flex gap-2">
+                        <a href="{{ route('my.leagueBracket.info',$leagueInfor['slug']) }}">
+                            <button class="btn btn-custom">{{ __('Bracket') }} </button>
+                        </a>
+                        <a href="{{ route('my.leagueResult.info',$leagueInfor['slug']) }}">
+                            <button class="btn btn-custom">{{ __('Result') }} </button>
+                        </a>
+                        <a href="{{ route('my.leagueSchedule.info',$leagueInfor['slug']) }}">
+                            <button class="btn btn-custom">{{ __('Schedule') }} </button>
+                        </a>
+                        <a href="{{ route('my.leaguePlayer.info',$leagueInfor['slug']) }}">
+                            <button class="btn btn-custom">{{ __('Player') }} </button>
+                        </a>
+                        <!-- Dropdown -->
+                    @if(Auth::user()->id == $leagueInfor->owner_id)
+                        <!-- Dropdown -->
+                            <div class="dropdown">
+                                <button class="btn btn-custom" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ __('Setting') }} <i class="bi bi-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{route('my.infoMyLeague',$leagueInfor['slug'])}}">{{'League Information'}}</a></li>
+                                    <li><a class="dropdown-item" href="#">{{'Delete League'}}</a></li>
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
+                </div>
             </div>
-                <hr>
+            <hr>
 
             <?php $current_date = strtotime(date("Y-m-d"));
             $start_date = strtotime($leagueInfor->start_date);
@@ -83,19 +139,6 @@
             ?>
             <!-- Main Content -->
                 <div class="wrapper-content-results container">
-                    <ul id="ajaxTabs" class="content-tabs">
-                        <li>
-                            <a href="{{ route('my.leagueBracket.info',$leagueInfor['slug']) }}">{{ __('Bracket') }} </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('my.leagueResult.info',$leagueInfor['slug']) }}">{{ __('Result') }} </a>
-                        </li>
-                        <li><a href="{{ route('my.leagueSchedule.info',$leagueInfor['slug']) }}">{{ __('Schedule') }}</a>
-                        </li>
-                        <li><a id="player-data"
-                               href="{{ route('my.leaguePlayer.info',$leagueInfor['slug']) }}">{{ __('Player ') }}</a>
-                        </li>
-                    </ul>
 
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">
@@ -224,6 +267,10 @@
                                 @elseif(Route::current()->getName() == 'my.leagueResult.info')
                                     <div>
                                         @include('page.user.my-league.detail.result')
+                                    </div>
+                                @elseif(Route::current()->getName() == 'my.infoMyLeague')
+                                    <div>
+                                        @include('page.user.my-league.detail.edit')
                                     </div>
                                 @elseif(Route::current()->getName() == 'my.leagueSchedule.info')
                                     <div>

@@ -14,7 +14,7 @@
 <body class="wp_router_page-template-default single single-wp_router_page postid-21">
     <div id="page" class="hfeed site">
         <div class="">
-            <div class="container-1280 results">
+            <div class="container results">
                 <div class="wrapper-results">
                     <div class="wrapper-content-results" style="padding: 0px; margin-top: 18px;">
                         <div class="content-results">
@@ -275,7 +275,7 @@
                                                     <div class="text-center">
                                                         <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
 
-                                                        <h4 >{{ __('The result is updated!') }}</h4>
+                                                        <h4 >{{ __('The bracket is updated!') }}</h4>
                                                     </div>
                                             @endforelse
                                         </ul>

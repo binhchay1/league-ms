@@ -52,7 +52,7 @@
     }
 
     .card-body p{
-        font-size: 18px !important;
+        font-size: 15px !important;
     }
 
 

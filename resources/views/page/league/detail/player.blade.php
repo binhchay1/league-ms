@@ -1,19 +1,26 @@
 <div class="container mt-4">
     <div class="row">
-        @foreach($leagueInfor->userLeagues as $player)
+        @forelse($leagueInfor->userLeagues as $player)
             <div class="col-md-3 mt-4">
                 <div class="card text-center border rounded-3 shadow-sm p-3 transition hover-effect">
                     <div class="card-body">
                         <img src="{{ asset($player->user->profile_photo_path ?? '/images/no-image.png') }}"
                              alt="Avatar"
                              class="rounded-circle border img-fluid mb-3"
-                             style="width: 80px; height: 80px; object-fit: cover;">
+                             style="width: 100px; height: 100px; object-fit: cover;">
 
-                        <h5 class="text-success fw-bold text-black">{{ $player->user->name }}</h5>
+                        <p class="text-success text-black">{{ $player->user->email }}</p>
+                        <h5 class="text-success text-black">{{ $player->user->name }}</h5>
                     </div>
                 </div>
             </div>
-        @endforeach
+            @empty
+                <div class="text-center">
+                    <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
+
+                    <h4 >{{ __('The player is updated!') }}</h4>
+                </div>
+            @endforelse
     </div>
 </div>
 

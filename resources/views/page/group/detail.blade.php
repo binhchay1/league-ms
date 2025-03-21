@@ -9,7 +9,20 @@ use Illuminate\Support\Facades\Hash;
 
 $utility = new \App\Enums\Utility();
 @endphp
+<style>
+    .btn-training {
+        background-color: #dc3545 !important;
+        color: white !important;
+        font-weight: bold;
+        border-radius: 10px;
+        padding: 10px 15px!important;
+        border: #dc3545 !important;
+    }
 
+    .btn-training:hover {
+        background-color: #ff4b2b !important;
+    }
+</style>
 @section('css')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <link rel="stylesheet" href="{{ asset('/css/page/group.css') }}" />

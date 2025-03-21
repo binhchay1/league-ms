@@ -16,7 +16,7 @@ yarn-error.log
 /public/images/logo
 /public/css/app.css
 /public/css/app.js
-
+/public/images
 laravel-echo-server.lock
 package-lock.json
 composer.lock

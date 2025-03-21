@@ -254,9 +254,7 @@
                                 @endif
                             </li>
                         @endif
-
-
-                </ul>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -421,23 +419,6 @@
             });
         });
     </script>
-
-{{--    <script  type="text/javascript">--}}
-{{--        $("a.shopping").on("click",function(){--}}
-{{--            let url = '/shop';--}}
-{{--            window.location.href = url;--}}
-{{--            window.open(url,'_blank');--}}
-{{--        });--}}
-{{--    </script>--}}
-
-{{--    <script  type="text/javascript">--}}
-{{--        $("a.match").on("click",function(){--}}
-{{--            let url = '/shop';--}}
-{{--            window.location.href = url;--}}
-{{--            window.open(url,'_blank');--}}
-{{--        });--}}
-{{--    </script>--}}
-
     @yield('js')
 </body>
 
