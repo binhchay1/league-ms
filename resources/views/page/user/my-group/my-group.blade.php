@@ -51,6 +51,13 @@
         font-weight: bold;
     }
 
+    .list-group-item-action.active {
+        background-color: #ff3a35 !important;
+        color: white;
+        border-radius: 5px;
+        border-color: #ff3a35 !important;
+    }
+
 </style>
 @section('content')
     <section >
@@ -208,5 +215,14 @@
                 }
             });
         }
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $(".list-group-item-action").click(function(){
+                $(".list-group-item-action").removeClass("active");
+                $(this).addClass("active");
+            });
+        });
     </script>
 @endsection

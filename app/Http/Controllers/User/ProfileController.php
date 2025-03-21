@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Enums\League;
+use App\Enums\Ranking;
 use App\Enums\Utility;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LeagueUpdateRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Repositories\GroupRepository;
@@ -17,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class ProfileController extends Controller
 {
@@ -160,6 +163,40 @@ class ProfileController extends Controller
         }
 
         return view('page.user.my-league.detail-my-league', compact('leagueInfor','getListLeagues', 'groupSchedule'));
+    }
+
+    public function infoMyLeague($slug)
+    {
+        $leagueInfor = $this->leagueRepository->showInfo($slug);
+        $listLeagues = $this->leagueRepository->getLeagueHome();
+        $getListLeagues = $this->leagueRepository->getListLeagues();
+
+        $groupSchedule = [];
+        foreach ($leagueInfor->schedule as $schedule) {
+            $groupSchedule[$schedule['round']][] = $schedule;
+        }
+        $listType = Ranking::RANKING_ARRAY_TYPE;
+        $listFormat = Ranking::RANKING_ARRAY_FORMAT;
+        $listPlayer = \App\Enums\League::NUMBER_PLAYER;
+        return view('page.user.my-league.detail-my-league', compact('groupSchedule','leagueInfor', 'listLeagues', 'getListLeagues','listPlayer','listFormat','listType'));
+
+    }
+
+    public function updateMyLeague(LeagueUpdateRequest $request, $id)
+    {
+        $input = $request->except(['_token']);
+
+        $input['slug'] = Str::slug($request->slug);
+        if (isset($input['images'])) {
+            $img = $this->utility->saveImageLeague($input);
+            if ($img) {
+                $path = '/images/upload/league/' . $input['images']->getClientOriginalName();
+                $input['images'] = $path;
+            }
+        }
+        $this->leagueRepository->updateLeague($input, $id);
+
+        return redirect()->back()->with('success', __('League updated successfully!'));
     }
 
 
