@@ -16,13 +16,13 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
-      # Checkout repository để có thể merge
+      # Checkout repository để merge
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Lấy toàn bộ lịch sử commit để merge
+          fetch-depth: 0
 
-      # Thiết lập Git credentials để merge
+      # Thiết lập Git credentials
       - name: Configure Git
         run: |
           git config user.name "GitHub Actions Bot"
@@ -37,7 +37,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Cài đặt SSH keys để deploy lên server
+      # Cài đặt SSH keys
       - name: Install SSH keys
         run: |
           echo "Debug: SSH_HOST is ${{ secrets.SSH_HOST }}"
@@ -50,19 +50,19 @@ jobs:
           ssh-keyscan -H -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
-      # Kết nối và pull nhánh production trên server
+      # Kết nối và pull nhánh production
       - name: Connect and pull production
         run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout production && git pull && exit"
 
-      # Xóa composer.lock và chạy composer install
-      - name: Remove composer.lock and Composer install
-        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && rm -rf composer.lock && composer install && exit"
+      # Chạy composer install (không xóa composer.lock)
+      - name: Composer install
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && composer install --no-ansi --no-interaction --no-progress && exit"
 
       # Chạy migration
       - name: Run php artisan migrate
         run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && php artisan migrate --force && exit"
 
-      # Khởi động lại PHP-FPM và cấp quyền
+      # Khởi động lại PHP-FPM
       - name: Restart PHP-FPM and set permissions
         run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "service php8.2-fpm restart && chmod -R 777 /var/run/php"
 
