@@ -39,6 +39,9 @@ jobs:
           pr_title: "Merge main into production"
           pr_body: "Automated PR to merge main into production after successful Build And Test."
           github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Debug PR creation error
+        if: steps.create-pr.outcome == 'failure'
+        run: cat /tmp/pull-request.stderr.log
 
       - name: Enable auto-merge for PR
         if: steps.create-pr.outputs.pr_number
