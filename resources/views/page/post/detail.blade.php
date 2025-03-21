@@ -12,93 +12,75 @@
 @endsection
 
 @section('content')
-    <section class="news-landing-wrap container-1280" style="padding-top:0px;">
-        <div class="news-section bg-white">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="list-group">
+                    <h5 class="list-group-item  bg-light m-0">{{'Category'}}</h5>
+                    @foreach($categories as $category)
+                        <a href="{{route('newsCategory', $category->slug)}}"  class="list-group-item list-group-item-action">{{ $category->name }}</a>
+                    @endforeach
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="news-featured">
+                    <img width="980" height="550"
+                         src="{{ asset($newData->thumbnail ?? '/images/logo-no-background.png') }}"
+                         class="attachment-news-maximum size-news-maximum wp-post-image b-error" alt="" loading="lazy"
+                         srcset="{{asset($newData->thumbnail)}}"
+                    ></div>
+                <div class="wcs-single_wrapper">
+                    <div class="wcs-single_header">
+                        <div class="news-title">
+                            <h2>{{$newData->title}}</h2>
+                        </div>
 
-            <div class="news-featured">
-                <img width="980" height="550"
-                     src="{{asset($newData->thumbnail)}}"
-                     class="attachment-news-maximum size-news-maximum wp-post-image b-error" alt="" loading="lazy"
-                     srcset="{{asset($newData->thumbnail)}}"
-                  ></div>
-            <div class="wcs-single_wrapper">
-                <div class="wcs-single_header">
-                    <div class="news-title">
-                        <h2>{{$newData->title}}</h2>
-                    </div>
-
-                    <div class="news-social-links">
-                        <div class="">
-                            <p class="wcs-single_meta">
-                                <?php echo date_format($newData->created_at, 'd-F-Y')  ?>
+                        <div class="news-social-links">
+                            <div class="">
+                                <p class="wcs-single_meta">
+                                    <?php echo date_format($newData->created_at, 'd-F-Y')  ?>
                                     <br>
-                                {{__('TEXT BY')}} {{$newData->user->name ?? ""}} </p>
+                                    {{__('TEXT BY')}} {{$newData->user->name ?? ""}} </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="clearfix"></div>
+                    <div class="clearfix"></div>
 
-                <div class="wcs-single_body">
-                    {!! $newData->content !!}
+                    <div class="wcs-single_body">
+                        {!! $newData->content !!}
+                    </div>
                 </div>
             </div>
 
-            <div class="news-overview">
-                <div class="std-title">
-                    <h2>{{__('Recent News')}}</h2>
-                </div>
-                <div class="news-overview-wrap">
-                    @foreach($listNewsNormals as $new)
-                    <div class="news-overview-item">
-
-                        <div class="news-overview-image">
-                            <a href="{{route('news-show', $new['slug'])}}">
-                                <img class="img-responsive" alt="Hong Kong Open: Fast and Furious Floors Holders"
-                                     src="{{asset($new->thumbnail)}}">
-                            </a>
-                        </div>
-
-                        <div class="news-overview-text">
-                            <h4 class="media-heading fw-400 fs-16px"
-                                title=" {{$new->title}}">
-                                <a class="post-popular" href="{{route('news-show', $new['slug'])}}">
-                                    {{$new->title}} </a>
-                            </h4>
-                            <span class="fw-300 fs-12px text-gray">  <?php echo date_format($newData->created_at, 'd-F-Y')  ?><br></span>
-                        </div>
-                    </div>
-                        @endforeach
-
-                </div>
-            </div>
         </div>
-        <div class="news-sidebar">
-
-            <div>
-            </div>
-
-            <aside id="secondary" class="sidebar-area" role="complementary">
-                <div class="widget widget__latest-news ">
-                    <h2 class="widget--title text-uppercase ">
-                    <span>
-                    {{__('Most News Popular')}} </span>
-                    </h2>
-                    <div class="widget--content">
-                        <ul>
-                            @foreach($listNewsPopulars as $newPopular)
-                            <li class="nn">
-                                <span class="widget--date text-uppercase"><?php echo date_format($newPopular->created_at, 'd-F-Y')  ?></span>
-                                <a href="{{route('news-show', $new['slug'])}}"
-                                   class="widget--link post-popular" target="_self">
-                                    ​{{$newPopular->title}} </a>
-                            </li>
-                            <div class="widget-red-line"></div>
-                            @endforeach
-                        </ul>
-                    </div>
+        @if($relatedPosts->count())
+            <div class="p-5 mt-4">
+                <div class="col-md-4 d-flex flex-column">
+                    <h2 style="color: black; font-weight: 400">{{ __('RELATE NEWS') }}</h2>
                 </div>
-            </aside>
-        </div>
-    </section>
+                <div class="row">
+                    @foreach($relatedPosts as $post)
+                        <div class="col-md-3 mb-4">
+                            <div class="card border-0 shadow-sm post-card">
+                                <div class="position-relative">
+                                    <img src="{{ asset($post->thumbnail ?? '/images/logo-no-background.png') }}" class="card-img-top rounded-top" alt="Hình ảnh bài viết">
+                                    <div class="post-content p-3" title="{{$post->title}}">
+                                        <a href="{{route('news-show', $post->slug)}}">
+                                            <h6 class="fw-bold">{{ Str::limit($post->title, 60) }}</h6>
+                                        </a>
+                                        <div class="post-meta">
+                                            <span class="badge bg-warning text-dark">{{ \Carbon\Carbon::parse($post->created_at)->format('d-m-Y H:i') }}</span>
+                                        </div>
+                                        <p class="text-muted mb-0">{!! Str::limit(strip_tags(html_entity_decode($post->content)), 100)!!}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+    </div>
+
 @endsection
 

@@ -93,7 +93,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="address" class="form-label">{{ __('Register date league ') }}</label>
-                                    <input type="datetime-local" value="{{ old('end_date_register') }}" class="form-control" id="end_date_register" name="end_date_register" placeholder="{{ __('Enter league register date') }}"/>
+                                    <input type="date" value="{{ old('end_date_register') }}" class="form-control" id="end_date_register" name="end_date_register" placeholder="{{ __('Enter league register date') }}"/>
                                     @if ($errors->has('end_date_register'))
                                         <span class="text-danger">{{ $errors->first('end_date_register') }}</span>
                                     @endif
@@ -123,7 +123,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="lastName" class="form-label">{{ __('Number of players') }}</label>
-                                    <select id="type_of_league" value="{{ old('type_of_league') }}" name="number_of_athletes" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
+                                    <select id="type_of_league" value="{{ old('number_of_athletes') }}" name="number_of_athletes" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger">
                                         @foreach($listPlayer as $type => $value)
                                             <option id="type_of_league" value="{{ $value }}">{{ $value }}</option>
                                         @endforeach

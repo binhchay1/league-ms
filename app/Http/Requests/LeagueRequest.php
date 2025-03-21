@@ -26,13 +26,11 @@ class LeagueRequest extends FormRequest
     {
         return [
             'name' => ['required', Rule::unique('leagues')->ignore($this->id)],
-            'images' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'images' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'end_date_register' => 'date',
-            'format_of_league' => 'required',
             'number_of_athletes' => 'required',
-            'type_of_league' => 'required',
             'start_time' => 'required',
             'money' => 'numeric',
         ];
@@ -53,9 +51,7 @@ class LeagueRequest extends FormRequest
             'end_date.date' => __('Incorrect end date format'),
             'end_date_register.date' => __('Incorrect end date format'),
             'end_date.after_or_equal' => __('The end date must be after the start date'),
-            'format_of_league.required' => __('Format is required'),
             'number_of_athletes.required' => __('Number of teams is required'),
-            'type_of_league.required' => __('Type league is required'),
             'start_time.required' => __('Start_time is required'),
             'money.numeric' => __('Money is number'),
         ];

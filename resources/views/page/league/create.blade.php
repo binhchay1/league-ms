@@ -3,126 +3,167 @@
 @section('title')
 {{ env('APP_NAME', 'Badminton.io') }} - {{ __('Create League') }}
 @endsection
+<style>
+   .league-tour {
+       background: #eeeeee;
+       padding: 10px;
+   }
+
+    .btn-success {
+        padding: 10px;
+    }
+
+    .form-control {
+        line-height: 2.5 !important;
+    }
+
+    .btn-success {
+        margin-bottom: 10px;
+    }
+
+    .form-league {
+        padding: 50px !important;
+    }
+
+    h2.text-left {
+        font-weight: 400;
+        color: black;
+        margin: 0;
+        font-size: 28px;
+    }
+
+</style>
 
 @section('content')
-<div class="container">
-    <div class="row" style="padding: 30px">
-        <div class="col-md-10 col-md-offset-1 parent">
-            <form id="formAccountSettings" method="POST" action="{{ route('league.store') }}" enctype="multipart/form-data">
-                @csrf
-                <div id="step1">
-                    <div class="panel">
-                        <div class="panel-heading row">
-                            <div class="col-md-10 col-sm-8 col-xs-12">
-                                <h3 class="panel-title">Tạo Giải</h3>
-                                <span class="message required introduction-farm">{{__('Vui lòng nhập thông tin hợp lệ cho các trường được yêu cầu')}}</span>
-                            </div>
+    <div class="container mt-4 league-tour">
+        <h2 class="text-left">{{'Create league'}}</h2>
+        <hr>
+        <form id="formAccountSettings" method="POST" action="{{ route('league.storeTour') }}" enctype="multipart/form-data">
+            @csrf()
+        <div class="row mb-3 form-league">
+            <div class="col-md-3">
+                    <label>{{ __('Logo league') }}</label>
+                    <input value="" type="file" class="border-0 bg-light pl-0" name="images" id="image" hidden>
+                    <div class=" choose-avatar">
+                        <div id="btnimage">
+                            <img id="showImage" class="show-avatar" src="{{ asset('/images/logo-no-background.png') }}" alt="avatar" style="width: 200px;">
                         </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-10 col-md-offset-1">
-                                    <div class="flex-row" id="show-error-success"> </div>
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label for="name" class="control-label">{{__('Image')}}</label>
-                                                <div>
-                                                    <div class="avatar border-radius clearfix">
-                                                        <div class="" style="display: inline-grid;">
-                                                            <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden style="display:none">
-                                                            <div class=" choose-avatar">
-                                                                <div id="btnimage">
-                                                                    <img id="showImage" class="show-avatar" src="/images/champion.png" alt="avatar" style="width: 180px; ">
-                                                                </div>
-                                                                <div id="button">
-                                                                    <i id="btn_chooseImg" class="fa fa-camera pull-center"> {{__('Choose Image')}}</i>
-                                                                </div>
-                                                            </div>
-                                                            @if ($errors->has('image'))
-                                                            <span class="text-danger">{{ $errors->first('image') }}</span>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="form-group wrap-group" id="intro-name-league"> <label for="name" class="control-label required">{{__('Name')}}</label>
-                                                <div>
-                                                    <input class="form-control required " id="name" name="name" type="text" value="">
-                                                    @if ($errors->has('name'))
-                                                    <span class="text-danger">{{ $errors->first('name') }}</span>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6 col-sm-6 ">
-                                                    <div class="form-group wrap-group" id="intro-phone-league">
-                                                        <label for="phone" class="control-label required">{{ __('Start date') }}</label>
-                                                        <input class="form-control " id="start_date" name="start_date" type="date" value="">
-                                                        @if ($errors->has('start_date'))
-                                                        <span class="text-danger">{{ $errors->first('start_date') }}</span>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 col-sm-6 ">
-                                                    <div class="form-group wrap-group" id="intro-phone-league">
-                                                        <label for="phone" class="control-label required">{{ __('End date') }}</label>
-                                                        <input class="form-control  " id="end_date" name="end_date" type="date" value="">
-                                                        @if ($errors->has('end_date'))
-                                                        <span class="text-danger">{{ $errors->first('end_date') }}</span>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group pac-card wrap-group" id="intro-location-league">
-                                                <label for="location" class="control-label required">{{ __('Number of players') }}</label>
-                                                <div>
-                                                    <input class="form-control required pac-target-input" id="number_of_team-input" name="number_of_athletes" type="text" value="" placeholder="Nhập vị trí" autocomplete="off">
-                                                    @if ($errors->has('number_of_athletes'))
-                                                    <span class="text-danger">{{ $errors->first('number_of_athletes') }}</span>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="form-group pac-card wrap-group" id="intro-location-league">
-                                                <label for="location" class="control-label required">{{ __('Format of league') }}</label>
-                                                <div>
-                                                    <select id="format" name="format" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                                        @foreach($formatLeague as $formatLeague => $value)
-                                                        <option id="format" value="{{$value}}">{{$value}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group pac-card wrap-group" id="intro-location-league">
-                                                <label for="location" class="control-label required">{{ __('Type of league') }}</label>
-                                                <div>
-                                                    <select id="type" name="type" class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" style="width: 100%;">
-                                                        @foreach($type_league as $type_league => $value)
-                                                        <option id="type" value="{{$value}}">{{$value}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                </div>
-                            </div>
+                        <div id="button">
+                            <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image') }}</i>
                         </div>
-                        <div class="panel-footer">
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-2 text-center">
-                                    <button type="submit" class="btn btn-primary">{{__('Create')}}</button>
-                                </div>
-                            </div>
+
+                    </div>
+                    @if ($errors->has('images'))
+                        <span class="text-danger">{{ $errors->first('images') }}</span>
+                    @endif
+            </div>
+            <div class="col-md-9">
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label for="lastName" class="form-label">{{__('Name')}}</label>
+                        <input class="form-control" value="{{ old('name') }}" type="text" name="name" id="name" placeholder="{{ __('Enter league name') }}"/>
+                        @if ($errors->has('name'))
+                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                        @endif
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="lastName" class="form-label">{{ __('Prize money') }}</label>
+                            <input class="form-control" value="{{ old('money') }}" type="text" name="money" id="money" placeholder="{{ __('Enter league money') }}"/>
+                            @if ($errors->has('money'))
+                                <span class="text-danger">{{ $errors->first('money') }}</span>
+                            @endif
                         </div>
                     </div>
                 </div>
-            </form>
+
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="address" class="form-label">{{ __('Start date league') }}</label>
+                            <input type="date" value="{{ old('start_date') }}" class="form-control" id="start_date" name="start_date"  placeholder="{{ __('Enter league start date') }}"/>
+                            @if ($errors->has('start_date'))
+                                <span class="text-danger">{{ $errors->first('start_date') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="address" class="form-label">{{ __('End date league') }}</label>
+                            <input type="date" value="{{ old('end_date') }}" class="form-control" id="end_date" name="end_date"  placeholder="{{ __('Enter league end date ') }}"/>
+                            @if ($errors->has('end_date'))
+                                <span class="text-danger">{{ $errors->first('end_date') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="address" class="form-label">{{ __('Register date league ') }}</label>
+                            <input type="date" value="{{ old('end_date_register') }}" class="form-control" id="end_date_register" name="end_date_register" placeholder="{{ __('Enter league register date') }}"/>
+                            @if ($errors->has('end_date_register'))
+                                <span class="text-danger">{{ $errors->first('end_date_register') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="lastName" class="form-label">{{ __('Start time league') }}</label>
+                            <input class="form-control" value="{{ old('start_time') }}" type="time" name="start_time" id="start_time" placeholder="{{ __('Enter league start time') }}"/>
+                            @if ($errors->has('start_time'))
+                                <span class="text-danger">{{ $errors->first('start_time') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-4">
+                    <div class="form-group">
+                        <label for="lastName" class="form-label">{{ __('Location') }}</label>
+                        <input class="form-control" value="{{ old('location') }}" type="text" name="location" id="location" placeholder="{{ __('Enter league location') }}"/>
+                        @if ($errors->has('location'))
+                            <span class="text-danger">{{ $errors->first('location') }}</span>
+                        @endif
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="mb-3">
+                        <label class="form-label">{{'Number of players'}}</label>
+                        <select class="form-select" name="number_of_athletes">
+                            @foreach($listPlayer as $type => $value)
+                                <option id="type_of_league" value="{{ $value }}">{{ $value }}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-4">
+
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>{{ __('Format league') }}</label>
+                            <input class="form-control" value="knockout" type="text" name="format_of_league" id="format_of_league" placeholder="" readonly  />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>{{ __('Type league') }}</label>
+                            <input class="form-control" value="mix-random" type="text" name="type_of_league" id="type_of_league" placeholder="" readonly  />
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
+
+        <div class="mb-12">
+            <button class="btn btn-success w-10 mt-4 mb-12">{{'Create'}}</button>
+        </div>
+        </form>
     </div>
-</div>
 @endsection
 @section('js')
 <script src="{{ asset('js/eventImage.js') }}"></script>

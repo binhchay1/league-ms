@@ -26,22 +26,33 @@
         margin: auto;
         padding: 1px;
     }
+
 </style>
-<div class="">
+<?php
+
+use \App\Enums\Utility;
+
+$utility = new Utility();
+if (Auth::check()) {
+    $listTitle = explode(',', Auth::user()->title);
+}
+
+?>
+
+<div style="margin-bottom: 20px">
     <div class="home-section text-left">
         <div class="row match-live">
             <div class="current-tmt-wrap col-lg-9">
                 <h2 class="text-center text-white">{{ __('Current Live Tournament League') }} </h2>
-
-                <div class="current-tmt-outer">
+                <div class="current-tmt-outer" style="padding: 17%">
                     <div class="current-tmt-inner">
                         <div class="current-tmt-logo">
                             <a href="" class="">
                                 <img style="height: 100%; width: 100%" src="{{ asset($league->images ?? '/images/logo-no-background.png' ) }}"></a>
                         </div>
                         <div class="current-tmt-name text-white">{{ $league->name }}</div>
-                        <?php $start_date = date('D, j F', strtotime($league->start_date));
-                        $end_date = date('D, j F', strtotime($league->end_date));
+                        <?php   $start_date = date('d/m/Y', strtotime($league->start_date));
+                        $end_date = date('d/m/Y', strtotime($league->end_date));
                         ?>
                         <div class="text-white current-tmt-date">{{ $start_date }} - {{ $end_date }}</div>
                     </div>
@@ -55,14 +66,20 @@
                                 <img style="height: 50%; width: 100%" src="{{ asset($league->images ?? '/images/logo-no-background.png' ) }}"></a>
                         </div>
                         <div class="text-white current-tmt-name" style="font-size: 20px">{{ $league->name }}</div>
-                        <?php $start_date = date('D, j F', strtotime($league->start_date));
-                        $end_date = date('D, j F', strtotime($league->end_date));
+                        <?php   $start_date = date('d/m/Y', strtotime($league->start_date));
+                        $end_date = date('d/m/Y', strtotime($league->end_date));
                         ?>
                         <div class="text-white current-tmt-date1">{{ $start_date }} - {{ $end_date }}</div>
                     </div>
                 </div>
                 <section id="live-match-schedule" class="container-livescore">
                     <ul class="result-match-cards">
+                        @if(count($listSchedules) == 0)
+                            <div class="current-tmt-link-wrap text-center mt-2" >
+                                <div><button  class=" btn btn-danger " rel="noopener noreferrer"> {{__(' Day off')}} </button></div>
+
+                            </div>
+                        @endif
                         @foreach($listSchedules as $schedule)
                         <li class="result-match-single-card" id="schedule-{{ $schedule->id }}">
                             <div class="card-top-row"><span class="round-court">Match {{ $schedule->match }}</span>
@@ -120,7 +137,17 @@
                                 </div>
                             </div>
                             <div class="round-details">
-                                <div class="round-details-text"><span class="round-oop">{{ __('Stadium') }}: {{ !empty($schedule->stadium) ? $schedule->stadium : 'N/A' }}</span><span class="round-status">In Progress</span>
+                                <div class="round-details-text">
+                                    <span class="round-oop">{{ __('Stadium') }}: {{ !empty($schedule->stadium) ? $schedule->stadium : 'N/A' }}</span>
+                                    @if ($schedule->date == now()->toDateString() && $schedule->player2Team1 !== null)
+                                        <!-- Kiểm tra nếu người dùng đã đăng nhập và có quyền referee -->
+                                            @if(Auth::check() && in_array('referee', $listTitle))
+                                                <div class="d-flex justify-content-center">
+                                                    <a href="{{ route('live.score') }}?s_i={{ $utility->encode_hash_id($schedule->id) }}" class="btn btn-referee btn-danger text-white " style="margin-bottom: 10px;color: white !important;">{{ __('Be referee') }}</a>
+                                                </div>
+                                            @endif
+                                        @endif
+                                    <span class="round-status">In Progress</span>
                                 </div>
                             </div>
                         </li>

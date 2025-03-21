@@ -16,64 +16,125 @@ $utility = new \App\Enums\Utility();
 @endsection
 
 @section('content')
-
-<div class="container" style="margin-bottom: 125px">
-    <div class="row">
-
-        @forelse($listTrainings->group_trainings as $train)
-            <?php   $date = date("d/m/Y", strtotime($train->date));
-            $start_time= date("H:i", strtotime($train->start_time));
-            $end_time = date("H:i", strtotime($train->end_time));
-            ?>
-        <div class="col-sm-4 wp-group-content gr-train">
-            <div class="d-flex  gr-title ">
-                <div class=" align-items-center" >
-                    <img class="avatar-group" src="{{ asset('https://png.pngtree.com/png-clipart/20230817/original/pngtree-badminton-icon-logo-and-sport-club-template-vector-vector-picture-image_10923178.png')  }}">
+    <?php   $date = date("d/m/Y", strtotime($listTrainings->date));
+    $start_time= date("H:i", strtotime($listTrainings->start_time));
+    $end_time = date("H:i", strtotime($listTrainings->end_time));
+    ?>
+    <div>
+        <div class=" text-black p-3 align-items-center">
+            <div class="container d-flex  img-fluid">
+                <img src="{{ asset($listTrainings->images) }}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
+                <div>
+                    <h2 class="p-0">{{$listTrainings->name}}</h2>
+                    <p class="">
+                        <i class="bi bi-bookmark"></i> {{$listTrainings->description}}
+                    </p>
+                    <p class="uppercase">
+                        <i class="bi bi-geo-alt "></i> <em>{{$listTrainings->location}}</em>
+                    </p>
+                    <p class="">
+                        <i class="bi bi-calendar-event"></i> <em>{{ $date }}</em>
+                    </p>
+                    <p class="">
+                        <i class="bi bi-calendar-check"></i> <em>{{ $start_time}} ~ {{$end_time}}</em>
+                    </p>
+                    <p class="">
+                        <i class="bi bi-card-checklist"></i> <em>{{$listTrainings->note}}</em>
+                    </p>
                 </div>
-                <div class="card-header gr-train-header">
-                    <a href="/training?g_t={{ $train->name }}" >
-                        {{ $train->name }}   ({{__('From') }} {{$start_time}} ~ {{__('To')}} {{$end_time}})
-                    </a>
-                </div>
-            </div>
-
-            <div class="card-body gr-train-body">
-
-
-                <p><span class=""> ■ {{ __('Description') }} : </span>{{ $train->description }}</p>
-                <p><span class="">■ {{ __('Date') }} : </span>{{ $date }}</p>
-                <p><span class="">■ {{ __('Activity time') }} : </span>{{ $start_time }} - {{$end_time}}</p>
-                <p><span class="">■ {{ __('Location') }} : </span>{{ $train->location }}</p>
-                <p><span class="">■ {{ __('Members') }} : </span>{{ $train->totalMembers }} / {{ $train->number_of_members }}</p>
-                <p><em><span class="">-----{{ __('Note') }} : </span>{{ $train->note }}</em></p>
-            </div>
-            <hr>
-            <div class="card-footer text-muted d-flex gr-train-footer">
-                <div class="float-left">
-                    @if(!$train->isJoin)
-                    <a class="btn btn-success" href="{{ route('join.group.training') }}?g_t={{ $train->id }}" data-toggle="tooltip" data-html="true"
-                       title="Click this button to join training">
-                        <i class="fa fa-gamepad" aria-hidden="true"></i> ▶</a>
-                    @else
-                    <a href="/training?g_t={{ $train->name }}" class="btn btn-success" data-toggle="tooltip" data-html="true"
-                            title="Join training">
-                        <i class="fa fa-gamepad" aria-hidden="true"></i> ▶</a>
-                    @endif
-                </div>
-
-                <div class="float-right btn btn-primary text-white tox-cursor-format-painter" data-toggle="tooltip" data-html="true" title="" data-original-title="<em>Number of participants</em>">
-                    <i class="fa fa-users mr-1" aria-hidden="true"></i>
-                    {{ $train->totalMembers }} / {{ $train->number_of_members }} </div>
             </div>
         </div>
+        <hr>
+    </div>
+<div class="container" style="margin-bottom: 125px">
+    <div class="row">
+        <div class="col-md-4">
+            <h2 style="color: black; font-weight: 400">{{ __('GROUP TRAINING') }}</h2>
+        </div>
+        <div class="col-md-8 mt-4">
+            <form class="d-flex gap-2 justify-content-end" action="{{route('searchGroupTraining')}}" method="GET">
+                <select class="form-select" name="sort">
+                    <option selected disabled>{{ 'Sort by' }}</option>
+                    <option value="newest">{{ 'Latest' }}</option>
+                    <option value="oldest">{{ 'Oldest' }}</option>
+                    <option value="name_asc">{{ 'Name (A → Z)' }}</option>
+                    <option value="name_desc">{{ 'Name (Z → A)' }}</option>
+                </select>
+
+                <div class="input-group">
+                    <input type="text" class="form-control"  name="query" placeholder="{{'group name...'}}">
+                    <button class="btn btn-success" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <input type="hidden" name="group" value="{{$listTrainings->name}}">
+            </form>
+        </div>
+    </div>
+
+
+    <div class="row g-4">
+        @forelse($listTrainings->group_trainings as $group)
+            <?php
+            $date = date("d/m/Y", strtotime($group->date));
+            $start_time= date("H:i", strtotime($group->start_time));
+            $end_time = date("H:i", strtotime($group->end_time));
+            ?>
+            <div class="col-md-4">
+                <div class="feature-box content-gr" style="text-align: left">
+                    <div  class="c-details-group name-group" >
+                        <a href="/training?g_t={{ $group->name }}">
+                            <h5 class="mb-0 gr-name">{{ $group->name }}</h5>
+                        </a>
+                    </div>
+                    <hr>
+                    <p class="event-location">  <i class="bi bi-bookmark"></i>  {{ $group->description }}</p>
+                    <p class="uppercase">
+                        <i class="bi bi-geo-alt  uppercase"></i> <span class="">{{$group->location}}</span>
+                    </p>
+                    <p>
+                        <i class="bi bi-calendar-event"></i> <span class="">{{$date}}</span>
+                    </p>
+                    <p>
+                        <i class="bi bi-calendar-check"></i> <span class="">{{ $start_time }} - {{$end_time}}</span>
+                    </p>
+                    <p>
+                        <i class="bi bi-person-check-fill"></i> <span class="">{{ $group->totalMembers }} / {{ $group->number_of_members }}</span>
+                    </p>
+                    <p>
+                        <i class="bi bi-card-checklist"></i>  <span class="">{{$group->note}}</span>
+                    </p>
+                    <hr>
+                    <div class="card-footer text-muted d-flex gr-train-footer">
+                        <div class="float-left">
+                            @if(!$group->isJoin)
+                            <a class="btn btn-success" href="{{ route('join.group.training') }}?g_t={{ $group->id }}" data-toggle="tooltip" data-html="true"
+                               title="Click this button to join training">
+                                <i class="fa fa-gamepad" aria-hidden="true"></i> ▶</a>
+                            @else
+                            <a href="/training?g_t={{ $group->name }}" class="btn btn-success" data-toggle="tooltip" data-html="true"
+                                    title="Join training">
+                                <i class="fa fa-gamepad" aria-hidden="true"></i> ▶</a>
+                            @endif
+                        </div>
+
+                        <div class="float-right btn btn-primary text-white tox-cursor-format-painter" data-toggle="tooltip" data-html="true" title="" data-original-title="<em>Number of participants</em>">
+                            <i class="fa fa-users mr-1" aria-hidden="true"></i>
+                            {{ $group->totalMembers }} / {{ $group->number_of_members }} </div>
+                    </div>
+                </div>
+            </div>
         @empty
             <div class="text-center">
-                <img  width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
+                <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
 
-                <h4 >{{ __('The group training is updated!') }}</h4>
+                <h4 >{{ __('The group is updated!') }}</h4>
             </div>
         @endforelse
+
     </div>
+
 </div>
 
 @endsection

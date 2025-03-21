@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Group;
 use App\Enums\Utility;
 use App\Repositories\CategoryPostRepository;
 use App\Repositories\GroupRepository;
@@ -22,6 +23,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Config;
+use Illuminate\Support\Facades\DB;
 use Session;
 
 class HomeController extends Controller
@@ -168,7 +170,7 @@ class HomeController extends Controller
     {
         $getLeagueByState = $request->get('state');
         $getLeague = $this->leagueRepository->getLeagueHome($getLeagueByState);
-        $listLeagues = $this->utility->paginate($getLeague, 5);
+        $listLeagues = $this->utility->paginate($getLeague, 10);
 
         return view('page.league.index', compact('listLeagues'));
     }
@@ -203,6 +205,31 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
+    public function checkGroupJoin(Request $request)
+    {
+        $nameGroup = $request->input('group');
+        if (empty($nameGroup)) {
+            abort(404);
+        }
+
+        $getGroup = $this->groupRepository->getGroupByName($nameGroup);
+
+        if (empty($getGroup)) {
+            abort(404);
+        }
+
+        $userId = Auth::id(); // Lấy user đang đăng nhập
+
+        $isJoined = DB::table('group_users')
+            ->where('group_id', $getGroup->id)
+            ->where('user_id', $userId)
+            ->where('status_request', Group::STATUS_ACCEPTED)
+            ->exists(); // Kiểm tra user có trong nhóm không
+
+        return response()->json(['joined' => $isJoined]);
+    }
+
+
     public function detailGroup(Request $request)
     {
         $nameGroup = $request->get('g_i');
@@ -227,7 +254,7 @@ class HomeController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
 
-            $checkJoined = $this->groupUserRepository->checkJoinedGroupByName($user->id, $getGroup->id);
+            $checkJoined = $this->groupUserRepository->checkJoinedGroup($user->id, $getGroup->id);
             if (!empty($checkJoined)) {
                 $isJoined = true;
             }
@@ -421,7 +448,6 @@ class HomeController extends Controller
         }
 
         $listSchedules = collect($listSchedules)->sortBy('match');
-
         return view('page.match-center.show-live', compact('league', 'listSchedules'));
     }
 
@@ -438,7 +464,6 @@ class HomeController extends Controller
         if (empty($getSchedule)) {
             abort(404);
         }
-
         $getReferee = $this->refereeRepository->getRefereeByUserId($getSchedule->id, Auth::user()->id);
         if (empty($getReferee)) {
             $listTitle = explode(',', Auth::user()->title);
@@ -512,29 +537,90 @@ class HomeController extends Controller
     public function news()
     {
         $listNews = $this->postRepository->index();
-        $firstNews = $this->postRepository->firstNew();
         $categories = $this->categoryPostRepository->index();
-        $listNewsPopulars = $this->postRepository->getNewsPopular();
-        return view('page.post.list', compact('listNews', 'listNewsPopulars', 'categories','firstNews'));
+        return view('page.post.list', compact('listNews', 'categories'));
     }
 
     public function newsDetail($slug)
     {
         $newData = $this->postRepository->detailPost($slug);
-        $listNewsPopulars = $this->postRepository->getNewsPopular();
-        $listNewsNormals = $this->postRepository->getNewsNormal();
-        return view('page.post.detail', compact('newData', 'listNewsNormals','listNewsPopulars'));
+        $categories = $this->categoryPostRepository->index();
+
+        // Lấy các bài viết tương tự (cùng category, không tính bài hiện tại)
+        $relatedPosts = $this->postRepository->relatedPosts($newData->id, $newData->category_id);
+
+        return view('page.post.detail', compact('newData', 'categories', 'relatedPosts'));
     }
 
     public function newsCategory($slug)
     {
         $postCategory = $this->categoryPostRepository->postCategory($slug);
         $categories = $this->categoryPostRepository->index();
-        $listNewsPopulars = $this->postRepository->getNewsPopular();
-        $listNewsNormals = $this->postRepository->getNewsNormal();
-        return view('page.post.category-post', compact('postCategory', 'categories', 'listNewsPopulars', 'listNewsNormals'));
+        return view('page.post.category-post', compact('postCategory', 'categories'));
 
     }
 
+    public function searchNews(Request $request)
+    {
+        $query = $request->input('query');
+        $sort = $request->input('sort');
+        $categories = $this->categoryPostRepository->index();
+        $getPosts = $this->postRepository->searchNews($query, $sort);
+        $listNews = $this->utility->paginate($getPosts, 10);
+
+        return view('page.post.search-result', compact('listNews', 'categories'));
+    }
+
+    public function searchLeague(Request $request)
+    {
+        $query = $request->input('query');
+        $sort = $request->input('sort');
+
+        $getLeague = $this->leagueRepository->searchLeague($query, $sort);
+        $listLeagues = $this->utility->paginate($getLeague, 10);
+
+        return view('page.league.search-result', compact('listLeagues'));
+    }
+
+    public function searchGroup(Request $request)
+    {
+        $query = $request->input('query');
+        $sort = $request->input('sort');
+        $status= $request->input('status');
+
+        $getGroup = $this->groupRepository->searchGroup($query, $sort, $status);
+        $listGroup = $this->utility->paginate($getGroup, 10);
+
+        return view('page.group.search-result-group', compact('listGroup'));
+    }
+
+    public function searchGroupTraining(Request $request)
+    {
+        $group = $request->get('group');
+        $listTrainings = $this->groupRepository->getGroupByName($group);
+
+        if (empty($listTrainings)) {
+            abort(404);
+        }
+
+        foreach ($listTrainings->group_trainings as $trainings) {
+            $listId = json_decode($trainings->members);
+            $trainings->isJoin = false;
+            $trainings->totalMembers = 0;
+            if (!empty($listId)) {
+                if (in_array(Auth::user()->id, $listId)) {
+                    $trainings->isJoin = true;
+                }
+                $trainings->totalMembers = count($listId);
+            }
+        }
+        $query = $request->input('query');
+        $sort = $request->input('sort');
+
+        $getGroup = $this->groupTraining->searchGroup($query, $sort);
+        $listGroup = $this->utility->paginate($getGroup, 10);
+
+        return view('page.group.search-result-group-training', compact('listGroup', 'listTrainings'));
+    }
 
 }

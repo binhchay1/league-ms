@@ -48,7 +48,7 @@
         <div class="card p-3 mb-4 col-3" style="background: url('/images/auth-logo-opacity-50.png') !important">
             <div class="d-flex justify-content-between">
                 <div class="d-flex flex-row align-items-center">
-                    <div class="icon" width="50" height="50"> <img class="avatar-group" src="{{ $group->groups->images ?? asset('/images/group.png') }}"></div>
+                    <div class="icon" width="50" height="50"> <img class="avatar-group" src="{{ asset($group->groups->images ?? asset('/images/group.png')) }}"></div>
                     <div class="ms-2 c-details name-group" id="group-{{ $group->groups->name }}" onclick="detailGroup(this.id)">
                         <h6 class="mb-0">{{ $group->groups->name }}</h6> <span>{{ $group->users->name }}</span>
                     </div>

@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\GroupRequest;
 use App\Http\Requests\GroupUpdateRequest;
+use App\Models\GroupUser;
 use App\Repositories\GroupRepository;
 use App\Http\Controllers\Controller;
 use App\Enums\Utility;
+use App\Repositories\GroupUserRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Enums\Group;
 use Illuminate\Support\Facades\Auth;
@@ -18,13 +21,16 @@ class GroupController extends Controller
     protected $groupRepository;
     protected $utility;
     protected $groupTraining;
+    protected $groupUserRepository;
 
     public function __construct(
         GroupRepository $groupRepository,
+        GroupUserRepository $groupUserRepository,
         Utility $ultity,
         GroupTrainingRepository $groupTraining
     ) {
         $this->groupRepository = $groupRepository;
+        $this->groupUserRepository = $groupUserRepository;
         $this->utility = $ultity;
         $this->groupTraining = $groupTraining;
 
@@ -144,5 +150,63 @@ class GroupController extends Controller
         $this->groupTraining->destroy($id);
 
         return back()->with('success', __('Delete League successfully!'));
+    }
+
+    public function dataGroup($id)
+    {
+        $group = $this->groupRepository->getGroupById($id);
+        return view('admin.group.user-register-group', compact('group'));
+    }
+
+    public function activeUserJoin(Request $request)
+    {
+        $input = $request->except(['_token']);
+        // Retrieve the user IDs and the new status from the request
+        $userIds = $request->input('user_ids');
+        $activeStatus = $request->input('status_request');
+        // Update the 'active' status for all specified users
+        if(empty($userIds))
+        {
+            return back()->with('success', __('No users to action!'));
+        }
+
+        GroupUser::whereIn('id', $userIds)->update(['status_request' => $activeStatus]);
+
+        return back()->with('success', __('Users has been update successfully!'));
+    }
+
+    public function destroyUser($id)
+    {
+        $this->groupUserRepository->destroy($id);
+        return back()->with('success', 'User successfully deleted.');
+    }
+
+
+    public function createGroup()
+    {
+        return view('page.group.create');
+    }
+
+    public function storeGroup(GroupRequest $request)
+    {
+        $input = $request->except(['_token']);
+        $input['group_owner'] = Auth::user()->id;
+        $input['rate'] = Group::RATE_NEWLY_ESTABLISHED;
+        if (isset($input['images'])) {
+            $img = $this->utility->saveImageGroup($input);
+            if ($img) {
+                $path = '/images/upload/group/' . $input['images']->getClientOriginalName();
+                $input['images'] = $path;
+            }
+        }
+        $data = $this->groupRepository->create($input);
+
+        $dataGroupUser['group_id'] = $data->id;
+        $dataGroupUser['user_id'] = $data->group_owner;
+        $dataGroupUser['status_request'] = Group::STATUS_ACCEPTED;
+
+        $this->groupUserRepository->create($dataGroupUser);
+
+        return redirect()->route('my.group')->with('success','Group successfully created.');
     }
 }

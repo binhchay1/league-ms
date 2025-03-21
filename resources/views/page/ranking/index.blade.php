@@ -20,7 +20,7 @@
     <section class="container rankings-section pb-200" id="ranking">
         <div class="std-title">
             <div class="std-title-left d-flex " style="justify-content: space-between">
-                <h2 class="left" style=" font-weight: 400; color: black; margin: 0">{{ __('Badominton Ranking') }}</h2>
+                <h2 class="left" style=" font-weight: 400; color: black; margin: 0">{{ __('RANKING') }}</h2>
             </div>
             <div>
                 <div class="mx-auto my-3 ">

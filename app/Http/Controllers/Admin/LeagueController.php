@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\Ranking;
 use App\Enums\Role;
 use App\Http\Requests\LeagueRequest;
+use App\Http\Requests\LeagueUpdateRequest;
 use App\Models\League;
 use App\Models\UserLeague;
 use App\Repositories\LeagueRepository;
@@ -51,7 +52,7 @@ class LeagueController extends Controller
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->name);
         $input['owner_id'] = Auth::user()->id;
-        $input['status'] = 0;
+        $input['status'] = 1;
         if (isset($input['images'])) {
             $img = $this->utility->saveImageLeague($input);
             if ($img) {
@@ -84,7 +85,7 @@ class LeagueController extends Controller
     }
 
 
-    public function update(LeagueRequest $request, $id)
+    public function update(LeagueUpdateRequest $request, $id)
     {
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($request->slug);
@@ -114,16 +115,20 @@ class LeagueController extends Controller
         $userIds = $request->input('user_ids');
         $activeStatus = $request->input('status');
         // Update the 'active' status for all specified users
+        if(empty($userIds))
+        {
+            return back()->with('success', __('No players to action!'));
+        }
+
         UserLeague::whereIn('id', $userIds)->update(['status' => $activeStatus]);
 
-
-        return back()->with('success', __('Player has been sent successfully!'));
+        return back()->with('success', __('Player has been update status successfully!'));
     }
 
     public function destroyPlayer($id)
     {
         $this->userLeagueRepository->destroy($id);
-        return back()->with('success', 'League successfully deleted.');
+        return back()->with('success', 'Player successfully deleted.');
     }
 
     public function leagues()
@@ -151,6 +156,37 @@ class LeagueController extends Controller
     public function leagueById($id)
     {
         $leagueById = $this->leagueRepository->leagueId($id);
+    }
+
+    public function createLeague()
+    {
+        $listType = Ranking::RANKING_ARRAY_TYPE;
+        $listFormat = Ranking::RANKING_ARRAY_FORMAT;
+        $listPlayer = \App\Enums\League::NUMBER_PLAYER;
+
+        return view('page.league.create', compact('listType', 'listFormat', 'listPlayer'));
+    }
+
+    public function storeLeagueTour(LeagueRequest $request)
+    {
+
+        $input = $request->except(['_token']);
+        $input['slug'] = Str::slug($request->name);
+        $input['owner_id'] = Auth::user()->id;
+        $input['status'] = 1;
+        if (isset($input['images'])) {
+            $img = $this->utility->saveImageLeague($input);
+            if ($img) {
+                $path = '/images/upload/league/' . $input['images']->getClientOriginalName();
+                $input['images'] = $path;
+            }
+        }
+
+        $this->leagueRepository->store($input);
+        if (Auth::user()->role == Role::ADMIN) {
+            return redirect()->route('my.league')->with('success', 'League successfully created.');
+        }
+        return redirect()->route('my.league')->with('success', 'League successfully created.');
     }
 
 }

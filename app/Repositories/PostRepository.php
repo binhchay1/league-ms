@@ -62,5 +62,32 @@ class PostRepository extends BaseRepository
         return $this->model->with('category', 'user')->where('status','normal')->orderBy('created_at', 'desc')->get();
 
     }
+    public function relatedPosts($post, $category)
+    {
+        return $this->model->where('category_id', $category)
+            ->where('id', '!=', $post) // Loại trừ bài viết hiện tại
+            ->latest()
+            ->limit(5) // Giới hạn số bài viết hiển thị
+            ->get();
+    }
+
+
+    public function searchNews($query, $sort)
+    {
+        $leagues = $this->model->query(); // Chắc chắn $leagues là Query Builder
+
+        if ($query) {
+            $leagues->where('name', 'like', "%$query%");
+        }
+
+// Sắp xếp kết quả
+        if ($sort === 'newest') {
+            $leagues->orderBy('created_at', 'desc');
+        } elseif ($sort === 'oldest') {
+            $leagues->orderBy('created_at', 'asc');
+        }
+
+        return $leagues->get();
+    }
 
 }

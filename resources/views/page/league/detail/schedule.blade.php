@@ -6,6 +6,14 @@
 
     .btn-referee {
         box-shadow: 0 0 3px #999;
+        padding: 5px !important;
+        background: red;
+        color: white !important;
+    }
+
+    .btn-referee:hover {
+        background: white !important;
+        color: red !important;
     }
 </style>
 <!DOCTYPE html>
@@ -109,13 +117,6 @@ if (Auth::check()) {
                                                         {{$date}}
                                                     </div>
                                                 </a>
-                                                @if(Auth::check())
-                                                @if(in_array('referee', $listTitle))
-                                                <div class="d-flex justify-content-center">
-                                                    <a href="{{ route('live.score') }}?s_i={{ $utility->encode_hash_id($schedule->id) }}" class="btn btn-referee" style="margin-bottom: 10px;">{{ __('Be referee') }}</a>
-                                                </div>
-                                                @endif
-                                                @endif
                                             </li>
                                             @endforeach
                                             <hr>

@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryPostController;
+use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ExchangeController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
@@ -41,6 +45,7 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/tournament-league/{slug}/fight-branch/', [HomeController::class, 'showFightBranch'])->name('leagueFightBranch.info');
     Route::get('/list-teams/', [HomeController::class, 'listTeam'])->name('list.team');
     Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
+    Route::get('/check-group-join', [HomeController::class, 'checkGroupJoin']);
     Route::get('/detail-group/', [HomeController::class, 'detailGroup'])->name('detail.group');
     Route::get('/ranking/', [HomeController::class, 'viewRanking'])->name('ranking');
     Route::get('/match-center/', [HomeController::class, 'viewMatch'])->name('match');
@@ -48,7 +53,29 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/news/{slug}', [HomeController::class, 'newsDetail'])->name('news-show');
     Route::get('/news', [HomeController::class, 'news'])->name('news');
     Route::get('/news/category/{slug}', [HomeController::class, 'newsCategory'])->name('newsCategory');
+    Route::get('/search-news', [HomeController::class, 'searchNews'])->name('searchNews');
+    Route::get('/search-league-tour', [HomeController::class, 'searchLeague'])->name('searchLeague');
+    Route::get('/search-group', [HomeController::class, 'searchGroup'])->name('searchGroup');
+    Route::get('/search-group-training', [HomeController::class, 'searchGroupTraining'])->name('searchGroupTraining');
 });
+
+//exchange
+
+//product
+Route::get('exchange', [ExchangeController::class, 'index'])->name('exchange.home');
+Route::get('/product/{slug}', [ExchangeController::class, 'productDetail'])->name('exchange.productDetail');
+Route::get('/category/{slug}', [ExchangeController::class, 'categoryDetail'])->name('exchange.categoryDetail');
+Route::get('/search', [ExchangeController::class, 'search'])->name('products.search');
+Route::get('/filter-by', [ExchangeController::class, 'filter'])->name('products.searchInProduct');
+Route::get('/products/load-more', [ExchangeController::class, 'loadMore'])->name('exchange.loadMore');
+
+//manager-news
+Route::get('/post-product-news', [ExchangeController::class, 'createProductNews'])->name('exchange.productSale');
+
+Route::get('/product-news/{slug}', [ExchangeController::class, 'editProductNews'])->name('exchange.editNews');
+Route::post('/update-product-news/{slug}', [ExchangeController::class, 'updateProductNews'])->name('exchange.updateNews');
+Route::delete('delete/product-news/{id}', [ExchangeController::class, 'destroy'])->name('product.destroy');
+
 
 Route::get('/login/', [AuthController::class, 'login'])->name('login');
 Route::post('/custom-login/', [AuthController::class, 'customLogin'])->name('login.custom');
@@ -66,15 +93,25 @@ Route::post('/register/', [AuthController::class, 'storeUser'])->name('storeUser
 Route::get('/setLocale/{locale}/', [HomeController::class, 'changeLocate'])->name('app.setLocale');
 
 Route::middleware(['auth:sanctum'])->group(function () {
+
+    //profile
     Route::get('/profile/{nick_name}/', [ProfileController::class, 'show'])->name('profile.info');
     Route::get('/user-profile/', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/user-profile/{id}/', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/change-password/', [ProfileController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password/', [ProfileController::class, 'updatePassword'])->name('update-password');
     Route::get('/my-group/', [ProfileController::class, 'viewMyGroup'])->name('my.group');
+    Route::get('/my-group/{id}/active-user/', [ProfileController::class, 'myGroupActiveUser'])->name('my.myGroupActiveUser');
     Route::get('/my-league/', [ProfileController::class, 'viewMyLeague'])->name('my.league');
-
+    Route::get('/my-league-detail/{slug}', [ProfileController::class, 'detailMyLeague'])->name('my.leagueDetail');
+    Route::get('/my-league/{slug}/player/', [ProfileController::class, 'myLeaguePlayer'])->name('my.leaguePlayer.info');
+    Route::get('/my-league/{slug}/result/', [ProfileController::class, 'myLeagueResult'])->name('my.leagueResult.info');
+    Route::get('/my-league/{slug}/schedule/', [ProfileController::class, 'myLeagueSchedule'])->name('my.leagueSchedule.info');
+    Route::get('/my-league/{slug}/bracket/', [ProfileController::class, 'myLeagueBracket'])->name('my.leagueBracket.info');
+    Route::get('/my-league/{slug}/active-player/', [ProfileController::class, 'myLeagueActivePlayer'])->name('my.myLeagueActivePlayer');
+    Route::get('/auto-create-schedule-league', [ProfileController::class, 'autoCreateMyLeague'])->name('auto.create.myLeague.schedule');
     Route::get('/league-manager/', [HomeController::class, 'leagueManager'])->name('league-manager');
+
 
     Route::post('/register-league/', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
     Route::get('/player/{id}/', [HomeController::class, 'viewInforPlayer'])->name('player.info');
@@ -102,6 +139,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/delete-player-league/{id}/', [LeagueController::class, 'destroyPlayer'])->name('league.destroyPlayer');
     Route::get('/active-league/{id}', [LeagueController::class, 'activeLeague'])->name('activeLeague');
 
+    Route::get('/create-tournament', [LeagueController::class, 'createLeague'])->name('league.createTour');
+    Route::post('/store-tournament/', [LeagueController::class, 'storeLeagueTour'])->name('league.storeTour');
 
     //schedule
     Route::get('/list-schedule-league/', [ScheduleController::class, 'league'])->name('schedule.league');
@@ -134,6 +173,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/update-group-training/{id}', [GroupController::class, 'updateGroupTraining'])->name('update.groupTraining');
     Route::get('/delete-group-training/{id}', [GroupController::class, 'deleteGroupTraining'])->name('delete.groupTraining');
     Route::get('/delete-account-apple/', [ProfileController::class, 'deleteAccount'])->name('delete.account.apple');
+    Route::get('/user-join-group/{id}', [GroupController::class, 'dataGroup'])->name('group.userGroup');
+    Route::post('/active-user-group', [GroupController::class, 'activeUserJoin'])->name('group.activeUserJoin');
+    Route::get('/delete-user-group/{id}/', [GroupController::class, 'destroyUser'])->name('user.destroyUser');
+
+    Route::get('/new-group/', [GroupController::class, 'createGroup'])->name('group.createGroup');
+    Route::post('/store-new-group/', [GroupController::class, 'storeGroup'])->name('group.storeGroup');
 
 
     //category post
@@ -154,6 +199,46 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/update-post/{id}/', [PostController::class, 'update'])->name('post.update');
     Route::get('/destroy/{id}/', [PostController::class, 'destroy'])->name('post.destroy');
 
+    //shopping
+    Route::get('/shop/', [ShopController::class, 'index'])->name('shop.index');
+
+    //category product
+    Route::get('/list-category-product/', [CategoryProductController::class, 'index'])->name('categoryProduct.index');
+    Route::get('/create-category-product/', [CategoryProductController::class, 'create'])->name('categoryProduct.create');
+    Route::post('/store-category-product/', [CategoryProductController::class, 'store'])->name('categoryProduct.store');
+    Route::get('/category-product/{id}/', [CategoryProductController::class, 'show'])->name('categoryProduct.show');
+    Route::get('/edit-category-product/{id}/', [CategoryProductController::class, 'edit'])->name('categoryProduct.edit');
+    Route::post('/update-category-product/{id}/', [CategoryProductController::class, 'update'])->name('categoryProduct.update');
+    Route::get('/destroy-category-product/{id}/', [CategoryProductController::class, 'destroy'])->name('categoryProduct.destroy');
+
+    //brand
+    Route::get('/list-brand/', [BrandController::class, 'index'])->name('brand.index');
+    Route::get('/create-brand/', [BrandController::class, 'create'])->name('brand.create');
+    Route::post('/store-brand/', [BrandController::class, 'store'])->name('brand.store');
+    Route::get('/brand/{id}/', [BrandController::class, 'show'])->name('brand.show');
+    Route::get('/edit-brand/{id}/', [BrandController::class, 'edit'])->name('brand.edit');
+    Route::post('/update-brand/{id}/', [BrandController::class, 'update'])->name('brand.update');
+    Route::get('/destroy-brand/{id}/', [BrandController::class, 'destroy'])->name('brand.destroy');
+    Route::get('/get-brands/{category_id}', [BrandController::class, 'getBrandsByCategory']);
+    Route::get('/get-all-brands', [BrandController::class, 'getAllBrands']);
+
+    //product
+    Route::get('/list-product/', [ProductController::class, 'index'])->name('product.index');
+    Route::post('/store-product/', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/create-product/', [ProductController::class, 'create'])->name('product.create');
+    Route::get('/edit-product/', [ProductController::class, 'edit'])->name('product.edit');
+    Route::post('/update-product/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::get('/delete-product/', [ProductController::class, 'delete'])->name('product.delete');
+    Route::delete('/delete-product-image/{id}', [ProductController::class, 'deleteProductImage']);
+
+    Route::get('/accept-product', [ProductController::class, 'accept'])->name('product.accept');
+    Route::get('/reject-product', [ProductController::class, 'reject'])->name('product.reject');
+
+    //exchange
+    Route::get('/manager-news', [ExchangeController::class, 'managerNews'])->name('exchange.managerNews');
+    Route::post('/store-product-news/', [ExchangeController::class, 'storeProductNews'])->name('product.storeProductSale');
+
+
 
     Route::middleware(['admin'])->group(
         function () {
@@ -163,13 +248,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
             Route::get('/list-user/', [UserController::class, 'index'])->name('user.index');
             Route::get('/delete/{id}/', [UserController::class, 'destroy'])->name('user.delete');
+            Route::get('/change-password/{id}/', [UserController::class, 'changePassword'])->name('user.changePassword');
+            Route::post('/updatePassword/{id}/', [UserController::class, 'updatePassword'])->name('user.updatePassword');
 
-            Route::get('/list-product/', [ProductController::class, 'index'])->name('product.index');
-            Route::post('/store-product/', [ProductController::class, 'store'])->name('product.store');
-            Route::get('/create-product/', [ProductController::class, 'create'])->name('product.create');
-            Route::get('/edit-product/', [ProductController::class, 'edit'])->name('product.edit');
-            Route::post('/update-product/', [ProductController::class, 'update'])->name('product.update');
-            Route::get('/delete-product/', [ProductController::class, 'delete'])->name('product.delete');
+
+
         }
     );
 });

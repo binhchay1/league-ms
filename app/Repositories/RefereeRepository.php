@@ -11,7 +11,7 @@ class RefereeRepository extends BaseRepository
         return Referee::class;
     }
 
-    public function getRefereeByUserId($user_id, $schedule_id)
+    public function getRefereeByUserId($schedule_id, $user_id )
     {
         return $this->model->where('user_id', $user_id)->where('schedule_id', $schedule_id)->first();
     }
