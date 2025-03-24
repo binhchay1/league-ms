@@ -103,7 +103,7 @@ $utility = new \App\Enums\Utility();
                         <i class="bi bi-person-check-fill"></i> <span class="">{{ $group->totalMembers }} / {{ $group->number_of_members }}</span>
                     </p>
                     <p>
-                        <i class="bi bi-card-checklist"></i>  <span class="">{{$group->note}}</span>
+                        <i class="bi bi-card-checklist"></i>  <span class="">{{ Str::limit($group->note, 40) }}</span>
                     </p>
                     <hr>
                     <div class="card-footer text-muted d-flex gr-train-footer">

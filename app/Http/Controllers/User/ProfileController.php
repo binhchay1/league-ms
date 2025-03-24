@@ -6,6 +6,7 @@ use App\Enums\League;
 use App\Enums\Ranking;
 use App\Enums\Utility;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GroupUpdateRequest;
 use App\Http\Requests\LeagueUpdateRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
@@ -142,7 +143,9 @@ class ProfileController extends Controller
         $idUser = Auth::user()->id;
         $dataUser = $this->userRepository->showInfo($idUser);
 
-        $getLeague = $dataUser->league;
+        $getLeague = $dataUser->league()->orderByRaw("CASE WHEN status = '1' THEN 1 ELSE 2 END") // Active trước, inactive sau
+        ->orderBy('id', 'desc') // Sắp xếp theo id giảm dần
+        ->get();
         $listLeague = $this->utility->paginate($getLeague, 10, '/my-league');
 
         return view('page.user.my-league.my-league', compact('listLeague'));
@@ -252,6 +255,13 @@ class ProfileController extends Controller
         }
 
         return view('page.user.my-league.detail-my-league', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'getListLeagues'));
+    }
+
+    public function deleteMyLeague($id)
+    {
+        $this->leagueRepository->deleteMyLeague($id);
+
+        return redirect()->route('my.league')->with('success', 'League delete successfully');
     }
 
     public function myLeagueActivePlayer($slug)
@@ -525,8 +535,40 @@ class ProfileController extends Controller
         $dataUser = $this->userRepository->showInfo($idUser);
 
         $getGroup = $dataUser->groups;
-        $listGroup = $this->utility->paginate($getGroup, 30, '/my-group');
+        $listGroup = $this->utility->paginate($getGroup, 10, '/my-group');
 
         return view('page.user.my-group.my-group', compact('listGroup'));
+    }
+
+
+    public function infoMyGroup($id)
+    {
+        $dataGroup = $this->groupRepository->getById($id);
+
+        return view('page.user.my-group.edit', compact('dataGroup'));
+    }
+
+    public function updateMyGroup(GroupUpdateRequest $request, $id)
+    {
+        $input = $request->except(['_token']);
+        $input['slug'] = Str::slug($request->slug);
+        if (isset($input['images'])) {
+            $img = $this->utility->saveImageGroup($input);
+            if ($img) {
+                $path = '/images/upload/group/' . $input['images']->getClientOriginalName();
+                $input['images'] = $path;
+            }
+        }
+
+        $this->groupRepository->updateById($id, $input);
+
+        return redirect()->route('my.group')->with('success', __('Group updated successfully!'));
+    }
+
+    public function deleteMyGroup($id)
+    {
+        $this->leagueRepository->deleteMyLeague($id);
+
+        return redirect()->route('my.group')->with('success', 'Group delete successfully');
     }
 }

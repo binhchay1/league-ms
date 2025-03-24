@@ -49,8 +49,8 @@
         font-weight: bold;
     }
 
-    span {
-        font-weight: bold;
+    .status-league {
+        font-weight: bold !important;
     }
 
     .list-group-item-action.active {
@@ -131,13 +131,13 @@
 
                                                     <p class="card-text"><?php echo number_format($row->money ?? 0) . " VND"?> || {{$row->type_of_league}}  || {{$row->location}}</p>
                                                     @if(now()->between($row->start_date, $row->end_date))
-                                                        <span class="p-1 bg-success text-white rounded">{{'Active'}}</span>
+                                                        <span class="status-league p-1 bg-success text-white rounded">{{'Active'}}</span>
                                                     @elseif(now() < date('Y-m-d', strtotime($row->end_date_register)))
-                                                        <span class="p-1 bg-warning text-black rounded">{{'Registering'}}</span>
+                                                        <span class="status-league p-1 bg-warning text-black rounded">{{'Registering'}}</span>
                                                     @elseif(now() > date('Y-m-d', strtotime($row->end_date_register)) && now() < $row->start_date)
-                                                        <span class="p-1 bg-warning text-black rounded">{{'End Register'}}</span>
+                                                        <span class=" status-league p-1 bg-warning text-black rounded">{{'End Register'}}</span>
                                                     @elseif(now() > $row->end_date)
-                                                        <span class="p-1 bg-danger text-white rounded">{{'Ended '}}</span>
+                                                        <span class="status-league p-1 bg-danger text-white rounded">{{'Ended '}}</span>
                                                     @endif
                                                 </div>
 
@@ -158,7 +158,30 @@
                     </div>
                 </div>
             </div>
-
+            @if($listLeague->total() > $listLeague->perPage())
+                <div class="navigator short  mt-4">
+                    <div class="head d-flex justify-content-center ">
+                        <ul class="pagination">
+                            <li>
+                                <a href="{{ $listLeague->previousPageUrl() }}" aria-label="Previous" style="color: red"
+                                   class="prevPlayersList">
+                                <span aria-hidden="true">
+                                    <span class="fa fa-angle-left"></span> {{ __('PREVIOUS') }}
+                                </span>
+                                </a>
+                            </li>
+                            &emsp;
+                            <li>
+                                <a href="{{ $listLeague->nextPageUrl() }}" aria-label="Next" style="color: red"
+                                   class="nextPlayersList">
+                                    <span aria-hidden="true">{{ __('NEXT') }} <span class="fa fa-angle-right"></span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            @endif
         </div>
 
     </section>

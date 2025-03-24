@@ -22,6 +22,21 @@ $utility = new \App\Enums\Utility();
     .btn-training:hover {
         background-color: #ff4b2b !important;
     }
+
+    .dropdown-content {
+        display: none; /* Ẩn mặc định */
+        position: absolute; /* Hiển thị tách biệt */
+        z-index: 1050; /* Đảm bảo hiển thị trên các div khác */
+        background-color: white; /* Nền trắng để dễ nhìn */
+        border: 1px solid #ddd;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Khi hover vào nav-item hoặc dropdown-menu thì hiển thị */
+    .nav-item:hover .dropdown-menu,
+    .dropdown-menu:hover {
+        display: block;
+    }
 </style>
 @section('css')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -57,9 +72,60 @@ $utility = new \App\Enums\Utility();
         </div>
         @endif
 
-        <div class="mt-4" data-bs-toggle="modal" data-bs-target="#rankingModal">
+        <div class="mt-4" data-bs-toggle="modal" data-bs-target="#rankingModal" style="margin-right: 10px;">
             <button class=" btn-training">{{ __('Ranking') }}</button>
         </div>
+
+        @if(Auth::user()->id == $getGroup->group_owner)
+        <!-- Dropdown -->
+            <div class="nav-item">
+                <a class="mt-4 btn-training mx-2 nav-link">{{__('GROUP')}} ▼</a>
+                <div class="dropdown-content">
+                    <a href="{{route('my.infoMyGroup', $getGroup->id)}}">{{__('Edit Group')}}</a>
+                    <a class="openDeleteModal" href="#" data-url="{{ route('delete.myGroup', $getGroup->id) }}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"> {{ 'Delete Group' }}</a>
+
+                </div>
+            </div>
+
+            <!-- Bootstrap Modal -->
+            <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content border-0 shadow-lg">
+                        <!-- Header -->
+                        <div class="modal-header bg-danger text-white">
+                            <h5 class="modal-title fw-bold" id="confirmDeleteModalLabel">
+                                <i class="bi bi-exclamation-triangle-fill "></i> {{ 'Delete Group' }}
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="modal-body text-center">
+                            <p class="text-dark fw-medium fs-5">
+                                {{ 'Are you sure you want to delete this group?' }}
+                            </p>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="modal-footer d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">
+                                <i class="bi bi-x-lg"></i> {{ 'Cancel' }}
+                            </button>
+                            <form id="deleteForm" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger px-4">
+                                    <i class="bi bi-trash"></i> {{ 'Delete' }}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        @endif
     </div>
 
 </section>
@@ -300,5 +366,18 @@ $utility = new \App\Enums\Utility();
 
         window.location.href = url;
     }
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const deleteForm = document.getElementById("deleteForm");
+
+        document.querySelectorAll(".openDeleteModal").forEach(button => {
+            button.addEventListener("click", function () {
+                const deleteUrl = this.getAttribute("data-url");
+                deleteForm.setAttribute("action", deleteUrl);
+            });
+        });
+    });
 </script>
 @endsection

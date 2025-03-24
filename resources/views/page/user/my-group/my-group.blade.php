@@ -144,7 +144,30 @@
                     </div>
                 </div>
             </div>
-
+            @if($listGroup->total() > $listGroup->perPage())
+                <div class="navigator short  mt-4">
+                    <div class="head d-flex justify-content-center ">
+                        <ul class="pagination">
+                            <li>
+                                <a href="{{ $listGroup->previousPageUrl() }}" aria-label="Previous" style="color: red"
+                                   class="prevPlayersList">
+                                <span aria-hidden="true">
+                                    <span class="fa fa-angle-left"></span> {{ __('PREVIOUS') }}
+                                </span>
+                                </a>
+                            </li>
+                            &emsp;
+                            <li>
+                                <a href="{{ $listGroup->nextPageUrl() }}" aria-label="Next" style="color: red"
+                                   class="nextPlayersList">
+                                    <span aria-hidden="true">{{ __('NEXT') }} <span class="fa fa-angle-right"></span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            @endif
         </div>
 
     </section>

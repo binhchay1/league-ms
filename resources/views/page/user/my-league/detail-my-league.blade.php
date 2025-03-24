@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="{{ asset('css/page/bracket.css') }}"/>
     @endif
 @endsection
+
+
 <style>
     .list-group-item-action {
         padding: 10px;
@@ -55,6 +57,10 @@
 
     .btn-dropdown:hover {
         background: #f1f1f1 !important;
+    }
+
+    h5.modal-title {
+        color: white !important;
     }
 </style>
 @section('content')
@@ -107,9 +113,52 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{{route('my.infoMyLeague',$leagueInfor['slug'])}}">{{'League Information'}}</a></li>
-                                    <li><a class="dropdown-item" href="#">{{'Delete League'}}</a></li>
+                                    <li>
+                                        <a class="openDeleteModal dropdown-item" href="#" data-url="{{ route('delete.myLeague', $leagueInfor->id) }}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                                            {{ 'Delete League' }}
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
+
+                            <!-- Bootstrap Modal -->
+                            <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content border-0 shadow-lg">
+                                        <!-- Header -->
+                                        <div class="modal-header bg-danger text-white">
+                                            <h5 class="modal-title fw-bold" id="confirmDeleteModalLabel">
+                                                <i class="bi bi-exclamation-triangle-fill "></i> {{ 'Delete League' }}
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+
+                                        <!-- Body -->
+                                        <div class="modal-body text-center">
+                                            <p class="text-dark fw-medium fs-5">
+                                                {{ 'Are you sure you want to delete this league?' }}
+                                            </p>
+                                        </div>
+
+                                        <!-- Footer -->
+                                        <div class="modal-footer d-flex justify-content-between">
+                                            <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">
+                                                <i class="bi bi-x-lg"></i> {{ 'Cancel' }}
+                                            </button>
+                                            <form id="deleteForm" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger px-4">
+                                                    <i class="bi bi-trash"></i> {{ 'Delete' }}
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                         @endif
                     </div>
                 </div>
@@ -280,3 +329,15 @@
 @section('js')
 
 @endsection
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const deleteForm = document.getElementById("deleteForm");
+
+        document.querySelectorAll(".openDeleteModal").forEach(button => {
+            button.addEventListener("click", function () {
+                const deleteUrl = this.getAttribute("data-url");
+                deleteForm.setAttribute("action", deleteUrl);
+            });
+        });
+    });
+</script>
