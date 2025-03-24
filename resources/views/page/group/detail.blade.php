@@ -24,10 +24,10 @@ $utility = new \App\Enums\Utility();
     }
 
     .dropdown-content {
-        display: none; /* Ẩn mặc định */
-        position: absolute; /* Hiển thị tách biệt */
-        z-index: 1050; /* Đảm bảo hiển thị trên các div khác */
-        background-color: white; /* Nền trắng để dễ nhìn */
+        display: none; 
+        position: absolute;
+        z-index: 1050;
+        background-color: white;
         border: 1px solid #ddd;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     }
@@ -122,12 +122,8 @@ $utility = new \App\Enums\Utility();
                     </div>
                 </div>
             </div>
-
-
-
         @endif
     </div>
-
 </section>
 
 <section id="detail-group" class="container-fluid">
