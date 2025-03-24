@@ -8,8 +8,11 @@ on:
       - 'main'
 
 permissions:
+  actions: read
   contents: write
   pull-requests: write
+  repository-projects: write
+  id-token: write
 
 jobs:
   merge-and-deploy:
