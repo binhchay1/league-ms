@@ -24,7 +24,7 @@ $utility = new \App\Enums\Utility();
     }
 
     .dropdown-content {
-        display: none; 
+        display: none;
         position: absolute;
         z-index: 1050;
         background-color: white;
@@ -234,8 +234,6 @@ $utility = new \App\Enums\Utility();
                         @endforeach
                         </tbody>
                     </table>
-
-
             </div>
         </div>
     </div>
