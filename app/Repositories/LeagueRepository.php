@@ -169,4 +169,9 @@ class LeagueRepository extends BaseRepository
             ->where('owner_id', $user)
             ->first();
     }
+
+    public function deleteMyLeague($id)
+    {
+        return $this->model->where('id', $id)->delete();
+    }
 }

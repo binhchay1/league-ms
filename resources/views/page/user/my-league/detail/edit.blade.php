@@ -161,7 +161,7 @@
         </div>
 
         <div class="mb-12">
-            <button class="btn btn-success w-10 mt-4 mb-12">{{'Update League'}}</button>
+            <button class="btn btn-success w-10 mt-4 mb-12">{{'Update '}}</button>
         </div>
     </form>
 </div>

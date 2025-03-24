@@ -71,14 +71,14 @@ $isFull = false;
                     @endif
                     <div class="col-md-4">
                         <div class="feature-box content-gr">
-                            <img src="{{asset( $group->images ?? '/images/logo-no-background.png') }}" alt="Event" data-id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
+                            <img src="{{asset( $group->images ?? '/images/logo-no-background.png') }}"  alt="Event" data-id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
 
                             <div  class="c-details-group name-group" data-id="{{ $group->name }}" id="group-{{ $group->name }}" onclick="detailGroup(this.getAttribute('data-id'))">
                                 <h5 class="mb-0 gr-name">{{ $group->name }}</h5>
                             </div>
                             <p class="text-muted ">{{'Hosted by:'}} {{$group->users->name}} - {{$group->description}} </p>
                             <p class="event-location uppercase  "> <i class="bi bi-geo-alt"></i>{{ $group->location }}</p>
-                            <p> <i class="bi bi-card-checklist"></i> {{$group->note}}</p>
+                            <p> <i class="bi bi-card-checklist"></i>{{ Str::limit($group->note, 40) }}</p>
                             <p><i class="bi bi-shield-check"></i>
                                 <span class="extend_lb label-success">{{$group->status}}</span>
                             </p>
@@ -132,6 +132,7 @@ $isFull = false;
                                     @endif
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 @empty
@@ -141,7 +142,28 @@ $isFull = false;
                         <h4 >{{ __('The group is updated!') }}</h4>
                     </div>
                 @endforelse
-
+                    @if($listGroup->total() > $listGroup->perPage())
+                        <div class="navigator short  mt-4">
+                            <div class="head d-flex justify-content-center ">
+                                <ul class="pagination">
+                                    <li>
+                                        <a href="{{ $listGroup->previousPageUrl() }}" aria-label="Previous" style="color: red"
+                                           class="prevPlayersList">
+                                <span aria-hidden="true"><span
+                                        class="fa fa-angle-left"></span> {{ __('PREVIOUS') }}</span>
+                                        </a>
+                                    </li>
+                                    &emsp;
+                                    <li>
+                                        <a href="{{ $listGroup->nextPageUrl() }}" aria-label="Next" style="color: red"
+                                           class="nextPlayersList">
+                                            <span aria-hidden="true">{{ __('NEXT') }} <span class="fa fa-angle-right"></span></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
             </div>
         </div>
     </section>
