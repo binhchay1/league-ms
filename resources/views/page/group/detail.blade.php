@@ -260,6 +260,8 @@ $utility = new \App\Enums\Utility();
         const g_i = '<?php echo $getGroup->id ?>';
         const group = 'chat-group-' + g_i;
 
+        console.log('VITE_REVERB_APP_KEY:', import.meta.env.VITE_REVERB_APP_KEY);
+
         Echo.channel(group).listen('MessageSent', (e) => {
             let cU = e.user_id;
             let cDate = new Date();
