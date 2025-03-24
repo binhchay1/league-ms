@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="card-body text-center">
                                     <!-- Tên giải đấu -->
-                                    <a href="{{route('league.info', $league['slug'])}}">
+                                    <a href="{{route('league.live', $league['slug'])}}">
                                         <h5 class="league-name">{{ $league->name }}</h5>
                                     </a>
                                     <!-- Mô tả ngắn -->

@@ -76,7 +76,7 @@ $utility = new \App\Enums\Utility();
             <button class=" btn-training">{{ __('Ranking') }}</button>
         </div>
 
-        @if(Auth::user()->id == $getGroup->group_owner)
+        @if(Auth::check() && Auth::user()->id == $getGroup->group_owner)
         <!-- Dropdown -->
             <div class="nav-item">
                 <a class="mt-4 btn-training mx-2 nav-link">{{__('GROUP')}} ▼</a>
@@ -186,7 +186,7 @@ $utility = new \App\Enums\Utility();
                         if(!Auth::check()) {
                         @endphp
                                 <div>
-                                    <a class="btn btn-success" href="{{ route('login') }}?return_url={{ url()->full() }}">{{ __('Sign in for join') }}</a>
+                                    <a style="margin-top: 30px" class="btn btn-success" href="{{ route('login') }}?return_url={{ url()->full() }}">{{ __('Sign in for join') }}</a>
                                 </div>
                         @php
                         } else {

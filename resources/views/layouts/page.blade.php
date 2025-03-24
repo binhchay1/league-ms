@@ -237,7 +237,7 @@
                                     <i class="fas fa-bell"></i>
                                     <span class="badge">{{ $count }}</span>
                                 </a>
-                                @if(count($listNotification) > 0)
+                                @if(count($dataUser->league ?? []) )
                                     <ul class="dropdown-notification" id="dropdown-notification">
                                         @foreach($listNotification as $notification)
                                             @if($notification->status == 0)
