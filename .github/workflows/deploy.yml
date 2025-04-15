@@ -8,8 +8,11 @@ on:
       - 'main'
 
 permissions:
+  actions: read
   contents: write
   pull-requests: write
+  repository-projects: write
+  id-token: write
 
 jobs:
   merge-and-deploy:
@@ -39,6 +42,7 @@ jobs:
           pr_title: "Merge main into production"
           pr_body: "Automated PR to merge main into production after successful Build And Test."
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Debug PR creation error
         if: steps.create-pr.outcome == 'failure'
         run: cat /tmp/pull-request.stderr.log
@@ -47,48 +51,36 @@ jobs:
         if: steps.create-pr.outputs.pr_number
         uses: peter-evans/enable-pull-request-automerge@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}  # Dùng PAT nếu cần quyền cao hơn
           pull-request-number: ${{ steps.create-pr.outputs.pr_number }}
           merge-method: merge
+          enable-if-approved: true  # Đảm bảo PR sẽ merge sau khi có approve nếu cần
 
-      - name: Wait for PR to be merged
+      - name: Debug PR merge
         if: steps.create-pr.outputs.pr_number
         run: |
-          echo "Waiting for PR #${{ steps.create-pr.outputs.pr_number }} to be merged..."
-          for i in {1..30}; do
-            PR_STATE=$(gh pr view ${{ steps.create-pr.outputs.pr_number }} --json state --jq .state)
-            if [ "$PR_STATE" = "MERGED" ]; then
-              echo "PR #${{ steps.create-pr.outputs.pr_number }} has been merged!"
-              exit 0
-            fi
-            echo "PR state: $PR_STATE. Waiting... ($i/30)"
-            sleep 5
-          done
-          echo "Timeout waiting for PR to be merged."
-          exit 1
+          gh pr merge -R "binhchay1/league-ms" --merge --auto "${{ steps.create-pr.outputs.pr_number }}" --verbose
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       - name: Install SSH keys
         run: |
           echo "Debug: SSH_HOST is ${{ secrets.SSH_HOST }}"
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
-          install -m 600 -D /dev/null ~/.ssh/id_rsa
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} || { echo "ssh-keyscan failed"; exit 1; }
           ssh-keyscan -H -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
       - name: Connect and pull production
-        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout production && git pull && exit"
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout production && git pull"
 
       - name: Composer install
-        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && composer install --no-ansi --no-interaction --no-progress && exit"
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && composer install --no-ansi --no-interaction --no-progress"
 
       - name: Run php artisan migrate
-        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && php artisan migrate --force && exit"
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && php artisan migrate --force"
 
       - name: Restart PHP-FPM and set permissions
         run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "service php8.3-fpm restart && chmod -R 777 /var/run/php"
