@@ -23,7 +23,6 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'required|min:2',
-            'email' => 'string|email',
         ];
     }
 
@@ -32,8 +31,6 @@ class UserRequest extends FormRequest
         return [
             'name.required' => __('validation.required'),
             'name.min' => __('validation.min'),
-            'email.email' => __('validation.email'),
-            'email.string' => __('validation.string'),
         ];
     }
 }

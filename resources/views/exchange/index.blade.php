@@ -46,9 +46,11 @@
         </div>
 
         <!-- Nút Load More -->
+        @if(!empty($products))
         <div class="text-center mt-4">
             <button id="loadMoreBtn" class="bg-blue-500 text-white p-2 rounded-lg">{{'Load more'}}</button>
         </div>
+        @endif
     </div>
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

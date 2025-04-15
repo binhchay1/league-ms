@@ -76,11 +76,58 @@
             <a href="{{route('exchange.managerNews')}}"><button>📋 {{'Manager news'}}</button></a>
 
             @auth
-                <div class="flex items-center space-x-2">
-                    <img src="{{ asset(Auth::user()->profile_photo_path ?? '/images/no-image.png') }}"
-                         class="w-8 h-8 rounded-full border">
-                    <span>{{ Auth::user()->name }}</span>
-                </div>
+
+                <!-- Wrapper -->
+                    <div class="relative inline-block text-left" id="user-dropdown-wrapper">
+                        <!-- Nút avatar + tên -->
+                        <button id="user-toggle-btn" class="flex items-center space-x-2 hover:text-yellow-500">
+                            <img src="{{ asset(Auth::user()->profile_photo_path ?? '/images/no-image.png') }}" class="w-8 h-8 rounded-full border" alt="User Avatar">
+                            <span class="font-semibold text-white-800 ">{{ Auth::user()->name }}</span>
+                            <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <!-- Dropdown content -->
+                        <div id="user-dropdown"
+                             class="hidden absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-xl z-50 p-4 space-y-4">
+                            <!-- Info -->
+                            <div class="flex items-center space-x-3 border-b pb-3">
+                                <img src="{{ asset(Auth::user()->profile_photo_path ?? '/images/no-image.png') }}" class="w-12 h-12 rounded-full border">
+                                <div>
+                                    <p class="font-semibold text-gray-800">{{ Auth::user()->name }}</p>
+                                    <p class="text-xs text-gray-500">⭐ 0.0 | 0 người theo dõi</p>
+                                    <p class="text-xs text-gray-400">TK: C0882xxxxx</p>
+                                </div>
+                            </div>
+
+                            <!-- Quản lý đơn hàng -->
+                            <div>
+                                <h4 class="text-base font-bold text-gray-600 mb-1">Quản lý đơn hàng</h4>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <a href="#" class="hover:bg-gray-100 px-2 py-1 text-black rounded block text-base">🛒 Đơn mua</a>
+                                    <a href="#" class="hover:bg-gray-100 px-2 py-1 text-black rounded block text-base">📦 Đơn bán</a>
+                                </div>
+                            </div>
+
+                            <!-- Dịch vụ trả phí -->
+                            <div>
+                                <h4 class="text-base font-bold text-gray-600 mb-1">Dịch vụ khác</h4>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <a href="{{route('exchange.profile' )}}" class="hover:bg-gray-100 px-2 py-1 text-black rounded block text-base">🧑‍Thông tin cá nhân</a>
+                                    <a href="#" class="hover:bg-gray-100 px-2 py-1 text-black rounded block text-base">❤ Trợ giúp</a>
+                                </div>
+                            </div>
+
+                            <!-- Logout -->
+                            <div class="text-center pt-2 border-t">
+                                <a href="{{ route('logout') }}">
+                                    <button class="text-red-500 hover:underline text-base">Đăng xuất</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 <a href="{{ route('exchange.productSale') }}"
                    class="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold">
                     + {{'POST NEW'}}
@@ -212,3 +259,19 @@
     });
 </script>
 
+<script>
+    const toggleBtn = document.getElementById('user-toggle-btn');
+    const dropdown = document.getElementById('user-dropdown');
+
+    toggleBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        dropdown.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', function (e) {
+        const wrapper = document.getElementById('user-dropdown-wrapper');
+        if (!wrapper.contains(e.target)) {
+            dropdown.classList.add('hidden');
+        }
+    });
+</script>

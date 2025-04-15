@@ -2,27 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\User;
 use App\Repositories\CategoryProductRepository;
 use App\Repositories\ProductRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class ExchangeController extends Controller
 {
 
     private $productRepository;
+    private $userRepository;
     private $categoryProductRepository;
 
     public function __construct(
         ProductRepository $productRepository,
-        CategoryProductRepository $categoryProductRepository
+        CategoryProductRepository $categoryProductRepository,
+        UserRepository $userRepository
     )
     {
         $this->productRepository = $productRepository;
         $this->categoryProductRepository = $categoryProductRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -236,6 +243,52 @@ class ExchangeController extends Controller
             'products' => $view, // Trả về HTML thay vì JSON
             'next_page' => $products->nextPageUrl()
         ]);
+    }
+
+    public function profile()
+    {
+        $idUser = Auth::user()->id;
+        $dataUser = $this->userRepository->showInfo($idUser);
+        $categories = $this->categoryProductRepository->index();
+        return view('exchange.profile.update-info', compact('categories', 'dataUser'));
+    }
+
+    public function update(Request $request, $userIdHash)
+    {
+        if (empty($userIdHash)) {
+            abort(404);
+        }
+
+        $input = $request->except(['_token']);
+        $this->userRepository->update($input, $userIdHash);
+        return back()->with('success', __('Information has been updated successfully!'));
+    }
+
+    public function changePassword()
+    {
+        $idUser = Auth::user()->id;
+        $dataUser = $this->userRepository->showInfo($idUser);
+        $categories = $this->categoryProductRepository->index();
+        return view('exchange.profile.change-password', compact('categories', 'dataUser'));
+    }
+
+    public function updatePassword(Request $request)
+    {
+        dd(1);
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
+            return back()->with("error", __("Old passwords do not match!"));
+        }
+
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        return back()->with("status", __("Password successfully changed!"));
     }
 
 }

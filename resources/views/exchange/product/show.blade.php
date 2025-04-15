@@ -8,8 +8,8 @@
     <div class="container mx-auto py-6 px-4">
         <!-- Breadcrumb -->
         <div class="text-gray-600 text-sm mb-4">
-            <a href="/" class="hover:underline">{{'Homepage'}}</a> >
-            <a href="#" class="hover:underline">{{ $product->categories->name }}</a> >
+            <a href="{{ route('exchange.home') }}" class="hover:underline">{{'Homepage'}}</a> >
+            <a href="" class="hover:underline">{{ $product->categories->name }}</a> >
             <span class="text-gray-800 font-semibold">{{ $product->name }}</span>
         </div>
 
@@ -45,9 +45,7 @@
 
                 <!-- Nút liên hệ -->
                 <div class="mt-4 flex space-x-2">
-                    <a href="tel:{{ $product->user->phone ?? "" }}" class="flex-1 text-center bg-gray-200 text-black px-4 py-2 rounded-lg text-lg font-semibold">
-                        {{ $product->user->phone ?? "" }}
-                    </a>
+
                     <a href="#" class="flex-1 text-center bg-green-500 text-white px-4 py-2 rounded-lg text-lg font-semibold hover:bg-green-600">
                         💬 Chat
                     </a>
