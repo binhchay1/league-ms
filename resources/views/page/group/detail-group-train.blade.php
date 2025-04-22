@@ -115,18 +115,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            @foreach($listMembers as $member)
+                        @foreach($listMembers as $member)
+                            <tr>
                                 <td>
-                                    <img src="{{ $member->profile_photo_path ?? asset('/images/no-image.png')  }}" width="40" height="40"  alt="avatar" class="avatar">
+                                    <img src="{{ $member->profile_photo_path ?? asset('/images/no-image.png') }}" width="40" height="40" alt="avatar" class="avatar">
                                     {{ $member->name }}
                                 </td>
-                                <td><a href="#">{{$member->email}}</a></td>
-                                <td>{{$member->phone}}</td>
-                                <td>{{$member->address}}</td>
-                            @endforeach
-                        </tr>
+                                <td><a href="#">{{ $member->email }}</a></td>
+                                <td>{{ $member->phone }}</td>
+                                <td>{{ $member->address }}</td>
+                            </tr>
+                        @endforeach
                         </tbody>
+
                     </table>
                 </div>
             </div>

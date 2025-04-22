@@ -366,8 +366,8 @@ hr {
 }
 
 .table th, .table td {
-    padding: 12px 20px; /* Tăng khoảng cách giữa nội dung */
-    font-size: 16px; /* Phóng to chữ */
+    padding: 12px 10px; /* Tăng khoảng cách giữa nội dung */
+    font-size: 15px; /* Phóng to chữ */
 }
 
 .table {

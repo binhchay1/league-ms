@@ -15,7 +15,6 @@ $utility = new \App\Enums\Utility();
         color: white !important;
         font-weight: bold;
         border-radius: 10px;
-        padding: 10px 15px!important;
         border: #ff3a35 !important;
     }
 
@@ -36,6 +35,16 @@ $utility = new \App\Enums\Utility();
     .nav-item:hover .dropdown-menu,
     .dropdown-menu:hover {
         display: block;
+    }
+
+    .table td {
+        vertical-align: middle;
+        word-break: break-word;
+        white-space: normal;
+    }
+
+    .text-wrap {
+        max-width: 300px; /* hoặc rộng hơn nếu bạn muốn */
     }
 </style>
 @section('css')
@@ -129,7 +138,7 @@ $utility = new \App\Enums\Utility();
 <section id="detail-group" class="container-fluid">
     <div class="container py-5" style="padding-top: 0 !important;">
         <div class="row d-flex justify-content-center">
-            <div class="col-md-6 col-lg-6 col-xl-6 card-chat" style="width: 50%" >
+            <div class="col-md-6 col-lg-6 col-xl-6 card-chat" style="width: 45%" >
                 <div class="card" id="chat1" style="border-radius: 0">
                     <div class="card-header d-flex justify-content-between " style="background: #0d6efd !important;border-radius: 0; ">
                         <p class="mb-0  " style="color: white">{{ __('Live chat') }}</p>
@@ -205,15 +214,15 @@ $utility = new \App\Enums\Utility();
                 </div>
             </div>
 
-            <div class="col-md-6 col-lg-6 col-xl-6 card-member" style="width: 50%">
+            <div class="col-md-6 col-lg-6 col-xl-6 card-member" style="width: 55%">
                 <div class="card-header d-flex justify-content-start" style="background: #0d6efd !important; border-radius: 0; padding: 10px">
-                    <p class="m-0 text-white">Members</p>
+                    <p class="m-0 text-white">{{__('Members')}}</p>
                 </div>
                     <table class="table">
                         <thead>
                         <tr>
                             <th class="text-th">{{'INFORMATION'}}</th>
-                            <th  class="text-th">{{'EMAIL'}}</th>
+                            <th  class="text-th">{{'NAME'}}</th>
                             <th class="text-th">{{'PHONE'}}</th>
                             <th class="text-th">{{'ADDRESS'}}</th>
                         </tr>
@@ -223,9 +232,8 @@ $utility = new \App\Enums\Utility();
                             <tr>
                                 <td class="d-flex ">
                                     <img src="{{ asset($member->users->profile_photo_path ?? 'images/default-avatar.png') }}" class="rounded-circle me-2" width="40" height="40" alt="Avatar">
-                                    <span>{{ $member->users->name }}</span>
                                 </td>
-                                <td class="align-items-center"><a href="#">{{$member->users->email}}</a></td>
+                                <td class="align-items-center text-wrap">{{$member->users->name}}</td>
                                 <td class="align-items-center">
                                     <span>{{ $member->users->phone }}</span>
                                 </td>
