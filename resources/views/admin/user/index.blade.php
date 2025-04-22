@@ -34,7 +34,7 @@
                     <tr class="design-text">
                         <td>{{ $data->name }}</th>
                         <td>{{ $data->email }}</td>
-                        <td><img class="image" src="{{ $data->profile_photo_path ?? asset('/images/default-avatar.png') }}" alt="avatar" width="70" height="70"></td>
+                        <td><img class="image" src="{{asset( $data->profile_photo_path ?? '/images/default-avatar.png') }}" alt="avatar" width="70" height="70"></td>
                         <td>{{ $data->phone }}</td>
                         <td>{{ $data->address }}</td>
                         <td>{{ $data->age }}</td>
