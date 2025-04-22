@@ -321,14 +321,19 @@ class HomeController extends Controller
 
     public function saveRegisterLeague(Request $request)
     {
+        $input = $request->except(['_token']);
+
         $startDate = strtotime($request['start_date']);
         $dateCurrent =  strtotime(date("Y-m-d"));
 
         if ($dateCurrent >= $startDate) {
             abort(404);
         }
-        $userRegisterLeague = $request->except(['_token']);
-        $this->userLeagueRepository->store($userRegisterLeague);
+        $checkExistRegister = $this->userLeagueRepository->checkRegister($input['league_id'], $input['user_id']);
+        if($checkExistRegister) {
+            return back()->with('message', 'You have registered for the tournament. ');
+        }
+        $this->userLeagueRepository->store($input);
 
         return back()->with('message', 'You are allowed to access');
     }
@@ -352,9 +357,7 @@ class HomeController extends Controller
         if (empty($nameGroup)) {
             abort(404);
         }
-
         $listTrainings = $this->groupRepository->getGroupByName($nameGroup);
-
         if (empty($listTrainings)) {
             abort(404);
         }

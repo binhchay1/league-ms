@@ -40,4 +40,11 @@ class UserLeagueRepository extends BaseRepository
     {
         return $this->model->with('league')->where('user_id', $user_id)->where('league_id', $league_id)->first();
     }
+
+    public function checkRegister($league, $userId)
+    {
+        return $this->model->where('league_id', $league)
+        ->where('user_id', $userId)
+        ->exists();
+    }
 }

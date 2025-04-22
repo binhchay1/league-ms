@@ -92,7 +92,7 @@
                     <!-- Tournament List -->
                     <div class="col-md-9 p-3">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4>{{'My groups'}}</h4>
+                            <h4>{{'My groups Joined'}}</h4>
                             <a href="{{route('group.createGroup')}}">
                                 <button class="btn btn-success">{{ __('Create Group') }}</button>
                             </a>

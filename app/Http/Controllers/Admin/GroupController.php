@@ -209,4 +209,41 @@ class GroupController extends Controller
 
         return redirect()->route('my.group')->with('success','Group successfully created.');
     }
+
+    public function createGroupTraining($id)
+    {
+        $group = $this->groupRepository->getGroupById($id);
+
+        return view('page.group.create-group-training', compact('group'));
+    }
+
+    public function storeGroupTraining(GroupTrainingRequest $request)
+    {
+        $input = $request->except(['_token']);
+        $input['owner_user'] = Auth::user()->id;
+        $this->groupTraining->create($input);
+
+        $dataGroup = $this->groupRepository->getById($input['group_id']);
+        $nameGroup = $dataGroup->name;
+
+        $listTrainings = $this->groupRepository->getGroupByName($nameGroup);
+        if (empty($listTrainings)) {
+            abort(404);
+        }
+
+        foreach ($listTrainings->group_trainings as $trainings) {
+            $listId = json_decode($trainings->members);
+            $trainings->isJoin = false;
+            $trainings->totalMembers = 0;
+            if (!empty($listId)) {
+                if (in_array(Auth::user()->id, $listId)) {
+                    $trainings->isJoin = true;
+                }
+                $trainings->totalMembers = count($listId);
+            }
+        }
+
+        return view('page.group.group-training', compact('listTrainings'))->with('success','Group Training successfully created.');
+
+    }
 }

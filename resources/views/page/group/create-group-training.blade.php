@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-    {{ env('APP_NAME', 'Badminton.io') }} - {{ __('Create Group') }}
+    {{ env('APP_NAME', 'Badminton.io') }} - {{ __('Create Group Training') }}
 @endsection
 <style>
     .league-tour {
@@ -36,28 +36,11 @@
 
 @section('content')
     <div class="container mt-4 league-tour">
-        <h2 class="text-left">{{'Create group'}}</h2>
+        <h2 class="text-left">{{'Create group training'}}</h2>
         <hr>
-        <form id="formAccountSettings" method="POST" action="{{ route('group.storeGroup') }}" enctype="multipart/form-data">
+        <form id="formAccountSettings" method="POST" action="{{ route('store.GroupTraining') }}" enctype="multipart/form-data">
             @csrf()
             <div class="row mb-3 form-group-create">
-                <div class="col-md-3">
-                    <label>{{ __('Logo ') }}</label>
-                    <input value="" type="file" class="border-0 bg-light pl-0" name="images" id="image" hidden>
-                    <div class=" choose-avatar">
-                        <div id="btnimage">
-                            <img id="showImage" class="show-avatar" src="{{ asset('/images/logo-no-background.png') }}" alt="avatar" style="width: 200px;">
-                        </div>
-
-                        <div id="button">
-                            <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image') }}</i>
-                        </div>
-
-                    </div>
-                    @if ($errors->has('images'))
-                        <span class="text-danger">{{ $errors->first('images') }}</span>
-                    @endif
-                </div>
                 <div class="col-md-9">
                     <div class="mt-2">
                         <label for="name" class="form-label">{{ __('Name') }}</label>
@@ -72,6 +55,40 @@
                         <input class="form-control" type="text" name="description" id="description" value="{{ old('description') }}" placeholder="{{ __('Enter group description') }}" />
                         @if ($errors->has('description'))
                             <span class="text-danger">{{ $errors->first('description') }}</span>
+                        @endif
+                    </div>
+
+                    <div class="mt-4 ">
+                        <label for="description" class="form-label">{{ __('Date') }}</label>
+                        <input class="form-control" type="date" name="date" id="date" value="{{ old('date') }}" placeholder="{{ __('Enter group date') }}" />
+                        @if ($errors->has('date'))
+                            <span class="text-danger">{{ $errors->first('date') }}</span>
+                        @endif
+                    </div>
+                    <label for="activity_time" class="form-label mt-4">{{ __('Activity time') }}</label>
+
+                    <div class=" row">
+                       <div class="col-md-6">
+                           <p class="">Start</p>
+                           <input class="form-control" type="time" name="start_time" id="start_time" value="{{ old('start_time') }}" />
+                           @if ($errors->has('start_time'))
+                               <span class="text-danger">{{ $errors->first('start_time') }}</span>
+                           @endif
+                       </div>
+                        <div class="col-md-6">
+                            <p>End</p>
+                            <input class="form-control" type="time" name="end_time" id="start_time" value="{{ old('end_time') }}" />
+                            @if ($errors->has('end_time'))
+                                <span class="text-danger">{{ $errors->first('end_time') }}</span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <label for="number_of_members" class="form-label">{{ __('Number of members') }}</label>
+                        <input class="form-control" type="number" name="number_of_members" id="number_of_members" min="1" max="50" value="{{ old('number_of_members') }}" placeholder="{{ __('Choose number of member') }}" />
+                        @if ($errors->has('number_of_members'))
+                            <span class="text-danger">{{ $errors->first('number_of_members') }}</span>
                         @endif
                     </div>
                     <div class="mt-4">
@@ -97,17 +114,8 @@
                             <span class="text-danger">{{ $errors->first('note') }}</span>
                         @endif
                     </div>
-
-                    <div class="mt-4">
-                        <label for="status" class="form-label">{{ __('Status') }}</label>
-                        <select class="form-select" name="status" id="status" value="{{ old('status') }}">
-                            <option value="public">{{ __('Public') }}</option>
-                            <option value="private">{{ __('Private') }}</option>
-                        </select>
-                    </div>
-
-                    <div class="mt-4">
-                        <input type="hidden" class="form-control" type="text" name="active" id="note" value="1" />
+                    <div class="form-group">
+                        <input class="form-control" type="text" value="{{ $group->id }}" name="group_id" id="name" hidden />
                     </div>
                 </div>
             </div>
