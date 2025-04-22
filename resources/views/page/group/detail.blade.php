@@ -76,8 +76,13 @@ $utility = new \App\Enums\Utility();
     <hr>
     <div class=" container d-flex">
         @if(Auth::check() and $isJoined)
-        <div class="mt-4" style="margin-right: 10px;">
-            <button class=" btn-training" id="group-{{ $getGroup->name }}" onclick="training(this.id)">{{ __('Training') }}</button>
+        <div class="nav-item">
+            <a class="mt-4 btn-training mx-2 nav-link" style="width: auto">{{__('Training')}} ▼</a>
+            <div class="dropdown-content">
+                <a href="#" id="group-{{ $getGroup->name }}" onclick="training(this.id)">{{__('List Group Training')}}</a>
+                <a class="" href=" {{ route('create.GroupTraining', $getGroup->id) }}" > {{ 'Create Group Training' }}</a>
+
+            </div>
         </div>
         @endif
 

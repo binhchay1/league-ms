@@ -126,6 +126,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/my-group/{id}/info/', [ProfileController::class, 'infoMyGroup'])->name('my.infoMyGroup');
     Route::post('/update-my-group/{id}', [ProfileController::class, 'updateMyGroup'])->name('my.updateMyGroup');
     Route::delete('delete/my-group/{id}', [ProfileController::class, 'deleteMyGroup'])->name('delete.myGroup');
+    Route::get('/tournament-joined', [ProfileController::class, 'leagueJoin'])->name('league.leagueJoin');
+    Route::get('/group-joined', [ProfileController::class, 'groupJoin'])->name('group.groupJoin');
 
 
     Route::post('/register-league/', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
@@ -194,7 +196,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/new-group/', [GroupController::class, 'createGroup'])->name('group.createGroup');
     Route::post('/store-new-group/', [GroupController::class, 'storeGroup'])->name('group.storeGroup');
-
+    Route::get('group/{id}/create-group-training/', [GroupController::class, 'createGroupTraining'])->name('create.GroupTraining');
+    Route::post('/store-training/', [GroupController::class, 'storeGroupTraining'])->name('store.GroupTraining');
 
     //category post
     Route::get('/list-category-post/', [CategoryPostController::class, 'index'])->name('categoryPost.index');

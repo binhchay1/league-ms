@@ -54,6 +54,7 @@
         font-weight: bold !important;
     }
 
+
 </style>
 @section('content')
     <section >
@@ -83,7 +84,7 @@
                     <!-- Sidebar -->
                     <div class="col-md-3 p-3 bg-light">
                         <div class="list-group">
-                            <a href="{{route('league.createTour')}}" data-id="league-created" class="list-group-item list-group-item-action ">{{'League Created'}}</a>
+                            <a href="{{route('league.createTour')}}" data-id="league-created" class="list-group-item list-group-item-action">{{'League Created'}}</a>
                             <a href="{{route('league.leagueJoin')}}"  data-id="league-join" class="list-group-item list-group-item-action">{{'League Joined'}}</a>
                         </div>
                     </div>
@@ -91,7 +92,7 @@
                     <!-- Tournament List -->
                     <div class="col-md-9 p-3">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4>{{'My leagues'}}</h4>
+                            <h4>{{'My leagues join'}}</h4>
                             <a href="{{route('league.createTour')}}">
                                 <button class="btn btn-success">{{ __('Create League') }}</button>
                             </a>
