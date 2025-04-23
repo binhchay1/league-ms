@@ -2,10 +2,35 @@
     .player {
         font-weight: 500;
         padding-left: 5px;
+        font-size: 15px;
+
     }
 
     .game-completed {
         font-weight: 500;
+    }
+
+    .location-name {
+        background: green;
+        text-align: center;
+        padding: 10px !important;
+        color: white !important;
+        border-radius: 5px !important;
+        text-transform: uppercase;
+
+    }
+
+    .score {
+        font-size: 15px;
+        background: green;
+        padding: 10px;
+        border-radius: 5px;
+        color: white;
+        margin: 20px;
+    }
+
+    .time {
+        font-size: 15px;
     }
 </style>
 <!DOCTYPE html>
@@ -43,7 +68,7 @@
                                                             <div class="team-details-wrap">
                                                                 <div class="player1-wrap">
                                                                     <div class="player1 player_winner player">
-                                                                        {{$schedule->player1Team1->name ?? ""}}
+                                                                        {{$schedule->player1Team1->name ?? "Team Win"}}
                                                                     </div>
                                                                     <div class="flag">
                                                                         <img src="{{asset( $schedule->player1Team1->profile_photo_path ?? '/images/no-image.png')}}">
@@ -63,7 +88,17 @@
                                                                 @endif
                                                             </div>
 
-                                                            <div class="vs"> bt </div>
+                                                            <div class="score">
+                                                                @if(!empty($schedule->result_team_1 && $schedule->set_1_team_2))
+                                                                    <div>
+                                                                        {{$schedule->result_team_1 }} - {{$schedule->result_team_2 }}
+                                                                    </div>
+                                                                @else
+                                                                    <div>
+                                                                      0 - 0
+                                                                    </div>
+                                                                @endif
+                                                            </div>
 
                                                             <div class="team-details-wrap">
                                                                 <div class="player3-wrap player">
@@ -72,7 +107,7 @@
 
                                                                     </div>
                                                                     <div class="player3 player">
-                                                                        {{$schedule->player1Team2->name ?? ""}}
+                                                                        {{$schedule->player1Team2->name ?? "Team Win"}}
                                                                     </div>
                                                                 </div>
                                                                 @if(isset($schedule->player2Team2))
@@ -90,28 +125,6 @@
                                                         </div>
 
 
-                                                        <div class="score">
-                                                            @if(empty($schedule->set_1_team_1 && $schedule->set_1_team_2))
-                                                            @else
-                                                            <div>
-                                                                {{$schedule->set_1_team_1 }} - {{$schedule->set_1_team_2 }},
-                                                            </div>
-                                                            @endif
-
-                                                            @if(empty($schedule->set_2_team_1 && $schedule->set_2_team_2))
-                                                            @else
-                                                            <div>
-                                                                {{$schedule->set_2_team_1 }} - {{$schedule->set_2_team_2 }}
-                                                            </div>
-                                                            @endif
-
-                                                            @if(empty($schedule->set_3_team_1 && $schedule->set_3_team_2))
-                                                            @else
-                                                            <div>
-                                                                ,{{$schedule->set_3_team_1 }} - {{$schedule->set_3_team_2 }}
-                                                            </div>
-                                                            @endif
-                                                        </div>
                                                     </div>
                                                     <div class="timer1">
                                                         <?php $date = date('d/m/Y', strtotime($schedule->date)); ?>

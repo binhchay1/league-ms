@@ -2,6 +2,7 @@
     .player {
         font-weight: 500;
         padding-left: 5px;
+        font-size: 15px;
     }
 
     .btn-referee {
@@ -14,6 +15,20 @@
     .btn-referee:hover {
         background: white !important;
         color: red !important;
+    }
+
+    .location-name {
+        background: green;
+        text-align: center;
+        padding: 10px !important;
+        color: white !important;
+        border-radius: 5px !important;
+        text-transform: uppercase;
+
+    }
+
+    .time {
+        font-size: 15px;
     }
 </style>
 <!DOCTYPE html>

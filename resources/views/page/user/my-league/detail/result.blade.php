@@ -2,10 +2,35 @@
     .player {
         font-weight: 500;
         padding-left: 5px;
+        font-size: 15px;
+
     }
 
     .game-completed {
         font-weight: 500;
+    }
+
+    .location-name {
+        background: green;
+        text-align: center;
+        padding: 10px !important;
+        color: white !important;
+        border-radius: 5px !important;
+        text-transform: uppercase;
+
+    }
+
+    .score {
+        font-size: 15px;
+        background: green;
+        padding: 10px;
+        border-radius: 5px;
+        color: white;
+        margin: 20px;
+    }
+
+    .time {
+        font-size: 15px;
     }
 </style>
 <!DOCTYPE html>
@@ -63,7 +88,17 @@
                                                                 @endif
                                                             </div>
 
-                                                            <div class="vs"> bt </div>
+                                                            <div class="score">
+                                                                @if(!empty($schedule->result_team_1 && $schedule->set_1_team_2))
+                                                                    <div>
+                                                                        {{$schedule->result_team_1 }} - {{$schedule->result_team_2 }}
+                                                                    </div>
+                                                                @else
+                                                                    <div>
+                                                                        0 - 0
+                                                                    </div>
+                                                                @endif
+                                                            </div>
 
                                                             <div class="team-details-wrap">
                                                                 <div class="player3-wrap player">
@@ -87,30 +122,6 @@
                                                                 </div>
                                                                 @endif
                                                             </div>
-                                                        </div>
-
-
-                                                        <div class="score">
-                                                            @if(empty($schedule->set_1_team_1 && $schedule->set_1_team_2))
-                                                            @else
-                                                            <div>
-                                                                {{$schedule->set_1_team_1 }} - {{$schedule->set_1_team_2 }},
-                                                            </div>
-                                                            @endif
-
-                                                            @if(empty($schedule->set_2_team_1 && $schedule->set_2_team_2))
-                                                            @else
-                                                            <div>
-                                                                {{$schedule->set_2_team_1 }} - {{$schedule->set_2_team_2 }}
-                                                            </div>
-                                                            @endif
-
-                                                            @if(empty($schedule->set_3_team_1 && $schedule->set_3_team_2))
-                                                            @else
-                                                            <div>
-                                                                ,{{$schedule->set_3_team_1 }} - {{$schedule->set_3_team_2 }}
-                                                            </div>
-                                                            @endif
                                                         </div>
                                                     </div>
                                                     <div class="timer1">
