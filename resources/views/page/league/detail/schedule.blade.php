@@ -2,6 +2,7 @@
     .player {
         font-weight: 500;
         padding-left: 5px;
+        font-size: 15px;
     }
 
     .btn-referee {
@@ -14,6 +15,20 @@
     .btn-referee:hover {
         background: white !important;
         color: red !important;
+    }
+
+    .location-name {
+        background: green;
+        text-align: center;
+        padding: 10px !important;
+        color: white !important;
+        border-radius: 5px !important;
+        text-transform: uppercase;
+
+    }
+
+    .time {
+        font-size: 15px;
     }
 </style>
 <!DOCTYPE html>
@@ -47,6 +62,7 @@ if (Auth::check()) {
                                             </li>
                                             <?php $collection = collect($schedules)->sortBy('match'); ?>
                                             @foreach($collection as $index => $schedule )
+
                                             <li class="row1 draw-WD - Group B match-147 " id="{{$index}}">
                                                 <a id="match-link">
                                                     <div class="round_time">
@@ -61,7 +77,7 @@ if (Auth::check()) {
                                                             <div class="team-details-wrap">
                                                                 <div class="player1-wrap">
                                                                     <div class="player1 player_winner player">
-                                                                        {{ $schedule->player1Team1->name ?? "" }}
+                                                                        {{ $schedule->player1Team1->name ?? "Team Win" }}
                                                                     </div>
                                                                     <div class="flag">
                                                                         <img src="{{ asset( $schedule->player1Team1->profile_photo_path ?? '/images/no-image.png') }}">
@@ -71,7 +87,7 @@ if (Auth::check()) {
                                                                 @if(isset($schedule->player2Team1->name))
                                                                 <div class="player2-wrap">
                                                                     <div class="player2 player_winner player">
-                                                                        {{ $schedule->player2Team1->name ?? "" }}
+                                                                        {{ $schedule->player2Team1->name ?? "Team Win" }}
                                                                     </div>
                                                                     <div class="flag">
                                                                         <img src="{{ asset( $schedule->player2Team1->profile_photo_path ?? '/images/no-image.png') }}">
@@ -84,13 +100,13 @@ if (Auth::check()) {
                                                             <div class="vs"> vs </div>
 
                                                             <div class="team-details-wrap">
-                                                                <div class="player3-wrap player">
+                                                                <div class="player3-wrap  player">
                                                                     <div class="flag">
                                                                         <img src="{{ asset( $schedule->player1Team2->profile_photo_path ?? '/images/no-image.png') }}">
 
                                                                     </div>
-                                                                    <div class="player3 player">
-                                                                        {{ $schedule->player1Team2->name ?? "" }}
+                                                                    <div class="player3 player_winner player">
+                                                                        {{ $schedule->player1Team2->name ?? "Team Win" }}
                                                                     </div>
                                                                 </div>
                                                                 @if(isset($schedule->player2Team2->name))
@@ -99,7 +115,7 @@ if (Auth::check()) {
                                                                         <img src="{{ asset( $schedule->player2Team2->profile_photo_path ?? '/images/no-image.png') }}">
 
                                                                     </div>
-                                                                    <div class="player4 player">
+                                                                    <div class="player4  player_winner player">
                                                                         {{ $schedule->player2Team2->name ?? asset('/images/no-image.png') }}
                                                                     </div>
                                                                 </div>
@@ -118,8 +134,8 @@ if (Auth::check()) {
                                                     </div>
                                                 </a>
                                             </li>
+
                                             @endforeach
-                                            <hr>
                                             @empty
                                                 <div class="text-center">
                                                     <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">

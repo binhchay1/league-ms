@@ -101,7 +101,7 @@
                                 <button class="btn btn-custom">{{ __('Player') }} </button>
                             </a>
                             <!-- Dropdown -->
-                        @if(Auth::user()->id == $leagueInfor->owner_id)
+                        @if(Auth::check() && Auth::user()->id  == $leagueInfor->owner_id)
                             <!-- Dropdown -->
                                 <div class="dropdown">
                                     <button class="btn btn-custom" type="button" data-bs-toggle="dropdown" aria-expanded="false">
