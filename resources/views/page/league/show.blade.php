@@ -137,6 +137,7 @@
                 ?>
 
                 @if($current_date < $start_date && $current_date < $end_date_register)
+                    @if(Route::is('league.info') )
                     <div class="container col-md-12 " id="form-reg">
                         <div class="league-banner--enroll flex flex-jus-center flex-align-center flex-column gradient">
                             <h4 class="text-center mb-10 text-white " style="opacity:1">
@@ -176,6 +177,7 @@
                             </div>
                         </div>
                     </div>
+                        @endif
                 @endif
                 <div class="container wrapper-content-results" style="padding: 0px; margin-top: 18px;">
                     <div class="modal" id="myModal">
@@ -188,55 +190,24 @@
                                 </div>
 
                                 @if(Auth::check())
-                                    <div class="modal-body">
-                                        <div class="leagueInfo">
-                                            <div class="tab-content" id="tab-content">
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <img
-                                                            class="image-modal-data lazy truncated initial loaded white center"
-                                                            src="{{$leagueInfor->images}}">
-                                                    </div>
-                                                    <div class="col-lg-8 league-data">
-                                                        <h4 class="">{{ $leagueInfor->name }}</h4>
-                                                        {{ $leagueInfor->type_of_league }}
-                                                        <?php $start_date = date('d/m/Y', strtotime($leagueInfor->start_date));
-                                                        $end_date = date('d/m/Y', strtotime($leagueInfor->end_date));
-                                                        ?>
-                                                        <h6 class="">{{ __('Start Date') }}: {{ $start_date }}</h6>
-                                                        <h6 class="">{{ __('End Date') }}: {{ $end_date }}</h6>
-                                                        <p class="">{{ __('PRIZE MONEY USD ') }}${{ $leagueInfor->money
-                                                            }}</p>
-                                                    </div>
-                                                    <div class="checkbox" align="center">
-                                                        <input id="check" name="checkbox" type="checkbox">
-                                                        <label
-                                                            for="checkbox">{{ __('I have read and agree to the tournament rules') }}</label>
-                                                    </div>
-                                                    <div align="center">
-                                                        <button id="open-tab1" class="btn btn-success"
-                                                                disabled>{{ __('Register ') }}</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="infor" style="display: none">
+                                    <div id="form-register" class="hidden">
+                                        <div class="infor" >
                                             <h1 align="center">{{__('Confirm Information')}}</h1>
                                             <form id="formAccountSettings" method="POST"
                                                   action="{{route('registerLeague')}}" enctype="multipart/form-data">
                                                 @csrf()
                                                 <div class="tab-content rankings-content_tabpanel">
-                                                    <div class="item-active">
-                                                        <table width="100%" cellpadding="0" cellspacing="0" border="0"
-                                                               class="rankings-table">
+                                                    <div class="item">
+                                                        <table width="100%"
+                                                               class="min-w-full border border-gray-300 border-collapse text-sm">
                                                             <thead align="center">
-                                                            <tr>
+                                                            <tr class="tr-title" style="background: #596377">
                                                                 <th style="text-align: center" class="col-rank"
                                                                     align="center">{{ __('Name') }}</th>
                                                                 <th style="text-align: center" class="col-country"
                                                                     align="center">{{ __('Image') }}</th>
                                                                 <th style="text-align: center"
-                                                                    class="col-player">{{ __('Age') }}</th>
+                                                                    class="col-player">{{ __('Email') }}</th>
                                                                 <th style="text-align: center" class="col-points"
                                                                     align="center">{{ __('Address') }}</th>
                                                             </tr>
@@ -264,7 +235,7 @@
 
                                                                 <td align="center" class="data-player">
                                                                     <div class="player">
-                                                                        {{ Auth::user()->age }}
+                                                                        {{ Auth::user()->email }}
                                                                     </div>
                                                                 </td>
                                                                 <td class="data-points" align="center">
@@ -274,14 +245,20 @@
                                                         </table>
                                                     </div>
                                                 </div>
+                                                <!-- Checkbox -->
+                                                <div class="checkbox text-center my-4">
+                                                    <label for="check">{{ __('You should check your information again before submitting.') }}</label>
+                                                </div>
 
-                                                <div class="mt-4">
-                                                    <button type="submit"
-                                                            class="btn btn-success me-2">{{ __('Send Information') }}</button>
+                                                <!-- Button bị disable ban đầu -->
+                                                <div class="mt-4 text-center">
+                                                    <button type="submit" id="submit-reg"
+                                                            class="btn btn-success me-2" >{{ __('Send Information') }}</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
+
                                 @else
                                     <div align="center">
                                         <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
@@ -297,74 +274,6 @@
                         </div>
                     </div>
 
-                    <div id="form-register" class="hidden">
-                        <div class="infor" >
-                            <h1 align="center">{{__('Confirm Information')}}</h1>
-                            <form id="formAccountSettings" method="POST"
-                                  action="{{route('registerLeague')}}" enctype="multipart/form-data">
-                                @csrf()
-                                <div class="tab-content rankings-content_tabpanel">
-                                    <div class="item">
-                                        <table width="100%"
-                                               class="min-w-full border border-gray-300 border-collapse text-sm">
-                                            <thead align="center">
-                                            <tr class="tr-title" style="background: #596377">
-                                                <th style="text-align: center" class="col-rank"
-                                                    align="center">{{ __('Name') }}</th>
-                                                <th style="text-align: center" class="col-country"
-                                                    align="center">{{ __('Image') }}</th>
-                                                <th style="text-align: center"
-                                                    class="col-player">{{ __('Email') }}</th>
-                                                <th style="text-align: center" class="col-points"
-                                                    align="center">{{ __('Address') }}</th>
-                                            </tr>
-                                            </thead>
-                                            <tr class="row-top-eight">
-                                                <input type="hidden" name="league_id" id=""
-                                                       value="{{ $leagueInfor->id }}">
-                                                <input type="hidden" name="end_date_register" id=""
-                                                       value="{{ $leagueInfor->end_date_register }}">
-                                                <input type="hidden" name="start_date" id=""
-                                                       value="{{ $leagueInfor->start_date }}">
-                                                <input type="hidden" name="user_id"
-                                                       value="{{ Auth::user()->id }}">
-                                                <input type="hidden" name="status" value="0">
-                                                <td align="center">
-                                                    {{ Auth::user()->name }}
-                                                </td>
-                                                <td align="center">
-                                                    <div class="country">
-                                                        <img width="48"
-                                                             src="{{ asset(Auth::user()->profile_photo_path ?? '/images/no-image.png') }}"
-                                                             title="Japan" class="flag image-user">
-                                                    </div>
-                                                </td>
-
-                                                <td align="center" class="data-player">
-                                                    <div class="player">
-                                                        {{ Auth::user()->email }}
-                                                    </div>
-                                                </td>
-                                                <td class="data-points" align="center">
-                                                    {{ Auth::user()->address }}
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                                <!-- Checkbox -->
-                                <div class="checkbox text-center my-4">
-                                    <label for="check">{{ __('You should check your information again before submitting.') }}</label>
-                                </div>
-
-                                <!-- Button bị disable ban đầu -->
-                                <div class="mt-4 text-center">
-                                    <button type="submit" id="submit-reg"
-                                            class="btn btn-success me-2" >{{ __('Send Information') }}</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
 
                     <div class="content-results">
                         <div class="item-results">
