@@ -107,4 +107,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Group::class, 'group_owner', 'id');
     }
+
+    public function partner()
+    {
+        return $this->hasMany(Partner::class,'created_by_user_id', 'id');
+    }
 }

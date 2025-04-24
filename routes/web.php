@@ -38,6 +38,7 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/privacy/', [HomeController::class, 'viewPrivacy'])->name('privacy');
     Route::get('/term-and-conditions/', [HomeController::class, 'viewTermAndConditions'])->name('term.and.conditions');
     Route::get('/tournament-league/{slug}/', [HomeController::class, 'showInfo'])->name('league.info');
+    Route::get('/tournament-register/{slug}/', [HomeController::class, 'formRegisterLeague'])->name('league.formRegisterLeague');
     Route::get('/tournament-league/{slug}/player/', [HomeController::class, 'showPlayer'])->name('leaguePlayer.info');
     Route::get('/tournament-league/{slug}/result/', [HomeController::class, 'showResult'])->name('leagueResult.info');
     Route::get('/tournament-league/{slug}/schedule/', [HomeController::class, 'showSchedule'])->name('leagueSchedule.info');
@@ -131,6 +132,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
     Route::post('/register-league/', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
+    Route::post('/partner/', [HomeController::class, 'storePartnerAjax'])->name('user.create.partner');
     Route::get('/player/{id}/', [HomeController::class, 'viewInforPlayer'])->name('player.info');
     Route::get('/read-notifications/', [HomeController::class, 'readNotification'])->name('read.notification');
     Route::get('/profile/', [AuthController::class, 'profile'])->name('profile');

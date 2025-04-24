@@ -47,4 +47,13 @@ class UserLeagueRepository extends BaseRepository
         ->where('user_id', $userId)
         ->exists();
     }
+
+    public function hasPartnerInThisLeague($user, $league)
+    {
+        return $this->model->where('user_id', $user)
+            ->where('league_id', $league)
+            ->whereNotNull('partner_id')
+            ->exists();
+    }
+
 }

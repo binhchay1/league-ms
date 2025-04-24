@@ -2,12 +2,14 @@
 
 namespace App\Jobs;
 
+use App\Repositories\ScheduleRepository;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use App\Repositories\ResultRepository;
 
 class UpdateResultJob implements ShouldQueue
 {
@@ -27,7 +29,15 @@ class UpdateResultJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($s_i, $type, $score, $set, $scheduleRepository, $resultRepository, $new_score_player, $requestPlayer)
+    public function __construct(
+        $s_i,
+        $type,
+        $score,
+        $set,
+        ResultRepository $resultRepository,
+        ScheduleRepository $scheduleRepository,
+        $new_score_player,
+        $requestPlayer)
     {
         $this->s_i = $s_i;
         $this->type = $type;
@@ -38,6 +48,7 @@ class UpdateResultJob implements ShouldQueue
         $this->new_score_player = $new_score_player;
         $this->requestPlayer = $requestPlayer;
     }
+
 
     /**
      * Execute the job.

@@ -106,3 +106,6 @@
         });
     </script>
 @endsection
+@section('js')
+    <script src="{{ asset('js/admin/live-score.js') }}"></script>
+@endsection
