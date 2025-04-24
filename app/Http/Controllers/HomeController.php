@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\Group;
 use App\Enums\Utility;
+use App\Models\Partner;
 use App\Repositories\CategoryPostRepository;
 use App\Repositories\GroupRepository;
 use App\Repositories\GroupTrainingRepository;
@@ -319,9 +320,76 @@ class HomeController extends Controller
         return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'getListLeagues'));
     }
 
+    public function formRegisterLeague($slug)
+    {
+        $leagueInfor = $this->leagueRepository->showInfo($slug);
+        $getListLeagues = $this->leagueRepository->getListLeagues();
+        $dataLeague = $this->leagueRepository->show($slug);
+        $user = $this->userRepository->showInfo(Auth::user()->id);
+        $partners = $user->partner;
+        $groupSchedule = [];
+        foreach ($leagueInfor->schedule as $schedule) {
+            $groupSchedule[$schedule['round']][] = $schedule;
+        }
+        return view('page.league.register-league', compact('leagueInfor', 'getListLeagues', 'groupSchedule','dataLeague', 'partners'));
+    }
+
+    public function storePartnerAjax(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'nullable|string|max:20',
+        ]);
+
+        $input['created_by_user_id'] = Auth::user()->id;
+        if (isset($input['avatar'])) {
+            $img = $this->utility->saveAvatarPartner($input);
+            if ($img) {
+                $path = 'images/upload/partner/' . $input['avatar']->getClientOriginalName();
+                $input['avatar'] = $path;
+            }
+        }
+
+        $partner = Partner::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'avatar' => $input['avatar'] ?? "",
+            'created_by_user_id' => $input['created_by_user_id']
+            // thêm avatar nếu có
+        ]);
+
+        return back()->with('message', 'Create partner success');
+    }
+
+
+
     public function saveRegisterLeague(Request $request)
     {
         $input = $request->except(['_token']);
+        $league = $this->leagueRepository->getLeagueById($input['league_id']);
+
+        if ($league->type_of_league == 'doubles')
+        {
+
+           $user = $this->userRepository->showInfo($input['user_id']);
+           if(empty($user->partner))
+           {
+               return back()->with('error', 'You must have a partner, please create one');
+           }
+
+            // Kiểm tra đã tồn tại bản ghi với partner cho cùng giải chưa
+            $hasPartnerInThisLeague = $this->userLeagueRepository->hasPartnerInThisLeague($input['user_id'], $input['league_id']);
+            if ($hasPartnerInThisLeague) {
+                return back()->with('error', 'You already have a partner registered for this tournament.');
+            }
+
+            if($input['partner_id'] == null)
+            {
+                return back()->with('error', 'You have not chosen a partner yet for this tournament.');
+            }
+        }
 
         $startDate = strtotime($request['start_date']);
         $dateCurrent =  strtotime(date("Y-m-d"));
@@ -331,11 +399,11 @@ class HomeController extends Controller
         }
         $checkExistRegister = $this->userLeagueRepository->checkRegister($input['league_id'], $input['user_id']);
         if($checkExistRegister) {
-            return back()->with('message', 'You have registered for the tournament. ');
+            return back()->with('error', 'You have registered for the tournament. ');
         }
         $this->userLeagueRepository->store($input);
 
-        return back()->with('message', 'You are allowed to access');
+        return back()->with('message', 'You have registered for the tournament success.');
     }
 
     public function readNotification()

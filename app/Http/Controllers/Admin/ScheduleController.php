@@ -180,8 +180,7 @@ class ScheduleController extends Controller
         $totalMembers = count($listAuto);
         $dateData = $getLeague->start_date;
         $countNextDate = 1;
-
-        if (strpos($getLeague->type_of_league, 'singles') > 0) {
+        if (strpos($getLeague->type_of_league, 'singles') !== false) {
             if ($totalMembers < 4) {
                 $report = __('The number of members participating in the tournament must be greater than 4');
                 return redirect()->route('schedule.leagueSchedule', $getLeague->slug)->with('error', $report);

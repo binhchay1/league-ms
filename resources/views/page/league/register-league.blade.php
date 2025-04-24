@@ -67,6 +67,30 @@
         color: white;
     }
 
+    #playerSelect {
+        padding: 3px !important;
+        width: 50%;
+        margin-left: 10px;
+        margin-bottom: 20px;
+        margin-top: 20px !important;
+        color: black;
+        font-size: 15px;
+    }
+
+    .font-medium {
+        border: 1px solid transparent;
+        border-radius: 4px;
+        padding: 10px;
+        background-color: #d9edf7;
+        color: #31708f;
+        margin-left: 10px;
+        width: 98% !important;
+        font-size: 18px !important;
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+    }
+
+
 </style>
 @section('content')
     <div id="page" class="hfeed site">
@@ -136,58 +160,14 @@
                 $format_register_date = $leagueInfor->end_date_register;
                 ?>
 
-                @if($current_date < $start_date && $current_date < $end_date_register)
-                    <div class="container col-md-12 " id="form-reg">
-                        <div class="league-banner--enroll flex flex-jus-center flex-align-center flex-column gradient">
-                            <h4 class="text-center mb-10 text-white " style="opacity:1">
-                                <span class="text-warning hidden" id="deadline-date">09/26/2024</span>
-                                <span class="text-warning hidden" id="extend-time">23:59:59</span>
-                                Giải cho phép đăng ký trực tuyến đến hết ngày <span class="text-warning"
-                                                                                    style="color:#efff00">{{ $get_date_register }}</span>
-                            </h4>
-                            <div id="clockdiv">
-                                <div>
-                                    <span id="data_day" class="days"></span>
-                                    <div class="smalltext">{{__('Days')}}</div>
-                                </div>
-                                <div>
-                                    <span id="data_hours"  class="hours"></span>
-                                    <div class="smalltext">{{__('hours')}}</div>
-                                </div>
-                                <div>
-                                    <span id="data_minutes"  class="minutes"></span>
-                                    <div class="smalltext">{{__('Minutes')}}</div>
-                                </div>
-                                <div>
-                                    <span id="data_seconds"  class="seconds"></span>
-                                    <div class="smalltext">{{__('Seconds')}}</div>
-                                </div>
-                            </div>
-                            <div class="mb-20 text-center">
-                                <button onclick="switchDivs()()" type="button" id="btn-register" class="btn btn-primary " data-bs-toggle="modal"
-                                        data-bs-target="">
-                                    <a href="{{route('league.formRegisterLeague', $leagueInfor->slug)}}" style="color: white !important;">
-                                        {{ __('Register League') }}</a>
-                                </button>
-                            </div>
-                            <div class="competitor-members mb-20">
-                                <div class="flex flex-jus-center">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
                 <div class="container wrapper-content-results" style="padding: 0px; margin-top: 18px;">
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">
                             <div class="modal-content" id="modal-content">
                                 <div class="modal-header">
-
                                     <h4  class="modal-title">{{ __('Register League') }}</h4>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
-
-                                @if(Auth::check())
                                     <div class="modal-body">
                                         <div class="leagueInfo">
                                             <div class="tab-content" id="tab-content">
@@ -282,24 +262,14 @@
                                             </form>
                                         </div>
                                     </div>
-                                @else
-                                    <div align="center">
-                                        <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
 
-                                        <h4 class="mt-4 login-redriect">{{ __('Please')}}
-                                            <a
-                                                href="{{ route('login') }}">{{__('login')}}</a>
-                                            {{__('before registering for the tournament!') }}
-                                        </h4>
-                                    </div>
-                                @endif
                             </div>
                         </div>
                     </div>
 
-                    <div id="form-register" class="hidden">
+                    <div id="form-register" >
                         <div class="infor" >
-                            <h1 align="center">{{__('Confirm Information')}}</h1>
+                            <h3 align="center">{{__('Confirm Information')}}</h3>
                             <form id="formAccountSettings" method="POST"
                                   action="{{route('registerLeague')}}" enctype="multipart/form-data">
                                 @csrf()
@@ -352,19 +322,116 @@
                                         </table>
                                     </div>
                                 </div>
-                                <!-- Checkbox -->
-                                <div class="checkbox text-center my-4">
-                                    <label for="check">{{ __('You should check your information again before submitting.') }}</label>
-                                </div>
+                                @if($leagueInfor->type_of_league == 'doubles')
+                                    <div id="formPartner">
+                                        <div class="row mb-6">
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                                {{'You are in doubles mode, please choose or create a new partner.'}}
+                                            </label>
 
+                                            <select id="playerSelect" name="partner_id"
+                                                    class=" block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+                                                <option value="">-- {{'choose'}} --</option>
+                                                @foreach($partners as $partner)
+                                                    <option value="{{$partner->id}}">{{$partner->name}}</option>
+                                                @endforeach
+                                                <option value="new">{{'Create new partner'}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                        @endif
                                 <!-- Button bị disable ban đầu -->
-                                <div class="mt-4 text-center">
-                                    <button type="submit" id="submit-reg"
+                                <div class="mt-4 text-center" id="submit-reg">
+                                    <button type="submit"
                                             class="btn btn-success me-2" >{{ __('Send Information') }}</button>
                                 </div>
                             </form>
                         </div>
                     </div>
+
+{{--                    @if($leagueInfor->type_of_league == 'doubles')--}}
+{{--                    <div id="formPartner">--}}
+{{--                        <div class="row mb-6">--}}
+{{--                            <label class="block text-sm font-medium text-gray-700 mb-1">--}}
+{{--                                Vui lòng chọn Người chơi--}}
+{{--                            </label>--}}
+
+{{--                            <select id="playerSelect" name="partner_id"--}}
+{{--                                    class=" block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">--}}
+{{--                                <option value="">-- Vui lòng chọn --</option>--}}
+{{--                                @foreach($partners as $partner)--}}
+{{--                                    <option value="{{$partner->id}}">{{$partner->name}}</option>--}}
+{{--                                @endforeach--}}
+{{--                                <option value="new">Tạo Người Chơi Mới</option>--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+
+                        <!-- Form Tạo Người Chơi Mới -->
+                        <div id="newPlayerForm" class="hidden space-y-4 border rounded p-4 bg-gray-50">
+                            <div  id=""  class="  container mt-4 league-tour">
+                                <h2 class="text-left">{{'Create Partner'}}</h2>
+                                <hr>
+                                <form id="formAccountSettings" method="POST" action="{{route('user.create.partner')}}" enctype="multipart/form-data">
+                                    @csrf()
+                                    <div class="row mb-3 form-league">
+                                        <div class="col-md-4">
+                                            <label>{{ __('Avatar') }}</label>
+                                            <input value="" type="file" class="border-0 bg-light pl-0" name="avatar" id="image" hidden>
+                                            <div class=" choose-avatar">
+                                                <div id="btnimage">
+                                                    <img id="showImage" class="show-avatar" src="{{ asset('/images/logo-no-background.png') }}" alt="avatar" style="width: 200px;">
+                                                </div>
+
+                                                <div id="button">
+                                                    <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Avatar') }}</i>
+                                                </div>
+
+                                            </div>
+                                            @if ($errors->has('avatar'))
+                                                <span class="text-danger">{{ $errors->first('avatar') }}</span>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="row mb-3">
+                                                <div class="col-12">
+                                                    <label for="lastName" class="form-label">{{__('Name')}}</label>
+                                                    <input class="form-control" value="{{ old('name') }}" type="text" name="name" id="name" placeholder="{{ __('Enter name') }}"/>
+                                                    @if ($errors->has('name'))
+                                                        <span class="text-danger">{{ $errors->first('name') }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt-4">
+                                                <div class="form-group">
+                                                    <label for="lastName" class="form-label">{{ __('Email') }}</label>
+                                                    <input class="form-control" value="{{ old('email') }}" type="text" name="email" id="location" placeholder="{{ __('Enter email') }}"/>
+                                                    @if ($errors->has('email'))
+                                                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 mt-4">
+                                                <div class="form-group">
+                                                    <label for="lastName" class="form-label">{{ __('Phone') }}</label>
+                                                    <input class="form-control" value="{{ old('phone') }}" type="text" name="phone" id="location" placeholder="{{ __('Enter phone') }}"/>
+                                                    @if ($errors->has('phone'))
+                                                        <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-12">
+                                        <button class="create-partner-btn btn btn-success w-10 mt-4 mb-12">{{'Create'}}</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+{{--                    @endif--}}
 
                     <div class="content-results">
                         <div class="item-results">
@@ -418,42 +485,13 @@
 
 
     <script>
-        // Set the date we're counting down to
-        var register_date = '<?php echo $format_register_date ?>';
-        var countDownDate = new Date(register_date).getTime();
-        // Update the count down every 1 second
-        var x = setInterval(function() {
-            // Get today's date and time
-            var now = new Date().getTime();
-            // Find the distance between now and the count down date
-            var distance = countDownDate - now;
-            // Time calculations for days, hours, minutes and seconds
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            // Display the result in the element with id="demo"
-            document.getElementById("data_day").innerHTML = days;
-            document.getElementById("data_hours").innerHTML = hours;
-            document.getElementById("data_minutes").innerHTML = minutes;
-            document.getElementById("data_seconds").innerHTML = seconds;
-            //  + "d " + hours + "h "
-            // + minutes + "m " + seconds + "s ";
-
-            // If the count down is finished, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("demo").innerHTML = "EXPIRED";
-            }
-        }, 1000);
-    </script>
-
-    <script>
         const select = document.getElementById('playerSelect');
         const newPlayerForm = document.getElementById('newPlayerForm');
+        const btnSub = document.getElementById('submit-reg');
 
         select.addEventListener('change', function () {
             if (this.value === 'new') {
+                btnSub.classList.add('hidden');
                 newPlayerForm.classList.remove('hidden');
             } else {
                 newPlayerForm.classList.add('hidden');
@@ -462,14 +500,6 @@
 
     </script>
 
-    <script>
-        function switchDivs() {
-            const divA = document.getElementById('form-reg');
-            const divB = document.getElementById('form-register');
 
-            divA.classList.add('hidden');
-            divB.classList.remove('hidden');
-        }
-    </script>
 
 @endsection

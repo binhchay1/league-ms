@@ -102,6 +102,14 @@ return [
             'throw' => false,
         ],
 
+        'public-avatar-partner' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/upload/partner/',
+            'url' => env('APP_URL') . '/images/upload/partner/',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         'public-image-product' => [
             'driver' => 'local',
             'root' => public_path() . '/images/upload/product/',

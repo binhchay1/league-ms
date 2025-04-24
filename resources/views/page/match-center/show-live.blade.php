@@ -139,7 +139,7 @@ if (Auth::check()) {
                             <div class="round-details">
                                 <div class="round-details-text">
                                     <span class="round-oop">{{ __('Stadium') }}: {{ !empty($schedule->stadium) ? $schedule->stadium : 'N/A' }}</span>
-                                    @if ($schedule->date == now()->toDateString() && $schedule->player2Team1 !== null)
+                                    @if ($schedule->date == now()->toDateString() )
                                         <!-- Kiểm tra nếu người dùng đã đăng nhập và có quyền referee -->
                                             @if(Auth::check() && in_array('referee', $listTitle))
                                                 <div class="d-flex justify-content-center">

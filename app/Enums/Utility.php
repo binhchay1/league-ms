@@ -49,6 +49,14 @@ final class Utility
         }
     }
 
+    public function saveAvatarPartner($input)
+    {
+        if ($input) {
+            $status = Storage::disk('public-avatar-partner')->put($input['avatar']->getClientOriginalName(), $input['avatar']->get());
+            return $status;
+        }
+    }
+
     public function saveImagePost($input)
     {
         if ($input) {
