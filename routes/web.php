@@ -38,7 +38,6 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/privacy/', [HomeController::class, 'viewPrivacy'])->name('privacy');
     Route::get('/term-and-conditions/', [HomeController::class, 'viewTermAndConditions'])->name('term.and.conditions');
     Route::get('/tournament-league/{slug}/', [HomeController::class, 'showInfo'])->name('league.info');
-    Route::get('/tournament-register/{slug}/', [HomeController::class, 'formRegisterLeague'])->name('league.formRegisterLeague');
     Route::get('/tournament-league/{slug}/player/', [HomeController::class, 'showPlayer'])->name('leaguePlayer.info');
     Route::get('/tournament-league/{slug}/result/', [HomeController::class, 'showResult'])->name('leagueResult.info');
     Route::get('/tournament-league/{slug}/schedule/', [HomeController::class, 'showSchedule'])->name('leagueSchedule.info');
@@ -102,6 +101,7 @@ Route::post('/register/', [AuthController::class, 'storeUser'])->name('storeUser
 Route::get('/setLocale/{locale}/', [HomeController::class, 'changeLocate'])->name('app.setLocale');
 
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/tournament-register/{slug}/', [HomeController::class, 'formRegisterLeague'])->name('league.formRegisterLeague');
 
     //profile
     Route::get('/profile/{nick_name}/', [ProfileController::class, 'show'])->name('profile.info');
