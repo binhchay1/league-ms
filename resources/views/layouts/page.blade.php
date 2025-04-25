@@ -99,7 +99,7 @@
         text-decoration: none;
         display: block;
         clear: both;
-        font-weight: 400;
+        font-weight: 400 !important;
         line-height: 1.428571429;
         white-space: nowrap;
         font-size: 16px !important;

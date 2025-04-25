@@ -177,8 +177,16 @@ class ProfileController extends Controller
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
+        $countMatch = count($leagueInfor->schedule) ?? 0;
+        $countPlayer = count($leagueInfor->userLeagues) ?? 0;
+        $firstGroup = reset($groupSchedule);
+        if (is_array($firstGroup)) {
+            $firstThreeSchedules = array_slice($firstGroup, 0, 3);
+        } else {
+            $firstThreeSchedules = [];
+        }
 
-        return view('page.user.my-league.detail-my-league', compact('leagueInfor','getListLeagues', 'groupSchedule'));
+        return view('page.user.my-league.detail-my-league', compact('countPlayer','countMatch','firstThreeSchedules','leagueInfor','getListLeagues', 'groupSchedule'));
     }
 
     public function infoMyLeague($slug)
@@ -253,8 +261,30 @@ class ProfileController extends Controller
             $groupSchedule[$schedule['round']][] = $schedule;
         }
 
-
         return view('page.user.my-league.detail-my-league', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'listSchedules', 'groupRound', 'getListLeagues'));
+    }
+
+    public function myLeagueNews($slug)
+    {
+        $leagueInfor = $this->leagueRepository->showInfo($slug);
+        $countMatch = count($leagueInfor->schedule) ?? 0;
+        $countPlayer = count($leagueInfor->userLeagues) ?? 0;
+        $listLeagues = $this->leagueRepository->getLeagueHome();
+        $getListLeagues = $this->leagueRepository->getListLeagues();
+        $groupSchedule = [];
+        foreach ($leagueInfor->schedule as $schedule) {
+            $groupSchedule[$schedule['round']][] = $schedule;
+        }
+        $firstGroup = reset($groupSchedule);
+
+        if (is_array($firstGroup)) {
+            $firstThreeSchedules = array_slice($firstGroup, 0, 3);
+        } else {
+            $firstThreeSchedules = [];
+        }
+
+// Kiểm tra kết quả
+        return view('page.user.my-league.detail-my-league', compact('leagueInfor', 'listLeagues', 'getListLeagues', 'countMatch', 'countPlayer','firstThreeSchedules'));
     }
 
     public function myLeaguePlayerRegister($slug)

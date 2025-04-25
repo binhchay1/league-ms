@@ -195,7 +195,16 @@ class HomeController extends Controller
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
-        return view('page.league.show', compact('leagueInfor', 'getListLeagues', 'groupSchedule','dataLeague'));
+
+        $countMatch = count($leagueInfor->schedule) ?? 0;
+        $countPlayer = count($leagueInfor->userLeagues) ?? 0;
+        $firstGroup = reset($groupSchedule);
+        if (is_array($firstGroup)) {
+            $firstThreeSchedules = array_slice($firstGroup, 0, 3);
+        } else {
+            $firstThreeSchedules = [];
+        }
+        return view('page.league.show', compact('firstThreeSchedules','countPlayer','countMatch','leagueInfor', 'getListLeagues', 'groupSchedule','dataLeague'));
     }
 
     public function changeLocate($locale)
@@ -338,6 +347,29 @@ class HomeController extends Controller
             ->where('league_id', $leagueInfor->id)
             ->where('status', 1)->count();
         return view('page.league.show', compact('leagueInfor', 'listLeagues', 'getListLeagues', 'registrations','pendingCount', 'acceptedCount'));
+    }
+
+    public function showGeneralNews($slug)
+    {
+        $leagueInfor = $this->leagueRepository->showInfo($slug);
+        $countMatch = count($leagueInfor->schedule) ?? 0;
+        $countPlayer = count($leagueInfor->userLeagues) ?? 0;
+        $listLeagues = $this->leagueRepository->getLeagueHome();
+        $getListLeagues = $this->leagueRepository->getListLeagues();
+        $groupSchedule = [];
+        foreach ($leagueInfor->schedule as $schedule) {
+            $groupSchedule[$schedule['round']][] = $schedule;
+        }
+        $firstGroup = reset($groupSchedule);
+
+        if (is_array($firstGroup)) {
+            $firstThreeSchedules = array_slice($firstGroup, 0, 3);
+        } else {
+            $firstThreeSchedules = [];
+        }
+
+// Kiểm tra kết quả
+        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'getListLeagues', 'countMatch', 'countPlayer','firstThreeSchedules'));
     }
 
     public function formRegisterLeague($slug)

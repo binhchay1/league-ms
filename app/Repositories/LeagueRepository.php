@@ -49,6 +49,7 @@ class LeagueRepository extends BaseRepository
     {
         return $this->model->with(
             'userLeagues',
+            'schedule',
             'schedule.player1Team1',
             'schedule.player2Team1',
             'schedule.player1Team2',

@@ -117,22 +117,28 @@
                         </div>
                     </div>
                     <div class="d-flex gap-2 mt-4">
-                        @if($current_date < $start_date && $current_date < $end_date_register)
+                        @if(now() >= date('Y-m-d', strtotime($leagueInfor->start_date)))
+                            <a href="{{ route('showGeneralNews.info', $leagueInfor['slug']) }}"
+                               class="btn-custom {{ request()->routeIs('showGeneralNews.info') ? 'active' : '' }}">
+                                {{ __('News') }}
+                            </a>
+                            <a href="{{ route('leagueResult.info', $leagueInfor['slug']) }}"
+                               class="btn-custom {{ request()->routeIs('leagueResult.info') ? 'active' : '' }}">
+                                {{ __('Result') }}
+                            </a>
+                        @endif
+                        @if(($current_date < $end_date_register && $current_date <$start_date) || ($current_date > $end_date_register && $current_date <$start_date))
                             <a href="{{ route('showListRegister.info', $leagueInfor['slug']) }}"
                                class="btn-custom {{ request()->routeIs('showListRegister.info') ? 'active' : '' }}">
                                 {{ __('List Register') }}
                             </a>
-                        @endif
 
+                        @endif
                         <a href="{{ route('leagueResult.bracket', $leagueInfor['slug']) }}"
                            class="btn-custom {{ request()->routeIs('leagueResult.bracket') ? 'active' : '' }}">
                             {{ __('Bracket') }}
                         </a>
 
-                        <a href="{{ route('leagueResult.info', $leagueInfor['slug']) }}"
-                           class="btn-custom {{ request()->routeIs('leagueResult.info') ? 'active' : '' }}">
-                            {{ __('Result') }}
-                        </a>
 
                         <a href="{{ route('leagueSchedule.info', $leagueInfor['slug']) }}"
                            class="btn-custom {{ request()->routeIs('leagueSchedule.info') ? 'active' : '' }}">
@@ -160,8 +166,9 @@
                 </div>
                 <hr>
 
-                @if($current_date < $start_date && $current_date < $end_date_register)
-                    @if(Route::is('league.info') )
+                @if(now() < date('Y-m-d', strtotime($leagueInfor->end_date_register)))
+
+                @if(Route::is('league.info') )
                     <div class="container col-md-12 " id="form-reg">
                         <div class="league-banner--enroll flex flex-jus-center flex-align-center flex-column gradient">
                             <h4 class="text-center mb-10 text-white " style="opacity:1">
@@ -202,7 +209,7 @@
                         </div>
                     </div>
                     @endif
-                    @elseif($current_date < $start_date && $current_date > $end_date_register)
+                @elseif(now() > date('Y-m-d', strtotime($leagueInfor->end_date_register)) && now() < date('Y-m-d', strtotime($leagueInfor->start_date)) )
                     @if(Route::is('league.info') )
                         <div class="container col-md-12 " id="form-reg">
                             <div class="league-banner--enroll flex flex-jus-center flex-align-center flex-column gradient">
@@ -343,6 +350,10 @@
                                 <div>
                                     @include('page.league.detail.player-register')
                                 </div>
+                            @elseif(Route::current()->getName() == 'showGeneralNews.info')
+                                <div>
+                                    @include('page.league.detail.news')
+                                </div>
                             @elseif(Route::current()->getName() == 'leagueResult.info')
                                 <div>
                                     @include('page.league.detail.result')
@@ -355,7 +366,9 @@
                                 @include('page.league.detail.bracket')
                             @else
                                 <div class="item draws" style="display:block;">
-                                    @include('page.league.detail.schedule')
+                                    @if(now() >= date('Y-m-d', strtotime($leagueInfor->start_date)))
+                                        @include('page.league.detail.news')
+                                    @endif
                                 </div>
                             @endif
                         </div>
