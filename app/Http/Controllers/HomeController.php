@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\Group;
 use App\Enums\Utility;
 use App\Models\Partner;
+use App\Models\UserLeague;
 use App\Repositories\CategoryPostRepository;
 use App\Repositories\GroupRepository;
 use App\Repositories\GroupTrainingRepository;
@@ -318,6 +319,25 @@ class HomeController extends Controller
         }
 
         return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'getListLeagues'));
+    }
+
+    public function showListRegister($slug)
+    {
+        $leagueInfor = $this->leagueRepository->showInfo($slug);
+
+        $listLeagues = $this->leagueRepository->getLeagueHome();
+        $getListLeagues = $this->leagueRepository->getListLeagues();
+
+        $registrations = UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->get();
+        $pendingCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 0)->count();
+        $acceptedCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 1)->count();
+        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'getListLeagues', 'registrations','pendingCount', 'acceptedCount'));
     }
 
     public function formRegisterLeague($slug)

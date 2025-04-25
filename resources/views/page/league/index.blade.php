@@ -89,6 +89,13 @@
             background: mediumpurple;
         }
 
+        .label-end {
+            border-radius: 5px;
+            color: #fff;
+            padding: 3px 8px;
+            background: #b46060;
+        }
+
     </style>
 
     <div class="container">
@@ -150,9 +157,13 @@
                                      style="background-image: url('{{ asset('/images/bg-league.png') }}');">
                                     <!-- Logo giải đấu -->
                                     @if(now() < date('Y-m-d', strtotime($league->end_date_register)))
-                                    <div class="label lb-register">
-                                        <span class="extend_lb label-success">{{'Registering'}}</span>
-                                    </div>
+                                        <div class="label lb-register">
+                                            <span class="extend_lb label-success">{{'Registering'}}</span>
+                                        </div>
+                                    @elseif(now() > date('Y-m-d', strtotime($league->end_date_register)) && now() < date('Y-m-d', strtotime($league->start_date)) )
+                                        <div class="label lb-register">
+                                            <span class="extend_lb label-end">{{'End Register'}}</span>
+                                        </div>
                                     @endif
                                     <div class="league-logo">
                                         <img src="{{ asset($league->images ?? '/images/logo-no-background.png') }}"
@@ -175,7 +186,7 @@
                                     </div>
                                     <!-- Thống kê -->
                                     <div class="league-stats">
-                                        <span><i class="fas fa-users"></i> {{ count($league->userLeagues) }}</span>
+                                        <span><i class="fas fa-users"></i> {{ count($league->userLeagues) }} / {{$league->number_of_athletes}} </span>
                                     </div>
 
                                     <!-- Thanh progress -->

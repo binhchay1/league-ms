@@ -128,7 +128,7 @@
                     </div>
                 </div>
                 <div class="row mt-4">
-                    <div class="mb-3">
+                    <div class="col-6">
                         <label class="form-label">{{'Number of players'}}</label>
                         <select class="form-select" name="number_of_athletes">
                             @foreach($listPlayer as $type => $value)
@@ -137,25 +137,25 @@
 
                         </select>
                     </div>
-                </div>
-                <div class="row mt-4">
+                    <div class="col-6">
+                        <label class="form-label">{{'Type league'}}</label>
+                        <select class="form-select" name="type_of_league">
+                            @foreach($listTypeLeague as $type => $value)
+                                <option id="type_of_league" value="{{ $value }}">{{ $value }}</option>
+                            @endforeach
 
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-4 ">
                     <div class="col-6">
                         <div class="form-group">
                             <label>{{ __('Format league') }}</label>
                             <input class="form-control" value="knockout" type="text" name="format_of_league" id="format_of_league" placeholder="" readonly  />
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label>{{ __('Type league') }}</label>
-                            <input class="form-control" value="mix-random" type="text" name="type_of_league" id="type_of_league" placeholder="" readonly  />
-
-                        </div>
-                    </div>
 
                 </div>
-
             </div>
         </div>
 

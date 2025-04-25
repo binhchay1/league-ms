@@ -66,9 +66,28 @@
         line-height: 45px;
         color: white;
     }
+    .btn-custom {
+        background-color: #f0f0f0;
+        color: #333;
+        border: 1px solid #ccc;
+        padding: 6px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+    }
 
+    .btn-custom.active {
+        background-color: lightgrey !important;
+        color: black !important;
+    }
 </style>
 @section('content')
+    <?php $current_date = strtotime(date("Y-m-d"));
+    $start_date = strtotime($leagueInfor->start_date);
+    $end_date_register = strtotime($leagueInfor->end_date_register);
+    $get_date_register = date('d/m/Y', strtotime($leagueInfor->end_date_register));
+    $format_register_date = $leagueInfor->end_date_register;
+    ?>
     <div id="page" class="hfeed site">
         <div class=" results">
             <div class="wrapper-results">
@@ -97,44 +116,49 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container mt-4">
-                        <div class="d-flex gap-2">
-                            <a href="{{ route('leagueResult.bracket',$leagueInfor['slug']) }}">
-                                <button class="btn btn-custom">{{ __('Bracket') }} </button>
+                    <div class="d-flex gap-2 mt-4">
+                        @if($current_date < $start_date && $current_date < $end_date_register)
+                            <a href="{{ route('showListRegister.info', $leagueInfor['slug']) }}"
+                               class="btn-custom {{ request()->routeIs('showListRegister.info') ? 'active' : '' }}">
+                                {{ __('List Register') }}
                             </a>
-                            <a href="{{ route('leagueResult.info',$leagueInfor['slug']) }}">
-                                <button class="btn btn-custom">{{ __('Result') }} </button>
-                            </a>
-                            <a href="{{ route('leagueSchedule.info',$leagueInfor['slug']) }}">
-                                <button class="btn btn-custom">{{ __('Schedule') }} </button>
-                            </a>
-                            <a href="{{ route('leaguePlayer.info',$leagueInfor['slug']) }}">
-                                <button class="btn btn-custom">{{ __('Player') }} </button>
-                            </a>
-                            <!-- Dropdown -->
-                        @if(Auth::check() && Auth::user()->id  == $leagueInfor->owner_id)
-                            <!-- Dropdown -->
-                                <div class="dropdown">
-                                    <button class="btn btn-custom" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{ __('Setting') }} <i class="bi bi-gear"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{route('my.infoMyLeague',$leagueInfor['slug'])}}">{{'League Information'}}</a></li>
-                                        <li><a class="dropdown-item" href="#">{{'Delete League'}}</a></li>
-                                    </ul>
-                                </div>
-                            @endif
-                        </div>
+                        @endif
+
+                        <a href="{{ route('leagueResult.bracket', $leagueInfor['slug']) }}"
+                           class="btn-custom {{ request()->routeIs('leagueResult.bracket') ? 'active' : '' }}">
+                            {{ __('Bracket') }}
+                        </a>
+
+                        <a href="{{ route('leagueResult.info', $leagueInfor['slug']) }}"
+                           class="btn-custom {{ request()->routeIs('leagueResult.info') ? 'active' : '' }}">
+                            {{ __('Result') }}
+                        </a>
+
+                        <a href="{{ route('leagueSchedule.info', $leagueInfor['slug']) }}"
+                           class="btn-custom {{ request()->routeIs('leagueSchedule.info') ? 'active' : '' }}">
+                            {{ __('Schedule') }}
+                        </a>
+
+                        <a href="{{ route('leaguePlayer.info', $leagueInfor['slug']) }}"
+                           class="btn-custom {{ request()->routeIs('leaguePlayer.info') ? 'active' : '' }}">
+                            {{ __('Player') }}
+                        </a>
+
+                        @if(Auth::check() && Auth::user()->id == $leagueInfor->owner_id)
+                            <div class="dropdown">
+                                <a class="btn-custom dropdown-toggle {{ request()->routeIs('my.infoMyLeague') ? 'active' : '' }}"
+                                   data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                    {{ __('Setting') }} <i class="bi bi-gear"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ route('my.infoMyLeague', $leagueInfor['slug']) }}">League Information</a></li>
+                                    <li><a class="dropdown-item" href="#">Delete League</a></li>
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <hr>
-
-                <?php $current_date = strtotime(date("Y-m-d"));
-                $start_date = strtotime($leagueInfor->start_date);
-                $end_date_register = strtotime($leagueInfor->end_date_register);
-                $get_date_register = date('d/m/Y', strtotime($leagueInfor->end_date_register));
-                $format_register_date = $leagueInfor->end_date_register;
-                ?>
 
                 @if($current_date < $start_date && $current_date < $end_date_register)
                     @if(Route::is('league.info') )
@@ -143,7 +167,7 @@
                             <h4 class="text-center mb-10 text-white " style="opacity:1">
                                 <span class="text-warning hidden" id="deadline-date">09/26/2024</span>
                                 <span class="text-warning hidden" id="extend-time">23:59:59</span>
-                                Giải cho phép đăng ký trực tuyến đến hết ngày <span class="text-warning"
+                                {{'The tournament allows online registration until the end of the day.'}} <span class="text-warning"
                                                                                     style="color:#efff00">{{ $get_date_register }}</span>
                             </h4>
                             <div id="clockdiv">
@@ -177,7 +201,41 @@
                             </div>
                         </div>
                     </div>
-                        @endif
+                    @endif
+                    @elseif($current_date < $start_date && $current_date > $end_date_register)
+                    @if(Route::is('league.info') )
+                        <div class="container col-md-12 " id="form-reg">
+                            <div class="league-banner--enroll flex flex-jus-center flex-align-center flex-column gradient">
+                                <h4 class="text-center mb-10 text-white " style="opacity:1">
+                                    <span class="text-warning hidden" id="deadline-date">09/26/2024</span>
+                                    <span class="text-warning hidden" id="extend-time">23:59:59</span>
+                                    {{'Tournament registration has ended'}} <span class="text-warning" style="color:#efff00">{{ $get_date_register }}</span>
+                                </h4>
+                                <div id="clockdiv">
+                                    <div>
+                                        <span id="" class="days"></span>
+                                        <div class="smalltext">{{__('Days')}}</div>
+                                    </div>
+                                    <div>
+                                        <span id=""  class="hours"></span>
+                                        <div class="smalltext">{{__('hours')}}</div>
+                                    </div>
+                                    <div>
+                                        <span id=""  class="minutes"></span>
+                                        <div class="smalltext">{{__('Minutes')}}</div>
+                                    </div>
+                                    <div>
+                                        <span id=""  class="seconds"></span>
+                                        <div class="smalltext">{{__('Seconds')}}</div>
+                                    </div>
+                                </div>
+                                <div class="competitor-members mb-20">
+                                    <div class="flex flex-jus-center">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 @endif
                 <div class="container wrapper-content-results" style="padding: 0px; margin-top: 18px;">
                     <div class="modal" id="myModal">
@@ -280,6 +338,10 @@
                             @if(Route::current()->getName() == 'leaguePlayer.info')
                                 <div>
                                     @include('page.league.detail.player')
+                                </div>
+                            @elseif(Route::current()->getName() == 'showListRegister.info')
+                                <div>
+                                    @include('page.league.detail.player-register')
                                 </div>
                             @elseif(Route::current()->getName() == 'leagueResult.info')
                                 <div>

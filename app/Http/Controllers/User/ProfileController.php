@@ -10,6 +10,7 @@ use App\Http\Requests\GroupUpdateRequest;
 use App\Http\Requests\LeagueUpdateRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use App\Models\UserLeague;
 use App\Repositories\GroupRepository;
 use App\Repositories\GroupUserRepository;
 use App\Repositories\LeagueRepository;
@@ -193,7 +194,8 @@ class ProfileController extends Controller
         $listType = Ranking::RANKING_ARRAY_TYPE;
         $listFormat = Ranking::RANKING_ARRAY_FORMAT;
         $listPlayer = \App\Enums\League::NUMBER_PLAYER;
-        return view('page.user.my-league.detail-my-league', compact('groupSchedule','leagueInfor', 'listLeagues', 'getListLeagues','listPlayer','listFormat','listType'));
+        $listTypeLeague = \App\Enums\League::TYPE;
+        return view('page.user.my-league.detail-my-league', compact('listTypeLeague','groupSchedule','leagueInfor', 'listLeagues', 'getListLeagues','listPlayer','listFormat','listType'));
 
     }
 
@@ -253,6 +255,25 @@ class ProfileController extends Controller
 
 
         return view('page.user.my-league.detail-my-league', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'listSchedules', 'groupRound', 'getListLeagues'));
+    }
+
+    public function myLeaguePlayerRegister($slug)
+    {
+        $leagueInfor = $this->leagueRepository->showInfo($slug);
+
+        $listLeagues = $this->leagueRepository->getLeagueHome();
+        $getListLeagues = $this->leagueRepository->getListLeagues();
+
+        $registrations = UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->get();
+        $pendingCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 0)->count();
+        $acceptedCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 1)->count();
+        return view('page.user.my-league.detail-my-league', compact('leagueInfor', 'listLeagues', 'getListLeagues', 'registrations','pendingCount', 'acceptedCount'));
     }
 
 

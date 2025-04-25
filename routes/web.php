@@ -43,6 +43,7 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/tournament-league/{slug}/schedule/', [HomeController::class, 'showSchedule'])->name('leagueSchedule.info');
     Route::get('/tournament-league/{slug}/bracket/', [HomeController::class, 'showBracket'])->name('leagueResult.bracket');
     Route::get('/tournament-league/{slug}/fight-branch/', [HomeController::class, 'showFightBranch'])->name('leagueFightBranch.info');
+    Route::get('/tournament-league/{slug}/list-register/', [HomeController::class, 'showListRegister'])->name('showListRegister.info');
     Route::get('/list-teams/', [HomeController::class, 'listTeam'])->name('list.team');
     Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
     Route::get('/check-group-join', [HomeController::class, 'checkGroupJoin']);
@@ -117,6 +118,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/my-league/{slug}/result/', [ProfileController::class, 'myLeagueResult'])->name('my.leagueResult.info');
     Route::get('/my-league/{slug}/schedule/', [ProfileController::class, 'myLeagueSchedule'])->name('my.leagueSchedule.info');
     Route::get('/my-league/{slug}/bracket/', [ProfileController::class, 'myLeagueBracket'])->name('my.leagueBracket.info');
+    Route::get('/my-league/{slug}/player-register/', [ProfileController::class, 'myLeaguePlayerRegister'])->name('my.myLeaguePlayerRegister.info');
     Route::get('/my-league/{slug}/active-player/', [ProfileController::class, 'myLeagueActivePlayer'])->name('my.myLeagueActivePlayer');
     Route::get('/my-league/{slug}/info/', [ProfileController::class, 'infoMyLeague'])->name('my.infoMyLeague');
     Route::post('/update-my-league/{id}', [ProfileController::class, 'updateMyLeague'])->name('my.updateMyLeagueMyLeague');
@@ -129,7 +131,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('delete/my-group/{id}', [ProfileController::class, 'deleteMyGroup'])->name('delete.myGroup');
     Route::get('/tournament-joined', [ProfileController::class, 'leagueJoin'])->name('league.leagueJoin');
     Route::get('/group-joined', [ProfileController::class, 'groupJoin'])->name('group.groupJoin');
-
 
     Route::post('/register-league/', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
     Route::post('/partner/', [HomeController::class, 'storePartnerAjax'])->name('user.create.partner');
@@ -270,9 +271,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/delete/{id}/', [UserController::class, 'destroy'])->name('user.delete');
             Route::get('/change-password/{id}/', [UserController::class, 'changePassword'])->name('user.changePassword');
             Route::post('/updatePassword/{id}/', [UserController::class, 'updatePassword'])->name('user.updatePassword');
-
-
-
         }
     );
 });

@@ -8,6 +8,10 @@ final class League
         'round 1', 'round 2', 'quarter-finals', 'semi-finals', 'final'
     ];
 
+    const TYPE = [
+        'singles', 'doubles'
+    ];
+
     const ROUND_PER_LEAGUE = [
         'round 1' => ['round 1', 'round 2', 'quarter-finals', 'semi-finals', 'final'],
         'round 2' => ['round 2', 'quarter-finals', 'semi-finals', 'final'],

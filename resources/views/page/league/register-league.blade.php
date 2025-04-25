@@ -90,6 +90,11 @@
         margin-bottom: 20px !important;
     }
 
+    label {
+        font-size: 18px;
+        font-weight: 500;
+    }
+
 
 </style>
 @section('content')
@@ -369,13 +374,13 @@
                         <!-- Form Tạo Người Chơi Mới -->
                         <div id="newPlayerForm" class="hidden space-y-4 border rounded p-4 bg-gray-50">
                             <div  id=""  class="  container mt-4 league-tour">
-                                <h2 class="text-left">{{'Create Partner'}}</h2>
+                                <h4 class="text-left">{{'Create Partner'}}</h4>
                                 <hr>
                                 <form id="formAccountSettings" method="POST" action="{{route('user.create.partner')}}" enctype="multipart/form-data">
                                     @csrf()
                                     <div class="row mb-3 form-league">
                                         <div class="col-md-4">
-                                            <label>{{ __('Avatar') }}</label>
+                                            <label class="form-label">{{ __('Avatar') }}</label>
                                             <input value="" type="file" class="border-0 bg-light pl-0" name="avatar" id="image" hidden>
                                             <div class=" choose-avatar">
                                                 <div id="btnimage">
@@ -483,7 +488,6 @@
         </script>
     @endif
 
-
     <script>
         const select = document.getElementById('playerSelect');
         const newPlayerForm = document.getElementById('newPlayerForm');
@@ -497,9 +501,6 @@
                 newPlayerForm.classList.add('hidden');
             }
         });
-
     </script>
-
-
-
+    <script src="{{ asset('js/eventImage.js') }}"></script>
 @endsection

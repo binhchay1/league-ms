@@ -15,11 +15,7 @@
                 </div>
             </div>
             @empty
-                <div class="text-center">
-                    <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
 
-                    <h4 >{{ __('The player is updated!') }}</h4>
-                </div>
             @endforelse
     </div>
 </div>
