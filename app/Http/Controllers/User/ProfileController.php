@@ -203,7 +203,8 @@ class ProfileController extends Controller
         $listFormat = Ranking::RANKING_ARRAY_FORMAT;
         $listPlayer = \App\Enums\League::NUMBER_PLAYER;
         $listTypeLeague = \App\Enums\League::TYPE;
-        return view('page.user.my-league.detail-my-league', compact('listTypeLeague','groupSchedule','leagueInfor', 'listLeagues', 'getListLeagues','listPlayer','listFormat','listType'));
+        $listFormatLeague = \App\Enums\League::FORMAT;
+        return view('page.user.my-league.detail-my-league', compact('listFormatLeague','listTypeLeague','groupSchedule','leagueInfor', 'listLeagues', 'getListLeagues','listPlayer','listFormat','listType'));
 
     }
 
@@ -375,7 +376,47 @@ class ProfileController extends Controller
         $dateData = $getLeague->start_date;
         $countNextDate = 1;
 
-        if (strpos($getLeague->type_of_league, 'singles') > 0) {
+    if(strpos($getLeague->format_of_league, 'round-robin') !== false) {
+        // Thiết lập thời gian bắt đầu
+        $startDate = \Carbon\Carbon::parse($getLeague->start_date);
+        $startTime = \Carbon\Carbon::parse($getLeague->start_time);
+
+// Số trận tối đa mỗi ngày
+        $matchesPerDay = 3;
+        $currentDate = $startDate->copy();
+        $currentTime = $startTime->copy();
+        $matchInDay = 0;
+
+// Sinh lịch thi đấu vòng tròn (chỉ lượt đi)
+        for ($i = 0; $i < $totalMembers - 1; $i++) {
+            for ($j = $i + 1; $j < $totalMembers; $j++) {
+                // Thêm lịch đấu
+                $dataSchedule[] = [
+                    'league_id'      => $getLeague->id,
+                    'player1_team_1'  => $listAuto[$i],
+                    'player1_team_2'  => $listAuto[$j],
+                    'match'          =>  $countMatch,
+                    'round'          => 'Round ' . $countMatch,
+                    'date'           => $currentDate->toDateString(),
+                    'time'           => $currentTime->format('H:i'),
+                    'created_at'     => now(),
+                    'updated_at'     => now(),
+                ];
+
+                $countMatch++;
+                $matchInDay++;
+                $currentTime->addHours(1); // mỗi trận cách nhau 1 giờ
+
+                // Nếu đủ số trận 1 ngày thì chuyển sang ngày mới
+                if ($matchInDay >= $matchesPerDay) {
+                    $currentDate->addDay();
+                    $currentTime = $startTime->copy();
+                    $matchInDay = 0;
+                }
+            }
+        }
+    } else {
+        if (strpos($getLeague->type_of_league, 'singles') !== false) {
             if ($totalMembers < 4) {
                 $report = __('The number of members participating in the tournament must be greater than 4');
                 return redirect()->route('my.league', $getLeague->slug)->with('error', $report);
@@ -586,6 +627,7 @@ class ProfileController extends Controller
                 return redirect()->route('my.league', $getLeague->slug)->with('error', $report);
             }
         }
+    }
 
         $this->scheduleRepository->createMultiple($dataSchedule);
 

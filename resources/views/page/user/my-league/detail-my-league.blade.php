@@ -129,10 +129,12 @@
                                 {{ __('List Register') }}
                             </a>
                         @endif
-                        <a href="{{ route('my.leagueBracket.info',$leagueInfor['slug']) }}"
-                            class="btn-custom {{ request()->routeIs('my.leagueBracket.info.info') ? 'active' : '' }}">
-                            {{ __('Bracket') }}
-                        </a>
+                        @if($leagueInfor->format_of_league == "knockout")
+                            <a href="{{ route('my.leagueBracket.info',$leagueInfor['slug']) }}"
+                                class="btn-custom {{ request()->routeIs('my.leagueBracket.info.info') ? 'active' : '' }}">
+                                {{ __('Bracket') }}
+                            </a>
+                        @endif
                         <a href="{{ route('my.leagueSchedule.info',$leagueInfor['slug']) }}"
                             class="btn-custom {{ request()->routeIs('my.leagueSchedule.info') ? 'active' : '' }}">
                             {{ __('Schedule') }}

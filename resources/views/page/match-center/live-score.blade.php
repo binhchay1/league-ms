@@ -1,35 +1,32 @@
-@extends('layouts.admin')
+@extends('layouts.page')
 
 @section('title')
-    {{ env('APP_NAME', 'Badminton.io') }} - {{ __('Live Score') }}
+    {{ env('APP_NAME', 'Badminton.io') }} - {{ __('League') }}
 @endsection
 
 @section('css')
-{{--    <style>--}}
-{{--        .score-box {--}}
-{{--            width: 50px;--}}
-{{--            height: 50px;--}}
-{{--            font-size: 24px;--}}
-{{--            font-weight: bold;--}}
-{{--            display: flex;--}}
-{{--            align-items: center;--}}
-{{--            justify-content: center;--}}
-{{--            border-radius: 10px;--}}
-{{--            background-color: #f8f9fa;--}}
-{{--        }--}}
-
-{{--        .team-name {--}}
-{{--            font-size: 22px;--}}
-{{--            font-weight: bold;--}}
-{{--        }--}}
-
-{{--        .btn-score {--}}
-{{--            font-size: 18px;--}}
-{{--            padding: 8px 12px;--}}
-{{--        }--}}
-{{--    </style>--}}
+    <link rel="stylesheet" id="bwf-style-css" href="{{ asset('css/page/match.css') }}" type="text/css" media="all" />
 @endsection
 
+<style>
+    .hover-effect {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .hover-effect:hover {
+        transform: scale(1.05);
+        box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.2) !important;
+    }
+    .transition-btn:hover {
+        background-color: #ffc107 !important;
+        color: #000 !important;
+    }
+
+    .bg-row {
+        background: #eeeeee;
+        padding: 10px;
+    }
+
+</style>
 @section('content')
     <style>
         .score-box {
@@ -56,7 +53,7 @@
         }
     </style>
 
-    <div class="container-fluid mt-4">
+    <div class="container mt-4">
         <div class="card shadow">
             <div class="card-header bg-primary text-white text-center">
                 <h5 class="mb-0"><i class="fas fa-bolt me-2"></i>{{ __('Live Score') }}</h5>

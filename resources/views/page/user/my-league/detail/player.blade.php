@@ -4,21 +4,21 @@
             <div class="col-md-3 mt-4">
                 <div class="card text-center border rounded-3 shadow-sm p-3 transition hover-effect">
                     <div class="card-body">
-                        <img src="{{ asset($player->user->profile_photo_path ?? '/images/no-image.png') }}"
+                        <img src="{{ asset($player->user->profile_photo_path ?? '/images/player-team.jpg') }}"
                              alt="Avatar"
                              class="rounded-circle border img-fluid mb-3"
                              style="width: 100px; height: 100px; object-fit: cover;">
-
-                        <p class="text-success text-black">{{ $player->user->email }}</p>
-
-                        <h5 class="text-success fw-bold text-black">{{ $player->user->name }}</h5>
+                        <div>
+                            <span class="fw-bold text-success">{{ $player->user->name }}</span>
+                            @if ($player->partner)
+                                <span class="fw-bold text-success">+ {{ $player->partner->name }}</span>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
         @empty
-            <div class="text-center">
 
-            </div>
         @endforelse
     </div>
 </div>

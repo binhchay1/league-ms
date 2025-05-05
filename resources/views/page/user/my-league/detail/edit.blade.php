@@ -135,7 +135,6 @@
                             @foreach($listPlayer as $number => $value)
                                 <option id="" value="{{ $value }}" {{$value == $leagueInfor->number_of_athletes ? 'selected' : ''}}>{{ $value }}</option>
                             @endforeach
-
                         </select>
                     </div>
                     <div class="col-6">
@@ -144,7 +143,6 @@
                             @foreach($listTypeLeague as $number => $value)
                                 <option id="" value="{{ $value }}" {{$value == $leagueInfor->type_of_league ? 'selected' : ''}}>{{ $value }}</option>
                             @endforeach
-
                         </select>
                     </div>
                 </div>
@@ -152,7 +150,11 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label  class="form-label">{{ __('Format league') }}</label>
-                            <input class="form-control" value="{{ $leagueInfor->format_of_league }}" type="text" name="format_of_league" id="format_of_league" placeholder="" readonly  />
+                            <select class="form-select" name="format_of_league" value="{{ $leagueInfor->format_of_league }}">
+                                @foreach($listFormatLeague as $number => $value)
+                                    <option id="" value="{{ $value }}" {{$value == $leagueInfor->format_of_league ? 'selected' : ''}}>{{ $value }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>

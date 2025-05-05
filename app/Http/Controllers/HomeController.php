@@ -653,7 +653,7 @@ class HomeController extends Controller
 
             return view('admin.live-score.live-score-double', compact('getSchedule', 'typeLive', 'setLive', 'scoreT1Live', 'scoreT2Live', 'arrScore'));
         } else {
-            return view('admin.live-score.live-score', compact('getSchedule', 'typeLive', 'setLive', 'scoreT1Live', 'scoreT2Live'));
+            return view('page.match-center.live-score', compact('getSchedule', 'typeLive', 'setLive', 'scoreT1Live', 'scoreT2Live'));
         }
     }
 

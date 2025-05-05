@@ -23,10 +23,10 @@
     .score {
         font-size: 15px;
         background: green;
-        padding: 10px;
         border-radius: 5px;
         color: white;
         margin: 20px;
+        width: 50px;
     }
 
     .time {

@@ -22,7 +22,7 @@
         <tr>
             <td>{{ $index + 1 }}</td>
             <td class="d-flex align-items-center gap-2">
-                <img src="{{ $registration->user->avatar ?? '/images/default-avatar.png' }}"
+                <img src="{{asset($registration->user->profile_photo_path ?? '/images/default-avatar.png')  }}"
                      alt="avatar" class="rounded-circle" width="40">
                 <div>
                     <span class="fw-bold text-success">{{ $registration->user->name }}</span>
@@ -32,11 +32,7 @@
                 </div>
             </td>
             <td>
-                @if ($registration->phone)
-                    {{ $registration->phone }}
-                @else
-                    <span class="text-success fst-italic">{{'updating'}}</span>
-                @endif
+                <span class="text-success fst-italic">{{$registration->phone ?? 'updating'}}</span>
             </td>
             <td>
                 {{ $registration->created_at->format('d/m/Y') }} <br>

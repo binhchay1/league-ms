@@ -151,7 +151,11 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>{{ __('Format league') }}</label>
-                            <input class="form-control" value="knockout" type="text" name="format_of_league" id="format_of_league" placeholder="" readonly  />
+                            <select class="form-select" name="format_of_league">
+                                @foreach($listFormatLeague as $type => $value)
+                                    <option id="type_of_league" value="{{ $value }}">{{ $value }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 

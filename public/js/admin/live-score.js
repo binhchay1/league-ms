@@ -1,6 +1,7 @@
 $(document).ready(function () {
-
     let currentScoreT1 = parseInt($('#score-team-1').html());
+    alert(1);
+
     let currentScoreT2 = parseInt($('#score-team-2').html());
 
     if (currentScoreT1 == 0) {

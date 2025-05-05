@@ -99,7 +99,7 @@
                                      class="show-image-league" alt="logo">
                             </div>
                             <div class="" id="info-league">
-                                <h2>{{ $leagueInfor->name }}</h2>
+                                <h2 class="p-0">{{ $leagueInfor->name }}</h2>
                                 <p class="card-text display"><?php echo number_format($leagueInfor->money ?? 0) . " VND"?> || {{$leagueInfor->type_of_league}}  || {{$leagueInfor->location}}</p>
                                 <p class="display">
                                     <i class="bi bi-geo-alt"></i> <em>{{ __('Location: ') }} {{$leagueInfor->location}}</em>
@@ -134,11 +134,12 @@
                             </a>
 
                         @endif
-                        <a href="{{ route('leagueResult.bracket', $leagueInfor['slug']) }}"
-                           class="btn-custom {{ request()->routeIs('leagueResult.bracket') ? 'active' : '' }}">
-                            {{ __('Bracket') }}
-                        </a>
-
+                        @if($leagueInfor->format_of_league == "knockout")
+                            <a href="{{ route('leagueResult.bracket', $leagueInfor['slug']) }}"
+                               class="btn-custom {{ request()->routeIs('leagueResult.bracket') ? 'active' : '' }}">
+                                {{ __('Bracket') }}
+                            </a>
+                        @endif
 
                         <a href="{{ route('leagueSchedule.info', $leagueInfor['slug']) }}"
                            class="btn-custom {{ request()->routeIs('leagueSchedule.info') ? 'active' : '' }}">
