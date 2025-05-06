@@ -168,6 +168,7 @@ class HomeController extends Controller
         return view('page.user.player', compact('user', 'groups', 'leagues'));
     }
 
+    //league
     public function listLeague(Request $request)
     {
         $getLeagueByState = $request->get('state');
@@ -177,17 +178,31 @@ class HomeController extends Controller
         return view('page.league.index', compact('listLeagues'));
     }
 
-    public function listGroup()
-    {
-        $getGroup = $this->groupRepository->getGroupWithStatus();
-        $listGroup = $this->utility->paginate($getGroup, 10);
-
-        return view('page.group.index', compact('listGroup'));
-    }
-
     public function showInfo($slug)
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+//        $winner = null;
+//        $showWinnerPopup = false;
+
+//        // Nếu là vòng tròn: lấy người có điểm cao nhất
+//        if ($hasEnded && $leagueInfor->format_of_league === 'round-robin') {
+//            $topRank = $leagueInfor->ranks->sortByDesc('point')->first();
+//            if ($topRank) {
+//                $winner = $topRank->player ?? $topRank->team;
+//                $showWinnerPopup = true;
+//            }
+//        }
+//
+//        // Nếu là loại trực tiếp: lấy người thắng trận chung kết
+//        elseif ($hasEnded && $leagueInfor->format_of_league === 'knockout') {
+//            $finalMatch = $leagueInfor->schedules->where('round', $leagueInfor->total_rounds)->first();
+//            if ($finalMatch && $finalMatch->winner_id) {
+//                $winner = $finalMatch->winner; // Giả sử quan hệ winner() đã định nghĩa trong model Schedule
+//                $showWinnerPopup = true;
+//            }
+//        }
         $getListLeagues = $this->leagueRepository->getListLeagues();
         $dataLeague = $this->leagueRepository->show($slug);
 
@@ -204,77 +219,7 @@ class HomeController extends Controller
         } else {
             $firstThreeSchedules = [];
         }
-        return view('page.league.show', compact('firstThreeSchedules','countPlayer','countMatch','leagueInfor', 'getListLeagues', 'groupSchedule','dataLeague'));
-    }
-
-    public function changeLocate($locale)
-    {
-        if (in_array($locale, Config::get('app.locales'))) {
-            Session::put('locale', $locale);
-        }
-
-        return redirect()->back();
-    }
-
-    public function checkGroupJoin(Request $request)
-    {
-        $nameGroup = $request->input('group');
-        if (empty($nameGroup)) {
-            abort(404);
-        }
-
-        $getGroup = $this->groupRepository->getGroupByName($nameGroup);
-
-        if (empty($getGroup)) {
-            abort(404);
-        }
-
-        $userId = Auth::id(); // Lấy user đang đăng nhập
-
-        $isJoined = DB::table('group_users')
-            ->where('group_id', $getGroup->id)
-            ->where('user_id', $userId)
-            ->where('status_request', Group::STATUS_ACCEPTED)
-            ->exists(); // Kiểm tra user có trong nhóm không
-
-        return response()->json(['joined' => $isJoined]);
-    }
-
-
-    public function detailGroup(Request $request)
-    {
-        $nameGroup = $request->get('g_i');
-        if (empty($nameGroup)) {
-            abort(404);
-        }
-
-        $getGroup = $this->groupRepository->getGroupByName($nameGroup);
-        if (empty($getGroup)) {
-            abort(404);
-        }
-
-        $isJoined = false;
-        $members = $this->groupUserRepository->getMembersByGroupId($getGroup->id);
-        $listId = [];
-        foreach ($members as $member) {
-            $listId[] = $member->user_id;
-        }
-
-        $listRankings = $this->rankingRepository->getRankingListUsers($listId);
-
-        if (Auth::check()) {
-            $user = Auth::user();
-
-            $checkJoined = $this->groupUserRepository->checkJoinedGroup($user->id, $getGroup->id);
-            if (!empty($checkJoined)) {
-                $isJoined = true;
-            }
-            $messages = $this->messageRepository->getMessagesByGroupId($getGroup->id);
-
-            return view('page.group.detail', compact('getGroup', 'messages', 'members', 'isJoined', 'listRankings'));
-        }
-
-        return view('page.group.detail', compact('getGroup', 'members', 'isJoined', 'listRankings'));
+        return view('page.league.show', compact('hasEnded','firstThreeSchedules','countPlayer','countMatch','leagueInfor', 'getListLeagues', 'groupSchedule','dataLeague'));
     }
 
     public function showPlayer($slug)
@@ -282,8 +227,9 @@ class HomeController extends Controller
         $leagueInfor = $this->leagueRepository->showInfo($slug);
         $listLeagues = $this->leagueRepository->getLeagueHome();
         $getListLeagues = $this->leagueRepository->getListLeagues();
-
-        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'getListLeagues'));
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+        return view('page.league.show', compact('hasEnded','leagueInfor', 'listLeagues', 'getListLeagues'));
     }
 
     public function showResult($slug)
@@ -291,13 +237,14 @@ class HomeController extends Controller
         $leagueInfor = $this->leagueRepository->showInfo($slug);
         $listLeagues = $this->leagueRepository->getLeagueHome();
         $getListLeagues = $this->leagueRepository->getListLeagues();
-
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
 
-        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'getListLeagues'));
+        return view('page.league.show', compact('hasEnded','leagueInfor', 'listLeagues', 'groupSchedule', 'getListLeagues'));
     }
 
     public function showBracket($slug)
@@ -313,8 +260,9 @@ class HomeController extends Controller
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
-
-        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'listSchedules', 'groupRound', 'getListLeagues'));
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+        return view('page.league.show', compact('hasEnded','leagueInfor', 'listLeagues', 'groupSchedule', 'listSchedules', 'groupRound', 'getListLeagues'));
     }
 
     public function showSchedule($slug)
@@ -326,8 +274,9 @@ class HomeController extends Controller
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
-
-        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'getListLeagues'));
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+        return view('page.league.show', compact('hasEnded','leagueInfor', 'listLeagues', 'groupSchedule', 'getListLeagues'));
     }
 
     public function showListRegister($slug)
@@ -346,7 +295,9 @@ class HomeController extends Controller
         $acceptedCount =UserLeague::with(['user', 'partner'])
             ->where('league_id', $leagueInfor->id)
             ->where('status', 1)->count();
-        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'getListLeagues', 'registrations','pendingCount', 'acceptedCount'));
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+        return view('page.league.show', compact('hasEnded','leagueInfor', 'listLeagues', 'getListLeagues', 'registrations','pendingCount', 'acceptedCount'));
     }
 
     public function showGeneralNews($slug)
@@ -367,9 +318,26 @@ class HomeController extends Controller
         } else {
             $firstThreeSchedules = [];
         }
-
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
 // Kiểm tra kết quả
-        return view('page.league.show', compact('leagueInfor', 'listLeagues', 'getListLeagues', 'countMatch', 'countPlayer','firstThreeSchedules'));
+        return view('page.league.show', compact('hasEnded','leagueInfor', 'listLeagues', 'getListLeagues', 'countMatch', 'countPlayer','firstThreeSchedules'));
+    }
+
+    public function registerLeague($slug)
+    {
+        $leagueInfor = $this->leagueRepository->showInfo($slug);
+        $getListLeagues = $this->leagueRepository->getListLeagues();
+        $dataLeague = $this->leagueRepository->show($slug);
+        $user = $this->userRepository->showInfo(Auth::user()->id);
+        $partners = $user->partner;
+        $groupSchedule = [];
+        foreach ($leagueInfor->schedule as $schedule) {
+            $groupSchedule[$schedule['round']][] = $schedule;
+        }
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+        return view('page.league.show', compact('hasEnded','leagueInfor', 'getListLeagues', 'groupSchedule','dataLeague', 'partners'));
     }
 
     public function formRegisterLeague($slug)
@@ -415,8 +383,6 @@ class HomeController extends Controller
         return back()->with('message', 'Create partner success');
     }
 
-
-
     public function saveRegisterLeague(Request $request)
     {
         $input = $request->except(['_token']);
@@ -455,7 +421,8 @@ class HomeController extends Controller
         }
         $this->userLeagueRepository->store($input);
 
-        return back()->with('message', 'You have registered for the tournament success.');
+        return redirect()->route('showListRegister.info', ['slug' => $league->slug])->with('message', 'You have registered for the tournament success.');
+//        return re('page.league.show', compact('hasEnded','leagueInfor', 'getListLeagues', 'groupSchedule','dataLeague', 'partners'))->with('message', 'You have registered for the tournament success.');
     }
 
     public function readNotification()
@@ -471,83 +438,16 @@ class HomeController extends Controller
         Cache::set($key, $getNotification);
     }
 
-    public function groupTraining(Request $request)
+    public function searchLeague(Request $request)
     {
-        $nameGroup = $request->get('g_i');
-        if (empty($nameGroup)) {
-            abort(404);
-        }
-        $listTrainings = $this->groupRepository->getGroupByName($nameGroup);
-        if (empty($listTrainings)) {
-            abort(404);
-        }
+        $query = $request->input('query');
+        $sort = $request->input('sort');
+        $format = $request->input('format');
 
-        foreach ($listTrainings->group_trainings as $trainings) {
-            $listId = json_decode($trainings->members);
-            $trainings->isJoin = false;
-            $trainings->totalMembers = 0;
-            if (!empty($listId)) {
-                if (in_array(Auth::user()->id, $listId)) {
-                    $trainings->isJoin = true;
-                }
-                $trainings->totalMembers = count($listId);
-            }
-        }
+        $getLeague = $this->leagueRepository->searchLeague($query, $sort, $format);
+        $listLeagues = $this->utility->paginate($getLeague, 10);
 
-        return view('page.group.group-training', compact('listTrainings'));
-    }
-
-    public function detailGroupTraining(Request $request)
-    {
-        $nameGroupTraining = $request->get('g_t');
-        if (empty($nameGroupTraining)) {
-            abort(404);
-        }
-
-        $groupTrainingDetail = $this->groupTraining->getGroupTrainByName($nameGroupTraining);
-        if (empty($groupTrainingDetail)) {
-            abort(404);
-        }
-
-        $listId = json_decode($groupTrainingDetail->members);
-        if (!empty($listId)) {
-            $listMembers = $this->userRepository->getListMembers($listId);
-        } else {
-            $listMembers = [];
-        }
-
-        return view('page.group.detail-group-train', compact('groupTrainingDetail', 'listMembers'));
-    }
-
-    public function joinGroupTraining(Request $request)
-    {
-        $idTraining = $request->get('g_t');
-        if (empty($idTraining)) {
-            abort(404);
-        }
-
-        $getMembers = $this->groupTraining->getMembersById($idTraining);
-
-        if (empty($getMembers->members)) {
-            $dataMembers = [
-                'members' => json_encode([Auth::user()->id])
-            ];
-
-            $this->groupTraining->updateMembers($idTraining, $dataMembers);
-        } else {
-            $members = json_decode($getMembers->members, true);
-            if (!in_array(Auth::user()->id, $members)) {
-                $members[] = Auth::user()->id;
-            }
-
-            $dataMembers = [
-                'members' => json_encode($members)
-            ];
-
-            $this->groupTraining->updateMembers($idTraining, $dataMembers);
-        }
-
-        return redirect('training?g_t=' . $getMembers->name);
+        return view('page.league.search-result', compact('listLeagues'));
     }
 
     public function viewMatch()
@@ -657,52 +557,161 @@ class HomeController extends Controller
         }
     }
 
-    public function news()
+    //group
+    public function listGroup()
     {
-        $listNews = $this->postRepository->index();
-        $categories = $this->categoryPostRepository->index();
-        return view('page.post.list', compact('listNews', 'categories'));
+        $getGroup = $this->groupRepository->getGroupWithStatus();
+        $listGroup = $this->utility->paginate($getGroup, 10);
+
+        return view('page.group.index', compact('listGroup'));
     }
 
-    public function newsDetail($slug)
+    public function changeLocate($locale)
     {
-        $newData = $this->postRepository->detailPost($slug);
-        $categories = $this->categoryPostRepository->index();
+        if (in_array($locale, Config::get('app.locales'))) {
+            Session::put('locale', $locale);
+        }
 
-        // Lấy các bài viết tương tự (cùng category, không tính bài hiện tại)
-        $relatedPosts = $this->postRepository->relatedPosts($newData->id, $newData->category_id);
-
-        return view('page.post.detail', compact('newData', 'categories', 'relatedPosts'));
+        return redirect()->back();
     }
 
-    public function newsCategory($slug)
+    public function checkGroupJoin(Request $request)
     {
-        $postCategory = $this->categoryPostRepository->postCategory($slug);
-        $categories = $this->categoryPostRepository->index();
-        return view('page.post.category-post', compact('postCategory', 'categories'));
+        $nameGroup = $request->input('group');
+        if (empty($nameGroup)) {
+            abort(404);
+        }
 
+        $getGroup = $this->groupRepository->getGroupByName($nameGroup);
+
+        if (empty($getGroup)) {
+            abort(404);
+        }
+
+        $userId = Auth::id(); // Lấy user đang đăng nhập
+
+        $isJoined = DB::table('group_users')
+            ->where('group_id', $getGroup->id)
+            ->where('user_id', $userId)
+            ->where('status_request', Group::STATUS_ACCEPTED)
+            ->exists(); // Kiểm tra user có trong nhóm không
+
+        return response()->json(['joined' => $isJoined]);
     }
 
-    public function searchNews(Request $request)
+    public function detailGroup(Request $request)
     {
-        $query = $request->input('query');
-        $sort = $request->input('sort');
-        $categories = $this->categoryPostRepository->index();
-        $getPosts = $this->postRepository->searchNews($query, $sort);
-        $listNews = $this->utility->paginate($getPosts, 10);
+        $nameGroup = $request->get('g_i');
+        if (empty($nameGroup)) {
+            abort(404);
+        }
 
-        return view('page.post.search-result', compact('listNews', 'categories'));
+        $getGroup = $this->groupRepository->getGroupByName($nameGroup);
+        if (empty($getGroup)) {
+            abort(404);
+        }
+
+        $isJoined = false;
+        $members = $this->groupUserRepository->getMembersByGroupId($getGroup->id);
+        $listId = [];
+        foreach ($members as $member) {
+            $listId[] = $member->user_id;
+        }
+
+        $listRankings = $this->rankingRepository->getRankingListUsers($listId);
+
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            $checkJoined = $this->groupUserRepository->checkJoinedGroup($user->id, $getGroup->id);
+            if (!empty($checkJoined)) {
+                $isJoined = true;
+            }
+            $messages = $this->messageRepository->getMessagesByGroupId($getGroup->id);
+
+            return view('page.group.detail', compact('getGroup', 'messages', 'members', 'isJoined', 'listRankings'));
+        }
+
+        return view('page.group.detail', compact('getGroup', 'members', 'isJoined', 'listRankings'));
     }
 
-    public function searchLeague(Request $request)
+    public function groupTraining(Request $request)
     {
-        $query = $request->input('query');
-        $sort = $request->input('sort');
+        $nameGroup = $request->get('g_i');
+        if (empty($nameGroup)) {
+            abort(404);
+        }
+        $listTrainings = $this->groupRepository->getGroupByName($nameGroup);
+        if (empty($listTrainings)) {
+            abort(404);
+        }
 
-        $getLeague = $this->leagueRepository->searchLeague($query, $sort);
-        $listLeagues = $this->utility->paginate($getLeague, 10);
+        foreach ($listTrainings->group_trainings as $trainings) {
+            $listId = json_decode($trainings->members);
+            $trainings->isJoin = false;
+            $trainings->totalMembers = 0;
+            if (!empty($listId)) {
+                if (in_array(Auth::user()->id, $listId)) {
+                    $trainings->isJoin = true;
+                }
+                $trainings->totalMembers = count($listId);
+            }
+        }
 
-        return view('page.league.search-result', compact('listLeagues'));
+        return view('page.group.group-training', compact('listTrainings'));
+    }
+
+    public function detailGroupTraining(Request $request)
+    {
+        $nameGroupTraining = $request->get('g_t');
+        if (empty($nameGroupTraining)) {
+            abort(404);
+        }
+
+        $groupTrainingDetail = $this->groupTraining->getGroupTrainByName($nameGroupTraining);
+        if (empty($groupTrainingDetail)) {
+            abort(404);
+        }
+
+        $listId = json_decode($groupTrainingDetail->members);
+        if (!empty($listId)) {
+            $listMembers = $this->userRepository->getListMembers($listId);
+        } else {
+            $listMembers = [];
+        }
+
+        return view('page.group.detail-group-train', compact('groupTrainingDetail', 'listMembers'));
+    }
+
+    public function joinGroupTraining(Request $request)
+    {
+        $idTraining = $request->get('g_t');
+        if (empty($idTraining)) {
+            abort(404);
+        }
+
+        $getMembers = $this->groupTraining->getMembersById($idTraining);
+
+        if (empty($getMembers->members)) {
+            $dataMembers = [
+                'members' => json_encode([Auth::user()->id])
+            ];
+
+            $this->groupTraining->updateMembers($idTraining, $dataMembers);
+        } else {
+            $members = json_decode($getMembers->members, true);
+            if (!in_array(Auth::user()->id, $members)) {
+                $members[] = Auth::user()->id;
+            }
+
+            $dataMembers = [
+                'members' => json_encode($members)
+            ];
+
+            $this->groupTraining->updateMembers($idTraining, $dataMembers);
+        }
+
+        return redirect('training?g_t=' . $getMembers->name);
     }
 
     public function searchGroup(Request $request)
@@ -744,6 +753,44 @@ class HomeController extends Controller
         $listGroup = $this->utility->paginate($getGroup, 10);
 
         return view('page.group.search-result-group-training', compact('listGroup', 'listTrainings'));
+    }
+
+    //news
+    public function news()
+    {
+        $listNews = $this->postRepository->index();
+        $categories = $this->categoryPostRepository->index();
+        return view('page.post.list', compact('listNews', 'categories'));
+    }
+
+    public function newsDetail($slug)
+    {
+        $newData = $this->postRepository->detailPost($slug);
+        $categories = $this->categoryPostRepository->index();
+
+        // Lấy các bài viết tương tự (cùng category, không tính bài hiện tại)
+        $relatedPosts = $this->postRepository->relatedPosts($newData->id, $newData->category_id);
+
+        return view('page.post.detail', compact('newData', 'categories', 'relatedPosts'));
+    }
+
+    public function newsCategory($slug)
+    {
+        $postCategory = $this->categoryPostRepository->postCategory($slug);
+        $categories = $this->categoryPostRepository->index();
+        return view('page.post.category-post', compact('postCategory', 'categories'));
+
+    }
+
+    public function searchNews(Request $request)
+    {
+        $query = $request->input('query');
+        $sort = $request->input('sort');
+        $categories = $this->categoryPostRepository->index();
+        $getPosts = $this->postRepository->searchNews($query, $sort);
+        $listNews = $this->utility->paginate($getPosts, 10);
+
+        return view('page.post.search-result', compact('listNews', 'categories'));
     }
 
 }

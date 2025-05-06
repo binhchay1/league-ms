@@ -41,4 +41,8 @@ class League extends Model
     {
         return $this->belongsTo('App\Models\User', 'owner_id', 'id');
     }
+
+    public function ranks() {
+        return $this->hasMany(Ranking::class);
+    }
 }

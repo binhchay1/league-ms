@@ -135,23 +135,30 @@ class LeagueRepository extends BaseRepository
             ->where('id', $id)->first();
     }
 
-    public function searchLeague($query, $sort)
+    public function searchLeague($query, $sort, $format)
     {
-        $leagues = $this->model->query(); // Chắc chắn $leagues là Query Builder
+        $leagues = $this->model->query();
 
         if ($query) {
             $leagues->where('name', 'like', "%$query%");
         }
 
-// Sắp xếp kết quả
+        // Sắp xếp theo thời gian
         if ($sort === 'newest') {
             $leagues->orderBy('created_at', 'desc');
         } elseif ($sort === 'oldest') {
             $leagues->orderBy('created_at', 'asc');
         }
 
-        return $leagues->get();
+        if ($format === 'round-robin') {
+            $leagues->where('format_of_league', 'round-robin');
+        } elseif ($format === 'knockout') {
+            $leagues->where('format_of_league', 'knockout');
+        }
+
+        return $leagues->get(); // chỉ get() một lần ở cuối
     }
+
 
     public function myLeague($slug,$user)
     {

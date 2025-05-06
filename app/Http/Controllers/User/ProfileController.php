@@ -186,7 +186,17 @@ class ProfileController extends Controller
             $firstThreeSchedules = [];
         }
 
-        return view('page.user.my-league.detail-my-league', compact('countPlayer','countMatch','firstThreeSchedules','leagueInfor','getListLeagues', 'groupSchedule'));
+        $registrations = UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->get();
+        $pendingCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 0)->count();
+        $acceptedCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 1)->count();
+
+        return view('page.user.my-league.detail-my-league', compact( 'registrations','pendingCount', 'acceptedCount','countPlayer','countMatch','firstThreeSchedules','leagueInfor','getListLeagues', 'groupSchedule'));
     }
 
     public function infoMyLeague($slug)
@@ -610,7 +620,6 @@ class ProfileController extends Controller
                     'time' => $timeInDay,
                     'date' => $dateData,
                 ];
-
                 $dataSchedule[] = $data;
                 $endTime = strtotime($timeInDay) + (90 * 60);
                 $timeInDay = date('h:i:s', $endTime);
@@ -628,7 +637,6 @@ class ProfileController extends Controller
             }
         }
     }
-
         $this->scheduleRepository->createMultiple($dataSchedule);
 
         return redirect()->route('my.leagueDetail', $getLeague->slug)->with('success', __('Create auto schedule successfully!'));

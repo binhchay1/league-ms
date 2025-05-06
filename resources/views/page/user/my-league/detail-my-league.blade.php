@@ -79,8 +79,8 @@
     }
 </style>
 @section('content')
-    <?php $current_date = strtotime(date("Y-m-d"));
-    $start_date = strtotime($leagueInfor->start_date);
+    <?php $currentDate = strtotime(date("Y-m-d"));
+    $startDate = strtotime(date($leagueInfor->start_date));
     $end_date_register = strtotime($leagueInfor->end_date_register);
     $get_date_register = date('d/m/Y', strtotime($leagueInfor->end_date_register));
     $format_register_date =$leagueInfor->end_date_register;
@@ -123,7 +123,7 @@
                                 {{ __('Result') }}
                             </a>
                         @endif
-                        @if(($current_date < $end_date_register && $current_date <$start_date) || ($current_date > $end_date_register && $current_date <$start_date))
+                            @if( $currentDate < $startDate)
                             <a href="{{ route('my.myLeaguePlayerRegister.info', $leagueInfor['slug']) }}"
                                class="btn-custom {{ request()->routeIs('my.myLeaguePlayerRegister.info') ? 'active' : '' }}">
                                 {{ __('List Register') }}
@@ -349,6 +349,8 @@
                                     <div class="item draws" style="display:block;">
                                         @if(now() >= date('Y-m-d', strtotime($leagueInfor->start_date)))
                                             @include('page.user.my-league.detail.news')
+                                        @else
+                                            @include('page.user.my-league.detail.player-register')
                                         @endif
                                     </div>
                                 @endif

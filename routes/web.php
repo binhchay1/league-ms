@@ -45,6 +45,7 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/tournament-league/{slug}/fight-branch/', [HomeController::class, 'showFightBranch'])->name('leagueFightBranch.info');
     Route::get('/tournament-league/{slug}/list-register/', [HomeController::class, 'showListRegister'])->name('showListRegister.info');
     Route::get('/tournament-league/{slug}/general-news/', [HomeController::class, 'showGeneralNews'])->name('showGeneralNews.info');
+    Route::get('/tournament-league/{slug}/register-league/', [HomeController::class, 'registerLeague'])->name('registerLeague.info');
     Route::get('/list-teams/', [HomeController::class, 'listTeam'])->name('list.team');
     Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
     Route::get('/check-group-join', [HomeController::class, 'checkGroupJoin']);

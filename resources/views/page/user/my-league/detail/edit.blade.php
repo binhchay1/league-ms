@@ -39,7 +39,7 @@
             <div class="col-md-3">
                 <label>{{ __('Logo league') }}</label>
                 <input value="" type="file" class="border-0 bg-light pl-0" name="images" id="image" hidden>
-                <div class=" choose-avatar">
+                <div class=" choose-avatar mt-3">
                     <div id="btnimage">
                         <img id="showImage" class="show-avatar" src="{{asset($leagueInfor->images ?? '/images/logo-no-background.png')}}"  alt="avatar" style="width: 200px;">
                     </div>
