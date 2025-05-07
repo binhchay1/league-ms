@@ -95,10 +95,11 @@
                     </label>
                 </div>
             <!-- Bảng Ban huấn luyện -->
-                <div class="col-lg-6">
-                    <h3 class="card-header">{{ __('Information User') }}</h3>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-primary px-3 py-2 m-0" style="background: #0a59da !important;     padding: 15px !important; font-size: 15px">
+                    {{'Total user'}}: {{count($group->group_users) }} / {{$group->number_of_members}} {{'Users'}}
+                </span>
                 </div>
-                <p style="font-size: 20; font-weight: 600">{{count($group->group_users) }} / {{$group->number_of_members}} {{'Players'}}</p>
             <div class="card mb-">
                 <div class="card-header bg-primary text-white">{{'Users'}}</div>
                 <div class="table-responsive">

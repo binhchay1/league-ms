@@ -63,13 +63,13 @@
         <?php $start_date = date('d/m/Y', strtotime($leagueInfor->start_date));
         $end_date = date('d/m/Y', strtotime($leagueInfor->end_date));
         ?>
-        <div class=" text-black p-3 align-items-center">
+        <div class=" text-black p-3 align-items-center " style="background: #707787;padding: 10px; margin-top: -20px; color: white">
             <div class="container d-flex  img-fluid">
-                <img src="{{asset($leagueInfor->images ?? asset('/images/no-image.png'))}}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
+                <img src="{{asset($leagueInfor->images ?? asset('/images/no-image.png'))}}" alt="User" width="200" height="200" class=" me-3 " >
                 <div class="col-md-10">
-                    <div class="card-body">
+                    <div class="card-body" style="color: white">
                         <a href="{{route('my.leagueDetail',$leagueInfor->slug)}}">
-                            <h2 class="card-title color-red p-0">{{$leagueInfor->name}}</h2>
+                            <h2 class="text-white color-red p-0">{{$leagueInfor->name}}</h2>
                         </a>
                         <p class="card-text"><?php echo number_format($leagueInfor->money ?? 0) . " VND"?> || {{$leagueInfor->type_of_league}}  || {{$leagueInfor->location}}</p>
                         <p class="">
@@ -104,12 +104,13 @@
                     </label>
                 </div>
             <!-- Bảng Ban huấn luyện -->
-                <div class="col-lg-6">
-                    <h3 class="card-header">{{ __('Information Player') }}</h3>
-                </div>
-                <p style="font-size: 20; font-weight: 600">{{count($leagueInfor->userLeagues) }} / {{$leagueInfor->number_of_athletes}} {{'Players'}}</p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-primary px-3 py-2 m-0" style="background: #0a59da !important;     padding: 15px !important; font-size: 15px">
+                    {{'Total player'}}: {{count($leagueInfor->userLeagues) }} / {{$leagueInfor->number_of_athletes}} {{'players'}}
+                </span>
+            </div>
             <div class="card mb-">
-                <div class="card-header bg-primary text-white">{{'Players'}}</div>
+                <div class="card-header bg-primary text-white ">{{'Players'}}</div>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
@@ -128,7 +129,7 @@
                                 <td><img src="{{asset($player->user->profile_photo_path ?? '/images/default-avatar.png')}}"  width="50" height="50" class="rounded-circle ">{{ $player->user->name ?? "" }}</td>
                                 <td>{{ $player->user->address ?? "" }}</td>
                                 <td>
-                                    <div  class="btn btn-{{$player->status == 1 ? 'info' : 'secondary' }}">
+                                    <div  class="btn btn-{{$player->status == 1 ? 'success' : 'secondary' }}">
                                         {{$player->status ? "Active " : "Inactive "}}
                                     </div>
                                 </td>
