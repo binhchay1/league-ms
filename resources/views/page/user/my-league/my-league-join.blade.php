@@ -54,6 +54,49 @@
         font-weight: bold !important;
     }
 
+    .sidebar-list {
+        background-color: #4a5773;
+        border-radius: 6px;
+        padding: 0;
+        list-style: none;
+    }
+
+    .sidebar-list li a {
+        display: block;
+        padding: 12px 16px;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+
+    .sidebar-list li a:hover {
+        background-color: lightgrey;
+
+    }
+
+    .sidebar-list li.active a {
+        background-color: #ffffff;
+        color: #4a5773;
+        border-radius: 0;
+    }
+
+    .league-title {
+        background: #f5f5f5;
+        padding: 10px;
+    }
+
+    .font-medium {
+        border: 1px solid transparent;
+        border-radius: 4px;
+        padding: 10px;
+        background-color: #d9edf7;
+        color: #31708f;
+        width: 100% !important;
+        font-size: 18px !important;
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+        font-weight: 500;
+    }
 
 </style>
 @section('content')
@@ -81,24 +124,32 @@
             <!-- Main Content -->
             <div class="container bg-gray">
                 <div class="row">
-                    <!-- Sidebar -->
-                    <div class="col-md-3 p-3 bg-light">
-                        <div class="list-group">
-                            <a href="{{route('league.createTour')}}" data-id="league-created" class="list-group-item list-group-item-action">{{'League Created'}}</a>
-                            <a href="{{route('league.leagueJoin')}}"  data-id="league-join" class="list-group-item list-group-item-action">{{'League Joined'}}</a>
-                        </div>
+                    <div class="col-md-3 p-0 mt-3" style="background-color: #4a5773;">
+                        <ul class="sidebar-list mt-4">
+                            <li class="{{ request()->routeIs('league.leagueCreate') ? 'active' : '' }}">
+                                <a href="{{ route('league.leagueCreate') }}">
+                                    <i class="fas fa-pen mr-2"></i>{{'League Created'}}
+                                </a>
+                            </li>
+                            <li class="{{ request()->routeIs('league.leagueJoin') ? 'active' : '' }}">
+                                <a href="{{ route('league.leagueJoin') }}">
+                                    <i class="fas fa-users mr-2"></i> {{'League Joined'}}
+                                </a>
+                            </li>
+                        </ul>
                     </div>
 
                     <!-- Tournament List -->
                     <div class="col-md-9 p-3">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex justify-content-between align-items-center league-title mb-3">
                             <h4>{{'My leagues join'}}</h4>
                             <a href="{{route('league.createTour')}}">
                                 <button class="btn btn-success">{{ __('Create League') }}</button>
                             </a>
                         </div>
-                        @if(count($listLeague) > 0)
+                        @if(empty($listLeague))
                             @foreach($listLeague as $row)
+                                @if($row && isset($row->slug))
                                     <div class="card mb-3">
                                         <div class="row g-0">
                                             <div class="col-md-2">
@@ -141,14 +192,12 @@
                                         </div>
 
                                     </div>
-
+                                @endif
                             @endforeach
                         @else
-                            <div class="text-center">
-                                <img class="" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
-
-                                <h4 >{{ __('There are no leagues!') }}</h4>
-                            </div>
+                            <label class="m-0 block text-sm font-medium text-gray-700">
+                                {{'No tournament yet.'}}
+                            </label>
                         @endif
                     </div>
                 </div>

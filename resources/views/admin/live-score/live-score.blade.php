@@ -5,137 +5,99 @@
 @endsection
 
 @section('css')
-{{--    <style>--}}
-{{--        .score-box {--}}
-{{--            width: 50px;--}}
-{{--            height: 50px;--}}
-{{--            font-size: 24px;--}}
-{{--            font-weight: bold;--}}
-{{--            display: flex;--}}
-{{--            align-items: center;--}}
-{{--            justify-content: center;--}}
-{{--            border-radius: 10px;--}}
-{{--            background-color: #f8f9fa;--}}
-{{--        }--}}
+    <style>
+        .square {
+            height: 10px;
+            width: 10px;
+            border: 1px solid black;
+        }
 
-{{--        .team-name {--}}
-{{--            font-size: 22px;--}}
-{{--            font-weight: bold;--}}
-{{--        }--}}
-
-{{--        .btn-score {--}}
-{{--            font-size: 18px;--}}
-{{--            padding: 8px 12px;--}}
-{{--        }--}}
-{{--    </style>--}}
+        .h1 {
+            font-size: 5.5rem;
+        }
+    </style>
 @endsection
 
 @section('content')
-    <style>
-        .score-box {
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        .team-name {
-            font-size: 18px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        .btn-score {
-            width: 40px;
-            height: 40px;
-            font-size: 20px;
-            padding: 0;
-            line-height: 1;
-            border-radius: 50%;
-        }
-    </style>
-
     <div class="container-fluid mt-4">
-        <div class="card shadow">
-            <div class="card-header bg-primary text-white text-center">
-                <h5 class="mb-0"><i class="fas fa-bolt me-2"></i>{{ __('Live Score') }}</h5>
+        <div class="card card-default">
+            <div class="card-header">
+                <h5>{{ __('Live Score') }}</h5>
             </div>
-            <div class="card-body">
-                <div class="row text-center align-items-center">
-                    {{-- Team 1 --}}
-                    <div class="col-md-5">
-                        <p class="team-name text-primary">{{ $getSchedule->player1Team1->name ?? 'Team 1' }}</p>
-                        <div class="d-flex justify-content-center mb-2">
-                            @for($i = 1; $i <= 2; $i++)
-                                <div class="score-box mx-1 {{ $getSchedule->result_team_1 >= $i ? 'bg-success text-white' : '' }}">
-                                    {{ $i }}
-                                </div>
-                            @endfor
+
+            <div class="card-body row">
+                <div class="col-5 d-flex justify-content-center">
+                    <div>
+                        <div>
+                            @if(isset($getSchedule->player1Team1))
+                                <p class="text-center h1">{{ $getSchedule->player1Team1->name }}</p>
+                            @endif
+
+                            @if(isset($getSchedule->player2Team1))
+                                <p class="text-center h1">{{ $getSchedule->player2Team1->name }}</p>
+                            @endif
                         </div>
-                        <p class="display-5 fw-bold" id="score-team-1">{{ $scoreT1Live ?? 0 }}</p>
+
                         <div class="d-flex justify-content-center">
-                            <button class="btn btn-success btn-score mx-1" id="add-score-team-1"><i class="fas fa-plus"></i></button>
-                            <button class="btn btn-danger btn-score mx-1" id="deduct-score-team-1"><i class="fas fa-minus"></i></button>
+                            <div class="square"></div>
+                            <div class="square ml-1"></div>
+                        </div>
+
+                        <div>
+                            @if(empty($getSchedule->set_1_team_1))
+                                <p class="text-center h1" id="score-team-1">0</p>
+                            @else
+                                <p class="text-center h1">{{ $getSchedule->set_1_team_1 }}</p>
+                            @endif
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-success" id="add-score-team-1">{{ __('Add') }}</button>
+                            <button class="btn btn-danger" id="deduct-score-team-1">{{ __('Deduct') }}</button>
                         </div>
                     </div>
+                </div>
 
-                    {{-- Set Info --}}
-                    <div class="col-md-2">
-                        <p class="h4 mb-1">{{ __('Set') }}</p>
-                        <div class="badge bg-secondary fs-5 px-3 py-2" id="number-set">{{ $setLive }}</div>
-                    </div>
+                <div class="col-2">
+                    <p class="text-center">{{ __('Round') }} 1</p>
+                </div>
 
-                    {{-- Team 2 --}}
-                    <div class="col-md-5">
-                        <p class="team-name text-danger">{{ $getSchedule->player1Team2->name ?? 'Team 2' }}</p>
-                        <div class="d-flex justify-content-center mb-2">
-                            @for($i = 1; $i <= 2; $i++)
-                                <div class="score-box mx-1 {{ $getSchedule->result_team_2 >= $i ? 'bg-success text-white' : '' }}">
-                                    {{ $i }}
-                                </div>
-                            @endfor
+                <div class="col-5 d-flex justify-content-center">
+                    <div>
+                        <div>
+                            @if(isset($getSchedule->player1Team2))
+                                <p class="text-center h1">{{ $getSchedule->player1Team2->name }}</p>
+                            @endif
+
+                            @if(isset($getSchedule->player2Team2))
+                                <p class="text-center h1">{{ $getSchedule->player2Team2->name }}</p>
+                            @endif
                         </div>
-                        <p class="display-5 fw-bold" id="score-team-2">{{ $scoreT2Live ?? 0 }}</p>
+
                         <div class="d-flex justify-content-center">
-                            <button class="btn btn-success btn-score mx-1" id="add-score-team-2"><i class="fas fa-plus"></i></button>
-                            <button class="btn btn-danger btn-score mx-1" id="deduct-score-team-2"><i class="fas fa-minus"></i></button>
+                            <div class="square"></div>
+                            <div class="square ml-1"></div>
+                        </div>
+
+                        <div>
+                            @if(empty($getSchedule->set_1_team_2))
+                                <p class="text-center h1" id="score-team-2">0</p>
+                            @else
+                                <p class="text-center h1">{{ $getSchedule->set_1_team_2 }}</p>
+                            @endif
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-success" id="add-score-team-2">{{ __('Add') }}</button>
+                            <button class="btn btn-danger" id="deduct-score-team-2">{{ __('Deduct') }}</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 @endsection
 
-@section('js')
-    <script>
-        document.getElementById('add-score-team-1').addEventListener('click', function() {
-            let score = document.getElementById('score-team-1');
-            score.textContent = parseInt(score.textContent) + 1;
-        });
-
-        document.getElementById('deduct-score-team-1').addEventListener('click', function() {
-            let score = document.getElementById('score-team-1');
-            if (parseInt(score.textContent) > 0) {
-                score.textContent = parseInt(score.textContent) - 1;
-            }
-        });
-
-        document.getElementById('add-score-team-2').addEventListener('click', function() {
-            let score = document.getElementById('score-team-2');
-            score.textContent = parseInt(score.textContent) + 1;
-        });
-
-        document.getElementById('deduct-score-team-2').addEventListener('click', function() {
-            let score = document.getElementById('score-team-2');
-            if (parseInt(score.textContent) > 0) {
-                score.textContent = parseInt(score.textContent) - 1;
-            }
-        });
-    </script>
-@endsection
 @section('js')
     <script src="{{ asset('js/admin/live-score.js') }}"></script>
 @endsection

@@ -164,6 +164,19 @@ class ProfileController extends Controller
         return view('page.user.my-league.my-league-join', compact('listLeague'));
     }
 
+    public function leagueCreated()
+    {
+        $idUser = Auth::user()->id;
+        $dataUser = $this->userRepository->showInfo($idUser);
+
+        $getLeague = $dataUser->league()->orderByRaw("CASE WHEN status = '1' THEN 1 ELSE 2 END") // Active trước, inactive sau
+        ->orderBy('id', 'desc') // Sắp xếp theo id giảm dần
+        ->get();
+        $listLeague = $this->utility->paginate($getLeague, 10, '/my-league');
+
+        return view('page.user.my-league.my-league-create', compact('listLeague'));
+    }
+
     public function detailMyLeague($slug)
     {
         $user = Auth::user()->id;
@@ -234,7 +247,6 @@ class ProfileController extends Controller
 
         return redirect()->back()->with('success', __('League updated successfully!'));
     }
-
 
     public function myLeaguePlayer($slug)
     {
@@ -316,7 +328,6 @@ class ProfileController extends Controller
             ->where('status', 1)->count();
         return view('page.user.my-league.detail-my-league', compact('leagueInfor', 'listLeagues', 'getListLeagues', 'registrations','pendingCount', 'acceptedCount'));
     }
-
 
     public function myLeagueSchedule($slug)
     {
@@ -664,6 +675,7 @@ class ProfileController extends Controller
         $listGroup = $this->utility->paginate($getGroup, 10, '/my-group');
         return view('page.user.my-group.my-group-join', compact('listGroup'));
     }
+
     public function infoMyGroup($id)
     {
         $dataGroup = $this->groupRepository->getById($id);

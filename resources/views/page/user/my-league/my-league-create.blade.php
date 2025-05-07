@@ -54,14 +54,11 @@
         font-weight: bold !important;
     }
 
-    #reg {
-        background-color: mediumpurple !important;
+    .list-group-item.active {
+        background-color: #ffffff !important;
+        color: #4a5773 !important;
+        font-weight: bold;
     }
-
-    #end-reg {
-        background-color: #b46060 !important;
-    }
-
     .sidebar-list {
         background-color: #4a5773;
         border-radius: 6px;
@@ -105,7 +102,6 @@
         margin-bottom: 20px !important;
         font-weight: 500;
     }
-
 </style>
 @section('content')
     <section >
@@ -146,62 +142,62 @@
                                 </a>
                             </li>
                         </ul>
-
                     </div>
 
                     <!-- Tournament List -->
                     <div class="col-md-9 p-3">
-                        <div class="d-flex justify-content-between align-items-center league-title mb-3">
-                            <h4>{{'My leagues'}}</h4>
+                        <div class="d-flex justify-content-between align-items-center mb-3 league-title">
+                            <h4>{{'My leagues create'}}</h4>
                             <a href="{{route('league.createTour')}}">
                                 <button class="btn btn-success">{{ __('Create League') }}</button>
                             </a>
                         </div>
                         @if(count($listLeague) > 0)
                             @foreach($listLeague as $row)
-                                <div class="card mb-3">
-                                    <div class="row g-0">
-                                        <div class="col-md-2">
-                                            <img src="{{asset($row->images ?? asset('/images/no-image.png') )}}" class="img-fluid rounded-start" alt="BattleBots">
-                                        </div>
-                                        <div class="col-md-10">
-                                            <div class="card-body">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <a href="{{route('my.leagueDetail', $row->slug)}}" title="{{ $row->name }}">
-                                                        <h5 class="card-title color-red" >{{$row->name}}</h5>
-                                                    </a>
-                                                    @if(now() > date('Y-m-d', strtotime($row->end_date_register)) && now() < $row->start_date)
-                                                        <div>
-                                                            <a href="{{route('my.myLeagueActivePlayer', $row->slug)}}">
-                                                                <button class="btn btn-success">{{ __('Active Player Register League') }}</button>
-                                                            </a>
-                                                            @if(count($row->schedule) == 0)
-                                                                <a href="{{ route('auto.create.myLeague.schedule') }}?s={{ $row->slug }}">
-                                                                    <button class="btn btn-success">{{ __('Create Schedule') }}</button>
+                                @if($row && isset($row->slug))
+                                    <div class="card mb-3">
+                                        <div class="row g-0">
+                                            <div class="col-md-2">
+                                                <img src="{{asset($row->images ?? asset('/images/no-image.png') )}}" class="img-fluid rounded-start" alt="BattleBots">
+                                            </div>
+                                            <div class="col-md-10">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <a href="{{route('my.leagueDetail', $row->slug)}}" title="{{ $row->name }}">
+                                                            <h5 class="card-title color-red" >{{$row->name}}</h5>
+                                                        </a>
+                                                        @if(now() > date('Y-m-d', strtotime($row->end_date_register)) && now() < $row->start_date)
+                                                            <div>
+                                                                <a href="{{route('my.myLeagueActivePlayer', $row->slug)}}">
+                                                                    <button class="btn btn-success">{{ __('Active Player Register League') }}</button>
                                                                 </a>
-                                                            @endif
-                                                        </div>
+                                                                @if(count($row->schedule) == 0)
+                                                                    <a href="{{ route('auto.create.myLeague.schedule') }}?s={{ $row->slug }}">
+                                                                        <button class="btn btn-success">{{ __('Create Schedule') }}</button>
+                                                                    </a>
+                                                                @endif
+                                                            </div>
+                                                        @endif
+                                                    </div>
+
+                                                    <p class="card-text"><?php echo number_format($row->money ?? 0) . " VND"?> || {{$row->type_of_league}}  || {{$row->location}}</p>
+                                                    @if(now()->between($row->start_date, $row->end_date))
+                                                        <span class="status-league p-1 bg-success text-white rounded">{{'Active'}}</span>
+                                                    @elseif(now() < date('Y-m-d', strtotime($row->end_date_register)))
+                                                        <span class="status-league p-1 bg-warning text-black rounded">{{'Registering'}}</span>
+                                                    @elseif(now() > date('Y-m-d', strtotime($row->end_date_register)) && now() < $row->start_date)
+                                                        <span class=" status-league p-1 bg-warning text-black rounded">{{'End Register'}}</span>
+                                                    @elseif(now() > $row->end_date)
+                                                        <span class="status-league p-1 bg-danger text-white rounded">{{'Ended '}}</span>
                                                     @endif
                                                 </div>
 
-                                                <p class="card-text"><?php echo number_format($row->money ?? 0) . " VND"?> || {{$row->type_of_league}}  || {{$row->location}}</p>
-                                                @if(now()->between($row->start_date, $row->end_date))
-                                                    <span class="status-league p-1 bg-success text-white rounded">{{'Active'}}</span>
-                                                @elseif(now() < date('Y-m-d', strtotime($row->end_date_register)))
-                                                    <span id="reg" class="status-league p-1 bg-warning text-white rounded">{{'Registering'}}</span>
-                                                @elseif(now() > date('Y-m-d', strtotime($row->end_date_register)) && now() < $row->start_date)
-                                                    <span id="end-reg" class=" status-league p-1 bg-secondary text-white rounded">{{'End Register'}}</span>
-                                                @elseif(now() > $row->end_date)
-                                                    <span class="status-league p-1 bg-danger text-white rounded">{{'Ended '}}</span>
-                                                @endif
                                             </div>
 
                                         </div>
 
                                     </div>
-
-                                </div>
-
+                                @endif
                             @endforeach
                         @else
                             <label class="m-0 block text-sm font-medium text-gray-700">

@@ -132,7 +132,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/my-group/{id}/info/', [ProfileController::class, 'infoMyGroup'])->name('my.infoMyGroup');
     Route::post('/update-my-group/{id}', [ProfileController::class, 'updateMyGroup'])->name('my.updateMyGroup');
     Route::delete('delete/my-group/{id}', [ProfileController::class, 'deleteMyGroup'])->name('delete.myGroup');
-    Route::get('/tournament-joined', [ProfileController::class, 'leagueJoin'])->name('league.leagueJoin');
+    Route::get('/league-joined', [ProfileController::class, 'leagueJoin'])->name('league.leagueJoin');
+    Route::get('/league-created', [ProfileController::class, 'leagueCreated'])->name('league.leagueCreate');
     Route::get('/group-joined', [ProfileController::class, 'groupJoin'])->name('group.groupJoin');
 
     Route::post('/register-league/', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
