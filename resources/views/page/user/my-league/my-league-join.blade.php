@@ -101,21 +101,21 @@
 </style>
 @section('content')
     <section >
-        <div class="container-fluid">
+        <div class="">
             <!-- Header -->
-            <div class=" text-black p-3 align-items-center">
-                <div class="container d-flex  img-fluid">
-                    <img src="{{ asset(Auth::user()->profile_photo_path ?? '/images/no-image.png')}}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
+            <div class=" text-black align-items-center" style="background: #707787;padding: 10px; margin-top: -20px;">
+                <div class="container d-flex p-0 img-fluid">
+                    <img src="{{ asset(Auth::user()->profile_photo_path ?? '/images/no-image.png')}}" alt="User" width="150" height="150" class=" me-3 " >
                     <div>
-                        <h2 class="p-0">{{Auth::user()->name}}</h2>
-                        <p class="mb-1">
-                            <i class="bi bi-envelope"></i> {{Auth::user()->email}}
+                        <h2 class="p-0 text-white">{{Auth::user()->name}}</h2>
+                        <p class="mb-1 text-white">
+                            <i class="bi bi-envelope "></i> {{Auth::user()->email}}
                         </p>
-                        <p class="mb-1 text-muted">
-                            <i class="bi bi-telephone"></i> <em>{{Auth::user()->phone}}</em>
+                        <p class="mb-1 text-muted ">
+                            <i class="bi bi-telephone text-white"></i> <em class="text-white">{{Auth::user()->phone ?? 'updating' }}</em>
                         </p>
-                        <p class="mb-0 text-muted">
-                            <i class="bi bi-calendar"></i> <em>{{'updating'}}</em>
+                        <p class="mb-0 text-muted ">
+                            <i class="bi bi-calendar text-white"></i> <em class="text-white">{{Auth::user()->age ?? 'updating' }}</em>
                         </p>
                     </div>
                 </div>
@@ -147,7 +147,7 @@
                                 <button class="btn btn-success">{{ __('Create League') }}</button>
                             </a>
                         </div>
-                        @if(empty($listLeague))
+                        @if(!($listLeague->isEmpty()))
                             @foreach($listLeague as $row)
                                 @if($row && isset($row->slug))
                                     <div class="card mb-3">

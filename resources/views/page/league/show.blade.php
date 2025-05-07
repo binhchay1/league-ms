@@ -116,35 +116,33 @@
         </div>
 
     @endif
-    <div id="page" class="hfeed site" style="{{ $hasEnded ? 'display: none;' : '' }}">
+    <div id="page" class="hfeed site" style="{{ $hasEnded ? 'display: none;' : '' }}; margin-top: -20px">
         <div class=" results ">
             <div class="wrapper-results" id="league-detail">
-                <div class="container" >
-                    <div class="box-results-tournament">
-                        <div>
-                            <div class="logo-left">
-                                <img src="{{ asset($leagueInfor->images ?? '/images/logo-no-background.png') }}"
-                                     class="show-image-league" alt="logo">
-                            </div>
-                            <div class="" id="info-league">
-                                <h2 class="p-0">{{ $leagueInfor->name }}</h2>
-                                <p class="card-text display"><?php echo number_format($leagueInfor->money ?? 0) . " VND"?> || {{$leagueInfor->type_of_league}}  || {{$leagueInfor->location}}</p>
-                                <p class="display">
-                                    <i class="bi bi-geo-alt"></i> <em>{{ __('Location: ') }} {{$leagueInfor->location}}</em>
-                                </p>
-                                <?php $start_date = date('d/m/Y', strtotime($leagueInfor->start_date));
-                                $end_date = date('d/m/Y', strtotime($leagueInfor->end_date));
-                                ?>
-                                <p class="display">
-                                    <i class="bi bi-calendar"></i> <em>{{'From: '}} {{$start_date}} ~ {{'To: '}}{{$end_date}}</em>
-                                </p>
-                                <p class="display">
-                                    <i class="bi bi-people-fill"></i> <em>{{ __('Member: ') }} {{$leagueInfor->number_of_athletes}}</em>
-                                </p>
-                            </div>
+                <div class="" style="background: #707787;padding: 10px; margin-top: -20px; color: white">
+                    <div class="container d-flex mt-4">
+                        <div class=" logo-left">
+                            <img src="{{ asset($leagueInfor->images ?? '/images/logo-no-background.png') }}"
+                                 class="show-image-league" alt="logo">
+                        </div>
+                        <div class="" id="info-league">
+                            <h2 class="p-0">{{ $leagueInfor->name }}</h2>
+                            <p class="card-text display"><?php echo number_format($leagueInfor->money ?? 0) . " VND"?> || {{$leagueInfor->type_of_league}}  || {{$leagueInfor->location}}</p>
+                            <p class="display">
+                                <i class="bi bi-geo-alt"></i> <em>{{ __('Location: ') }} {{$leagueInfor->location}}</em>
+                            </p>
+                            <?php $start_date = date('d/m/Y', strtotime($leagueInfor->start_date));
+                            $end_date = date('d/m/Y', strtotime($leagueInfor->end_date));
+                            ?>
+                            <p class="display">
+                                <i class="bi bi-calendar"></i> <em>{{'From: '}} {{$start_date}} ~ {{'To: '}}{{$end_date}}</em>
+                            </p>
+                            <p class="display">
+                                <i class="bi bi-people-fill"></i> <em>{{ __('Member: ') }} {{$leagueInfor->number_of_athletes}}</em>
+                            </p>
                         </div>
                     </div>
-                    <div class="d-flex gap-2 mt-4">
+                    <div class="container d-flex gap-2 mt-4">
                         @if(now() >= date('Y-m-d', strtotime($leagueInfor->start_date)))
                             <a href="{{ route('showGeneralNews.info', $leagueInfor['slug']) }}"
                                class="btn-custom {{ request()->routeIs('showGeneralNews.info') ? 'active' : '' }}">
@@ -197,7 +195,6 @@
                         @endif
                     </div>
                 </div>
-                <hr>
 
 {{--                @if(now() < date('Y-m-d', strtotime($leagueInfor->end_date_register)))--}}
 

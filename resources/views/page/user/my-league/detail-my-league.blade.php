@@ -86,17 +86,17 @@
     $format_register_date =$leagueInfor->end_date_register;
     ?>
     <section >
-        <div class="container-fluid">
+        <div class="">
             <?php $start_date = date('d/m/Y', strtotime($leagueInfor->start_date));
             $end_date = date('d/m/Y', strtotime($leagueInfor->end_date));
             ?>
-            <div class=" text-black p-3 ">
-                <div class="container d-flex  img-fluid">
-                    <img src="{{asset($leagueInfor->images ?? asset('/images/logo-no-background.png'))}}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
+            <div class=" text-black p-3" style="background: #707787;padding: 10px; margin-top: -20px; color: white">
+                <div class="container d-flex  img-fluid" style="color: white">
+                    <img src="{{asset($leagueInfor->images ?? asset('/images/logo-no-background.png'))}}" alt="User" width="200" height="200" class=" me-3 " >
                     <div class="col-md-10">
                         <div class="card-body">
                             <a href="{{route('my.leagueDetail',$leagueInfor->slug)}}">
-                                <h2 class="card-title color-red mb-1 p-0">{{$leagueInfor->name}}</h2>
+                                <h2 class="card-title text-white color-red mb-1 p-0">{{$leagueInfor->name}}</h2>
                             </a>
                             <p class="card-text display"><?php echo number_format($leagueInfor->money ?? 0) . " VND"?> || {{$leagueInfor->type_of_league}}  || {{$leagueInfor->location}}</p>
                             <p class="display">

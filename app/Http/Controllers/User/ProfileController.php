@@ -155,12 +155,11 @@ class ProfileController extends Controller
     public function leagueJoin()
     {
         $user = auth()->user();
-        $getLeague = $user->userLeagues()
-            ->with('league') // eager load
-            ->get()
-            ->pluck('league');
-
+        $getLeague = \App\Models\League::whereHas('userLeagues', function ($q) use ($user) {
+            $q->where('user_id', $user->id);
+        })->get();
         $listLeague = $this->utility->paginate($getLeague, 10, '/my-league');
+
         return view('page.user.my-league.my-league-join', compact('listLeague'));
     }
 
@@ -674,6 +673,16 @@ class ProfileController extends Controller
 
         $listGroup = $this->utility->paginate($getGroup, 10, '/my-group');
         return view('page.user.my-group.my-group-join', compact('listGroup'));
+    }
+
+    public function groupCreated()
+    {
+        $idUser = Auth::user()->id;
+        $dataUser = $this->userRepository->showInfo($idUser);
+        $getGroup = $dataUser->groups;
+        $listGroup = $this->utility->paginate($getGroup, 10, '/my-group');
+
+        return view('page.user.my-group.my-group-create', compact('listGroup'));
     }
 
     public function infoMyGroup($id)

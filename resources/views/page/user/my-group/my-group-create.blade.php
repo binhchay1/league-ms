@@ -98,7 +98,6 @@
         font-weight: 500;
     }
 
-
 </style>
 @section('content')
     <section >
@@ -126,7 +125,7 @@
             <div class="container bg-gray">
                 <div class="row">
                     <!-- Sidebar -->
-                    <div class="col-md-3 p-0 mt-3" style="background-color: #4a5773; height: 60%;">
+                    <div class="col-md-3 p-0 mt-3" style="background-color: #4a5773;  height: 60%;">
                         <ul class="sidebar-list mt-4">
                             <li class="{{ request()->routeIs('group.groupCreateByUser') ? 'active' : '' }}">
                                 <a href="{{ route('group.groupCreateByUser') }}">
@@ -141,16 +140,16 @@
                         </ul>
                     </div>
 
-
                     <!-- Tournament List -->
                     <div class="col-md-9 p-3">
                         <div class="d-flex justify-content-between group-title align-items-center mb-3">
-                            <h4>{{'My groups joined'}}</h4>
+                            <h4>{{'My groups create'}}</h4>
                             <a href="{{route('group.createGroup')}}">
                                 <button class="btn btn-success">{{ __('Create Group') }}</button>
                             </a>
                         </div>
-                        @if(!($listGroup->isEmpty()))
+
+                        @if(!empty($listGroup))
                             @foreach($listGroup as $row)
                                 @if($row )
                                     <div class="card mb-3">

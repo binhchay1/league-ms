@@ -52,9 +52,9 @@
     $end_time = date("H:i", strtotime($groupTrainingDetail->end_time));
     ?>
     <div>
-        <div class=" text-black p-3 align-items-center">
-            <div class="container d-flex  img-fluid">
-                <img src="{{ asset($groupTrainingDetail->groups->images) }}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
+        <div class=" text-black p-3 align-items-center"  style="background: #707787;padding: 10px; margin-top: -20px; ">
+            <div class="container d-flex  img-fluid" style="color: white">
+                <img src="{{ asset($groupTrainingDetail->groups->images) }}" alt="User" width="200" height="200" class=" me-3 " >
                 <div>
                     <h2 class="p-0">{{$groupTrainingDetail->name}}</h2>
                     <p class="">

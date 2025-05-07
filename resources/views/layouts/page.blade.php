@@ -154,7 +154,7 @@
             </ul>
         </div>
 
-        <nav class="navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm" >
+        <nav class="navbar navbar-expand-lg sticky-top navbar-light m-0 shadow-sm" >
             <div class="container">
                 <a href="{{ route('home') }}"><img  class="logo-image" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

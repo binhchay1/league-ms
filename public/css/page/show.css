@@ -1,20 +1,3 @@
-ul.site-main-menu li a:hover, ul.site-main-menu li.current-menu-item a {
-    border-bottom: 4px solid #fff;
-    color: #fff
-}
-
-.main-navigation .menu-all-pages-container #sub-main-menu a.active, .main-navigation .menu-all-pages-container #sub-main-menu a:hover {
-    border-bottom: 4px solid #df2027;
-    color: #df2027
-}
-
-#live-scores-box, .results .wrapper-results .wrapper-content-results .content-results .content-item-results .list-sort-court, .results .wrapper-results .wrapper-content-results .content-results .content-item-results .list-sort-time {
-    padding-bottom: 20px
-}
-
-.ajax-loading, .greatest-player .cate .double .player-item .flag img, .greatest-player .cate .single .player-item .flag img {
-    text-indent: -9999px
-}
 
 header.site-header {
     text-align: center;

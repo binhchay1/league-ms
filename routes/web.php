@@ -135,6 +135,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/league-joined', [ProfileController::class, 'leagueJoin'])->name('league.leagueJoin');
     Route::get('/league-created', [ProfileController::class, 'leagueCreated'])->name('league.leagueCreate');
     Route::get('/group-joined', [ProfileController::class, 'groupJoin'])->name('group.groupJoin');
+    Route::get('/group-created', [ProfileController::class, 'groupCreated'])->name('group.groupCreateByUser');
 
     Route::post('/register-league/', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
     Route::post('/partner/', [HomeController::class, 'storePartnerAjax'])->name('user.create.partner');
