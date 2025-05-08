@@ -75,7 +75,7 @@ Route::get('/product-new/{slug}', [ExchangeController::class, 'editProductNews']
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
-//manager-news
+    //manager-news
     Route::get('/user/profile', [ExchangeController::class, 'profile'])->name('exchange.profile');
 
     Route::post('/update-product-news/{slug}', [ExchangeController::class, 'updateProductNews'])->name('exchange.updateNews');
@@ -179,8 +179,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/result', [ScheduleController::class, 'result'])->name('schedule.result');
     Route::get('/export-schedule/{id}/', [ScheduleController::class, 'exportSchedule'])->name('schedule.export');
     Route::get('/auto-create-league', [ScheduleController::class, 'autoCreateLeague'])->name('auto.create.schedule');
-    Route::get('/store-score', [ScheduleController::class, 'storeScore'])->name('store.score');
-
+    Route::post('/store-score/', [ScheduleController::class, 'storeScore'])->name('store.score');
 
     //group
     Route::get('/list-group/', [GroupController::class, 'index'])->name('group.index');

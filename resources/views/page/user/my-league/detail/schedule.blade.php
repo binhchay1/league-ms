@@ -132,13 +132,13 @@ if (Auth::check()) {
                                                         {{$date}}
                                                     </div>
                                                 </a>
-                                            @if ($schedule->date == now()->toDateString() && $schedule->player2Team1 !== null)
+                                                @if ($schedule->date == now()->toDateString() && $schedule->player2Team1 !== null)
                                                 <!-- Kiểm tra nếu người dùng đã đăng nhập và có quyền referee -->
-                                                    @if(Auth::check() && in_array('referee', $listTitle))
-                                                        <div class="d-flex justify-content-center">
-                                                            <a href="{{ route('live.score') }}?s_i={{ $utility->encode_hash_id($schedule->id) }}" class="btn btn-referee" style="margin-bottom: 10px;">{{ __('Be referee') }}</a>
-                                                        </div>
-                                                    @endif
+                                                @if(Auth::check() && in_array('referee', $listTitle))
+                                                <div class="d-flex justify-content-center">
+                                                    <a href="{{ route('live.score') }}?s_i={{ $utility->encode_hash_id($schedule->id) }}" class="btn btn-referee" style="margin-bottom: 10px;">{{ __('Be referee') }}</a>
+                                                </div>
+                                                @endif
                                                 @endif
                                             </li>
                                             @endforeach

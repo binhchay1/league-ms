@@ -14,6 +14,7 @@
     <meta name="description" content="{{ __('Run your badminton league for free, badminton scheduling and online results and statistics displayed on your free website.') }}">
     <meta name="keywords" content="{{ __('badminton scheduling,badminton scheduler,badminton league,badminton league website,manage badminton league online,run badminton league online') }}">
     <meta name="robots" content="Index, Follow">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
     <meta charset="UTF-8" />

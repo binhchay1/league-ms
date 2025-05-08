@@ -399,7 +399,7 @@ class ScheduleController extends Controller
 
     public function storeScore(Request $request)
     {
-        $type = $request->query->get('type');
+        $type = $request->get('type');
         $score = $request->get('score');
         $team = $request->get('team');
         $set = $request->get('set');
