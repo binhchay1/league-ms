@@ -11,106 +11,15 @@
         <link rel="stylesheet" href="{{ asset('css/page/bracket.css') }}"/>
     @endif
 @endsection
+
 <style>
-    .list-group-item-action {
-        padding: 10px;
-        cursor: pointer;
-        transition: background 0.3s;
-    }
-
-    .list-group-item-action.active {
-        background-color:#dc3545 !important; /* Màu xanh */
-        color: white;
-        border-radius: 5px;
-    }
-
-    .card-title {
-        color: black !important;
-    }
-
-    p.display {
-        font-size: 15px !important;
-    }
-
-    .btn-custom {
-        background-color: #dc3545 !important;
-        color: white !important;
-        font-weight: bold;
-        border-radius: 10px;
-        padding: 10px 15px!important;
-        border: none;
-    }
-
-    .btn-custom:hover {
-        background-color: #ff4b2b !important;
-    }
-
-    /* Tùy chỉnh dropdown */
-    .btn-dropdown {
-        background: white;
-        border: 2px solid #ff4b2b !important;
-        border-radius: 10px;
-        color: #dc3545;
-        padding: 10px 12px !important;
-    }
-
-    .btn-dropdown:hover {
-        background: #f1f1f1 !important;
-    }
-
-    .form-control {
-        line-height: 2.5 !important;
-    }
-
-    .tr-title{
-        background: #596377;
-        line-height: 45px;
-        color: white;
-    }
-    .btn-custom {
-        background-color: #f0f0f0;
-        color: #333;
-        border: 1px solid #ccc;
-        padding: 6px 12px;
-        border-radius: 4px;
-        text-decoration: none;
-        display: inline-block;
-    }
-
-    .btn-custom.active {
-        background-color: lightgrey !important;
-        color: black !important;
-    }
-
-    #playerSelect {
-        padding: 3px !important;
-        width: 50%;
-        margin-left: 10px;
-        margin-bottom: 20px;
-        margin-top: 20px !important;
-        color: black;
-        font-size: 15px;
-    }
-
-    .font-medium {
-        border: 1px solid transparent;
-        border-radius: 4px;
-        padding: 10px;
-        background-color: #d9edf7;
-        color: #31708f;
-        margin-left: 10px;
-        width: 98% !important;
-        font-size: 18px !important;
-        margin-top: 20px !important;
-        margin-bottom: 20px !important;
-    }
-
-    label {
-        font-size: 18px;
+    select {
         font-weight: 500;
     }
 
-
+    select option {
+        font-weight: 500;
+    }
 </style>
 @section('content')
     <?php
@@ -123,15 +32,15 @@
     <div id="page" class="hfeed site">
         <div class=" results">
             <div class="wrapper-results">
-                <div class="container" >
-                    <div class="box-results-tournament">
-                        <div>
+                <div class="" style="background: #707787;padding: 10px; margin-top: -20px; color: white">
+                    <div class="container box-results-tournament">
+                        <div class="d-flex">
                             <div class="logo-left">
                                 <img src="{{ asset($leagueInfor->images ?? '/images/logo-no-background.png') }}"
                                      class="show-image-league" alt="logo">
                             </div>
                             <div class="" id="info-league">
-                                <h2>{{ $leagueInfor->name }}</h2>
+                                <h2 class="p-0">{{ $leagueInfor->name }}</h2>
                                 <p class="card-text display"><?php echo number_format($leagueInfor->money ?? 0) . " VND"?> || {{$leagueInfor->type_of_league}}  || {{$leagueInfor->location}}</p>
                                 <p class="display">
                                     <i class="bi bi-geo-alt"></i> <em>{{ __('Location: ') }} {{$leagueInfor->location}}</em>
@@ -203,7 +112,6 @@
                         </div>
                     </div>
                 </div>
-                <hr>
 
                 <?php $current_date = strtotime(date("Y-m-d"));
                 $start_date = strtotime($leagueInfor->start_date);
@@ -212,7 +120,7 @@
                 $format_register_date = $leagueInfor->end_date_register;
                 ?>
 
-                <div class="container wrapper-content-results" style="padding: 0px; margin-top: 18px;">
+                <div class="container wrapper-content-results" style="padding: 10px; margin-top: 18px;   background: #eeeeee;">
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">
                             <div class="modal-content" id="modal-content">
@@ -356,9 +264,9 @@
                                                 </td>
                                                 <td align="center">
                                                     <div class="country">
-                                                        <img width="48"
+                                                        <img width="50" height="50"
                                                              src="{{ asset(Auth::user()->profile_photo_path ?? '/images/no-image.png') }}"
-                                                             title="Japan" class="flag image-user">
+                                                             title="Japan" class="flag p-1 " >
                                                     </div>
                                                 </td>
 
@@ -376,7 +284,7 @@
                                 </div>
                                 @if($leagueInfor->type_of_league == 'doubles')
                                     <div id="formPartner">
-                                        <div class="row mb-6">
+                                        <div class="row mb-6" style="margin-left: 2px; width: 100%;">
                                             <label class="block text-sm font-medium text-gray-700 mb-1">
                                                 {{'You are in doubles mode, please choose or create a new partner.'}}
                                             </label>
@@ -402,7 +310,7 @@
                     </div>
 
                         <!-- Form Tạo Người Chơi Mới -->
-                        <div id="newPlayerForm" class="hidden space-y-4 border rounded p-4 bg-gray-50">
+                        <div id="newPlayerForm" class="hidden space-y-4  mt-4 bg-gray-50">
                             <div  id=""  class="  container mt-4 league-tour">
                                 <h4 class="text-left">{{'Create Partner'}}</h4>
                                 <hr>
@@ -458,7 +366,6 @@
 
                                         </div>
                                     </div>
-
                                     <div class="mb-12">
                                         <button class="create-partner-btn btn btn-success w-10 mt-4 mb-12">{{'Create'}}</button>
                                     </div>

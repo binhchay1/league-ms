@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-<div class="wrapper">
+<div class="wrapper ">
 
     <section style="background-color: #DA0011; margin-top: -25px">
         <div>
@@ -63,8 +63,8 @@
         </div>
     </section>
 
-    <section>
-        <div class="container hero-section">
+    <section class="container">
+        <div class=" row hero-section">
             <div class="col-md-6">
                 <img src="{{asset('/images/homepageimg1.png')}}" class="img-fluid floating" alt="Illustration">
             </div>

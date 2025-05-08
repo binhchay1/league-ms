@@ -199,7 +199,6 @@
                     </div>
                 </div>
             </div>
-            <hr>
             <!-- Main Content -->
                 <div class="wrapper-content-results container">
 
@@ -321,7 +320,7 @@
                     </div>
 
 
-                        <div class="content-results">
+                        <div class="content-results mt-4">
                             <div class="item-results">
                                 @if(Route::current()->getName() == 'my.leaguePlayer.info')
                                     <div>

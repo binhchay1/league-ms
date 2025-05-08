@@ -104,7 +104,7 @@ Route::post('/register/', [AuthController::class, 'storeUser'])->name('storeUser
 Route::get('/setLocale/{locale}/', [HomeController::class, 'changeLocate'])->name('app.setLocale');
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/tournament-register/{slug}/', [HomeController::class, 'formRegisterLeague'])->name('league.formRegisterLeague');
+    Route::get('/tournament-league/{slug}/register', [HomeController::class, 'formRegisterLeague'])->name('league.formRegisterLeague');
 
     //profile
     Route::get('/profile/{nick_name}/', [ProfileController::class, 'show'])->name('profile.info');
