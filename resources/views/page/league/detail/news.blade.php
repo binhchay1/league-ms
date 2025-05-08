@@ -21,7 +21,7 @@
 
     <div class="row g-4">
         <!-- Left Column -->
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <!-- Top Teams -->
             <div class="card mb-3">
                 <div class="card-header bg-secondary text-white fw-bold">{{'Ranking'}}</div>
@@ -37,9 +37,16 @@
             <div class="card mb-3">
                 <div class="card-header bg-secondary fw-bold text-white">{{'Schedule'}}</div>
                 @foreach($firstThreeSchedules as $item)
-                 <div class="card-body" style="font-size: 17px">
+                 <div class="card-body" style="font-size: 16px; ">
                      <strong>	⚔️</strong>
-                     {{$item->player1Team1->name ?? "" }} - {{$item->player1Team2->name ?? ""}}
+                     {{$item->player1Team1->name ?? "" }}
+                     @if($item->player1Team1 && $item->player1Team1->partner)
+                         + {{ $item->player1Team1->partner->name ?? "" }}
+                     @endif
+                      -  {{$item->player1Team2->name ?? ""}}
+                     @if($item->player1Team2 && $item->player1Team2->partner)
+                         + {{ $item->player1Team2->partner->name ?? "" }}
+                     @endif
                  </div>
                 @endforeach
                 <div class="card-footer text-center"><a href="{{route('leagueSchedule.info', $leagueInfor->slug)}}">{{'View all'}}</a></div>
@@ -56,7 +63,7 @@
         </div>
 
         <!-- Right Column -->
-        <div class="col-lg-9">
+        <div class="col-lg-8">
             <div class="text-center mb-4">
                 <img src="{{asset('/images/bg-league.png')}}" alt="Banner" class="img-fluid">
             </div>

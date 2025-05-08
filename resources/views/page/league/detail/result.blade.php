@@ -32,6 +32,19 @@
     .time {
         font-size: 15px;
     }
+
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        20% { transform: translateX(-2px); }
+        40% { transform: translateX(2px); }
+        60% { transform: translateX(-2px); }
+        80% { transform: translateX(2px); }
+        100% { transform: translateX(0); }
+    }
+
+    .li-shake:hover {
+        animation: shake 1s;
+    }
 </style>
 <!DOCTYPE html>
 <html lang="en-US" class="bwf-main">
@@ -54,7 +67,7 @@
                                             </li>
                                             <?php $collection = collect($schedules)->sortBy('match'); ?>
                                             @foreach($collection as $index => $schedule)
-                                            <li class="row1 draw-WD - Group B match-147 " id="{{$count }}" onclick="liveScore(this.id)">
+                                            <li class="row1 draw-WD - Group B match-147 li-shake" id="{{$count }}" onclick="liveScore(this.id)">
                                                 <a id="match-link">
                                                     <div class="round_time">
                                                         <div class="time">
@@ -64,28 +77,19 @@
                                                     </div>
                                                     <div class="player-score-wrap">
                                                         <div class="player-wrap">
-
                                                             <div class="team-details-wrap">
                                                                 <div class="player1-wrap">
                                                                     <div class="player1 player_winner player">
                                                                         {{$schedule->player1Team1->name ?? "Team Win"}}
+                                                                        @if($schedule->player1Team1 && $schedule->player1Team1->partner)
+                                                                            / {{ $schedule->player1Team1->partner->name ?? "Team Win" }}
+                                                                        @endif
                                                                     </div>
                                                                     <div class="flag">
                                                                         <img src="{{asset( $schedule->player1Team1->profile_photo_path ?? '/images/no-image.png')}}">
 
                                                                     </div>
                                                                 </div>
-                                                                @if(isset($schedule->player2Team1))
-                                                                <div class="player2-wrap">
-                                                                    <div class="player2 player_winner player">
-                                                                        {{$schedule->player2Team1->name ?? ""}}
-                                                                    </div>
-                                                                    <div class="flag">
-                                                                        <img src="{{asset( $schedule->player2Team1->profile_photo_path ?? '/images/no-image.png')}}">
-
-                                                                    </div>
-                                                                </div>
-                                                                @endif
                                                             </div>
 
                                                             <div class="score">
@@ -108,23 +112,13 @@
                                                                     </div>
                                                                     <div class="player3 player">
                                                                         {{$schedule->player1Team2->name ?? "Team Win"}}
+                                                                        @if($schedule->player1Team2 && $schedule->player1Team2->partner)
+                                                                            / {{ $schedule->player1Team2->partner->name ?? "Team Win" }}
+                                                                        @endif
                                                                     </div>
                                                                 </div>
-                                                                @if(isset($schedule->player2Team2))
-                                                                <div class="player4-wrap player">
-                                                                    <div class="flag">
-                                                                        <img src="{{asset( $schedule->player2Team2->profile_photo_path ?? '/images/no-image.png')}}">
-
-                                                                    </div>
-                                                                    <div class="player4 player">
-                                                                        {{( $schedule->player2Team2->name ?? '')}}
-                                                                    </div>
-                                                                </div>
-                                                                @endif
                                                             </div>
                                                         </div>
-
-
                                                     </div>
                                                     <div class="timer1">
                                                         <?php $date = date('d/m/Y', strtotime($schedule->date)); ?>
@@ -132,50 +126,36 @@
                                                     </div>
                                                 </a>
                                             </li>
-
+                                                        <!-- Score -->
                                             <section id="livescore-top{{$count}}" class="container-livescore hidden" style="padding-bottom: 0px; color: white;">
                                                 <div class="tabs">
                                                     <div id="tab-content3" class="live-tab-content">
                                                         <!-- Check match for players -->
                                                         <div class="live-profile-wrap">
                                                             <div class="live-profile-row">
-
                                                                 <!-- Team 1 -->
                                                                 <div class="team-wrap">
-
                                                                     <!-- Team 1 Player 1 details -->
                                                                     <div class="player1-wrap">
                                                                         <div class="player1-info">
                                                                             <div class="player1-name">
                                                                                 <a href="https://bwfworldtour.bwfbadminton.com/player/84064/ong-yew-sin">
-                                                                                    {{$schedule->player1Team1->name ?? ""}} </a>
+                                                                                    {{$schedule->player1Team1->name ?? ""}}
+                                                                                    @if($schedule->player1Team1 && $schedule->player1Team1->partner)
+                                                                                        {{ $schedule->player1Team1->partner->name ?? "Team Win" }}
+                                                                                    @endif
+                                                                                </a>
                                                                             </div>
                                                                         </div>
                                                                         <div class="player1-profile">
                                                                             <img src="{{asset( $schedule->player2Team1->profile_photo_path ?? '/images/no-image.png')}}" class=" b-error">
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="player1-wrap">
-                                                                        @if(isset($schedule->player2Team1->name))
-                                                                        <div class="player1-info">
-                                                                            <div class="player1-name">
-                                                                                <a href="https://bwfworldtour.bwfbadminton.com/player/84064/ong-yew-sin">
-                                                                                    {{$schedule->player2Team1->name ?? ""}} </a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="player1-profile">
-                                                                            <img src="{{asset( $schedule->player2Team1->profile_photo_path ?? '/images/no-image.png')}}" class=" b-error">
-                                                                        </div>
-                                                                        @endif
                                                                     </div>
                                                                 </div>
-
                                                                 <!-- VS details -->
                                                                 <div class="vs">vs</div>
-
                                                                 <!-- Team 2 -->
                                                                 <div class="team-wrap">
-
                                                                     <!-- Team 2 Player 1 details -->
                                                                     <div class="player2-wrap">
                                                                         <div class="player2-profile">
@@ -184,25 +164,15 @@
                                                                         <div class="player2-info">
                                                                             <div class="player2-name">
                                                                                 <a href="https://bwfworldtour.bwfbadminton.com/player/98935/m-r-arjun">
-                                                                                    {{$schedule->player1Team2->name ?? ""}} </a> </a>
+                                                                                    {{$schedule->player1Team2->name ?? ""}}
+                                                                                    @if($schedule->player1Team2 && $schedule->player1Team2->partner)
+                                                                                         {{ $schedule->player1Team2->partner->name ?? "Team Win" }}
+                                                                                    @endif
+                                                                                </a>
+
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
-                                                                    <div class="player2-wrap">
-                                                                        @if(isset($schedule->player2Team2->name))
-                                                                        <div class="player2-profile">
-                                                                            <img src="{{asset( $schedule->player2Team2->profile_photo_path ?? '/images/no-image.png')}}" class=" b-error">
-                                                                        </div>
-                                                                        <div class="player2-info">
-                                                                            <div class="player2-name">
-                                                                                <a href="https://bwfworldtour.bwfbadminton.com/player/98935/m-r-arjun">
-                                                                                    {{$schedule->player2Team2->name ?? ""}} </a> </a>
-                                                                            </div>
-                                                                        </div>
-                                                                        @endif
-                                                                    </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -303,7 +273,27 @@
 
 <script>
     function liveScore(id) {
-        let idElement = id;
-        $('#livescore-top' + idElement).show();
+        const popupId = '#livescore-top' + id;
+        const $popup = $(popupId);
+
+        // Ẩn tất cả các popup trước
+        $('.container-livescore').hide();
+
+        // Hiện popup tương ứng
+        $popup.show();
+
+        // Gỡ event cũ để tránh nhân đôi
+        $(document).off('click.livescore').on('click.livescore', function (e) {
+            // Nếu click KHÔNG nằm trong popup và KHÔNG nằm trong chính li đã click
+            if (
+                !$popup.is(e.target) &&
+                $popup.has(e.target).length === 0 &&
+                !$('#' + id).is(e.target) &&
+                !$('#' + id).has(e.target).length
+            ) {
+                $popup.hide();
+                $(document).off('click.livescore');
+            }
+        });
     }
 </script>

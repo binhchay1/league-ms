@@ -40,4 +40,10 @@ class Schedule extends Model
     {
         return $this->belongsTo('App\Models\User', 'player2_team_2', 'id');
     }
+
+    public function partnerTeam1()
+    {
+        return $this->belongsTo(Partner::class, 'partner_team1_id');
+    }
+
 }

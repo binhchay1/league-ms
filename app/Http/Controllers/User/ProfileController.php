@@ -456,12 +456,10 @@ class ProfileController extends Controller
                 if ($i % 2 != 0) {
                     continue;
                 }
-
                 if ($countNextDate == 4) {
                     $dateData = date('Y-m-d', strtotime($dateData . ' +1 day'));
                     $countNextDate = 1;
                 }
-
                 $data = [
                     'league_id' => $getLeague->id,
                     'match' => $countMatch,
@@ -470,7 +468,6 @@ class ProfileController extends Controller
                     'date' => $dateData,
                     'player1_team_1' => $listAuto[$i]
                 ];
-
                 if ($i != (count($listAuto) - 1)) {
                     $data['player1_team_2'] = $listAuto[$i + 1];
                 }
@@ -488,7 +485,6 @@ class ProfileController extends Controller
                 $totalMatch = $totalMatch + $whileMatch;
             }
             $forMatch = $totalMatch - $preCountMatch;
-
             $countNextDate = 1;
             $indexRound = 1;
             $countMatchIndex = 0;
@@ -499,7 +495,6 @@ class ProfileController extends Controller
                     $dateData = date('Y-m-d', strtotime($dateData . ' +1 day'));
                     $countNextDate = 1;
                 }
-
                 if ($countMatchIndex == $preCountMatch / 2) {
                     $preCountMatch = $preCountMatch / 2;
                     $countMatchIndex = 0;

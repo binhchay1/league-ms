@@ -50,10 +50,10 @@ class LeagueRepository extends BaseRepository
         return $this->model->with(
             'userLeagues',
             'schedule',
-            'schedule.player1Team1',
-            'schedule.player2Team1',
-            'schedule.player1Team2',
-            'schedule.player2Team2'
+            'schedule.player1Team1.partner',
+            'schedule.player2Team1.partner',
+            'schedule.player1Team2.partner',
+            'schedule.player2Team2.partner'
         )->where('slug', $slug)->first();
     }
 
