@@ -1,6 +1,5 @@
 $(document).ready(function () {
     let currentScoreT1 = parseInt($('#score-team-1').html());
-    alert(1);
 
     let currentScoreT2 = parseInt($('#score-team-2').html());
 
@@ -133,8 +132,11 @@ function saveScore(score, team, set, result = '') {
     let s_i = params.get('s_i');
     $.ajax({
         url: '/store-score',
-        type: 'GET',
+        type: 'POST',
         dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: {
             score: score,
             team: team,
