@@ -148,7 +148,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/group-training/', [HomeController::class, 'groupTraining'])->name('list.train');
     Route::get('/join-group-training/', [HomeController::class, 'joinGroupTraining'])->name('join.group.training');
     Route::get('/live-score/', [HomeController::class, 'liveScore'])->name('live.score');
-
+    Route::post('/store-score', [HomeController::class, 'storeScore'])->name('store.score');
 
     //league
     Route::get('/list-league/', [LeagueController::class, 'index'])->name('league.index');
@@ -179,7 +179,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/result', [ScheduleController::class, 'result'])->name('schedule.result');
     Route::get('/export-schedule/{id}/', [ScheduleController::class, 'exportSchedule'])->name('schedule.export');
     Route::get('/auto-create-league', [ScheduleController::class, 'autoCreateLeague'])->name('auto.create.schedule');
-    Route::post('/store-score/', [ScheduleController::class, 'storeScore'])->name('store.score');
 
     //group
     Route::get('/list-group/', [GroupController::class, 'index'])->name('group.index');

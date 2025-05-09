@@ -27,6 +27,13 @@
         background: #eeeeee;
         padding: 10px;
     }
+
+    .result-live {
+        font-size: 30px;
+        background: green;
+        color: white;
+        border-radius: 5px;
+    }
 </style>
 @section('content')
 <style>
@@ -65,47 +72,73 @@
             <div class="row text-center align-items-center">
                 {{-- Team 1 --}}
                 <div class="col-md-5">
-                    <p class="team-name text-primary">{{ $getSchedule->player1Team1->name ?? 'Team 1' }}</p>
-                    <div class="d-flex justify-content-center mb-2">
-                        @for($i = 1; $i <= 2; $i++)
-                            <div class="score-box mx-1 {{ $getSchedule->result_team_1 >= $i ? 'bg-success text-white' : '' }}">
-                            {{ $i }}
+                    <p class="team-name text-primary">{{ $getSchedule->player1Team1->name ?? 'Team 1' }}
+                        @if($getSchedule->player1Team1 && $getSchedule->player1Team1->partner)
+                            / {{ $getSchedule->player1Team1->partner->name ?? "" }}
+                        @endif
+                    </p>
+
+                    {{-- Hiển thị tỉ số --}}
+                    @if($typeLive == 'live')
+                        <div class="d-flex justify-content-center mb-2">
+                            @for($i = 1; $i <= 2; $i++)
+                                <div class="score-box mx-1 {{ $getSchedule->result_team_1 >= $i ? 'bg-success text-white' : '' }}">
+                                    {{ $i }}
+                                </div>
+                            @endfor
+                        </div>
+                        <p class="display-5 fw-bold" id="score-team-1">{{ $scoreT1Live ?? 0 }}</p>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-success btn-score mx-1" id="add-score-team-1"><i class="fas fa-plus"></i></button>
+                            <button class="btn btn-danger btn-score mx-1" id="deduct-score-team-1"><i class="fas fa-minus"></i></button>
+                        </div>
+                    @else
+                        <p class="display-6 fw-bold">{{ __('Match Ended') }}</p>
+                    @endif
+                </div>
+                {{-- Set Info --}}
+                @if($typeLive == 'live')
+                <div class="col-md-2">
+                    <p class="h4 mb-1">{{ __('Set') }}</p>
+                    <div class="badge bg-secondary fs-5 px-3 py-2" id="number-set">{{ $setLive }}</div>
+                </div>
+                @else
+                    <div class="col-md-2">
+                        <div class="fw-bold bg-green result-live">{{ $getSchedule->result_team_1 }} - {{ $getSchedule->result_team_2 }}</div>
+                        <div class="badge bg-secondary fs-5 px-3 py-2" id="number-set">{{ $setLive }}</div>
                     </div>
-                    @endfor
-                </div>
-                <p class="display-5 fw-bold" id="score-team-1">{{ $scoreT1Live ?? 0 }}</p>
-                <div class="d-flex justify-content-center">
-                    <button class="btn btn-success btn-score mx-1" id="add-score-team-1"><i class="fas fa-plus"></i></button>
-                    <button class="btn btn-danger btn-score mx-1" id="deduct-score-team-1"><i class="fas fa-minus"></i></button>
-                </div>
-            </div>
+                @endif
+                {{-- Team 2 --}}
+                <div class="col-md-5">
+                    <p class="team-name text-danger">{{ $getSchedule->player1Team2->name ?? 'Team 2' }}
+                        @if($getSchedule->player1Team2 && $getSchedule->player1Team2->partner)
+                            / {{ $getSchedule->player1Team2->partner->name ?? "" }}
+                        @endif
+                    </p>
 
-            {{-- Set Info --}}
-            <div class="col-md-2">
-                <p class="h4 mb-1">{{ __('Set') }}</p>
-                <div class="badge bg-secondary fs-5 px-3 py-2" id="number-set">{{ $setLive }}</div>
-            </div>
-
-            {{-- Team 2 --}}
-            <div class="col-md-5">
-                <p class="team-name text-danger">{{ $getSchedule->player1Team2->name ?? 'Team 2' }}</p>
-                <div class="d-flex justify-content-center mb-2">
-                    @for($i = 1; $i <= 2; $i++)
-                        <div class="score-box mx-1 {{ $getSchedule->result_team_2 >= $i ? 'bg-success text-white' : '' }}">
-                        {{ $i }}
+                    {{-- Hiển thị tỉ số --}}
+                    @if($typeLive == 'live')
+                        <div class="d-flex justify-content-center mb-2">
+                            @for($i = 1; $i <= 2; $i++)
+                                <div class="score-box mx-1 {{ $getSchedule->result_team_2 >= $i ? 'bg-success text-white' : '' }}">
+                                    {{ $i }}
+                                </div>
+                            @endfor
+                        </div>
+                        <p class="display-5 fw-bold" id="score-team-2">{{ $scoreT2Live ?? 0 }}</p>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-success btn-score mx-1" id="add-score-team-2"><i class="fas fa-plus"></i></button>
+                            <button class="btn btn-danger btn-score mx-1" id="deduct-score-team-2"><i class="fas fa-minus"></i></button>
+                        </div>
+                    @else
+                        <p class="display-6 fw-bold">{{ __('Match Ended') }}</p>
+                    @endif
                 </div>
-                @endfor
-            </div>
-            <p class="display-5 fw-bold" id="score-team-2">{{ $scoreT2Live ?? 0 }}</p>
-            <div class="d-flex justify-content-center">
-                <button class="btn btn-success btn-score mx-1" id="add-score-team-2"><i class="fas fa-plus"></i></button>
-                <button class="btn btn-danger btn-score mx-1" id="deduct-score-team-2"><i class="fas fa-minus"></i></button>
             </div>
         </div>
     </div>
 </div>
-</div>
-</div>
+
 
 <div class="modal" tabindex="-1" id="noti-modal">
     <div class="modal-dialog">
@@ -119,7 +152,7 @@
                 <p id="end-game-noti"></p>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="btn-next-round">{{ __('Next Round') }}</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="btn-next-round">{{ __('Next Set') }}</button>
             </div>
         </div>
     </div>
@@ -128,4 +161,12 @@
 
 @section('js')
 <script src="{{ asset('js/admin/live-score.js') }}"></script>
+
+<script>
+    const storeScoreUrl = "{{ route('store.score') }}";
+    $('#btn-next-round').on('click', function () {
+        location.reload();
+    });
+
+</script>
 @endsection

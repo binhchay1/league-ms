@@ -397,69 +397,6 @@ class ScheduleController extends Controller
         return redirect()->route('schedule.index')->with('success', __('Create auto schedule successfully!'));
     }
 
-    public function storeScore(Request $request)
-    {
-        $type = $request->get('type');
-        $score = $request->get('score');
-        $team = $request->get('team');
-        $set = $request->get('set');
-        $s_i = $request->get('s_i');
-        $result = $request->get('result');
-
-        if (empty($type)) {
-            abort(404);
-        }
-
-        $decode = $this->utility->decode_hash_id($s_i);
-        $checkReference = $this->refereeRepository->getRefereeByUserId(Auth::user()->id, $decode);
-
-        if (empty($checkReference)) {
-            abort(404);
-        }
-
-        $getSchedule = $this->scheduleRepository->getScheduleById($decode);
-
-        if (empty($getSchedule)) {
-            abort(404);
-        }
-
-        $currentTeam = explode('-', $team);
-        $columnSet = 'set_' . $set . '_team_' . $currentTeam[1];
-        $dataUpdate = [
-            $columnSet => $score,
-        ];
-
-        if ($result == 'end') {
-            $resultT1 = $getSchedule->result_team_1;
-            $resultT2 = $getSchedule->result_team_2;
-            if (empty($resultT1)) {
-                $resultT1 = 0;
-            }
-
-            if (empty($resultT2)) {
-                $resultT2 = 0;
-            }
-
-            if ($team == 'team-1') {
-                $resultT1 = $resultT1 + 1;
-            } else {
-                $resultT2 = $resultT2 + 1;
-            }
-
-            $dataUpdate['result_team_1'] = $resultT1;
-            $dataUpdate['result_team_2'] = $resultT2;
-
-            broadcast(new LiveScore($getSchedule->id, $team, $score, $set, $resultT1, $resultT2));
-        } else {
-            broadcast(new LiveScore($getSchedule->id, $team, $score, $set));
-        }
-
-        UpdateResultJob::dispatch($decode, $type, $score, $set, $this->scheduleRepository, $this->resultRepository, $request->get('new_score_player'), $request->get('player'))->onQueue('update-result');
-
-        $this->scheduleRepository->updateScoreLiveById($getSchedule->id, $dataUpdate);
-
-        return 'success';
-    }
 
     public function exportSchedule($id)
     {

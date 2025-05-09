@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Enums\Group;
 use App\Enums\Utility;
+use App\Events\LiveScore;
+use App\Jobs\UpdateResultJob;
 use App\Models\Partner;
 use App\Models\UserLeague;
 use App\Repositories\CategoryPostRepository;
@@ -501,62 +503,102 @@ class HomeController extends Controller
             }
         }
 
-        if ($getSchedule->result_team_1 == 2 or $getSchedule->result_team_2 == 2) {
+        if ($getSchedule->result_team_1 == 2 || $getSchedule->result_team_2 == 2) {
             $typeLive = 'end';
+            $setLive = null;
+            $scoreT1Live = null;
+            $scoreT2Live = null;
         } else {
             $typeLive = 'live';
-        }
-
-        $result = $getSchedule->result_team_1 . '-' . $getSchedule->result_team_2;
-
-        switch ($result) {
-            case '1-0':
-                $setLive = 2;
-                $scoreT1Live = $getSchedule->set_2_team_1;
-                $scoreT2Live = $getSchedule->set_3_team_2;
-                break;
-            case '0-1':
-                $setLive = 2;
-                $scoreT1Live = $getSchedule->set_2_team_1;
-                $scoreT2Live = $getSchedule->set_2_team_2;
-                break;
-            case '1-1':
-                $setLive = 3;
-                $scoreT1Live = $getSchedule->set_3_team_1;
-                $scoreT2Live = $getSchedule->set_3_team_2;
-                break;
-            default:
-                $setLive = 1;
-                $scoreT1Live = $getSchedule->set_1_team_1;
-                $scoreT2Live = $getSchedule->set_1_team_2;
-        }
-
-        if (!empty($getSchedule->player2_team_1) and !empty($getSchedule->player2_team_2)) {
-
-            $getResult = $this->resultRepository->getResultByScheduleId($getSchedule->id);
-            $arrScore = [
-                'player_1' => 0,
-                'player_2' => 0,
-                'player_3' => 0,
-                'player_4' => 0
-            ];
-
-            if ($getResult) {
-                $strPerResult = 'result_round_' . $setLive;
-                $getPerResult = json_decode($getResult->$strPerResult, true);
-
-                foreach ($getPerResult as $player => $scorePerPlayer) {
-                    $resultPerPlayer = json_decode($scorePerPlayer, true);
-                    $arrScore[$player] = count($resultPerPlayer);
-                }
+            $result = $getSchedule->result_team_1 . '-' . $getSchedule->result_team_2;
+            switch ($result) {
+                case '1-0':
+                    $setLive = 2;
+                    $scoreT1Live = $getSchedule->set_2_team_1;
+                    $scoreT2Live = $getSchedule->set_2_team_2;
+                    break;
+                case '0-1':
+                    $setLive = 2;
+                    $scoreT1Live = $getSchedule->set_2_team_1;
+                    $scoreT2Live = $getSchedule->set_2_team_2;
+                    break;
+                case '1-1':
+                    $setLive = 3;
+                    $scoreT1Live = $getSchedule->set_3_team_1;
+                    $scoreT2Live = $getSchedule->set_3_team_2;
+                    break;
+                default:
+                    $setLive = 1;
+                    $scoreT1Live = $getSchedule->set_1_team_1;
+                    $scoreT2Live = $getSchedule->set_1_team_2;
             }
-
-            return view('admin.live-score.live-score-double', compact('getSchedule', 'typeLive', 'setLive', 'scoreT1Live', 'scoreT2Live', 'arrScore'));
-        } else {
-            return view('admin.live-score.live-score', compact('getSchedule', 'typeLive', 'setLive', 'scoreT1Live', 'scoreT2Live'));
         }
+
+            return view('page.match-center.live-score', compact('getSchedule', 'typeLive', 'setLive', 'scoreT1Live', 'scoreT2Live'));
     }
 
+    public function storeScore(Request $request)
+    {
+        $type = $request->get('type');
+        $score = $request->get('score');
+        $team = $request->get('team');
+        $set = $request->get('set');
+        $s_i = $request->get('s_i');
+        $result = $request->get('result');
+
+        if (empty($type)) {
+            abort(404);
+        }
+
+        $decode = $this->utility->decode_hash_id($s_i);
+        $checkReference = $this->refereeRepository->getRefereeByUserId(Auth::user()->id, $decode);
+        if (empty($checkReference)) {
+            abort(404);
+        }
+
+        $getSchedule = $this->scheduleRepository->getScheduleById($decode);
+
+        if (empty($getSchedule)) {
+            abort(404);
+        }
+
+        $currentTeam = explode('-', $team);
+        $columnSet = 'set_' . $set . '_team_' . $currentTeam[1];
+        $dataUpdate = [
+            $columnSet => $score,
+        ];
+
+        if ($result == 'end') {
+            $resultT1 = $getSchedule->result_team_1;
+            $resultT2 = $getSchedule->result_team_2;
+            if (empty($resultT1)) {
+                $resultT1 = 0;
+            }
+
+            if (empty($resultT2)) {
+                $resultT2 = 0;
+            }
+
+            if ($team == 'team-1') {
+                $resultT1 = $resultT1 + 1;
+            } else {
+                $resultT2 = $resultT2 + 1;
+            }
+
+            $dataUpdate['result_team_1'] = $resultT1;
+            $dataUpdate['result_team_2'] = $resultT2;
+
+            broadcast(new LiveScore($getSchedule->id, $team, $score, $set, $resultT1, $resultT2));
+        } else {
+            broadcast(new LiveScore($getSchedule->id, $team, $score, $set));
+        }
+
+
+        UpdateResultJob::dispatch($decode, $type, $score, $set, $this->scheduleRepository, $this->resultRepository, $request->get('new_score_player'), $request->get('player'))->onQueue('update-result');
+
+        $this->scheduleRepository->updateScoreLiveById($getSchedule->id, $dataUpdate);
+        return 'success';
+    }
     //group
     public function listGroup()
     {

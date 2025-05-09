@@ -3,13 +3,13 @@
 namespace App\Jobs;
 
 use App\Repositories\ScheduleRepository;
+use App\Repositories\ResultRepository;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Repositories\ResultRepository;
+use Illuminate\Support\Facades\Log;
 
 class UpdateResultJob implements ShouldQueue
 {
@@ -26,19 +26,17 @@ class UpdateResultJob implements ShouldQueue
 
     /**
      * Create a new job instance.
-     *
-     * @return void
      */
     public function __construct(
         $s_i,
         $type,
         $score,
         $set,
-        ResultRepository $resultRepository,
         ScheduleRepository $scheduleRepository,
+        ResultRepository $resultRepository,
         $new_score_player,
-        $requestPlayer)
-    {
+        $requestPlayer
+    ) {
         $this->s_i = $s_i;
         $this->type = $type;
         $this->score = $score;
@@ -49,53 +47,43 @@ class UpdateResultJob implements ShouldQueue
         $this->requestPlayer = $requestPlayer;
     }
 
-
     /**
      * Execute the job.
-     *
-     * @return void
      */
     public function handle()
     {
         try {
             $getSchedule = $this->scheduleRepository->getScheduleById($this->s_i);
             $getResult = $this->resultRepository->getResultByScheduleId($getSchedule->id);
-            if ($this->type == 'singles') {
-                if ($currentTeam[1] == '1') {
-                    $currentPlay = 1;
-                } else {
-                    $currentPlay = 3;
-                }
-            } else {
-                $this->score = $this->new_score_player;
-                $numberPlayer = $this->requestPlayer;
-                $currentPlay = $numberPlayer;
-            }
+
+            // Xác định player hiện tại
+            $currentTeam = explode('-', $this->score);
+            $currentPlay = ($currentTeam[1] === '1') ? 1 : 3;
 
             $player = 'player_' . $currentPlay;
+            $resultCurrent = 'result_round_' . $this->set;
+
             if (empty($getResult)) {
+                // Chưa có kết quả nào => tạo mới
                 $dataResult = [
                     'schedule_id' => $getSchedule->id,
-                    'result_round_1' => json_encode([
-                        $player => [
-                            'column_1' => 1
-                        ]
+                    $resultCurrent => json_encode([
+                        $player => ['column_1' => $this->score]
                     ]),
                     'column' => 1
                 ];
 
                 $this->resultRepository->create($dataResult);
             } else {
-                $resultCurrent = 'result_round_' . $this->set;
-                $dataGetResult = json_decode($getResult->$resultCurrent);
-                $currentColumn = $getResult->column;
+                // Đã có kết quả => cập nhật tiếp
+                $dataGetResult = json_decode($getResult->$resultCurrent ?? '{}');
+                $currentColumn = $getResult->column ?? 0;
                 $nextColumn = $currentColumn + 1;
                 $strNextColumn = 'column_' . $nextColumn;
+
                 if (isset($dataGetResult->$player)) {
                     $dataPlayer = (array) $dataGetResult->$player;
-                    $dataNext = [
-                        $strNextColumn => $this->score
-                    ];
+                    $dataNext = [$strNextColumn => $this->score];
                     $totalResult = array_merge($dataPlayer, $dataNext);
 
                     $dataUpdateResult = [
@@ -106,21 +94,27 @@ class UpdateResultJob implements ShouldQueue
                     ];
                 } else {
                     $dataGetResultNew = (array) $dataGetResult;
-                    $dataGetResultNew[$player] = (object) [
-                        $strNextColumn => $this->score
-                    ];
+                    $dataGetResultNew[$player] = (object) [$strNextColumn => $this->score];
 
-                    $dataUpdateResult[$resultCurrent] = $dataGetResultNew;
-                    foreach ($dataUpdateResult[$resultCurrent] as $key => $value) {
-                        $dataUpdateResult[$resultCurrent][$key] = json_encode($value);
+                    // Convert từng player về JSON string (giống format ban đầu)
+                    $dataUpdateResult[$resultCurrent] = [];
+                    foreach ($dataGetResultNew as $key => $value) {
+                        $dataUpdateResult[$resultCurrent][$key] = $value;
                     }
+
+                    $dataUpdateResult[$resultCurrent] = json_encode($dataUpdateResult[$resultCurrent]);
                     $dataUpdateResult['column'] = $nextColumn;
                 }
 
                 $this->resultRepository->updateResult($this->s_i, $dataUpdateResult);
             }
+
+            Log::info('UpdateResultJob hoàn thành', ['schedule_id' => $this->s_i]);
+
         } catch (\Exception $e) {
-            dd($e);
+            Log::error('Lỗi trong UpdateResultJob: ' . $e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
+            ]);
         }
     }
 }

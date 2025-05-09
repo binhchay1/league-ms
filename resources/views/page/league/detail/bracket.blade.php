@@ -150,22 +150,24 @@
                                                             <div class="bracket bracket--doubles">
                                                                 <div class="bracket__participantRow bracket__participantRow--home">
                                                                     @if(isset($match->player1Team1))
-                                                                        <div class="bracket__participant"><span class="bracket__name {{ $match->result_team_1 == 2 ? 'bracket__name--advancing' : '' }}">{{ $match->player1Team1->name }}</span></div>
+                                                                        <div class="bracket__participant"><span class="bracket__name {{ $match->result_team_1 == 2 ? 'bracket__name--advancing' : '' }}">{{ $match->player1Team1->name }}
+                                                                                @if($match->player1Team1 && $match->player1Team1->partner)
+                                                                                    / {{ $match->player1Team1->partner->name ?? "" }}
+                                                                                @endif</span></div>
                                                                     @endif
-                                                                    @if(isset($match->player2Team1))
-                                                                        <div class="bracket__participant bracket__participant--2"><span class="bracket__name {{ $match->result_team_1 == 2 ? 'bracket__name--advancing' : '' }}">{{ $match->player2Team1->name }}</span></div>
-                                                                    @endif
+
                                                                 </div>
                                                                 <div class="bracket__result bracket__result--home">
                                                                     <div class="result {{ $match->result_team_1 < 2 ? 'score__lose' : '' }}">{{ $match->result_team_1 }}</div>
                                                                 </div>
                                                                 <div class="bracket__participantRow bracket__participantRow--away">
                                                                     @if(isset($match->player1Team2))
-                                                                        <div class="bracket__participant"><span class="bracket__name {{ $match->result_team_2 == 2 ? 'bracket__name--advancing' : '' }}">{{ $match->player1Team2->name }}</span></div>
+                                                                        <div class="bracket__participant"><span class="bracket__name {{ $match->result_team_2 == 2 ? 'bracket__name--advancing' : '' }}">{{ $match->player1Team2->name }}
+                                                                                @if($match->player1Team2 && $match->player1Team2->partner)
+                                                                                    / {{ $match->player1Team2->partner->name ?? "" }}
+                                                                                @endif</span></div>
                                                                     @endif
-                                                                    @if(isset($match->player2Team2))
-                                                                        <div class="bracket__participant bracket__participant--2"><span class="bracket__name {{ $match->result_team_2 == 2 ? 'bracket__name--advancing' : '' }}">{{ $match->player2Team2->name }}</span></div>
-                                                                    @endif
+
                                                                 </div>
                                                                 <div class="bracket__result bracket__result--away">
                                                                     <div class="result {{ $match->result_team_2 < 2 ? 'score__lose' : '' }}">{{ $match->result_team_2 }}</div>

@@ -131,7 +131,7 @@ function saveScore(score, team, set, result = '') {
     let params = new URLSearchParams(url.search);
     let s_i = params.get('s_i');
     $.ajax({
-        url: '/store-score',
+        url: storeScoreUrl,
         type: 'POST',
         dataType: 'json',
         headers: {
@@ -144,6 +144,7 @@ function saveScore(score, team, set, result = '') {
             s_i: s_i,
             result: result,
             type: 'singles'
-        }
+        },
     });
+
 }

@@ -91,17 +91,11 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                             <div class="score">
-                                                                @if(!empty($schedule->result_team_1 && $schedule->set_1_team_2))
                                                                     <div>
-                                                                        {{$schedule->result_team_1 }} - {{$schedule->result_team_2 }}
+                                                                        {{$schedule->result_team_1 ?? 0 }} - {{$schedule->result_team_2 ?? 0 }}
                                                                     </div>
-                                                                @else
-                                                                    <div>
-                                                                      0 - 0
-                                                                    </div>
-                                                                @endif
+
                                                             </div>
 
                                                             <div class="team-details-wrap">
@@ -142,7 +136,7 @@
                                                                                 <a href="https://bwfworldtour.bwfbadminton.com/player/84064/ong-yew-sin">
                                                                                     {{$schedule->player1Team1->name ?? ""}}
                                                                                     @if($schedule->player1Team1 && $schedule->player1Team1->partner)
-                                                                                        {{ $schedule->player1Team1->partner->name ?? "Team Win" }}
+                                                                                       / {{ $schedule->player1Team1->partner->name ?? "Team Win" }}
                                                                                     @endif
                                                                                 </a>
                                                                             </div>
@@ -166,7 +160,7 @@
                                                                                 <a href="https://bwfworldtour.bwfbadminton.com/player/98935/m-r-arjun">
                                                                                     {{$schedule->player1Team2->name ?? ""}}
                                                                                     @if($schedule->player1Team2 && $schedule->player1Team2->partner)
-                                                                                         {{ $schedule->player1Team2->partner->name ?? "Team Win" }}
+                                                                                        / {{ $schedule->player1Team2->partner->name ?? "Team Win" }}
                                                                                     @endif
                                                                                 </a>
 
@@ -184,11 +178,11 @@
                                                                 <div class="game-shuttle-1">
                                                                 </div>
                                                                 <div class="game-score-1 ">
-                                                                    {{$schedule->set_1_team_1 }}
+                                                                    {{$schedule->set_1_team_1 ?? 0 }}
                                                                 </div>
                                                                 <div class="game-number">GAME 1</div>
                                                                 <div class="game-score-2 won-yellow">
-                                                                    {{$schedule->set_1_team_2 }}
+                                                                    {{$schedule->set_1_team_2 ?? 0 }}
                                                                 </div>
                                                                 <div class="game-shuttle-2">
                                                                 </div>
@@ -202,9 +196,9 @@
                                                             <div class="game-completed">
                                                                 <div class="game-shuttle-1">
                                                                 </div>
-                                                                <div class="game-score-1 won-green">{{$schedule->set_2_team_1 }}</div>
+                                                                <div class="game-score-1 won-green">{{$schedule->set_2_team_1 ?? 0 }}</div>
                                                                 <div class="game-number">GAME 2</div>
-                                                                <div class="game-score-2 ">{{$schedule->set_2_team_2 }}</div>
+                                                                <div class="game-score-2 ">{{$schedule->set_2_team_2 ?? 0}}</div>
                                                                 <div class="game-shuttle-2">
                                                                 </div>
                                                             </div>
@@ -217,9 +211,9 @@
                                                             <div class="game-completed">
                                                                 <div class="game-shuttle-1">
                                                                 </div>
-                                                                <div class="game-score-1 won-green">{{$schedule->set_3_team_1 }}</div>
+                                                                <div class="game-score-1 won-green">{{$schedule->set_3_team_1 ?? 0 }}</div>
                                                                 <div class="game-number">GAME 3</div>
-                                                                <div class="game-score-2 ">{{$schedule->set_3_team_2 }}</div>
+                                                                <div class="game-score-2 ">{{$schedule->set_3_team_2 ?? 0 }}</div>
                                                                 <div class="game-shuttle-2">
                                                                 </div>
                                                             </div>
@@ -230,6 +224,9 @@
                                                     <div class="live-tabs-wrap">
 
                                                         <a id="match-stat-tab" href="?match=152&amp;stab=result" style="width:100px;">
+                                                            <div class="tab active">
+                                                                <span>Results</span> <img src="https://bwfworldtour.bwfbadminton.com/wp-content/themes/world-tour/assets/images/live-score-icons/live-red.svg" class=" b-error">
+                                                            </div>
                                                             <div id="game-3" class="game-completed-wrap" style="display:block;">
                                                                 <div class="game-completed">
                                                                     <div class="game-shuttle-1">
@@ -240,9 +237,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="tab active">
-                                                                <span>Results</span> <img src="https://bwfworldtour.bwfbadminton.com/wp-content/themes/world-tour/assets/images/live-score-icons/live-red.svg" class=" b-error">
-                                                            </div>
+
                                                         </a>
 
                                                     </div>
