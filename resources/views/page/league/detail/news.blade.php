@@ -21,7 +21,6 @@
     }
 </style>
 <div class="container py-4">
-
     <div class="row g-4">
         <!-- Left Column -->
         <div class="col-lg-4">
@@ -29,45 +28,37 @@
             <div class="card mb-3">
                 <div class="card-header bg-secondary text-white fw-bold">{{'Ranking'}}</div>
                 <ul class="list-group list-group-flush">
-                @foreach($ranking as $index => $rank)
-                    @if ($rank->league && $rank->league->format_of_league === 'knockout')
-                        <?php
-                            if ($rank->league && $rank->league->type === 'knockout') {
-                                $icon = $rank->places . '.';
-                            } else {
-                                $icons = ['🥇', '🥈', '🥉'];
-                                $icon = $icons[$index] ?? ($index + 1) . '.';
-                            }
-
+                    @php
+                        function getTeamNameFromRank($rank) {
+                            $type = $rank->league->type_of_league ?? 'singles';
                             $name1 = $rank->user->name ?? '---';
                             $name2 = $rank->user->partner->name ?? '';
 
-                            $teamName = $name2 ? $name1 . ' / ' . $name2 : $name1;
-                        ?>
-                        <li class="list-group-item" style="font-size: 16px; color: green">
-                            {{ $icon }} {{ $teamName  }}
+                            return $type === 'doubles' && $name2 ? $name1 . ' / ' . $name2 : $name1;
+                        }
+                    @endphp
 
-                        </li>
-                        @else
-                            <?php
+                    @foreach($ranking as $index => $rank)
+                        @php
+                            $isKnockout = $rank->league && $rank->league->format_of_league === 'knockout';
                             $icons = ['🥇', '🥈', '🥉'];
-                            if ($rank->eliminated_round == 'semi-finals' || $rank->eliminated_round == 'final') {
-                                $icon = $rank->places . '.';
-                            } else {
-                                $icon = $index + 1 . ",";
+                            $icon = $icons[$index] ?? ($index + 1) . '.';
+
+                            // Knockout
+                            if (!$isKnockout) {
+                                $icon = $rank->places ? $rank->places . '.' : $icon;
                             }
 
-                            $name1 = $rank->user->name ?? '---';
-                            $name2 = $rank->user->partner->name ?? '';
+                            $teamName = getTeamNameFromRank($rank);
+                        @endphp
 
-                            $teamName = $name2 ? $name1 . ' / ' . $name2 : $name1;
-                            ?>
-                            <li class="list-group-item" style="font-size: 16px; color: green">
-                                {{ $icon }} {{ $teamName  }}
+                        <li class="list-group-item" style="font-size: 16px; color: green">
+                            {{ $icon }} {{ $teamName }}
 
+                            @unless($isKnockout)
                                 <span class="float-end text-black">{{ $rank->point }} điểm</span>
-                            </li>
-                        @endif
+                            @endunless
+                        </li>
                     @endforeach
 
                     <div class="card-footer text-center"><a href="">{{'View all'}}</a></div>
@@ -77,25 +68,30 @@
             <!-- Rounds -->
             <div class="card mb-3">
                 <div class="card-header bg-secondary fw-bold text-white">{{'Schedule'}}</div>
+                @php
+                    function getTeamNameFromPlayer($player, $type = 'singles') {
+                        $name1 = $player->name ?? '---';
+                        $name2 = $player->partner->name ?? '';
+
+                        if ($type === 'doubles') {
+                            return $name1 . ($name2 ? ' / ' . $name2 : '');
+                        }
+
+                        return $name1;
+                    }
+                @endphp
+
                 @foreach($firstThreeSchedules as $item)
-                 <div class="card-body" style="font-size: 16px; display: flex">
-                     <strong>	⚔️</strong>
-                     <div class="name-team">
-                         {{$item->player1Team1->name ?? "" }}
-                         @if($item->player1Team1 && $item->player1Team1->partner)
-                             / {{ $item->player1Team1->partner->name ?? "" }} &nbsp;
-                         @endif
-                     </div>
-                      <div>
-                          &nbsp; vs
-                      </div>
-                     <div class="name-team">
-                         &nbsp; {{$item->player1Team2->name ?? ""}}
-                         @if($item->player1Team2 && $item->player1Team2->partner)
-                             / {{ $item->player1Team2->partner->name ?? "" }}
-                         @endif
-                     </div>
-                 </div>
+                    <div class="card-body" style="font-size: 16px; display: flex">
+                        <strong>⚔️</strong>
+                        <div class="name-team">
+                            {{ getTeamNameFromPlayer($item->player1Team1, $item->league->type_of_league ?? 'singles') }}
+                        </div>
+                        <div>&nbsp; vs</div>
+                        <div class="name-team">
+                            &nbsp; {{ getTeamNameFromPlayer($item->player1Team2, $item->league->type_of_league ?? 'singles') }}
+                        </div>
+                    </div>
                 @endforeach
                 <div class="card-footer text-center"><a href="{{route('leagueSchedule.info', $leagueInfor->slug)}}">{{'View all'}}</a></div>
             </div>
@@ -110,7 +106,7 @@
             </div>
         </div>
 
-        <!-- Right Column -->
+        <!-- General statistics -->
         <div class="col-lg-8">
             <div class="text-center mb-4">
                 <img src="{{asset('/images/bg-league.png')}}" alt="Banner" class="img-fluid">
@@ -136,8 +132,14 @@
                 @php
                     function getTeamName($rank) {
                         $name1 = $rank->user->name ?? '---';
-                        $name2 = $rank->user->partner->name ?? '';
-                        return $name2 ? "$name1 - $name2" : $name1;
+                        $type = $rank->league->type_of_league ?? 'singles';
+
+                        if ($type === 'doubles') {
+                            $name2 = $rank->user->partner->name ?? '';
+                            return $name1 . ($name2 ? ' + ' . $name2 : '');
+                        }
+
+                        return $name1;
                     }
                 @endphp
                 <div class="col-md-4">
