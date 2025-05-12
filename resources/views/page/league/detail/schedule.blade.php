@@ -75,8 +75,10 @@ if (Auth::check()) {
                                                                 <div class="player1-wrap">
                                                                     <div class="player1 player_winner player">
                                                                         {{ $schedule->player1Team1->name ?? "Team Win" }}
-                                                                        @if($schedule->player1Team1 && $schedule->player1Team1->partner)
-                                                                                / {{ $schedule->player1Team1->partner->name ?? "Team Win" }}
+                                                                        @if($schedule->league && $schedule->league->type_of_league == "doubles")
+                                                                            @if($schedule->player1Team1 && $schedule->player1Team1->partner)
+                                                                                    / {{ $schedule->player1Team1->partner->name ?? "Team Win" }}
+                                                                            @endif
                                                                         @endif
                                                                     </div>
 
@@ -98,8 +100,10 @@ if (Auth::check()) {
                                                                     </div>
                                                                     <div class="player3 player_winner player">
                                                                         {{ $schedule->player1Team2->name ?? "Team Win" }}
-                                                                        @if($schedule->player1Team2 && $schedule->player1Team2->partner)
-                                                                            / {{ $schedule->player1Team2->partner->name ?? "Team Win" }}
+                                                                        @if($schedule->league && $schedule->league->type_of_league == "doubles")
+                                                                            @if($schedule->player1Team2 && $schedule->player1Team2->partner)
+                                                                                / {{ $schedule->player1Team2->partner->name ?? "Team Win" }}
+                                                                            @endif
                                                                         @endif
                                                                     </div>
                                                                 </div>

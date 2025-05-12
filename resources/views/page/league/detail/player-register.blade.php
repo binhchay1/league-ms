@@ -18,28 +18,42 @@
     </tr>
     </thead>
     <tbody>
+
+    @php
+        $type = $leagueInfor->type_of_league ?? 'singles';
+
+        function getFullNameWithPartner($registration, $type = 'singles') {
+            $name1 = $registration->user->name ?? '---';
+            $name2 = $registration->partner->name ?? '';
+            return $type === 'doubles' && $name2 ? $name1 . ' + ' . $name2 : $name1;
+        }
+
+        function getUserAvatar($registration) {
+            return asset($registration->user->profile_photo_path ?? '/images/default-avatar.png');
+        }
+    @endphp
+
     @foreach ($registrations as $index => $registration)
         <tr>
             <td>{{ $index + 1 }}</td>
             <td class="d-flex align-items-center gap-2">
-                <img src="{{asset($registration->user->profile_photo_path ?? '/images/default-avatar.png')  }}"
+                <img src="{{ getUserAvatar($registration) }}"
                      alt="avatar" class="rounded-circle" width="40">
                 <div>
-                    <span class="fw-bold text-success">{{ $registration->user->name }}</span>
-                    @if ($registration->partner)
-                        <span class="fw-bold text-success">+ {{ $registration->partner->name }}</span>
-                    @endif
+                    <span class="fw-bold text-success">{{ getFullNameWithPartner($registration, $type) }}</span>
                 </div>
             </td>
             <td>
-                <span class="text-success fst-italic">{{$registration->phone ?? 'updating'}}</span>
+                <span class="text-success fst-italic">{{ $registration->phone ?? 'updating' }}</span>
             </td>
             <td>
                 {{ $registration->created_at->format('d/m/Y') }} <br>
                 {{ $registration->created_at->format('H:i:s') }}
             </td>
             <td>
-                <span class="badge bg-{{$registration->status == 0 ? 'primary' : 'success' }}">{{$registration->status ? "Active " : "Inactive "}}</span>
+            <span class="badge bg-{{ $registration->status == 0 ? 'primary' : 'success' }}">
+                {{ $registration->status ? 'Active' : 'Inactive' }}
+            </span>
             </td>
         </tr>
     @endforeach

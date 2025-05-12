@@ -81,8 +81,10 @@
                                                                     <div class="player1-wrap">
                                                                         <div class="player1 player_winner player">
                                                                             {{$schedule->player1Team1->name ?? "Team Win"}}
-                                                                            @if($schedule->player1Team1 && $schedule->player1Team1->partner)
-                                                                                / {{ $schedule->player1Team1->partner->name ?? "Team Win" }}
+                                                                            @if($schedule->league && $schedule->league->type_of_league == "doubles")
+                                                                                @if($schedule->player1Team1 && $schedule->player1Team1->partner)
+                                                                                    / {{ $schedule->player1Team1->partner->name ?? "Team Win" }}
+                                                                                @endif
                                                                             @endif
                                                                         </div>
                                                                         <div class="flag">
@@ -106,8 +108,10 @@
                                                                         </div>
                                                                         <div class="player3 player">
                                                                             {{$schedule->player1Team2->name ?? "Team Win"}}
-                                                                            @if($schedule->player1Team2 && $schedule->player1Team2->partner)
-                                                                                / {{ $schedule->player1Team2->partner->name ?? "Team Win" }}
+                                                                            @if($schedule->league && $schedule->league->type_of_league == "doubles")
+                                                                                @if($schedule->player1Team2 && $schedule->player1Team2->partner)
+                                                                                    / {{ $schedule->player1Team2->partner->name ?? "Team Win" }}
+                                                                                @endif
                                                                             @endif
                                                                         </div>
                                                                     </div>
@@ -135,8 +139,10 @@
                                                                                 <div class="player1-name">
                                                                                     <a href="https://bwfworldtour.bwfbadminton.com/player/84064/ong-yew-sin">
                                                                                         {{$schedule->player1Team1->name ?? ""}}
-                                                                                        @if($schedule->player1Team1 && $schedule->player1Team1->partner)
-                                                                                            / {{ $schedule->player1Team1->partner->name ?? "Team Win" }}
+                                                                                        @if($schedule->league && $schedule->league->type_of_league == "doubles")
+                                                                                            @if($schedule->player1Team1 && $schedule->player1Team1->partner)
+                                                                                                / {{ $schedule->player1Team1->partner->name ?? "Team Win" }}
+                                                                                            @endif
                                                                                         @endif
                                                                                     </a>
                                                                                 </div>
@@ -159,8 +165,10 @@
                                                                                 <div class="player2-name">
                                                                                     <a href="https://bwfworldtour.bwfbadminton.com/player/98935/m-r-arjun">
                                                                                         {{$schedule->player1Team2->name ?? ""}}
-                                                                                        @if($schedule->player1Team2 && $schedule->player1Team2->partner)
-                                                                                            / {{ $schedule->player1Team2->partner->name ?? "Team Win" }}
+                                                                                        @if($schedule->league && $schedule->league->type_of_league == "doubles")
+                                                                                            @if($schedule->player1Team2 && $schedule->player1Team2->partner)
+                                                                                                / {{ $schedule->player1Team2->partner->name ?? "Team Win" }}
+                                                                                            @endif
                                                                                         @endif
                                                                                     </a>
 
