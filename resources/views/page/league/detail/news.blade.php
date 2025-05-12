@@ -16,6 +16,9 @@
         border-radius: 0.5rem;
         overflow: hidden;
     }
+    .name-team {
+        color: green;
+    }
 </style>
 <div class="container py-4">
 
@@ -26,9 +29,47 @@
             <div class="card mb-3">
                 <div class="card-header bg-secondary text-white fw-bold">{{'Ranking'}}</div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">🥇 ĐÌNH HẢO - HOÀI BẢO <span class="float-end">2 điểm</span></li>
-                    <li class="list-group-item">🥈 CƯỜNG - BƠM <span class="float-end">1 điểm</span></li>
-                    <li class="list-group-item">🥉 A TUẤN PHAN - CON <span class="float-end">0 điểm</span></li>
+                @foreach($ranking as $index => $rank)
+                    @if ($rank->league && $rank->league->format_of_league === 'knockout')
+                        <?php
+                            if ($rank->league && $rank->league->type === 'knockout') {
+                                $icon = $rank->places . '.';
+                            } else {
+                                $icons = ['🥇', '🥈', '🥉'];
+                                $icon = $icons[$index] ?? ($index + 1) . '.';
+                            }
+
+                            $name1 = $rank->user->name ?? '---';
+                            $name2 = $rank->user->partner->name ?? '';
+
+                            $teamName = $name2 ? $name1 . ' / ' . $name2 : $name1;
+                        ?>
+                        <li class="list-group-item" style="font-size: 16px; color: green">
+                            {{ $icon }} {{ $teamName  }}
+
+                        </li>
+                        @else
+                            <?php
+                            $icons = ['🥇', '🥈', '🥉'];
+                            if ($rank->eliminated_round == 'semi-finals' || $rank->eliminated_round == 'final') {
+                                $icon = $rank->places . '.';
+                            } else {
+                                $icon = $index + 1 . ",";
+                            }
+
+                            $name1 = $rank->user->name ?? '---';
+                            $name2 = $rank->user->partner->name ?? '';
+
+                            $teamName = $name2 ? $name1 . ' / ' . $name2 : $name1;
+                            ?>
+                            <li class="list-group-item" style="font-size: 16px; color: green">
+                                {{ $icon }} {{ $teamName  }}
+
+                                <span class="float-end text-black">{{ $rank->point }} điểm</span>
+                            </li>
+                        @endif
+                    @endforeach
+
                     <div class="card-footer text-center"><a href="">{{'View all'}}</a></div>
                 </ul>
             </div>
@@ -37,16 +78,23 @@
             <div class="card mb-3">
                 <div class="card-header bg-secondary fw-bold text-white">{{'Schedule'}}</div>
                 @foreach($firstThreeSchedules as $item)
-                 <div class="card-body" style="font-size: 16px; ">
+                 <div class="card-body" style="font-size: 16px; display: flex">
                      <strong>	⚔️</strong>
-                     {{$item->player1Team1->name ?? "" }}
-                     @if($item->player1Team1 && $item->player1Team1->partner)
-                         + {{ $item->player1Team1->partner->name ?? "" }}
-                     @endif
-                      -  {{$item->player1Team2->name ?? ""}}
-                     @if($item->player1Team2 && $item->player1Team2->partner)
-                         + {{ $item->player1Team2->partner->name ?? "" }}
-                     @endif
+                     <div class="name-team">
+                         {{$item->player1Team1->name ?? "" }}
+                         @if($item->player1Team1 && $item->player1Team1->partner)
+                             / {{ $item->player1Team1->partner->name ?? "" }} &nbsp;
+                         @endif
+                     </div>
+                      <div>
+                          &nbsp; vs
+                      </div>
+                     <div class="name-team">
+                         &nbsp; {{$item->player1Team2->name ?? ""}}
+                         @if($item->player1Team2 && $item->player1Team2->partner)
+                             / {{ $item->player1Team2->partner->name ?? "" }}
+                         @endif
+                     </div>
                  </div>
                 @endforeach
                 <div class="card-footer text-center"><a href="{{route('leagueSchedule.info', $leagueInfor->slug)}}">{{'View all'}}</a></div>
@@ -85,28 +133,53 @@
                         </div>
                     </div>
                 </div>
+                @php
+                    function getTeamName($rank) {
+                        $name1 = $rank->user->name ?? '---';
+                        $name2 = $rank->user->partner->name ?? '';
+                        return $name2 ? "$name1 - $name2" : $name1;
+                    }
+                @endphp
                 <div class="col-md-4">
                     <div class="stat-card bg-red">
-                        <div class="fw-bold">{{'Highest Ranked Team'}}</div>
-                        <div class="display-6">🔥<h5 class="card-title text-white">Đình Hảo - Hoài Bảo (62)</h5></div>
+                        <div class="fw-bold">{{ 'Highest Ranked Team' }}</div>
+
+                            <div class="display-6">🔥
+                                @if ($topRank)
+                                <h5 class="card-title text-white">
+                                    {{ getTeamName($topRank) }}
+                                    @if($topRank->league && $topRank->league->format_of_league == "round-robin")
+                                        ({{ $topRank->point ?? '-' }})
+                                    @endif
+                                </h5>
+                                @else
+                                    <h5 class="text-white">No data</h5>
+                                @endif
+                            </div>
 
                     </div>
                 </div>
-            </div>
-
-            <!-- Extra Stats -->
-            <div class="row g-3">
                 <div class="col-md-4">
                     <div class="card text-white bg-warning">
                         <div class="card-body">
-                            <p class="fw-bold">{{'Lowest Ranked Team'}}</p>
-                            <div class="display-6">🔻
-                                <h5 class="card-title text-white">Đình Hảo - Hoài Bảo (62)</h5></div>
+                            <p class="fw-bold">{{ 'Lowest Ranked Team' }}</p>
+                                <div class="display-6">🔻
+                                    @if ($bottomRank)
+                                    <h5 class="card-title text-white">
+                                        {{ getTeamName($bottomRank) }}
+                                        @if($bottomRank->league && $bottomRank->league->format_of_league == "round-robin")
+                                            ({{ $bottomRank->point ?? '-' }})
+                                        @endif
+                                    </h5>
+                                    @else
+                                        <h5 class="text-white">No data</h5>
+                                    @endif
+                                </div>
                         </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
 </div>

@@ -182,4 +182,9 @@ class LeagueRepository extends BaseRepository
     {
         return $this->model->where('id', $id)->delete();
     }
+
+    public function getAllRoundRobinLeagues()
+    {
+        return $this->model->where('format_of_league', 'round_robin')->get();
+    }
 }

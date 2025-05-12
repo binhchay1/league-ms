@@ -13,7 +13,7 @@ class Schedule extends Model
         'round','match','league_id', 'time',
         'stadium','date','set_1_team_1','set_1_team_2','set_2_team_1',
         'set_2_team_2','set_3_team_2','set_3_team_1','result_team_2','result_team_1',
-        'player1_team_1','player2_team_1','player1_team_2','player2_team_2',
+        'player1_team_1','player2_team_1','player1_team_2','player2_team_2','winner_team_id'
     ];
 
     public function league()
