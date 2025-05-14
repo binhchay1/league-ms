@@ -30,6 +30,10 @@
 
 </style>
 
+<?php
+$currentDate = now()->format('Y-m-d');
+$checkLeagueRun = $currentDate > $leagueInfor->end_date;
+?>
 <div class="container mt-4 league-tour">
     <h2 class="text-left">{{'League Information'}}</h2>
     <hr>
@@ -161,10 +165,11 @@
 
             </div>
         </div>
-
+        @if(!$checkLeagueRun)
         <div class="mb-12">
             <button class="btn btn-success w-10 mt-4 mb-12">{{'Update '}}</button>
         </div>
+        @endif
     </form>
 </div>
 <script src="{{ asset('js/eventImage.js') }}"></script>

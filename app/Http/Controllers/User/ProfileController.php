@@ -244,13 +244,18 @@ class ProfileController extends Controller
         } else {
             $ranking = collect(); // fallback nếu không xác định được loại giải
         }
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
 
-        // Cập nhật vị trí xếp hạng (places)
-        $place = 1;
-        foreach ($ranking as $rank) {
-            $rank->places = $place++;
+        $champion = null;
+        if ($hasEnded) {
+            if ($leagueInfor->format_of_league === 'knockout') {
+                $champion = $ranking->firstWhere('eliminated_round', null);
+            } else {
+                $champion = $ranking->first(); // đã sort theo point + win
+            }
         }
-        return view('page.user.my-league.detail-my-league', compact( 'topRank', 'bottomRank','ranking','registrations','pendingCount', 'acceptedCount','countPlayer','countMatch','firstThreeSchedules','leagueInfor','getListLeagues', 'groupSchedule'));
+        return view('page.user.my-league.detail-my-league', compact( 'champion','hasEnded', 'champion','topRank', 'bottomRank','ranking','registrations','pendingCount', 'acceptedCount','countPlayer','countMatch','firstThreeSchedules','leagueInfor','getListLeagues', 'groupSchedule'));
     }
 
     public function infoMyLeague($slug)
@@ -268,7 +273,53 @@ class ProfileController extends Controller
         $listPlayer = \App\Enums\League::NUMBER_PLAYER;
         $listTypeLeague = \App\Enums\League::TYPE;
         $listFormatLeague = \App\Enums\League::FORMAT;
-        return view('page.user.my-league.detail-my-league', compact('listFormatLeague','listTypeLeague','groupSchedule','leagueInfor', 'listLeagues', 'getListLeagues','listPlayer','listFormat','listType'));
+
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+        $topRank = null;
+        $bottomRank = null;
+        if ($leagueInfor->format_of_league === 'round-robin') {
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->orderByDesc('point')
+                ->orderByDesc('win')
+                ->orderBy('match_played')
+                ->get();
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+
+        } elseif ($leagueInfor->format_of_league === 'knockout') {
+            $priority = [
+                null => 999,
+                'final' => 1,
+                'semi-finals' => 2,
+                'quarter-finals' => 3,
+                'round-of-16' => 4,
+                'round-of-32' => 5,
+                'round-of-64' => 6,
+            ];
+
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->get()
+                ->sortBy(fn($r) => $priority[$r->eliminated_round] ?? 999)
+                ->values(); // Reindex
+
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+        } else {
+            $ranking = collect(); // fallback nếu không xác định được loại giải
+        }
+
+        $champion = null;
+        if ($hasEnded) {
+            if ($leagueInfor->format_of_league === 'knockout') {
+                $champion = $ranking->firstWhere('eliminated_round', null);
+            } else {
+                $champion = $ranking->first(); // đã sort theo point + win
+            }
+        }
+        return view('page.user.my-league.detail-my-league', compact('hasEnded', 'champion','listFormatLeague','listTypeLeague','groupSchedule','leagueInfor', 'listLeagues', 'getListLeagues','listPlayer','listFormat','listType'));
 
     }
 
@@ -294,7 +345,53 @@ class ProfileController extends Controller
         $leagueInfor = $this->leagueRepository->showInfo($slug);
         $listLeagues = $this->leagueRepository->getLeagueHome();
         $getListLeagues = $this->leagueRepository->getListLeagues();
-        return view('page.user.my-league.detail-my-league', compact('leagueInfor', 'listLeagues', 'getListLeagues'));
+
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+        $topRank = null;
+        $bottomRank = null;
+        if ($leagueInfor->format_of_league === 'round-robin') {
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->orderByDesc('point')
+                ->orderByDesc('win')
+                ->orderBy('match_played')
+                ->get();
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+
+        } elseif ($leagueInfor->format_of_league === 'knockout') {
+            $priority = [
+                null => 999,
+                'final' => 1,
+                'semi-finals' => 2,
+                'quarter-finals' => 3,
+                'round-of-16' => 4,
+                'round-of-32' => 5,
+                'round-of-64' => 6,
+            ];
+
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->get()
+                ->sortBy(fn($r) => $priority[$r->eliminated_round] ?? 999)
+                ->values(); // Reindex
+
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+        } else {
+            $ranking = collect(); // fallback nếu không xác định được loại giải
+        }
+
+        $champion = null;
+        if ($hasEnded) {
+            if ($leagueInfor->format_of_league === 'knockout') {
+                $champion = $ranking->firstWhere('eliminated_round', null);
+            } else {
+                $champion = $ranking->first(); // đã sort theo point + win
+            }
+        }
+        return view('page.user.my-league.detail-my-league', compact('hasEnded','champion','leagueInfor', 'listLeagues', 'getListLeagues'));
     }
 
     public function myLeagueResult($slug)
@@ -307,8 +404,52 @@ class ProfileController extends Controller
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+        $topRank = null;
+        $bottomRank = null;
+        if ($leagueInfor->format_of_league === 'round-robin') {
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->orderByDesc('point')
+                ->orderByDesc('win')
+                ->orderBy('match_played')
+                ->get();
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
 
-        return view('page.user.my-league.detail-my-league', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'getListLeagues'));
+        } elseif ($leagueInfor->format_of_league === 'knockout') {
+            $priority = [
+                null => 999,
+                'final' => 1,
+                'semi-finals' => 2,
+                'quarter-finals' => 3,
+                'round-of-16' => 4,
+                'round-of-32' => 5,
+                'round-of-64' => 6,
+            ];
+
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->get()
+                ->sortBy(fn($r) => $priority[$r->eliminated_round] ?? 999)
+                ->values(); // Reindex
+
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+        } else {
+            $ranking = collect(); // fallback nếu không xác định được loại giải
+        }
+
+        $champion = null;
+        if ($hasEnded) {
+            if ($leagueInfor->format_of_league === 'knockout') {
+                $champion = $ranking->firstWhere('eliminated_round', null);
+            } else {
+                $champion = $ranking->first(); // đã sort theo point + win
+            }
+        }
+        return view('page.user.my-league.detail-my-league', compact('champion','hasEnded','leagueInfor', 'listLeagues', 'groupSchedule', 'getListLeagues'));
     }
 
     public function myLeagueBracket($slug)
@@ -324,8 +465,52 @@ class ProfileController extends Controller
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+        $topRank = null;
+        $bottomRank = null;
+        if ($leagueInfor->format_of_league === 'round-robin') {
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->orderByDesc('point')
+                ->orderByDesc('win')
+                ->orderBy('match_played')
+                ->get();
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
 
-        return view('page.user.my-league.detail-my-league', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'listSchedules', 'groupRound', 'getListLeagues'));
+        } elseif ($leagueInfor->format_of_league === 'knockout') {
+            $priority = [
+                null => 999,
+                'final' => 1,
+                'semi-finals' => 2,
+                'quarter-finals' => 3,
+                'round-of-16' => 4,
+                'round-of-32' => 5,
+                'round-of-64' => 6,
+            ];
+
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->get()
+                ->sortBy(fn($r) => $priority[$r->eliminated_round] ?? 999)
+                ->values(); // Reindex
+
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+        } else {
+            $ranking = collect(); // fallback nếu không xác định được loại giải
+        }
+
+        $champion = null;
+        if ($hasEnded) {
+            if ($leagueInfor->format_of_league === 'knockout') {
+                $champion = $ranking->firstWhere('eliminated_round', null);
+            } else {
+                $champion = $ranking->first(); // đã sort theo point + win
+            }
+        }
+        return view('page.user.my-league.detail-my-league', compact('champion','hasEnded','leagueInfor', 'listLeagues', 'groupSchedule', 'listSchedules', 'groupRound', 'getListLeagues'));
     }
 
     public function myLeagueNews($slug)
@@ -382,12 +567,16 @@ class ProfileController extends Controller
             $ranking = collect(); // fallback nếu không xác định được loại giải
         }
 
-        // Cập nhật vị trí xếp hạng (places)
-        $place = 1;
-        foreach ($ranking as $rank) {
-            $rank->places = $place++;
+        $champion = null;
+        if ($hasEnded) {
+            if ($leagueInfor->format_of_league === 'knockout') {
+                $champion = $ranking->firstWhere('eliminated_round', null);
+            } else {
+                $champion = $ranking->first(); // đã sort theo point + win
+            }
         }
         return view('page.user.my-league.detail-my-league', compact(
+            'champion',
             'hasEnded',
             'topRank',
             'bottomRank',
@@ -411,7 +600,6 @@ class ProfileController extends Controller
             $groupSchedule[$schedule['round']][] = $schedule;
         }
         $currentDate = now()->format('Y-m-d');
-        $hasEnded = $currentDate > $leagueInfor->end_date;
         $hasEnded = $currentDate > $leagueInfor->end_date;
         // ===== XỬ LÝ RANKING =====
         $topRank = null;
@@ -451,12 +639,15 @@ class ProfileController extends Controller
             $ranking = collect(); // fallback nếu không xác định được loại giải
         }
 
-        // Cập nhật vị trí xếp hạng (places)
-        $place = 1;
-        foreach ($ranking as $rank) {
-            $rank->places = $place++;
+        $champion = null;
+        if ($hasEnded) {
+            if ($leagueInfor->format_of_league === 'knockout') {
+                $champion = $ranking->firstWhere('eliminated_round', null);
+            } else {
+                $champion = $ranking->first(); // đã sort theo point + win
+            }
         }
-        return view('page.user.my-league.detail-my-league', compact('topRank', 'bottomRank','ranking','hasEnded','leagueInfor', 'listLeagues', 'groupSchedule', 'getListLeagues'));
+        return view('page.user.my-league.detail-my-league', compact('champion','topRank', 'bottomRank','ranking','hasEnded','leagueInfor', 'listLeagues', 'groupSchedule', 'getListLeagues'));
     }
 
     public function myLeaguePlayerRegister($slug)
@@ -475,6 +666,16 @@ class ProfileController extends Controller
         $acceptedCount =UserLeague::with(['user', 'partner'])
             ->where('league_id', $leagueInfor->id)
             ->where('status', 1)->count();
+
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+        $champion = null;
+        if ($hasEnded) {
+            if ($leagueInfor->format_of_league === 'knockout') {
+                $champion = $ranking->firstWhere('eliminated_round', null);
+            } else {
+                $champion = $ranking->first(); // đã sort theo point + win
+            }
+        }
         return view('page.user.my-league.detail-my-league', compact('leagueInfor', 'listLeagues', 'getListLeagues', 'registrations','pendingCount', 'acceptedCount'));
     }
 
@@ -487,7 +688,15 @@ class ProfileController extends Controller
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
-
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+        $champion = null;
+        if ($hasEnded) {
+            if ($leagueInfor->format_of_league === 'knockout') {
+                $champion = $ranking->firstWhere('eliminated_round', null);
+            } else {
+                $champion = $ranking->first(); // đã sort theo point + win
+            }
+        }
         return view('page.user.my-league.detail-my-league', compact('leagueInfor', 'listLeagues', 'groupSchedule', 'getListLeagues'));
     }
 

@@ -76,23 +76,28 @@
             <!-- Rounds -->
             <div class="card mb-3">
                 <div class="card-header bg-secondary fw-bold text-white">{{'Schedule'}}</div>
+                @php
+                    function getTeamNameFromPlayer($player, $type = 'singles') {
+                        $name1 = $player->name ?? '---';
+                        $name2 = $player->partner->name ?? '';
+
+                        if ($type === 'doubles') {
+                            return $name1 . ($name2 ? ' / ' . $name2 : '');
+                        }
+
+                        return $name1;
+                    }
+                @endphp
+
                 @foreach($firstThreeSchedules as $item)
                     <div class="card-body" style="font-size: 16px; display: flex">
-                        <strong>	⚔️</strong>
+                        <strong>⚔️</strong>
                         <div class="name-team">
-                            {{$item->player1Team1->name ?? "" }}
-                            @if($item->player1Team1 && $item->player1Team1->partner)
-                                / {{ $item->player1Team1->partner->name ?? "" }} &nbsp;  &nbsp;
-                            @endif
+                            {{ getTeamNameFromPlayer($item->player1Team1, $item->league->type_of_league ?? 'singles') }}
                         </div>
-                        <div>
-                            &nbsp; vs
-                        </div>
+                        <div>&nbsp; vs</div>
                         <div class="name-team">
-                            &nbsp;  &nbsp; {{$item->player1Team2->name ?? ""}}
-                            @if($item->player1Team2 && $item->player1Team2->partner)
-                                / {{ $item->player1Team2->partner->name ?? "" }}
-                            @endif
+                            &nbsp; {{ getTeamNameFromPlayer($item->player1Team2, $item->league->type_of_league ?? 'singles') }}
                         </div>
                     </div>
                 @endforeach
@@ -102,7 +107,7 @@
 
             <!-- Map -->
             <div class="card">
-                <div class="card-header">{{'Location'}}</div>
+                <div class="card-header bg-secondary fw-bold text-white">{{'Location'}}</div>
                 <div class="map-container">
                     <iframe src="https://www.google.com/maps/embed?..." width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>

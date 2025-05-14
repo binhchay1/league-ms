@@ -99,7 +99,7 @@
 
             <!-- Map -->
             <div class="card">
-                <div class="card-header">{{'Location'}}</div>
+                <div class="card-header bg-secondary fw-bold text-white">{{'Location'}}</div>
                 <div class="map-container">
                     <iframe src="https://www.google.com/maps/embed?..." width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
