@@ -109,7 +109,7 @@
             </div>
         </div>
     @endif
-    <div id="page" class="hfeed site" style="{{ $hasEnded ? 'display: none;' : '' }}; margin-top: -20px">
+    <div id="page" class="hfeed site" style="{{ ($hasEnded && $champion) ? 'display: none;' : '' }}; margin-top: -20px">
         <?php $start_date = date('d/m/Y', strtotime($leagueInfor->start_date));
         $end_date = date('d/m/Y', strtotime($leagueInfor->end_date));
         ?>

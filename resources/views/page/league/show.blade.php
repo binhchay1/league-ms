@@ -44,7 +44,7 @@
             </div>
         </div>
     @endif
-    <div id="page" class="hfeed site" style="{{ $hasEnded ? 'display: none;' : '' }}; margin-top: -20px">
+    <div id="page" class="hfeed site" style="{{ ($hasEnded && $champion) ? 'display: none;' : '' }}; margin-top: -20px">
         <div class=" results ">
             <div class="wrapper-results" id="league-detail">
                 <div class="" style="background: #707787;padding: 10px; margin-top: -20px; color: white">
