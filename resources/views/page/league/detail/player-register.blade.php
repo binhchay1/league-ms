@@ -1,12 +1,12 @@
-
-<div class="d-flex flex-wrap gap-2 mb-3">
+@forelse ($registrations as $index => $registration)
+    <div class="d-flex flex-wrap gap-2 mb-3">
     <span class="badge bg-primary px-3 py-2">
         {{'Inactive'}}: {{ $pendingCount }}
     </span>
-    <span class="badge bg-success px-3 py-2">
+        <span class="badge bg-success px-3 py-2">
         {{'Active'}}: {{ $acceptedCount }}
     </span>
-</div>
+    </div>
 <table class="table table-bordered align-middle text-center">
     <thead class="table-light fw-bold">
     <tr>
@@ -33,7 +33,6 @@
         }
     @endphp
 
-    @foreach ($registrations as $index => $registration)
         <tr>
             <td>{{ $index + 1 }}</td>
             <td class="d-flex align-items-center gap-2">
@@ -56,6 +55,10 @@
             </span>
             </td>
         </tr>
-    @endforeach
+
     </tbody>
 </table>
+@empty
+    <div class="alert alert-primary">{{"Tournament is updating data."}}</div>
+
+@endforelse

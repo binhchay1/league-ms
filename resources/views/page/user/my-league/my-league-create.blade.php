@@ -90,9 +90,9 @@
                                                     @if(now()->between($row->start_date, $row->end_date))
                                                         <span class="status-league p-1 bg-success text-white rounded">{{'Active'}}</span>
                                                     @elseif(now() < date('Y-m-d', strtotime($row->end_date_register)))
-                                                        <span class="status-league p-1 bg-warning text-black rounded">{{'Registering'}}</span>
+                                                        <span id="reg" class="status-league p-1 bg-warning text-white rounded">{{'Registering'}}</span>
                                                     @elseif(now() > date('Y-m-d', strtotime($row->end_date_register)) && now() < $row->start_date)
-                                                        <span class=" status-league p-1 bg-warning text-black rounded">{{'End Register'}}</span>
+                                                        <span class=" status-league p-1 bg-warning text-white rounded">{{'End Register'}}</span>
                                                     @elseif(now() > $row->end_date)
                                                         <span class="status-league p-1 bg-danger text-white rounded">{{'Ended '}}</span>
                                                     @endif

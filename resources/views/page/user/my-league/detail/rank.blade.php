@@ -162,7 +162,7 @@
         </tbody>
     </table>
 @else
-    <div class="alert alert-warning">{{"Tournament type not specified."}}</div>
+    <div class="alert alert-primary">{{"Tournament type not specified."}}</div>
 @endif
 
 
