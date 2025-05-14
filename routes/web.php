@@ -43,6 +43,9 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/tournament-league/{slug}/schedule/', [HomeController::class, 'showSchedule'])->name('leagueSchedule.info');
     Route::get('/tournament-league/{slug}/bracket/', [HomeController::class, 'showBracket'])->name('leagueResult.bracket');
     Route::get('/tournament-league/{slug}/fight-branch/', [HomeController::class, 'showFightBranch'])->name('leagueFightBranch.info');
+    Route::get('/tournament-league/{slug}/list-register/', [HomeController::class, 'showListRegister'])->name('showListRegister.info');
+    Route::get('/tournament-league/{slug}/general-news/', [HomeController::class, 'showGeneralNews'])->name('showGeneralNews.info');
+    Route::get('/tournament-league/{slug}/rank/', [HomeController::class, 'showRank'])->name('showRank.info');
     Route::get('/list-teams/', [HomeController::class, 'listTeam'])->name('list.team');
     Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
     Route::get('/check-group-join', [HomeController::class, 'checkGroupJoin']);
@@ -73,7 +76,7 @@ Route::get('/product-new/{slug}', [ExchangeController::class, 'editProductNews']
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
-//manager-news
+    //manager-news
     Route::get('/user/profile', [ExchangeController::class, 'profile'])->name('exchange.profile');
 
     Route::post('/update-product-news/{slug}', [ExchangeController::class, 'updateProductNews'])->name('exchange.updateNews');
@@ -101,8 +104,8 @@ Route::post('/register/', [AuthController::class, 'storeUser'])->name('storeUser
 Route::get('/setLocale/{locale}/', [HomeController::class, 'changeLocate'])->name('app.setLocale');
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/tournament-register/{slug}/', [HomeController::class, 'formRegisterLeague'])->name('league.formRegisterLeague');
-
+    Route::get('/tournament-league/{slug}/register', [HomeController::class, 'formRegisterLeague'])->name('league.formRegisterLeague');
+    Route::get('/tournament-league/{slug}/register-league/', [HomeController::class, 'registerLeague'])->name('registerLeague.info');
     //profile
     Route::get('/profile/{nick_name}/', [ProfileController::class, 'show'])->name('profile.info');
     Route::get('/user-profile/', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -117,6 +120,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/my-league/{slug}/result/', [ProfileController::class, 'myLeagueResult'])->name('my.leagueResult.info');
     Route::get('/my-league/{slug}/schedule/', [ProfileController::class, 'myLeagueSchedule'])->name('my.leagueSchedule.info');
     Route::get('/my-league/{slug}/bracket/', [ProfileController::class, 'myLeagueBracket'])->name('my.leagueBracket.info');
+    Route::get('/my-league/{slug}/news/', [ProfileController::class, 'myLeagueNews'])->name('my.leagueNews.info');
+    Route::get('/my-league/{slug}/rank/', [ProfileController::class, 'showRank'])->name('my.leagueRank.info');
+    Route::get('/my-league/{slug}/player-register/', [ProfileController::class, 'myLeaguePlayerRegister'])->name('my.myLeaguePlayerRegister.info');
     Route::get('/my-league/{slug}/active-player/', [ProfileController::class, 'myLeagueActivePlayer'])->name('my.myLeagueActivePlayer');
     Route::get('/my-league/{slug}/info/', [ProfileController::class, 'infoMyLeague'])->name('my.infoMyLeague');
     Route::post('/update-my-league/{id}', [ProfileController::class, 'updateMyLeague'])->name('my.updateMyLeagueMyLeague');
@@ -127,9 +133,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/my-group/{id}/info/', [ProfileController::class, 'infoMyGroup'])->name('my.infoMyGroup');
     Route::post('/update-my-group/{id}', [ProfileController::class, 'updateMyGroup'])->name('my.updateMyGroup');
     Route::delete('delete/my-group/{id}', [ProfileController::class, 'deleteMyGroup'])->name('delete.myGroup');
-    Route::get('/tournament-joined', [ProfileController::class, 'leagueJoin'])->name('league.leagueJoin');
+    Route::get('/league-joined', [ProfileController::class, 'leagueJoin'])->name('league.leagueJoin');
+    Route::get('/league-created', [ProfileController::class, 'leagueCreated'])->name('league.leagueCreate');
     Route::get('/group-joined', [ProfileController::class, 'groupJoin'])->name('group.groupJoin');
-
+    Route::get('/group-created', [ProfileController::class, 'groupCreated'])->name('group.groupCreateByUser');
 
     Route::post('/register-league/', [HomeController::class, 'saveRegisterLeague'])->name('registerLeague');
     Route::post('/partner/', [HomeController::class, 'storePartnerAjax'])->name('user.create.partner');
@@ -143,7 +150,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/group-training/', [HomeController::class, 'groupTraining'])->name('list.train');
     Route::get('/join-group-training/', [HomeController::class, 'joinGroupTraining'])->name('join.group.training');
     Route::get('/live-score/', [HomeController::class, 'liveScore'])->name('live.score');
-
+    Route::post('/store-score', [HomeController::class, 'storeScore'])->name('store.score');
 
     //league
     Route::get('/list-league/', [LeagueController::class, 'index'])->name('league.index');
@@ -174,8 +181,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/result', [ScheduleController::class, 'result'])->name('schedule.result');
     Route::get('/export-schedule/{id}/', [ScheduleController::class, 'exportSchedule'])->name('schedule.export');
     Route::get('/auto-create-league', [ScheduleController::class, 'autoCreateLeague'])->name('auto.create.schedule');
-    Route::get('/store-score', [ScheduleController::class, 'storeScore'])->name('store.score');
-
 
     //group
     Route::get('/list-group/', [GroupController::class, 'index'])->name('group.index');
@@ -270,9 +275,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/delete/{id}/', [UserController::class, 'destroy'])->name('user.delete');
             Route::get('/change-password/{id}/', [UserController::class, 'changePassword'])->name('user.changePassword');
             Route::post('/updatePassword/{id}/', [UserController::class, 'updatePassword'])->name('user.updatePassword');
-
-
-
         }
     );
 });

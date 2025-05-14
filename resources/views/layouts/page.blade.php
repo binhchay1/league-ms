@@ -14,6 +14,7 @@
     <meta name="description" content="{{ __('Run your badminton league for free, badminton scheduling and online results and statistics displayed on your free website.') }}">
     <meta name="keywords" content="{{ __('badminton scheduling,badminton scheduler,badminton league,badminton league website,manage badminton league online,run badminton league online') }}">
     <meta name="robots" content="Index, Follow">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
     <meta charset="UTF-8" />
@@ -99,7 +100,7 @@
         text-decoration: none;
         display: block;
         clear: both;
-        font-weight: 400;
+        font-weight: 400 !important;
         line-height: 1.428571429;
         white-space: nowrap;
         font-size: 16px !important;
@@ -154,7 +155,7 @@
             </ul>
         </div>
 
-        <nav class="navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm" >
+        <nav class="navbar navbar-expand-lg sticky-top navbar-light m-0 shadow-sm" >
             <div class="container">
                 <a href="{{ route('home') }}"><img  class="logo-image" src="{{ asset('/images/logo-no-background.png') }}" alt="{{ env('APP_NAME', 'Badminton.io') }}" width="100" height="100"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

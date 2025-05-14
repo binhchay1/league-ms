@@ -49,10 +49,11 @@ class LeagueRepository extends BaseRepository
     {
         return $this->model->with(
             'userLeagues',
-            'schedule.player1Team1',
-            'schedule.player2Team1',
-            'schedule.player1Team2',
-            'schedule.player2Team2'
+            'schedule',
+            'schedule.player1Team1.partner',
+            'schedule.player2Team1.partner',
+            'schedule.player1Team2.partner',
+            'schedule.player2Team2.partner'
         )->where('slug', $slug)->first();
     }
 
@@ -134,23 +135,30 @@ class LeagueRepository extends BaseRepository
             ->where('id', $id)->first();
     }
 
-    public function searchLeague($query, $sort)
+    public function searchLeague($query, $sort, $format)
     {
-        $leagues = $this->model->query(); // Chắc chắn $leagues là Query Builder
+        $leagues = $this->model->query();
 
         if ($query) {
             $leagues->where('name', 'like', "%$query%");
         }
 
-// Sắp xếp kết quả
+        // Sắp xếp theo thời gian
         if ($sort === 'newest') {
             $leagues->orderBy('created_at', 'desc');
         } elseif ($sort === 'oldest') {
             $leagues->orderBy('created_at', 'asc');
         }
 
-        return $leagues->get();
+        if ($format === 'round-robin') {
+            $leagues->where('format_of_league', 'round-robin');
+        } elseif ($format === 'knockout') {
+            $leagues->where('format_of_league', 'knockout');
+        }
+
+        return $leagues->get(); // chỉ get() một lần ở cuối
     }
+
 
     public function myLeague($slug,$user)
     {
@@ -173,5 +181,10 @@ class LeagueRepository extends BaseRepository
     public function deleteMyLeague($id)
     {
         return $this->model->where('id', $id)->delete();
+    }
+
+    public function getAllRoundRobinLeagues()
+    {
+        return $this->model->where('format_of_league', 'round_robin')->get();
     }
 }

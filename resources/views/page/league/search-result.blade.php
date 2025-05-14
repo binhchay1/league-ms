@@ -74,6 +74,13 @@
             box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
         }
 
+        .label-end {
+            border-radius: 5px;
+            color: #fff;
+            padding: 3px 8px;
+            background: #b46060;
+        }
+
     </style>
 
     <div class="container" >
@@ -94,15 +101,20 @@
             <!-- Form Tìm Kiếm -->
             <div class="col-md-8">
                 <form class="d-flex gap-2 justify-content-end" action="{{route('searchLeague')}}" method="GET">
-
-                    <select class="form-select"  name="sort">
-                        <option selected>{{'Sort by'}}</option>
-                        <option value="newest">{{'Latest'}}</option>
-                        <option value="oldest">{{'Oldest'}}</option>
+                    <select class="form-select" name="format">
+                        <option value="" {{ request('format') == '' ? 'selected' : '' }}>{{ 'Format' }}</option>
+                        <option value="round-robin" {{ request('format') == 'round-robin' ? 'selected' : '' }}>{{ 'Round Robin' }}</option>
+                        <option value="knockout" {{ request('format') == 'knockout' ? 'selected' : '' }}>{{ 'Knockout' }}</option>
+                    </select>
+                    <select class="form-select" name="sort">
+                        <option value="" {{ request('sort') == '' ? 'selected' : '' }}>{{ 'Sort by' }}</option>
+                        <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>{{ 'Latest' }}</option>
+                        <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>{{ 'Oldest' }}</option>
                     </select>
 
                     <div class="input-group">
-                        <input type="text" class="form-control"  name="query" placeholder="{{'Name league...'}}">
+                        <input type="text" class="form-control" name="query" placeholder="{{ 'Name league...' }}"
+                               value="{{ request('query') }}">
                         <button class="btn btn-success" type="submit">
                             <i class="fas fa-search"></i>
                         </button>
@@ -123,6 +135,15 @@
                                 <!-- Ảnh nền -->
                                 <div class="card-header league-banner" style="background-image: url('{{ asset('/images/bg-league.png') }}');">
                                     <!-- Logo giải đấu -->
+                                    @if(now() < date('Y-m-d', strtotime($league->end_date_register)))
+                                        <div class="label lb-register">
+                                            <span class="extend_lb label-success">{{'Registering'}}</span>
+                                        </div>
+                                    @elseif(now() > date('Y-m-d', strtotime($league->end_date_register)) && now() < date('Y-m-d', strtotime($league->start_date)) )
+                                        <div class="label lb-register">
+                                            <span class="extend_lb label-end">{{'End Register'}}</span>
+                                        </div>
+                                    @endif
                                     <div class="league-logo">
                                         <img src="{{ asset($league->images ?? '/images/logo-no-background.png') }}" alt="League Logo">
                                     </div>

@@ -266,10 +266,6 @@ body:not(.detailbody) .draw {
     white-space: nowrap
 }
 
-.bracket__name--advancing {
-    font-weight: 800
-}
-
 .bracket__image {
     align-self: center;
     color: var(--color-combination-2);

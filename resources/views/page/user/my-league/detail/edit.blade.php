@@ -30,6 +30,10 @@
 
 </style>
 
+<?php
+$currentDate = now()->format('Y-m-d');
+$checkLeagueRun = $currentDate > $leagueInfor->end_date;
+?>
 <div class="container mt-4 league-tour">
     <h2 class="text-left">{{'League Information'}}</h2>
     <hr>
@@ -39,7 +43,7 @@
             <div class="col-md-3">
                 <label>{{ __('Logo league') }}</label>
                 <input value="" type="file" class="border-0 bg-light pl-0" name="images" id="image" hidden>
-                <div class=" choose-avatar">
+                <div class=" choose-avatar mt-3">
                     <div id="btnimage">
                         <img id="showImage" class="show-avatar" src="{{asset($leagueInfor->images ?? '/images/logo-no-background.png')}}"  alt="avatar" style="width: 200px;">
                     </div>
@@ -129,40 +133,43 @@
                     </div>
                 </div>
                 <div class="row mt-4">
-                    <div class="mb-3">
+                    <div class="col-6">
                         <label class="form-label">{{'Number of players'}}</label>
                         <select class="form-select" name="number_of_athletes" value="{{ $leagueInfor->number_of_athletes }}">
                             @foreach($listPlayer as $number => $value)
                                 <option id="" value="{{ $value }}" {{$value == $leagueInfor->number_of_athletes ? 'selected' : ''}}>{{ $value }}</option>
                             @endforeach
-
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label">{{'Type league'}}</label>
+                        <select class="form-select" name="type_of_league" value="{{ $leagueInfor->type_of_league }}">
+                            @foreach($listTypeLeague as $number => $value)
+                                <option id="" value="{{ $value }}" {{$value == $leagueInfor->type_of_league ? 'selected' : ''}}>{{ $value }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="row mt-4">
-
                     <div class="col-6">
                         <div class="form-group">
-                            <label>{{ __('Format league') }}</label>
-                            <input class="form-control" value="{{ $leagueInfor->format_of_league }}" type="text" name="format_of_league" id="format_of_league" placeholder="" readonly  />
+                            <label  class="form-label">{{ __('Format league') }}</label>
+                            <select class="form-select" name="format_of_league" value="{{ $leagueInfor->format_of_league }}">
+                                @foreach($listFormatLeague as $number => $value)
+                                    <option id="" value="{{ $value }}" {{$value == $leagueInfor->format_of_league ? 'selected' : ''}}>{{ $value }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label>{{ __('Type league') }}</label>
-                            <input class="form-control" value="mix-random" type="text" name="type_of_league" id="type_of_league" placeholder="" readonly  />
-
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
         </div>
-
+        @if(!$checkLeagueRun)
         <div class="mb-12">
             <button class="btn btn-success w-10 mt-4 mb-12">{{'Update '}}</button>
         </div>
+        @endif
     </form>
 </div>
 <script src="{{ asset('js/eventImage.js') }}"></script>

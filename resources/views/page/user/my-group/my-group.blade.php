@@ -8,71 +8,24 @@
     <link rel="stylesheet" href="{{ asset('/css/page/my-league.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 @endsection
-<style>
-    .list-group-item-action {
-        padding: 10px;
-        cursor: pointer;
-        transition: background 0.3s;
-    }
 
-    .list-group-item-action:hover {
-        background: #ff3a35 !important;
-        color: white !important;
-    }
-
-
-    .label-success {
-        border-radius: 5px;
-        color: #fff;
-        padding: 3px 8px;
-        background: green;
-        font-size: 12px;
-        font-weight: 700;
-        padding-bottom: 6px;
-        position: relative;
-        font-size: 15px;
-    }
-
-    .label-danger {
-        border-radius: 5px;
-        color: #fff;
-        padding: 3px 8px;
-        background: red;
-        font-size: 12px;
-        font-weight: 700;
-        padding-bottom: 6px;
-        position: relative;
-        font-size: 15px;
-    }
-
-    .card-title {
-        color: green !important;
-        font-weight: bold;
-    }
-
-    .status-league {
-        font-weight: bold !important;
-    }
-
-
-</style>
 @section('content')
     <section >
-        <div class="container-fluid">
+        <div class="">
             <!-- Header -->
-            <div class=" text-black p-3 align-items-center">
-                <div class="container d-flex  img-fluid">
-                    <img src="{{ asset(Auth::user()->profile_photo_path ?? '/images/no-image.png')}}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
+            <div class=" text-black align-items-center" style="background: #707787;padding: 10px; margin-top: -20px;">
+                <div class="container d-flex p-0 img-fluid">
+                    <img src="{{ asset(Auth::user()->profile_photo_path ?? '/images/no-image.png')}}" alt="User" width="150" height="150" class=" me-3 " >
                     <div>
-                        <h2 class="mb-1 p-0">{{Auth::user()->name}}</h2>
-                        <p class="mb-1">
-                            <i class="bi bi-envelope"></i> {{Auth::user()->email}}
+                        <h2 class="p-0 text-white">{{Auth::user()->name}}</h2>
+                        <p class="mb-1 text-white">
+                            <i class="bi bi-envelope "></i> {{Auth::user()->email}}
                         </p>
-                        <p class="mb-1 text-muted">
-                            <i class="bi bi-telephone"></i> <em>{{Auth::user()->phone}}</em>
+                        <p class="mb-1 text-muted ">
+                            <i class="bi bi-telephone text-white"></i> <em class="text-white">{{Auth::user()->phone ?? 'updating' }}</em>
                         </p>
-                        <p class="mb-0 text-muted">
-                            <i class="bi bi-calendar"></i> <em>{{'updating'}}</em>
+                        <p class="mb-0 text-muted ">
+                            <i class="bi bi-calendar text-white"></i> <em class="text-white">{{Auth::user()->age ?? 'updating' }}</em>
                         </p>
                     </div>
                 </div>
@@ -82,16 +35,24 @@
             <div class="container bg-gray">
                 <div class="row">
                     <!-- Sidebar -->
-                    <div class="col-md-3 p-3 bg-light">
-                        <div class="list-group">
-                            <a href="{{route('group.createGroup')}}" data-id="league-created" class="list-group-item list-group-item-action ">{{'Group Created'}}</a>
-                            <a href="{{route('group.groupJoin')}}"  data-id="league-join" class="list-group-item list-group-item-action">{{'Group Joined'}}</a>
-                        </div>
+                    <div class="col-md-3 p-0 mt-3" style="background-color: #4a5773; height: 60%;">
+                        <ul class="sidebar-list mt-4">
+                            <li class="{{ request()->routeIs('group.groupCreateByUser') ? 'active' : '' }}">
+                                <a href="{{ route('group.groupCreateByUser') }}">
+                                    <i class="fas fa-pen mr-2"></i>{{'Group Created'}}
+                                </a>
+                            </li>
+                            <li class="{{ request()->routeIs('group.groupJoin') ? 'active' : '' }}">
+                                <a href="{{ route('group.groupJoin') }}">
+                                    <i class="fas fa-users mr-2"></i> {{'Group Joined'}}
+                                </a>
+                            </li>
+                        </ul>
                     </div>
 
                     <!-- Tournament List -->
                     <div class="col-md-9 p-3">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex justify-content-between group-title align-items-center mb-3">
                             <h4>{{'My groups'}}</h4>
                             <a href="{{route('group.createGroup')}}">
                                 <button class="btn btn-success">{{ __('Create Group') }}</button>
@@ -131,11 +92,9 @@
 
                             @endforeach
                         @else
-                            <div class="text-center">
-                                <img class="" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
-
-                                <h4 >{{ __('There are no groups!') }}</h4>
-                            </div>
+                            <label class="m-0 block text-sm font-medium text-gray-700">
+                                {{'No group yet.'}}
+                            </label>
                         @endif
                     </div>
                 </div>

@@ -27,6 +27,13 @@
         padding: 1px;
     }
 
+    .btn-referee:hover
+    {
+        border: none !important;
+        color: black !important;
+        background-color: red !important;
+    }
+
 </style>
 <?php
 

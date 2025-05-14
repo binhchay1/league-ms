@@ -11,174 +11,122 @@
         <link rel="stylesheet" href="{{ asset('css/page/bracket.css') }}"/>
     @endif
 @endsection
-<style>
-    .list-group-item-action {
-        padding: 10px;
-        cursor: pointer;
-        transition: background 0.3s;
-    }
-    .list-group-item-action.active {
-        background-color:#dc3545 !important; /* Màu xanh */
-        color: white;
-        border-radius: 5px;
-    }
 
-    .card-title {
-        color: black !important;
-    }
-
-    p.display {
-        font-size: 15px !important;
-    }
-
-    .btn-custom {
-        background-color: #dc3545 !important;
-        color: white !important;
-        font-weight: bold;
-        border-radius: 10px;
-        padding: 10px 15px!important;
-        border: none;
-    }
-
-    .btn-custom:hover {
-        background-color: #ff4b2b !important;
-    }
-
-    /* Tùy chỉnh dropdown */
-    .btn-dropdown {
-        background: white;
-        border: 2px solid #ff4b2b !important;
-        border-radius: 10px;
-        color: #dc3545;
-        padding: 10px 12px !important;
-    }
-
-    .btn-dropdown:hover {
-        background: #f1f1f1 !important;
-    }
-
-    .form-control {
-        line-height: 2.5 !important;
-    }
-
-    .tr-title{
-        background: #596377;
-        line-height: 45px;
-        color: white;
-    }
-
-</style>
 @section('content')
-    <div id="page" class="hfeed site">
-        <div class=" results">
-            <div class="wrapper-results">
-                <div class="container" >
-                    <div class="box-results-tournament">
-                        <div>
-                            <div class="logo-left">
-                                <img src="{{ asset($leagueInfor->images ?? '/images/logo-no-background.png') }}"
-                                     class="show-image-league" alt="logo">
-                            </div>
-                            <div class="" id="info-league">
-                                <h2>{{ $leagueInfor->name }}</h2>
-                                <p class="card-text display"><?php echo number_format($leagueInfor->money ?? 0) . " VND"?> || {{$leagueInfor->type_of_league}}  || {{$leagueInfor->location}}</p>
-                                <p class="display">
-                                    <i class="bi bi-geo-alt"></i> <em>{{ __('Location: ') }} {{$leagueInfor->location}}</em>
-                                </p>
-                                <?php $start_date = date('d/m/Y', strtotime($leagueInfor->start_date));
-                                $end_date = date('d/m/Y', strtotime($leagueInfor->end_date));
-                                ?>
-                                <p class="display">
-                                    <i class="bi bi-calendar"></i> <em>{{'From: '}} {{$start_date}} ~ {{'To: '}}{{$end_date}}</em>
-                                </p>
-                                <p class="display">
-                                    <i class="bi bi-people-fill"></i> <em>{{ __('Member: ') }} {{$leagueInfor->number_of_athletes}}</em>
-                                </p>
-                            </div>
+    <?php
+    $currentDate = strtotime(date("Y-m-d"));
+    $startDate = strtotime(date($leagueInfor->start_date));
+    $end_date_register = strtotime($leagueInfor->end_date_register);
+    $get_date_register = date('d/m/Y', strtotime($leagueInfor->end_date_register));
+    $format_register_date = $leagueInfor->end_date_register;
+    ?>
+    @if ($hasEnded && $champion )
+        <div id="winner-popup" style="margin-top: -30px" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 text-white">
+            {{-- Nút đóng (góc trên phải màn hình) --}}
+            <button onclick="closeWinnerPopup()" id="popup-close" class="absolute top-4 right-6 text-white text-3xl hover:text-red-500 z-50">
+                &times;
+            </button>
+            {{-- Nội dung popup --}}
+            <div class="relative z-10 text-center bg-gray-900 bg-opacity-80 px-6 py-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl text-yellow-400 font-bold mb-4">{{'Congratulations to the defending champions of the tournament!'}}</h2>
+                <img src="{{ asset('/images/player-team.jpg') }}" class="mx-auto w-32 h-32 rounded-full border-4 border-yellow-500 mb-4" alt="Winner Avatar">
+                <h4 class="text-xxl text-white font-semibold">
+                    {{ $champion->user->name ?? '---' }}
+                    @if($champion->user->partner)
+                        @if($champion->league && $champion->league->type_of_league == "doubles")
+                            + {{ $champion->user->partner->name }}
+                        @endif
+                    @endif
+                </h4>
+
+                {{-- Canvas pháo hoa --}}
+                <canvas id="canvas"></canvas>
+            </div>
+        </div>
+    @endif
+    <div id="page" class="hfeed site" style="{{ ($hasEnded && $champion) ? 'display: none;' : '' }}; margin-top: -20px">
+        <div class=" results ">
+            <div class="wrapper-results" id="league-detail">
+                <div class="" style="background: #707787;padding: 10px; margin-top: -20px; color: white">
+                    <div class="container d-flex mt-4">
+                        <div class=" logo-left">
+                            <img src="{{ asset($leagueInfor->images ?? '/images/logo-no-background.png') }}"
+                                 class="show-image-league" alt="logo">
+                        </div>
+                        <div class="" id="info-league">
+                            <h2 class="p-0">{{ $leagueInfor->name }}</h2>
+                            <p class="card-text display"><?php echo number_format($leagueInfor->money ?? 0) . " VND"?> || {{$leagueInfor->type_of_league}}  || {{$leagueInfor->location}}</p>
+                            <p class="display">
+                                <i class="bi bi-geo-alt"></i> <em>{{ __('Location: ') }} {{$leagueInfor->location}}</em>
+                            </p>
+                            <?php $start_date = date('d/m/Y', strtotime($leagueInfor->start_date));
+                            $end_date = date('d/m/Y', strtotime($leagueInfor->end_date));
+                            ?>
+                            <p class="display">
+                                <i class="bi bi-calendar"></i> <em>{{'From: '}} {{$start_date}} ~ {{'To: '}}{{$end_date}}</em>
+                            </p>
+                            <p class="display">
+                                <i class="bi bi-people-fill"></i> <em>{{ __('Member: ') }} {{$leagueInfor->number_of_athletes}}</em>
+                            </p>
                         </div>
                     </div>
-                    <div class="container mt-4">
-                        <div class="d-flex gap-2">
-                            <a href="{{ route('leagueResult.bracket',$leagueInfor['slug']) }}">
-                                <button class="btn btn-custom">{{ __('Bracket') }} </button>
+                    <div class="container d-flex gap-2 mt-4">
+                        @if(now() >= date('Y-m-d', strtotime($leagueInfor->start_date)))
+                            <a href="{{ route('showGeneralNews.info', $leagueInfor['slug']) }}"
+                               class="btn-custom {{ request()->routeIs('showGeneralNews.info') ? 'active' : '' }}">
+                                {{ __('News') }}
                             </a>
-                            <a href="{{ route('leagueResult.info',$leagueInfor['slug']) }}">
-                                <button class="btn btn-custom">{{ __('Result') }} </button>
+                            <a href="{{ route('leagueResult.info', $leagueInfor['slug']) }}"
+                               class="btn-custom {{ request()->routeIs('leagueResult.info') ? 'active' : '' }}">
+                                {{ __('Result') }}
                             </a>
-                            <a href="{{ route('leagueSchedule.info',$leagueInfor['slug']) }}">
-                                <button class="btn btn-custom">{{ __('Schedule') }} </button>
+                            <a href="{{ route('showRank.info', $leagueInfor['slug']) }}"
+                               class="btn-custom {{ request()->routeIs('showRank.info') ? 'active' : '' }}">
+                                {{ __('Rank') }}
                             </a>
-                            <a href="{{ route('leaguePlayer.info',$leagueInfor['slug']) }}">
-                                <button class="btn btn-custom">{{ __('Player') }} </button>
+                        @endif
+                        @if( $currentDate < $startDate)
+                            <a href="{{ route('registerLeague.info', $leagueInfor['slug']) }}"
+                               class="btn-custom {{ request()->routeIs('registerLeague.info') ? 'active' : '' }}">
+                                {{ __('Register League') }}
                             </a>
-                            <!-- Dropdown -->
-                        @if(Auth::check() && Auth::user()->id  == $leagueInfor->owner_id)
-                            <!-- Dropdown -->
-                                <div class="dropdown">
-                                    <button class="btn btn-custom" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{ __('Setting') }} <i class="bi bi-gear"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{route('my.infoMyLeague',$leagueInfor['slug'])}}">{{'League Information'}}</a></li>
-                                        <li><a class="dropdown-item" href="#">{{'Delete League'}}</a></li>
-                                    </ul>
-                                </div>
-                            @endif
-                        </div>
+
+                            <a href="{{ route('showListRegister.info', $leagueInfor['slug']) }}"
+                               class="btn-custom {{ request()->routeIs('showListRegister.info') ? 'active' : '' }}">
+                                {{ __('List Register') }}
+                            </a>
+                        @endif
+                        @if($leagueInfor->format_of_league == "knockout")
+                            <a href="{{ route('leagueResult.bracket', $leagueInfor['slug']) }}"
+                               class="btn-custom {{ request()->routeIs('leagueResult.bracket') ? 'active' : '' }}">
+                                {{ __('Bracket') }}
+                            </a>
+                        @endif
+
+                        <a href="{{ route('leagueSchedule.info', $leagueInfor['slug']) }}"
+                           class="btn-custom {{ request()->routeIs('leagueSchedule.info') ? 'active' : '' }}">
+                            {{ __('Schedule') }}
+                        </a>
+
+                        <a href="{{ route('leaguePlayer.info', $leagueInfor['slug']) }}"
+                           class="btn-custom {{ request()->routeIs('leaguePlayer.info') ? 'active' : '' }}">
+                            {{ __('Player') }}
+                        </a>
+
+                        @if(Auth::check() && Auth::user()->id == $leagueInfor->owner_id)
+                            <div class="dropdown">
+                                <a class="btn-custom dropdown-toggle {{ request()->routeIs('my.infoMyLeague') ? 'active' : '' }}"
+                                   data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                    {{ __('Setting') }} <i class="bi bi-gear"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ route('my.infoMyLeague', $leagueInfor['slug']) }}">League Information</a></li>
+                                    <li><a class="dropdown-item" href="#">Delete League</a></li>
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                 </div>
-                <hr>
-
-                <?php $current_date = strtotime(date("Y-m-d"));
-                $start_date = strtotime($leagueInfor->start_date);
-                $end_date_register = strtotime($leagueInfor->end_date_register);
-                $get_date_register = date('d/m/Y', strtotime($leagueInfor->end_date_register));
-                $format_register_date = $leagueInfor->end_date_register;
-                ?>
-
-                @if($current_date < $start_date && $current_date < $end_date_register)
-                    @if(Route::is('league.info') )
-                    <div class="container col-md-12 " id="form-reg">
-                        <div class="league-banner--enroll flex flex-jus-center flex-align-center flex-column gradient">
-                            <h4 class="text-center mb-10 text-white " style="opacity:1">
-                                <span class="text-warning hidden" id="deadline-date">09/26/2024</span>
-                                <span class="text-warning hidden" id="extend-time">23:59:59</span>
-                                Giải cho phép đăng ký trực tuyến đến hết ngày <span class="text-warning"
-                                                                                    style="color:#efff00">{{ $get_date_register }}</span>
-                            </h4>
-                            <div id="clockdiv">
-                                <div>
-                                    <span id="data_day" class="days"></span>
-                                    <div class="smalltext">{{__('Days')}}</div>
-                                </div>
-                                <div>
-                                    <span id="data_hours"  class="hours"></span>
-                                    <div class="smalltext">{{__('hours')}}</div>
-                                </div>
-                                <div>
-                                    <span id="data_minutes"  class="minutes"></span>
-                                    <div class="smalltext">{{__('Minutes')}}</div>
-                                </div>
-                                <div>
-                                    <span id="data_seconds"  class="seconds"></span>
-                                    <div class="smalltext">{{__('Seconds')}}</div>
-                                </div>
-                            </div>
-                            <div class="mb-20 text-center">
-                                <button onclick="switchDivs()()" type="button" id="btn-register" class="btn btn-primary " data-bs-toggle="modal"
-                                        data-bs-target="">
-                                    <a href="{{route('league.formRegisterLeague', $leagueInfor->slug)}}" style="color: white !important;">
-                                        {{ __('Register League') }}</a>
-                                </button>
-                            </div>
-                            <div class="competitor-members mb-20">
-                                <div class="flex flex-jus-center">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        @endif
-                @endif
                 <div class="container wrapper-content-results" style="padding: 0px; margin-top: 18px;">
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">
@@ -281,9 +229,21 @@
                                 <div>
                                     @include('page.league.detail.player')
                                 </div>
+                            @elseif(Route::current()->getName() == 'showListRegister.info')
+                                <div>
+                                    @include('page.league.detail.player-register')
+                                </div>
+                            @elseif(Route::current()->getName() == 'showGeneralNews.info')
+                                <div>
+                                    @include('page.league.detail.news')
+                                </div>
                             @elseif(Route::current()->getName() == 'leagueResult.info')
                                 <div>
                                     @include('page.league.detail.result')
+                                </div>
+                            @elseif(Route::current()->getName() == 'showRank.info')
+                                <div>
+                                    @include('page.league.detail.rank')
                                 </div>
                             @elseif(Route::current()->getName() == 'leagueSchedule.info')
                                 <div>
@@ -293,7 +253,11 @@
                                 @include('page.league.detail.bracket')
                             @else
                                 <div class="item draws" style="display:block;">
-                                    @include('page.league.detail.schedule')
+                                    @if(now() >= date('Y-m-d', strtotime($leagueInfor->start_date)))
+                                        @include('page.league.detail.news')
+                                    @elseif(now() < date('Y-m-d', strtotime($leagueInfor->start_date)))
+                                        @include('page.league.detail.register-league')
+                                    @endif
                                 </div>
                             @endif
                         </div>
@@ -306,6 +270,7 @@
 
 @section('js')
     <script src="{{ asset('js/league.js') }}"></script>
+    <script src="{{ asset('js/page/league-champion.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
         $("[name='recordLeague']").on("change", function () {
@@ -324,8 +289,6 @@
             });
         </script>
     @endif
-
-
     <script>
         // Set the date we're counting down to
         var register_date = '<?php echo $format_register_date ?>';
@@ -356,7 +319,6 @@
             }
         }, 1000);
     </script>
-
     <script>
         const select = document.getElementById('playerSelect');
         const newPlayerForm = document.getElementById('newPlayerForm');
@@ -370,7 +332,6 @@
         });
 
     </script>
-
     <script>
         function switchDivs() {
             const divA = document.getElementById('form-reg');
@@ -380,5 +341,7 @@
             divB.classList.remove('hidden');
         }
     </script>
+
+
 
 @endsection

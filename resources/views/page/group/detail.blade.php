@@ -11,11 +11,11 @@ $utility = new \App\Enums\Utility();
 @endphp
 <style>
     .btn-training {
-        background-color: #ff3a35 !important;
+        background-color: #dc3545 !important;
         color: white !important;
         font-weight: bold;
-        border-radius: 10px;
-        border: #ff3a35 !important;
+        border: 1px solid #ccc !important;
+        border-radius: 4px;
     }
 
     .btn-training:hover {
@@ -53,11 +53,10 @@ $utility = new \App\Enums\Utility();
 @endsection
 
 @section('content')
-<section class=" " id="heading">
-
+<section class=" " style="background: #707787;padding: 10px; margin-top: -20px; ">
     <div class=" text-black p-3 align-items-center">
-        <div class="container d-flex  img-fluid">
-            <img src="{{ asset($getGroup->images ?? '/images/logo-no-background.png') }}" alt="User" width="200" height="200" class=" me-3 rounded-start" >
+        <div class="container d-flex  img-fluid " style="color: white">
+            <img src="{{ asset($getGroup->images ?? '/images/logo-no-background.png') }}" alt="User" width="200" height="200" class=" me-3 " >
             <div>
                 <h2 class="p-0">{{$getGroup->name}}</h2>
                 <p class="">
@@ -73,8 +72,7 @@ $utility = new \App\Enums\Utility();
             </div>
         </div>
     </div>
-    <hr>
-    <div class=" container d-flex">
+    <div class=" container d-flex p-0">
         @if(Auth::check() and $isJoined)
         <div class="nav-item">
             <a class="mt-4 btn-training mx-2 nav-link" style="width: auto">{{__('Training')}} ▼</a>
@@ -140,7 +138,7 @@ $utility = new \App\Enums\Utility();
     </div>
 </section>
 
-<section id="detail-group" class="container-fluid">
+<section id="detail-group" class="container-fluid mt-4">
     <div class="container py-5" style="padding-top: 0 !important;">
         <div class="row d-flex justify-content-center">
             <div class="col-md-6 col-lg-6 col-xl-6 card-chat" style="width: 45%" >

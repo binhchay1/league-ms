@@ -24,4 +24,9 @@ class UserLeague extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function partner()
+    {
+        return $this->belongsTo(Partner::class, 'partner_id');
+    }
 }

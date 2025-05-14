@@ -10091,3 +10091,159 @@ ul.select-list a.active {
 .ddlTournament {
     width: 300px;
 }
+
+
+
+.league-banner--enroll {
+    margin-top: 20px;
+    color: #9b9b9b;
+    min-height: 300px;
+    padding: 40px;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(135deg, #3bbf1a, #3916b7);
+}
+
+.league-banner--enroll h4 {
+    color: white;
+}
+
+#clockdiv {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#clockdiv div>span {
+    background: rgba(0, 0, 0, .5);
+    border-radius: 3px;
+    font-weight: 100;
+}
+
+.smalltext {
+    font-size: 13px;
+    padding-top: 5px;
+}
+
+#clockdiv div>span, #clockdiv>div {
+    display: inline-block;
+    padding: 10px;
+}
+
+#clockdiv>div {
+    background: rgba(0, 0, 0, .25);
+    border-radius: 4px;
+    margin: 2px;
+}
+
+.login-redriect a:hover {
+    color: red;
+}
+
+#info-league {
+    margin-left: 20px;
+}
+
+#info-league p{
+    font-size: 15px !important;
+}
+
+.btn-league {
+    font-size: 20px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    background-color: #6cbe4c;
+    border-color: transparent;
+    font-weight: 500;
+    width: 200px;
+}
+
+.ddlTournament {
+    width: 300px;
+}
+
+.list-group-item-action {
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.list-group-item-action.active {
+    background-color:#dc3545 !important; /* Màu xanh */
+    color: white;
+    border-radius: 5px;
+}
+
+p.display {
+    font-size: 15px !important;
+}
+
+.btn-custom {
+    background-color: #dc3545 !important;
+    color: white !important;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 15px!important;
+    border: none;
+}
+
+.btn-custom:hover {
+    background-color: #ff4b2b !important;
+}
+
+/* Tùy chỉnh dropdown */
+.btn-dropdown {
+    background: white;
+    border: 2px solid #ff4b2b !important;
+    border-radius: 10px;
+    color: #dc3545;
+    padding: 10px 12px !important;
+}
+
+.btn-dropdown:hover {
+    background: #f1f1f1 !important;
+}
+
+.form-control {
+    line-height: 2.5 !important;
+}
+
+.tr-title{
+    background: #596377;
+    line-height: 45px;
+    color: white;
+}
+.btn-custom {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-custom.active {
+    background-color: lightgrey !important;
+    color: black !important;
+}
+
+#popup-close {
+    margin-left: 10px;
+    width: 50px;
+    background: black;
+    font-size: 51px;
+}
+
+.font-medium {
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #d9edf7;
+    color: #31708f;
+    width: 100% !important;
+    font-size: 18px !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    font-weight: 500;
+}

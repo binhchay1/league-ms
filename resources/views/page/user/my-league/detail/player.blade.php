@@ -1,30 +1,38 @@
 <div class="container mt-4">
     <div class="row">
+        @php
+            $type = $leagueInfor->type_of_league ?? 'singles';
+
+            function getTeamNameFromUser($player, $type = 'singles') {
+                $name1 = $player->user->name ?? '---';
+                $name2 = $player->partner->name ?? '';
+
+                return $type === 'doubles' && $name2 ? $name1 . ' + ' . $name2 : $name1;
+            }
+
+            function getUserPhoto($player) {
+                return asset($player->user->profile_photo_path ?? '/images/player-team.jpg');
+            }
+        @endphp
+
         @forelse($leagueInfor->userLeagues as $player)
             <div class="col-md-3 mt-4">
                 <div class="card text-center border rounded-3 shadow-sm p-3 transition hover-effect">
                     <div class="card-body">
-                        <img src="{{ asset($player->user->profile_photo_path ?? '/images/no-image.png') }}"
+                        <img src="{{ getUserPhoto($player) }}"
                              alt="Avatar"
                              class="rounded-circle border img-fluid mb-3"
                              style="width: 100px; height: 100px; object-fit: cover;">
-
-                        <p class="text-success text-black">{{ $player->user->email }}</p>
-
-                        <h5 class="text-success fw-bold text-black">{{ $player->user->name }}</h5>
+                        <div>
+                            <span class="fw-bold text-success">{{ getTeamNameFromUser($player, $type) }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
         @empty
-            <div class="text-center">
-                <img class="avatar-group" width="200" height="200" src="{{ asset('/images/logo-no-background.png') }}">
-
-                <h4 >{{ __('The player is updated!') }}</h4>
-            </div>
         @endforelse
     </div>
 </div>
-
 <style>
     .hover-effect {
         transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;

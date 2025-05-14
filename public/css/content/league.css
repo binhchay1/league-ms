@@ -1,78 +1,5 @@
-.tblResultLanding .tr-tournament-detail {
-    display: block;
-}
-
- .tblResultLanding .tournament-detail {
-    display: flex;
-    margin-bottom: 2px;
-}
- .tblResultLanding .tournament-detail .inner-tournament-detail {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    padding: 32px;
-}
-
- .tblResultLanding .tournament-detail .inner-tournament-detail .description {
-    display: flex;
-    align-items: center;
-}
-.tblResultLanding .tournament-detail .inner-tournament-detail .country-detail .venue-country {
-    display: flex;
-    align-items: center;
-    text-align: right;
-}
-
-
-
-.tblResultLanding .tournament-detail .inner-tournament-detail .description .image {
-    margin-right: 32px;
-    width: 160px;
-    height: 160px;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.country_code{
-    margin-right: 10px;
-}
-
-.tblResultLanding .tournament-detail .inner-tournament-detail .country-detail {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-@media (max-width: 767px) {
-   .tblResultLanding .tournament-detail .inner-tournament-detail {
-        /* flex-wrap: wrap;
-        justify-content: center; */
-    }
-    }
-@media (max-width: 467px){
-
-     .tblResultLanding .tournament-detail .inner-tournament-detail .country-detail {
-        justify-content: center;
-         display: flex;
-         flex-direction: column;
-         align-items: flex-end;
-    }
-}
-
-
 .item-active {
     border: solid 1px;
-}
-
-#modal-content {
-    width: 750px;
-    margin: auto;
-    height: 500px;
-    margin-left: -80px;
 }
 
 .image-modal-data {
@@ -98,33 +25,11 @@ h4 {
 }
 
 .show-image-league {
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
 }
 
-@media screen and (max-width: 768px) {
-    .tblResultLanding .tournament-detail .inner-tournament-detail .country-detail{
-        display: none;
-    }
-}
-@media screen and (max-width: 576px) {
-    .tblResultLanding .tournament-detail .inner-tournament-detail .country-detail{
-        display: none;
-    }
-    .tblResultLanding .tournament-detail .inner-tournament-detail {
-        justify-content: center;
-    }
-    .tblResultLanding .tournament-detail .inner-tournament-detail .description{
-        align-items: center;
-    flex-direction: column;
-    text-align: center;
-    row-gap: 1rem;
-    }
-    .tblResultLanding .tournament-detail .inner-tournament-detail .description .image{
-        margin-right: 0;
-    }
-    .tblResultLanding .tournament-detail .inner-tournament-detail .description .info h3{padding-bottom: 0;}
-}
+
 
 ul.select-list {
     list-style: none;
@@ -178,7 +83,6 @@ ul.select-list li :hover {
     width: 200px;
 }
 
-
  #signup:before {
      width: 0;
  }
@@ -187,13 +91,6 @@ ul.select-list li :hover {
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-}
-
-.league-banner {
-    height: 150px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
 }
 
 .league-logo {
@@ -255,6 +152,27 @@ ul.select-list li :hover {
     color: #fff;
     padding: 3px 8px;
     background: mediumpurple;
+}
+
+
+.league-banner {
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+{
+    font-size: 14px;
+    color: #444;
+    font-weight: 700;
+}
+
+.label-end {
+    border-radius: 5px;
+    color: #fff;
+    padding: 3px 8px;
+    background: #b46060;
 }
 
 

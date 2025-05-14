@@ -1,6 +1,6 @@
 $(document).ready(function () {
-
     let currentScoreT1 = parseInt($('#score-team-1').html());
+
     let currentScoreT2 = parseInt($('#score-team-2').html());
 
     if (currentScoreT1 == 0) {
@@ -131,9 +131,12 @@ function saveScore(score, team, set, result = '') {
     let params = new URLSearchParams(url.search);
     let s_i = params.get('s_i');
     $.ajax({
-        url: '/store-score',
-        type: 'GET',
+        url: storeScoreUrl,
+        type: 'POST',
         dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: {
             score: score,
             team: team,
@@ -141,6 +144,7 @@ function saveScore(score, team, set, result = '') {
             s_i: s_i,
             result: result,
             type: 'singles'
-        }
+        },
     });
+
 }

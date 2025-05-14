@@ -163,8 +163,10 @@ class LeagueController extends Controller
         $listType = Ranking::RANKING_ARRAY_TYPE;
         $listFormat = Ranking::RANKING_ARRAY_FORMAT;
         $listPlayer = \App\Enums\League::NUMBER_PLAYER;
+        $listTypeLeague = \App\Enums\League::TYPE;
+        $listFormatLeague = \App\Enums\League::FORMAT;
 
-        return view('page.league.create', compact('listType', 'listFormat', 'listPlayer'));
+        return view('page.league.create', compact('listType', 'listFormat', 'listPlayer','listTypeLeague', 'listFormatLeague'));
     }
 
     public function storeLeagueTour(LeagueRequest $request)

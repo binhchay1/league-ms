@@ -10,87 +10,6 @@
 @endsection
 
 @section('content')
-    <style>
-        #signup:before {
-            width: 0;
-        }
-
-        .league-card {
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
-
-        .league-banner {
-            height: 150px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .league-logo {
-            position: absolute;
-            top: 85%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 5px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .league-logo img {
-            width: 60px;
-            height: 60px;
-        }
-
-        .league-name {
-            font-weight: bold;
-            color: green;
-        }
-
-        .league-info {
-            font-size: 14px;
-            color: #666;
-        }
-
-        .league-stats {
-            font-size: 14px;
-            color: #444;
-            font-weight: 700;
-        }
-
-        .league-stats i {
-            margin-right: 5px;
-        }
-
-        .league-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .league-card:hover .league-logo {
-            transform: translate(-50%, -50%) scale(1.1);
-            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .lb-register {
-            color: #000;
-            font-size: 14px;
-            font-weight: 700;
-            padding-bottom: 6px;
-            position: relative;
-        }
-
-        .label-success {
-            border-radius: 5px;
-            color: #fff;
-            padding: 3px 8px;
-            background: mediumpurple;
-        }
-
-    </style>
-
     <div class="container">
         <div class="row align-items-center mt-4">
             <!-- Tiêu đề và Menu -->
@@ -111,16 +30,20 @@
             <!-- Form Tìm Kiếm -->
             <div class="col-md-8">
                 <form class="d-flex gap-2 justify-content-end" action="{{route('searchLeague')}}" method="GET">
-
+                    <select class="form-select" name="format">
+                        <option value="" {{ request('format') == '' ? 'selected' : '' }}>{{ 'Format' }}</option>
+                        <option value="round-robin" {{ request('format') == 'round-robin' ? 'selected' : '' }}>{{ 'Round Robin' }}</option>
+                        <option value="knockout" {{ request('format') == 'knockout' ? 'selected' : '' }}>{{ 'Knockout' }}</option>
+                    </select>
                     <select class="form-select" name="sort">
-                        <option selected>{{'Sort by'}}</option>
-                        <option value="newest">{{'Latest'}}</option>
-                        <option value="oldest">{{'Oldest'}}</option>
+                        <option value="" {{ request('sort') == '' ? 'selected' : '' }}>{{ 'Sort by' }}</option>
+                        <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>{{ 'Latest' }}</option>
+                        <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>{{ 'Oldest' }}</option>
                     </select>
 
                     <div class="input-group">
-                        <input type="text" class="form-control" name="query"
-                               placeholder="{{'Name league...'}}">
+                        <input type="text" class="form-control" name="query" placeholder="{{ 'Name league...' }}"
+                               value="{{ request('query') }}">
                         <button class="btn btn-success" type="submit">
                             <i class="fas fa-search"></i>
                         </button>
@@ -150,9 +73,13 @@
                                      style="background-image: url('{{ asset('/images/bg-league.png') }}');">
                                     <!-- Logo giải đấu -->
                                     @if(now() < date('Y-m-d', strtotime($league->end_date_register)))
-                                    <div class="label lb-register">
-                                        <span class="extend_lb label-success">{{'Registering'}}</span>
-                                    </div>
+                                        <div class="label lb-register">
+                                            <span class="extend_lb label-success">{{'Registering'}}</span>
+                                        </div>
+                                    @elseif(now() > date('Y-m-d', strtotime($league->end_date_register)) && now() < date('Y-m-d', strtotime($league->start_date)) )
+                                        <div class="label lb-register">
+                                            <span class="extend_lb label-end">{{'End Register'}}</span>
+                                        </div>
                                     @endif
                                     <div class="league-logo">
                                         <img src="{{ asset($league->images ?? '/images/logo-no-background.png') }}"
@@ -175,7 +102,7 @@
                                     </div>
                                     <!-- Thống kê -->
                                     <div class="league-stats">
-                                        <span><i class="fas fa-users"></i> {{ count($league->userLeagues) }}</span>
+                                        <span><i class="fas fa-users"></i> {{ count($league->userLeagues) }} / {{$league->number_of_athletes}} </span>
                                     </div>
 
                                     <!-- Thanh progress -->

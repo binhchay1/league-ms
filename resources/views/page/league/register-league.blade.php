@@ -11,100 +11,36 @@
         <link rel="stylesheet" href="{{ asset('css/page/bracket.css') }}"/>
     @endif
 @endsection
+
 <style>
-    .list-group-item-action {
-        padding: 10px;
-        cursor: pointer;
-        transition: background 0.3s;
-    }
-    .list-group-item-action.active {
-        background-color:#dc3545 !important; /* Màu xanh */
-        color: white;
-        border-radius: 5px;
+    select {
+        font-weight: 500;
     }
 
-    .card-title {
-        color: black !important;
+    select option {
+        font-weight: 500;
     }
-
-    p.display {
-        font-size: 15px !important;
-    }
-
-    .btn-custom {
-        background-color: #dc3545 !important;
-        color: white !important;
-        font-weight: bold;
-        border-radius: 10px;
-        padding: 10px 15px!important;
-        border: none;
-    }
-
-    .btn-custom:hover {
-        background-color: #ff4b2b !important;
-    }
-
-    /* Tùy chỉnh dropdown */
-    .btn-dropdown {
-        background: white;
-        border: 2px solid #ff4b2b !important;
-        border-radius: 10px;
-        color: #dc3545;
-        padding: 10px 12px !important;
-    }
-
-    .btn-dropdown:hover {
-        background: #f1f1f1 !important;
-    }
-
-    .form-control {
-        line-height: 2.5 !important;
-    }
-
-    .tr-title{
-        background: #596377;
-        line-height: 45px;
-        color: white;
-    }
-
-    #playerSelect {
-        padding: 3px !important;
-        width: 50%;
-        margin-left: 10px;
-        margin-bottom: 20px;
-        margin-top: 20px !important;
-        color: black;
-        font-size: 15px;
-    }
-
-    .font-medium {
-        border: 1px solid transparent;
-        border-radius: 4px;
-        padding: 10px;
-        background-color: #d9edf7;
-        color: #31708f;
-        margin-left: 10px;
-        width: 98% !important;
-        font-size: 18px !important;
-        margin-top: 20px !important;
-        margin-bottom: 20px !important;
-    }
-
-
 </style>
 @section('content')
+    <?php
+    $currentDate = strtotime(date("Y-m-d"));
+    $startDate = strtotime(date($leagueInfor->start_date));
+    $end_date_register = strtotime($leagueInfor->end_date_register);
+    $get_date_register = date('d/m/Y', strtotime($leagueInfor->end_date_register));
+    $format_register_date = $leagueInfor->end_date_register;
+    ?>
     <div id="page" class="hfeed site">
         <div class=" results">
             <div class="wrapper-results">
-                <div class="container" >
-                    <div class="box-results-tournament">
-                        <div>
+                <div class="" style="background: #707787;padding: 10px; margin-top: -20px; color: white">
+                    <div class="container box-results-tournament">
+                        <div class="d-flex">
                             <div class="logo-left">
                                 <img src="{{ asset($leagueInfor->images ?? '/images/logo-no-background.png') }}"
                                      class="show-image-league" alt="logo">
                             </div>
                             <div class="" id="info-league">
-                                <h2>{{ $leagueInfor->name }}</h2>
+                                <h2 class="p-0">{{ $leagueInfor->name }}</h2>
                                 <p class="card-text display"><?php echo number_format($leagueInfor->money ?? 0) . " VND"?> || {{$leagueInfor->type_of_league}}  || {{$leagueInfor->location}}</p>
                                 <p class="display">
                                     <i class="bi bi-geo-alt"></i> <em>{{ __('Location: ') }} {{$leagueInfor->location}}</em>
@@ -121,37 +57,61 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container mt-4">
-                        <div class="d-flex gap-2">
-                            <a href="{{ route('leagueResult.bracket',$leagueInfor['slug']) }}">
-                                <button class="btn btn-custom">{{ __('Bracket') }} </button>
+                    <div class="container">
+                        <div class="d-flex gap-2 mt-4">
+                            @if(now() >= date('Y-m-d', strtotime($leagueInfor->start_date)))
+                                <a href="{{ route('showGeneralNews.info', $leagueInfor['slug']) }}"
+                                   class="btn-custom {{ request()->routeIs('showGeneralNews.info') ? 'active' : '' }}">
+                                    {{ __('News') }}
+                                </a>
+                                <a href="{{ route('leagueResult.info', $leagueInfor['slug']) }}"
+                                   class="btn-custom {{ request()->routeIs('leagueResult.info') ? 'active' : '' }}">
+                                    {{ __('Result') }}
+                                </a>
+                            @endif
+                            @if( $currentDate < $startDate)
+                                <a href="{{ route('registerLeague.info', $leagueInfor['slug']) }}"
+                                   class="btn-custom {{ request()->routeIs('registerLeague.info') ? 'active' : '' }}">
+                                    {{ __('Register League') }}
+                                </a>
+
+                                <a href="{{ route('showListRegister.info', $leagueInfor['slug']) }}"
+                                   class="btn-custom {{ request()->routeIs('showListRegister.info') ? 'active' : '' }}">
+                                    {{ __('List Register') }}
+                                </a>
+                            @endif
+                            @if($leagueInfor->format_of_league == "knockout")
+                                <a href="{{ route('leagueResult.bracket', $leagueInfor['slug']) }}"
+                                   class="btn-custom {{ request()->routeIs('leagueResult.bracket') ? 'active' : '' }}">
+                                    {{ __('Bracket') }}
+                                </a>
+                            @endif
+
+                            <a href="{{ route('leagueSchedule.info', $leagueInfor['slug']) }}"
+                               class="btn-custom {{ request()->routeIs('leagueSchedule.info') ? 'active' : '' }}">
+                                {{ __('Schedule') }}
                             </a>
-                            <a href="{{ route('leagueResult.info',$leagueInfor['slug']) }}">
-                                <button class="btn btn-custom">{{ __('Result') }} </button>
+
+                            <a href="{{ route('leaguePlayer.info', $leagueInfor['slug']) }}"
+                               class="btn-custom {{ request()->routeIs('leaguePlayer.info') ? 'active' : '' }}">
+                                {{ __('Player') }}
                             </a>
-                            <a href="{{ route('leagueSchedule.info',$leagueInfor['slug']) }}">
-                                <button class="btn btn-custom">{{ __('Schedule') }} </button>
-                            </a>
-                            <a href="{{ route('leaguePlayer.info',$leagueInfor['slug']) }}">
-                                <button class="btn btn-custom">{{ __('Player') }} </button>
-                            </a>
-                            <!-- Dropdown -->
-                        @if(Auth::check() && Auth::user()->id  == $leagueInfor->owner_id)
-                            <!-- Dropdown -->
+
+                            @if(Auth::check() && Auth::user()->id == $leagueInfor->owner_id)
                                 <div class="dropdown">
-                                    <button class="btn btn-custom" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a class="btn-custom dropdown-toggle {{ request()->routeIs('my.infoMyLeague') ? 'active' : '' }}"
+                                       data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                         {{ __('Setting') }} <i class="bi bi-gear"></i>
-                                    </button>
+                                    </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{route('my.infoMyLeague',$leagueInfor['slug'])}}">{{'League Information'}}</a></li>
-                                        <li><a class="dropdown-item" href="#">{{'Delete League'}}</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('my.infoMyLeague', $leagueInfor['slug']) }}">League Information</a></li>
+                                        <li><a class="dropdown-item" href="#">Delete League</a></li>
                                     </ul>
                                 </div>
                             @endif
                         </div>
                     </div>
                 </div>
-                <hr>
 
                 <?php $current_date = strtotime(date("Y-m-d"));
                 $start_date = strtotime($leagueInfor->start_date);
@@ -160,7 +120,7 @@
                 $format_register_date = $leagueInfor->end_date_register;
                 ?>
 
-                <div class="container wrapper-content-results" style="padding: 0px; margin-top: 18px;">
+                <div class="container wrapper-content-results" style="padding: 10px; margin-top: 18px;   background: #eeeeee;">
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">
                             <div class="modal-content" id="modal-content">
@@ -304,9 +264,9 @@
                                                 </td>
                                                 <td align="center">
                                                     <div class="country">
-                                                        <img width="48"
+                                                        <img width="50" height="50"
                                                              src="{{ asset(Auth::user()->profile_photo_path ?? '/images/no-image.png') }}"
-                                                             title="Japan" class="flag image-user">
+                                                             title="Japan" class="flag p-1 " >
                                                     </div>
                                                 </td>
 
@@ -324,7 +284,7 @@
                                 </div>
                                 @if($leagueInfor->type_of_league == 'doubles')
                                     <div id="formPartner">
-                                        <div class="row mb-6">
+                                        <div class="row mb-6" style="margin-left: 2px; width: 100%;">
                                             <label class="block text-sm font-medium text-gray-700 mb-1">
                                                 {{'You are in doubles mode, please choose or create a new partner.'}}
                                             </label>
@@ -349,33 +309,16 @@
                         </div>
                     </div>
 
-{{--                    @if($leagueInfor->type_of_league == 'doubles')--}}
-{{--                    <div id="formPartner">--}}
-{{--                        <div class="row mb-6">--}}
-{{--                            <label class="block text-sm font-medium text-gray-700 mb-1">--}}
-{{--                                Vui lòng chọn Người chơi--}}
-{{--                            </label>--}}
-
-{{--                            <select id="playerSelect" name="partner_id"--}}
-{{--                                    class=" block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">--}}
-{{--                                <option value="">-- Vui lòng chọn --</option>--}}
-{{--                                @foreach($partners as $partner)--}}
-{{--                                    <option value="{{$partner->id}}">{{$partner->name}}</option>--}}
-{{--                                @endforeach--}}
-{{--                                <option value="new">Tạo Người Chơi Mới</option>--}}
-{{--                            </select>--}}
-{{--                        </div>--}}
-
                         <!-- Form Tạo Người Chơi Mới -->
-                        <div id="newPlayerForm" class="hidden space-y-4 border rounded p-4 bg-gray-50">
+                        <div id="newPlayerForm" class="hidden space-y-4  mt-4 bg-gray-50">
                             <div  id=""  class="  container mt-4 league-tour">
-                                <h2 class="text-left">{{'Create Partner'}}</h2>
+                                <h4 class="text-left">{{'Create Partner'}}</h4>
                                 <hr>
                                 <form id="formAccountSettings" method="POST" action="{{route('user.create.partner')}}" enctype="multipart/form-data">
                                     @csrf()
                                     <div class="row mb-3 form-league">
                                         <div class="col-md-4">
-                                            <label>{{ __('Avatar') }}</label>
+                                            <label class="form-label">{{ __('Avatar') }}</label>
                                             <input value="" type="file" class="border-0 bg-light pl-0" name="avatar" id="image" hidden>
                                             <div class=" choose-avatar">
                                                 <div id="btnimage">
@@ -423,7 +366,6 @@
 
                                         </div>
                                     </div>
-
                                     <div class="mb-12">
                                         <button class="create-partner-btn btn btn-success w-10 mt-4 mb-12">{{'Create'}}</button>
                                     </div>
@@ -439,6 +381,14 @@
                                 <div>
                                     @include('page.league.detail.player')
                                 </div>
+                            @elseif(Route::current()->getName() == 'showListRegister.info')
+                                <div>
+                                    @include('page.league.detail.player-register')
+                                </div>
+                            @elseif(Route::current()->getName() == 'showGeneralNews.info')
+                                <div>
+                                    @include('page.league.detail.news')
+                                </div>
                             @elseif(Route::current()->getName() == 'leagueResult.info')
                                 <div>
                                     @include('page.league.detail.result')
@@ -451,7 +401,9 @@
                                 @include('page.league.detail.bracket')
                             @else
                                 <div class="item draws" style="display:block;">
-                                    @include('page.league.detail.schedule')
+                                    @if(now() >= date('Y-m-d', strtotime($leagueInfor->start_date)))
+                                        @include('page.league.detail.news')
+                                    @endif
                                 </div>
                             @endif
                         </div>
@@ -483,7 +435,6 @@
         </script>
     @endif
 
-
     <script>
         const select = document.getElementById('playerSelect');
         const newPlayerForm = document.getElementById('newPlayerForm');
@@ -497,9 +448,6 @@
                 newPlayerForm.classList.add('hidden');
             }
         });
-
     </script>
-
-
-
+    <script src="{{ asset('js/eventImage.js') }}"></script>
 @endsection

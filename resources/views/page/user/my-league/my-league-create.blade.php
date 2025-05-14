@@ -34,11 +34,12 @@
             <!-- Main Content -->
             <div class="container bg-gray">
                 <div class="row">
+                    <!-- Sidebar -->
                     <div class="col-md-3 p-0 mt-3" style="background-color: #4a5773;">
                         <ul class="sidebar-list mt-4">
                             <li class="{{ request()->routeIs('league.leagueCreate') ? 'active' : '' }}">
                                 <a href="{{ route('league.leagueCreate') }}">
-                                    <i class="fas fa-pen mr-2"></i>{{'League Created'}}
+                                    <i class="fas fa-pen mr-2"></i> {{'League Created'}}
                                 </a>
                             </li>
                             <li class="{{ request()->routeIs('league.leagueJoin') ? 'active' : '' }}">
@@ -51,13 +52,13 @@
 
                     <!-- Tournament List -->
                     <div class="col-md-9 p-3">
-                        <div class="d-flex justify-content-between align-items-center league-title mb-3">
-                            <h4>{{'My leagues join'}}</h4>
+                        <div class="d-flex justify-content-between align-items-center mb-3 league-title">
+                            <h4>{{'My leagues create'}}</h4>
                             <a href="{{route('league.createTour')}}">
                                 <button class="btn btn-success">{{ __('Create League') }}</button>
                             </a>
                         </div>
-                        @if(!($listLeague->isEmpty()))
+                        @if(count($listLeague) > 0)
                             @foreach($listLeague as $row)
                                 @if($row && isset($row->slug))
                                     <div class="card mb-3">
