@@ -30,6 +30,8 @@
                 </div>
             </div>
         @empty
+            <div class="alert alert-primary">{{"Tournament is updating data."}}</div>
+
         @endforelse
     </div>
 </div>

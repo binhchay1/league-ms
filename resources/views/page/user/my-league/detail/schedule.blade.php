@@ -119,6 +119,7 @@ if (Auth::check()) {
 
                                             @endforeach
                                         @empty
+                                            <div class="alert alert-primary">{{"Tournament is updating data."}}</div>
 
                                         @endforelse
                                     </ul>
