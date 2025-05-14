@@ -90,80 +90,85 @@
 </div>
 
 @if ($leagueInfor->format_of_league === 'round-robin')
-    <h5 class="text-success fw-bold mb-3">{{"Rank Round-robin"}}</h5>
-    <table class="table table-striped table-bordered text-center align-middle ranking-table fs-16" style="font-size: 16px;">
-        <thead class="bg-light">
-        <tr>
-            <th>#</th>
-            <th style="font-size: 16px;">{{"Team /Player"}}</th>
-            <th style="font-size: 16px;">{{"Total match"}}</th>
-            <th style="font-size: 16px;">{{"Win"}}
-            </th>
-            <th style="font-size: 16px;">{{"Lose"}}
-            </th>
-            <th style="font-size: 16px;">{{"Point"}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($ranking as $index => $rank)
+    <h5 class="text-success fw-bold mb-3">Rank Round-robin</h5>
+
+    @if(count($ranking) > 0)
+        <table class="table table-striped table-bordered text-center align-middle ranking-table fs-16" style="font-size: 16px;">
+            <thead class="bg-light">
             <tr>
-                <td style="font-size: 16px;">{{ $index + 1 }}</td>
-                <td style="font-size: 16px;" class="text-start fw-semibold text-success">
-                    {{ $rank->user->name ?? '---' }}
-                    @if($rank->user->partner)
-                        @if($rank->league && $rank->league->type_of_league == "doubles")
-                        + {{ $rank->user->partner->name }}
-                            @endif
-                    @endif
-                </td>
-                <td style="font-size: 16px;">{{ $rank->match_played }}</td>
-                <td style="font-size: 16px;">{{ $rank->win }} </td>
-                <td style="font-size: 16px;">{{ $rank->lose }}</td>
-                <td><strong style="font-size: 16px;">{{ $rank->point }}</strong></td>
+                <th>#</th>
+                <th>Team / Player</th>
+                <th>Total match</th>
+                <th>Win</th>
+                <th>Lose</th>
+                <th>Point</th>
             </tr>
-        @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            @foreach($ranking as $index => $rank)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td class="text-start fw-semibold text-success">
+                        {{ $rank->user->name ?? '---' }}
+                        @if($rank->user->partner && optional($rank->league)->type_of_league == "doubles")
+                            + {{ $rank->user->partner->name }}
+                        @endif
+                    </td>
+                    <td>{{ $rank->match_played }}</td>
+                    <td>{{ $rank->win }}</td>
+                    <td>{{ $rank->lose }}</td>
+                    <td><strong>{{ $rank->point }}</strong></td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    @else
+        <div class="alert alert-primary">Tournament is updating data.</div>
+    @endif
+
 @elseif ($leagueInfor->format_of_league === 'knockout')
-    <h5 class="text-success fw-bold mb-3">{{"Rank Knockout"}}</h5>
-    <table class="table table-striped table-bordered text-center align-middle ranking-table fs-16" style="font-size: 16px;">
-        <thead class="bg-light">
-        <tr>
-            <th style="font-size: 16px;">#</th>
-            <th style="font-size: 16px;">{{"Team /Player"}}</th>
-            <th style="font-size: 16px;">{{"Total match"}}</th>
-            <th style="font-size: 16px;">{{"Win"}}</th>
-            <th style="font-size: 16px;">{{"Lose"}}</th>
-            <th style="font-size: 16px;">{{"Round"}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($ranking as $index => $rank)
-            <tr >
-                <td style="font-size: 16px;">{{ $index + 1 }}</td>
-                <td style="font-size: 16px;" class="text-start fw-semibold text-success">
-                    {{ $rank->user->name ?? '---' }}
-                    @if($rank->user->partner)
-                        + {{ $rank->user->partner->name }}
-                    @endif
-                </td>
-                <td style="font-size: 16px;">{{ $rank->match_played }}</td>
-                <td style="font-size: 16px;">{{ $rank->win }}</td>
-                <td style="font-size: 16px;">{{ $rank->lose }}</td>
-                <td style="font-size: 16px;">
-                    @if ($rank->eliminated_round)
-                        {{"Round"}} {{ $rank->eliminated_round }}
-                    @else
-                        {{"Champion"}}
-                    @endif
-                </td>
+    <h5 class="text-success fw-bold mb-3">Rank Knockout</h5>
+    @if(count($ranking) > 0)
+        <table class="table table-striped table-bordered text-center align-middle ranking-table fs-16" style="font-size: 16px;">
+            <thead class="bg-light">
+            <tr>
+                <th>#</th>
+                <th>Team / Player</th>
+                <th>Total match</th>
+                <th>Win</th>
+                <th>Lose</th>
+                <th>Round</th>
             </tr>
-        @endforeach
-        </tbody>
-    </table>
-@else
-    <div class="alert alert-primary">{{"Tournament type not specified."}}</div>
+            </thead>
+            <tbody>
+            @foreach($ranking as $index => $rank)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td class="text-start fw-semibold text-success">
+                        {{ $rank->user->name ?? '---' }}
+                        @if($rank->user->partner)
+                            + {{ $rank->user->partner->name }}
+                        @endif
+                    </td>
+                    <td>{{ $rank->match_played }}</td>
+                    <td>{{ $rank->win }}</td>
+                    <td>{{ $rank->lose }}</td>
+                    <td>
+                        @if ($rank->eliminated_round)
+                            Round {{ $rank->eliminated_round }}
+                        @else
+                            Champion
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    @else
+        <div class="alert alert-primary">Tournament is updating data.</div>
+    @endif
 @endif
+
 
 
 
