@@ -178,9 +178,9 @@
                                 <a href="{{route('group.createGroup')}}">{{__('Create Group')}}</a>
                             </div>
                         </div>
-                        <li class="nav-item">
-                            <a class="nav-link mx-2 text-uppercase" href="{{ route('ranking') }}">{{__('RANKING')}}</a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link mx-2 text-uppercase" href="{{ route('ranking') }}">{{__('RANKING')}}</a>--}}
+{{--                        </li>--}}
                         <li class="nav-item">
                             <a class="nav-link mx-2 text-uppercase" href="{{ route('news') }}">{{__('NEWS')}}</a>
                         </li>
