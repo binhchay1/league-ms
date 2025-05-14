@@ -1,0 +1,169 @@
+<style>
+    .ranking-table th, .ranking-table td {
+        vertical-align: middle;
+        font-size: 14px;
+    }
+
+    .ranking-table .badge {
+        font-size: 13px;
+        padding: 10px 20px;
+        border-radius: 6px;
+    }
+
+     .rank-tr > td {
+         padding: 12px 16px; /* bạn có thể chỉnh lại giá trị tuỳ thích */
+         vertical-align: middle;
+     }
+    thead.rank-head {
+        background-color: #f44336 !important; /* màu nền mới (đỏ tươi) */
+        padding: 12px;             /* padding toàn bộ */
+    }
+
+    thead.rank-head th {
+        padding: 12px 8px;         /* padding từng ô <th> */
+        color: black;              /* màu chữ nếu cần */
+    }
+
+    .ranking-table {
+        font-size: 16px !important;
+    }
+
+    .fs-16 {
+        font-size: 25px;
+    }
+
+    ul li {
+        font-size: 16px;
+    }
+</style>
+<!-- Button trigger modal -->
+<div class="d-flex justify-content-end mb-2">
+    <div>
+{{--        <span class="badge bg-primary me-1">T</span>--}}
+{{--        <span class="badge bg-secondary me-1">B</span>--}}
+{{--        = {{"Win"}}  - {{"Lose"}}--}}
+        <a href="#" data-bs-toggle="modal" data-bs-target="#rankingRulesModal" class="ms-3 text-decoration-underline text-secondary" style="font-size: 16px">{{"Ranking Rules"}}</a>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="rankingRulesModal" tabindex="-1" aria-labelledby="rankingRulesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title w-100 text-center fw-bold" id="rankingRulesModalLabel" >{{"Ranking Rules"}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-4 border rounded" style="border-color: #198754;">
+                    <div class="bg-success text-white px-3 py-2 rounded-top fw-bold" style="font-size: 16px">
+                        {{'Round-robin format'}}
+                    </div>
+                    <ul class="list-group list-group-flush px-3 py-2" >
+                        <li>{{" 1. Total points achieved in all matches."}}</li>
+                        <li>{{" 2. Total points each player achieves in head-to-head matches between them."}} </li>
+                        <li>{{" 3. Set win-loss ratio for each player in head-to-head matches between them."}} </li>
+                        <li>{{" 4. Number of sets won by each player in head-to-head matches between them."}} </li>
+                        <li>{{" 5. Point difference of all sets (games) played."}}</li>
+                        <li>{{" 6. Total points achieved in all sets (games) played. "}}</li>
+                        <li>{{" 7. Point difference of the sets (games) in head-to-head matches between them. "}}</li>
+                        <li>{{" 8. Total points achieved in the sets (games) in head-to-head matches between them. "}}</li>
+                        <li>{{" 9. If the above rules do not determine the ranking, the organizing committee will manually rank the players. "}}</li>
+                        <li>{{" 10. Win 3 points, lose no points "}}</li>
+                    </ul>
+                </div>
+
+                <div class="border rounded" style="border-color: #198754;">
+                    <div class="bg-success text-white px-3 py-2 rounded-top fw-bold" style="font-size: 16px">
+                        {{'Knockout format'}}
+                    </div>
+                    <ul class="list-group list-group-flush px-3 py-2">
+                        <li>{{" 1. Total number of matches played."}} </li>
+                        <li>{{" 2. Number of matches won. "}}</li>
+                        <li>{{" 3. Number of matches lost. "}}</li>
+                        <li>{{" 4. If the above rules do not determine the ranking, the organizing committee will manually rank the players."}} </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if ($leagueInfor->format_of_league === 'round-robin')
+    <h5 class="text-success fw-bold mb-3">{{"Rank Round-robin"}}</h5>
+    <table class="table table-striped table-bordered text-center align-middle ranking-table fs-16" style="font-size: 16px;">
+        <thead class="bg-light">
+        <tr>
+            <th>#</th>
+            <th style="font-size: 16px;">{{"Team /Player"}}</th>
+            <th style="font-size: 16px;">{{"Total match"}}</th>
+            <th style="font-size: 16px;">{{"Win"}}
+            </th>
+            <th style="font-size: 16px;">{{"Lose"}}
+            </th>
+            <th style="font-size: 16px;">{{"Point"}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($ranking as $index => $rank)
+            <tr>
+                <td style="font-size: 16px;">{{ $index + 1 }}</td>
+                <td style="font-size: 16px;" class="text-start fw-semibold text-success">
+                    {{ $rank->user->name ?? '---' }}
+                    @if($rank->user->partner)
+                        @if($rank->league && $rank->league->type_of_league == "doubles")
+                        + {{ $rank->user->partner->name }}
+                            @endif
+                    @endif
+                </td>
+                <td style="font-size: 16px;">{{ $rank->match_played }}</td>
+                <td style="font-size: 16px;">{{ $rank->win }} </td>
+                <td style="font-size: 16px;">{{ $rank->lose }}</td>
+                <td><strong style="font-size: 16px;">{{ $rank->point }}</strong></td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+@elseif ($leagueInfor->format_of_league === 'knockout')
+    <h5 class="text-success fw-bold mb-3">{{"Rank Knockout"}}</h5>
+    <table class="table table-striped table-bordered text-center align-middle ranking-table fs-16" style="font-size: 16px;">
+        <thead class="bg-light">
+        <tr>
+            <th style="font-size: 16px;">#</th>
+            <th style="font-size: 16px;">{{"Team /Player"}}</th>
+            <th style="font-size: 16px;">{{"Total match"}}</th>
+            <th style="font-size: 16px;">{{"Win"}}</th>
+            <th style="font-size: 16px;">{{"Lose"}}</th>
+            <th style="font-size: 16px;">{{"Round"}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($ranking as $index => $rank)
+            <tr >
+                <td style="font-size: 16px;">{{ $index + 1 }}</td>
+                <td style="font-size: 16px;" class="text-start fw-semibold text-success">
+                    {{ $rank->user->name ?? '---' }}
+                    @if($rank->user->partner)
+                        + {{ $rank->user->partner->name }}
+                    @endif
+                </td>
+                <td style="font-size: 16px;">{{ $rank->match_played }}</td>
+                <td style="font-size: 16px;">{{ $rank->win }}</td>
+                <td style="font-size: 16px;">{{ $rank->lose }}</td>
+                <td style="font-size: 16px;">
+                    @if ($rank->eliminated_round)
+                        {{"Round"}} {{ $rank->eliminated_round }}
+                    @else
+                        {{"Champion"}}
+                    @endif
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+@else
+    <div class="alert alert-warning">{{"Tournament type not specified."}}</div>
+@endif
+
+
+

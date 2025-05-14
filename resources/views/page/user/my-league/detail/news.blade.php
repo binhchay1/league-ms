@@ -69,7 +69,7 @@
                         @endif
                     @endforeach
 
-                    <div class="card-footer text-center"><a href="">{{'View all'}}</a></div>
+                    <div class="card-footer text-center"><a href="{{route('my.leagueRank.info', $leagueInfor->slug)}}">{{'View all'}}</a></div>
                 </ul>
             </div>
 
@@ -169,7 +169,7 @@
                                     @endif
                                 </h5>
                                 @else
-                                    <h5 class="text-white">No data</h5>
+                                    <h5 class="text-white">{{"No data"}}</h5>
                                 @endif
                             </div>
                         </div>

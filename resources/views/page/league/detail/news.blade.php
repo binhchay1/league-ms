@@ -61,7 +61,7 @@
                         </li>
                     @endforeach
 
-                    <div class="card-footer text-center"><a href="">{{'View all'}}</a></div>
+                    <div class="card-footer text-center"><a href="{{route('my.leagueRank.info', $leagueInfor->slug)}}">{{'View all'}}</a></div>
                 </ul>
             </div>
 

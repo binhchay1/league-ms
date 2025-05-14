@@ -134,15 +134,28 @@ class UpdateRankPoint extends Command
                 $team2Rank->save();
             } else {
                 // Knockout: loại đội thua
-                $loserRank = $this->rankRepository->getByLeagueAndTeam($schedule->league_id, $loserTeamId);
 
-                if ($loserRank) {
-                    $this->rankRepository->updateById($loserRank->id, [
-                        'eliminated_round' => $schedule->round
+                // Cập nhật team thắng
+                $winnerRank = $this->rankRepository->getByLeagueAndTeam($schedule->league_id, $winnerTeamId);
+                if (!$winnerRank) {
+                    $winnerRank = $this->rankRepository->create([
+                        'league_id' => $schedule->league_id,
+                        'team_id' => $winnerTeamId,
+                        'match_played' => 1,
+                        'win' => 1,
+                        'lose' => 0,
+                        'point' => 0,
                     ]);
                 } else {
-                    // Nếu chưa có bản ghi thì tạo mới
-                    $this->rankRepository->create([
+                    $winnerRank->match_played += 1;
+                    $winnerRank->win += 1;
+                    $winnerRank->save();
+                }
+
+                // Cập nhật team thua
+                $loserRank = $this->rankRepository->getByLeagueAndTeam($schedule->league_id, $loserTeamId);
+                if (!$loserRank) {
+                    $loserRank = $this->rankRepository->create([
                         'league_id' => $schedule->league_id,
                         'team_id' => $loserTeamId,
                         'match_played' => 1,
@@ -151,6 +164,11 @@ class UpdateRankPoint extends Command
                         'point' => 0,
                         'eliminated_round' => $schedule->round
                     ]);
+                } else {
+                    $loserRank->match_played += 1;
+                    $loserRank->lose += 1;
+                    $loserRank->eliminated_round = $schedule->round;
+                    $loserRank->save();
                 }
             }
         }

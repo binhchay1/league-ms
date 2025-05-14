@@ -115,8 +115,12 @@
                     <div class="d-flex gap-2">
                         @if(now() >= date('Y-m-d', strtotime($leagueInfor->start_date)))
                             <a href="{{ route('my.leagueNews.info', $leagueInfor['slug']) }}"
-                               class="btn-custom {{ request()->routeIs('my.leagueNews.info') ? 'active' : '' }}">
+                                      class="btn-custom {{ request()->routeIs('my.leagueNews.info') ? 'active' : '' }}">
                                 {{ __('News') }}
+                            </a>
+                            <a href="{{ route('my.leagueRank.info', $leagueInfor['slug']) }}"
+                               class="btn-custom {{ request()->routeIs('my.leagueRank.info') ? 'active' : '' }}">
+                                {{ __('Rank') }}
                             </a>
                             <a href="{{ route('my.leagueResult.info', $leagueInfor['slug']) }}"
                                class="btn-custom {{ request()->routeIs('my.leagueResult.info') ? 'active' : '' }}">
@@ -325,6 +329,10 @@
                                 @if(Route::current()->getName() == 'my.leaguePlayer.info')
                                     <div>
                                         @include('page.user.my-league.detail.player')
+                                    </div>
+                                @elseif(Route::current()->getName() == 'my.leagueRank.info')
+                                    <div>
+                                        @include('page.user.my-league.detail.rank')
                                     </div>
                                 @elseif(Route::current()->getName() == 'my.myLeaguePlayerRegister.info')
                                     <div>

@@ -45,6 +45,7 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/tournament-league/{slug}/fight-branch/', [HomeController::class, 'showFightBranch'])->name('leagueFightBranch.info');
     Route::get('/tournament-league/{slug}/list-register/', [HomeController::class, 'showListRegister'])->name('showListRegister.info');
     Route::get('/tournament-league/{slug}/general-news/', [HomeController::class, 'showGeneralNews'])->name('showGeneralNews.info');
+    Route::get('/tournament-league/{slug}/rank/', [HomeController::class, 'showRank'])->name('showRank.info');
     Route::get('/list-teams/', [HomeController::class, 'listTeam'])->name('list.team');
     Route::get('/group/', [HomeController::class, 'listGroup'])->name('list.group');
     Route::get('/check-group-join', [HomeController::class, 'checkGroupJoin']);
@@ -120,6 +121,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/my-league/{slug}/schedule/', [ProfileController::class, 'myLeagueSchedule'])->name('my.leagueSchedule.info');
     Route::get('/my-league/{slug}/bracket/', [ProfileController::class, 'myLeagueBracket'])->name('my.leagueBracket.info');
     Route::get('/my-league/{slug}/news/', [ProfileController::class, 'myLeagueNews'])->name('my.leagueNews.info');
+    Route::get('/my-league/{slug}/rank/', [ProfileController::class, 'showRank'])->name('my.leagueRank.info');
     Route::get('/my-league/{slug}/player-register/', [ProfileController::class, 'myLeaguePlayerRegister'])->name('my.myLeaguePlayerRegister.info');
     Route::get('/my-league/{slug}/active-player/', [ProfileController::class, 'myLeagueActivePlayer'])->name('my.myLeagueActivePlayer');
     Route::get('/my-league/{slug}/info/', [ProfileController::class, 'infoMyLeague'])->name('my.infoMyLeague');

@@ -75,6 +75,10 @@
                                class="btn-custom {{ request()->routeIs('leagueResult.info') ? 'active' : '' }}">
                                 {{ __('Result') }}
                             </a>
+                            <a href="{{ route('showRank.info', $leagueInfor['slug']) }}"
+                               class="btn-custom {{ request()->routeIs('showRank.info') ? 'active' : '' }}">
+                                {{ __('Rank') }}
+                            </a>
                         @endif
                         @if( $currentDate < $startDate)
                             <a href="{{ route('registerLeague.info', $leagueInfor['slug']) }}"
@@ -310,6 +314,10 @@
                             @elseif(Route::current()->getName() == 'leagueResult.info')
                                 <div>
                                     @include('page.league.detail.result')
+                                </div>
+                            @elseif(Route::current()->getName() == 'showRank.info')
+                                <div>
+                                    @include('page.league.detail.rank')
                                 </div>
                             @elseif(Route::current()->getName() == 'leagueSchedule.info')
                                 <div>
