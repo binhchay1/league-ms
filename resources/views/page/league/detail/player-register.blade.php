@@ -1,4 +1,4 @@
-@forelse ($registrations as $index => $registration)
+@if($registrations->isNotEmpty())
     <div class="d-flex flex-wrap gap-2 mb-3">
     <span class="badge bg-primary px-3 py-2">
         {{'Inactive'}}: {{ $pendingCount }}
@@ -18,7 +18,7 @@
     </tr>
     </thead>
     <tbody>
-
+@once
     @php
         $type = $leagueInfor->type_of_league ?? 'singles';
 
@@ -32,7 +32,8 @@
             return asset($registration->user->profile_photo_path ?? '/images/default-avatar.png');
         }
     @endphp
-
+@endonce
+    @foreach($registrations as $index => $registration)
         <tr>
             <td>{{ $index + 1 }}</td>
             <td class="d-flex align-items-center gap-2">
@@ -55,10 +56,10 @@
             </span>
             </td>
         </tr>
-
+        @endforeach
     </tbody>
 </table>
-@empty
+@else
     <div class="alert alert-primary">{{"Tournament is updating data."}}</div>
 
-@endforelse
+@endif

@@ -49,7 +49,7 @@ if (Auth::check()) {
     <div class="">
         <div class="container results">
             <div class="wrapper-results">
-                <div class="wrapper-content-results" style="padding: 0px; margin-top: 18px;">
+                <div class="wrapper-content-results" style="padding: 0px !important;">
                     <div class="content-results">
                         <div class="item-results">
                             <div class="content-item-results">

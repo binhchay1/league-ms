@@ -524,6 +524,39 @@ class HomeController extends Controller
             ->where('status', 1)->count();
         $currentDate = now()->format('Y-m-d');
         $hasEnded = $currentDate > $leagueInfor->end_date;
+        if ($leagueInfor->format_of_league === 'round-robin') {
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->orderByDesc('point')
+                ->orderByDesc('win')
+                ->orderBy('match_played')
+                ->get();
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+
+        } elseif ($leagueInfor->format_of_league === 'knockout') {
+            $priority = [
+                null => 999,
+                'final' => 1,
+                'semi-finals' => 2,
+                'quarter-finals' => 3,
+                'round-of-16' => 4,
+                'round-of-32' => 5,
+                'round-of-64' => 6,
+            ];
+
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->get()
+                ->sortBy(fn($r) => $priority[$r->eliminated_round] ?? 999)
+                ->values(); // Reindex
+
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+        } else {
+            $ranking = collect(); // fallback nếu không xác định được loại giải
+        }
+
         $champion = null;
         if ($hasEnded) {
             if ($leagueInfor->format_of_league === 'knockout') {

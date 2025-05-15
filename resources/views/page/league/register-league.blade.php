@@ -29,10 +29,10 @@
     $get_date_register = date('d/m/Y', strtotime($leagueInfor->end_date_register));
     $format_register_date = $leagueInfor->end_date_register;
     ?>
-    <div id="page" class="hfeed site">
+    <div id="page" class="hfeed site" style="margin-top: -20px">
         <div class=" results">
             <div class="wrapper-results">
-                <div class="" style="background: #707787;padding: 10px; margin-top: -20px; color: white">
+                <div class="" style="background: #707787;padding: 10px;  color: white">
                     <div class="container box-results-tournament">
                         <div class="d-flex">
                             <div class="logo-left">
@@ -292,9 +292,13 @@
                                             <select id="playerSelect" name="partner_id"
                                                     class=" block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm">
                                                 <option value="">-- {{'choose'}} --</option>
-                                                @foreach($partners as $partner)
-                                                    <option value="{{$partner->id}}">{{$partner->name}}</option>
-                                                @endforeach
+                                                @isset($partners)
+                                                    @foreach($partners as $partner)
+                                                        @if(is_object($partner))
+                                                            <option value="{{ $partner->id }}">{{ $partner->name }}</option>
+                                                        @endif
+                                                    @endforeach
+                                                @endisset
                                                 <option value="new">{{'Create new partner'}}</option>
                                             </select>
                                         </div>
