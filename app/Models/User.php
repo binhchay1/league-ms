@@ -110,6 +110,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function partner()
     {
+        return $this->hasOne(Partner::class,'created_by_user_id', 'id');
+    }
+
+    public function partnerInLeague()
+    {
         return $this->hasMany(Partner::class,'created_by_user_id', 'id');
     }
 }

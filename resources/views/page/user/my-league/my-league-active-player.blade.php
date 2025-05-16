@@ -56,6 +56,11 @@
         font-size: 15px !important;
     }
 
+    .status-player {
+        border-radius: 5px;
+        color: white;
+        font-weight: 600;
+    }
 
 </style>
 @section('content')
@@ -86,80 +91,123 @@
             </div>
         </div>
         <hr>
+            @once
+            @php
+                $type = $leagueInfor->type_of_league ?? 'singles';
 
-        <div class="container mt-4 form-active">
-            <form id="formAccountSettings" method="POST" action="{{route('league.updatePlayer',$leagueInfor['id'])}}" enctype="multipart/form-data">
-                @csrf()
-                <div class="col-lg-12 " style="text-align: right; margin-left: -5px">
-                    <div >
-                        <button type="submit" class="btn btn-success float-right" style="margin: 10px;">{{__('Active player')}}</button>
-                    </div>
-                    <label>
-                        <input type="radio" name="status" value="1" checked>
-                        Active
-                    </label>
-                    <label>
-                        <input type="radio" name="status" value="0">
-                        Inactive
-                    </label>
-                </div>
-            <!-- Bảng Ban huấn luyện -->
-            <div class="d-flex flex-wrap gap-2 mb-3">
-                <span class="badge bg-primary px-3 py-2 m-0" style="background: #0a59da !important;     padding: 15px !important; font-size: 15px">
-                    {{'Total player'}}: {{count($leagueInfor->userLeagues) }} / {{$leagueInfor->number_of_athletes}} {{'players'}}
-                </span>
-            </div>
-            <div class="card mb-">
-                <div class="card-header bg-primary text-white ">{{'Players'}}</div>
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>{{"Check"}}</th>
-                            <th>{{"Information"}}</th>
-                            <th>{{"Address"}}</th>
-                            <th>{{"Status"}}</th>
-                            <th>{{"Action"}}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($leagueInfor->userLeagues as $player)
-                            <tr>
-                                <td><input type="checkbox"  name="user_ids[]" value="{{ $player->id }}" class="checkbox" ></td>
-                                <td><img src="{{asset($player->user->profile_photo_path ?? '/images/default-avatar.png')}}"  width="50" height="50" class="rounded-circle ">{{ $player->user->name ?? "" }}</td>
-                                <td>{{ $player->user->address ?? "" }}</td>
-                                <td>
-                                    <div  class="btn btn-{{$player->status == 1 ? 'success' : 'secondary' }}">
-                                        {{$player->status ? "Active " : "Inactive "}}
+                function getFullNameWithPartner($player, $type = 'singles') {
+                    $name1 = $player->user->name ?? '---';
+                    $name2 = $player->partner->name ?? '';
+                    return $type === 'doubles' && $name2 ? $name1 . ' + ' . $name2 : $name1;
+                }
+
+                function getUserAvatar($registration) {
+                    return asset($registration->user->profile_photo_path ?? '/images/default-avatar.png');
+                }
+            @endphp
+            @endonce
+
+            @if($leagueInfor->userLeagues->isNotEmpty())
+                <div class="container mt-4 form-active">
+                    <form id="formAccountSettings" method="POST" action="{{route('league.updatePlayer',$leagueInfor['id'])}}" enctype="multipart/form-data">
+                        @csrf()
+
+                        <div class="col-lg-12 " style="text-align: right; margin-left: -5px">
+                            <div >
+                                <button type="submit" class="btn btn-success float-right" style="margin: 10px;">{{__('Active player')}}</button>
+                            </div>
+                            <label>
+                                <input type="radio" name="status" value="1" checked>
+                                Active
+                            </label>
+                            <label>
+                                <input type="radio" name="status" value="0">
+                                Inactive
+                            </label>
+                        </div>
+                    <!-- Bảng Ban huấn luyện -->
+                        <div class="d-flex flex-wrap gap-2 mb-3" >
+                             <span class="status-player bg-primary px-3 py-2">
+                                {{'Total player'}}: {{count($leagueInfor->userLeagues) }} / {{$leagueInfor->number_of_athletes}} {{'players'}}
+                            </span>
+                            <span class="status-player bg-primary px-3 py-2" >
+                                {{'Inactive'}}: {{ $pendingCount }}
+                            </span>
+                            <span class="status-player bg-success px-3 py-2">
+                                {{'Active'}}: {{ $acceptedCount }}
+                            </span>
+                        </div>
+
+                        <table class="table table-bordered align-middle text-center">
+                            <thead>
+                                <tr>
+                                    <th>{{"Check"}}</th>
+                                    <th>{{"Player"}}</th>
+                                    <th>{{"Address"}}</th>
+                                    <th>{{"Status"}}</th>
+                                    <th>{{"Action"}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($leagueInfor->userLeagues as $player)
+                                    <tr>
+                                        <td><input type="checkbox"  name="user_ids[]" value="{{ $player->id }}" class="checkbox" ></td>
+                                        <td class="d-flex align-items-center gap-2">
+                                            <img src="{{ getUserAvatar($player) }}"
+                                                 alt="avatar" class="rounded-circle" width="40">
+                                            <div>
+                                                <span class="fw-bold text-success">{{ getFullNameWithPartner($player, $type) }}</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="text-success fst-italic">{{ $player->address ?? 'updating' }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                             <span class="status-player bg-{{ $player->status == 0 ? 'primary' : 'success' }}" style="padding: 5px">
+                                                {{ $player->status ? 'Active' : 'Inactive' }}
+                                            </span>
+                                        </td>
+                                        <td class="text_flow text-center">
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ $player['id'] }}">
+                                                {{ __('Delete') }}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="confirmDeleteModal{{ $player['id'] }}" tabindex="-1" aria-labelledby="confirmDeleteLabel{{ $player['id'] }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-danger text-white">
+                                                    <h5 class="modal-title" id="confirmDeleteLabel{{ $player['id'] }}">Confirm Delete</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete player <strong>{{ $player->user?->name ?? '---' }}</strong>?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+                                                    <a href="{{ route('league.destroyPlayer', $player['id']) }}">
+                                                        <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </td>
-                                <td class="text_flow text-center">
-                                    <a href="{{ route('league.destroyPlayer', $player['id']) }}">
-                                        <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
-            </div>
-
-            <!-- Bảng Vận động viên -->
-            </form>
-        </div>
+            @else
+                <div class="container alert alert-primary mt-4">{{"Tournament is updating data."}}</div>
+            @endif
     </section>
+
 @endsection
 
 @section('js')
-    <script>
-        function detailGroup(id) {
-            let name = id.substring(6);
-            let url = '/detail-group?g_i=' + name;
-
-            window.location.href = url;
-        }
-    </script>
     <script>
         $(document).ready(function(){
             $(".list-group-item-action").click(function(){

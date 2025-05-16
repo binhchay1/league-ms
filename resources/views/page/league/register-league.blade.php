@@ -39,7 +39,7 @@
                                 <img src="{{ asset($leagueInfor->images ?? '/images/logo-no-background.png') }}"
                                      class="show-image-league" alt="logo">
                             </div>
-                            <div class="" id="info-league">
+                            <div class="" id="info-league " style="color: white; margin-left: 10px">
                                 <h2 class="p-0">{{ $leagueInfor->name }}</h2>
                                 <p class="card-text display"><?php echo number_format($leagueInfor->money ?? 0) . " VND"?> || {{$leagueInfor->type_of_league}}  || {{$leagueInfor->location}}</p>
                                 <p class="display">

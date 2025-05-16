@@ -737,8 +737,8 @@ class HomeController extends Controller
         $leagueInfor = $this->leagueRepository->showInfo($slug);
         $getListLeagues = $this->leagueRepository->getListLeagues();
         $dataLeague = $this->leagueRepository->show($slug);
-        $user = $this->userRepository->showInfo(Auth::user()->id);
-        $partners = $user->partner;
+        $user = $this->userRepository->userInfo(Auth::user()->id);
+        $partners = $user->partnerInLeague;
         $groupSchedule = [];
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;

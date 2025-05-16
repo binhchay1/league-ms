@@ -125,6 +125,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/my-league/{slug}/player-register/', [ProfileController::class, 'myLeaguePlayerRegister'])->name('my.myLeaguePlayerRegister.info');
     Route::get('/my-league/{slug}/active-player/', [ProfileController::class, 'myLeagueActivePlayer'])->name('my.myLeagueActivePlayer');
     Route::get('/my-league/{slug}/info/', [ProfileController::class, 'infoMyLeague'])->name('my.infoMyLeague');
+    Route::get('/my-league/{slug}/list-schedule/', [ProfileController::class, 'listSchedule'])->name('my.listSchedule');
+    Route::post('/my-league/schedule-robin/{id}', [ProfileController::class, 'updateScheduleRobin'])->name('myLeague.schedule.updateScheduleRobin');
+    Route::post('/my-league/schedule-knockout/{id}', [ProfileController::class, 'updateScheduleKnockout'])->name('myLeague.schedule.updateScheduleKnockout');
+
     Route::post('/update-my-league/{id}', [ProfileController::class, 'updateMyLeague'])->name('my.updateMyLeagueMyLeague');
     Route::get('/auto-create-schedule-league', [ProfileController::class, 'autoCreateMyLeague'])->name('auto.create.myLeague.schedule');
     Route::get('/league-manager/', [HomeController::class, 'leagueManager'])->name('league-manager');
