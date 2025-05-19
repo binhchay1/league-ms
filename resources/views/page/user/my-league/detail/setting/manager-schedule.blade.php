@@ -6,125 +6,13 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/page/show.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/page/detail-league/setting.css') }}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
     @if(Route::current()->getName() == 'my.leagueBracket.info')
         <link rel="stylesheet" href="{{ asset('css/page/bracket.css') }}"/>
     @endif
 @endsection
 
-
-<style>
-    .list-group-item-action {
-        padding: 10px;
-        cursor: pointer;
-        transition: background 0.3s;
-    }
-    .list-group-item-action.active {
-        background-color:#dc3545 !important; /* Màu xanh */
-        color: white;
-        border-radius: 5px;
-    }
-
-    .card-title {
-        color: black !important;
-    }
-
-    p.display {
-        font-size: 15px !important;
-    }
-
-    .btn-custom {
-        background-color: #dc3545 !important;
-        color: white !important;
-        font-weight: bold;
-        border-radius: 10px;
-        padding: 10px 15px!important;
-        border: none;
-    }
-
-    .btn-custom:hover {
-        background-color: #ff4b2b !important;
-    }
-
-    /* Tùy chỉnh dropdown */
-    .btn-dropdown {
-        background: white;
-        border: 2px solid #ff4b2b !important;
-        border-radius: 10px;
-        color: #dc3545;
-        padding: 10px 12px !important;
-    }
-
-    .btn-dropdown:hover {
-        background: #f1f1f1 !important;
-    }
-
-    h5.modal-title {
-        color: white !important;
-    }
-
-    .btn-custom {
-        background-color: #f0f0f0;
-        color: #333;
-        border: 1px solid #ccc;
-        padding: 6px 12px;
-        border-radius: 4px;
-        text-decoration: none;
-        display: inline-block;
-    }
-
-    .btn-custom.active {
-        background-color: lightgrey !important;
-        color: black !important;
-    }
-
-
-    .sidebar-list {
-        background-color: #4a5773;
-        border-radius: 6px;
-        padding: 0;
-        list-style: none;
-    }
-
-    .sidebar-list li a {
-        display: block;
-        padding: 12px 16px;
-        color: #ffffff;
-        text-decoration: none;
-        font-size: 15px !important;
-    }
-
-
-    .sidebar-list li a:hover {
-        background-color: lightgrey;
-
-    }
-
-    .sidebar-list li.active a {
-        background-color: #ffffff;
-        color: #4a5773;
-        border-radius: 0;
-    }
-
-    .league-title {
-        background: #f5f5f5;
-        padding: 10px;
-    }
-
-    .font-medium {
-        border: 1px solid transparent;
-        border-radius: 4px;
-        padding: 10px;
-        background-color: #d9edf7;
-        color: #31708f;
-        width: 100% !important;
-        font-size: 18px !important;
-        margin-top: 20px !important;
-        margin-bottom: 20px !important;
-        font-weight: 500;
-    }
-
-</style>
 @section('content')
     <?php $currentDate = strtotime(date("Y-m-d"));
     $startDate = strtotime(date($leagueInfor->start_date));
@@ -166,7 +54,7 @@
                 <div class="col-md-10">
                     <div class="card-body">
                         <a href="{{route('my.leagueDetail',$leagueInfor->slug)}}">
-                            <h2 class="card-title text-white color-red mb-1 p-0">{{$leagueInfor->name}}</h2>
+                            <h2 class=" text-white color-red mb-1 p-0">{{$leagueInfor->name}}</h2>
                         </a>
                         <p class="card-text display"><?php echo number_format($leagueInfor->money ?? 0) . " VND"?> || {{$leagueInfor->type_of_league}}  || {{$leagueInfor->location}}</p>
                         <p class="display">
@@ -228,19 +116,6 @@
                    class="btn-custom {{ request()->routeIs('league.leagueSetting') ? 'active' : '' }}">
                     {{ __('Setting') }}
                 </a>
-
-                {{--                        @if(Auth::check() && Auth::user()->id == $leagueInfor->owner_id)--}}
-                {{--                        <div class="dropdown">--}}
-                {{--                            <a class="btn-custom dropdown-toggle {{ request()->routeIs('my.infoMyLeague') ? 'active' : '' }}"--}}
-                {{--                                data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">--}}
-                {{--                                {{ __('Setting') }} <i class="bi bi-gear"></i>--}}
-                {{--                            </a>--}}
-                {{--                            <ul class="dropdown-menu">--}}
-                {{--                                <li><a class="dropdown-item" href="{{ route('my.infoMyLeague', $leagueInfor['slug']) }}">League Information</a></li>--}}
-                {{--                                <li><a class="dropdown-item" href="#">Delete League</a></li>--}}
-                {{--                            </ul>--}}
-                {{--                        </div>--}}
-                {{--                        @endif--}}
             </div>
         </div>
         <!-- Main Content -->
@@ -287,7 +162,7 @@
                     <!-- Tournament List -->
                     <div class="col-md-9 p-3">
                         <div class="d-flex justify-content-between align-items-center league-title">
-                            <h4 class="p-0">{{'Setting'}}</h4>
+                            <h4 class="p-0">{{'Management Schedule'}}</h4>
                         </div>
 
                         @if(count($leagueInfor->schedule) == 0)

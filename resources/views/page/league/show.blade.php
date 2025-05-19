@@ -93,7 +93,7 @@ $format_register_date = $leagueInfor->end_date_register;
 
                         <a href="{{ route('showListRegister.info', $leagueInfor['slug']) }}"
                            class="btn-custom {{ request()->routeIs('showListRegister.info') ? 'active' : '' }}">
-                            {{ __('List Register') }}
+                            {{ __('List Players Register') }}
                         </a>
                     @endif
                     @if($leagueInfor->format_of_league == "knockout")
@@ -112,11 +112,12 @@ $format_register_date = $leagueInfor->end_date_register;
                        class="btn-custom {{ request()->routeIs('leaguePlayer.info') ? 'active' : '' }}">
                         {{ __('Player') }}
                     </a>
-
-                    <a href="{{ route('league.leagueSetting',$leagueInfor['slug']) }}"
-                       class="btn-custom {{ request()->routeIs('league.leagueSetting') ? 'active' : '' }}">
-                        {{ __('Setting') }}
-                    </a>
+                    @if(Auth::check() && Auth::user()->id == $leagueInfor->owner_id)
+                        <a href="{{ route('league.leagueSetting',$leagueInfor['slug']) }}"
+                           class="btn-custom {{ request()->routeIs('league.leagueSetting') ? 'active' : '' }}">
+                            {{ __('Setting') }}
+                        </a>
+                    @endif
 
                     {{--                        @if(Auth::check() && Auth::user()->id == $leagueInfor->owner_id)--}}
                     {{--                        <div class="dropdown">--}}

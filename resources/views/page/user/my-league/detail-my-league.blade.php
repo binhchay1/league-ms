@@ -172,10 +172,12 @@ $format_register_date = $leagueInfor->end_date_register;
                         class="btn-custom {{ request()->routeIs('my.leaguePlayer.info') ? 'active' : '' }}">
                         {{ __('Player') }}
                     </a>
-                    <a href="{{ route('league.leagueSetting',$leagueInfor['slug']) }}"
-                        class="btn-custom {{ request()->routeIs('league.leagueSetting') ? 'active' : '' }}">
-                        {{ __('Setting') }}
-                    </a>
+                    @if(Auth::check() &&  Auth::user()->id == $leagueInfor->owner_id)
+                        <a href="{{ route('league.leagueSetting',$leagueInfor['slug']) }}"
+                            class="btn-custom {{ request()->routeIs('league.leagueSetting') ? 'active' : '' }}">
+                            {{ __('Setting') }}
+                        </a>
+                    @endif
                     <!-- Dropdown -->
                     {{-- @if(Auth::check() &&  Auth::user()->id == $leagueInfor->owner_id)--}}
                     {{-- <!-- Dropdown -->--}}
