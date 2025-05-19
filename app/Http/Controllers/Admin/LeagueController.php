@@ -117,7 +117,7 @@ class LeagueController extends Controller
         // Update the 'active' status for all specified users
         if(empty($userIds))
         {
-            return back()->with('success', __('No players to action!'));
+            return back()->with('error', __('No players to action!Please choose one'));
         }
 
         UserLeague::whereIn('id', $userIds)->update(['status' => $activeStatus]);

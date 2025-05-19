@@ -951,6 +951,10 @@ class ProfileController extends Controller
         $countNextDate = 1;
 
     if(strpos($getLeague->format_of_league, 'round-robin') !== false) {
+        if ($totalMembers < 4) {
+            $report = __('The number of members participating in the tournament must be greater than 4');
+            return back()->with('error', $report);
+        }
         // Thiết lập thời gian bắt đầu
         $startDate = \Carbon\Carbon::parse($getLeague->start_date);
         $startTime = \Carbon\Carbon::parse($getLeague->start_time);
@@ -992,7 +996,7 @@ class ProfileController extends Controller
     } else {
             if ($totalMembers < 4) {
                 $report = __('The number of members participating in the tournament must be greater than 4');
-                return redirect()->route('my.league', $getLeague->slug)->with('error', $report);
+                return back()->with('error', $report);
             }
 
             if ($totalMembers == 4) {
@@ -1075,7 +1079,7 @@ class ProfileController extends Controller
     }
         $this->scheduleRepository->createMultiple($dataSchedule);
 
-        return redirect()->route('my.leagueDetail', $getLeague->slug)->with('success', __('Create auto schedule successfully!'));
+        return back()->with('success', __('Create auto schedule successfully!'));
     }
 
     public function viewMyGroup()

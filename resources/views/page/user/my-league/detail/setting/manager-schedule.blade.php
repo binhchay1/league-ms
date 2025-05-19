@@ -20,31 +20,8 @@
     $get_date_register = date('d/m/Y', strtotime($leagueInfor->end_date_register));
     $format_register_date =$leagueInfor->end_date_register;
     ?>
-    @if ($hasEnded && $champion )
-        <div id="winner-popup" style="margin-top: -30px" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 text-white">
-            {{-- Nút đóng (góc trên phải màn hình) --}}
-            <button onclick="closeWinnerPopup()" id="popup-close" class="absolute top-4 right-6 text-white text-3xl hover:text-red-500 z-50">
-                &times;
-            </button>
-            {{-- Nội dung popup --}}
-            <div class="relative z-10 text-center bg-gray-900 bg-opacity-80 px-6 py-8 rounded-lg shadow-lg">
-                <h2 class="text-2xl text-yellow-400 font-bold mb-4">{{'Congratulations to the defending champions of the tournament!'}}</h2>
-                <img src="{{ asset('/images/player-team.jpg') }}" class="mx-auto w-32 h-32 rounded-full border-4 border-yellow-500 mb-4" alt="Winner Avatar">
-                <h4 class="text-xxl text-white font-semibold">
-                    {{ $champion->user->name ?? '---' }}
-                    @if($champion->user->partner)
-                        @if($champion->league && $champion->league->type_of_league == "doubles")
-                            + {{ $champion->user->partner->name }}
-                        @endif
-                    @endif
-                </h4>
 
-                {{-- Canvas pháo hoa --}}
-                <canvas id="canvas"></canvas>
-            </div>
-        </div>
-    @endif
-    <div id="page" class="hfeed site" style="{{ ($hasEnded && $champion) ? 'display: none;' : '' }}; margin-top: -20px">
+    <div id="page" class="hfeed site" style=" margin-top: -20px">
         <?php $start_date = date('d/m/Y', strtotime($leagueInfor->start_date));
         $end_date = date('d/m/Y', strtotime($leagueInfor->end_date));
         ?>
@@ -168,7 +145,7 @@
                         @if(count($leagueInfor->schedule) == 0)
                             @if(now() > date('Y-m-d', strtotime($leagueInfor->end_date_register)) && now() < $leagueInfor->start_date)
                             <div class=" gap-3 mt-4">
-                                <p>{{"League doesn't have a match schedule yet, create one."}}</p>
+                                <p style="padding: 10px; background: #e7e7b6;">{{"League doesn't have a match schedule yet, create one."}}</p>
                                 <a href="{{ route('auto.create.myLeague.schedule') }}?s={{ $leagueInfor->slug }}">
                                     <button class="btn btn-success">{{ __('Create Schedule') }}</button>
                                 </a>
@@ -295,7 +272,6 @@
                                                                     </div>
 
                                                                     {{-- Nếu chưa có kết quả, cho phép cập nhật player --}}
-                                                                    @if($schedule->result_team_1 === null && $schedule->result_team_2 === null)
                                                                         @if(is_null($schedule->player1_team_1))
                                                                             <div class="mb-3">
                                                                                 <label for="player1_id" class="form-label">Player 1</label>
@@ -319,11 +295,6 @@
                                                                                 </select>
                                                                             </div>
                                                                         @endif
-                                                                    @else
-                                                                        <div class="alert alert-warning">
-                                                                            {{ __('This match already has results. Players cannot be changed.') }}
-                                                                        </div>
-                                                                    @endif
 
                                                                     <div class="mb-3">
                                                                         <label class="form-label">Match Date</label>
@@ -340,7 +311,7 @@
 
                                                                 <div class="modal-footer">
                                                                     @if($schedule->result_team_1 !== null || $schedule->result_team_2 !== null)
-                                                                        <span class="text-muted me-auto">Match already has results</span>
+                                                                        <span class="text-muted me-auto alert alert-warning">{{"Match already has results, don't change"}}</span>
                                                                     @endif
                                                                     <button type="submit" class="btn btn-primary"
                                                                         {{ $schedule->result_team_1 !== null || $schedule->result_team_2 !== null ? 'disabled' : '' }}>

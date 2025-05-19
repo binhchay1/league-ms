@@ -62,17 +62,17 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/search-group-training', [HomeController::class, 'searchGroupTraining'])->name('searchGroupTraining');
 });
 
-//exchange
-
-//product
-Route::get('exchange', [ExchangeController::class, 'index'])->name('exchange.home');
-Route::get('/product/{slug}', [ExchangeController::class, 'productDetail'])->name('exchange.productDetail');
-Route::get('/category/{slug}', [ExchangeController::class, 'categoryDetail'])->name('exchange.categoryDetail');
-Route::get('/search', [ExchangeController::class, 'search'])->name('products.search');
-Route::get('/filter-by', [ExchangeController::class, 'filter'])->name('products.searchInProduct');
-Route::get('/products/load-more', [ExchangeController::class, 'loadMore'])->name('exchange.loadMore');
-Route::get('/product-new', [ExchangeController::class, 'createProductNews'])->name('exchange.productSale');
-Route::get('/product-new/{slug}', [ExchangeController::class, 'editProductNews'])->name('exchange.editNews');
+////exchange
+//
+////product
+//Route::get('exchange', [ExchangeController::class, 'index'])->name('exchange.home');
+//Route::get('/product/{slug}', [ExchangeController::class, 'productDetail'])->name('exchange.productDetail');
+//Route::get('/category/{slug}', [ExchangeController::class, 'categoryDetail'])->name('exchange.categoryDetail');
+//Route::get('/search', [ExchangeController::class, 'search'])->name('products.search');
+//Route::get('/filter-by', [ExchangeController::class, 'filter'])->name('products.searchInProduct');
+//Route::get('/products/load-more', [ExchangeController::class, 'loadMore'])->name('exchange.loadMore');
+//Route::get('/product-new', [ExchangeController::class, 'createProductNews'])->name('exchange.productSale');
+//Route::get('/product-new/{slug}', [ExchangeController::class, 'editProductNews'])->name('exchange.editNews');
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -115,6 +115,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     //my league
     Route::get('/my-league/', [ProfileController::class, 'viewMyLeague'])->name('my.league');
+    Route::get('/league-joined', [ProfileController::class, 'leagueJoin'])->name('league.leagueJoin');
+    Route::get('/league-created', [ProfileController::class, 'leagueCreated'])->name('league.leagueCreate');
     Route::get('/my-league-detail/{slug}', [ProfileController::class, 'detailMyLeague'])->name('my.leagueDetail');
     Route::get('/my-league/{slug}/info/', [ProfileController::class, 'infoMyLeague'])->name('my.infoMyLeague');
     Route::post('/my-league/schedule-robin/{id}', [ProfileController::class, 'updateScheduleRobin'])->name('myLeague.schedule.updateScheduleRobin');
@@ -122,8 +124,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/update-my-league/{id}', [ProfileController::class, 'updateMyLeague'])->name('my.updateMyLeagueMyLeague');
     Route::get('/auto-create-schedule-league', [ProfileController::class, 'autoCreateMyLeague'])->name('auto.create.myLeague.schedule');
     Route::delete('delete/my-league/{id}', [ProfileController::class, 'deleteMyLeague'])->name('delete.myLeague');
-    Route::get('/league-joined', [ProfileController::class, 'leagueJoin'])->name('league.leagueJoin');
-    Route::get('/league-created', [ProfileController::class, 'leagueCreated'])->name('league.leagueCreate');
     Route::get('/my-league/{slug}/setting', [ProfileController::class, 'leagueSetting'])->name('league.leagueSetting');
     Route::get('/my-league/{slug}/activity-history', [ProfileController::class, 'leagueActivity'])->name('league.leagueActivity');
     Route::get('/my-league/{slug}/config', [ProfileController::class, 'leagueConfig'])->name('league.leagueConfig');

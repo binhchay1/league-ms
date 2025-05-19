@@ -16,7 +16,6 @@
         @php
             $type = $leagueInfor->type_of_league ?? 'singles';
         @endphp
-
         @forelse($leagueInfor->userLeagues as $player)
             <div class="col-md-3 mt-4">
                 <div class="card text-center border rounded-3 shadow-sm p-3 transition hover-effect">

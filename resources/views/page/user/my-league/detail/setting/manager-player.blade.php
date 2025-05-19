@@ -20,31 +20,8 @@
     $get_date_register = date('d/m/Y', strtotime($leagueInfor->end_date_register));
     $format_register_date =$leagueInfor->end_date_register;
     ?>
-    @if ($hasEnded && $champion )
-        <div id="winner-popup" style="margin-top: -30px" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 text-white">
-            {{-- Nút đóng (góc trên phải màn hình) --}}
-            <button onclick="closeWinnerPopup()" id="popup-close" class="absolute top-4 right-6 text-white text-3xl hover:text-red-500 z-50">
-                &times;
-            </button>
-            {{-- Nội dung popup --}}
-            <div class="relative z-10 text-center bg-gray-900 bg-opacity-80 px-6 py-8 rounded-lg shadow-lg">
-                <h2 class="text-2xl text-yellow-400 font-bold mb-4">{{'Congratulations to the defending champions of the tournament!'}}</h2>
-                <img src="{{ asset('/images/player-team.jpg') }}" class="mx-auto w-32 h-32 rounded-full border-4 border-yellow-500 mb-4" alt="Winner Avatar">
-                <h4 class="text-xxl text-white font-semibold">
-                    {{ $champion->user->name ?? '---' }}
-                    @if($champion->user->partner)
-                        @if($champion->league && $champion->league->type_of_league == "doubles")
-                            + {{ $champion->user->partner->name }}
-                        @endif
-                    @endif
-                </h4>
 
-                {{-- Canvas pháo hoa --}}
-                <canvas id="canvas"></canvas>
-            </div>
-        </div>
-    @endif
-    <div id="page" class="hfeed site" style="{{ ($hasEnded && $champion) ? 'display: none;' : '' }}; margin-top: -20px">
+    <div id="page" class="hfeed site" style=" margin-top: -20px">
         <?php $start_date = date('d/m/Y', strtotime($leagueInfor->start_date));
         $end_date = date('d/m/Y', strtotime($leagueInfor->end_date));
         ?>
@@ -150,14 +127,37 @@
                                     <i class="fas fa-calendar-alt mr-2"></i> {{'Schedule Management'}}
                                 </a>
                             </li>
-                            <li class="{{ request()->routeIs('league.leagueJoin') ? 'active' : '' }}">
-                                <a href="{{ route('league.leagueJoin', $leagueInfor->slug) }}">
-                                    <i class="fas fa-trash-alt mr-2"></i> {{'Delete Tournament'}}
+                            <li>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#confirmDeleteLeagueModal">
+                                    <i class="fas fa-trash-alt mr-2"></i> {{ __('Delete Tournament') }}
                                 </a>
                             </li>
                         </ul>
-
                     </div>
+                    <!-- Delete League Modal -->
+                    <div class="modal fade" id="confirmDeleteLeagueModal" tabindex="-1" aria-labelledby="deleteLeagueLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-danger text-white">
+                                    <h5 class="modal-title" id="deleteLeagueLabel">{{ __('Confirm Delete') }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    {{ __('Are you sure you want to delete this tournament? This action cannot be undone.') }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Cancel') }}</button>
+
+                                    <form method="POST" action="{{ route('delete.myLeague', $leagueInfor->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="col-md-9 p-3">
                         <div class="d-flex justify-content-between align-items-center league-title">
@@ -173,7 +173,6 @@
                                 <div class="container form-active">
                                     <form id="formAccountSettings" method="POST" action="{{ route('league.updatePlayer', $leagueInfor['id']) }}" enctype="multipart/form-data">
                                         @csrf
-
                                         @if(now() > date('Y-m-d', strtotime($leagueInfor->end_date_register)) && now() < $leagueInfor->start_date)
                                             <div class="col-lg-12 text-end text-white">
                                                 <div>
@@ -189,15 +188,15 @@
                                         @endif
 
                                         <div class="d-flex flex-wrap gap-2 mb-3 text-white">
-                        <span class="status-player bg-primary px-3 py-2">
-                            {{ __('Total player') }}: {{ count($leagueInfor->userLeagues) }} / {{ $leagueInfor->number_of_athletes }} {{ __('players') }}
-                        </span>
                                             <span class="status-player bg-primary px-3 py-2">
-                            {{ __('Inactive') }}: {{ $pendingCount }}
-                        </span>
+                                                {{ __('Total player') }}: {{ count($leagueInfor->userLeagues) }} / {{ $leagueInfor->number_of_athletes }} {{ __('players') }}
+                                            </span>
+                                            <span class="status-player bg-primary px-3 py-2">
+                                                {{ __('Inactive') }}: {{ $pendingCount }}
+                                            </span>
                                             <span class="status-player bg-success px-3 py-2">
-                            {{ __('Active') }}: {{ $acceptedCount }}
-                        </span>
+                                                {{ __('Active') }}: {{ $acceptedCount }}
+                                            </span>
                                         </div>
 
                                         <table class="table table-bordered align-middle text-center">
@@ -226,12 +225,20 @@
                                                         <span class="text-success fst-italic">{{ $player->address ?? 'updating' }}</span>
                                                     </td>
                                                     <td>
-                                        <span class="status-player bg-{{ $player->status == 0 ? 'primary' : 'success' }} text-white px-2 py-1">
-                                            {{ $player->status ? 'Active' : 'Inactive' }}
-                                        </span>
+                                                        <span class="status-player bg-{{ $player->status == 0 ? 'primary' : 'success' }} text-white px-2 py-1">
+                                                            {{ $player->status ? 'Active' : 'Inactive' }}
+                                                        </span>
                                                     </td>
                                                     <td class="text-center">
-                                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ $player['id'] }}">
+                                                        @php
+                                                            $disableDelete = now() > date('Y-m-d', strtotime($leagueInfor->end_date_register));
+                                                        @endphp
+
+                                                        <button type="button"
+                                                                class="btn btn-danger"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#confirmDeleteModal{{ $player['id'] }}"
+                                                            {{ $disableDelete ? 'disabled' : '' }}>
                                                             {{ __('Delete') }}
                                                         </button>
                                                     </td>

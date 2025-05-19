@@ -69,7 +69,7 @@
                             <div class="col-md-10">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <a href="{{route('my.leagueDetail', $row->slug)}}" title="{{ $row->name }}">
+                                        <a href="{{route('league.info', $row->slug)}}" title="{{ $row->name }}">
                                             <h5 class="card-title color-red">{{$row->name}}</h5>
                                         </a>
                                         {{-- @if(now() > date('Y-m-d', strtotime($row->end_date_register)) && now() < $row->start_date)--}}

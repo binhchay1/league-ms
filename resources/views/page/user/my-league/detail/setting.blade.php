@@ -181,101 +181,54 @@
                     </div>
                 </div>
             </div>
-{{--            <div class="container mt-4">--}}
-{{--                <div class="d-flex gap-2">--}}
-{{--                    @if(now() >= date('Y-m-d', strtotime($leagueInfor->start_date)))--}}
-{{--                        <a href="{{ route('my.leagueNews.info', $leagueInfor['slug']) }}"--}}
-{{--                           class="btn-custom {{ request()->routeIs('my.leagueNews.info') ? 'active' : '' }}">--}}
-{{--                            {{ __('News') }}--}}
-{{--                        </a>--}}
-{{--                        <a href="{{ route('my.leagueRank.info', $leagueInfor['slug']) }}"--}}
-{{--                           class="btn-custom {{ request()->routeIs('my.leagueRank.info') ? 'active' : '' }}">--}}
-{{--                            {{ __('Rank') }}--}}
-{{--                        </a>--}}
-{{--                        <a href="{{ route('my.leagueResult.info', $leagueInfor['slug']) }}"--}}
-{{--                           class="btn-custom {{ request()->routeIs('my.leagueResult.info') ? 'active' : '' }}">--}}
-{{--                            {{ __('Result') }}--}}
-{{--                        </a>--}}
-{{--                    @endif--}}
-{{--                    @if( $currentDate < $startDate)--}}
-{{--                        <a href="{{ route('my.myLeaguePlayerRegister.info', $leagueInfor['slug']) }}"--}}
-{{--                           class="btn-custom {{ request()->routeIs('my.myLeaguePlayerRegister.info') ? 'active' : '' }}">--}}
-{{--                            {{ __('List Register') }}--}}
-{{--                        </a>--}}
-{{--                    @endif--}}
-{{--                    @if($leagueInfor->format_of_league == "knockout")--}}
-{{--                        <a href="{{ route('my.leagueBracket.info',$leagueInfor['slug']) }}"--}}
-{{--                           class="btn-custom {{ request()->routeIs('my.leagueBracket.info.info') ? 'active' : '' }}">--}}
-{{--                            {{ __('Bracket') }}--}}
-{{--                        </a>--}}
-{{--                    @endif--}}
-{{--                    <a href="{{ route('my.leagueSchedule.info',$leagueInfor['slug']) }}"--}}
-{{--                       class="btn-custom {{ request()->routeIs('my.leagueSchedule.info') ? 'active' : '' }}">--}}
-{{--                        {{ __('Schedule') }}--}}
-{{--                    </a>--}}
-{{--                    <a href="{{ route('my.leaguePlayer.info',$leagueInfor['slug']) }}"--}}
-{{--                       class="btn-custom {{ request()->routeIs('my.leaguePlayer.info') ? 'active' : '' }}">--}}
-{{--                        {{ __('Player') }}--}}
-{{--                    </a>--}}
-{{--                    <a href="{{ route('league.leagueSetting',$leagueInfor['slug']) }}"--}}
-{{--                       class="btn-custom {{ request()->routeIs('league.leagueSetting') ? 'active' : '' }}">--}}
-{{--                        {{ __('Setting') }}--}}
-{{--                    </a>--}}
-{{--                    <!-- Dropdown -->--}}
-{{--                    --}}{{--                @if(Auth::check() &&  Auth::user()->id == $leagueInfor->owner_id)--}}
-{{--                    --}}{{--                    <!-- Dropdown -->--}}
-{{--                    --}}{{--                        <div class="dropdown">--}}
-{{--                    --}}{{--                            <button class="btn btn-custom" type="button" data-bs-toggle="dropdown" aria-expanded="false">--}}
-{{--                    --}}{{--                                {{ __('Setting') }} <i class="bi bi-gear"></i>--}}
-{{--                    --}}{{--                            </button>--}}
-{{--                    --}}{{--                            <ul class="dropdown-menu">--}}
-{{--                    --}}{{--                                <li><a class="dropdown-item" href="{{route('my.infoMyLeague',$leagueInfor['slug'])}}">{{'League Information'}}</a></li>--}}
-{{--                    --}}{{--                                <li>--}}
-{{--                    --}}{{--                                    <a class="openDeleteModal dropdown-item" href="#" data-url="{{ route('delete.myLeague', $leagueInfor->id) }}" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">--}}
-{{--                    --}}{{--                                        {{ 'Delete League' }}--}}
-{{--                    --}}{{--                                    </a>--}}
-{{--                    --}}{{--                                </li>--}}
-{{--                    --}}{{--                            </ul>--}}
-{{--                    --}}{{--                        </div>--}}
+            <div class="container d-flex gap-2 mt-4">
+                @if(now() >= date('Y-m-d', strtotime($leagueInfor->start_date)))
+                    <a href="{{ route('showGeneralNews.info', $leagueInfor['slug']) }}"
+                       class="btn-custom {{ request()->routeIs('showGeneralNews.info') ? 'active' : '' }}">
+                        {{ __('News') }}
+                    </a>
+                    <a href="{{ route('leagueResult.info', $leagueInfor['slug']) }}"
+                       class="btn-custom {{ request()->routeIs('leagueResult.info') ? 'active' : '' }}">
+                        {{ __('Result') }}
+                    </a>
+                    <a href="{{ route('showRank.info', $leagueInfor['slug']) }}"
+                       class="btn-custom {{ request()->routeIs('showRank.info') ? 'active' : '' }}">
+                        {{ __('Rank') }}
+                    </a>
+                @endif
+                @if( $currentDate < $startDate)
+                    <a href="{{ route('registerLeague.info', $leagueInfor['slug']) }}"
+                       class="btn-custom {{ request()->routeIs('registerLeague.info') ? 'active' : '' }}">
+                        {{ __('Register League') }}
+                    </a>
 
-{{--                    --}}{{--                        <!-- Bootstrap Modal -->--}}
-{{--                    --}}{{--                        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">--}}
-{{--                    --}}{{--                            <div class="modal-dialog modal-dialog-centered">--}}
-{{--                    --}}{{--                                <div class="modal-content border-0 shadow-lg">--}}
-{{--                    --}}{{--                                    <!-- Header -->--}}
-{{--                    --}}{{--                                    <div class="modal-header bg-danger text-white">--}}
-{{--                    --}}{{--                                        <h5 class="modal-title fw-bold" id="confirmDeleteModalLabel">--}}
-{{--                    --}}{{--                                            <i class="bi bi-exclamation-triangle-fill "></i> {{ 'Delete League' }}--}}
-{{--                    --}}{{--                                        </h5>--}}
-{{--                    --}}{{--                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
-{{--                    --}}{{--                                    </div>--}}
+                    <a href="{{ route('showListRegister.info', $leagueInfor['slug']) }}"
+                       class="btn-custom {{ request()->routeIs('showListRegister.info') ? 'active' : '' }}">
+                        {{ __('List Register') }}
+                    </a>
+                @endif
+                @if($leagueInfor->format_of_league == "knockout")
+                    <a href="{{ route('leagueResult.bracket', $leagueInfor['slug']) }}"
+                       class="btn-custom {{ request()->routeIs('leagueResult.bracket') ? 'active' : '' }}">
+                        {{ __('Bracket') }}
+                    </a>
+                @endif
 
-{{--                    --}}{{--                                    <!-- Body -->--}}
-{{--                    --}}{{--                                    <div class="modal-body text-center">--}}
-{{--                    --}}{{--                                        <p class="text-dark fw-medium fs-5">--}}
-{{--                    --}}{{--                                            {{ 'Are you sure you want to delete this league?' }}--}}
-{{--                    --}}{{--                                        </p>--}}
-{{--                    --}}{{--                                    </div>--}}
+                <a href="{{ route('leagueSchedule.info', $leagueInfor['slug']) }}"
+                   class="btn-custom {{ request()->routeIs('leagueSchedule.info') ? 'active' : '' }}">
+                    {{ __('Schedule') }}
+                </a>
 
-{{--                    --}}{{--                                    <!-- Footer -->--}}
-{{--                    --}}{{--                                    <div class="modal-footer d-flex justify-content-between">--}}
-{{--                    --}}{{--                                        <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">--}}
-{{--                    --}}{{--                                            <i class="bi bi-x-lg"></i> {{ 'Cancel' }}--}}
-{{--                    --}}{{--                                        </button>--}}
-{{--                    --}}{{--                                        <form id="deleteForm" method="POST">--}}
-{{--                    --}}{{--                                            @csrf--}}
-{{--                    --}}{{--                                            @method('DELETE')--}}
-{{--                    --}}{{--                                            <button type="submit" class="btn btn-danger px-4">--}}
-{{--                    --}}{{--                                                <i class="bi bi-trash"></i> {{ 'Delete' }}--}}
-{{--                    --}}{{--                                            </button>--}}
-{{--                    --}}{{--                                        </form>--}}
-{{--                    --}}{{--                                    </div>--}}
-{{--                    --}}{{--                                </div>--}}
-{{--                    --}}{{--                            </div>--}}
-{{--                    --}}{{--                        </div>--}}
-{{--                    --}}{{--                    @endif--}}
-{{--                </div>--}}
-{{--            </div>--}}
+                <a href="{{ route('leaguePlayer.info', $leagueInfor['slug']) }}"
+                   class="btn-custom {{ request()->routeIs('leaguePlayer.info') ? 'active' : '' }}">
+                    {{ __('Player') }}
+                </a>
+
+                <a href="{{ route('league.leagueSetting',$leagueInfor['slug']) }}"
+                   class="btn-custom {{ request()->routeIs('league.leagueSetting') ? 'active' : '' }}">
+                    {{ __('Setting') }}
+                </a>
+            </div>
         </div>
         <!-- Main Content -->
         <div class="wrapper-content-results container">
@@ -309,14 +262,37 @@
                                     <i class="fas fa-calendar-alt mr-2"></i> {{'Schedule Management'}}
                                 </a>
                             </li>
-                            <li class="{{ request()->routeIs('league.leagueJoin') ? 'active' : '' }}">
-                                <a href="{{ route('league.leagueJoin', $leagueInfor->slug) }}">
-                                    <i class="fas fa-trash-alt mr-2"></i> {{'Delete Tournament'}}
+                            <li>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#confirmDeleteLeagueModal">
+                                    <i class="fas fa-trash-alt mr-2"></i> {{ __('Delete Tournament') }}
                                 </a>
                             </li>
                         </ul>
-
                     </div>
+                    <!-- Delete League Modal -->
+                    <div class="modal fade" id="confirmDeleteLeagueModal" tabindex="-1" aria-labelledby="deleteLeagueLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-danger text-white">
+                                    <h5 class="modal-title" id="deleteLeagueLabel">{{ __('Confirm Delete') }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    {{ __('Are you sure you want to delete this tournament? This action cannot be undone.') }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Cancel') }}</button>
+
+                                    <form method="POST" action="{{ route('delete.myLeague', $leagueInfor->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <!-- Tournament List -->
                     <div class="col-md-9 p-3">
