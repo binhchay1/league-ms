@@ -34,12 +34,29 @@
     }
 
     @keyframes shake {
-        0% { transform: translateX(0); }
-        20% { transform: translateX(-2px); }
-        40% { transform: translateX(2px); }
-        60% { transform: translateX(-2px); }
-        80% { transform: translateX(2px); }
-        100% { transform: translateX(0); }
+        0% {
+            transform: translateX(0);
+        }
+
+        20% {
+            transform: translateX(-2px);
+        }
+
+        40% {
+            transform: translateX(2px);
+        }
+
+        60% {
+            transform: translateX(-2px);
+        }
+
+        80% {
+            transform: translateX(2px);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
     }
 
     .li-shake:hover {
@@ -83,9 +100,9 @@
                                                                         {{$schedule->player1Team1->name ?? "Team Win"}}
 
                                                                         @if($schedule->league && $schedule->league->type_of_league == "doubles")
-                                                                            @if($schedule->player1Team1 && $schedule->player1Team1->partner)
-                                                                                / {{ $schedule->player1Team1->partner->name ?? "Team Win" }}
-                                                                            @endif
+                                                                        @if($schedule->player1Team1 && $schedule->player1Team1->partner)
+                                                                        / {{ $schedule->player1Team1->partner->name ?? "Team Win" }}
+                                                                        @endif
                                                                         @endif
                                                                     </div>
                                                                     <div class="flag">
@@ -95,9 +112,9 @@
                                                                 </div>
                                                             </div>
                                                             <div class="score">
-                                                                    <div>
-                                                                        {{$schedule->result_team_1 ?? 0 }} - {{$schedule->result_team_2 ?? 0 }}
-                                                                    </div>
+                                                                <div>
+                                                                    {{$schedule->result_team_1 ?? 0 }} - {{$schedule->result_team_2 ?? 0 }}
+                                                                </div>
 
                                                             </div>
 
@@ -110,9 +127,9 @@
                                                                     <div class="player3 player">
                                                                         {{$schedule->player1Team2->name ?? "Team Win"}}
                                                                         @if($schedule->league && $schedule->league->type_of_league == "doubles")
-                                                                            @if($schedule->player1Team2 && $schedule->player1Team2->partner)
-                                                                                / {{ $schedule->player1Team2->partner->name ?? "Team Win" }}
-                                                                            @endif
+                                                                        @if($schedule->player1Team2 && $schedule->player1Team2->partner)
+                                                                        / {{ $schedule->player1Team2->partner->name ?? "Team Win" }}
+                                                                        @endif
                                                                         @endif
                                                                     </div>
                                                                 </div>
@@ -125,7 +142,7 @@
                                                     </div>
                                                 </a>
                                             </li>
-                                                        <!-- Score -->
+                                            <!-- Score -->
                                             <section id="livescore-top{{$count}}" class="container-livescore hidden" style="padding-bottom: 0px; color: white;">
                                                 <div class="tabs">
                                                     <div id="tab-content3" class="live-tab-content">
@@ -141,9 +158,9 @@
                                                                                 <a href="https://bwfworldtour.bwfbadminton.com/player/84064/ong-yew-sin">
                                                                                     {{$schedule->player1Team1->name ?? ""}}
                                                                                     @if($schedule->league && $schedule->league->type_of_league == "doubles")
-                                                                                        @if($schedule->player1Team1 && $schedule->player1Team1->partner)
-                                                                                           / {{ $schedule->player1Team1->partner->name ?? "Team Win" }}
-                                                                                        @endif
+                                                                                    @if($schedule->player1Team1 && $schedule->player1Team1->partner)
+                                                                                    / {{ $schedule->player1Team1->partner->name ?? "Team Win" }}
+                                                                                    @endif
                                                                                     @endif
                                                                                 </a>
                                                                             </div>
@@ -167,9 +184,9 @@
                                                                                 <a href="https://bwfworldtour.bwfbadminton.com/player/98935/m-r-arjun">
                                                                                     {{$schedule->player1Team2->name ?? ""}}
                                                                                     @if($schedule->league && $schedule->league->type_of_league == "doubles")
-                                                                                        @if($schedule->player1Team2 && $schedule->player1Team2->partner)
-                                                                                            / {{ $schedule->player1Team2->partner->name ?? "Team Win" }}
-                                                                                        @endif
+                                                                                    @if($schedule->player1Team2 && $schedule->player1Team2->partner)
+                                                                                    / {{ $schedule->player1Team2->partner->name ?? "Team Win" }}
+                                                                                    @endif
                                                                                     @endif
                                                                                 </a>
 
@@ -259,7 +276,7 @@
                                             <?php $count++ ?>
                                             @endforeach
                                             @empty
-                                                    <div class="alert alert-primary">{{"Tournament is updating data."}}</div>
+                                            <div class="alert alert-primary">{{"Tournament is updating data."}}</div>
                                             @endforelse
                                         </ul>
                                     </div>
@@ -287,7 +304,7 @@
         $popup.show();
 
         // Gỡ event cũ để tránh nhân đôi
-        $(document).off('click.livescore').on('click.livescore', function (e) {
+        $(document).off('click.livescore').on('click.livescore', function(e) {
             // Nếu click KHÔNG nằm trong popup và KHÔNG nằm trong chính li đã click
             if (
                 !$popup.is(e.target) &&

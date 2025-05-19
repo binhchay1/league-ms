@@ -1,10 +1,10 @@
 
 @if($registrations->isNotEmpty())
 <div class="d-flex flex-wrap gap-2 mb-3">
-    <span class="badge bg-primary px-3 py-2">
+    <span class="badge bg-primary px-3 py-2" style="font-size: 15px">
         {{'Inactive'}}: {{ $pendingCount }}
     </span>
-    <span class="badge bg-success px-3 py-2">
+    <span class="badge bg-success px-3 py-2" style="font-size: 15px">
         {{'Active'}}: {{ $acceptedCount }}
     </span>
 </div>

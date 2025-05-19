@@ -76,6 +76,7 @@
             <!-- Rounds -->
             <div class="card mb-3">
                 <div class="card-header bg-secondary fw-bold text-white">{{'Schedule'}}</div>
+                @once
                 @php
                     function getTeamNameFromPlayer($player, $type = 'singles') {
                         $name1 = $player->name ?? '---';
@@ -88,7 +89,7 @@
                         return $name1;
                     }
                 @endphp
-
+                @endonce
                 @foreach($firstThreeSchedules as $item)
                     <div class="card-body" style="font-size: 16px; display: flex">
                         <strong>⚔️</strong>
@@ -137,6 +138,7 @@
                         </div>
                     </div>
                 </div>
+                @once
                 @php
                     function getTeamName($rank) {
                         $name1 = $rank->user->name ?? '---';
@@ -144,6 +146,7 @@
                         return $name2 ? "$name1 - $name2" : $name1;
                     }
                 @endphp
+                @endonce
                 <div class="col-md-4">
                     <div class="stat-card bg-red">
                         <div class="fw-bold">{{ 'Highest Ranked Team' }}</div>

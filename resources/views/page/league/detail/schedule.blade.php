@@ -44,6 +44,7 @@ if (Auth::check()) {
 }
 
 ?>
+
 <body class="wp_router_page-template-default single single-wp_router_page postid-21">
     <div id="page" class="hfeed site">
         <div class="">
@@ -76,9 +77,9 @@ if (Auth::check()) {
                                                                     <div class="player1 player_winner player">
                                                                         {{ $schedule->player1Team1->name ?? "Team Win" }}
                                                                         @if($schedule->league && $schedule->league->type_of_league == "doubles")
-                                                                            @if($schedule->player1Team1 && $schedule->player1Team1->partner)
-                                                                                    / {{ $schedule->player1Team1->partner->name ?? "Team Win" }}
-                                                                            @endif
+                                                                        @if($schedule->player1Team1 && $schedule->player1Team1->partner)
+                                                                        / {{ $schedule->player1Team1->partner->name ?? "Team Win" }}
+                                                                        @endif
                                                                         @endif
                                                                     </div>
 
@@ -101,9 +102,9 @@ if (Auth::check()) {
                                                                     <div class="player3 player_winner player">
                                                                         {{ $schedule->player1Team2->name ?? "Team Win" }}
                                                                         @if($schedule->league && $schedule->league->type_of_league == "doubles")
-                                                                            @if($schedule->player1Team2 && $schedule->player1Team2->partner)
-                                                                                / {{ $schedule->player1Team2->partner->name ?? "Team Win" }}
-                                                                            @endif
+                                                                        @if($schedule->player1Team2 && $schedule->player1Team2->partner)
+                                                                        / {{ $schedule->player1Team2->partner->name ?? "Team Win" }}
+                                                                        @endif
                                                                         @endif
                                                                     </div>
                                                                 </div>
@@ -119,7 +120,7 @@ if (Auth::check()) {
 
                                             @endforeach
                                             @empty
-                                                <div class="alert alert-primary">{{"Tournament is updating data."}}</div>
+                                            <div class="alert alert-primary">{{"Tournament is updating data."}}</div>
                                             @endforelse
                                         </ul>
                                     </div>

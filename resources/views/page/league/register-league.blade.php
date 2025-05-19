@@ -112,13 +112,13 @@
                         </div>
                     </div>
                 </div>
-
-                <?php $current_date = strtotime(date("Y-m-d"));
-                $start_date = strtotime($leagueInfor->start_date);
-                $end_date_register = strtotime($leagueInfor->end_date_register);
-                $get_date_register = date('d/m/Y', strtotime($leagueInfor->end_date_register));
-                $format_register_date = $leagueInfor->end_date_register;
-                ?>
+<!--                --><?php //
+//                $current_date = strtotime(date("Y-m-d"));
+//                $start_date = strtotime($leagueInfor->start_date);
+//                $end_date_register = strtotime($leagueInfor->end_date_register);
+//                $get_date_register = date('d/m/Y', strtotime($leagueInfor->end_date_register));
+//                $format_register_date = $leagueInfor->end_date_register;
+//                ?>
 
                 <div class="container wrapper-content-results" style="padding: 10px; margin-top: 18px;   background: #eeeeee;">
                     <div class="modal" id="myModal">
@@ -147,15 +147,6 @@
                                                         <h6 class="">{{ __('End Date') }}: {{ $end_date }}</h6>
                                                         <p class="">{{ __('PRIZE MONEY USD ') }}${{ $leagueInfor->money
                                                             }}</p>
-                                                    </div>
-                                                    <div class="checkbox" align="center">
-                                                        <input id="check" name="checkbox" type="checkbox">
-                                                        <label
-                                                            for="checkbox">{{ __('I have read and agree to the tournament rules') }}</label>
-                                                    </div>
-                                                    <div align="center">
-                                                        <button id="open-tab1" class="btn btn-success"
-                                                                disabled>{{ __('Register ') }}</button>
                                                     </div>
                                                 </div>
                                             </div>

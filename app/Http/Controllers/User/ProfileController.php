@@ -179,6 +179,506 @@ class ProfileController extends Controller
         return view('page.user.my-league.my-league-create', compact('listLeague'));
     }
 
+    public function leagueSetting($slug)
+    {
+        $user = Auth::user()->id;
+        $leagueInfor = $this->leagueRepository->myLeague($slug, $user);
+        if (empty($leagueInfor)) {
+            abort(404);
+        }
+        $getListLeagues = $this->leagueRepository->getListLeagues();
+
+        $groupSchedule = [];
+        foreach ($leagueInfor->schedule as $schedule) {
+            $groupSchedule[$schedule['round']][] = $schedule;
+        }
+        $countMatch = count($leagueInfor->schedule) ?? 0;
+        $countPlayer = count($leagueInfor->userLeagues) ?? 0;
+        $firstGroup = reset($groupSchedule);
+        if (is_array($firstGroup)) {
+            $firstThreeSchedules = array_slice($firstGroup, 0, 3);
+        } else {
+            $firstThreeSchedules = [];
+        }
+
+        $registrations = UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->get();
+        $pendingCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 0)->count();
+        $acceptedCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 1)->count();
+
+        // ===== XỬ LÝ RANKING =====
+        $topRank = null;
+        $bottomRank = null;
+        if ($leagueInfor->format_of_league === 'round-robin') {
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->orderByDesc('point')
+                ->orderByDesc('win')
+                ->orderBy('match_played')
+                ->get();
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+
+        } elseif ($leagueInfor->format_of_league === 'knockout') {
+            $priority = [
+                null => 999,
+                'final' => 1,
+                'semi-finals' => 2,
+                'quarter-finals' => 3,
+                'round-of-16' => 4,
+                'round-of-32' => 5,
+                'round-of-64' => 6,
+            ];
+
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->get()
+                ->sortBy(fn($r) => $priority[$r->eliminated_round] ?? 999)
+                ->values(); // Reindex
+
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+        } else {
+            $ranking = collect(); // fallback nếu không xác định được loại giải
+        }
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+
+        $champion = null;
+        if ($hasEnded) {
+            if ($leagueInfor->format_of_league === 'knockout') {
+                $champion = $ranking->firstWhere('eliminated_round', null);
+            } else {
+                $champion = $ranking->first(); // đã sort theo point + win
+            }
+        }
+        return view('page.user.my-league.detail.setting', compact( 'champion','hasEnded', 'champion','topRank', 'bottomRank','ranking','registrations','pendingCount', 'acceptedCount','countPlayer','countMatch','firstThreeSchedules','leagueInfor','getListLeagues', 'groupSchedule'));
+    }
+
+    public function leagueActivity($slug)
+    {
+        $user = Auth::user()->id;
+        $leagueInfor = $this->leagueRepository->myLeague($slug, $user);
+        if (empty($leagueInfor)) {
+            abort(404);
+        }
+        $getListLeagues = $this->leagueRepository->getListLeagues();
+
+        $groupSchedule = [];
+        foreach ($leagueInfor->schedule as $schedule) {
+            $groupSchedule[$schedule['round']][] = $schedule;
+        }
+        $countMatch = count($leagueInfor->schedule) ?? 0;
+        $countPlayer = count($leagueInfor->userLeagues) ?? 0;
+        $firstGroup = reset($groupSchedule);
+        if (is_array($firstGroup)) {
+            $firstThreeSchedules = array_slice($firstGroup, 0, 3);
+        } else {
+            $firstThreeSchedules = [];
+        }
+
+        $registrations = UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->get();
+        $pendingCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 0)->count();
+        $acceptedCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 1)->count();
+
+        // ===== XỬ LÝ RANKING =====
+        $topRank = null;
+        $bottomRank = null;
+        if ($leagueInfor->format_of_league === 'round-robin') {
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->orderByDesc('point')
+                ->orderByDesc('win')
+                ->orderBy('match_played')
+                ->get();
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+
+        } elseif ($leagueInfor->format_of_league === 'knockout') {
+            $priority = [
+                null => 999,
+                'final' => 1,
+                'semi-finals' => 2,
+                'quarter-finals' => 3,
+                'round-of-16' => 4,
+                'round-of-32' => 5,
+                'round-of-64' => 6,
+            ];
+
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->get()
+                ->sortBy(fn($r) => $priority[$r->eliminated_round] ?? 999)
+                ->values(); // Reindex
+
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+        } else {
+            $ranking = collect(); // fallback nếu không xác định được loại giải
+        }
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+
+        $champion = null;
+        if ($hasEnded) {
+            if ($leagueInfor->format_of_league === 'knockout') {
+                $champion = $ranking->firstWhere('eliminated_round', null);
+            } else {
+                $champion = $ranking->first(); // đã sort theo point + win
+            }
+        }
+        return view('page.user.my-league.detail.setting.activity-history', compact( 'champion','hasEnded', 'champion','topRank', 'bottomRank','ranking','registrations','pendingCount', 'acceptedCount','countPlayer','countMatch','firstThreeSchedules','leagueInfor','getListLeagues', 'groupSchedule'));
+    }
+
+    public function leagueConfig($slug)
+    {
+        $listPlayer = \App\Enums\League::NUMBER_PLAYER;
+        $listTypeLeague = \App\Enums\League::TYPE;
+        $listFormatLeague = \App\Enums\League::FORMAT;
+        $user = Auth::user()->id;
+        $leagueInfor = $this->leagueRepository->myLeague($slug, $user);
+        if (empty($leagueInfor)) {
+            abort(404);
+        }
+        $getListLeagues = $this->leagueRepository->getListLeagues();
+
+        $groupSchedule = [];
+        foreach ($leagueInfor->schedule as $schedule) {
+            $groupSchedule[$schedule['round']][] = $schedule;
+        }
+        $countMatch = count($leagueInfor->schedule) ?? 0;
+        $countPlayer = count($leagueInfor->userLeagues) ?? 0;
+        $firstGroup = reset($groupSchedule);
+        if (is_array($firstGroup)) {
+            $firstThreeSchedules = array_slice($firstGroup, 0, 3);
+        } else {
+            $firstThreeSchedules = [];
+        }
+
+        $registrations = UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->get();
+        $pendingCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 0)->count();
+        $acceptedCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 1)->count();
+
+        // ===== XỬ LÝ RANKING =====
+        $topRank = null;
+        $bottomRank = null;
+        if ($leagueInfor->format_of_league === 'round-robin') {
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->orderByDesc('point')
+                ->orderByDesc('win')
+                ->orderBy('match_played')
+                ->get();
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+
+        } elseif ($leagueInfor->format_of_league === 'knockout') {
+            $priority = [
+                null => 999,
+                'final' => 1,
+                'semi-finals' => 2,
+                'quarter-finals' => 3,
+                'round-of-16' => 4,
+                'round-of-32' => 5,
+                'round-of-64' => 6,
+            ];
+
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->get()
+                ->sortBy(fn($r) => $priority[$r->eliminated_round] ?? 999)
+                ->values(); // Reindex
+
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+        } else {
+            $ranking = collect(); // fallback nếu không xác định được loại giải
+        }
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+
+        $champion = null;
+        if ($hasEnded) {
+            if ($leagueInfor->format_of_league === 'knockout') {
+                $champion = $ranking->firstWhere('eliminated_round', null);
+            } else {
+                $champion = $ranking->first(); // đã sort theo point + win
+            }
+        }
+        return view('page.user.my-league.detail.setting.config', compact( 'listTypeLeague','listPlayer', 'listFormatLeague','champion','hasEnded', 'champion','topRank', 'bottomRank','ranking','registrations','pendingCount', 'acceptedCount','countPlayer','countMatch','firstThreeSchedules','leagueInfor','getListLeagues', 'groupSchedule'));
+    }
+
+    public function leagueStatus($slug)
+    {
+        $user = Auth::user()->id;
+        $leagueInfor = $this->leagueRepository->myLeague($slug, $user);
+        if (empty($leagueInfor)) {
+            abort(404);
+        }
+        $getListLeagues = $this->leagueRepository->getListLeagues();
+
+        $groupSchedule = [];
+        foreach ($leagueInfor->schedule as $schedule) {
+            $groupSchedule[$schedule['round']][] = $schedule;
+        }
+        $countMatch = count($leagueInfor->schedule) ?? 0;
+        $countPlayer = count($leagueInfor->userLeagues) ?? 0;
+        $firstGroup = reset($groupSchedule);
+        if (is_array($firstGroup)) {
+            $firstThreeSchedules = array_slice($firstGroup, 0, 3);
+        } else {
+            $firstThreeSchedules = [];
+        }
+
+        $registrations = UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->get();
+        $pendingCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 0)->count();
+        $acceptedCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 1)->count();
+
+        // ===== XỬ LÝ RANKING =====
+        $topRank = null;
+        $bottomRank = null;
+        if ($leagueInfor->format_of_league === 'round-robin') {
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->orderByDesc('point')
+                ->orderByDesc('win')
+                ->orderBy('match_played')
+                ->get();
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+
+        } elseif ($leagueInfor->format_of_league === 'knockout') {
+            $priority = [
+                null => 999,
+                'final' => 1,
+                'semi-finals' => 2,
+                'quarter-finals' => 3,
+                'round-of-16' => 4,
+                'round-of-32' => 5,
+                'round-of-64' => 6,
+            ];
+
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->get()
+                ->sortBy(fn($r) => $priority[$r->eliminated_round] ?? 999)
+                ->values(); // Reindex
+
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+        } else {
+            $ranking = collect(); // fallback nếu không xác định được loại giải
+        }
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+
+        $champion = null;
+        if ($hasEnded) {
+            if ($leagueInfor->format_of_league === 'knockout') {
+                $champion = $ranking->firstWhere('eliminated_round', null);
+            } else {
+                $champion = $ranking->first(); // đã sort theo point + win
+            }
+        }
+        return view('page.user.my-league.detail.setting.activity-status', compact( 'champion','hasEnded', 'champion','topRank', 'bottomRank','ranking','registrations','pendingCount', 'acceptedCount','countPlayer','countMatch','firstThreeSchedules','leagueInfor','getListLeagues', 'groupSchedule'));
+    }
+
+    public function leagueManagerPlayer($slug)
+    {
+        $user = Auth::user()->id;
+        $leagueInfor = $this->leagueRepository->myLeague($slug, $user);
+        if (empty($leagueInfor)) {
+            abort(404);
+        }
+        $getListLeagues = $this->leagueRepository->getListLeagues();
+
+        $groupSchedule = [];
+        foreach ($leagueInfor->schedule as $schedule) {
+            $groupSchedule[$schedule['round']][] = $schedule;
+        }
+        $countMatch = count($leagueInfor->schedule) ?? 0;
+        $countPlayer = count($leagueInfor->userLeagues) ?? 0;
+        $firstGroup = reset($groupSchedule);
+        if (is_array($firstGroup)) {
+            $firstThreeSchedules = array_slice($firstGroup, 0, 3);
+        } else {
+            $firstThreeSchedules = [];
+        }
+
+        $registrations = UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->get();
+        $pendingCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 0)->count();
+        $acceptedCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 1)->count();
+
+        // ===== XỬ LÝ RANKING =====
+        $topRank = null;
+        $bottomRank = null;
+        if ($leagueInfor->format_of_league === 'round-robin') {
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->orderByDesc('point')
+                ->orderByDesc('win')
+                ->orderBy('match_played')
+                ->get();
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+
+        } elseif ($leagueInfor->format_of_league === 'knockout') {
+            $priority = [
+                null => 999,
+                'final' => 1,
+                'semi-finals' => 2,
+                'quarter-finals' => 3,
+                'round-of-16' => 4,
+                'round-of-32' => 5,
+                'round-of-64' => 6,
+            ];
+
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->get()
+                ->sortBy(fn($r) => $priority[$r->eliminated_round] ?? 999)
+                ->values(); // Reindex
+
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+        } else {
+            $ranking = collect(); // fallback nếu không xác định được loại giải
+        }
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+
+        $champion = null;
+        if ($hasEnded) {
+            if ($leagueInfor->format_of_league === 'knockout') {
+                $champion = $ranking->firstWhere('eliminated_round', null);
+            } else {
+                $champion = $ranking->first(); // đã sort theo point + win
+            }
+        }
+        return view('page.user.my-league.detail.setting.manager-player', compact( 'champion','hasEnded', 'champion','topRank', 'bottomRank','ranking','registrations','pendingCount', 'acceptedCount','countPlayer','countMatch','firstThreeSchedules','leagueInfor','getListLeagues', 'groupSchedule'));
+    }
+
+    public function leagueSchedule($slug)
+    {
+        $user = Auth::user()->id;
+        $leagueInfor = $this->leagueRepository->myLeague($slug, $user);
+        if (empty($leagueInfor)) {
+            abort(404);
+        }
+        $getListLeagues = $this->leagueRepository->getListLeagues();
+
+        $groupSchedule = [];
+        foreach ($leagueInfor->schedule as $schedule) {
+            $groupSchedule[$schedule['round']][] = $schedule;
+        }
+        $countMatch = count($leagueInfor->schedule) ?? 0;
+        $countPlayer = count($leagueInfor->userLeagues) ?? 0;
+        $firstGroup = reset($groupSchedule);
+        if (is_array($firstGroup)) {
+            $firstThreeSchedules = array_slice($firstGroup, 0, 3);
+        } else {
+            $firstThreeSchedules = [];
+        }
+
+        $registrations = UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->get();
+        $pendingCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 0)->count();
+        $acceptedCount =UserLeague::with(['user', 'partner'])
+            ->where('league_id', $leagueInfor->id)
+            ->where('status', 1)->count();
+
+        // ===== XỬ LÝ RANKING =====
+        $topRank = null;
+        $bottomRank = null;
+        if ($leagueInfor->format_of_league === 'round-robin') {
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->orderByDesc('point')
+                ->orderByDesc('win')
+                ->orderBy('match_played')
+                ->get();
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+
+        } elseif ($leagueInfor->format_of_league === 'knockout') {
+            $priority = [
+                null => 999,
+                'final' => 1,
+                'semi-finals' => 2,
+                'quarter-finals' => 3,
+                'round-of-16' => 4,
+                'round-of-32' => 5,
+                'round-of-64' => 6,
+            ];
+
+            $ranking = Ranks::where('league_id', $leagueInfor->id)
+                ->with(['user.partner', 'league'])
+                ->get()
+                ->sortBy(fn($r) => $priority[$r->eliminated_round] ?? 999)
+                ->values(); // Reindex
+
+            $topRank = $ranking->first();
+            $bottomRank = $ranking->last();
+        } else {
+            $ranking = collect(); // fallback nếu không xác định được loại giải
+        }
+        $currentDate = now()->format('Y-m-d');
+        $hasEnded = $currentDate > $leagueInfor->end_date;
+
+        $champion = null;
+        if ($hasEnded) {
+            if ($leagueInfor->format_of_league === 'knockout') {
+                $champion = $ranking->firstWhere('eliminated_round', null);
+            } else {
+                $champion = $ranking->first(); // đã sort theo point + win
+            }
+        }
+
+        $players = UserLeague::with('user')
+            ->where('league_id', $leagueInfor->id)
+            ->get()
+            ->map(function ($registration) {
+                return (object)[
+                    'id' => $registration->id, // hoặc registration_id nếu bạn dùng nó làm player1_id
+                    'name' => $registration->user->name ?? 'Unknown',
+                ];
+            });
+        $listSchedule = $leagueInfor->schedule;
+        return view('page.user.my-league.detail.setting.manager-schedule', compact( 'listSchedule', 'players','champion','hasEnded', 'champion','topRank', 'bottomRank','ranking','registrations','pendingCount', 'acceptedCount','countPlayer','countMatch','firstThreeSchedules','leagueInfor','getListLeagues', 'groupSchedule'));
+    }
+
     public function detailMyLeague($slug)
     {
         $user = Auth::user()->id;
