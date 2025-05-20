@@ -62,17 +62,17 @@ Route::middleware(['cache.notification'])->group(function () {
     Route::get('/search-group-training', [HomeController::class, 'searchGroupTraining'])->name('searchGroupTraining');
 });
 
-//exchange
-
-//product
-Route::get('exchange', [ExchangeController::class, 'index'])->name('exchange.home');
-Route::get('/product/{slug}', [ExchangeController::class, 'productDetail'])->name('exchange.productDetail');
-Route::get('/category/{slug}', [ExchangeController::class, 'categoryDetail'])->name('exchange.categoryDetail');
-Route::get('/search', [ExchangeController::class, 'search'])->name('products.search');
-Route::get('/filter-by', [ExchangeController::class, 'filter'])->name('products.searchInProduct');
-Route::get('/products/load-more', [ExchangeController::class, 'loadMore'])->name('exchange.loadMore');
-Route::get('/product-new', [ExchangeController::class, 'createProductNews'])->name('exchange.productSale');
-Route::get('/product-new/{slug}', [ExchangeController::class, 'editProductNews'])->name('exchange.editNews');
+////exchange
+//
+////product
+//Route::get('exchange', [ExchangeController::class, 'index'])->name('exchange.home');
+//Route::get('/product/{slug}', [ExchangeController::class, 'productDetail'])->name('exchange.productDetail');
+//Route::get('/category/{slug}', [ExchangeController::class, 'categoryDetail'])->name('exchange.categoryDetail');
+//Route::get('/search', [ExchangeController::class, 'search'])->name('products.search');
+//Route::get('/filter-by', [ExchangeController::class, 'filter'])->name('products.searchInProduct');
+//Route::get('/products/load-more', [ExchangeController::class, 'loadMore'])->name('exchange.loadMore');
+//Route::get('/product-new', [ExchangeController::class, 'createProductNews'])->name('exchange.productSale');
+//Route::get('/product-new/{slug}', [ExchangeController::class, 'editProductNews'])->name('exchange.editNews');
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -112,29 +112,32 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/user-profile/{id}/', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/change-password/', [ProfileController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password/', [ProfileController::class, 'updatePassword'])->name('update-password');
-    Route::get('/my-group/', [ProfileController::class, 'viewMyGroup'])->name('my.group');
-    Route::get('/my-group/{id}/active-user/', [ProfileController::class, 'myGroupActiveUser'])->name('my.myGroupActiveUser');
+
+    //my league
     Route::get('/my-league/', [ProfileController::class, 'viewMyLeague'])->name('my.league');
+    Route::get('/league-joined', [ProfileController::class, 'leagueJoin'])->name('league.leagueJoin');
+    Route::get('/league-created', [ProfileController::class, 'leagueCreated'])->name('league.leagueCreate');
     Route::get('/my-league-detail/{slug}', [ProfileController::class, 'detailMyLeague'])->name('my.leagueDetail');
-    Route::get('/my-league/{slug}/player/', [ProfileController::class, 'myLeaguePlayer'])->name('my.leaguePlayer.info');
-    Route::get('/my-league/{slug}/result/', [ProfileController::class, 'myLeagueResult'])->name('my.leagueResult.info');
-    Route::get('/my-league/{slug}/schedule/', [ProfileController::class, 'myLeagueSchedule'])->name('my.leagueSchedule.info');
-    Route::get('/my-league/{slug}/bracket/', [ProfileController::class, 'myLeagueBracket'])->name('my.leagueBracket.info');
-    Route::get('/my-league/{slug}/news/', [ProfileController::class, 'myLeagueNews'])->name('my.leagueNews.info');
-    Route::get('/my-league/{slug}/rank/', [ProfileController::class, 'showRank'])->name('my.leagueRank.info');
-    Route::get('/my-league/{slug}/player-register/', [ProfileController::class, 'myLeaguePlayerRegister'])->name('my.myLeaguePlayerRegister.info');
-    Route::get('/my-league/{slug}/active-player/', [ProfileController::class, 'myLeagueActivePlayer'])->name('my.myLeagueActivePlayer');
     Route::get('/my-league/{slug}/info/', [ProfileController::class, 'infoMyLeague'])->name('my.infoMyLeague');
+    Route::post('/my-league/schedule-robin/{id}', [ProfileController::class, 'updateScheduleRobin'])->name('myLeague.schedule.updateScheduleRobin');
+    Route::post('/my-league/schedule-knockout/{id}', [ProfileController::class, 'updateScheduleKnockout'])->name('myLeague.schedule.updateScheduleKnockout');
     Route::post('/update-my-league/{id}', [ProfileController::class, 'updateMyLeague'])->name('my.updateMyLeagueMyLeague');
     Route::get('/auto-create-schedule-league', [ProfileController::class, 'autoCreateMyLeague'])->name('auto.create.myLeague.schedule');
-    Route::get('/league-manager/', [HomeController::class, 'leagueManager'])->name('league-manager');
     Route::delete('delete/my-league/{id}', [ProfileController::class, 'deleteMyLeague'])->name('delete.myLeague');
+    Route::get('/my-league/{slug}/setting', [ProfileController::class, 'leagueSetting'])->name('league.leagueSetting');
+    Route::get('/my-league/{slug}/activity-history', [ProfileController::class, 'leagueActivity'])->name('league.leagueActivity');
+    Route::get('/my-league/{slug}/config', [ProfileController::class, 'leagueConfig'])->name('league.leagueConfig');
+    Route::get('/my-league/{slug}/activity-status', [ProfileController::class, 'leagueStatus'])->name('league.leagueStatus');
+    Route::get('/my-league/{slug}/manager-player', [ProfileController::class, 'leagueManagerPlayer'])->name('league.leagueManagerPlayer');
+    Route::get('/my-league/{slug}/manger-schedule', [ProfileController::class, 'leagueSchedule'])->name('league.leagueSchedule');
 
+//my group
+    Route::get('/my-group/', [ProfileController::class, 'viewMyGroup'])->name('my.group');
+    Route::get('/my-group/{id}/active-user/', [ProfileController::class, 'myGroupActiveUser'])->name('my.myGroupActiveUser');
     Route::get('/my-group/{id}/info/', [ProfileController::class, 'infoMyGroup'])->name('my.infoMyGroup');
     Route::post('/update-my-group/{id}', [ProfileController::class, 'updateMyGroup'])->name('my.updateMyGroup');
     Route::delete('delete/my-group/{id}', [ProfileController::class, 'deleteMyGroup'])->name('delete.myGroup');
-    Route::get('/league-joined', [ProfileController::class, 'leagueJoin'])->name('league.leagueJoin');
-    Route::get('/league-created', [ProfileController::class, 'leagueCreated'])->name('league.leagueCreate');
+
     Route::get('/group-joined', [ProfileController::class, 'groupJoin'])->name('group.groupJoin');
     Route::get('/group-created', [ProfileController::class, 'groupCreated'])->name('group.groupCreateByUser');
 

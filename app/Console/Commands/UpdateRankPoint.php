@@ -51,6 +51,17 @@ class UpdateRankPoint extends Command
      */
     public function handle()
     {
+        // Bước 1: Reset toàn bộ bảng rank về trạng thái ban đầu
+        $ranks = $this->rankRepository->getAll(); // bạn có thể thêm filter theo giải nếu muốn
+        foreach ($ranks as $rank) {
+            $this->rankRepository->updateById($rank->id, [
+                'match_played' => 0,
+                'win' => 0,
+                'lose' => 0,
+                'point' => 0,
+                'eliminated_round' => null,
+            ]);
+        }
         $getSchedule = Schedule::whereNotNull('result_team_1')
             ->whereNotNull('result_team_2')
             ->get();
@@ -80,7 +91,7 @@ class UpdateRankPoint extends Command
                 ]);
             }
             // 3. Cập nhật bảng ranks
-            if ($schedule->league->format_of_league === 'round-robin') {
+            if ($schedule->league?->format_of_league === 'round-robin') {
                 // Lấy điểm kết quả trận
                 $team1Score = $schedule->result_team_1;
                 $team2Score = $schedule->result_team_2;
@@ -133,10 +144,11 @@ class UpdateRankPoint extends Command
                 $team1Rank->save();
                 $team2Rank->save();
             } else {
-                // Knockout: loại đội thua
-
+                // Knockout: cập nhật kết quả trận và loại đội thua
+                $isFinal = $schedule->round === 'final';
                 // Cập nhật team thắng
                 $winnerRank = $this->rankRepository->getByLeagueAndTeam($schedule->league_id, $winnerTeamId);
+
                 if (!$winnerRank) {
                     $winnerRank = $this->rankRepository->create([
                         'league_id' => $schedule->league_id,
@@ -145,15 +157,23 @@ class UpdateRankPoint extends Command
                         'win' => 1,
                         'lose' => 0,
                         'point' => 0,
+                        'eliminated_round' => $isFinal ? 'champion' : null,
                     ]);
                 } else {
                     $winnerRank->match_played += 1;
                     $winnerRank->win += 1;
+
+                    // Nếu đây là trận chung kết thì set champion
+                    if ($isFinal) {
+                        $winnerRank->eliminated_round = 'champion';
+                    }
+
                     $winnerRank->save();
                 }
 
-                // Cập nhật team thua
+// Cập nhật team thua
                 $loserRank = $this->rankRepository->getByLeagueAndTeam($schedule->league_id, $loserTeamId);
+
                 if (!$loserRank) {
                     $loserRank = $this->rankRepository->create([
                         'league_id' => $schedule->league_id,
@@ -162,7 +182,7 @@ class UpdateRankPoint extends Command
                         'win' => 0,
                         'lose' => 1,
                         'point' => 0,
-                        'eliminated_round' => $schedule->round
+                        'eliminated_round' => $schedule->round,
                     ]);
                 } else {
                     $loserRank->match_played += 1;
@@ -170,6 +190,7 @@ class UpdateRankPoint extends Command
                     $loserRank->eliminated_round = $schedule->round;
                     $loserRank->save();
                 }
+
             }
         }
         // 4. Cập nhật vị trí xếp hạng cho giải vòng tròn

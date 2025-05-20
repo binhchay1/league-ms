@@ -18,11 +18,18 @@ class RankRepository extends BaseRepository
             ->first();
     }
 
-//    public function updateById($id,  $data)
-//    {
-//        return $this->model->where('id', $id)->update($data);
-//    }
+    public function getAll()
+    {
+        return $this->model->get();
+    }
 
+    public function getOrCreate($leagueId, $teamId)
+    {
+        return $this->model->firstOrCreate(
+            ['league_id' => $leagueId, 'team_id' => $teamId],
+            ['match_played' => 0, 'win' => 0, 'lose' => 0, 'point' => 0]
+        );
+    }
 
 // Lấy toàn bộ rank của một giải
     public function getRankingByLeague($leagueId)

@@ -56,4 +56,26 @@ class UserLeagueRepository extends BaseRepository
             ->exists();
     }
 
+    public function countRegistration($league)
+    {
+        return $this->model->with(['user', 'partner'])
+            ->where('league_id', $league)
+            ->get();
+    }
+
+    public function pendingCount($league)
+    {
+        return $this->model->with(['user', 'partner'])
+            ->where('league_id', $league)
+            ->where('status', 0)->count();
+    }
+
+    public function acceptedCount($league)
+    {
+        return $this->model->with(['user', 'partner'])
+            ->where('league_id', $league)
+            ->where('status', 1)->count();
+    }
+
+
 }

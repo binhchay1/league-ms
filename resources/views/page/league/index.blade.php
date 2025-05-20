@@ -94,7 +94,7 @@
 
                                     <!-- Mô tả ngắn -->
                                     <p class="league-info p-0">
-                                        {{ $league->type_of_league }} || {{ $start_date }} || {{ $end_date }}
+                                        {{$league->format_of_league }} || {{ $league->type_of_league }} || {{ $start_date }} || {{ $end_date }}
                                         || {{ $league->location }}
                                     </p>
                                     <div class="league-stats">

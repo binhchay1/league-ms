@@ -15,7 +15,7 @@
         <div class="col-md-8">
             <div class="card" style=" margin-bottom: 20px">
                 <div class="card-header">
-                    <h3>{{ __('Profile') }}</h3>
+                    <h3>{{ __('Account Information') }}</h3>
                 </div>
                 <form method="POST" action="{{ route('profile.update', $dataUser['id']) }}" enctype="multipart/form-data">
                     @csrf
