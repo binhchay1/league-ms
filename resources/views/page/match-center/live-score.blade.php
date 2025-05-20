@@ -34,9 +34,6 @@
         color: white;
         border-radius: 5px;
     }
-</style>
-@section('content')
-<style>
     .score-box {
         width: 40px;
         height: 40px;
@@ -61,7 +58,12 @@
         line-height: 1;
         border-radius: 50%;
     }
+
+    .end-match {
+        font-size: 30px;
+    }
 </style>
+@section('content')
 
 <div class="container mt-4">
     <div class="card shadow">
@@ -73,12 +75,13 @@
                 {{-- Team 1 --}}
                 <div class="col-md-5">
                     <p class="team-name text-primary">{{ $getSchedule->player1Team1->name ?? 'Team 1' }}
-                        @if($getSchedule->player1Team1 && $getSchedule->player1Team1->partner)
-                            / {{ $getSchedule->player1Team1->partner->name ?? "" }}
+                        @if ($getSchedule->league && $getSchedule->league->type_of_league == 'doubles')
+                            @if($getSchedule->player1Team1 && $getSchedule->player1Team1->partner)
+                                / {{ $getSchedule->player1Team1->partner->name ?? "" }}
+                            @endif
                         @endif
                     </p>
 
-                    {{-- Hiển thị tỉ số --}}
                     @if($typeLive == 'live')
                         <div class="d-flex justify-content-center mb-2">
                             @for($i = 1; $i <= 2; $i++)
@@ -93,7 +96,7 @@
                             <button class="btn btn-danger btn-score mx-1" id="deduct-score-team-1"><i class="fas fa-minus"></i></button>
                         </div>
                     @else
-                        <p class="display-6 fw-bold">{{ __('Match Ended') }}</p>
+                        <p class="end-match fw-bold">{{ __('Match Ended') }}</p>
                     @endif
                 </div>
                 {{-- Set Info --}}
@@ -111,12 +114,14 @@
                 {{-- Team 2 --}}
                 <div class="col-md-5">
                     <p class="team-name text-danger">{{ $getSchedule->player1Team2->name ?? 'Team 2' }}
+                        @if ($getSchedule->league && $getSchedule->league->type_of_league == 'doubles')
+
                         @if($getSchedule->player1Team2 && $getSchedule->player1Team2->partner)
                             / {{ $getSchedule->player1Team2->partner->name ?? "" }}
                         @endif
+                        @endif
                     </p>
 
-                    {{-- Hiển thị tỉ số --}}
                     @if($typeLive == 'live')
                         <div class="d-flex justify-content-center mb-2">
                             @for($i = 1; $i <= 2; $i++)
@@ -131,13 +136,14 @@
                             <button class="btn btn-danger btn-score mx-1" id="deduct-score-team-2"><i class="fas fa-minus"></i></button>
                         </div>
                     @else
-                        <p class="display-6 fw-bold">{{ __('Match Ended') }}</p>
+                        <p class="end-match fw-bold">{{ __('Match Ended') }}</p>
                     @endif
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 <div class="modal" tabindex="-1" id="noti-modal">

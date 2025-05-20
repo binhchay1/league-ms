@@ -674,6 +674,7 @@ class HomeController extends Controller
         UpdateResultJob::dispatch($decode, $type, $score, $set, $this->scheduleRepository, $this->resultRepository, $request->get('new_score_player'), $request->get('player'))->onQueue('update-result');
 
         $this->scheduleRepository->updateScoreLiveById($getSchedule->id, $dataUpdate);
+
         return 'success';
     }
 

@@ -50,7 +50,7 @@
                             $hasChampion = $ranking->firstWhere('eliminated_round', 'champion') !== null;
 
                             if ($isKnockout && $hasChampion) {
-                                $icons = ['🥇', '🥈', '🥉'];
+                                $icons = ['🥇', '🥈'];
                                 $icon = $icons[$index] ?? $index + 1 . '.';
                             } else {
                                 $icon = $index + 1 . '.';
