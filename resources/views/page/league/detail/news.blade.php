@@ -48,11 +48,13 @@
 
                         @php
                             $isKnockout = $rank->league && $rank->league->format_of_league === 'knockout';
-                            $icons = ['🥇', '🥈', '🥉'];
-                            $icon = $icons[$index] ?? ($index + 1) . '.';
+                            $hasChampion = $ranking->firstWhere('eliminated_round', 'champion') !== null;
 
-                            if (!$isKnockout) {
-                                $icon = $rank->places ? $rank->places . '.' : $icon;
+                            if ($isKnockout && $hasChampion) {
+                                $icons = ['🥇', '🥈', '🥉'];
+                                $icon = $icons[$index] ?? ($index + 1) . '.';
+                            } else {
+                                $icon = ($index + 1) . '.';
                             }
 
                             $teamName = getTeamNameFromRank($rank);

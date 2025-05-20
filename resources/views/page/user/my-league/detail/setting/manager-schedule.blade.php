@@ -127,13 +127,35 @@
                                     <i class="fas fa-calendar-alt mr-2"></i> {{'Schedule Management'}}
                                 </a>
                             </li>
-                            <li class="{{ request()->routeIs('league.leagueJoin') ? 'active' : '' }}">
-                                <a href="{{ route('league.leagueJoin', $leagueInfor->slug) }}">
-                                    <i class="fas fa-trash-alt mr-2"></i> {{'Delete Tournament'}}
+                            <li>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#confirmDeleteLeagueModal">
+                                    <i class="fas fa-trash-alt mr-2"></i> {{ __('Delete Tournament') }}
                                 </a>
                             </li>
                         </ul>
 
+                    </div>
+                    <div class="modal fade" id="confirmDeleteLeagueModal" tabindex="-1" aria-labelledby="deleteLeagueLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-danger text-white">
+                                    <h5 class="modal-title" id="deleteLeagueLabel">{{ __('Confirm Delete') }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    {{ __('Are you sure you want to delete this tournament? This action cannot be undone.') }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Cancel') }}</button>
+
+                                    <form method="POST" action="{{ route('delete.myLeague', $leagueInfor->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Tournament List -->

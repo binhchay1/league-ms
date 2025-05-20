@@ -55,7 +55,7 @@ $format_register_date = $leagueInfor->end_date_register;
                     </div>
                     <div class="" id="info-league">
                         <h2 class="p-0">{{ $leagueInfor->name }}</h2>
-                        <p class="card-text display"><?php echo number_format($leagueInfor->money ?? 0) . " VND" ?> || {{$leagueInfor->type_of_league}} || {{$leagueInfor->location}}</p>
+                        <p class="card-text display"><?php echo number_format($leagueInfor->money ?? 0) . " VND" ?> || {{$leagueInfor->format_of_league}} || {{$leagueInfor->type_of_league}} || {{$leagueInfor->location}}</p>
                         <p class="display">
                             <i class="bi bi-geo-alt"></i> <em>{{ __('Location: ') }} {{$leagueInfor->location}}</em>
                         </p>
@@ -118,19 +118,6 @@ $format_register_date = $leagueInfor->end_date_register;
                             {{ __('Setting') }}
                         </a>
                     @endif
-
-                    {{--                        @if(Auth::check() && Auth::user()->id == $leagueInfor->owner_id)--}}
-                    {{--                        <div class="dropdown">--}}
-                    {{--                            <a class="btn-custom dropdown-toggle {{ request()->routeIs('my.infoMyLeague') ? 'active' : '' }}"--}}
-                    {{--                                data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">--}}
-                    {{--                                {{ __('Setting') }} <i class="bi bi-gear"></i>--}}
-                    {{--                            </a>--}}
-                    {{--                            <ul class="dropdown-menu">--}}
-                    {{--                                <li><a class="dropdown-item" href="{{ route('my.infoMyLeague', $leagueInfor['slug']) }}">League Information</a></li>--}}
-                    {{--                                <li><a class="dropdown-item" href="#">Delete League</a></li>--}}
-                    {{--                            </ul>--}}
-                    {{--                        </div>--}}
-                    {{--                        @endif--}}
                 </div>
             </div>
             <div class="container wrapper-content-results" style="padding: 0px; margin-top: 18px;">

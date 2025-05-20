@@ -145,8 +145,8 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($ranking as $index => $rank)
-        <tr>
+    @foreach ($ranking as $index => $rank)
+        <tr class="{{ is_null($rank->eliminated_round)  }}">
             <td>{{ $index + 1 }}</td>
             <td class="text-start fw-semibold text-success">
                 {{ $rank->user->name ?? '---' }}
@@ -158,14 +158,29 @@
             <td>{{ $rank->win }}</td>
             <td>{{ $rank->lose }}</td>
             <td>
-                @if ($rank->eliminated_round)
-                Round {{ $rank->eliminated_round }}
-                @else
-                Champion
-                @endif
+                @switch($rank->eliminated_round)
+                    @case('champion')
+                    <span class="badge bg-warning text-dark">🏆 {{'champion (win)'}}</span>
+                    @break
+                    @case('final')
+                    {{"final (lose)"}}
+                    @break
+                    @case('semi-finals')
+                    {{"semi-finals"}}
+                    @break
+                    @case('quarter-finals')
+                    {{"quarter-finals"}}
+                    @break
+                    @default
+                    @if (is_null($rank->eliminated_round))
+                        <span class="text-primary fw-semibold">{{'Into the Finals'}}</span>
+                    @else
+                        {{ $rank->eliminated_round }}
+                    @endif
+                @endswitch
             </td>
         </tr>
-        @endforeach
+    @endforeach
     </tbody>
 </table>
 @else
