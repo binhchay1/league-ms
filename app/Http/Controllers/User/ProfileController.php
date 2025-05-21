@@ -601,8 +601,8 @@ class ProfileController extends Controller
                     'round' => $currentRound,
                     'time' => $timeInDay,
                     'date' => $dateData,
-                    'player1_team_1' =>  null,
-                    'player1_team_2' =>  null,
+                    'player1_team_1' => $player1 ??  null,
+                    'player1_team_2' => $player2 ?? null,
                     'created_at' =>  now(),
                     'updated_at' =>  now(),
                 ];
