@@ -43,6 +43,7 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
+            "app/Helpers/LeagueHelper.php",
             "app/Helpers/TeamHelper.php",
             "app/Helpers/RankHelper.php"
         ]

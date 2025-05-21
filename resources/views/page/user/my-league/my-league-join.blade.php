@@ -78,8 +78,11 @@
                                                         </a>
                                                     </div>
 
-                                                    <p class="card-text"><?php echo number_format($row->money ?? 0) . ' VND'; ?> ||
-                                                        {{ $row->type_of_league }} || {{ $row->location }}</p>
+                                                    <p class="card-text">
+                                                        <?php echo number_format($row->money ?? 0) . ' VND'; ?> ||
+                                                        {{ $row->format_of_league }} || {{ $row->type_of_league }} ||
+                                                        {{ $row->location }}
+                                                    </p>
                                                     @if (now()->between($row->start_date, $row->end_date))
                                                         <span
                                                             class="status-league p-1 bg-success text-white rounded">{{ 'Active' }}</span>
@@ -94,11 +97,8 @@
                                                             class="status-league p-1 bg-danger text-white rounded">{{ 'Ended ' }}</span>
                                                     @endif
                                                 </div>
-
                                             </div>
-
                                         </div>
-
                                     </div>
                                 @endif
                             @endforeach
