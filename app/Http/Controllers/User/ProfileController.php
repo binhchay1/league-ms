@@ -22,6 +22,7 @@ use App\Repositories\UserRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -302,87 +303,6 @@ class ProfileController extends Controller
         return view('page.user.my-league.detail.setting.manager-schedule', compact( 'listSchedule', 'players','firstThreeSchedules','leagueInfor','getListLeagues', 'groupSchedule'));
     }
 
-    public function detailMyLeague($slug)
-    {
-        $user = Auth::user()->id;
-        $leagueInfor = $this->leagueRepository->myLeague($slug, $user);
-        if (empty($leagueInfor)) {
-            abort(404);
-        }
-        $getListLeagues = $this->leagueRepository->getListLeagues();
-
-        $groupSchedule = [];
-        foreach ($leagueInfor->schedule as $schedule) {
-            $groupSchedule[$schedule['round']][] = $schedule;
-        }
-        $countMatch = count($leagueInfor->schedule) ?? 0;
-        $countPlayer = count($leagueInfor->userLeagues) ?? 0;
-        $firstGroup = reset($groupSchedule);
-        if (is_array($firstGroup)) {
-            $firstThreeSchedules = array_slice($firstGroup, 0, 3);
-        } else {
-            $firstThreeSchedules = [];
-        }
-
-        $registrations = UserLeague::with(['user', 'partner'])
-            ->where('league_id', $leagueInfor->id)
-            ->get();
-        $pendingCount =UserLeague::with(['user', 'partner'])
-            ->where('league_id', $leagueInfor->id)
-            ->where('status', 0)->count();
-        $acceptedCount =UserLeague::with(['user', 'partner'])
-            ->where('league_id', $leagueInfor->id)
-            ->where('status', 1)->count();
-
-        // ===== XỬ LÝ RANKING =====
-        $topRank = null;
-        $bottomRank = null;
-        if ($leagueInfor->format_of_league === 'round-robin') {
-            $ranking = Ranks::where('league_id', $leagueInfor->id)
-                ->with(['user.partner', 'league'])
-                ->orderByDesc('point')
-                ->orderByDesc('win')
-                ->orderBy('match_played')
-                ->get();
-            $topRank = $ranking->first();
-            $bottomRank = $ranking->last();
-
-        } elseif ($leagueInfor->format_of_league === 'knockout') {
-            $priority = [
-                null => 999,
-                'final' => 1,
-                'semi-finals' => 2,
-                'quarter-finals' => 3,
-                'round-of-16' => 4,
-                'round-of-32' => 5,
-                'round-of-64' => 6,
-            ];
-
-            $ranking = Ranks::where('league_id', $leagueInfor->id)
-                ->with(['user.partner', 'league'])
-                ->get()
-                ->sortBy(fn($r) => $priority[$r->eliminated_round] ?? 999)
-                ->values(); // Reindex
-
-            $topRank = $ranking->first();
-            $bottomRank = $ranking->last();
-        } else {
-            $ranking = collect(); // fallback nếu không xác định được loại giải
-        }
-        $currentDate = now()->format('Y-m-d');
-        $hasEnded = $currentDate > $leagueInfor->end_date;
-
-        $champion = null;
-        if ($hasEnded) {
-            if ($leagueInfor->format_of_league === 'knockout') {
-                $champion = $ranking->firstWhere('eliminated_round', null);
-            } else {
-                $champion = $ranking->first(); // đã sort theo point + win
-            }
-        }
-        return view('page.user.my-league.detail-my-league', compact( 'champion','hasEnded', 'champion','topRank', 'bottomRank','ranking','registrations','pendingCount', 'acceptedCount','countPlayer','countMatch','firstThreeSchedules','leagueInfor','getListLeagues', 'groupSchedule'));
-    }
-
     public function infoMyLeague($slug)
     {
         $leagueInfor = $this->leagueRepository->showInfo($slug);
@@ -617,90 +537,93 @@ class ProfileController extends Controller
             }
         }
     } else {
-            if ($totalMembers < 4) {
-                $report = __('The number of members participating in the tournament must be greater than 4');
-                return back()->with('error', $report);
+        if ($totalMembers < 4) {
+            return back()->with('error', __('The number of members participating in the tournament must be greater than 4'));
+        }
+
+        $dataSchedule = [];
+        $countMatch = 1;
+        $countNextDate = 1;
+
+// Tính tổng số vòng knockout
+        $totalRound = (int) log($totalMembers, 2);
+
+// Xác định vòng đầu tiên
+        $currentRound = getRoundNameByLevel($totalRound, 1);
+
+// Ghép cặp ban đầu
+        for ($i = 0; $i < count($listAuto); $i += 2) {
+            if ($countNextDate == 4) {
+                $dateData = date('Y-m-d', strtotime($dateData . ' +1 day'));
+                $countNextDate = 1;
             }
 
-            if ($totalMembers == 4) {
-                $round = 'semi-finals';
-            } elseif ($totalMembers <= 8) {
-                $round = 'quarter-finals';
-            } elseif ($totalMembers <= 16) {
-                $round = 'round 2';
-            } else {
-                $round = 'round 1';
+            $data = [
+                'league_id' => $getLeague->id,
+                'match' => $countMatch,
+                'round' => $currentRound,
+                'time' => $timeInDay,
+                'date' => $dateData,
+                'player1_team_1' => $listAuto[$i],
+            ];
+
+            if (isset($listAuto[$i + 1])) {
+                $data['player1_team_2'] = $listAuto[$i + 1];
             }
 
-            for ($i = 0; $i < count($listAuto); $i++) {
-                if ($i % 2 != 0) {
-                    continue;
-                }
+            $dataSchedule[] = $data;
+
+            // Cập nhật thời gian
+            $endTime = strtotime($timeInDay) + (90 * 60); // 90 phút mỗi trận
+            $timeInDay = date('H:i:s', $endTime);
+            $countMatch++;
+            $countNextDate++;
+        }
+
+        $matchesInPrevRound = $countMatch - 1;
+        $matchesRemaining = $matchesInPrevRound;
+        $indexRound = 2;
+
+        while ($matchesRemaining > 1) {
+            $matchesRemaining = intdiv($matchesRemaining, 2);
+            $currentRound = getRoundNameByLevel($totalRound, $indexRound);
+            $matchIndexInCurrentRound = 0;
+
+            for ($j = 0; $j < $matchesRemaining; $j++) {
                 if ($countNextDate == 4) {
                     $dateData = date('Y-m-d', strtotime($dateData . ' +1 day'));
                     $countNextDate = 1;
                 }
-                $data = [
-                    'league_id' => $getLeague->id,
-                    'match' => $countMatch,
-                    'round' => $round,
-                    'time' => $timeInDay,
-                    'date' => $dateData,
-                    'player1_team_1' => $listAuto[$i]
-                ];
-                if ($i != (count($listAuto) - 1)) {
-                    $data['player1_team_2'] = $listAuto[$i + 1];
-                }
-
-                $dataSchedule[] = $data;
-                $endTime = strtotime($timeInDay) + (90 * 60);
-                $timeInDay = date('h:i:s', $endTime);
-                $countMatch++;
-                $countNextDate++;
-            }
-
-            $whileMatch = $totalMatch = $preCountMatch = $countMatch - 1;
-            while ($whileMatch != 1) {
-                $whileMatch = $whileMatch / 2;
-                $totalMatch = $totalMatch + $whileMatch;
-            }
-            $forMatch = $totalMatch - $preCountMatch;
-            $countNextDate = 1;
-            $indexRound = 1;
-            $countMatchIndex = 0;
-            $preRound = $round;
-            $dateData = date('Y-m-d', strtotime($dateData . ' +1 day'));
-            for ($i = 0; $i < $forMatch; $i++) {
-                if ($countNextDate == 4) {
-                    $dateData = date('Y-m-d', strtotime($dateData . ' +1 day'));
-                    $countNextDate = 1;
-                }
-                if ($countMatchIndex == $preCountMatch / 2) {
-                    $preCountMatch = $preCountMatch / 2;
-                    $countMatchIndex = 0;
-                    $indexRound++;
-                }
-
-                $round = League::ROUND_PER_LEAGUE[$preRound][$indexRound];
 
                 $data = [
                     'league_id' => $getLeague->id,
                     'match' => $countMatch,
-                    'round' => $round,
+                    'round' => $currentRound,
                     'time' => $timeInDay,
                     'date' => $dateData,
+                    'player1_team_1' =>  null,
+                    'player1_team_2' =>  null,
+                    'created_at' =>  now(),
+                    'updated_at' =>  now(),
                 ];
 
                 $dataSchedule[] = $data;
+                // Cập nhật thời gian
                 $endTime = strtotime($timeInDay) + (90 * 60);
-                $timeInDay = date('h:i:s', $endTime);
+                $timeInDay = date('H:i:s', $endTime);
                 $countMatch++;
                 $countNextDate++;
-                $countMatchIndex++;
+                $matchIndexInCurrentRound++;
             }
 
+            $indexRound++;
+        }
     }
-        $this->scheduleRepository->createMultiple($dataSchedule);
+
+        // Chia data thành các nhóm nhỏ, ví dụ mỗi nhóm 100 bản ghi
+    foreach (array_chunk($dataSchedule, 100) as $chunk) {
+        DB::table('schedules')->insert($chunk);
+    }
 
         return back()->with('success', __('Create auto schedule successfully!'));
     }

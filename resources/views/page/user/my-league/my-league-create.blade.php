@@ -77,22 +77,13 @@
                                                             title="{{ $row->name }}">
                                                             <h5 class="card-title color-red">{{ $row->name }}</h5>
                                                         </a>
-                                                        {{-- @if (now() > date('Y-m-d', strtotime($row->end_date_register)) && now() < $row->start_date) --}}
-                                                        {{-- <div> --}}
-                                                        {{-- <a href="{{route('my.myLeagueActivePlayer', $row->slug)}}"> --}}
-                                                        {{-- <button class="btn btn-success">{{ __('Active Player Register League') }}</button> --}}
-                                                        {{-- </a> --}}
-                                                        {{-- @if (count($row->schedule) == 0) --}}
-                                                        {{-- <a href="{{ route('auto.create.myLeague.schedule') }}?s={{ $row->slug }}"> --}}
-                                                        {{-- <button class="btn btn-success">{{ __('Create Schedule') }}</button> --}}
-                                                        {{-- </a> --}}
-                                                        {{-- @endif --}}
-                                                        {{-- </div> --}}
-                                                        {{-- @endif --}}
                                                     </div>
 
-                                                    <p class="card-text"><?php echo number_format($row->money ?? 0) . ' VND'; ?> || {{ $row->type_of_league }}
-                                                        || {{ $row->location }}</p>
+                                                    <p class="card-text">
+                                                        <?php echo number_format($row->money ?? 0) . ' VND'; ?> ||
+                                                        {{ $row->format_of_league }} ||{{ $row->type_of_league }}
+                                                        || {{ $row->location }}
+                                                    </p>
                                                     @if (now()->between($row->start_date, $row->end_date))
                                                         <span
                                                             class="status-league p-1 bg-success text-white rounded">{{ 'Active' }}</span>
@@ -107,11 +98,8 @@
                                                             class="status-league p-1 bg-danger text-white rounded">{{ 'Ended ' }}</span>
                                                     @endif
                                                 </div>
-
                                             </div>
-
                                         </div>
-
                                     </div>
                                 @endif
                             @endforeach
