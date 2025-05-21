@@ -28,8 +28,8 @@
                         <div class="feature-icon">
                             <i class="fas fa-users"></i>
                         </div>
-                        <h5>{{'Community'}}</h5>
-                        <p>{{'Connect and follow active players in the community or anywhere in the world.'}}</p>
+                        <h5> {{__('Community')}}</h5>
+                        <p>{{__("Connect and follow active players in the community or anywhere in the world.")}}</p>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -37,8 +37,8 @@
                         <div class="feature-icon">
                             <i class="fas fa-trophy"></i>
                         </div>
-                        <h5>{{'Tournaments'}}</h5>
-                        <p>{{'Manage participants, create schedules, and score matches while tracking scores and stats.'}}</p>
+                        <h5>{{__("Tournaments")}}</h5>
+                        <p>{{__("Manage participants, create schedules, and score matches while tracking scores and stats.")}}</p>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -46,8 +46,8 @@
                         <div class="feature-icon">
                             <i class="fas fa-building"></i>
                         </div>
-                        <h5>{{'Team Management'}}</h5>
-                        <p>{{'Manage every aspect of your team, sports organization, association and federation.'}}</p>
+                        <h5>{{__("Team Management")}}</h5>
+                        <p>{{__("Manage every aspect of your team, sports organization, association and federation.")}}</p>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -55,8 +55,8 @@
                         <div class="feature-icon">
                             <i class="fas fa-video"></i>
                         </div>
-                        <h5>{{'Live Streaming'}}</h5>
-                        <p>{{'Turn your local community sporting event into a Super Bowl with Live Stream and commentary.'}}</p>
+                        <h5>{{__("Live Streaming")}}</h5>
+                        <p>{{__("Turn your local community sporting event into a Super Bowl with Live Stream and commentary.")}}</p>
                     </div>
                 </div>
             </div>
@@ -69,16 +69,16 @@
                 <img src="{{asset('/images/homepageimg1.png')}}" class="img-fluid floating" alt="Illustration">
             </div>
             <div class="col-md-6 text-content">
-                <p class="about-us"><span class="text-danger">{{'ABOUT US'}}</span></p>
-                <h1 class="p-0">{{'Simple league management to complex club management?'}}</h1>
-                <p class="p-0 text-gray">{{'Join our sports ecosystem!'}}</p>
+                <p class="about-us"><span class="text-danger">{{__("ABOUT US")}}</span></p>
+                <h1 class="p-0">{{__("Simple league management to complex club management?")}}</h1>
+                <p class="p-0 text-gray">{{__("Join our sports ecosystem!")}}</p>
                 <div>
-                    <p class="p-0"><strong>■ {{'Tournament and group management software'}}</strong></p>
-                    <p class="p-0">{{'A game changing way to organise tournaments. Built to suit small clubs to large leagues.'}}</p>
+                    <p class="p-0"><strong>■ {{__("Tournament and group management software")}}</strong></p>
+                    <p class="p-0">{{__("A game changing way to organise tournaments. Built to suit small clubs to large leagues.")}}</p>
                 </div>
                 <div>
-                    <p class="p-0"><strong>■ {{'Group management system'}}</strong></p>
-                    <p class="p-0">{{'People can join groups to participate in activities, announcements, and conversations.'}}</p>
+                    <p class="p-0"><strong>■ {{__("Group management system")}}</strong></p>
+                    <p class="p-0">{{__("People can join groups to participate in activities, announcements, and conversations.")}}</p>
                 </div>
             </div>
         </div>
@@ -86,48 +86,48 @@
 
     <section class="outstanding-features">
         <div class="container py-5">
-            <h2 class="text-center mb-4">{{'Outstanding features'}}</h2>
+            <h2 class="text-center mb-4">{{__("Outstanding features")}}</h2>
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="feature-box">
                         <i class="fas fa-user-edit icon text-primary"></i>
-                        <h4>{{'Register League'}}</h4>
-                        <p>{{'Build a consistent registration process and create easy-to-use forms.'}}</p>
+                        <h4>{{__("Register League")}}</h4>
+                        <p>{{__("Build a consistent registration process and create easy-to-use forms.")}}</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-box">
                         <i class="fas fa-calendar-alt icon text-danger"></i>
-                        <h4>{{'Competition Schedule'}}</h4>
-                        <p>{{'Easily schedule hundreds of matches with just a few clicks.'}}</p>
+                        <h4>{{__("Competition Schedule")}}</h4>
+                        <p>{{__("Easily schedule hundreds of matches with just a few clicks.")}}</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-box">
                         <i class="fas fa-bullhorn icon text-info"></i>
-                        <h4>{{'Communications'}}</h4>
-                        <p>{{'Manage media to bring the tournament to more people.'}}</p>
+                        <h4>{{__("Communications")}}</h4>
+                        <p>{{__("Manage media to bring the tournament to more people.")}}</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-box">
                         <i class="fas fa-chart-bar icon text-warning"></i>
-                        <h4>{{'Statistical'}}</h4>
-                        <p>{{'Build reports and instantly access tournament insights.'}}</p>
+                        <h4>{{__("Statistical")}}</h4>
+                        <p>{{__("Build reports and instantly access tournament insights.")}}</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-box">
                         <i class="fas fa-users icon text-success"></i>
-                        <h4>{{'Groups'}}</h4>
-                        <p>{{'Manage members when participating in group activities'}}</p>
+                        <h4>{{__("Groups")}}</h4>
+                        <p>{{__("Manage members when participating in group activities")}}</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-box">
                         <i class="fas fa-photo-video icon text-secondary"></i>
-                        <h4>{{'Media'}}</h4>
-                        <p>{{'Manage tournament images, videos and sync data easily.'}}</p>
+                        <h4>{{__("Media")}}</h4>
+                        <p>{{__("Manage tournament images, videos and sync data easily.")}}</p>
                     </div>
                 </div>
             </div>
@@ -135,28 +135,28 @@
     </section>
     <section>
         <div class="container py-5 text-center">
-            <h2 class="mb-4">{{'Benefits of Badmiton.io'}}</h2>
-            <p class="text-muted">{{'Digitalization of sports is an inevitable development trend!'}}</p>
+            <h2 class="mb-4">{{__("Benefits of Badmiton.io")}}</h2>
+            <p class="text-muted">{{__("Digitalization of sports is an inevitable development trend!")}}</p>
             <div class="row mt-4">
                 <div class="col-md-3 icon-box">
                     <i class="fas fa-calendar-alt"></i>
-                    <h5 class="mt-3">{{'Time'}}</h5>
-                    <p>{{'Save 90% of time on calls, emails, scheduling...'}}</p>
+                    <h5 class="mt-3">{{__("Time")}}</h5>
+                    <p>{{__("Save 90% of time on calls, emails, scheduling...")}}</p>
                 </div>
                 <div class="col-md-3 icon-box">
                     <i class="fas fa-exchange-alt active"></i>
-                    <h5 class="mt-3">{{'Convenience'}}</h5>
-                    <p>{{'Information is always available, accessible anytime, anywhere...'}}</p>
+                    <h5 class="mt-3">{{__("Convenience")}}</h5>
+                    <p>{{__("Information is always available, accessible anytime, anywhere...")}}</p>
                 </div>
                 <div class="col-md-3 icon-box">
                     <i class="fas fa-camera"></i>
-                    <h5 class="mt-3">{{'Storage capacity'}}</h5>
-                    <p>{{'Save tournament data, easily interact, comment...'}}</p>
+                    <h5 class="mt-3">{{__("Storage capacity")}}</h5>
+                    <p>{{__("Save tournament data, easily interact, comment...")}}</p>
                 </div>
                 <div class="col-md-3 icon-box">
                     <i class="fas fa-file-alt active"></i>
-                    <h5 class="mt-3">{{'Paper resources'}}</h5>
-                    <p>{{'Organize tournaments without printing, protect the environment...'}}</p>
+                    <h5 class="mt-3">{{__("Paper resources")}}</h5>
+                    <p>{{__("Organize tournaments without printing, protect the environment...")}}</p>
                 </div>
             </div>
         </div>
@@ -164,7 +164,7 @@
 
     <section>
         <div class="container my-5">
-            <h2 class="text-center fw-bold">{{"Some satisfied customer reviews about our products"}}</h2>
+            <h2 class="text-center fw-bold">{{__("Some satisfied customer reviews about our products")}}</h2>
             <div class="row mt-4">
                 <div class="col-md-4">
                     <div class="testimonial-card p-3">

@@ -40,8 +40,8 @@
                             <i class="bi bi-geo-alt"></i> <em>{{ __('Location: ') }} {{ $leagueInfor->location }}</em>
                         </p>
                         <p class="display">
-                            <i class="bi bi-calendar"></i> <em>{{ 'From: ' }} {{ $start_date }} ~
-                                {{ 'To: ' }}{{ $end_date }}</em>
+                            <i class="bi bi-calendar"></i> <em>{{ __('From: ') }} {{ $start_date }} ~
+                                {{ __('To: ') }}{{ $end_date }}</em>
                         </p>
                         <p class="display">
                             <i class="bi bi-people-fill"></i> <em>{{ __('Member: ') }}
@@ -168,14 +168,14 @@
                     <!-- Tournament List -->
                     <div class="col-md-9 p-3">
                         <div class="d-flex justify-content-between align-items-center league-title">
-                            <h4 class="p-0">{{ 'Management Schedule' }}</h4>
+                            <h4 class="p-0">{{ __('Management Schedule') }}</h4>
                         </div>
 
                         @if (count($leagueInfor->schedule) == 0)
                             @if (now() > date('Y-m-d', strtotime($leagueInfor->end_date_register)) && now() < $leagueInfor->start_date)
                                 <div class=" gap-3 mt-4">
                                     <p style="padding: 10px; background: #e7e7b6;">
-                                        {{ "League doesn't have a match schedule yet, create one." }}</p>
+                                        {{ __("League doesn't have a match schedule yet, create one.") }}</p>
                                     <a href="{{ route('auto.create.myLeague.schedule') }}?s={{ $leagueInfor->slug }}">
                                         <button class="btn btn-success">{{ __('Create Schedule') }}</button>
                                     </a>
@@ -183,18 +183,18 @@
                             @endif
                         @else
                             <div class="container mt-4">
-                                <h5 class="text-success fw-bold mb-3">{{ 'Schedule' }}</h5>
+                                <h5 class="text-success fw-bold mb-3">{{ __('Schedule') }}</h5>
                                 @if ($listSchedule->isNotEmpty())
                                     <table class="table table-bordered align-middle text-center">
                                         <thead class="table-light fw-bold">
                                             <tr>
                                                 <th>#</th>
-                                                <th>{{ 'Team 1' }}</th>
-                                                <th>{{ 'Team 2' }}</th>
-                                                <th>{{ 'Round' }}</th>
-                                                <th>{{ 'Match Date' }}</th>
-                                                <th>{{ 'Match Time' }}</th>
-                                                <th>{{ 'Action' }}</th>
+                                                <th>{{ __('Team 1') }}</th>
+                                                <th>{{ __('Team 2') }}</th>
+                                                <th>{{ __('Round') }}</th>
+                                                <th>{{ __('Match Date') }}</th>
+                                                <th>{{ __('Match Time') }}</th>
+                                                <th>{{ __('Action') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -262,7 +262,7 @@
                                                                     </div>
                                                                     <div class="modal-body">
                                                                         <div class="mb-3">
-                                                                            <label class="form-label">Match Date</label>
+                                                                            <label class="form-label">{{__("Match Date")}}</label>
                                                                             <input type="date" class="form-control "
                                                                                 name="date"
                                                                                 value="{{ $schedule->date }}">
@@ -272,7 +272,7 @@
                                                                             @enderror
                                                                         </div>
                                                                         <div class="mb-3">
-                                                                            <label class="form-label">Match Time</label>
+                                                                            <label class="form-label">{{__("Match Time")}}</label>
                                                                             <input type="time" class="form-control"
                                                                                 name="time"
                                                                                 value="{{ $schedule->time }}">
@@ -284,8 +284,8 @@
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         @if ($schedule->result_team_1 !== null || $schedule->result_team_2 !== null)
-                                                                            <span class="text-muted me-auto">Match already
-                                                                                has results</span>
+                                                                            <span class="text-muted me-auto">{{__('Match already
+                                                                                has results')}}</span>
                                                                         @endif
                                                                         <button type="submit" class="btn btn-primary"
                                                                             {{ $schedule->result_team_1 !== null || $schedule->result_team_2 !== null ? 'disabled' : '' }}>
@@ -320,7 +320,7 @@
 
                                                                     <div class="modal-body">
                                                                         <div class="mb-3">
-                                                                            <label class="form-label">Round</label>
+                                                                            <label class="form-label">{{__('Round')}}</label>
                                                                             <input type="text" class="form-control"
                                                                                 value="{{ $schedule->round }}" readonly>
                                                                         </div>
@@ -329,10 +329,10 @@
                                                                         @if (is_null($schedule->player1_team_1))
                                                                             <div class="mb-3">
                                                                                 <label for="player1_id"
-                                                                                    class="form-label">Player 1</label>
+                                                                                    class="form-label">{{__('Player 1')}}</label>
                                                                                 <select name="player1_team_1"
                                                                                     class="form-select" required>
-                                                                                    <option value="">-- Select Player
+                                                                                    <option value="">-- {{__('Select Player')}}
                                                                                         1 --</option>
                                                                                     @foreach ($players as $player)
                                                                                         <option
@@ -346,10 +346,10 @@
                                                                         @if (is_null($schedule->player1_team_2))
                                                                             <div class="mb-3">
                                                                                 <label for="player2_id"
-                                                                                    class="form-label">Player 2</label>
+                                                                                    class="form-label">{{__('Player 2')}}</label>
                                                                                 <select name="player1_team_2"
                                                                                     class="form-select" required>
-                                                                                    <option value="">-- Select Player
+                                                                                    <option value="">-- {{__('Select Player')}}
                                                                                         2 --</option>
                                                                                     @foreach ($players as $player)
                                                                                         <option
@@ -361,7 +361,7 @@
                                                                         @endif
 
                                                                         <div class="mb-3">
-                                                                            <label class="form-label">Match Date</label>
+                                                                            <label class="form-label">{{__('Match Date')}}</label>
                                                                             <input type="date" class="form-control"
                                                                                 name="date"
                                                                                 value="{{ $schedule->date }}"
@@ -380,7 +380,7 @@
                                                                     <div class="modal-footer">
                                                                         @if ($schedule->result_team_1 !== null || $schedule->result_team_2 !== null)
                                                                             <span
-                                                                                class="text-muted me-auto alert alert-warning">{{ "Match already has results, don't change" }}</span>
+                                                                                class="text-muted me-auto alert alert-warning">{{ __("Match already has results, don't change") }}</span>
                                                                         @endif
                                                                         <button type="submit" class="btn btn-primary"
                                                                             {{ $schedule->result_team_1 !== null || $schedule->result_team_2 !== null ? 'disabled' : '' }}>

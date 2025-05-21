@@ -296,7 +296,7 @@
                                                         @endif
                                                     @endforeach
                                                 @endisset
-                                                <option value="new">{{ 'Create new partner' }}</option>
+                                                <option value="new">{{__('Create new partner') }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -380,7 +380,7 @@
                                 </div>
                                 <div class="mb-12">
                                     <button
-                                        class="create-partner-btn btn btn-success w-10 mt-4 mb-12">{{ 'Create' }}</button>
+                                        class="create-partner-btn btn btn-success w-10 mt-4 mb-12">{{__('Create') }}</button>
                                 </div>
                             </form>
                         </div>

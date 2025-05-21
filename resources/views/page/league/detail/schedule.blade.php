@@ -81,7 +81,7 @@ if (Auth::check()) {
                                                                                 @if ($schedule->league && $schedule->league->type_of_league == 'doubles')
                                                                                     @if ($schedule->player1Team1 && $schedule->player1Team1->partner)
                                                                                         /
-                                                                                        {{ $schedule->player1Team1->partner->name ?? 'Team Win' }}
+                                                                                        {{ $schedule->player1Team1->partner->name ?? __('Team Win') }}
                                                                                     @endif
                                                                                 @endif
                                                                             </div>
@@ -109,7 +109,7 @@ if (Auth::check()) {
                                                                                 @if ($schedule->league && $schedule->league->type_of_league == 'doubles')
                                                                                     @if ($schedule->player1Team2 && $schedule->player1Team2->partner)
                                                                                         /
-                                                                                        {{ $schedule->player1Team2->partner->name ?? 'Team Win' }}
+                                                                                        {{ $schedule->player1Team2->partner->name ?? __('Team Win') }}
                                                                                     @endif
                                                                                 @endif
                                                                             </div>
@@ -125,7 +125,7 @@ if (Auth::check()) {
                                                     </li>
                                                 @endforeach
                                             @empty
-                                                <div class="alert alert-primary">{{ 'Tournament is updating data.' }}
+                                                <div class="alert alert-primary">{{ __('Tournament is updating data.') }}
                                                 </div>
                                             @endforelse
                                         </ul>

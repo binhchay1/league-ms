@@ -95,7 +95,7 @@
                 <div id="select-list-state card">
                     <ul class="select-list" id="select-state">
                         <li data-id="all"><a data-state="remaining" href="#" class="active-menu "
-                                data-toggle="tab">{{ __('All') }}</a></li>
+                                data-toggle="tab">{{ __('ALL') }}</a></li>
                         <li data-id="completed"><a data-state="completed" href="#"
                                 data-toggle="tab">{{ __('COMPLETED') }}</a></li>
                         <li data-id="next"><a data-state="next" href="#" data-toggle="tab">{{ __('NEXT') }}</a>
@@ -105,26 +105,27 @@
             </div>
 
             <!-- Form Tìm Kiếm -->
+            <!-- Form Tìm Kiếm -->
             <div class="col-md-8">
                 <form class="d-flex gap-2 justify-content-end" action="{{ route('searchLeague') }}" method="GET">
                     <select class="form-select" name="format">
-                        <option value="" {{ request('format') == '' ? 'selected' : '' }}>{{ 'Format' }}</option>
+                        <option value="" {{ request('format') == '' ? 'selected' : '' }}>{{ __('Format') }}</option>
                         <option value="round-robin" {{ request('format') == 'round-robin' ? 'selected' : '' }}>
-                            {{ 'Round Robin' }}</option>
+                            {{ __('Round Robin') }}</option>
                         <option value="knockout" {{ request('format') == 'knockout' ? 'selected' : '' }}>
-                            {{ 'Knockout' }}</option>
+                            {{ __('Knockout') }}</option>
                     </select>
                     <select class="form-select" name="sort">
-                        <option value="" {{ request('sort') == '' ? 'selected' : '' }}>{{ 'Sort by' }}</option>
-                        <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>{{ 'Latest' }}
+                        <option value="" {{ request('sort') == '' ? 'selected' : '' }}>{{ __('Sort by') }}</option>
+                        <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>{{ __('Latest') }}
                         </option>
-                        <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>{{ 'Oldest' }}
+                        <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>{{ __('Oldest') }}
                         </option>
                     </select>
 
                     <div class="input-group">
-                        <input type="text" class="form-control" name="query" placeholder="{{ 'Name league...' }}"
-                            value="{{ request('query') }}">
+                        <input type="text" class="form-control" name="query" placeholder="{{ __('Name league...') }}"
+                               value="{{ request('query') }}">
                         <button class="btn btn-success" type="submit">
                             <i class="fas fa-search"></i>
                         </button>

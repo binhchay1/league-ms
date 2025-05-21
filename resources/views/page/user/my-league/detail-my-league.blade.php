@@ -98,7 +98,7 @@
             {{-- Nội dung popup --}}
             <div class="relative z-10 text-center bg-gray-900 bg-opacity-80 px-6 py-8 rounded-lg shadow-lg">
                 <h2 class="text-2xl text-yellow-400 font-bold mb-4">
-                    {{ 'Congratulations to the defending champions of the tournament!' }}</h2>
+                    {{ __('Congratulations to the defending champions of the tournament!') }}</h2>
                 <img src="{{ asset('/league/player-team.jpg') }}"
                     class="mx-auto w-32 h-32 rounded-full border-4 border-yellow-500 mb-4" alt="Winner Avatar">
                 <h4 class="text-xxl text-white font-semibold">
@@ -134,8 +134,8 @@
                             <i class="bi bi-geo-alt"></i> <em>{{ __('Location: ') }} {{ $leagueInfor->location }}</em>
                         </p>
                         <p class="display">
-                            <i class="bi bi-calendar"></i> <em>{{ 'From: ' }} {{ $start_date }} ~
-                                {{ 'To: ' }}{{ $end_date }}</em>
+                            <i class="bi bi-calendar"></i> <em>{{ __('From: ') }} {{ $start_date }} ~
+                                {{ __('To: ') }}{{ $end_date }}</em>
                         </p>
                         <p class="display">
                             <i class="bi bi-people-fill"></i> <em>{{ __('Member: ') }}

@@ -55,7 +55,7 @@
                     <!-- Tournament List -->
                     <div class="col-md-9 p-3">
                         <div class="d-flex justify-content-between align-items-center league-title mb-3">
-                            <h4>{{ 'My leagues join' }}</h4>
+                            <h4>{{ __('My leagues join') }}</h4>
                             <a href="{{ route('league.createTour') }}">
                                 <button class="btn btn-success">{{ __('Create League') }}</button>
                             </a>
@@ -104,7 +104,7 @@
                             @endforeach
                         @else
                             <label class="m-0 block text-sm font-medium text-gray-700">
-                                {{ 'No tournament yet.' }}
+                                {{ __('No tournament yet.') }}
                             </label>
                         @endif
                     </div>

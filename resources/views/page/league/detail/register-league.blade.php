@@ -4,7 +4,7 @@
             <h4 class="text-center mb-10 text-white " style="opacity:1">
                 <span class="text-warning hidden" id="deadline-date">09/26/2024</span>
                 <span class="text-warning hidden" id="extend-time">23:59:59</span>
-                {{ 'The tournament allows online registration until the end of the day.' }} <span class="text-warning"
+                {{ __('The tournament allows online registration until the end of the day.') }} <span class="text-warning"
                     style="color:#efff00">{{ $get_date_register }}</span>
             </h4>
             <div id="clockdiv">
@@ -46,7 +46,7 @@
             <h4 class="text-center mb-10 text-white " style="opacity:1">
                 <span class="text-warning hidden" id="deadline-date">09/26/2024</span>
                 <span class="text-warning hidden" id="extend-time">23:59:59</span>
-                {{ 'Tournament registration has ended' }} <span class="text-warning"
+                {{__('Tournament registration has ended') }} <span class="text-warning"
                     style="color:#efff00">{{ $get_date_register }}</span>
             </h4>
             <div id="clockdiv">

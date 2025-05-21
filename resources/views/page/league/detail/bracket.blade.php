@@ -126,6 +126,6 @@
         </div>
     </div>
 @else
-    <div class="alert alert-primary">{{"Tournament is updating data."}}</div>
+    <div class="alert alert-primary">{{__("Tournament is updating data.")}}</div>
 @endif
 {{--@endif--}}

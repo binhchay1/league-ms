@@ -41,12 +41,12 @@
                         <ul class="sidebar-list mt-4">
                             <li class="{{ request()->routeIs('league.leagueCreate') ? 'active' : '' }}">
                                 <a href="{{ route('league.leagueCreate') }}">
-                                    <i class="fas fa-pen mr-2"></i> {{ 'League Created' }}
+                                    <i class="fas fa-pen mr-2"></i> {{__('League Created') }}
                                 </a>
                             </li>
                             <li class="{{ request()->routeIs('league.leagueJoin') ? 'active' : '' }}">
                                 <a href="{{ route('league.leagueJoin') }}">
-                                    <i class="fas fa-users mr-2"></i> {{ 'League Join' }}
+                                    <i class="fas fa-users mr-2"></i> {{__('League Join') }}
                                 </a>
                             </li>
                         </ul>
@@ -84,16 +84,16 @@
                                                 </p>
                                                 @if (now()->between($row->start_date, $row->end_date))
                                                     <span
-                                                        class="status-league p-1 bg-success text-white rounded">{{ 'Active' }}</span>
+                                                        class="status-league p-1 bg-success text-white rounded">{{__('Active') }}</span>
                                                 @elseif(now() < date('Y-m-d', strtotime($row->end_date_register)))
                                                     <span id="reg"
-                                                        class="status-league p-1 bg-warning text-white rounded">{{ 'Registering' }}</span>
+                                                        class="status-league p-1 bg-warning text-white rounded">{{ __('Registering') }}</span>
                                                 @elseif(now() > date('Y-m-d', strtotime($row->end_date_register)) && now() < $row->start_date)
                                                     <span id="end-reg"
-                                                        class=" status-league p-1 bg-secondary text-white rounded">{{ 'End Register' }}</span>
+                                                        class=" status-league p-1 bg-secondary text-white rounded">{{ __('End Register') }}</span>
                                                 @elseif(now() > $row->end_date)
                                                     <span
-                                                        class="status-league p-1 bg-danger text-white rounded">{{ 'Ended ' }}</span>
+                                                        class="status-league p-1 bg-danger text-white rounded">{{ __('Ended ') }}</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -102,7 +102,7 @@
                             @endforeach
                         @else
                             <label class="m-0 block text-sm font-medium text-gray-700">
-                                {{ 'No tournament yet.' }}
+                                {{ __('No tournament yet.') }}
                             </label>
                         @endif
                     </div>
