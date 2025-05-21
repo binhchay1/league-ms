@@ -25,7 +25,7 @@
             <tr>
                 <td>{{ $index + 1 }}</td>
                 <td class="d-flex align-items-center gap-2">
-                    <img src="{{ asset('/images/player-team.jpg')}}"
+                    <img src="{{ asset('/league/player-team.jpg')}}"
                          alt="avatar" class="rounded-circle" width="40">
                     <div>
                         <span class="fw-bold text-success">{{ getFullNameWithPartner($registration, $type) }}</span>

@@ -20,7 +20,7 @@
             <div class="col-md-3 mt-4">
                 <div class="card text-center border rounded-3 shadow-sm p-3 transition hover-effect">
                     <div class="card-body">
-                        <img src="{{ asset('/images/player-team.jpg') }}" alt="Avatar"
+                        <img src="{{ asset('/league/player-team.jpg') }}" alt="Avatar"
                             class="rounded-circle border img-fluid mb-3"
                             style="width: 100px; height: 100px; object-fit: cover;">
                         <div>

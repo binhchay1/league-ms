@@ -32,7 +32,7 @@
             <div class="relative z-10 text-center bg-gray-900 bg-opacity-80 px-6 py-8 rounded-lg shadow-lg">
                 <h2 class="text-2xl text-yellow-400 font-bold mb-4">
                     {{ 'Congratulations to the defending champions of the tournament!' }}</h2>
-                <img src="{{ asset('/images/player-team.jpg') }}"
+                <img src="{{ asset('/league/player-team.jpg') }}"
                     class="mx-auto w-32 h-32 rounded-full border-4 border-yellow-500 mb-4" alt="Winner Avatar">
                 <h4 class="text-xxl text-white font-semibold">
                     {{ $champion->user->name ?? '---' }}
