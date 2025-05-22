@@ -160,7 +160,7 @@ if (Auth::check()) {
                                                 </div>
                                             @endif
                                         @endif
-                                    <span class="round-status">{{"In Progress"}}</span>
+                                    <span class="round-status">{{__("In Progress")}}</span>
                                 </div>
                             </div>
                         </li>

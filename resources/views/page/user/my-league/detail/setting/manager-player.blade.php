@@ -40,8 +40,8 @@
                             <i class="bi bi-geo-alt"></i> <em>{{ __('Location: ') }} {{ $leagueInfor->location }}</em>
                         </p>
                         <p class="display">
-                            <i class="bi bi-calendar"></i> <em>{{ 'From: ' }} {{ $start_date }} ~
-                                {{ 'To: ' }}{{ $end_date }}</em>
+                            <i class="bi bi-calendar"></i> <em>{{ __('From: ') }} {{ $start_date }} ~
+                                {{ __('To: ') }}{{ $end_date }}</em>
                         </p>
                         <p class="display">
                             <i class="bi bi-people-fill"></i> <em>{{ __('Member: ') }}
@@ -113,22 +113,22 @@
                             </li>
                             <li class="{{ request()->routeIs('league.leagueConfig') ? 'active' : '' }}">
                                 <a href="{{ route('league.leagueConfig', $leagueInfor->slug) }}">
-                                    <i class="fas fa-cog mr-2"></i> {{ 'Tournament Configuration' }}
+                                    <i class="fas fa-cog mr-2"></i> {{ __('Tournament Configuration' }}
                                 </a>
                             </li>
                             <li class="{{ request()->routeIs('league.leagueStatus') ? 'active' : '' }}">
                                 <a href="{{ route('league.leagueStatus', $leagueInfor->slug) }}">
-                                    <i class="fas fa-sun mr-2"></i> {{ 'Operating Status' }}
+                                    <i class="fas fa-sun mr-2"></i> {{ __('Operating Status' }}
                                 </a>
                             </li>
                             <li class="{{ request()->routeIs('league.leagueManagerPlayer') ? 'active' : '' }}">
                                 <a href="{{ route('league.leagueManagerPlayer', $leagueInfor->slug) }}">
-                                    <i class="fas fa-users mr-2"></i> {{ 'Player Management' }}
+                                    <i class="fas fa-users mr-2"></i> {{ __('Player Management' }}
                                 </a>
                             </li>
                             <li class="{{ request()->routeIs('league.leagueSchedule') ? 'active' : '' }}">
                                 <a href="{{ route('league.leagueSchedule', $leagueInfor->slug) }}">
-                                    <i class="fas fa-calendar-alt mr-2"></i> {{ 'Schedule Management' }}
+                                    <i class="fas fa-calendar-alt mr-2"></i> {{ __('Schedule Management' }}
                                 </a>
                             </li>
                             <li>
@@ -191,9 +191,9 @@
                                                 </div>
                                                 <div>
                                                     <label class="text-black"><input type="radio" name="status"
-                                                            value="1" checked> Active</label>
+                                                            value="1" checked>  {{ __('Active') }}</label>
                                                     <label class="text-black"><input type="radio" name="status"
-                                                            value="0"> Inactive</label>
+                                                            value="0">  {{ __('Inactive') }}</label>
                                                 </div>
 
                                             </div>
@@ -244,7 +244,7 @@
                                                         <td>
                                                             <span
                                                                 class="status-player bg-{{ $player->status == 0 ? 'primary' : 'success' }} text-white px-2 py-1">
-                                                                {{ $player->status ? 'Active' : 'Inactive' }}
+                                                                {{ $player->status ? __('Active') : __('Inactive') }}
                                                             </span>
                                                         </td>
                                                         <td class="text-center">
@@ -275,8 +275,7 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-header bg-danger text-white">
                                                                     <h5 class="modal-title"
-                                                                        id="confirmDeleteLabel{{ $player['id'] }}">Confirm
-                                                                        Delete</h5>
+                                                                        id="confirmDeleteLabel{{ $player['id'] }}">{{__('Confirm Delete')}}</h5>
                                                                     <button type="button" class="btn-close"
                                                                         data-bs-dismiss="modal"
                                                                         aria-label="Close"></button>
@@ -287,7 +286,7 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Cancel</button>
+                                                                        data-bs-dismiss="modal">{{__('Cancel')}}</button>
                                                                     <a
                                                                         href="{{ route('league.destroyPlayer', $player['id']) }}">
                                                                         <button type="button"

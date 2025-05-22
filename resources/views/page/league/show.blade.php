@@ -39,7 +39,6 @@ $format_register_date = $leagueInfor->end_date_register;
             @endif
         </h4>
 
-         Canvas pháo hoa
         <canvas id="canvas"></canvas>
     </div>
 </div>

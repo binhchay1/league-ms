@@ -41,7 +41,7 @@
         <div class="col-lg-4">
             <!-- Top Teams -->
             <div class="card mb-3">
-                <div class="card-header bg-secondary text-white fw-bold">Ranking</div>
+                <div class="card-header bg-secondary text-white fw-bold">{{__('Ranking')}}</div>
                 <ul class="list-group list-group-flush">
 
                     @foreach ($ranking as $index => $rank)
@@ -62,13 +62,13 @@
                         <li class="list-group-item" style="font-size: 16px; color: green">
                             {{ $icon }} {{ $teamName }}
                             @unless ($isKnockout)
-                                <span class="float-end text-black">{{ $rank->point }} điểm</span>
+                                <span class="float-end text-black">{{ $rank->point }} {{__('point')}}</span>
                             @endunless
                         </li>
                     @endforeach
 
                     <div class="card-footer text-center">
-                        <a href="{{ route('showRank.info', $leagueInfor->slug) }}">View all</a>
+                        <a href="{{ route('showRank.info', $leagueInfor->slug) }}">{{__('View all')}}</a>
                     </div>
                 </ul>
             </div>
@@ -76,7 +76,7 @@
 
             <!-- Rounds -->
             <div class="card mb-3">
-                <div class="card-header bg-secondary fw-bold text-white">{{ 'Schedule' }}</div>
+                <div class="card-header bg-secondary fw-bold text-white">{{__('Schedule') }}</div>
                 @once
                     @php
                         function getTeamNameFromPlayer($player, $type = 'singles')
@@ -112,7 +112,7 @@
 
             <!-- Map -->
             <div class="card">
-                <div class="card-header bg-secondary fw-bold text-white">{{ 'Location' }}</div>
+                <div class="card-header bg-secondary fw-bold text-white">{{__('Location') }}</div>
                 <div class="map-container">
                     <iframe src="https://www.google.com/maps/embed?..." width="100%" height="100%" style="border:0;"
                         allowfullscreen="" loading="lazy"></iframe>
@@ -126,18 +126,18 @@
                 <img src="{{ asset('/images/bg-league.png') }}" alt="Banner" class="img-fluid">
             </div>
             <!-- Stats -->
-            <h4 class="fw-bold">📈 {{ 'General statistics' }}</h4>
+            <h4 class="fw-bold">📈 {{__('General statistics') }}</h4>
             <div class="row g-3 mb-3">
                 <div class="col-md-4">
                     <div class="stat-card bg-secondary">
-                        <div class="fw-bold">{{ 'Total Matches' }}</div>
+                        <div class="fw-bold">{{ __('Total Matches') }}</div>
                         <div class="display-6">🎮 <h5 class="card-title text-white">{{ $countMatch . ' matches' }}</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="stat-card bg-teal">
-                        <div class="fw-bold">{{ 'Total Players' }}</div>
+                        <div class="fw-bold">{{__('Total Players') }}</div>
                         <div class="display-6 row">
                             👥
                             <h5 class="card-title text-white">{{ $countPlayer . ' players' }}</h5>
@@ -146,7 +146,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="stat-card bg-red">
-                        <div class="fw-bold">{{ 'Highest Ranked Team' }}</div>
+                        <div class="fw-bold">{{__('Highest Ranked Team') }}</div>
 
                         <div class="display-6">🔥
                             @if ($topRank)
@@ -157,7 +157,7 @@
                                     @endif
                                 </h5>
                             @else
-                                <h5 class="text-white">No data</h5>
+                                <h5 class="text-white">{{__('No data')}}</h5>
                             @endif
                         </div>
                     </div>
@@ -166,7 +166,7 @@
                 <div class="col-md-4">
                     <div class="card text-white bg-warning">
                         <div class="card-body">
-                            <p class="fw-bold">{{ 'Lowest Ranked Team' }}</p>
+                            <p class="fw-bold">{{__('Lowest Ranked Team') }}</p>
                             <div class="display-6">🔻
                                 @if ($bottomRank)
                                     <h5 class="card-title text-white">
@@ -176,14 +176,13 @@
                                         @endif
                                     </h5>
                                 @else
-                                    <h5 class="text-white">{{ 'Updating' }}</h5>
+                                    <h5 class="text-white">{{__('Updating') }}</h5>
                                 @endif
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

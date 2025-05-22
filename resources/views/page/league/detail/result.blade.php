@@ -104,7 +104,7 @@
                                                                                 @if ($schedule->league && $schedule->league->type_of_league == 'doubles')
                                                                                     @if ($schedule->player1Team1 && $schedule->player1Team1->partner)
                                                                                         /
-                                                                                        {{ $schedule->player1Team1->partner->name ?? 'Team Win' }}
+                                                                                        {{ $schedule->player1Team1->partner->name ?? __('Team Win') }}
                                                                                     @endif
                                                                                 @endif
                                                                             </div>
@@ -131,11 +131,11 @@
 
                                                                             </div>
                                                                             <div class="player3 player">
-                                                                                {{ $schedule->player1Team2->name ?? 'Team Win' }}
+                                                                                {{ $schedule->player1Team2->name ?? __('Team Win') }}
                                                                                 @if ($schedule->league && $schedule->league->type_of_league == 'doubles')
                                                                                     @if ($schedule->player1Team2 && $schedule->player1Team2->partner)
                                                                                         /
-                                                                                        {{ $schedule->player1Team2->partner->name ?? 'Team Win' }}
+                                                                                        {{ $schedule->player1Team2->partner->name ?? __('Team Win') }}
                                                                                     @endif
                                                                                 @endif
                                                                             </div>
@@ -170,7 +170,7 @@
                                                                                             @if ($schedule->league && $schedule->league->type_of_league == 'doubles')
                                                                                                 @if ($schedule->player1Team1 && $schedule->player1Team1->partner)
                                                                                                     /
-                                                                                                    {{ $schedule->player1Team1->partner->name ?? 'Team Win' }}
+                                                                                                    {{ $schedule->player1Team1->partner->name ?? __('Team Win') }}
                                                                                                 @endif
                                                                                             @endif
                                                                                         </a>
@@ -200,7 +200,7 @@
                                                                                             @if ($schedule->league && $schedule->league->type_of_league == 'doubles')
                                                                                                 @if ($schedule->player1Team2 && $schedule->player1Team2->partner)
                                                                                                     /
-                                                                                                    {{ $schedule->player1Team2->partner->name ?? 'Team Win' }}
+                                                                                                    {{ $schedule->player1Team2->partner->name ?? __('Team Win') }}
                                                                                                 @endif
                                                                                             @endif
                                                                                         </a>
@@ -240,7 +240,7 @@
                                                                         </div>
                                                                         <div class="game-score-1 won-green">
                                                                             {{ $schedule->set_2_team_1 ?? 0 }}</div>
-                                                                        <div class="game-number">{{ 'SET 2' }}
+                                                                        <div class="game-number">{{__('SET 2') }}
                                                                         </div>
                                                                         <div class="game-score-2 ">
                                                                             {{ $schedule->set_2_team_2 ?? 0 }}</div>
@@ -259,7 +259,7 @@
                                                                         </div>
                                                                         <div class="game-score-1 won-green">
                                                                             {{ $schedule->set_3_team_1 ?? 0 }}</div>
-                                                                        <div class="game-number">{{ 'SET 3' }}
+                                                                        <div class="game-number">{{ __('SET 3') }}
                                                                         </div>
                                                                         <div class="game-score-2 ">
                                                                             {{ $schedule->set_3_team_2 ?? 0 }}</div>
@@ -275,7 +275,7 @@
                                                                 <a id="match-stat-tab" href="?match=152&amp;stab=result"
                                                                     style="width:100px;">
                                                                     <div class="tab active">
-                                                                        <span>{{ 'RESULT' }}</span> <img
+                                                                        <span>{{__('RESULT') }}</span> <img
                                                                             src="https://bwfworldtour.bwfbadminton.com/wp-content/themes/world-tour/assets/images/live-score-icons/live-red.svg"
                                                                             class=" b-error">
                                                                     </div>
@@ -305,7 +305,7 @@
                                                     <?php $count++; ?>
                                                 @endforeach
                                             @empty
-                                                <div class="alert alert-primary">{{ 'Tournament is updating data.' }}
+                                                <div class="alert alert-primary">{{__('Tournament is updating data.') }}
                                                 </div>
                                             @endforelse
                                         </ul>

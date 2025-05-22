@@ -40,8 +40,8 @@
                             <i class="bi bi-geo-alt"></i> <em>{{ __('Location: ') }} {{ $leagueInfor->location }}</em>
                         </p>
                         <p class="display">
-                            <i class="bi bi-calendar"></i> <em>{{ 'From: ' }} {{ $start_date }} ~
-                                {{ 'To: ' }}{{ $end_date }}</em>
+                            <i class="bi bi-calendar"></i> <em>{{ __('From: ') }} {{ $start_date }} ~
+                                {{ __('To: ') }}{{ $end_date }}</em>
                         </p>
                         <p class="display">
                             <i class="bi bi-people-fill"></i> <em>{{ __('Member: ') }}
@@ -169,13 +169,13 @@
                     <!-- Tournament List -->
                     <div class="col-md-9 p-3">
                         <div class="d-flex justify-content-between align-items-center league-title">
-                            <h4 class="p-0">{{ 'Config Information' }}</h4>
+                            <h4 class="p-0">{{ __('Config Information') }}</h4>
                         </div>
 
                         <div class="mt-4" style="font-size: 15px; ">
                             <div class="card border-success">
                                 <div class="card-header bg-success text-white fw-bold">
-                                    <i class="bi bi-plus-circle-fill me-2"></i>{{ 'Information' }}
+                                    <i class="bi bi-plus-circle-fill me-2"></i>{{ __('Information') }}
                                 </div>
                                 <form id="formAccountSettings" method="POST"
                                     action="{{ route('my.updateMyLeagueMyLeague', $leagueInfor->id) }}"
@@ -185,7 +185,7 @@
                                         <div class="row">
                                             <!-- Ảnh -->
                                             <div class="col-md-4 text-center">
-                                                <label for="image" class="form-label fw-bold">{{ 'Logo' }}<span
+                                                <label for="image" class="form-label fw-bold">{{ __('Logo') }}<span
                                                         class="text-danger">*</span> </label>
                                                 <div class="border p-3 rounded">
                                                     <input value="" type="file" class="border-0 bg-light pl-0"
@@ -222,7 +222,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label fw-bold">{{ 'Name' }} <span
+                                                    <label class="form-label fw-bold">{{ __('Name') }} <span
                                                             class="text-danger">*</span> </label>
                                                     <input type="text" class="form-control" name="name"
                                                         value="{{ $leagueInfor->name }}" required>
@@ -232,7 +232,7 @@
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <label class="form-label fw-bold">{{ 'Prize Money' }} </label>
+                                                    <label class="form-label fw-bold">{{ __('Prize Money') }} </label>
                                                     <input type="text" class="form-control" name="money"
                                                         value="{{ $leagueInfor->money }}" required>
                                                     @if ($errors->has('money'))
@@ -242,7 +242,7 @@
 
                                                 <div class="mb-3 row">
                                                     <div class="col-md-6">
-                                                        <label class="form-label fw-bold">{{ 'Start Date' }} <span
+                                                        <label class="form-label fw-bold">{{ __('Start Date') }} <span
                                                                 class="text-danger">*</span></label>
                                                         <input type="date" class="form-control" name="start_date"
                                                             value="{{ $leagueInfor->start_date }}" required>
@@ -252,7 +252,7 @@
                                                         @endif
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label fw-bold">{{ 'End Date' }} <span
+                                                        <label class="form-label fw-bold">{{ __('End Date') }} <span
                                                                 class="text-danger">*</span></label>
                                                         <input type="date" class="form-control" name="end_date"
                                                             value="{{ $leagueInfor->end_date }}" required>
@@ -265,7 +265,7 @@
 
                                                 <div class="mb-3 row">
                                                     <div class="col-md-6">
-                                                        <label class="form-label fw-bold">{{ 'End Date Register' }} <span
+                                                        <label class="form-label fw-bold">{{ __('End Date Register') }} <span
                                                                 class="text-danger">*</span></label>
                                                         <input type="datetime-local" class="form-control"
                                                             name="end_date_register"
@@ -276,7 +276,7 @@
                                                         @endif
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label fw-bold">{{ 'Start Time' }} <span
+                                                        <label class="form-label fw-bold">{{ __('Start Time') }} <span
                                                                 class="text-danger">*</span></label>
                                                         <input type="time" class="form-control" name="start_time"
                                                             value="{{ $leagueInfor->start_time }}" required>
@@ -288,7 +288,7 @@
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <div class="col-md-6">
-                                                        <label class="form-label fw-bold">{{ 'Type League' }} <span
+                                                        <label class="form-label fw-bold">{{ __('Type League') }} <span
                                                                 class="text-danger">*</span></label>
                                                         <select class="form-select" name="type_of_league">
                                                             @foreach ($listTypeLeague as $number => $value)
@@ -299,7 +299,7 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label fw-bold">{{ 'Format League' }} <span
+                                                        <label class="form-label fw-bold">{{ __('Format League') }} <span
                                                                 class="text-danger">*</span></label>
                                                         <select class="form-select" name="format_of_league">
                                                             @foreach ($listFormatLeague as $number => $value)
@@ -312,7 +312,7 @@
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <div class="col-md-6">
-                                                        <label class="form-label fw-bold">{{ 'Number players' }} <span
+                                                        <label class="form-label fw-bold">{{ __('Number players') }} <span
                                                                 class="text-danger">*</span></label>
                                                         <select class="form-select" name="number_of_athletes">
                                                             @foreach ($listPlayer as $number => $value)
@@ -323,7 +323,7 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label fw-bold">{{ 'Location' }} </label>
+                                                        <label class="form-label fw-bold">{{__( 'Location') }} </label>
                                                         <input type="text" class="form-control" name="location"
                                                             value="{{ $leagueInfor->location }}" required>
                                                     </div>
@@ -334,7 +334,7 @@
                                                 ?>
                                                 @if (!$checkLeagueRun)
                                                     <button type="submit"
-                                                        class="btn btn-success mt-2">{{ 'Update' }}</button>
+                                                        class="btn btn-success mt-2">{{ __('Update') }}</button>
                                                 @endif
                                             </div>
                                         </div>

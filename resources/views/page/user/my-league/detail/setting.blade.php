@@ -31,7 +31,7 @@
             {{-- Nội dung popup --}}
             <div class="relative z-10 text-center bg-gray-900 bg-opacity-80 px-6 py-8 rounded-lg shadow-lg">
                 <h2 class="text-2xl text-yellow-400 font-bold mb-4">
-                    {{ 'Congratulations to the defending champions of the tournament!' }}</h2>
+                    {{ __('Congratulations to the defending champions of the tournament!') }}</h2>
                 <img src="{{ asset('/league/player-team.jpg') }}"
                     class="mx-auto w-32 h-32 rounded-full border-4 border-yellow-500 mb-4" alt="Winner Avatar">
                 <h4 class="text-xxl text-white font-semibold">
@@ -197,7 +197,7 @@
                     <!-- Tournament List -->
                     <div class="col-md-9 p-3">
                         <div class="d-flex justify-content-between align-items-center league-title">
-                            <h4 class="p-0">{{ 'Setting' }}</h4>
+                            <h4 class="p-0">{{__('Setting') }}</h4>
 
                         </div>
                         <div class="text-center mt-4">
@@ -206,13 +206,13 @@
                         <div class="mt-4">
                             <div class="card border-success">
                                 <div class="card-header bg-success text-white fw-bold">
-                                    <i class="bi bi-plus-circle-fill me-2"></i>{{ 'Information' }}
+                                    <i class="bi bi-plus-circle-fill me-2"></i>{{__('Information') }}
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <!-- Ảnh -->
                                         <div class="col-md-4 text-center">
-                                            <label for="image" class="form-label fw-bold">{{ 'Image' }} </label>
+                                            <label for="image" class="form-label fw-bold">{{__('Image') }} </label>
                                             <div class="border p-3 rounded">
                                                 <img src="{{ asset($leagueInfor->images ?? asset('/images/logo-no-background.png')) }}"
                                                     alt="Cover Image" class="img-fluid mb-2">
@@ -223,24 +223,24 @@
                                         <!-- Thông tin -->
                                         <div class="col-md-8">
                                             <div class="mb-3">
-                                                <label class="form-label fw-bold">{{ 'Name' }} </label>
+                                                <label class="form-label fw-bold">{{__('Name') }} </label>
                                                 <input type="text" class="form-control" name="name"
                                                     value="{{ $leagueInfor->name }}" required>
                                             </div>
                                             <div class="mb-3 row">
                                                 <div class="col-md-6">
-                                                    <label class="form-label fw-bold">{{ 'Start Date' }} </label>
+                                                    <label class="form-label fw-bold">{{__('Start Date') }} </label>
                                                     <input type="date" class="form-control" name="phone"
                                                         value="{{ $leagueInfor->start_date }}" required>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="form-label fw-bold">{{ 'Start Date' }} </label>
+                                                    <label class="form-label fw-bold">{{__('Start Date') }} </label>
                                                     <input type="date" class="form-control" name="phone"
                                                         value="{{ $leagueInfor->end_date }}" required>
                                                 </div>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label fw-bold">{{ 'Location' }}</label>
+                                                <label class="form-label fw-bold">{{__('Location') }}</label>
                                                 <input type="text" class="form-control" name="location"
                                                     value="{{ $leagueInfor->location }}" required>
                                             </div>

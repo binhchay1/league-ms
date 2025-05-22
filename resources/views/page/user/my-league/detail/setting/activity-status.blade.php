@@ -173,26 +173,26 @@
                         </div>
                         <div class="card p-4 shadow-sm rounded-4 mt-4">
                             <div class="row mb-3 align-items-center">
-                                <div class="col-6 text-start text-muted">{{ 'Current status' }}</div>
+                                <div class="col-6 text-start text-muted">{{__('Current status') }}</div>
                                 <div class="col-6 text-left">
                                     @if (now()->between($leagueInfor->start_date, $leagueInfor->end_date))
                                         <span
-                                            class="status-league p-1 bg-success text-white rounded">{{ 'Active' }}</span>
+                                            class="status-league p-1 bg-success text-white rounded">{{ __('Active') }}</span>
                                     @elseif(now() < date('Y-m-d', strtotime($leagueInfor->end_date_register)))
                                         <span id="reg"
-                                            class="status-league p-1 bg-warning text-white rounded">{{ 'Registering' }}</span>
+                                            class="status-league p-1 bg-warning text-white rounded">{{ __('Registering') }}</span>
                                     @elseif(now() > date('Y-m-d', strtotime($leagueInfor->end_date_register)) && now() < $leagueInfor->start_date)
                                         <span id="end-reg"
-                                            class=" status-league p-1 bg-secondary text-white rounded">{{ 'End Register' }}</span>
+                                            class=" status-league p-1 bg-secondary text-white rounded">{{__('End Register') }}</span>
                                     @elseif(now() > $leagueInfor->end_date)
                                         <span
-                                            class="status-league p-1 bg-danger text-white rounded">{{ 'Ended ' }}</span>
+                                            class="status-league p-1 bg-danger text-white rounded">{{__('Ended ') }}</span>
                                     @endif
                                 </div>
                             </div>
 
                             <div class="row mb-3 align-items-center">
-                                <div class="col-6 text-start text-muted">{{ 'Total matches' }}</div>
+                                <div class="col-6 text-start text-muted">{{ __('Total matches') }}</div>
                                 <div class="col-6 text-left">
                                     <h3 class="mb-0">{{ $leagueInfor->schedule?->count() ?? 0 }} <small
                                             class="fs-6 text-success">{{ 'matches' }}</small></h3>
@@ -200,10 +200,10 @@
                             </div>
 
                             <div class="row mb-3 align-items-center">
-                                <div class="col-6 text-start text-muted">{{ 'Total Players Registered' }}</div>
+                                <div class="col-6 text-start text-muted">{{ __('Total Players Registered') }}</div>
                                 <div class="col-6 text-left">
                                     <h3 class="mb-0">{{ $leagueInfor->userLeagues?->count() ?? 0 }} <small
-                                            class="fs-6 text-success">{{ 'players' }}</small></h3>
+                                            class="fs-6 text-success">{{ __('players') }}</small></h3>
                                 </div>
                             </div>
 

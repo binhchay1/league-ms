@@ -41,7 +41,7 @@
             @csrf()
             <div class="row mb-3 form-league">
                 <div class="col-md-3">
-                    <label>{{ __('Logo league') }}</label>
+                    <label>{{ __('Logo') }}</label>
                     <input value="" type="file" class="border-0 bg-light pl-0" name="images" id="image" hidden>
                     <div class=" choose-avatar">
                         <div id="btnimage">
@@ -137,7 +137,7 @@
                     </div>
                     <div class="row mt-4">
                         <div class="col-6">
-                            <label class="form-label">{{ 'Number of players' }}</label>
+                            <label class="form-label">{{__('Number of players')}}</label>
                             <select class="form-select" name="number_of_athletes">
                                 @foreach ($listPlayer as $type => $value)
                                     <option id="type_of_league" value="{{ $value }}">{{ $value }}</option>
@@ -146,7 +146,7 @@
                             </select>
                         </div>
                         <div class="col-6">
-                            <label class="form-label">{{ 'Type league' }}</label>
+                            <label class="form-label">{{__('Type league')}}</label>
                             <select class="form-select" name="type_of_league">
                                 @foreach ($listTypeLeague as $type => $value)
                                     <option id="type_of_league" value="{{ $value }}">{{ $value }}</option>
@@ -173,7 +173,7 @@
             </div>
 
             <div class="mb-12">
-                <button class="btn btn-success w-10 mt-4 mb-12">{{ 'Create' }}</button>
+                <button class="btn btn-success w-10 mt-4 mb-12">{{__('Create') }}</button>
             </div>
         </form>
     </div>

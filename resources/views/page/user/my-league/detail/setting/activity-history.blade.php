@@ -39,8 +39,8 @@
                             <i class="bi bi-geo-alt"></i> <em>{{ __('Location: ') }} {{ $leagueInfor->location }}</em>
                         </p>
                         <p class="display">
-                            <i class="bi bi-calendar"></i> <em>{{ 'From: ' }} {{ $start_date }} ~
-                                {{ 'To: ' }}{{ $end_date }}</em>
+                            <i class="bi bi-calendar"></i> <em>{{ __('From: ') }} {{ $start_date }} ~
+                                {{ __('To: ') }}{{ $end_date }}</em>
                         </p>
                         <p class="display">
                             <i class="bi bi-people-fill"></i> <em>{{ __('Member: ') }}
@@ -168,7 +168,7 @@
                     <!-- Tournament List -->
                     <div class="col-md-9 p-3">
                         <div class="d-flex justify-content-between align-items-center league-title">
-                            <h4 class="p-0">{{ 'Activity History' }}</h4>
+                            <h4 class="p-0">{{ __('Activity History') }}</h4>
 
                         </div>
                         <div class="card mb-3 mt-4">
