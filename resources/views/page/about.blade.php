@@ -1,35 +1,55 @@
 @extends('layouts.page')
 
 @section('title')
-{{ env('APP_NAME', 'Badminton.io') }} - {{ __('About') }}
+    {{ env('APP_NAME', 'Badminton.io') }} - {{ __('About') }}
 @endsection
+<style>
+    @media (max-width: 768px) {
+        .news-overview-item {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
 
+        .news-overview-text {
+            margin-top: 1rem;
+        }
+
+        .news-overview-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .std-title {
+            flex-direction: column;
+            text-align: center;
+            gap: 10px;
+        }
+
+        .std-title .left, .std-title .right {
+            font-size: 18px;
+        }
+    }
+</style>
 @section('content')
 
 <section id="heading">
     <div class="container">
-        <h1 class=""> {{ env('APP_NAME', 'Badminton.io') }}</h1>
+        <h1 class=""> {{ "Badminton.io" }}</h1>
         <p class="wcs-page_body ">{{ __('Badmintion.io is an online tournament management platform that allows users to create, manage and track tournaments in many different formats such as knockout, round robin and many other types. With a friendly and easy-to-use interface, Badmintion.io is suitable for both beginners and professional organizations.') }}</p>
     </div>
 </section>
 
-<section id="next-tournament" class="next-tournament-section bg-black">
-    <div class="next-tournament-wrap">
-        <div class="results">
-            <div class="wrapper-results">
-                <div class="center">
-                        <img width="200" src="{{  '/images/logo-no-background.png' }}" alt="logo" class=" b-error">
-
-                        <h3 class="text-white">{{__("Badminton.io")}}</h3>
-                </div>
-            </div>
+    <section id="next-tournament" class="next-tournament-section bg-black py-5">
+        <div class="container text-center">
+            <img src="/images/logo-no-background.png" alt="logo" class="img-fluid mb-3" style="max-width: 200px;">
+            <h3 class="text-white">{{ __("Badminton.io") }}</h3>
         </div>
-    </div>
-</section>
+    </section>
 
 <section id="about" class="container">
     <div>
-        <h4 class="h24px " style="margin-top: 5%">{{ __('What we do') }}</h4>
+        <h3 class="h24px " style="margin-top: 5%">{{ __('What we do') }}</h3>
         <strong>{{__('Quickly create tournaments:')}}</strong>
         <p class="wcs-page_body"> {{(' Users can create tournaments in just a few simple steps, from setting up the tournament type to adding participants.') }}</p>
         <strong>{{__('Match management: ')}}</strong>
@@ -39,7 +59,7 @@
         <strong>{{__('Integrated leaderboard:')}}</strong>
         <p class="wcs-page_body"> {{(' The system automatically updates the leaderboard, helping participants clearly understand their position in the tournament.') }}</p>
 
-        <h4 class="h24px ">{{ __('Benefits of using Badminton.io') }}</h4>
+        <h3 class="h24px ">{{ __('Benefits of using Badminton.io') }}</h3>
         <strong>{{__('Save time:')}}</strong>
         <p class="wcs-page_body"> {{(' Minimize the time to organize and manage tournaments thanks to automated tools.') }}</p>
         <strong>{{__('Increase professionalism: ')}}</strong>
@@ -50,35 +70,5 @@
     </div>
 </section>
 
-<section id="news" class="container-1280 news-section bg-white">
-    <div class="std-title padding-0"  >
-        <h2 class="left" >{{ __('Latest Tour News') }}</h2>
-        <a href="{{route('news')}}">
-            <h2 class="right league-all-data">{{ __('All News') }}</h2>
-        </a>
-    </div>
-    <div class="news-overview-wrap" style="margin-bottom: 2%">
-        @foreach($listPosts as $post)
-            <div class="news-overview-item">
-                <div class="news-overview-image">
-                    <a href="">
-                        <img src="{{asset($post->thumbnail ?? '/images/logo-no-background.png' )}}" alt="" class="img-responsive-hover b-error">
-                    </a>
-                </div>
 
-                <div class="news-overview-text">
-                    <h4 class="media-heading fw-400 fs-16px">
-                        <a href="{{route('news-show', $post['slug'])}}" title="{{$post->title}}">
-                            {{$post->title}} </a>
-                    </h4>
-                    <span class="fw-300 fs-12px text-gray">
-                        <?php echo date_format($post->created_at, 'd-F-Y')  ?><br>
-                    </span>
-                </div>
-            </div>
-        @endforeach
-    </div>
-    <small style="margin-bottom: 10%">{{ env('APP_NAME', 'Badminton.io') }} {{('is a division of DJH Technology Ltd. registered in England and Wales, company number 4641708. Our registered office is: DJH Technology Ltd, Granville House, 2 Tettenhall Rd, Wolverhampton WV1 4SB, United Kingdom.') }}</small>
-
-</section>
 @endsection

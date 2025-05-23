@@ -723,9 +723,7 @@ button#responsive-menu-button {
     color: #0f4286
 }
 
-.box-player .head-to-head .vs-player .h2h-player-wrap .info-player1 .name a:hover, .box-player .head-to-head .vs-player .h2h-player-wrap .info-player2 .name a:hover, .live-profile-row table.game-stats tr.game a, .live-tabs-wrap a:visited, .news-overview .news-overview-wrap a h4:hover h4, .news-overview .news-overview-wrap a:hover h4, .news-section .news-featured .news-featured-title a:hover, .odf-player-header .player1 span a:hover, .odf-player-header .player2 span a:hover, .odf-schedule-wrap .odf-schedule ul li .player1 span a, .odf-schedule-wrap .odf-schedule ul li .player2 span a, .odf-schedule-wrap .odf-schedule ul li .round_time a, .results .wrapper-results .item-results .item .tblDrawsRound td .name a:hover, .results .wrapper-results .item-results .item .tblDrawsSingle .draw-name a, .results .wrapper-results .item-results .item ul li .team-wrap a:hover, .results .wrapper-results .item-results .item ul li.active a, .results .wrapper-results .results-header, .results .wrapper-results .wrapper-content-results .content-results .item-results-podium ul li .info a:hover, .schedule-banner .schedule-next a, .schedule-banner .schedule-prev a, .std-title a:hover h2, .tblDrawsSingle td, .text-black, .tournament-matches .tournament-matches-row a:hover, .tournament-results .box-profile-tournament .info h2 a:hover, .tournament-results .title-tournament-matches h3 a:hover, .tr-ranking-detail .ranking-detail .tblRankingLandingDetail tr td.external-link-icon, .wcs-page_meta a, .wcs-single_meta a, .wpb_wrapper h3, .wtr-about .accommodation h3 a:hover, h4, h5, section.wrapper-players-profile #container-players-profile .content-tabs li {
-    color: #333
-}
+
 
 #head-to-head-analysis .box-player .head-to-head #change-player input, .game-completed .game-score-1.won-green, .game-completed .game-score-2.won-yellow, .results .wrapper-results .item-results .item .tblDrawsSingle .draw-name a:hover, .text-black-real {
     color: #000

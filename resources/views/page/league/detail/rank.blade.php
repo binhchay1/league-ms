@@ -101,9 +101,10 @@
     <h5 class="text-success fw-bold mb-3">{{__('Rank Round-robin')}}</h5>
 
     @if (count($ranking) > 0)
-        <table class="table table-striped table-bordered text-center align-middle ranking-table fs-16"
-            style="font-size: 16px;">
-            <thead class="bg-light">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered text-center align-middle ranking-table fs-16"
+                   style="font-size: 16px;">
+                <thead class="bg-light">
                 <tr>
                     <th>#</th>
                     <th>{{__('Team / Player')}}</th>
@@ -112,13 +113,13 @@
                     <th>{{__('Lose')}}</th>
                     <th>{{__('Point')}}</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 @foreach ($ranking as $index => $rank)
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td class="text-start fw-semibold text-success">
-                            {{ $rank->user->name ?? '---')}}
+                            {{ $rank->user->name ?? '---'}}
                             @if ($rank->user->partner && optional($rank->league)->type_of_league == 'doubles')
                                 + {{ $rank->user->partner->name }}
                             @endif
@@ -129,17 +130,20 @@
                         <td><strong>{{ $rank->point }}</strong></td>
                     </tr>
                 @endforeach
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+
+        </div>
     @else
         <div class="alert alert-primary">{{__('Tournament is updating data.')}}</div>
     @endif
 @elseif ($leagueInfor->format_of_league === 'knockout')
     <h5 class="text-success fw-bold mb-3">{{__('Rank Knockout')}}</h5>
     @if (count($ranking) > 0)
-        <table class="table table-striped table-bordered text-center align-middle ranking-table fs-16"
-            style="font-size: 16px;">
-            <thead class="bg-light">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered text-center align-middle ranking-table fs-16"
+                   style="font-size: 16px;">
+                <thead class="bg-light">
                 <tr>
                     <th>#</th>
                     <th>{{__('Team / Player')}}</th>
@@ -148,8 +152,8 @@
                     <th>{{__('Lose')}}</th>
                     <th>{{__('Round')}}</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 @foreach ($ranking as $index => $rank)
                     @php
                         $teamName = getTeamNameFromRank($rank);
@@ -165,33 +169,35 @@
                         <td>
                             @switch($rank->eliminated_round)
                                 @case('champion')
-                                    <span class="badge bg-warning text-dark">🏆 {{__('champion (win final)')}}</span>
+                                <span class="badge bg-warning text-dark">🏆 {{__('champion (win final)')}}</span>
                                 @break
 
                                 @case('final')
-                                    {{__('final (lose)')}}
+                                {{__('final (lose)')}}
                                 @break
 
                                 @case('semi-finals')
-                                    {{__('semi-finals')}}
+                                {{__('semi-finals')}}
                                 @break
 
                                 @case('quarter-finals')
-                                    {{__('quarter-finals')}}
+                                {{__('quarter-finals')}}
                                 @break
 
                                 @default
-                                    @if (is_null($rank->eliminated_round))
-                                        <span class="text-primary fw-semibold">{{__('Into the Finals')}}</span>
-                                    @else
-                                        {{ $rank->eliminated_round }}
-                                    @endif
+                                @if (is_null($rank->eliminated_round))
+                                    <span class="text-primary fw-semibold">{{__('Into the Finals')}}</span>
+                                @else
+                                    {{ $rank->eliminated_round }}
+                                @endif
                             @endswitch
                         </td>
                     </tr>
                 @endforeach
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+
+        </div>
     @else
         <div class="alert alert-primary">{{__('Tournament is updating data')}}.</div>
     @endif

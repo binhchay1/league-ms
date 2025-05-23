@@ -221,7 +221,7 @@
                                                                         <div class="game-score-1 ">
                                                                             {{ $schedule->set_1_team_1 ?? 0 }}
                                                                         </div>
-                                                                        <div class="game-number"></div>
+                                                                        <div class="game-number">{{__('SET 1') }}</div>
                                                                         <div class="game-score-2 won-yellow">
                                                                             {{ $schedule->set_1_team_2 ?? 0 }}
                                                                         </div>

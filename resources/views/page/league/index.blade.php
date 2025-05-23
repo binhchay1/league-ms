@@ -28,29 +28,38 @@
             </div>
 
             <!-- Form Tìm Kiếm -->
-            <div class="col-md-8">
-                <form class="d-flex gap-2 justify-content-end" action="{{ route('searchLeague') }}" method="GET">
-                    <select class="form-select" name="format">
-                        <option value="" {{ request('format') == '' ? 'selected' : '' }}>{{ __('Format') }}</option>
-                        <option value="round-robin" {{ request('format') == 'round-robin' ? 'selected' : '' }}>
-                            {{ __('Round Robin') }}</option>
-                        <option value="knockout" {{ request('format') == 'knockout' ? 'selected' : '' }}>
-                            {{ __('Knockout') }}</option>
-                    </select>
-                    <select class="form-select" name="sort">
-                        <option value="" {{ request('sort') == '' ? 'selected' : '' }}>{{ __('Sort by') }}</option>
-                        <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>{{ __('Latest') }}
-                        </option>
-                        <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>{{ __('Oldest') }}
-                        </option>
-                    </select>
+            <!-- Form Tìm Kiếm -->
+            <div class="col-12 col-md-8 mt-3 mt-md-0">
+                <form class="row g-2" action="{{ route('searchLeague') }}" method="GET">
+                    <!-- Select: Format -->
+                    <div class="col-6 col-md-4">
+                        <select class="form-select w-100" name="format">
+                            <option value="" {{ request('format') == '' ? 'selected' : '' }}>{{ __('Format') }}</option>
+                            <option value="round-robin" {{ request('format') == 'round-robin' ? 'selected' : '' }}>
+                                {{ __('Round Robin') }}</option>
+                            <option value="knockout" {{ request('format') == 'knockout' ? 'selected' : '' }}>
+                                {{ __('Knockout') }}</option>
+                        </select>
+                    </div>
 
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="query" placeholder="{{ __('Name league...') }}"
-                            value="{{ request('query') }}">
-                        <button class="btn btn-success" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
+                    <!-- Select: Sort -->
+                    <div class="col-6 col-md-4">
+                        <select class="form-select w-100" name="sort">
+                            <option value="" {{ request('sort') == '' ? 'selected' : '' }}>{{ __('Sort by') }}</option>
+                            <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>{{ __('Latest') }}</option>
+                            <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>{{ __('Oldest') }}</option>
+                        </select>
+                    </div>
+
+                    <!-- Input + Button -->
+                    <div class="col-12 col-md-4">
+                        <div class="input-group w-100 h-100">
+                            <input type="text" class="form-control" name="query" placeholder="{{ __('Name league...') }}"
+                                   value="{{ request('query') }}">
+                            <button class="btn btn-success" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
