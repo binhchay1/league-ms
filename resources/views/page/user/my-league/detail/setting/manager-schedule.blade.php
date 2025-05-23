@@ -194,6 +194,7 @@
                                                 <th>{{ __('Round') }}</th>
                                                 <th>{{ __('Match Date') }}</th>
                                                 <th>{{ __('Match Time') }}</th>
+                                                <th>{{ __('Winner Team') }}</th>
                                                 <th>{{ __('Action') }}</th>
                                             </tr>
                                         </thead>
@@ -227,6 +228,15 @@
                                                     </td>
                                                     <td>
                                                         {{ $schedule->time }}
+                                                    </td>
+                                                    <td class="text-start fw-semibold text-center text-success">
+                                                        {{ $schedule->teamWin->name ?? '' }}
+                                                        @if ($schedule->league && $schedule->league->type_of_league == 'doubles')
+                                                            @if ($schedule->teamWin && $schedule->teamWin->partner)
+                                                                /
+                                                                {{ $schedule->teamWin->partner->name  }}
+                                                            @endif
+                                                        @endif
                                                     </td>
                                                     <td class="text_flow text-center">
                                                         @php
@@ -336,7 +346,7 @@
                                                                                         1 --</option>
                                                                                     @foreach ($players as $player)
                                                                                         <option
-                                                                                            value="{{ $player->id }}">
+                                                                                            value="{{ $player->user_id }}">
                                                                                             {{ $player->name }}</option>
                                                                                     @endforeach
                                                                                 </select>
@@ -353,7 +363,7 @@
                                                                                         2 --</option>
                                                                                     @foreach ($players as $player)
                                                                                         <option
-                                                                                            value="{{ $player->id }}">
+                                                                                            value="{{ $player->user_id }}">
                                                                                             {{ $player->name }}</option>
                                                                                     @endforeach
                                                                                 </select>

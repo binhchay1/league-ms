@@ -281,8 +281,6 @@ class ProfileController extends Controller
         foreach ($leagueInfor->schedule as $schedule) {
             $groupSchedule[$schedule['round']][] = $schedule;
         }
-        $countMatch = count($leagueInfor->schedule) ?? 0;
-        $countPlayer = count($leagueInfor->userLeagues) ?? 0;
         $firstGroup = reset($groupSchedule);
         if (is_array($firstGroup)) {
             $firstThreeSchedules = array_slice($firstGroup, 0, 3);
@@ -290,12 +288,56 @@ class ProfileController extends Controller
             $firstThreeSchedules = [];
         }
 
+        // Optional: You can define the round map here
+        $roundMap = [
+        1 => 'final',
+        2 => 'semi-finals',
+        3 => 'quarter-finals',
+        4 => 'round of 16',
+        5 => 'round of 32',
+        6 => 'round of 64',
+        7 => 'round of 128',
+        8 => 'round of 256',
+        ];
+        $currentRound = null;
+        foreach (array_reverse($roundMap, true) as $index => $roundName) {
+            $schedulesInRound = $leagueInfor->schedule->where('round', $roundName);
+            $unfinished = $schedulesInRound->whereNull('winner_team_id');
+            if ($unfinished->count() > 0) {
+                $currentRound = $roundName;
+                break;
+            }
+        }
+
+        // Determine the previous round
+        $previousRound = null;
+        if ($currentRound) {
+            $index = array_search($currentRound, array_values($roundMap));
+            $values = array_values($roundMap);
+            $previousRound = $values[$index + 1] ?? null;
+        }
+
+        // Fetch players: use winner_team_id from previous round
+        $teams = collect();
+        if ($previousRound) {
+            $teams = $leagueInfor->schedule
+                ->where('round', $previousRound)
+                ->whereNotNull('winner_team_id')
+                ->pluck('winner_team_id')
+                ->unique()
+                ->values();
+        }
+
+//        dd($teams);
         $players = UserLeague::with('user')
             ->where('league_id', $leagueInfor->id)
+            ->whereIn('user_id', $teams)
             ->get()
+            ->unique('user_id') // lọc trùng theo user_id
+            ->values() // reset lại chỉ số
             ->map(function ($registration) {
-                return (object)[
-                    'id' => $registration->id, // hoặc registration_id nếu bạn dùng nó làm player1_id
+                return (object) [
+                    'user_id' => $registration->user_id,
                     'name' => $registration->user->name ?? 'Unknown',
                 ];
             });
@@ -476,7 +518,9 @@ class ProfileController extends Controller
     public function updateScheduleRobin(Request $request, $id)
     {
         $schedule =  $this->scheduleRepository->showInfo($id);;
-
+        if (empty($schedule)) {
+            abort(404);
+        }
         if ($schedule->result_team_1 !== null || $schedule->result_team_2 !== null) {
             return redirect()->back()->with('error', 'Cannot update schedule with result.');
         }
@@ -523,15 +567,50 @@ class ProfileController extends Controller
     public function updateScheduleKnockout(Request $request, $id)
     {
         $schedule =  $this->scheduleRepository->showInfo($id);;
+        if (empty($schedule)) {
+            abort(404);
+        }
+        $request->validate([
+            'time' => 'required|date_format:H:i:s',
+            'date' => 'required|date_format:Y-m-d',
+        ]);
 
-        if ($schedule->result_team_1 !== null || $schedule->result_team_2 !== null) {
-            return redirect()->back()->with('error', 'Cannot update schedule with result.');
+        $league = $schedule->league;
+
+        // 1. Kiểm tra ngày nằm trong khoảng hợp lệ của giải
+        if ($request->date < $league->start_date || $request->date > $league->end_date) {
+            return back()->with('error', 'Ngày thi đấu phải nằm trong thời gian diễn ra giải.');
         }
 
+        // 2. Lấy round theo match
+        $map = [
+            1 => 'final',
+            2 => 'semi-finals',
+            3 => 'quarter-finals',
+            4 => 'round of 16',
+            5 => 'round of 32',
+            6 => 'round of 64',
+            7 => 'round of 128',
+            8 => 'round of 256',
+        ];
+        $round = $map[$schedule->round_index ?? 0] ?? $schedule->round;
+
+        // 3. Kiểm tra trùng time và date trong cùng round
+        $conflict = Schedule::where('league_id', $league->id)
+            ->where('round', $round)
+            ->where('id', '!=', $schedule->id)
+            ->where('time', $request->time)
+            ->where('date', $request->date)
+            ->exists();
+
+        if ($conflict) {
+            return back()->with('error', 'Trùng thời gian thi đấu trong cùng vòng. Hãy chọn giờ khác hoặc ngày khác.');
+        }
+
+        // Cập nhật nếu mọi thứ hợp lệ
         $schedule->update([
-            'date' => $request->input('date'),
-            'time' => $request->input('time'),
-            // 'player1_team_id' => $request->input('player1_team_id'), nếu cho phép đổi đội
+            'time' => $request->time,
+            'date' => $request->date,
         ]);
 
         return redirect()->back()->with('success', 'Schedule updated successfully!');
@@ -684,7 +763,7 @@ class ProfileController extends Controller
                     'date' => $dateData,
                     'player1_team_1' => $player1 ?? null,
                     'player1_team_2' => $player2 ?? null,
-                  
+
                 ];
 
                 $dataSchedule[] = $data;

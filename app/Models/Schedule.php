@@ -26,6 +26,11 @@ class Schedule extends Model
         return $this->belongsTo('App\Models\User', 'player1_team_1', 'id');
     }
 
+    public function teamWin()
+    {
+        return $this->belongsTo('App\Models\User', 'winner_team_id', 'id');
+    }
+
     public function player2Team1()
     {
         return $this->belongsTo('App\Models\User', 'player2_team_1', 'id');

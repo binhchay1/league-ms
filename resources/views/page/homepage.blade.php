@@ -14,7 +14,7 @@
 @section('content')
 <div class="wrapper ">
 
-    <section style="background-color: #DA0011; margin-top: -25px">
+    <section style=" margin-top: -25px">
         <div>
             <img class=" b-error b-error" width="100%" style="margin-top: -11%"  src="{{ asset('images/banner.jpg') }}">
         </div>
