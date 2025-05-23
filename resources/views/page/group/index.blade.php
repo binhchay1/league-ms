@@ -25,34 +25,41 @@ $isFull = false;
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <h2 style="color: black; font-weight: 400">{{ __('GROUP') }}</h2>
-                </div>
-                <div class="col-md-8 mt-4">
-                    <form class="d-flex gap-2 justify-content-end" action="{{route('searchGroup')}}" method="GET">
+                <h2 style="color: black; font-weight: 400">{{ __('GROUP') }}</h2>
+                <div class="col-12 col-md-8 mt-3 mt-md-0">
+                    <form class="row g-2" action="{{ route('searchGroup') }}" method="GET">
+                        <!-- Select: Format -->
+                        <div class="col-6 col-md-4">
+                            <select class="form-select" name="sort" style="flex: 1 1 auto; min-width: 120px;">
+                                <option selected>{{ __('Sort by') }}</option>
+                                <option value="newest">{{ __('Latest') }}</option>
+                                <option value="oldest">{{ __('Oldest') }}</option>
+                            </select>
+                        </div>
 
-                        <select class="form-select" name="sort">
-                            <option selected>{{'Sort by'}}</option>
-                            <option value="newest">{{'Latest'}}</option>
-                            <option value="oldest">{{'Oldest'}}</option>
-                        </select>
+                        <!-- Select: Sort -->
+                        <div class="col-6 col-md-4">
+                            <select class="form-select" name="status" style="flex: 1 1 auto; min-width: 120px;">
+                                <option selected>{{ __('Status') }}</option>
+                                <option value="private">{{ __('Private') }}</option>
+                                <option value="public">{{ __('Public') }}</option>
+                            </select>
+                        </div>
 
-                        <select class="form-select" name="status">
-                            <option selected>{{'Status'}}</option>
-                            <option value="private">{{'Private'}}</option>
-                            <option value="public">{{'Public'}}</option>
-                        </select>
-
-                        <div class="input-group">
-                            <input type="text" class="form-control"  name="query" placeholder="{{'group name...'}}">
-                            <button class="btn btn-success" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
+                        <!-- Input + Button -->
+                        <div class="col-12 col-md-4">
+                            <div class="input-group w-100 h-100">
+                                <input type="text" class="form-control " name="query" placeholder="{{ __('group name...') }}"
+                                       value="{{ request('query') }}"  style="padding: 5px">
+                                <button class="btn btn-success" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="row g-4">
+            <div class="row g-4 mt-4">
                 @forelse($listGroup as $group)
                     @php
                         if($group->group_users->count() == $group->number_of_members) {

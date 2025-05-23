@@ -922,8 +922,8 @@ class HomeController extends Controller
         $newData = $this->postRepository->detailPost($slug);
         $categories = $this->categoryPostRepository->index();
 
-        // Lấy các bài viết tương tự (cùng category, không tính bài hiện tại)
-        $relatedPosts = $this->postRepository->relatedPosts($newData->id, $newData->category_id);
+        // Lấy các bài viết liên quan không cần cùng category, chỉ loại trừ bài hiện tại
+        $relatedPosts = $this->postRepository->relatedPosts($newData->id);
 
         return view('page.post.detail', compact('newData', 'categories', 'relatedPosts'));
     }

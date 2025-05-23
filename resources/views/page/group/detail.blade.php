@@ -54,21 +54,19 @@ $utility = new \App\Enums\Utility();
 
 @section('content')
 <section class=" " style="background: #707787;padding: 10px; margin-top: -20px; ">
-    <div class=" text-black p-3 align-items-center">
-        <div class="container d-flex  img-fluid " style="color: white">
-            <img src="{{ asset($getGroup->images ?? '/images/logo-no-background.png') }}" alt="User" width="200" height="200" class=" me-3 " >
-            <div>
-                <h2 class="p-0">{{$getGroup->name}}</h2>
-                <p class="">
-                    <i class="bi bi-bookmark"></i> {{$getGroup->description}}
-                </p>
-                <p class=" ">
-                    <i class="bi bi-geo-alt"></i> <em>{{$getGroup->location}}</em>
-                </p>
-                <p class="">
-                    <i class="bi bi-people"></i> <em>{{$getGroup->number_of_members}}</em>
-                </p>
-                <p> <i class="bi bi-card-checklist"></i> {{$getGroup->note}}</p>
+    <div class="text-white p-3">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row mt-4">
+                <div class="logo-left text-center text-md-start mb-3 mb-md-0">
+                    <img src="{{ asset($getGroup->images ?? '/images/logo-no-background.png') }}" alt="User" width="200" height="200" class=" me-3 " >
+                </div>
+                <div class="ms-md-4">
+                    <h2 class="p-0">{{ $getGroup->name }}</h2>
+                    <p><i class="bi bi-bookmark"></i> {{ $getGroup->description }}</p>
+                    <p><i class="bi bi-geo-alt"></i> <em>{{ $getGroup->location }}</em></p>
+                    <p><i class="bi bi-people"></i> <em>{{ $getGroup->number_of_members }}</em></p>
+                    <p><i class="bi bi-card-checklist"></i> {{ $getGroup->note }}</p>
+                </div>
             </div>
         </div>
     </div>
@@ -84,7 +82,7 @@ $utility = new \App\Enums\Utility();
         </div>
         @endif
 
-        <div class="mt-4" data-bs-toggle="modal" data-bs-target="#rankingModal" style="margin-right: 10px;">
+        <div class="mt-4" data-bs-toggle="modal" data-bs-target="#rankingModal" >
             <button class=" btn-training">{{ __('Ranking') }}</button>
         </div>
 
@@ -218,34 +216,42 @@ $utility = new \App\Enums\Utility();
             </div>
 
             <div class="col-md-6 col-lg-6 col-xl-6 card-member" style="width: 55%">
-                <div class="card-header d-flex justify-content-start" style="background: #0d6efd !important; border-radius: 0; padding: 10px">
-                    <p class="m-0 text-white">{{__('Members')}}</p>
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <p class="m-0">{{ __('Members') }}</p>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle text-center">
+                            <thead>
+                                <tr>
+                                    <th>{{ __('MEMBER') }}</th>
+                                    <th>{{ __('PHONE') }}</th>
+                                    <th>{{ __('ADDRESS') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($members as $member)
+                                <tr>
+                                    <td class="d-flex align-items-center gap-2">
+                                        <img src="{{ asset($member->users->profile_photo_path ?? 'images/default-avatar.png') }}"
+                                             alt="avatar" class="rounded-circle" width="40">
+                                        <div>
+                                            <span
+                                                class="fw-bold text-success">{{$member->users->name }}
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="text-success">{{ $member->users->phone ?? "updating" }}</td>
+                                    <td>{{ $member->users->address }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th class="text-th">{{'INFORMATION'}}</th>
-                            <th  class="text-th">{{'NAME'}}</th>
-                            <th class="text-th">{{'PHONE'}}</th>
-                            <th class="text-th">{{'ADDRESS'}}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($members as $member)
-                            <tr>
-                                <td class="d-flex ">
-                                    <img src="{{ asset($member->users->profile_photo_path ?? 'images/default-avatar.png') }}" class="rounded-circle me-2" width="40" height="40" alt="Avatar">
-                                </td>
-                                <td class="align-items-center text-wrap">{{$member->users->name}}</td>
-                                <td class="align-items-center">
-                                    <span>{{ $member->users->phone }}</span>
-                                </td>
-                                <td class="align-items-center">{{ $member->users->address }}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
             </div>
+
         </div>
     </div>
 </section>

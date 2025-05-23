@@ -62,17 +62,17 @@ class PostRepository extends BaseRepository
         return $this->model->with('category', 'user')->where('status','normal')->orderBy('created_at', 'desc')->get();
 
     }
-    public function relatedPosts($post, $category)
+
+    public function relatedPosts($currentPostId, $limit = 6)
     {
-        return $this->model->where('category_id', $category)
-            ->where('id', '!=', $post) // Loại trừ bài viết hiện tại
+        return Post::where('id', '!=', $currentPostId)
             ->latest()
-            ->limit(5) // Giới hạn số bài viết hiển thị
+            ->take($limit)
             ->get();
     }
 
 
-    public function searchNews($query, $sort)
+        public function searchNews($query, $sort)
     {
         $leagues = $this->model->query(); // Chắc chắn $leagues là Query Builder
 

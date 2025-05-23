@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-{{ env('APP_NAME', 'Badminton.io') }} - {{ __('Terms & Conditions') }}
+{{ 'Badminton.io' }} - {{ __('Terms & Conditions') }}
 @endsection
 
 @section('content')
@@ -58,7 +58,7 @@
 
         <h6 class="h24px">{{ __('2. General Usage') }}</h6>
 
-        <p  class="wcs-page_body">{{ __('You must be 16 years or over to have an account i.e. a sign-in to') }} {{ env('APP_NAME', 'Badminton.io') }}</p>
+        <p  class="wcs-page_body">{{ __('You must be 16 years or over to have an account i.e. a sign-in to') }} {{ 'Badminton.io' }}</p>
 
         <p  class="wcs-page_body">{{ __('If you run a league or club then your league or club must be GDPR compliant and must respond to all "Individual Rights" requests') }}</p>
 
@@ -67,12 +67,12 @@
             you must take steps to ensure that others do not gain access to your account.') }}</p>
 
         <p  class="wcs-page_body">{{ __('You agree to keep secure your user ID, password and other confidential information
-            provided by') }} {{ env('APP_NAME', 'Badminton.io') }}.</p>
+            provided by') }} {{ 'Badminton.io' }}.</p>
 
-        <p  class="wcs-page_body">{{ __('You agree not to break or attempt to break security on') }} {{ env('APP_NAME', 'Badminton.io') }}{{ __(' system,
+        <p  class="wcs-page_body">{{ __('You agree not to break or attempt to break security on') }} {{ 'Badminton.io' }}{{ __(' system,
             or to access an account which does not belong to you.') }}</p>
 
-        <p  class="wcs-page_body">{{ __('You agree not to screen scrape data from') }} {{ env('APP_NAME', 'Badminton.io') }} {{ __('sites to store elsewhere or display on other websites.') }}</p>
+        <p  class="wcs-page_body">{{ __('You agree not to screen scrape data from') }} {{ 'Badminton.io' }} {{ __('sites to store elsewhere or display on other websites.') }}</p>
 
         <h6 class="h24px">{{ __('3. Electronic Mail Facility') }}</h6>
 

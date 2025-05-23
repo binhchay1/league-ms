@@ -48,3 +48,11 @@
 .fw-bold {
    color: green !important;
 }
+
+
+/* Badge notification nhỏ lại cho mobile */
+@media (max-width: 576px) {
+    .list-post {
+        margin-top: 10px;
+    }
+}

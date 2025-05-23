@@ -22,9 +22,12 @@ $utility = new \App\Enums\Utility();
     ?>
     <div>
         <div class=" text-black p-3 align-items-center"  style="background: #707787;padding: 10px; margin-top: -20px; ">
-            <div class="container d-flex  img-fluid" style="color: white">
-                <img src="{{ asset($listTrainings->images) }}" alt="User" width="200" height="200" class=" me-3 " >
-                <div>
+            <div class="container d-flex  flex-column flex-md-row mt-4" style="color: white">
+                <div class="text-center">
+                    <img src="{{ asset($listTrainings->images) }}" alt="User" width="200" height="200" class=" me-3 " >
+
+                </div>
+                <div class="ms-md-4 ">
                     <h2 class="p-0">{{$listTrainings->name}}</h2>
                     <p class="">
                         <i class="bi bi-bookmark"></i> {{$listTrainings->description}}
